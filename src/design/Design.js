@@ -14,10 +14,8 @@ var Anchor = require('grommet/components/Anchor');
 var Philosophy = require('./Philosophy');
 var Basics = require('./Basics');
 var Patterns = require('./Patterns');
-var Showcase = require('./Showcase');
 var Login = require('./patterns/Login');
 var TBD = require('grommet/components/TBD');
-var Resources = require('./Resources');
 
 var CONTENTS = [
   {route: "design_philosophy", label: 'Philosophy', component: Philosophy,
@@ -27,43 +25,8 @@ var CONTENTS = [
       {label: 'Interactions', id: 'interactions'},
       {label: 'Mobile', id: 'mobile'},
       {label: 'Accessibility', id: 'accessibility'}
-    ]},
-  {route: "design_basics", label: 'Basics', component: Basics,
-    contents: [
-      {label: 'Color', id: 'color'},
-      {label: 'Padding', id: 'padding'},
-      {label: 'Text', id: 'text'},
-      {label: 'Typography', id: 'typography'},
-      {label: 'Writing Style', id: 'writing-style'},
-      {label: 'Date and Time', id: 'date-time'},
-      {label: 'Capitalization', id: 'capitalization'},
-      {label: 'Icons', id: 'icons'}
-    ]},
-  {route: "design_patterns", label: 'Patterns', component: Patterns,
-    contents: [
-      {route: "design_login", label: 'Login', component: Login},
-      {route: "design_header", label: 'Header', component: TBD},
-      {route: "design_dashboard", label: 'Dashboard', component: TBD},
-      {route: "design_search", label: 'Search', component: TBD}
     ]
-  },
-  {route: "design_showcase", label: 'Showcase', component: Showcase,
-    contents: [
-      {id: "hpsw-analytics", label: 'Analytics'},
-      {id: "hpsw-big-data", label: 'Big Data'},
-      {id: "hpsw-cloud-analytics", label: 'Cloud Analytics'},
-      {id: "hpsw-business-analytics", label: 'IT Business Analytics'},
-      {id: "hpsw-login", label: 'Login'},
-      {id: "oneview-dashboard", label: 'OneView Dashboard'},
-      {id: "oneview-detail-page", label: 'OneView Detail Page'},
-      {id: "hpsw-ops-dashboard", label: 'Ops Dashboard'},
-      {id: "propel-dashboard", label: 'Propel Dashboard'},
-      {id: "propel-prod-detail", label: 'Propel Product Detail'},
-      {id: "hpsw-service-anywhere", label: 'Service Anywhere'},
-      {id: "hpsw-web-inspect", label: 'Web Inspect'}
-    ]
-  },
-  {route: "design_resources", label: 'Resources', component: Resources}
+  }
 ];
 
 var Design = React.createClass({
