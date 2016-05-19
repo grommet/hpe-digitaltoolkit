@@ -12,10 +12,6 @@ var Menu = require('grommet/components/Menu');
 var Anchor = require('grommet/components/Anchor');
 
 var Philosophy = require('./Philosophy');
-var Basics = require('./Basics');
-var Patterns = require('./Patterns');
-var Login = require('./patterns/Login');
-var TBD = require('grommet/components/TBD');
 
 var CONTENTS = [
   {route: "design_philosophy", label: 'Philosophy', component: Philosophy,

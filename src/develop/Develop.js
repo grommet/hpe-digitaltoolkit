@@ -17,7 +17,7 @@ var ActionsDoc = require('./patterns/ActionsDoc');
 var BoxDoc = require('./components/BoxDoc');
 var DashboardDoc = require('./patterns/DashboardDoc');
 var NavigationDoc = require('./patterns/NavigationDoc');
-var QuoteDoc = require('./components/QuoteDoc');
+var MarqueeDoc = require('./components/MarqueeDoc');
 var WorldMapDoc = require('./components/WorldMapDoc');
 
 //hjjs configuration
@@ -46,7 +46,7 @@ var CONTENTS = [
   {label: 'Components',
     contents: [
       {route: 'develop_box', label: 'Box', component: BoxDoc},
-      {route: 'develop_quote', label: 'Quote', component: QuoteDoc},
+      {route: 'develop_marquee', label: 'Marquee', component: MarqueeDoc},
       {route: 'develop_world-map', label: 'WorldMap', component: WorldMapDoc}
     ]
   }
