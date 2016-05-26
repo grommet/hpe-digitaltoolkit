@@ -34,7 +34,8 @@ var MarqueeDoc = React.createClass({
       <Marquee darkTheme={false}
         backgroundImage="url(../img/MarqueeImage_051916_H.jpg)"
         headline="Accelerate your transformation with the cloud"
-        subHeadline="HPE can help you benefit now from your right mix of cloud" />
+        subHeadline="HPE can help you benefit now from your right mix of cloud"
+        link="http://www.grommet.io/docs/" fixed={true} />
     );
 
     return (
