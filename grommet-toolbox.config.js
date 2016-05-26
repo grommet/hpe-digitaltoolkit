@@ -50,7 +50,8 @@ export default {
       root: [
         path.resolve(__dirname, './node_modules')
       ]
-    }
+    },
+    devtool: 'source-map'
   },
   devServerPort: 8002,
   // devServerHost: "0.0.0.0",
