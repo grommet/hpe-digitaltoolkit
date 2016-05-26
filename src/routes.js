@@ -7,6 +7,7 @@ var Docs = require('./Docs');
 var Home = require('./Home');
 var Design = require('./design/Design');
 var Develop = require('./develop/Develop');
+var Examples = require('./examples/Examples');
 
 module.exports = function (rootPath) {
   var DocsRouter = React.createClass({
@@ -29,11 +30,13 @@ module.exports = function (rootPath) {
       );
     }
   });
+
   return (
     <Route path={rootPath} component={DocsRouter}>
       <IndexRoute component={Home} />
       {Design.routes()}
       {Develop.routes()}
+      {Examples.routes()}
     </Route>
   );
 };
