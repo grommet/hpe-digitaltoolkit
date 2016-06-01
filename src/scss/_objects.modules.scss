@@ -1,9 +1,6 @@
-.box--size-half {
-  width: 50%;
-}
-
 .marquee {
   height: 85vh;
+  overflow: hidden;
 
   > .box__container {
     height: 85vh;
@@ -11,12 +8,41 @@
     overflow: hidden;
   }
 
-  &--fixed > .box__container {
-    position: fixed;
+  &--fixed {
+    @include media-query(palm) {
+      height: auto;
+    }
+
+    > .box__container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  &__overlay.box {
+    height: 85vh;
+    margin-top: 0;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: -1;
+    overflow: hidden;
+
+    .box {
+      width: 45%;
+
+      @include media-query(palm) {
+        width: 100%;
+      }
+    }
+
+    @include media-query(palm) {
+      margin-top: 85vh;
+      height: auto;
+      position: relative;
+    }
   }
 }
 
