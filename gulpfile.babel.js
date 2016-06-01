@@ -197,7 +197,7 @@ gulp.task('release:createTmp', function(done) {
 
 gulp.task('release:heroku', ['dist', 'release:createTmp'], function(done) {
   if (process.env.CI) {
-    git.clone('https://' + process.env.GH_TOKEN + '@github.com/grommet/grommet-docs.git',
+    git.clone('https://' + process.env.GH_TOKEN + '@github.com/grommet/hpe-digitaltoolkit.git',
       {
         cwd: './tmp/'
       },
@@ -206,7 +206,7 @@ gulp.task('release:heroku', ['dist', 'release:createTmp'], function(done) {
           throw err;
         }
 
-        process.chdir('./tmp/grommet-docs');
+        process.chdir('./tmp/hpe-digitaltoolkit');
         git.checkout('heroku', function(err) {
           if (err) {
             throw err;
