@@ -1,24 +1,20 @@
 .marquee {
   height: 85vh;
   overflow: hidden;
+  position: relative;
+
+  @include media-query(palm) {
+    height: auto;
+  }
 
   > .box__container {
     height: 85vh;
     display: flex;
     overflow: hidden;
-  }
-
-  &--fixed {
-    @include media-query(palm) {
-      height: auto;
-    }
-
-    > .box__container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 
   &__overlay.box {

@@ -28,51 +28,50 @@ export default class Marquee extends Component {
   }
 
   _handleScroll () {
-    if (this.props.fixed) {
-      let top = window.pageYOffset;
-      let marqueeOriginalHeight = window.innerHeight * 0.85;
-      let marquee = ReactDOM.findDOMNode(this).getElementsByClassName('box__container')[0];
-      let marqueeTop = marquee.getBoundingClientRect().top;
-      let marqueeText = ReactDOM.findDOMNode(this).getElementsByClassName('marquee__overlay')[0];
-      let marqueeBackgroundImage = new Image();
-      marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
+    console.log('scroll');
+    let top = window.pageYOffset;
+    let marqueeOriginalHeight = window.innerHeight * 0.85;
+    let marquee = ReactDOM.findDOMNode(this).getElementsByClassName('box__container')[0];
+    let marqueeTop = marquee.getBoundingClientRect().top;
+    let marqueeText = ReactDOM.findDOMNode(this).getElementsByClassName('marquee__overlay')[0];
+    let marqueeBackgroundImage = new Image();
+    marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
 
-      let backgroundRatio = marqueeBackgroundImage.width / marqueeBackgroundImage.height;
-      let marqueeRatio = marquee.offsetWidth / marqueeOriginalHeight;
-      let backgroundHeight = 0;
-      let backgroundWidth = 0;
-      if (backgroundRatio > marqueeRatio) {
-        // constrained by marquee height
-        backgroundHeight = marqueeOriginalHeight;
-        backgroundWidth = backgroundHeight * backgroundRatio;
-      } else {
-        // constrained by marquee width
-        backgroundWidth = marquee.offsetWidth;
-        backgroundHeight = backgroundWidth / backgroundRatio;
-      }
-
-      let positionRatio = (marqueeOriginalHeight - top) / marqueeOriginalHeight;
-      let positionPercentage = ((1 - positionRatio) * 50 + 100) / 100;
-      if (window.innerWidth >= 720) {
-        marqueeText.style.opacity = positionRatio;
-
-        if (top > marqueeOriginalHeight) {
-          marqueeText.style.height = 0;
-          marqueeText.style.top = marqueeOriginalHeight + 'px';
-        } else if (top < marqueeTop + top) {
-          marqueeText.style.height = marqueeOriginalHeight;
-          marqueeText.style.top = 0;
-        } else {
-          marqueeText.style.height = marqueeOriginalHeight - top + marqueeTop + top + 'px';
-          marqueeText.style.top = -marqueeTop + 'px';
-        }
-      } else {
-        marqueeText.style.opacity = 1;
-        marqueeText.style.height = '';
-        marqueeText.style.top = 0;
-      }
-      marquee.style.backgroundSize = (backgroundWidth * positionPercentage) + 'px ' + (backgroundHeight * positionPercentage) + 'px';
+    let backgroundRatio = marqueeBackgroundImage.width / marqueeBackgroundImage.height;
+    let marqueeRatio = marquee.offsetWidth / marqueeOriginalHeight;
+    let backgroundHeight = 0;
+    let backgroundWidth = 0;
+    if (backgroundRatio > marqueeRatio) {
+      // constrained by marquee height
+      backgroundHeight = marqueeOriginalHeight;
+      backgroundWidth = backgroundHeight * backgroundRatio;
+    } else {
+      // constrained by marquee width
+      backgroundWidth = marquee.offsetWidth;
+      backgroundHeight = backgroundWidth / backgroundRatio;
     }
+
+    let positionRatio = (marqueeOriginalHeight - top) / marqueeOriginalHeight;
+    let positionPercentage = ((1 - positionRatio) * 50 + 100) / 100;
+    if (window.innerWidth >= 720) {
+      marqueeText.style.opacity = positionRatio;
+
+      if (top > marqueeOriginalHeight) {
+        marqueeText.style.height = 0;
+        marqueeText.style.top = marqueeOriginalHeight + 'px';
+      } else if (top < marqueeTop + top) {
+        marqueeText.style.height = marqueeOriginalHeight;
+        marqueeText.style.top = 0;
+      } else {
+        marqueeText.style.height = marqueeOriginalHeight - top + marqueeTop + top + 'px';
+        marqueeText.style.top = -marqueeTop + 'px';
+      }
+    } else {
+      marqueeText.style.opacity = 1;
+      marqueeText.style.height = '';
+      marqueeText.style.top = 0;
+    }
+    marquee.style.backgroundSize = (backgroundWidth * positionPercentage) + 'px ' + (backgroundHeight * positionPercentage) + 'px';
   }
 
   render () {
@@ -80,10 +79,7 @@ export default class Marquee extends Component {
 
     let classes = classnames(
       CLASS_ROOT,
-      this.props.className,
-      {
-        [`${CLASS_ROOT}--fixed`]: this.props.fixed
-      }
+      this.props.className
     );
 
     let full = flush ? 'horizontal' : false;
@@ -125,7 +121,6 @@ export default class Marquee extends Component {
 Marquee.propTypes = {
   backgroundImage: PropTypes.string.isRequired,
   darkTheme: PropTypes.bool,
-  fixed: PropTypes.bool,
   flush: PropTypes.bool,
   headline: PropTypes.string.isRequired,
   headlineSize: PropTypes.oneOf(['small', 'medium', 'large']),
@@ -140,7 +135,6 @@ Marquee.propTypes = {
 Marquee.defaultProps = {
   darkTheme: true,
   flush: true,
-  fixed: false,
   headlineSize: 'large',
   justify: 'end',
   linkText: 'Learn More'
