@@ -12,23 +12,30 @@ import Anchor from 'grommet/components/Anchor';
 const CLASS_ROOT = 'marquee';
 
 export default class Marquee extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this._handleScroll = this._handleScroll.bind(this);
+    this._setBackgroundColorIndex = this._setBackgroundColorIndex.bind(this);
+
+    this.state = {
+      colorIndex: props.darkTheme ? 'grey-1' : 'light-1'
+    };
   }
 
   componentDidMount () {
     window.addEventListener('scroll', this._handleScroll);
     window.addEventListener('resize', this._handleScroll);
+    window.addEventListener('resize', this._setBackgroundColorIndex);
   }
 
   componentWillUnmount () {
     window.removeEventListener('scroll', this._handleScroll);
     window.removeEventListener('resize', this._handleScroll);
+    window.removeEventListener('resize', this._setBackgroundColorIndex);
   }
 
   _handleScroll () {
-    let marqueeOriginalHeight = window.innerHeight * 0.85;
+    let marqueeOriginalHeight = window.innerHeight * 0.75;
     let marquee = ReactDOM.findDOMNode(this).getElementsByClassName('box__container')[0];
     let marqueeTop = marquee.getBoundingClientRect().top;
     let marqueeText = ReactDOM.findDOMNode(this).getElementsByClassName('marquee__overlay')[0];
@@ -55,13 +62,13 @@ export default class Marquee extends Component {
 
       if (-marqueeTop > marqueeOriginalHeight) {
         marqueeText.style.height = 0;
-        marqueeText.style.top = marqueeOriginalHeight + 'px';
+        marqueeText.style.top = `${marqueeOriginalHeight}px`;
       } else if (marqueeTop > 0) {
         marqueeText.style.height = marqueeOriginalHeight;
         marqueeText.style.top = 0;
       } else {
-        marqueeText.style.height = marqueeOriginalHeight + marqueeTop + 'px';
-        marqueeText.style.top = -marqueeTop + 'px';
+        marqueeText.style.height = `${marqueeOriginalHeight + marqueeTop}px`;
+        marqueeText.style.top = `${-marqueeTop}px`;
       }
     } else {
       marqueeText.style.opacity = 1;
@@ -75,11 +82,21 @@ export default class Marquee extends Component {
     } else {
       positionPercentage = 1;
     }
-    marquee.style.backgroundSize = (backgroundWidth * positionPercentage) + 'px ' + (backgroundHeight * positionPercentage) + 'px';
+    marquee.style.backgroundSize = `${backgroundWidth * positionPercentage}px ${backgroundHeight * positionPercentage}px`;
+  }
+
+  _setBackgroundColorIndex () {
+    let { darkTheme } = this.props;
+
+    if (window.innerWidth < 720) {
+      this.setState({colorIndex: 'light-1'});
+    } else {
+      this.setState({colorIndex: darkTheme ? 'grey-1' : 'light-1'});
+    }
   }
 
   render () {
-    let { backgroundImage, darkTheme, flush, headlineSize, headline, justify, link, linkIcon, linkText, onClick, subHeadline } = this.props;
+    let { backgroundImage, flush, headlineSize, headline, justify, link, linkIcon, linkText, onClick, subHeadline } = this.props;
 
     let classes = classnames(
       CLASS_ROOT,
@@ -88,7 +105,6 @@ export default class Marquee extends Component {
 
     let full = flush ? 'horizontal' : false;
     let pad = flush ? 'none' : 'large';
-    let colorIndex = darkTheme ? 'dark' : 'light';
 
     let subHeadlineMarkup;
     if (subHeadline) {
@@ -105,10 +121,10 @@ export default class Marquee extends Component {
     }
 
     return (
-      <Box className={classes}>
+      <Box className={classes} colorIndex={this.state.colorIndex}>
         <Section appCentered={true} pad={pad}
           backgroundImage={backgroundImage} full={full} />
-        <Box className="marquee__overlay" justify={justify} align="center" colorIndex={colorIndex} primary={true} full={full} direction="row" >
+        <Box className="marquee__overlay" justify={justify} align="center" primary={true} full={full} direction="row" >
           <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
             <Headline size={headlineSize} strong={true} margin="none">
               {headline}

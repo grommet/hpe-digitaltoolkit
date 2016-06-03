@@ -1,5 +1,5 @@
 .marquee {
-  height: 85vh;
+  height: 75vh;
   overflow: hidden;
   position: relative;
 
@@ -8,7 +8,7 @@
   }
 
   > .box__container {
-    height: 85vh;
+    height: 75vh;
     display: flex;
     overflow: hidden;
     position: absolute;
@@ -18,7 +18,7 @@
   }
 
   &__overlay.box {
-    height: 85vh;
+    height: 75vh;
     margin-top: 0;
     position: absolute;
     top: 0;
@@ -43,7 +43,7 @@
     }
 
     @include media-query(palm) {
-      margin-top: 85vh;
+      margin-top: 75vh;
       height: auto;
       position: relative;
     }
@@ -54,7 +54,7 @@
   position: relative;
   overflow: hidden;
 
-  .split--fixed>* {
+  .split--fixed > * {
     height: auto;
   }
 }
