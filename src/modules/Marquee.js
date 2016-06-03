@@ -28,8 +28,6 @@ export default class Marquee extends Component {
   }
 
   _handleScroll () {
-    console.log('scroll');
-    let top = window.pageYOffset;
     let marqueeOriginalHeight = window.innerHeight * 0.85;
     let marquee = ReactDOM.findDOMNode(this).getElementsByClassName('box__container')[0];
     let marqueeTop = marquee.getBoundingClientRect().top;
@@ -51,25 +49,31 @@ export default class Marquee extends Component {
       backgroundHeight = backgroundWidth / backgroundRatio;
     }
 
-    let positionRatio = (marqueeOriginalHeight - top) / marqueeOriginalHeight;
-    let positionPercentage = ((1 - positionRatio) * 50 + 100) / 100;
+    let positionRatio = (marqueeOriginalHeight + marqueeTop) / marqueeOriginalHeight;
     if (window.innerWidth >= 720) {
       marqueeText.style.opacity = positionRatio;
 
-      if (top > marqueeOriginalHeight) {
+      if (-marqueeTop > marqueeOriginalHeight) {
         marqueeText.style.height = 0;
         marqueeText.style.top = marqueeOriginalHeight + 'px';
-      } else if (top < marqueeTop + top) {
+      } else if (marqueeTop > 0) {
         marqueeText.style.height = marqueeOriginalHeight;
         marqueeText.style.top = 0;
       } else {
-        marqueeText.style.height = marqueeOriginalHeight - top + marqueeTop + top + 'px';
+        marqueeText.style.height = marqueeOriginalHeight + marqueeTop + 'px';
         marqueeText.style.top = -marqueeTop + 'px';
       }
     } else {
       marqueeText.style.opacity = 1;
       marqueeText.style.height = '';
       marqueeText.style.top = 0;
+    }
+
+    let positionPercentage;
+    if (marqueeTop < 0) {
+      positionPercentage = ((1 - positionRatio) * 50 + 100) / 100;
+    } else {
+      positionPercentage = 1;
     }
     marquee.style.backgroundSize = (backgroundWidth * positionPercentage) + 'px ' + (backgroundHeight * positionPercentage) + 'px';
   }
