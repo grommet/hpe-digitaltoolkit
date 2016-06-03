@@ -35,6 +35,7 @@ export default class Marquee extends Component {
   }
 
   _handleScroll () {
+    const palmBreakpoint = 720;
     let marqueeOriginalHeight = window.innerHeight * 0.75;
     let marqueeComponent = ReactDOM.findDOMNode(this);
     let marquee = marqueeComponent.getElementsByClassName('box__container')[0];
@@ -58,7 +59,7 @@ export default class Marquee extends Component {
     }
 
     let positionRatio = (marqueeOriginalHeight + marqueeTop) / marqueeOriginalHeight;
-    if (window.innerWidth >= 720) {
+    if (window.innerWidth >= palmBreakpoint) {
       marqueeText.style.opacity = positionRatio;
 
       if (-marqueeTop > marqueeOriginalHeight) {
@@ -88,11 +89,14 @@ export default class Marquee extends Component {
 
   _setBackgroundColorIndex () {
     let { darkTheme } = this.props;
+    const lightColorIndex = 'light-1';
+    const darkColorIndex = 'grey-1';
+    const palmBreakpoint = 720;
 
-    if (window.innerWidth < 720) {
-      this.setState({colorIndex: 'light-1'});
+    if (window.innerWidth < palmBreakpoint) {
+      this.setState({colorIndex: lightColorIndex});
     } else {
-      this.setState({colorIndex: darkTheme ? 'grey-1' : 'light-1'});
+      this.setState({colorIndex: darkTheme ? darkColorIndex : lightColorIndex});
     }
   }
 
