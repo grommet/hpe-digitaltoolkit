@@ -10,6 +10,9 @@ import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
 
 const CLASS_ROOT = 'marquee';
+const LIGHT_COLORINDEX = 'light-1';
+const DARK_COLORINDEX = 'grey-1';
+const PALM_BREAKPOINT = 720;
 
 export default class Marquee extends Component {
   constructor (props) {
@@ -18,7 +21,7 @@ export default class Marquee extends Component {
     this._setBackgroundColorIndex = this._setBackgroundColorIndex.bind(this);
 
     this.state = {
-      colorIndex: props.darkTheme ? 'grey-1' : 'light-1'
+      colorIndex: props.darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX
     };
   }
 
@@ -35,7 +38,6 @@ export default class Marquee extends Component {
   }
 
   _handleScroll () {
-    const palmBreakpoint = 720;
     let marqueeOriginalHeight = window.innerHeight * 0.75;
     let marqueeComponent = ReactDOM.findDOMNode(this);
     let marquee = marqueeComponent.getElementsByClassName('box__container')[0];
@@ -59,7 +61,7 @@ export default class Marquee extends Component {
     }
 
     let positionRatio = (marqueeOriginalHeight + marqueeTop) / marqueeOriginalHeight;
-    if (window.innerWidth >= palmBreakpoint) {
+    if (window.innerWidth >= PALM_BREAKPOINT) {
       marqueeText.style.opacity = positionRatio;
 
       if (-marqueeTop > marqueeOriginalHeight) {
@@ -89,14 +91,11 @@ export default class Marquee extends Component {
 
   _setBackgroundColorIndex () {
     let { darkTheme } = this.props;
-    const lightColorIndex = 'light-1';
-    const darkColorIndex = 'grey-1';
-    const palmBreakpoint = 720;
 
-    if (window.innerWidth < palmBreakpoint) {
-      this.setState({colorIndex: lightColorIndex});
+    if (window.innerWidth < PALM_BREAKPOINT) {
+      this.setState({colorIndex: LIGHT_COLORINDEX});
     } else {
-      this.setState({colorIndex: darkTheme ? darkColorIndex : lightColorIndex});
+      this.setState({colorIndex: darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX});
     }
   }
 
