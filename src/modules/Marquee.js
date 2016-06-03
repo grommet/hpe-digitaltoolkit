@@ -36,9 +36,10 @@ export default class Marquee extends Component {
 
   _handleScroll () {
     let marqueeOriginalHeight = window.innerHeight * 0.75;
-    let marquee = ReactDOM.findDOMNode(this).getElementsByClassName('box__container')[0];
+    let marqueeComponent = ReactDOM.findDOMNode(this);
+    let marquee = marqueeComponent.getElementsByClassName('box__container')[0];
     let marqueeTop = marquee.getBoundingClientRect().top;
-    let marqueeText = ReactDOM.findDOMNode(this).getElementsByClassName('marquee__overlay')[0];
+    let marqueeText = marqueeComponent.getElementsByClassName('marquee__overlay')[0];
     let marqueeBackgroundImage = new Image();
     marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
 
