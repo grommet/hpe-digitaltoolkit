@@ -1,26 +1,60 @@
-.box--size-half {
-  width: 50%;
-}
-
 .marquee {
-  height: 85vh;
+  height: 75vh;
+  overflow: hidden;
+  position: relative;
 
-  > .box__container {
-    height: 85vh;
-    display: flex;
-    overflow: hidden;
+  @include media-query(palm) {
+    height: auto;
   }
 
-  &--fixed > .box__container {
-    position: fixed;
+  > .box__container {
+    height: 75vh;
+    display: flex;
+    overflow: hidden;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: -1;
+  }
+
+  &__overlay.box {
+    height: 75vh;
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+
+    .box {
+      width: 45%;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      -ms-word-break: break-all;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+
+      @include media-query(palm) {
+        width: 100%;
+      }
+    }
+
+    @include media-query(palm) {
+      margin-top: 75vh;
+      height: auto;
+      position: relative;
+    }
   }
 }
 
 .grommet.app {
   position: relative;
   overflow: hidden;
+
+  .split--fixed > * {
+    height: auto;
+  }
 }
