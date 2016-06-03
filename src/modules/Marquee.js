@@ -10,71 +10,105 @@ import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
 
 const CLASS_ROOT = 'marquee';
+const LIGHT_COLORINDEX = 'light-1';
+const DARK_COLORINDEX = 'grey-1';
+const PALM_BREAKPOINT = 720;
 
 export default class Marquee extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this._handleScroll = this._handleScroll.bind(this);
+    this._setBackgroundColorIndex = this._setBackgroundColorIndex.bind(this);
+
+    this.state = {
+      colorIndex: props.darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX
+    };
   }
 
   componentDidMount () {
     window.addEventListener('scroll', this._handleScroll);
+    window.addEventListener('resize', this._handleScroll);
+    window.addEventListener('resize', this._setBackgroundColorIndex);
   }
 
   componentWillUnmount () {
     window.removeEventListener('scroll', this._handleScroll);
+    window.removeEventListener('resize', this._handleScroll);
+    window.removeEventListener('resize', this._setBackgroundColorIndex);
   }
 
   _handleScroll () {
-    if (this.props.fixed) {
-      let top = window.pageYOffset;
-      let marqueeOriginalHeight = window.innerHeight * 0.85;
-      let marquee = ReactDOM.findDOMNode(this).getElementsByClassName('box__container')[0];
-      let marqueeText = marquee.getElementsByClassName('section')[0];
-      let marqueeBackgroundImage = new Image();
-      marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
+    let marqueeOriginalHeight = window.innerHeight * 0.75;
+    let marqueeComponent = ReactDOM.findDOMNode(this);
+    let marquee = marqueeComponent.getElementsByClassName('box__container')[0];
+    let marqueeTop = marquee.getBoundingClientRect().top;
+    let marqueeText = marqueeComponent.getElementsByClassName('marquee__overlay')[0];
+    let marqueeBackgroundImage = new Image();
+    marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
 
-      let backgroundRatio = marqueeBackgroundImage.width / marqueeBackgroundImage.height;
-      let marqueeRatio = marquee.offsetWidth / marqueeOriginalHeight;
-      let backgroundHeight = 0;
-      let backgroundWidth = 0;
-      if (backgroundRatio > marqueeRatio) {
-        // constrained by marquee height
-        backgroundHeight = marqueeOriginalHeight;
-        backgroundWidth = backgroundHeight * backgroundRatio;
-      } else {
-        // constrained by marquee width
-        backgroundWidth = marquee.offsetWidth;
-        backgroundHeight = backgroundWidth / backgroundRatio;
-      }
+    let backgroundRatio = marqueeBackgroundImage.width / marqueeBackgroundImage.height;
+    let marqueeRatio = marquee.offsetWidth / marqueeOriginalHeight;
+    let backgroundHeight = 0;
+    let backgroundWidth = 0;
+    if (backgroundRatio > marqueeRatio) {
+      // constrained by marquee height
+      backgroundHeight = marqueeOriginalHeight;
+      backgroundWidth = backgroundHeight * backgroundRatio;
+    } else {
+      // constrained by marquee width
+      backgroundWidth = marquee.offsetWidth;
+      backgroundHeight = backgroundWidth / backgroundRatio;
+    }
 
-      if (top > marqueeOriginalHeight) {
-        marquee.style.height = 0;
-      } else {
-        marquee.style.height = marqueeOriginalHeight - top + 'px';
-      }
-
-      let positionRatio = (marqueeOriginalHeight - top) / marqueeOriginalHeight;
-      let positionPercentage = ((1 - positionRatio) * 30 + 100) / 100;
+    let positionRatio = (marqueeOriginalHeight + marqueeTop) / marqueeOriginalHeight;
+    if (window.innerWidth >= PALM_BREAKPOINT) {
       marqueeText.style.opacity = positionRatio;
-      marquee.style.backgroundSize = (backgroundWidth * positionPercentage) + 'px ' + (backgroundHeight * positionPercentage) + 'px';
+
+      if (-marqueeTop > marqueeOriginalHeight) {
+        marqueeText.style.height = 0;
+        marqueeText.style.top = `${marqueeOriginalHeight}px`;
+      } else if (marqueeTop > 0) {
+        marqueeText.style.height = marqueeOriginalHeight;
+        marqueeText.style.top = 0;
+      } else {
+        marqueeText.style.height = `${marqueeOriginalHeight + marqueeTop}px`;
+        marqueeText.style.top = `${-marqueeTop}px`;
+      }
+    } else {
+      marqueeText.style.opacity = 1;
+      marqueeText.style.height = '';
+      marqueeText.style.top = 0;
+    }
+
+    let positionPercentage;
+    if (marqueeTop < 0) {
+      positionPercentage = ((1 - positionRatio) * 50 + 100) / 100;
+    } else {
+      positionPercentage = 1;
+    }
+    marquee.style.backgroundSize = `${backgroundWidth * positionPercentage}px ${backgroundHeight * positionPercentage}px`;
+  }
+
+  _setBackgroundColorIndex () {
+    let { darkTheme } = this.props;
+
+    if (window.innerWidth < PALM_BREAKPOINT) {
+      this.setState({colorIndex: LIGHT_COLORINDEX});
+    } else {
+      this.setState({colorIndex: darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX});
     }
   }
 
   render () {
-    let { backgroundImage, darkTheme, flush, headlineSize, headline, justify, link, linkIcon, linkText, onClick, subHeadline } = this.props;
+    let { backgroundImage, flush, headlineSize, headline, justify, link, linkIcon, linkText, onClick, subHeadline } = this.props;
 
     let classes = classnames(
       CLASS_ROOT,
-      this.props.className,
-      {
-        [`${CLASS_ROOT}--fixed`]: this.props.fixed
-      }
+      this.props.className
     );
 
     let full = flush ? 'horizontal' : false;
     let pad = flush ? 'none' : 'large';
-    let colorIndex = darkTheme ? 'dark' : 'light';
 
     let subHeadlineMarkup;
     if (subHeadline) {
@@ -91,18 +125,18 @@ export default class Marquee extends Component {
     }
 
     return (
-      <Box className={classes}>
+      <Box className={classes} colorIndex={this.state.colorIndex}>
         <Section appCentered={true} pad={pad}
-          backgroundImage={backgroundImage} colorIndex={colorIndex}
-          primary={true} full={full} direction="row" justify={justify} align="center">
-          <Box className="box--size-half" pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
+          backgroundImage={backgroundImage} full={full} />
+        <Box className="marquee__overlay" justify={justify} align="center" primary={true} full={full} direction="row" >
+          <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
             <Headline size={headlineSize} strong={true} margin="none">
               {headline}
             </Headline>
             {subHeadlineMarkup}
             {linkMarkup}
           </Box>
-        </Section>
+        </Box>
       </Box>
     );
   }
@@ -111,7 +145,6 @@ export default class Marquee extends Component {
 Marquee.propTypes = {
   backgroundImage: PropTypes.string.isRequired,
   darkTheme: PropTypes.bool,
-  fixed: PropTypes.bool,
   flush: PropTypes.bool,
   headline: PropTypes.string.isRequired,
   headlineSize: PropTypes.oneOf(['small', 'medium', 'large']),
@@ -126,7 +159,6 @@ Marquee.propTypes = {
 Marquee.defaultProps = {
   darkTheme: true,
   flush: true,
-  fixed: false,
   headlineSize: 'large',
   justify: 'end',
   linkText: 'Learn More'
