@@ -21,46 +21,11 @@ var Examples = React.createClass({
     };
   },
 
-  componentWillMount() {
-    const script = document.createElement('script');
-    script.src = 'http://grommet.us.rdlabs.hpecorp.net/hpe/hpe-internal/hpe.js';
-    document.body.appendChild(script);
-
-    setTimeout(function() {
-      window._HPE.initialize({
-        styleWholePage: false,
-        header: {
-          load: true,
-          isExternal: true,
-          links: [{
-            label: 'Home',
-            href: '/home'
-          }, {
-            label: 'Navigation',
-            links: [{
-              label: 'Contact',
-              href: '/contact'
-            }, {
-              label: 'Help',
-              href: '/help'
-            }]
-          }, {
-            label: 'About Us',
-            href: '/about'
-          }]
-        },
-        footer: {
-          load: true
-        }
-      });
-    }, 1000);
-  },
-
   render: function () {
     return (
       <div>
         <Marquee darkTheme={false}
-          backgroundImage="url(../img/MarqueeImage_051916_H.jpg)"
+          backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/" />
