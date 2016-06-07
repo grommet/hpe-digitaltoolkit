@@ -6802,9 +6802,10 @@ module.exports =
 	      var hoverBorder = _props.hoverBorder;
 	      var hoverBorderSize = _props.hoverBorderSize;
 
+	      var restProps = _Props2.default.omit(this.props, Object.keys(_Box2.default.propTypes));
 
 	      if (selected) {
-	        console.warn('Selected option has been deprecated, please use selected option at the Tiles level.');
+	        console.warn('Selected option has been deprecated, please use ' + 'selected option at the Tiles level.');
 	      }
 
 	      var statusClass = status ? status.toLowerCase() : undefined;
@@ -6817,7 +6818,7 @@ module.exports =
 
 	      return _react2.default.createElement(
 	        _Box2.default,
-	        _extends({}, boxProps, { className: classes }),
+	        _extends({}, restProps, boxProps, { className: classes }),
 	        children
 	      );
 	    }
@@ -14691,9 +14692,9 @@ module.exports =
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _classnames = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(24);
 
-	var _classnames2 = _interopRequireDefault(_classnames);
+	var _classnames3 = _interopRequireDefault(_classnames2);
 
 	var _Box = __webpack_require__(15);
 
@@ -14716,6 +14717,8 @@ module.exports =
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -14763,10 +14766,15 @@ module.exports =
 	    key: '_handleScroll',
 	    value: function _handleScroll() {
 	      var marqueeOriginalHeight = window.innerHeight * 0.75;
-	      var marqueeComponent = _reactDom2.default.findDOMNode(this);
-	      var marquee = marqueeComponent.getElementsByClassName('box__container')[0];
+	      if (window.innerWidth < PALM_BREAKPOINT) {
+	        marqueeOriginalHeight = 270;
+	      } else if (this.props.size === 'small') {
+	        marqueeOriginalHeight = window.innerHeight * 0.50;
+	      }
+	      var marqueeNode = _reactDom2.default.findDOMNode(this);
+	      var marquee = marqueeNode.getElementsByClassName('box__container')[0];
 	      var marqueeTop = marquee.getBoundingClientRect().top;
-	      var marqueeText = marqueeComponent.getElementsByClassName('marquee__overlay')[0];
+	      var marqueeText = marqueeNode.getElementsByClassName('marquee__overlay')[0];
 	      var marqueeBackgroundImage = new Image();
 	      marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
 
@@ -14840,7 +14848,7 @@ module.exports =
 	      var subHeadline = _props.subHeadline;
 
 
-	      var classes = (0, _classnames2.default)(CLASS_ROOT, this.props.className);
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, _defineProperty({}, CLASS_ROOT + '--' + this.props.size, this.props.size));
 
 	      var full = flush ? 'horizontal' : false;
 	      var pad = flush ? 'none' : 'large';
@@ -14904,6 +14912,7 @@ module.exports =
 	  linkIcon: _react.PropTypes.element,
 	  linkText: _react.PropTypes.string,
 	  onClick: _react.PropTypes.func,
+	  size: _react.PropTypes.oneOf(['small', 'large']),
 	  subHeadline: _react.PropTypes.string
 	};
 
@@ -14912,7 +14921,8 @@ module.exports =
 	  flush: true,
 	  headlineSize: 'large',
 	  justify: 'end',
-	  linkText: 'Learn More'
+	  linkText: 'Learn More',
+	  size: 'large'
 	};
 	module.exports = exports['default'];
 
@@ -15489,6 +15499,7 @@ module.exports =
 	var Route = Router.Route;
 	var Box = __webpack_require__(15);
 	var Marquee = __webpack_require__(87);
+	var MarqueeGrommet = __webpack_require__(93);
 
 	var Examples = React.createClass({
 	  displayName: 'Examples',
@@ -15507,6 +15518,43 @@ module.exports =
 	    };
 	  },
 
+	  _loremIpsum: function _loremIpsum() {
+	    return React.createElement(
+	      Box,
+	      { colorIndex: 'light-1', pad: { horizontal: 'large', vertical: 'none' } },
+	      React.createElement(
+	        'p',
+	        null,
+	        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae rhoncus dui, eu gravida est. Cras consectetur enim eget erat rutrum, et suscipit lorem iaculis. Maecenas sed metus nulla. Vestibulum nibh risus, facilisis non sem a, mattis venenatis lacus. Maecenas condimentum interdum arcu eu consectetur. Etiam magna ligula, elementum ac leo vel, sagittis tempus neque. Duis dapibus at velit aliquam varius. Nulla facilisi. Donec rutrum augue neque. Suspendisse ut metus neque. Praesent interdum ornare condimentum.'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'Ut vel varius arcu. Suspendisse bibendum turpis eu nunc hendrerit suscipit. In feugiat nibh sed justo tincidunt, nec pellentesque quam tempor. Etiam condimentum iaculis dolor et semper. Curabitur tincidunt imperdiet ante, eu consequat nulla facilisis cursus. Cras metus ipsum, vehicula non vestibulum in, lacinia ut erat. Curabitur sed nulla porttitor, sollicitudin risus molestie, auctor massa. Curabitur porttitor sodales tincidunt. In in enim dapibus, lobortis dui vitae, vehicula augue. Quisque quis cursus ipsum, ut tincidunt dui. Donec eget bibendum turpis. Integer porttitor libero at luctus sodales. Donec varius consectetur quam, a vestibulum nulla rhoncus sit amet. Nunc blandit molestie dapibus. Etiam eleifend neque justo, et imperdiet augue euismod sed.'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'Nullam mauris neque, dictum in nibh pulvinar, facilisis faucibus enim. Nullam semper sem vitae finibus molestie. Fusce sollicitudin lacus dolor, at placerat eros rhoncus et. Suspendisse id neque vel metus lobortis tristique at interdum nisl. Fusce pretium nulla in neque feugiat, ut fermentum libero pellentesque. Sed et malesuada ligula. Quisque quis blandit massa.'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'Aliquam porta aliquam varius. Suspendisse interdum turpis sit amet bibendum efficitur. Phasellus finibus justo ac nisi porta sollicitudin. Vivamus lorem diam, dignissim ac posuere finibus, auctor nec nisi. Aenean pulvinar rhoncus eros sit amet porta. Nam egestas gravida risus quis dignissim. Nullam quis nibh vitae ipsum aliquam tristique vitae at ex. Praesent ultricies felis sit amet dolor interdum, vitae placerat diam lacinia. Quisque vitae pharetra magna, vitae commodo urna.'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'Praesent lectus felis, malesuada vel tellus ut, maximus blandit orci. Nunc semper maximus nisi, a ornare magna vestibulum sit amet. Morbi rutrum ante quis nunc gravida porttitor. Nullam dignissim ex a odio tincidunt, in posuere massa dapibus. Duis pretium rutrum metus. Aliquam nulla sapien, aliquet ac efficitur sed, tempor vitae quam. Integer scelerisque tempus lorem eu volutpat. Integer egestas laoreet felis at convallis. Vivamus commodo euismod mauris, ut pulvinar mi iaculis non. Morbi tempor urna et gravida vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vel neque libero.'
+	      ),
+	      React.createElement(
+	        'p',
+	        null,
+	        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae rhoncus dui, eu gravida est. Cras consectetur enim eget erat rutrum, et suscipit lorem iaculis. Maecenas sed metus nulla. Vestibulum nibh risus, facilisis non sem a, mattis venenatis lacus. Maecenas condimentum interdum arcu eu consectetur. Etiam magna ligula, elementum ac leo vel, sagittis tempus neque. Duis dapibus at velit aliquam varius. Nulla facilisi. Donec rutrum augue neque. Suspendisse ut metus neque. Praesent interdum ornare condimentum.'
+	      )
+	    );
+	  },
+
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -15516,40 +15564,22 @@ module.exports =
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	        link: 'http://www.grommet.io/docs/' }),
-	      React.createElement(
-	        Box,
-	        { colorIndex: 'light-1', pad: { horizontal: 'large', vertical: 'none' } },
-	        React.createElement(
-	          'p',
-	          null,
-	          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae rhoncus dui, eu gravida est. Cras consectetur enim eget erat rutrum, et suscipit lorem iaculis. Maecenas sed metus nulla. Vestibulum nibh risus, facilisis non sem a, mattis venenatis lacus. Maecenas condimentum interdum arcu eu consectetur. Etiam magna ligula, elementum ac leo vel, sagittis tempus neque. Duis dapibus at velit aliquam varius. Nulla facilisi. Donec rutrum augue neque. Suspendisse ut metus neque. Praesent interdum ornare condimentum.'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Ut vel varius arcu. Suspendisse bibendum turpis eu nunc hendrerit suscipit. In feugiat nibh sed justo tincidunt, nec pellentesque quam tempor. Etiam condimentum iaculis dolor et semper. Curabitur tincidunt imperdiet ante, eu consequat nulla facilisis cursus. Cras metus ipsum, vehicula non vestibulum in, lacinia ut erat. Curabitur sed nulla porttitor, sollicitudin risus molestie, auctor massa. Curabitur porttitor sodales tincidunt. In in enim dapibus, lobortis dui vitae, vehicula augue. Quisque quis cursus ipsum, ut tincidunt dui. Donec eget bibendum turpis. Integer porttitor libero at luctus sodales. Donec varius consectetur quam, a vestibulum nulla rhoncus sit amet. Nunc blandit molestie dapibus. Etiam eleifend neque justo, et imperdiet augue euismod sed.'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Nullam mauris neque, dictum in nibh pulvinar, facilisis faucibus enim. Nullam semper sem vitae finibus molestie. Fusce sollicitudin lacus dolor, at placerat eros rhoncus et. Suspendisse id neque vel metus lobortis tristique at interdum nisl. Fusce pretium nulla in neque feugiat, ut fermentum libero pellentesque. Sed et malesuada ligula. Quisque quis blandit massa.'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Aliquam porta aliquam varius. Suspendisse interdum turpis sit amet bibendum efficitur. Phasellus finibus justo ac nisi porta sollicitudin. Vivamus lorem diam, dignissim ac posuere finibus, auctor nec nisi. Aenean pulvinar rhoncus eros sit amet porta. Nam egestas gravida risus quis dignissim. Nullam quis nibh vitae ipsum aliquam tristique vitae at ex. Praesent ultricies felis sit amet dolor interdum, vitae placerat diam lacinia. Quisque vitae pharetra magna, vitae commodo urna.'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Praesent lectus felis, malesuada vel tellus ut, maximus blandit orci. Nunc semper maximus nisi, a ornare magna vestibulum sit amet. Morbi rutrum ante quis nunc gravida porttitor. Nullam dignissim ex a odio tincidunt, in posuere massa dapibus. Duis pretium rutrum metus. Aliquam nulla sapien, aliquet ac efficitur sed, tempor vitae quam. Integer scelerisque tempus lorem eu volutpat. Integer egestas laoreet felis at convallis. Vivamus commodo euismod mauris, ut pulvinar mi iaculis non. Morbi tempor urna et gravida vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vel neque libero.'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae rhoncus dui, eu gravida est. Cras consectetur enim eget erat rutrum, et suscipit lorem iaculis. Maecenas sed metus nulla. Vestibulum nibh risus, facilisis non sem a, mattis venenatis lacus. Maecenas condimentum interdum arcu eu consectetur. Etiam magna ligula, elementum ac leo vel, sagittis tempus neque. Duis dapibus at velit aliquam varius. Nulla facilisi. Donec rutrum augue neque. Suspendisse ut metus neque. Praesent interdum ornare condimentum.'
-	        )
-	      )
+	      this._loremIpsum(),
+	      React.createElement(Marquee, { darkTheme: false,
+	        backgroundImage: 'url(/docs/img/TK_Marquee_Image.jpg)',
+	        headline: 'Accelerate your transformation with the cloud',
+	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
+	        link: 'http://www.grommet.io/docs/',
+	        justify: 'start',
+	        size: 'small' }),
+	      this._loremIpsum(),
+	      React.createElement(MarqueeGrommet, { darkTheme: false,
+	        backgroundImage: 'url(/docs/img/MarqueeImage_051916_H.jpg)',
+	        headline: 'Accelerate your transformation with the cloud',
+	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
+	        link: 'http://www.grommet.io/docs/',
+	        justify: 'end' }),
+	      this._loremIpsum()
 	    );
 	  }
 	});
@@ -15559,6 +15589,195 @@ module.exports =
 	};
 
 	module.exports = Examples;
+
+/***/ },
+/* 93 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(24);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _Box = __webpack_require__(15);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Section = __webpack_require__(46);
+
+	var _Section2 = _interopRequireDefault(_Section);
+
+	var _Headline = __webpack_require__(47);
+
+	var _Headline2 = _interopRequireDefault(_Headline);
+
+	var _Paragraph = __webpack_require__(88);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
+	var _Anchor = __webpack_require__(44);
+
+	var _Anchor2 = _interopRequireDefault(_Anchor);
+
+	var _Split = __webpack_require__(55);
+
+	var _Split2 = _interopRequireDefault(_Split);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'marquee-grommet';
+
+	var MarqueeGrommet = function (_Component) {
+	  _inherits(MarqueeGrommet, _Component);
+
+	  function MarqueeGrommet() {
+	    _classCallCheck(this, MarqueeGrommet);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(MarqueeGrommet).apply(this, arguments));
+	  }
+
+	  _createClass(MarqueeGrommet, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var backgroundImage = _props.backgroundImage;
+	      var darkTheme = _props.darkTheme;
+	      var flush = _props.flush;
+	      var headlineSize = _props.headlineSize;
+	      var headline = _props.headline;
+	      var justify = _props.justify;
+	      var link = _props.link;
+	      var linkIcon = _props.linkIcon;
+	      var linkText = _props.linkText;
+	      var onClick = _props.onClick;
+	      var subHeadline = _props.subHeadline;
+
+
+	      var classes = (0, _classnames2.default)(CLASS_ROOT, this.props.className);
+
+	      var colorIndex = darkTheme ? 'grey-1' : 'light-1';
+	      var full = flush ? 'horizontal' : false;
+	      var pad = flush ? 'none' : 'large';
+
+	      var subHeadlineMarkup = void 0;
+	      if (subHeadline) {
+	        subHeadlineMarkup = _react2.default.createElement(
+	          _Paragraph2.default,
+	          { size: 'large', margin: 'none' },
+	          subHeadline
+	        );
+	      }
+
+	      var linkMarkup = void 0;
+	      if (link || onClick) {
+	        linkMarkup = _react2.default.createElement(
+	          'h3',
+	          null,
+	          _react2.default.createElement(_Anchor2.default, { href: link, primary: true, label: linkText, icon: linkIcon, onClick: onClick })
+	        );
+	      }
+
+	      var content = _react2.default.createElement(
+	        _Box2.default,
+	        { justify: justify, align: 'center', primary: true, direction: 'row', pad: { vertical: 'large', horizontal: 'none' } },
+	        _react2.default.createElement(
+	          _Box2.default,
+	          { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
+	          _react2.default.createElement(
+	            _Headline2.default,
+	            { size: headlineSize, strong: true, margin: 'none' },
+	            headline
+	          ),
+	          subHeadlineMarkup,
+	          linkMarkup
+	        )
+	      );
+
+	      var split = void 0;
+	      if (justify === 'start') {
+	        split = _react2.default.createElement(
+	          _Split2.default,
+	          null,
+	          content,
+	          _react2.default.createElement(_Box2.default, null)
+	        );
+	      } else if (justify === 'end') {
+	        split = _react2.default.createElement(
+	          _Split2.default,
+	          null,
+	          _react2.default.createElement(_Box2.default, null),
+	          content
+	        );
+	      } else {
+	        split = _react2.default.createElement(
+	          _Box2.default,
+	          { direction: 'row' },
+	          _react2.default.createElement(_Box2.default, { pad: 'large', size: 'small' }),
+	          content,
+	          _react2.default.createElement(_Box2.default, { pad: 'large', size: 'small' })
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        { className: classes, colorIndex: colorIndex },
+	        _react2.default.createElement(
+	          _Section2.default,
+	          { appCentered: true, pad: pad,
+	            backgroundImage: backgroundImage, full: full },
+	          split
+	        )
+	      );
+	    }
+	  }]);
+
+	  return MarqueeGrommet;
+	}(_react.Component);
+
+	exports.default = MarqueeGrommet;
+	;
+
+	MarqueeGrommet.propTypes = {
+	  backgroundImage: _react.PropTypes.string.isRequired,
+	  darkTheme: _react.PropTypes.bool,
+	  flush: _react.PropTypes.bool,
+	  headline: _react.PropTypes.string.isRequired,
+	  headlineSize: _react.PropTypes.oneOf(['small', 'medium', 'large']),
+	  justify: _react.PropTypes.oneOf(['start', 'center', 'end']),
+	  link: _react.PropTypes.string,
+	  linkIcon: _react.PropTypes.element,
+	  linkText: _react.PropTypes.string,
+	  onClick: _react.PropTypes.func,
+	  size: _react.PropTypes.oneOf(['small', 'large']),
+	  subHeadline: _react.PropTypes.string
+	};
+
+	MarqueeGrommet.defaultProps = {
+	  darkTheme: true,
+	  flush: true,
+	  headlineSize: 'large',
+	  justify: 'end',
+	  linkText: 'Learn More',
+	  size: 'large'
+	};
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
