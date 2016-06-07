@@ -39,10 +39,15 @@ export default class Marquee extends Component {
 
   _handleScroll () {
     let marqueeOriginalHeight = window.innerHeight * 0.75;
-    let marqueeComponent = ReactDOM.findDOMNode(this);
-    let marquee = marqueeComponent.getElementsByClassName('box__container')[0];
+    if (window.innerWidth < PALM_BREAKPOINT) {
+      marqueeOriginalHeight = 270;
+    } else if (this.props.size === 'small') {
+      marqueeOriginalHeight = window.innerHeight * 0.50;
+    }
+    let marqueeNode = ReactDOM.findDOMNode(this);
+    let marquee = marqueeNode.getElementsByClassName('box__container')[0];
     let marqueeTop = marquee.getBoundingClientRect().top;
-    let marqueeText = marqueeComponent.getElementsByClassName('marquee__overlay')[0];
+    let marqueeText = marqueeNode.getElementsByClassName('marquee__overlay')[0];
     let marqueeBackgroundImage = new Image();
     marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
 
@@ -104,7 +109,10 @@ export default class Marquee extends Component {
 
     let classes = classnames(
       CLASS_ROOT,
-      this.props.className
+      this.props.className,
+      {
+        [`${CLASS_ROOT}--${this.props.size}`]: this.props.size
+      }
     );
 
     let full = flush ? 'horizontal' : false;
@@ -153,6 +161,7 @@ Marquee.propTypes = {
   linkIcon: PropTypes.element,
   linkText: PropTypes.string,
   onClick: PropTypes.func,
+  size: PropTypes.oneOf(['small', 'large']),
   subHeadline: PropTypes.string
 };
 
@@ -161,5 +170,6 @@ Marquee.defaultProps = {
   flush: true,
   headlineSize: 'large',
   justify: 'end',
-  linkText: 'Learn More'
+  linkText: 'Learn More',
+  size: 'large'
 };
