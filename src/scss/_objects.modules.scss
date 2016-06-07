@@ -1,14 +1,8 @@
 .marquee {
-  height: 75vh;
   overflow: hidden;
   position: relative;
 
-  @include media-query(palm) {
-    height: auto;
-  }
-
   > .box__container {
-    height: 75vh;
     display: flex;
     overflow: hidden;
     position: absolute;
@@ -18,7 +12,6 @@
   }
 
   &__overlay.box {
-    height: 75vh;
     margin-top: 0;
     position: absolute;
     top: 0;
@@ -43,9 +36,56 @@
     }
 
     @include media-query(palm) {
-      margin-top: 75vh;
-      height: auto;
+      margin-top: 270px;
       position: relative;
+    }
+  }
+
+  &--large {
+    height: 75vh;
+
+    @include media-query(palm) {
+      height: auto;
+    }
+
+    > .box__container {
+      height: 75vh;
+
+      @include media-query(palm) {
+        height: 270px;
+      }
+    }
+
+    .marquee__overlay.box {
+      height: 75vh;
+
+      @include media-query(palm) {
+        height: auto;
+      }
+    }
+  }
+
+  &--small {
+    height: 50vh;
+
+    @include media-query(palm) {
+      height: auto;
+    }
+
+    > .box__container {
+      height: 50vh;
+
+      @include media-query(palm) {
+        height: 270px;
+      }
+    }
+
+    .marquee__overlay.box {
+      height: 50vh;
+
+      @include media-query(palm) {
+        height: auto;
+      }
     }
   }
 }
