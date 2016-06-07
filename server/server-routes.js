@@ -15564,6 +15564,19 @@ module.exports =
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	        link: 'http://www.grommet.io/docs/' }),
+	      React.createElement(
+	        Box,
+	        { pad: { horizontal: 'large' } },
+	        React.createElement(
+	          'p',
+	          null,
+	          React.createElement(
+	            'strong',
+	            null,
+	            'Large Marquee'
+	          )
+	        )
+	      ),
 	      this._loremIpsum(),
 	      React.createElement(Marquee, { darkTheme: false,
 	        backgroundImage: 'url(/docs/img/TK_Marquee_Image.jpg)',
@@ -15572,6 +15585,19 @@ module.exports =
 	        link: 'http://www.grommet.io/docs/',
 	        justify: 'start',
 	        size: 'small' }),
+	      React.createElement(
+	        Box,
+	        { pad: { horizontal: 'large' } },
+	        React.createElement(
+	          'p',
+	          null,
+	          React.createElement(
+	            'strong',
+	            null,
+	            'Small Marquee'
+	          )
+	        )
+	      ),
 	      this._loremIpsum(),
 	      React.createElement(MarqueeGrommet, { darkTheme: false,
 	        backgroundImage: 'url(/docs/img/MarqueeImage_051916_H.jpg)',
@@ -15579,6 +15605,19 @@ module.exports =
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	        link: 'http://www.grommet.io/docs/',
 	        justify: 'end' }),
+	      React.createElement(
+	        Box,
+	        { pad: { horizontal: 'large' } },
+	        React.createElement(
+	          'p',
+	          null,
+	          React.createElement(
+	            'strong',
+	            null,
+	            'Grommet-only Marquee (no parallax, responsiveness)'
+	          )
+	        )
+	      ),
 	      this._loremIpsum()
 	    );
 	  }
