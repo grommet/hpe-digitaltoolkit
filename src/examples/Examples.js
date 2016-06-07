@@ -45,7 +45,7 @@ var Examples = React.createClass({
           link="http://www.grommet.io/docs/" />
         {this._loremIpsum()}
         <Marquee darkTheme={false}
-          backgroundImage="url(../img/TK_Marquee_Image.jpg)"
+          backgroundImage="url(/docs/img/TK_Marquee_Image.jpg)"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/"
@@ -53,7 +53,7 @@ var Examples = React.createClass({
           size="small" />
         {this._loremIpsum()}
         <MarqueeGrommet darkTheme={false}
-          backgroundImage="url(../img/MarqueeImage_051916_H.jpg)"
+          backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/"
