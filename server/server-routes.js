@@ -2100,7 +2100,12 @@ module.exports =
 	    value: function componentWillUnmount() {
 
 	      if (this._originalFocusedElement) {
-	        this._originalFocusedElement.focus();
+	        if (this._originalFocusedElement.focus) {
+	          this._originalFocusedElement.focus();
+	        } else if (this._originalFocusedElement.parentNode && this._originalFocusedElement.parentNode.focus) {
+	          // required for IE11 and Edge
+	          this._originalFocusedElement.parentNode.focus();
+	        }
 	      }
 
 	      this._removeLayer();
@@ -13591,7 +13596,7 @@ module.exports =
 	    }
 	  }, {
 	    key: '_renderSlice',
-	    value: function _renderSlice(trackIndex, item, itemIndex, startValue, threshold) {
+	    value: function _renderSlice(trackIndex, item, itemIndex, startValue, maxValue, threshold) {
 	      var path = void 0;
 	      if (!item.hidden) {
 	        var classes = [CLASS_ROOT + '__slice'];
@@ -13607,7 +13612,7 @@ module.exports =
 
 	        classes.push('color-index-' + item.colorIndex);
 
-	        var commands = this._sliceCommands(trackIndex, item, startValue);
+	        var commands = this._sliceCommands(trackIndex, item, startValue, maxValue);
 
 	        if (threshold) {
 	          path = (0, _utils.buildPath)(itemIndex, commands, classes, this.props.onActivate, item.onClick);
@@ -13624,15 +13629,21 @@ module.exports =
 	  }, {
 	    key: '_renderSlices',
 	    value: function _renderSlices(series, trackIndex, threshold) {
-	      var startValue = this.props.min.value;
+	      var _this2 = this;
+
+	      var _props = this.props;
+	      var min = _props.min;
+	      var max = _props.max;
+
+	      var startValue = min.value;
 
 	      var paths = series.map(function (item, itemIndex) {
-	        var path = this._renderSlice(trackIndex, item, itemIndex, startValue, threshold);
+	        var path = _this2._renderSlice(trackIndex, item, itemIndex, startValue, max.value, threshold);
 
-	        startValue += Math.max(MIN_WIDTH * this.props.max.value, item.value);
+	        startValue += Math.max(MIN_WIDTH * max.value, item.value);
 
 	        return path;
-	      }, this);
+	      });
 
 	      return paths;
 	    }
@@ -13701,14 +13712,18 @@ module.exports =
 	  }, {
 	    key: '_renderValues',
 	    value: function _renderValues() {
-	      var _this2 = this;
+	      var _this3 = this;
+
+	      var _props2 = this.props;
+	      var min = _props2.min;
+	      var max = _props2.max;
 
 	      var values = void 0;
 	      if (this.props.stacked) {
 	        values = this._renderSlices(this.props.series, 0);
 	      } else {
 	        values = this.props.series.map(function (item, index) {
-	          return _this2._renderSlice(index, item, index, _this2.props.min.value);
+	          return _this3._renderSlice(index, item, index, min.value, max.value);
 	        });
 	      }
 	      if (values.length === 0) {
@@ -13723,15 +13738,19 @@ module.exports =
 	  }, {
 	    key: '_renderTracks',
 	    value: function _renderTracks() {
-	      var _this3 = this;
+	      var _this4 = this;
 
-	      var trackValue = { value: this.props.max.value, colorIndex: 'unset' };
+	      var _props3 = this.props;
+	      var min = _props3.min;
+	      var max = _props3.max;
+
+	      var trackValue = { value: max.value, colorIndex: 'unset' };
 	      var tracks = void 0;
 	      if (this.props.stacked) {
-	        tracks = this._renderSlice(0, trackValue, 0, this.props.min.value, true);
+	        tracks = this._renderSlice(0, trackValue, 0, min.value, max.value, true);
 	      } else {
 	        tracks = this.props.series.map(function (item, index) {
-	          return _this3._renderSlice(index, trackValue, index, _this3.props.min.value, true);
+	          return _this4._renderSlice(index, trackValue, index, min.value, max.value, true);
 	        });
 	      }
 	      return _react2.default.createElement(
@@ -13789,7 +13808,7 @@ module.exports =
 	  }, {
 	    key: '_renderA11YDesc',
 	    value: function _renderA11YDesc() {
-	      var _this4 = this;
+	      var _this5 = this;
 
 	      var a11yDesc = this.props.a11yDesc;
 	      var units = this.props.units || '';
@@ -13809,8 +13828,8 @@ module.exports =
 
 	        if (this.props.thresholds) {
 	          (function () {
-	            var thresholdLabel = _Intl2.default.getMessage(_this4.context.intl, 'Threshold');
-	            _this4.props.thresholds.forEach(function (threshold) {
+	            var thresholdLabel = _Intl2.default.getMessage(_this5.context.intl, 'Threshold');
+	            _this5.props.thresholds.forEach(function (threshold) {
 	              if (threshold.ariaLabel) {
 	                a11yDesc += ', ' + thresholdLabel + ': ' + threshold.ariaLabel;
 	              }
@@ -14090,10 +14109,17 @@ module.exports =
 	    }
 	  }, {
 	    key: '_sliceCommands',
-	    value: function _sliceCommands(trackIndex, item, startValue) {
+	    value: function _sliceCommands(trackIndex, item, startValue, maxValue) {
 	      var startAngle = (0, _utils.translateEndAngle)(this.state.startAngle, this.state.anglePer, startValue);
 
-	      var endAngle = Math.max(startAngle + (item.value > 0 ? RING_THICKNESS / 2 : 0), (0, _utils.translateEndAngle)(startAngle, this.state.anglePer, item.value));
+	      var endAngle;
+	      if (!item.value) {
+	        endAngle = startAngle;
+	      } else if (startValue + item.value >= maxValue) {
+	        endAngle = 360;
+	      } else {
+	        endAngle = Math.min(360 - RING_THICKNESS / 2, Math.max(startAngle + RING_THICKNESS / 2, (0, _utils.translateEndAngle)(startAngle, this.state.anglePer, item.value)));
+	      }
 
 	      var radius = Math.max(1, CIRCLE_RADIUS - trackIndex * RING_THICKNESS);
 	      return (0, _utils.arcCommands)(CIRCLE_WIDTH / 2, CIRCLE_WIDTH / 2, radius, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset);
