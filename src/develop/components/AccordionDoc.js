@@ -4,6 +4,7 @@ var React = require('react');
 var jsxToString = require('jsx-to-string');
 var DocsArticle = require('../../DocsArticle');
 var Accordion = require('../../modules/AccordionGrommet');
+var AccordionPanel = require('../../modules/AccordionPanelGrommet');
 
 Accordion.displayName = 'Accordion';
 
@@ -30,13 +31,48 @@ var AccordionDoc = React.createClass({
   },
 
   render: function() {
+    var simpleAccordionPanel = (
+      <AccordionPanel
+        panelTitle="Enterprise Mobility Services"
+        headline="Empower your employees while ensuring your workplace remains
+enterprise grade, scalable and secure."
+        subHeadline="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life
+and help eliminate poverty in South America."
+        ctaText={{
+          headline: 'Foundation Paraguay Empowers Microbusinesses',
+          subHeadline: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
+          link: 'link url',
+          linkText: 'Watch Now'
+        }}
+        ctaThumbnail="img/link-to-image.png"
+        resources={[
+          {
+            thumbnail: 'img/link-to-image.png',
+            headline: 'Lorem ipsum',
+            subHeadline: 'Lorem ipsum dolor sit amet dicat sonet.',
+            link: 'link url',
+            linkText: 'Learn more'
+          },
+          {
+            thumbnail: 'img/link-to-image.png',
+            headline: 'Lorem ipsum',
+            subHeadline: 'Lorem ipsum dolor sit amet dicat sonet.',
+            link: 'link url',
+            linkText: 'Learn more'
+          }
+        ]}
+      />
+    );
+
     var simpleAccordion = (
       <Accordion
         headline="Services Portfolio"
         subHeadline="Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est
         summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit
         consequuntur me"
-      />
+      >
+        {simpleAccordionPanel}
+      </Accordion>
     );
 
     return (
@@ -46,12 +82,22 @@ var AccordionDoc = React.createClass({
         <pre><code className="html hljs xml">{inline}</code></pre>
 
         <section>
-          <h2>Options</h2>
+          <h2>Accordion Options</h2>
           <dl>
             <dt><code>headline            string</code></dt>
-            <dd>Content for the headline.</dd>
+            <dd>Headline of the section.</dd>
             <dt><code>subHeadline         string</code></dt>
-            <dd>Content for the subtext.</dd>
+            <dd>Content for the subheadline.</dd>
+          </dl>
+        </section>
+
+        <section>
+          <h2>AccordionPanel Options</h2>
+          <dl>
+            <dt><code>headline            string</code></dt>
+            <dd>Headline of the section.</dd>
+            <dt><code>subHeadline         string</code></dt>
+            <dd>Content for the subheadline.</dd>
           </dl>
         </section>
 
@@ -60,15 +106,6 @@ var AccordionDoc = React.createClass({
 
           {this._renderCode('Default', simpleAccordion)}
         </section>
-        <div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae rhoncus dui, eu gravida est. Cras consectetur enim eget erat rutrum, et suscipit lorem iaculis. Maecenas sed metus nulla. Vestibulum nibh risus, facilisis non sem a, mattis venenatis lacus. Maecenas condimentum interdum arcu eu consectetur. Etiam magna ligula, elementum ac leo vel, sagittis tempus neque. Duis dapibus at velit aliquam varius. Nulla facilisi. Donec rutrum augue neque. Suspendisse ut metus neque. Praesent interdum ornare condimentum.</p>
-          <p>Ut vel varius arcu. Suspendisse bibendum turpis eu nunc hendrerit suscipit. In feugiat nibh sed justo tincidunt, nec pellentesque quam tempor. Etiam condimentum iaculis dolor et semper. Curabitur tincidunt imperdiet ante, eu consequat nulla facilisis cursus. Cras metus ipsum, vehicula non vestibulum in, lacinia ut erat. Curabitur sed nulla porttitor, sollicitudin risus molestie, auctor massa. Curabitur porttitor sodales tincidunt. In in enim dapibus, lobortis dui vitae, vehicula augue. Quisque quis cursus ipsum, ut tincidunt dui. Donec eget bibendum turpis. Integer porttitor libero at luctus sodales. Donec varius consectetur quam, a vestibulum nulla rhoncus sit amet. Nunc blandit molestie dapibus. Etiam eleifend neque justo, et imperdiet augue euismod sed.</p>
-          <p>Nullam mauris neque, dictum in nibh pulvinar, facilisis faucibus enim. Nullam semper sem vitae finibus molestie. Fusce sollicitudin lacus dolor, at placerat eros rhoncus et. Suspendisse id neque vel metus lobortis tristique at interdum nisl. Fusce pretium nulla in neque feugiat, ut fermentum libero pellentesque. Sed et malesuada ligula. Quisque quis blandit massa.</p>
-          <p>Aliquam porta aliquam varius. Suspendisse interdum turpis sit amet bibendum efficitur. Phasellus finibus justo ac nisi porta sollicitudin. Vivamus lorem diam, dignissim ac posuere finibus, auctor nec nisi. Aenean pulvinar rhoncus eros sit amet porta. Nam egestas gravida risus quis dignissim. Nullam quis nibh vitae ipsum aliquam tristique vitae at ex. Praesent ultricies felis sit amet dolor interdum, vitae placerat diam lacinia. Quisque vitae pharetra magna, vitae commodo urna.</p>
-          <p>Praesent lectus felis, malesuada vel tellus ut, maximus blandit orci. Nunc semper maximus nisi, a ornare magna vestibulum sit amet. Morbi rutrum ante quis nunc gravida porttitor. Nullam dignissim ex a odio tincidunt, in posuere massa dapibus. Duis pretium rutrum metus. Aliquam nulla sapien, aliquet ac efficitur sed, tempor vitae quam. Integer scelerisque tempus lorem eu volutpat. Integer egestas laoreet felis at convallis. Vivamus commodo euismod mauris, ut pulvinar mi iaculis non. Morbi tempor urna et gravida vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vel neque libero.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae rhoncus dui, eu gravida est. Cras consectetur enim eget erat rutrum, et suscipit lorem iaculis. Maecenas sed metus nulla. Vestibulum nibh risus, facilisis non sem a, mattis venenatis lacus. Maecenas condimentum interdum arcu eu consectetur. Etiam magna ligula, elementum ac leo vel, sagittis tempus neque. Duis dapibus at velit aliquam varius. Nulla facilisi. Donec rutrum augue neque. Suspendisse ut metus neque. Praesent interdum ornare condimentum.</p>
-        </div>
-
       </DocsArticle>
     );
   }
