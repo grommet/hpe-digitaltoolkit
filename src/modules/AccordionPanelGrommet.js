@@ -35,7 +35,7 @@ export default class AccordionPanelGrommet extends Component {
     // TODO: add video overlay functionality for ctaVideo
 
     return (
-      <Box direction="row">
+      <Box direction="row" pad={{vertical: "medium"}}>
         <Image src={ctaThumbnail} />
         <Box>
           <Paragraph margin="none"><strong>{headline}</strong></Paragraph>
@@ -65,12 +65,12 @@ export default class AccordionPanelGrommet extends Component {
       });
 
       return (
-        <div>
+        <Box pad={{vertical: "medium"}}>
           <Heading tag="h3" strong={true} margin="none">Resources</Heading>
-          <Tiles>
+          <Tiles fill={true}>
             {resourceTiles}
           </Tiles>
-        </div>
+        </Box>
       );
     }
 
@@ -79,11 +79,30 @@ export default class AccordionPanelGrommet extends Component {
 
   _onClickPanel () {
     let { isOpen } = this.state;
+    console.log(isOpen);
     this.setState({ isOpen : !isOpen });
+
+  }
+
+  _renderPanelContent () {
+    let { headline, subHeadline } = this.props;
+    let { isOpen } = this.state;
+    if (isOpen) {
+      return (
+        <Box full="horizontal" pad={{vertical: "medium"}}>
+          <Heading tag="h3" strong={true} margin="none" >{headline}</Heading>
+          <Paragraph size="large" margin="none">{subHeadline}</Paragraph>
+          {this._renderCTA()}
+          {this._renderResources()}
+        </Box>
+      );
+    }
+
+    return null;
   }
 
   render () {
-    let { panelTitle, headline, subHeadline } = this.props;
+    let { panelTitle } = this.props;
     let { isOpen } = this.state;
 
     let classes = classnames(
@@ -94,17 +113,12 @@ export default class AccordionPanelGrommet extends Component {
     let panelControlIcon = (isOpen) ? <CloseIcon /> : <OpenIcon />;
 
     return (
-      <ListItem className={classes}>
-        <Box justify="between" onClick={this._onClickPanel}>
+      <ListItem className={classes} direction="column">
+        <Box full="horizontal" direction="row" justify="between" align="center" onClick={this._onClickPanel} responsive={false}>
           <Heading tag="h2" strong={true}>{panelTitle}</Heading>
           {panelControlIcon}
         </Box>
-        <Box>
-          <Heading tag="h3" strong={true} margin="none" >{headline}</Heading>
-          <Paragraph size="large" margin="none">{subHeadline}</Paragraph>
-          {this._renderCTA()}
-          {this._renderResources()}
-        </Box>
+        {this._renderPanelContent()}
       </ListItem>
     );
   }

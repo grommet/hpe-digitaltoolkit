@@ -72,6 +72,8 @@ and help eliminate poverty in South America."
         consequuntur me"
       >
         {simpleAccordionPanel}
+        {simpleAccordionPanel}
+        {simpleAccordionPanel}
       </Accordion>
     );
 

@@ -21,7 +21,7 @@ export default class AccordionGrommet extends Component {
     let headlineMarkup;
     if (headline) {
       headlineMarkup = (
-        <Headline size="large" strong={true} margin="none">
+        <Headline size="large" strong={true} margin="none" align="center">
           {headline}
         </Headline>
       );
@@ -30,7 +30,7 @@ export default class AccordionGrommet extends Component {
     let subHeadlineMarkup;
     if (subHeadline) {
       subHeadlineMarkup = (
-        <Paragraph size="large" margin="none">
+        <Paragraph size="large" margin="none" align="center">
           {subHeadline}
         </Paragraph>
       );
