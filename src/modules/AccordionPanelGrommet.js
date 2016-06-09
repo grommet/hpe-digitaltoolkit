@@ -79,9 +79,7 @@ export default class AccordionPanelGrommet extends Component {
 
   _onClickPanel () {
     let { isOpen } = this.state;
-    console.log(isOpen);
     this.setState({ isOpen : !isOpen });
-
   }
 
   _renderPanelContent () {
