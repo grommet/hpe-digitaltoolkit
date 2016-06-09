@@ -4,7 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import Box from 'grommet/components/Box';
-import Section from 'grommet/components/Section';
 import Headline from 'grommet/components/Headline';
 import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
@@ -42,7 +41,7 @@ export default class Marquee extends Component {
     if (window.innerWidth < PALM_BREAKPOINT) {
       marqueeOriginalHeight = 270;
     } else if (this.props.size === 'small') {
-      marqueeOriginalHeight = window.innerHeight * 0.50;
+      marqueeOriginalHeight = window.innerHeight * 0.60;
     }
     let marqueeNode = ReactDOM.findDOMNode(this);
     let marquee = marqueeNode.getElementsByClassName('box__container')[0];
@@ -111,12 +110,23 @@ export default class Marquee extends Component {
       CLASS_ROOT,
       this.props.className,
       {
-        [`${CLASS_ROOT}--${this.props.size}`]: this.props.size
+        [`${CLASS_ROOT}--${this.props.size}`]: this.props.size,
+        [`${CLASS_ROOT}--bg-${this.props.responsiveBackgroundPosition}`]: this.props.responsiveBackgroundPosition
       }
     );
 
     let full = flush ? 'horizontal' : false;
-    let pad = flush ? 'none' : 'large';
+
+    let styles = {
+      backgroundImage: backgroundImage
+    };
+
+    let backgroundClasses = classnames(
+      'box__container',
+      {
+        ['box__container--full-horizontal']: this.props.flush
+      }
+    );
 
     let subHeadlineMarkup;
     if (subHeadline) {
@@ -134,8 +144,7 @@ export default class Marquee extends Component {
 
     return (
       <Box className={classes} colorIndex={this.state.colorIndex}>
-        <Section appCentered={true} pad={pad}
-          backgroundImage={backgroundImage} full={full} />
+        <div className={backgroundClasses} style={styles} />
         <Box className="marquee__overlay" justify={justify} align="center" primary={true} full={full} direction="row" >
           <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
             <Headline size={headlineSize} strong={true} margin="none">
@@ -161,6 +170,7 @@ Marquee.propTypes = {
   linkIcon: PropTypes.element,
   linkText: PropTypes.string,
   onClick: PropTypes.func,
+  responsiveBackgroundPosition: PropTypes.oneOf(['left', 'center', 'right']),
   size: PropTypes.oneOf(['small', 'large']),
   subHeadline: PropTypes.string
 };
@@ -171,5 +181,6 @@ Marquee.defaultProps = {
   headlineSize: 'large',
   justify: 'end',
   linkText: 'Learn More',
+  responsiveBackgroundPosition: 'center',
   size: 'large'
 };
