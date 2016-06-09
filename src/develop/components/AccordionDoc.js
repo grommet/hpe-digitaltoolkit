@@ -96,10 +96,18 @@ and help eliminate poverty in South America."
         <section>
           <h2>AccordionPanel Options</h2>
           <dl>
+            <dt><code>panelTitle          string</code></dt>
+            <dd>Title of panel, displayed when panel is collapsed. Required.</dd>
             <dt><code>headline            string</code></dt>
             <dd>Headline of the section.</dd>
             <dt><code>subHeadline         string</code></dt>
             <dd>Content for the subheadline.</dd>
+            <dt><code>ctaText             {`{headline: , subHeadline: , link: , linkText: }`}</code></dt>
+            <dd>Call to action content to display.</dd>
+            <dt><code>ctaThumbnail        {`{url}`}</code></dt>
+            <dd>Call to action thumbnail image.</dd>
+            <dt><code>resources           {`[{thumbnail: , headline: , subHeadline: , link: , linkText: ,}, ...]`}</code></dt>
+            <dd>An array of resource tiles.</dd>
           </dl>
         </section>
 
