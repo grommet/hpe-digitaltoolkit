@@ -44,19 +44,13 @@ var Examples = React.createClass({
           links={
             [{
               label: 'Examples',
-              href: '/docs/hpe/examples'
-            }, {
-              label: 'Navigation',
               links: [{
-                label: 'Contact',
-                href: '/contact'
+                label: 'Marquee',
+                href: '/docs/hpe/examples'
               }, {
-                label: 'Help',
-                href: '/help'
+                label: 'TBD',
+                href: '/docs/hpe/examples'
               }]
-            }, {
-              label: 'About Us',
-              href: '/about'
             }]
           } />
         <Marquee darkTheme={false}
