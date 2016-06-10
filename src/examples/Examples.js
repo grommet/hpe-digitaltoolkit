@@ -6,6 +6,7 @@ var Route = Router.Route;
 var Box = require('grommet/components/Box');
 var Marquee = require('../modules/Marquee');
 var MarqueeGrommet = require('../modules/MarqueeGrommet');
+var Header = require('./Header');
 
 var Examples = React.createClass({
   contextTypes: {
@@ -38,6 +39,20 @@ var Examples = React.createClass({
   render: function () {
     return (
       <div>
+        <Header external={true}
+          logoLink={'/docs/hpe/examples'}
+          links={
+            [{
+              label: 'Examples',
+              links: [{
+                label: 'Marquee',
+                href: '/docs/hpe/examples'
+              }, {
+                label: 'TBD',
+                href: '/docs/hpe/examples'
+              }]
+            }]
+          } />
         <Marquee darkTheme={false}
           backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
           headline="Accelerate your transformation with the cloud"
