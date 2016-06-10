@@ -44,17 +44,17 @@ and help eliminate poverty in South America."
           link: 'link url',
           linkText: 'Watch Now'
         }}
-        ctaThumbnail="img/link-to-image.png"
+        ctaThumbnail="../img/carousel-1.png"
         resources={[
           {
-            thumbnail: 'img/link-to-image.png',
+            thumbnail: '../img/carousel-1.png',
             headline: 'Lorem ipsum',
             subHeadline: 'Lorem ipsum dolor sit amet dicat sonet.',
             link: 'link url',
             linkText: 'Learn more'
           },
           {
-            thumbnail: 'img/link-to-image.png',
+            thumbnail: '../img/carousel-1.png',
             headline: 'Lorem ipsum',
             subHeadline: 'Lorem ipsum dolor sit amet dicat sonet.',
             link: 'link url',
