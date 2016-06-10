@@ -14740,17 +14740,13 @@ module.exports =
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames3 = __webpack_require__(24);
 
-	var _classnames3 = _interopRequireDefault(_classnames2);
+	var _classnames4 = _interopRequireDefault(_classnames3);
 
 	var _Box = __webpack_require__(15);
 
 	var _Box2 = _interopRequireDefault(_Box);
-
-	var _Section = __webpack_require__(46);
-
-	var _Section2 = _interopRequireDefault(_Section);
 
 	var _Headline = __webpack_require__(47);
 
@@ -14817,7 +14813,7 @@ module.exports =
 	      if (window.innerWidth < PALM_BREAKPOINT) {
 	        marqueeOriginalHeight = 270;
 	      } else if (this.props.size === 'small') {
-	        marqueeOriginalHeight = window.innerHeight * 0.50;
+	        marqueeOriginalHeight = window.innerHeight * 0.60;
 	      }
 	      var marqueeNode = _reactDom2.default.findDOMNode(this);
 	      var marquee = marqueeNode.getElementsByClassName('box__container')[0];
@@ -14883,6 +14879,8 @@ module.exports =
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _classnames;
+
 	      var _props = this.props;
 	      var backgroundImage = _props.backgroundImage;
 	      var flush = _props.flush;
@@ -14896,10 +14894,15 @@ module.exports =
 	      var subHeadline = _props.subHeadline;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, _defineProperty({}, CLASS_ROOT + '--' + this.props.size, this.props.size));
+	      var classes = (0, _classnames4.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), _defineProperty(_classnames, CLASS_ROOT + '--bg-' + this.props.responsiveBackgroundPosition, this.props.responsiveBackgroundPosition), _classnames));
 
 	      var full = flush ? 'horizontal' : false;
-	      var pad = flush ? 'none' : 'large';
+
+	      var styles = {
+	        backgroundImage: backgroundImage
+	      };
+
+	      var backgroundClasses = (0, _classnames4.default)('box__container', _defineProperty({}, 'box__container--full-horizontal', this.props.flush));
 
 	      var subHeadlineMarkup = void 0;
 	      if (subHeadline) {
@@ -14922,8 +14925,7 @@ module.exports =
 	      return _react2.default.createElement(
 	        _Box2.default,
 	        { className: classes, colorIndex: this.state.colorIndex },
-	        _react2.default.createElement(_Section2.default, { appCentered: true, pad: pad,
-	          backgroundImage: backgroundImage, full: full }),
+	        _react2.default.createElement('div', { className: backgroundClasses, style: styles }),
 	        _react2.default.createElement(
 	          _Box2.default,
 	          { className: 'marquee__overlay', justify: justify, align: 'center', primary: true, full: full, direction: 'row' },
@@ -14960,6 +14962,7 @@ module.exports =
 	  linkIcon: _react.PropTypes.element,
 	  linkText: _react.PropTypes.string,
 	  onClick: _react.PropTypes.func,
+	  responsiveBackgroundPosition: _react.PropTypes.oneOf(['left', 'center', 'right']),
 	  size: _react.PropTypes.oneOf(['small', 'large']),
 	  subHeadline: _react.PropTypes.string
 	};
@@ -14970,6 +14973,7 @@ module.exports =
 	  headlineSize: 'large',
 	  justify: 'end',
 	  linkText: 'Learn More',
+	  responsiveBackgroundPosition: 'center',
 	  size: 'large'
 	};
 	module.exports = exports['default'];
@@ -15611,7 +15615,8 @@ module.exports =
 	        backgroundImage: 'url(/docs/img/MarqueeImage_051916_H.jpg)',
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
-	        link: 'http://www.grommet.io/docs/' }),
+	        link: 'http://www.grommet.io/docs/',
+	        responsiveBackgroundPosition: 'left' }),
 	      React.createElement(
 	        Box,
 	        { pad: { horizontal: 'large' } },
@@ -15632,7 +15637,8 @@ module.exports =
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	        link: 'http://www.grommet.io/docs/',
 	        justify: 'start',
-	        size: 'small' }),
+	        size: 'small',
+	        responsiveBackgroundPosition: 'right' }),
 	      React.createElement(
 	        Box,
 	        { pad: { horizontal: 'large' } },
@@ -15643,6 +15649,28 @@ module.exports =
 	            'strong',
 	            null,
 	            'Small Marquee'
+	          )
+	        )
+	      ),
+	      this._loremIpsum(),
+	      React.createElement(Marquee, { darkTheme: true,
+	        backgroundImage: 'url(/docs/img/Hero4_marquee.jpg)',
+	        headline: 'Accelerate your transformation with the cloud',
+	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
+	        link: 'http://www.grommet.io/docs/',
+	        justify: 'end',
+	        size: 'large',
+	        responsiveBackgroundPosition: 'left' }),
+	      React.createElement(
+	        Box,
+	        { pad: { horizontal: 'large' } },
+	        React.createElement(
+	          'p',
+	          null,
+	          React.createElement(
+	            'strong',
+	            null,
+	            'Large Marquee, light text'
 	          )
 	        )
 	      ),

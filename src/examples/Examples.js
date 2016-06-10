@@ -42,7 +42,8 @@ var Examples = React.createClass({
           backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
-          link="http://www.grommet.io/docs/" />
+          link="http://www.grommet.io/docs/"
+          responsiveBackgroundPosition="left" />
         <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee</strong></p></Box>
         {this._loremIpsum()}
         <Marquee darkTheme={false}
@@ -51,8 +52,19 @@ var Examples = React.createClass({
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/"
           justify="start"
-          size="small" />
+          size="small"
+          responsiveBackgroundPosition="right" />
         <Box pad={{horizontal: 'large'}}><p><strong>Small Marquee</strong></p></Box>
+        {this._loremIpsum()}
+        <Marquee darkTheme={true}
+          backgroundImage="url(/docs/img/Hero4_marquee.jpg)"
+          headline="Accelerate your transformation with the cloud"
+          subHeadline="HPE can help you benefit now from your right mix of cloud"
+          link="http://www.grommet.io/docs/"
+          justify="end"
+          size="large"
+          responsiveBackgroundPosition="left" />
+        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee, light text</strong></p></Box>
         {this._loremIpsum()}
         <MarqueeGrommet darkTheme={false}
           backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
