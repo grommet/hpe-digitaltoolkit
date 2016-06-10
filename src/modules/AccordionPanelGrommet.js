@@ -5,7 +5,6 @@ import classnames from 'classnames';
 import Anchor from 'grommet/components/Anchor';
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
-import Image from 'grommet/components/Image';
 import ListItem from 'grommet/components/ListItem';
 import Paragraph from 'grommet/components/Paragraph';
 import Tile from 'grommet/components/Tile';
@@ -36,7 +35,7 @@ export default class AccordionPanelGrommet extends Component {
 
     return (
       <Box direction="row" pad={{vertical: "medium"}}>
-        <Image src={ctaThumbnail} />
+        <img src={ctaThumbnail} className="accordion-cta-image" />
         <Box>
           <Paragraph margin="none"><strong>{headline}</strong></Paragraph>
           <Paragraph margin="none">{subHeadline}</Paragraph>
@@ -54,7 +53,7 @@ export default class AccordionPanelGrommet extends Component {
       resourceTiles = resources.map(({ thumbnail, headline, subHeadline, link, linkText }, i) => {
         return (
           <Tile key={i} direction="row">
-            <Image src={thumbnail} />
+            <img src={thumbnail} className="resource-image" />
             <Box>
               <Paragraph margin="none"><strong>{headline}</strong></Paragraph>
               <Paragraph margin="none">{subHeadline}</Paragraph>

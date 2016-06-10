@@ -90,6 +90,18 @@
   }
 }
 
+.accordion-cta-image {
+  width: 270px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.resource-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
 .grommet.app {
   position: relative;
   overflow: hidden;
