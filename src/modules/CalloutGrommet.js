@@ -11,21 +11,28 @@ const CLASS_ROOT = 'callout-grommet';
 
 export default class CalloutGrommet extends Component {
   render () {
-    const { content, heading, label, link, linkIcon, linkText, thumbnail } = this.props;
+    const { backgroundImage, content, heading, label, link, linkIcon, linkText } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
       this.props.className
     );
 
+    let styles = {
+      width: 270,
+      backgroundImage
+    };
+
     return (
       <Box className={classes} direction="row" pad={{vertical: "medium"}}>
-        <img src={thumbnail} className="accordion-cta-image" />
+        <Box style={styles} />
         <Box pad="medium">
-          <Heading tag="h3" margin="none">{label}</Heading>
+          <Heading tag="h5" margin="none">{label}</Heading>
           <Heading tag="h3" margin="none">{heading}</Heading>
           <Paragraph margin="none">{content}</Paragraph>
-          <Anchor href={link} primary={true} icon={linkIcon} label={linkText} />
+          <Heading tag="h3" margin="none">
+            <Anchor href={link} primary={true} icon={linkIcon} label={linkText} />
+          </Heading>
         </Box>
       </Box>
     );
@@ -33,12 +40,12 @@ export default class CalloutGrommet extends Component {
 };
 
 CalloutGrommet.propTypes = {
+  backgroundImage: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
   label: PropTypes.string,
   link: PropTypes.string.isRequired,
   linkIcon: PropTypes.element,
-  linkText: PropTypes.string,
-  thumbnail: PropTypes.string.isRequired
+  linkText: PropTypes.string
 };
 

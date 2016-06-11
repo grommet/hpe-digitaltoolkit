@@ -6,6 +6,8 @@ var Route = Router.Route;
 var Box = require('grommet/components/Box');
 var Marquee = require('../modules/Marquee');
 var MarqueeGrommet = require('../modules/MarqueeGrommet');
+var CalloutGrommet = require('../modules/CalloutGrommet');
+var PlayIcon = require('grommet/components/icons/base/play');
 var Header = require('./Header');
 
 var Examples = React.createClass({
@@ -89,6 +91,17 @@ var Examples = React.createClass({
           justify="end" />
         <Box pad={{horizontal: 'large'}}><p><strong>Grommet-only Marquee (no parallax, responsiveness)</strong></p></Box>
         {this._loremIpsum()}
+        <Box pad={{ horizontal: 'large', vertical: 'none' }}>
+          <CalloutGrommet
+            backgroundImage="url(/docs/img/carousel-1.png)"
+            label="VIDEO - 4:27"
+            heading="Foundation Paraguay Empowers Microbusinesses"
+            content="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
+            link="#"
+            linkIcon={<PlayIcon />}
+            linkText="Watch Now"
+          />
+        </Box>
       </div>
     );
   }
