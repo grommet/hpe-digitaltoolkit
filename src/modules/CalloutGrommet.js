@@ -8,10 +8,11 @@ import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
 
 const CLASS_ROOT = 'callout-grommet';
+const PALM_BREAKPOINT = 720;
 
 export default class CalloutGrommet extends Component {
   render () {
-    const { backgroundImage, content, heading, label, link, linkIcon, linkText } = this.props;
+    const { thumbnail, content, heading, label, link, linkIcon, linkText } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
@@ -19,8 +20,9 @@ export default class CalloutGrommet extends Component {
     );
 
     let styles = {
-      width: 270,
-      backgroundImage
+      width: (window.innerWidth > PALM_BREAKPOINT) ? 270 : '',
+      height: (window.innerWidth < PALM_BREAKPOINT) ? 270 : '',
+      backgroundImage: thumbnail
     };
 
     return (
@@ -40,7 +42,7 @@ export default class CalloutGrommet extends Component {
 };
 
 CalloutGrommet.propTypes = {
-  backgroundImage: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
   label: PropTypes.string,
