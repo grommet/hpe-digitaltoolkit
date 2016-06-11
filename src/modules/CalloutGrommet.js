@@ -33,5 +33,12 @@ export default class CalloutGrommet extends Component {
 };
 
 CalloutGrommet.propTypes = {
+  content: PropTypes.string.isRequired,
+  heading: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  link: PropTypes.string.isRequired,
+  linkIcon: PropTypes.element,
+  linkText: PropTypes.string,
+  thumbnail: PropTypes.string.isRequired
 };
 
