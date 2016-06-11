@@ -36,8 +36,8 @@ export default class AccordionPanelGrommet extends Component {
     return (
       <Box direction="row" pad={{vertical: "medium"}}>
         <img src={ctaThumbnail} className="accordion-cta-image" />
-        <Box>
-          <Paragraph margin="none"><strong>{headline}</strong></Paragraph>
+        <Box pad="medium">
+          <Heading tag="h3" margin="none">{headline}</Heading>
           <Paragraph margin="none">{subHeadline}</Paragraph>
           <Anchor href={link} primary={true} label={linkText} />
         </Box>
@@ -54,8 +54,8 @@ export default class AccordionPanelGrommet extends Component {
         return (
           <Tile key={i} direction="row">
             <img src={thumbnail} className="resource-image" />
-            <Box>
-              <Paragraph margin="none"><strong>{headline}</strong></Paragraph>
+            <Box pad="medium">
+              <Heading tag="h6" margin="none">{headline}</Heading>
               <Paragraph margin="none">{subHeadline}</Paragraph>
               <Anchor href={link} primary={true} label={linkText} />
             </Box>
@@ -65,7 +65,7 @@ export default class AccordionPanelGrommet extends Component {
 
       return (
         <Box pad={{vertical: "medium"}}>
-          <Heading tag="h3" strong={true} margin="none">Resources</Heading>
+          <Heading tag="h3">Resources</Heading>
           <Tiles fill={true}>
             {resourceTiles}
           </Tiles>
@@ -87,8 +87,8 @@ export default class AccordionPanelGrommet extends Component {
     if (isOpen) {
       return (
         <Box full="horizontal" pad={{vertical: "medium"}}>
-          <Heading tag="h3" strong={true} margin="none" >{headline}</Heading>
-          <Paragraph size="large" margin="none">{subHeadline}</Paragraph>
+          <Heading tag="h3" margin="none" >{headline}</Heading>
+          <Paragraph margin="none">{subHeadline}</Paragraph>
           {this._renderCTA()}
           {this._renderResources()}
         </Box>
@@ -112,7 +112,7 @@ export default class AccordionPanelGrommet extends Component {
     return (
       <ListItem className={classes} direction="column">
         <Box full="horizontal" direction="row" justify="between" align="center" onClick={this._onClickPanel} responsive={false}>
-          <Heading tag="h2" strong={true}>{panelTitle}</Heading>
+          <Heading tag="h2" margin="none">{panelTitle}</Heading>
           {panelControlIcon}
         </Box>
         {this._renderPanelContent()}
