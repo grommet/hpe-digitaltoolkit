@@ -11,8 +11,34 @@ const CLASS_ROOT = 'callout-grommet';
 const PALM_BREAKPOINT = 720;
 
 export default class CalloutGrommet extends Component {
+  constructor(props) {
+    super(props);
+    this._handleResize = this._handleResize.bind(this);
+    this.state = {
+      width: 270,
+      height: ''
+    };
+  }
+
+  componentDidMount () {
+    window.addEventListener('resize', this._handleResize);
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this._handleResize);
+  }
+
+  _handleResize () {
+    if (window.innerWidth > PALM_BREAKPOINT) {
+      this.setState({ width: 270, height: '' });
+    } else {
+      this.setState({ width: '', height: 270 });
+    }
+  }
+
   render () {
     const { thumbnail, content, heading, label, link, linkIcon, linkText } = this.props;
+    const { width, height } = this.state;
 
     const classes = classnames(
       CLASS_ROOT,
@@ -20,8 +46,8 @@ export default class CalloutGrommet extends Component {
     );
 
     let styles = {
-      width: (window.innerWidth > PALM_BREAKPOINT) ? 270 : '',
-      height: (window.innerWidth < PALM_BREAKPOINT) ? 270 : '',
+      width,
+      height,
       backgroundImage: thumbnail
     };
 
