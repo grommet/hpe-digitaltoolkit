@@ -93,7 +93,7 @@ var Examples = React.createClass({
         {this._loremIpsum()}
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
           <CalloutGrommet
-            thumbnail="url(/docs/img/carousel-1.png)"
+            thumbnail="url(/docs/img/Video_image.png)"
             label="VIDEO - 4:27"
             heading="Foundation Paraguay Empowers Microbusinesses"
             content="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
