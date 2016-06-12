@@ -7,7 +7,7 @@ var Box = require('grommet/components/Box');
 var Marquee = require('../modules/Marquee');
 var MarqueeGrommet = require('../modules/MarqueeGrommet');
 var CalloutGrommet = require('../modules/CalloutGrommet');
-var PlayIcon = require('grommet/components/icons/base/play');
+var PlayIcon = require('grommet/components/icons/base/Play');
 var Header = require('./Header');
 
 var Examples = React.createClass({
