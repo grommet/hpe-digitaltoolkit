@@ -101,6 +101,14 @@ var Examples = React.createClass({
             linkIcon={<PlayIcon />}
             linkText="Watch Now"
           />
+          <CalloutGrommet
+            thumbnail="url(/docs/img/Case_Study_image.png)"
+            label="CASE STUDY"
+            heading="The Key Steps to Reducing Software Spend"
+            content="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+            link="#"
+            linkText="Get the Details"
+          />
         </Box>
       </div>
     );
