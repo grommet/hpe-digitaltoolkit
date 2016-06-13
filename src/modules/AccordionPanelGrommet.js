@@ -18,8 +18,6 @@ export default class AccordionPanelGrommet extends Component {
   constructor (props) {
     super(props);
 
-    this._renderCTA = this._renderCTA.bind(this);
-    this._renderResources = this._renderResources.bind(this);
     this._onClickPanel = this._onClickPanel.bind(this);
 
     this.state = {
