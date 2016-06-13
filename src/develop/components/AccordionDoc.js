@@ -41,8 +41,8 @@ and help eliminate poverty in South America."
         ctaData={{
           headline: 'Foundation Paraguay Empowers Microbusinesses',
           subHeadline: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
-          link: 'link url',
-          linkText: 'Watch Now'
+          href: 'link url',
+          label: 'Watch Now'
         }}
         ctaThumbnail="../img/carousel-1.png"
         resources={[
@@ -50,15 +50,15 @@ and help eliminate poverty in South America."
             thumbnail: '../img/carousel-1.png',
             headline: 'Lorem ipsum',
             subHeadline: 'Lorem ipsum dolor sit amet dicat sonet.',
-            link: 'link url',
-            linkText: 'Learn more'
+            href: 'link url',
+            label: 'Learn more'
           },
           {
             thumbnail: '../img/carousel-1.png',
             headline: 'Lorem ipsum',
             subHeadline: 'Lorem ipsum dolor sit amet dicat sonet.',
-            link: 'link url',
-            linkText: 'Learn more'
+            href: 'link url',
+            label: 'Learn more'
           }
         ]}
       />
@@ -102,11 +102,11 @@ and help eliminate poverty in South America."
             <dd>Headline of the section.</dd>
             <dt><code>subHeadline         string</code></dt>
             <dd>Content for the subheadline.</dd>
-            <dt><code>ctaData             {`{headline: , subHeadline: , link: , linkText: }`}</code></dt>
+            <dt><code>ctaData             {`{headline: , subHeadline: , href: , label: }`}</code></dt>
             <dd>Call to action content to display.</dd>
             <dt><code>ctaThumbnail        {`{url}`}</code></dt>
             <dd>Call to action thumbnail image.</dd>
-            <dt><code>resources           {`[{thumbnail: , headline: , subHeadline: , link: , linkText: ,}, ...]`}</code></dt>
+            <dt><code>resources           {`[{thumbnail: , headline: , subHeadline: , href: , label: ,}, ...]`}</code></dt>
             <dd>An array of resource tiles.</dd>
           </dl>
         </section>

@@ -30,7 +30,7 @@ export default class AccordionPanelGrommet extends Component {
   _renderCTA () {
     let { ctaThumbnail } = this.props;
     // let { ctaThumbnail, ctaVideo } = this.props;
-    let { headline, subHeadline, link, linkText } = this.props.ctaData;
+    let { headline, subHeadline, link, label } = this.props.ctaData;
     // TODO: add video overlay functionality for ctaVideo
 
     return (
@@ -39,7 +39,7 @@ export default class AccordionPanelGrommet extends Component {
         <Box pad="medium">
           <Heading tag="h3" margin="none">{headline}</Heading>
           <Paragraph margin="none">{subHeadline}</Paragraph>
-          <Anchor href={link} primary={true} label={linkText} />
+          <Anchor href={link} primary={true} label={label} />
         </Box>
       </Box>
     );
@@ -50,14 +50,14 @@ export default class AccordionPanelGrommet extends Component {
     let resourceTiles;
 
     if (resources) {
-      resourceTiles = resources.map(({ thumbnail, headline, subHeadline, link, linkText }, i) => {
+      resourceTiles = resources.map(({ thumbnail, headline, subHeadline, link, label }, i) => {
         return (
           <Tile key={i} direction="row">
             <img src={thumbnail} className="resource-image" />
             <Box pad="medium">
               <Heading tag="h6" margin="none">{headline}</Heading>
               <Paragraph margin="none">{subHeadline}</Paragraph>
-              <Anchor href={link} primary={true} label={linkText} />
+              <Anchor href={link} primary={true} label={label} />
             </Box>
           </Tile>
         );
@@ -129,7 +129,7 @@ AccordionPanelGrommet.propTypes = {
     headline: PropTypes.string,
     subHeadline: PropTypes.string,
     link: PropTypes.string,
-    linkText: PropTypes.string
+    label: PropTypes.string
   }),
   ctaThumbnail: PropTypes.string,
   ctaVideo: PropTypes.element,
@@ -138,6 +138,6 @@ AccordionPanelGrommet.propTypes = {
     headline: PropTypes.string,
     subHeadline: PropTypes.string,
     link: PropTypes.string,
-    linkText: PropTypes.string
+    label: PropTypes.string
   }))
 };
