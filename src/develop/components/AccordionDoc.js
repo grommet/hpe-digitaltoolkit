@@ -38,7 +38,7 @@ var AccordionDoc = React.createClass({
 enterprise grade, scalable and secure."
         subHeadline="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life
 and help eliminate poverty in South America."
-        ctaText={{
+        ctaData={{
           headline: 'Foundation Paraguay Empowers Microbusinesses',
           subHeadline: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
           link: 'link url',
@@ -102,7 +102,7 @@ and help eliminate poverty in South America."
             <dd>Headline of the section.</dd>
             <dt><code>subHeadline         string</code></dt>
             <dd>Content for the subheadline.</dd>
-            <dt><code>ctaText             {`{headline: , subHeadline: , link: , linkText: }`}</code></dt>
+            <dt><code>ctaData             {`{headline: , subHeadline: , link: , linkText: }`}</code></dt>
             <dd>Call to action content to display.</dd>
             <dt><code>ctaThumbnail        {`{url}`}</code></dt>
             <dd>Call to action thumbnail image.</dd>

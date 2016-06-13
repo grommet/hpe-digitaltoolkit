@@ -30,7 +30,7 @@ export default class AccordionPanelGrommet extends Component {
   _renderCTA () {
     let { ctaThumbnail } = this.props;
     // let { ctaThumbnail, ctaVideo } = this.props;
-    let { headline, subHeadline, link, linkText } = this.props.ctaText;
+    let { headline, subHeadline, link, linkText } = this.props.ctaData;
     // TODO: add video overlay functionality for ctaVideo
 
     return (
@@ -125,7 +125,7 @@ AccordionPanelGrommet.propTypes = {
   panelTitle: PropTypes.string.isRequired,
   headline: PropTypes.string,
   subHeadline: PropTypes.string,
-  ctaText: PropTypes.shape({
+  ctaData: PropTypes.shape({
     headline: PropTypes.string,
     subHeadline: PropTypes.string,
     link: PropTypes.string,
