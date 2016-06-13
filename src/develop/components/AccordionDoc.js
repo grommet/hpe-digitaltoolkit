@@ -102,11 +102,11 @@ and help eliminate poverty in South America."
             <dd>Headline of the section.</dd>
             <dt><code>subHeadline         string</code></dt>
             <dd>Content for the subheadline.</dd>
-            <dt><code>ctaData             {`{headline: , subHeadline: , href: , label: }`}</code></dt>
+            <dt><code>ctaData             {`{headline: string, subHeadline: string, href: string, label: string}`}</code></dt>
             <dd>Call to action content to display.</dd>
             <dt><code>ctaThumbnail        {`{url}`}</code></dt>
             <dd>Call to action thumbnail image.</dd>
-            <dt><code>resources           {`[{thumbnail: , headline: , subHeadline: , href: , label: ,}, ...]`}</code></dt>
+            <dt><code>resources           {`[{thumbnail: string, headline: string, subHeadline: string, href: string, label: element}, ...]`}</code></dt>
             <dd>An array of resource tiles.</dd>
           </dl>
         </section>
