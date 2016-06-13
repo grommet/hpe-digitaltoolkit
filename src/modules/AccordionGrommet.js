@@ -11,9 +11,9 @@ const CLASS_ROOT = 'accordion-grommet';
 
 export default class AccordionGrommet extends Component {
   render () {
-    let { headline, subHeadline, children } = this.props;
+    const { headline, subHeadline, children } = this.props;
 
-    let classes = classnames(
+    const classes = classnames(
       CLASS_ROOT,
       this.props.className
     );

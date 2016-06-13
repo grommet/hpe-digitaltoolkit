@@ -28,9 +28,8 @@ export default class AccordionPanelGrommet extends Component {
   }
 
   _renderCTA () {
-    let { ctaThumbnail } = this.props;
-    // let { ctaThumbnail, ctaVideo } = this.props;
-    let { headline, subHeadline, link, label } = this.props.ctaData;
+    const { ctaThumbnail } = this.props;
+    const { headline, subHeadline, link, label } = this.props.ctaData;
     // TODO: add video overlay functionality for ctaVideo
 
     return (
@@ -46,7 +45,7 @@ export default class AccordionPanelGrommet extends Component {
   }
 
   _renderResources () {
-    let { resources } = this.props;
+    const { resources } = this.props;
     let resourceTiles;
 
     if (resources) {
@@ -77,13 +76,13 @@ export default class AccordionPanelGrommet extends Component {
   }
 
   _onClickPanel () {
-    let { isOpen } = this.state;
+    const { isOpen } = this.state;
     this.setState({ isOpen : !isOpen });
   }
 
   _renderPanelContent () {
-    let { headline, subHeadline } = this.props;
-    let { isOpen } = this.state;
+    const { headline, subHeadline } = this.props;
+    const { isOpen } = this.state;
     if (isOpen) {
       return (
         <Box full="horizontal" pad={{vertical: "medium"}}>
@@ -99,15 +98,15 @@ export default class AccordionPanelGrommet extends Component {
   }
 
   render () {
-    let { panelTitle } = this.props;
-    let { isOpen } = this.state;
+    const { panelTitle } = this.props;
+    const { isOpen } = this.state;
 
-    let classes = classnames(
+    const classes = classnames(
       CLASS_ROOT,
       this.props.className
     );
 
-    let panelControlIcon = (isOpen) ? <CloseIcon /> : <OpenIcon />;
+    const panelControlIcon = (isOpen) ? <CloseIcon /> : <OpenIcon />;
 
     return (
       <ListItem className={classes} direction="column">
