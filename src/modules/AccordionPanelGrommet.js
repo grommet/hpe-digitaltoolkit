@@ -47,9 +47,9 @@ export default class AccordionPanelGrommet extends Component {
     let resourceTiles;
 
     if (resources) {
-      resourceTiles = resources.map(({ thumbnail, headline, subHeadline, link, label }, i) => {
+      resourceTiles = resources.map(({ thumbnail, headline, subHeadline, link, label }, key) => {
         return (
-          <Tile key={i} direction="row">
+          <Tile key={key} direction="row">
             <img src={thumbnail} className="resource__image" />
             <Box pad="medium">
               <Heading tag="h6" margin="none">{headline}</Heading>
