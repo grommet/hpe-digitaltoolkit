@@ -28,6 +28,7 @@ export default class Marquee extends Component {
     window.addEventListener('scroll', this._handleScroll);
     window.addEventListener('resize', this._handleScroll);
     window.addEventListener('resize', this._setBackgroundColorIndex);
+    this._setBackgroundColorIndex();
   }
 
   componentWillUnmount () {
@@ -39,7 +40,11 @@ export default class Marquee extends Component {
   _handleScroll () {
     let marqueeOriginalHeight = window.innerHeight * 0.75;
     if (window.innerWidth < PALM_BREAKPOINT) {
-      marqueeOriginalHeight = 270;
+      if (this.props.size === 'small') {
+        marqueeOriginalHeight = 270;
+      } else {
+        marqueeOriginalHeight = 300;
+      }
     } else if (this.props.size === 'small') {
       marqueeOriginalHeight = window.innerHeight * 0.60;
     }
