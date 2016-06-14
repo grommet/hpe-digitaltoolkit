@@ -7,16 +7,16 @@ import Heading from 'grommet/components/Heading';
 import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
 
-const CLASS_ROOT = 'callout-grommet';
+const CLASS_ROOT = 'callout';
 const PALM_BREAKPOINT = 720;
 
-export default class CalloutGrommet extends Component {
+export default class Callout extends Component {
   constructor(props) {
     super(props);
     this._handleResize = this._handleResize.bind(this);
     this.state = {
-      width: 270,
-      height: ''
+      thumbnailWidth: 270,
+      thumbnailHeight: ''
     };
   }
 
@@ -30,30 +30,30 @@ export default class CalloutGrommet extends Component {
 
   _handleResize () {
     if (window.innerWidth > PALM_BREAKPOINT) {
-      this.setState({ width: 270, height: '' });
+      this.setState({ thumbnailWidth: 270, thumbnailHeight: '' });
     } else {
-      this.setState({ width: '', height: 270 });
+      this.setState({ thumbnailWidth: '', thumbnailHeight: 270 });
     }
   }
 
   render () {
     const { thumbnail, content, heading, label, link, linkIcon, linkText } = this.props;
-    const { width, height } = this.state;
+    const { thumbnailWidth, thumbnailHeight } = this.state;
 
     const classes = classnames(
       CLASS_ROOT,
       this.props.className
     );
 
-    let styles = {
-      width,
-      height,
+    const thumbnailStyles = {
+      width: thumbnailWidth,
+      height: thumbnailHeight,
       backgroundImage: thumbnail
     };
 
     return (
       <Box className={classes} direction="row" pad={{vertical: "medium"}}>
-        <Box style={styles} />
+        <Box style={thumbnailStyles} />
         <Box pad="medium">
           <Heading tag="h5" margin="none">{label}</Heading>
           <Heading tag="h3" margin="none">{heading}</Heading>
@@ -67,7 +67,7 @@ export default class CalloutGrommet extends Component {
   }
 };
 
-CalloutGrommet.propTypes = {
+Callout.propTypes = {
   thumbnail: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
