@@ -70,7 +70,7 @@ export default class AccordionPanelGrommet extends Component {
       );
     }
 
-    return null;
+    return undefined;
   }
 
   _onClickPanel () {
