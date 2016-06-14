@@ -12,7 +12,7 @@ import Tiles from 'grommet/components/Tiles';
 import OpenIcon from 'grommet/components/icons/base/Add';
 import CloseIcon from 'grommet/components/icons/base/Subtract';
 
-const CLASS_ROOT = 'accordion-panel-grommet';
+const CLASS_ROOT = 'accordion-panel';
 
 export default class AccordionPanelGrommet extends Component {
   constructor (props) {
@@ -32,7 +32,7 @@ export default class AccordionPanelGrommet extends Component {
 
     return (
       <Box direction="row" pad={{vertical: "medium"}}>
-        <img src={ctaThumbnail} className="accordion-cta-image" />
+        <img src={ctaThumbnail} className={`${CLASS_ROOT}__image`} />
         <Box pad="medium">
           <Heading tag="h3" margin="none">{headline}</Heading>
           <Paragraph margin="none">{subHeadline}</Paragraph>
@@ -50,7 +50,7 @@ export default class AccordionPanelGrommet extends Component {
       resourceTiles = resources.map(({ thumbnail, headline, subHeadline, link, label }, i) => {
         return (
           <Tile key={i} direction="row">
-            <img src={thumbnail} className="resource-image" />
+            <img src={thumbnail} className="resource__image" />
             <Box pad="medium">
               <Heading tag="h6" margin="none">{headline}</Heading>
               <Paragraph margin="none">{subHeadline}</Paragraph>
