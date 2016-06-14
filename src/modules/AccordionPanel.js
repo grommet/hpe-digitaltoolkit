@@ -91,7 +91,7 @@ export default class AccordionPanel extends Component {
       );
     }
 
-    return null;
+    return undefined;
   }
 
   render () {
