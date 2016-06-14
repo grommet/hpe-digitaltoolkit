@@ -7,7 +7,7 @@ import Headline from 'grommet/components/Headline';
 import List from 'grommet/components/List';
 import Paragraph from 'grommet/components/Paragraph';
 
-const CLASS_ROOT = 'accordion-grommet';
+const CLASS_ROOT = 'accordion';
 
 export default class AccordionGrommet extends Component {
   render () {

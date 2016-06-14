@@ -3,8 +3,8 @@
 var React = require('react');
 var jsxToString = require('jsx-to-string');
 var DocsArticle = require('../../DocsArticle');
-var Accordion = require('../../modules/AccordionGrommet');
-var AccordionPanel = require('../../modules/AccordionPanelGrommet');
+var Accordion = require('../../modules/Accordion');
+var AccordionPanel = require('../../modules/AccordionPanel');
 
 Accordion.displayName = 'Accordion';
 
