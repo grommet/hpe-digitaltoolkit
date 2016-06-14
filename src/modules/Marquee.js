@@ -28,6 +28,7 @@ export default class Marquee extends Component {
     window.addEventListener('scroll', this._handleScroll);
     window.addEventListener('resize', this._handleScroll);
     window.addEventListener('resize', this._setBackgroundColorIndex);
+    this._setBackgroundColorIndex();
   }
 
   componentWillUnmount () {
@@ -39,7 +40,11 @@ export default class Marquee extends Component {
   _handleScroll () {
     let marqueeOriginalHeight = window.innerHeight * 0.75;
     if (window.innerWidth < PALM_BREAKPOINT) {
-      marqueeOriginalHeight = 270;
+      if (this.props.size === 'small') {
+        marqueeOriginalHeight = 270;
+      } else {
+        marqueeOriginalHeight = 300;
+      }
     } else if (this.props.size === 'small') {
       marqueeOriginalHeight = window.innerHeight * 0.60;
     }
@@ -111,7 +116,8 @@ export default class Marquee extends Component {
       this.props.className,
       {
         [`${CLASS_ROOT}--${this.props.size}`]: this.props.size,
-        [`${CLASS_ROOT}--bg-${this.props.responsiveBackgroundPosition}`]: this.props.responsiveBackgroundPosition
+        [`${CLASS_ROOT}--bg-${this.props.responsiveBackgroundPosition}`]: this.props.responsiveBackgroundPosition,
+        [`${CLASS_ROOT}--mobile-separator`]: this.props.separator
       }
     );
 
@@ -171,6 +177,7 @@ Marquee.propTypes = {
   linkText: PropTypes.string,
   onClick: PropTypes.func,
   responsiveBackgroundPosition: PropTypes.oneOf(['left', 'center', 'right']),
+  separator: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'large']),
   subHeadline: PropTypes.string
 };
@@ -182,5 +189,6 @@ Marquee.defaultProps = {
   justify: 'end',
   linkText: 'Learn More',
   responsiveBackgroundPosition: 'center',
+  separator: false,
   size: 'large'
 };
