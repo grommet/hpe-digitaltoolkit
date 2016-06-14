@@ -6,7 +6,7 @@ var Route = Router.Route;
 var Box = require('grommet/components/Box');
 var Marquee = require('../modules/Marquee');
 var MarqueeGrommet = require('../modules/MarqueeGrommet');
-var CalloutGrommet = require('../modules/CalloutGrommet');
+var Callout = require('../modules/Callout');
 var PlayIcon = require('grommet/components/icons/base/Play');
 var Header = require('./Header');
 
@@ -92,7 +92,7 @@ var Examples = React.createClass({
         <Box pad={{horizontal: 'large'}}><p><strong>Grommet-only Marquee (no parallax, responsiveness)</strong></p></Box>
         {this._loremIpsum()}
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
-          <CalloutGrommet
+          <Callout
             thumbnail="url(/docs/img/Video_image.png)"
             label="VIDEO - 4:27"
             heading="Foundation Paraguay Empowers Microbusinesses"
@@ -101,7 +101,7 @@ var Examples = React.createClass({
             linkIcon={<PlayIcon />}
             linkText="Watch Now"
           />
-          <CalloutGrommet
+          <Callout
             thumbnail="url(/docs/img/Case_Study_image.png)"
             label="CASE STUDY"
             heading="The Key Steps to Reducing Software Spend"
