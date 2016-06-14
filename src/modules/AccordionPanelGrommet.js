@@ -74,17 +74,15 @@ export default class AccordionPanelGrommet extends Component {
   }
 
   _onClickPanel () {
-    const { isOpen } = this.state;
-    this.setState({ isOpen : !isOpen });
+    this.setState({ isOpen : !this.state.isOpen });
   }
 
   _renderPanelContent () {
     const { headline, subHeadline } = this.props;
-    const { isOpen } = this.state;
-    if (isOpen) {
+    if (this.state.isOpen) {
       return (
         <Box full="horizontal" pad={{vertical: "medium"}}>
-          <Heading tag="h3" margin="none" >{headline}</Heading>
+          <Heading tag="h3" margin="none">{headline}</Heading>
           <Paragraph margin="none">{subHeadline}</Paragraph>
           {this._renderCTA()}
           {this._renderResources()}
@@ -97,14 +95,13 @@ export default class AccordionPanelGrommet extends Component {
 
   render () {
     const { panelTitle } = this.props;
-    const { isOpen } = this.state;
 
     const classes = classnames(
       CLASS_ROOT,
       this.props.className
     );
 
-    const panelControlIcon = (isOpen) ? <CloseIcon /> : <OpenIcon />;
+    const panelControlIcon = (this.state.isOpen) ? <CloseIcon /> : <OpenIcon />;
 
     return (
       <ListItem className={classes} direction="column">
