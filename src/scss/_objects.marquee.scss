@@ -111,7 +111,7 @@
 
   &--mobile-separator {
     @include media-query(palm) {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid $border-color;
       margin-bottom: $inuit-base-spacing-unit;
     }
   }
