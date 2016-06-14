@@ -15,7 +15,7 @@ import CloseIcon from 'grommet/components/icons/base/Subtract';
 
 const CLASS_ROOT = 'accordion-panel';
 
-export default class AccordionPanelGrommet extends Component {
+export default class AccordionPanel extends Component {
   constructor (props) {
     super(props);
 
@@ -116,7 +116,7 @@ export default class AccordionPanelGrommet extends Component {
   }
 };
 
-AccordionPanelGrommet.propTypes = {
+AccordionPanel.propTypes = {
   panelTitle: PropTypes.string.isRequired,
   headline: PropTypes.string,
   subHeadline: PropTypes.string,

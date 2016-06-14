@@ -1,0 +1,13 @@
+// TODO: handle accordion & resource image sizing differently.
+// IE & Edge doesn't support `object-fit`
+.accordion-panel__image {
+  width: 270px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.resource__image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}

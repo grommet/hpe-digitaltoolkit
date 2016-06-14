@@ -9,7 +9,7 @@ import Paragraph from 'grommet/components/Paragraph';
 
 const CLASS_ROOT = 'accordion';
 
-export default class AccordionGrommet extends Component {
+export default class Accordion extends Component {
   render () {
     const { headline, subHeadline, children } = this.props;
 
@@ -57,7 +57,7 @@ export default class AccordionGrommet extends Component {
   }
 };
 
-AccordionGrommet.propTypes = {
+Accordion.propTypes = {
   headline: PropTypes.string,
   subHeadline: PropTypes.string
 };
