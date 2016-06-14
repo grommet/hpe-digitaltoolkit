@@ -9,6 +9,7 @@ import ListItem from 'grommet/components/ListItem';
 import Paragraph from 'grommet/components/Paragraph';
 import Tile from 'grommet/components/Tile';
 import Tiles from 'grommet/components/Tiles';
+import Image from 'grommet/components/Image';
 import OpenIcon from 'grommet/components/icons/base/Add';
 import CloseIcon from 'grommet/components/icons/base/Subtract';
 
@@ -32,7 +33,7 @@ export default class AccordionPanelGrommet extends Component {
 
     return (
       <Box direction="row" pad={{vertical: "medium"}}>
-        <img src={ctaThumbnail} className={`${CLASS_ROOT}__image`} />
+        <Image src={ctaThumbnail} className={`${CLASS_ROOT}__image`} />
         <Box pad="medium">
           <Heading tag="h3" margin="none">{headline}</Heading>
           <Paragraph margin="none">{subHeadline}</Paragraph>
@@ -50,7 +51,7 @@ export default class AccordionPanelGrommet extends Component {
       resourceTiles = resources.map(({ thumbnail, headline, subHeadline, link, label }, key) => {
         return (
           <Tile key={key} direction="row">
-            <img src={thumbnail} className="resource__image" />
+            <Image src={thumbnail} className="resource__image" />
             <Box pad="medium">
               <Heading tag="h6" margin="none">{headline}</Heading>
               <Paragraph margin="none">{subHeadline}</Paragraph>
