@@ -111,7 +111,8 @@ export default class Marquee extends Component {
       this.props.className,
       {
         [`${CLASS_ROOT}--${this.props.size}`]: this.props.size,
-        [`${CLASS_ROOT}--bg-${this.props.responsiveBackgroundPosition}`]: this.props.responsiveBackgroundPosition
+        [`${CLASS_ROOT}--bg-${this.props.responsiveBackgroundPosition}`]: this.props.responsiveBackgroundPosition,
+        [`${CLASS_ROOT}--mobile-separator`]: this.props.separator
       }
     );
 
@@ -171,6 +172,7 @@ Marquee.propTypes = {
   linkText: PropTypes.string,
   onClick: PropTypes.func,
   responsiveBackgroundPosition: PropTypes.oneOf(['left', 'center', 'right']),
+  separator: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'large']),
   subHeadline: PropTypes.string
 };
@@ -182,5 +184,6 @@ Marquee.defaultProps = {
   justify: 'end',
   linkText: 'Learn More',
   responsiveBackgroundPosition: 'center',
+  separator: false,
   size: 'large'
 };

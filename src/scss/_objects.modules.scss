@@ -35,15 +35,7 @@
     overflow: hidden;
 
     .box {
-      width: 45%;
-      overflow-wrap: break-word;
-      word-wrap: break-word;
-      -ms-word-break: break-all;
-      word-break: break-word;
-      -ms-hyphens: auto;
-      -moz-hyphens: auto;
-      -webkit-hyphens: auto;
-      hyphens: auto;
+      width: calc(50% + #{double($inuit-base-spacing-unit)});
 
       @include media-query(palm) {
         width: 100%;
@@ -63,7 +55,6 @@
     }
 
     @include media-query(palm) {
-      margin-top: 270px;
       position: relative;
     }
   }
@@ -79,7 +70,7 @@
       height: 75vh;
 
       @include media-query(palm) {
-        height: 270px;
+        height: 300px;
       }
     }
 
@@ -88,6 +79,7 @@
 
       @include media-query(palm) {
         height: auto;
+        margin-top: 300px;
       }
     }
   }
@@ -112,7 +104,16 @@
 
       @include media-query(palm) {
         height: auto;
+        margin-top: 270px;
       }
+    }
+  }
+
+  &--mobile-separator {
+    @include media-query(palm) {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 24px;
+      margin-bottom: 24px;
     }
   }
 }

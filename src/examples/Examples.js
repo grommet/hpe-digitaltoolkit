@@ -78,6 +78,7 @@ var Examples = React.createClass({
           link="http://www.grommet.io/docs/"
           justify="end"
           size="large"
+          separator={true}
           responsiveBackgroundPosition="left" />
         <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee, light text</strong></p></Box>
         {this._loremIpsum()}
