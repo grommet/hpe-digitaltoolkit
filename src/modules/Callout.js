@@ -8,37 +8,10 @@ import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
 
 const CLASS_ROOT = 'callout';
-const PALM_BREAKPOINT = 720;
 
 export default class Callout extends Component {
-  constructor(props) {
-    super(props);
-    this._handleResize = this._handleResize.bind(this);
-    this.state = {
-      thumbnailWidth: 270,
-      thumbnailHeight: ''
-    };
-  }
-
-  componentDidMount () {
-    window.addEventListener('resize', this._handleResize);
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('resize', this._handleResize);
-  }
-
-  _handleResize () {
-    if (window.innerWidth > PALM_BREAKPOINT) {
-      this.setState({ thumbnailWidth: 270, thumbnailHeight: '' });
-    } else {
-      this.setState({ thumbnailWidth: '', thumbnailHeight: 270 });
-    }
-  }
-
   render () {
     const { thumbnail, content, heading, label, link, linkIcon, linkText } = this.props;
-    const { thumbnailWidth, thumbnailHeight } = this.state;
 
     const classes = classnames(
       CLASS_ROOT,
@@ -46,14 +19,12 @@ export default class Callout extends Component {
     );
 
     const thumbnailStyles = {
-      width: thumbnailWidth,
-      height: thumbnailHeight,
       backgroundImage: thumbnail
     };
 
     return (
       <Box className={classes} direction="row" pad={{vertical: "medium"}}>
-        <Box style={thumbnailStyles} />
+        <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} />
         <Box pad="medium">
           <Heading tag="h5" margin="none">{label}</Heading>
           <Heading tag="h3" margin="none">{heading}</Heading>
