@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/grommet/hpe-digitaltoolkit.png?label=ready&title=Ready)](https://waffle.io/grommet/hpe-digitaltoolkit)
 # Grommet website project
 
 This is the source code for the [Grommet website](http://grommet.io). To run the website execute the following:

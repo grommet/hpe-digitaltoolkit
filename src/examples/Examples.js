@@ -6,6 +6,7 @@ var Route = Router.Route;
 var Box = require('grommet/components/Box');
 var Marquee = require('../modules/Marquee');
 var MarqueeGrommet = require('../modules/MarqueeGrommet');
+var Header = require('./Header');
 
 var Examples = React.createClass({
   contextTypes: {
@@ -38,11 +39,26 @@ var Examples = React.createClass({
   render: function () {
     return (
       <div>
+        <Header external={true}
+          logoLink={'/docs/hpe/examples'}
+          links={
+            [{
+              label: 'Examples',
+              links: [{
+                label: 'Marquee',
+                href: '/docs/hpe/examples'
+              }, {
+                label: 'TBD',
+                href: '/docs/hpe/examples'
+              }]
+            }]
+          } />
         <Marquee darkTheme={false}
           backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
-          link="http://www.grommet.io/docs/" />
+          link="http://www.grommet.io/docs/"
+          responsiveBackgroundPosition="left" />
         <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee</strong></p></Box>
         {this._loremIpsum()}
         <Marquee darkTheme={false}
@@ -51,8 +67,20 @@ var Examples = React.createClass({
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/"
           justify="start"
-          size="small" />
+          size="small"
+          responsiveBackgroundPosition="right" />
         <Box pad={{horizontal: 'large'}}><p><strong>Small Marquee</strong></p></Box>
+        {this._loremIpsum()}
+        <Marquee darkTheme={true}
+          backgroundImage="url(/docs/img/Hero4_marquee.jpg)"
+          headline="Accelerate your transformation with the cloud"
+          subHeadline="HPE can help you benefit now from your right mix of cloud"
+          link="http://www.grommet.io/docs/"
+          justify="end"
+          size="large"
+          separator={true}
+          responsiveBackgroundPosition="left" />
+        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee, light text</strong></p></Box>
         {this._loremIpsum()}
         <MarqueeGrommet darkTheme={false}
           backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
