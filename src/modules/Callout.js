@@ -22,6 +22,15 @@ export default class Callout extends Component {
       backgroundImage: `url(${thumbnail})`
     };
 
+    let linkMarkup;
+    if (link) {
+      linkMarkup = (
+        <Heading tag="h3" margin="none">
+          <Anchor href={link} primary={true} icon={linkIcon} label={linkText} />
+        </Heading>
+      );
+    }
+
     return (
       <Box className={classes} direction="row" pad={{vertical: "medium"}}>
         <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} />
@@ -29,9 +38,7 @@ export default class Callout extends Component {
           <Heading tag="h5" margin="none">{label}</Heading>
           <Heading tag="h3" margin="none">{heading}</Heading>
           <Paragraph margin="none">{content}</Paragraph>
-          <Heading tag="h3" margin="none">
-            <Anchor href={link} primary={true} icon={linkIcon} label={linkText} />
-          </Heading>
+          {linkMarkup}
         </Box>
       </Box>
     );
@@ -43,7 +50,7 @@ Callout.propTypes = {
   content: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
   label: PropTypes.string,
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
   linkIcon: PropTypes.element,
   linkText: PropTypes.string
 };
