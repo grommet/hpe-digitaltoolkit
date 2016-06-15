@@ -12,7 +12,7 @@ const CLASS_ROOT = 'callout';
 
 export default class Callout extends Component {
   render () {
-    const { thumbnail, content, heading, label, link, linkIcon, linkText } = this.props;
+    const { thumbnail, description, heading, label, link, linkIcon, linkText } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
@@ -38,7 +38,7 @@ export default class Callout extends Component {
         <Box pad="medium">
           <Heading tag="h5" margin="none" uppercase={true}>{label}</Heading>
           <Heading tag="h3" margin="none">{heading}</Heading>
-          <Paragraph margin="none">{content}</Paragraph>
+          <Paragraph margin="none">{description}</Paragraph>
           {linkMarkup}
         </Box>
       </Box>
@@ -48,7 +48,7 @@ export default class Callout extends Component {
 
 Callout.propTypes = {
   thumbnail: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
   label: PropTypes.string,
   link: PropTypes.string,
