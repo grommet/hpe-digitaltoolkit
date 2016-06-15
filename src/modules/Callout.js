@@ -35,7 +35,7 @@ export default class Callout extends Component {
       <Box className={classes} direction="row" pad={{vertical: "medium"}}>
         <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} />
         <Box pad="medium">
-          <Heading tag="h5" margin="none">{label}</Heading>
+          <Heading tag="h5" margin="none" uppercase={true}>{label}</Heading>
           <Heading tag="h3" margin="none">{heading}</Heading>
           <Paragraph margin="none">{content}</Paragraph>
           {linkMarkup}
