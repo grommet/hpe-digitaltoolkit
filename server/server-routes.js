@@ -14777,6 +14777,7 @@ module.exports =
 	var LIGHT_COLORINDEX = 'light-1';
 	var DARK_COLORINDEX = 'grey-1';
 	var PALM_BREAKPOINT = 720;
+	var BOX_CONTAINER_CLASSNAME = 'box__container';
 
 	var Marquee = function (_Component) {
 	  _inherits(Marquee, _Component);
@@ -14788,6 +14789,11 @@ module.exports =
 
 	    _this._handleScroll = _this._handleScroll.bind(_this);
 	    _this._setBackgroundColorIndex = _this._setBackgroundColorIndex.bind(_this);
+
+	    _this._backgroundImageSize = {
+	      width: undefined,
+	      height: undefined
+	    };
 
 	    _this.state = {
 	      colorIndex: props.darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX
@@ -14811,6 +14817,35 @@ module.exports =
 	      window.removeEventListener('resize', this._setBackgroundColorIndex);
 	    }
 	  }, {
+	    key: '_getBackgroundImageRatio',
+	    value: function _getBackgroundImageRatio() {
+	      var _this2 = this;
+
+	      var marqueeNode = _reactDom2.default.findDOMNode(this);
+	      var marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
+
+	      // cache original width and height to be used onScroll
+	      if (!this._backgroundImageSize.width || !this._backgroundImageSize.height) {
+	        (function () {
+	          var marqueeBackgroundImage = new Image();
+	          marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
+
+	          if (marqueeBackgroundImage.src) {
+	            // in order for this to work properly in Safari,
+	            // we have to do the lookup for the image original width and height async
+	            setTimeout(function () {
+	              _this2._backgroundImageSize = {
+	                width: marqueeBackgroundImage.width || undefined,
+	                height: marqueeBackgroundImage.height || undefined
+	              };
+	            }, 100);
+	          }
+	        })();
+	      }
+
+	      return this._backgroundImageSize.width / this._backgroundImageSize.height;
+	    }
+	  }, {
 	    key: '_handleScroll',
 	    value: function _handleScroll() {
 	      var marqueeOriginalHeight = window.innerHeight * 0.75;
@@ -14823,14 +14858,13 @@ module.exports =
 	      } else if (this.props.size === 'small') {
 	        marqueeOriginalHeight = window.innerHeight * 0.60;
 	      }
+
 	      var marqueeNode = _reactDom2.default.findDOMNode(this);
-	      var marquee = marqueeNode.getElementsByClassName('box__container')[0];
+	      var marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
 	      var marqueeTop = marquee.getBoundingClientRect().top;
 	      var marqueeText = marqueeNode.getElementsByClassName('marquee__overlay')[0];
-	      var marqueeBackgroundImage = new Image();
-	      marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
 
-	      var backgroundRatio = marqueeBackgroundImage.width / marqueeBackgroundImage.height;
+	      var backgroundRatio = this._getBackgroundImageRatio();
 	      var marqueeRatio = marquee.offsetWidth / marqueeOriginalHeight;
 	      var backgroundHeight = 0;
 	      var backgroundWidth = 0;
@@ -14910,7 +14944,7 @@ module.exports =
 	        backgroundImage: backgroundImage
 	      };
 
-	      var backgroundClasses = (0, _classnames4.default)('box__container', _defineProperty({}, 'box__container--full-horizontal', this.props.flush));
+	      var backgroundClasses = (0, _classnames4.default)(BOX_CONTAINER_CLASSNAME, _defineProperty({}, BOX_CONTAINER_CLASSNAME + '--full-horizontal', this.props.flush));
 
 	      var subHeadlineMarkup = void 0;
 	      if (subHeadline) {
