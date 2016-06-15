@@ -12,12 +12,18 @@ const CLASS_ROOT = 'marquee';
 const LIGHT_COLORINDEX = 'light-1';
 const DARK_COLORINDEX = 'grey-1';
 const PALM_BREAKPOINT = 720;
+const BOX_CONTAINER_CLASSNAME = 'box__container';
 
 export default class Marquee extends Component {
   constructor (props) {
     super(props);
     this._handleScroll = this._handleScroll.bind(this);
     this._setBackgroundColorIndex = this._setBackgroundColorIndex.bind(this);
+
+    this._backgroundImageSize = {
+      width: undefined,
+      height: undefined
+    };
 
     this.state = {
       colorIndex: props.darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX
@@ -37,6 +43,30 @@ export default class Marquee extends Component {
     window.removeEventListener('resize', this._setBackgroundColorIndex);
   }
 
+  _getBackgroundImageRatio () {
+    let marqueeNode = ReactDOM.findDOMNode(this);
+    let marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
+
+    // cache original width and height to be used onScroll
+    if (!this._backgroundImageSize.width || !this._backgroundImageSize.height) {
+      let marqueeBackgroundImage = new Image();
+      marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
+
+      if (marqueeBackgroundImage.src) {
+        // in order for this to work properly in Safari,
+        // we have to do the lookup for the image original width and height async
+        setTimeout(() => {
+          this._backgroundImageSize = {
+            width: marqueeBackgroundImage.width || undefined,
+            height: marqueeBackgroundImage.height || undefined
+          };
+        }, 100);
+      }
+    }
+
+    return this._backgroundImageSize.width / this._backgroundImageSize.height;
+  }
+
   _handleScroll () {
     let marqueeOriginalHeight = window.innerHeight * 0.75;
     if (window.innerWidth < PALM_BREAKPOINT) {
@@ -48,14 +78,13 @@ export default class Marquee extends Component {
     } else if (this.props.size === 'small') {
       marqueeOriginalHeight = window.innerHeight * 0.60;
     }
+
     let marqueeNode = ReactDOM.findDOMNode(this);
-    let marquee = marqueeNode.getElementsByClassName('box__container')[0];
+    let marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
     let marqueeTop = marquee.getBoundingClientRect().top;
     let marqueeText = marqueeNode.getElementsByClassName('marquee__overlay')[0];
-    let marqueeBackgroundImage = new Image();
-    marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
 
-    let backgroundRatio = marqueeBackgroundImage.width / marqueeBackgroundImage.height;
+    let backgroundRatio = this._getBackgroundImageRatio();
     let marqueeRatio = marquee.offsetWidth / marqueeOriginalHeight;
     let backgroundHeight = 0;
     let backgroundWidth = 0;
@@ -102,9 +131,9 @@ export default class Marquee extends Component {
     let { darkTheme } = this.props;
 
     if (window.innerWidth < PALM_BREAKPOINT) {
-      this.setState({colorIndex: LIGHT_COLORINDEX});
+      this.setState({ colorIndex: LIGHT_COLORINDEX });
     } else {
-      this.setState({colorIndex: darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX});
+      this.setState({ colorIndex: darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX });
     }
   }
 
@@ -128,9 +157,9 @@ export default class Marquee extends Component {
     };
 
     let backgroundClasses = classnames(
-      'box__container',
+      BOX_CONTAINER_CLASSNAME,
       {
-        ['box__container--full-horizontal']: this.props.flush
+        [`${BOX_CONTAINER_CLASSNAME}--full-horizontal`]: this.props.flush
       }
     );
 
