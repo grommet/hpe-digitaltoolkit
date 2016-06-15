@@ -90,10 +90,11 @@ export default class Marquee extends Component {
     }
 
     let positionPercentage;
-    if (marqueeTop < 0) {
-      positionPercentage = ((1 - positionRatio) * 50 + 100) / 100;
+    if (marqueeTop < 0 && marqueeTop >= -marqueeOriginalHeight) {
+      positionPercentage = ((positionRatio) * 25 + 100) / 100;
+      console.log(positionPercentage);
     } else {
-      positionPercentage = 1;
+      positionPercentage = 1.25;
     }
     marquee.style.backgroundSize = `${backgroundWidth * positionPercentage}px ${backgroundHeight * positionPercentage}px`;
   }
