@@ -6,6 +6,7 @@ import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
 import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
+import LinkNextIcon from 'grommet/components/icons/base/LinkNext';
 
 const CLASS_ROOT = 'callout';
 
@@ -25,9 +26,9 @@ export default class Callout extends Component {
     let linkMarkup;
     if (link) {
       linkMarkup = (
-        <Heading tag="h3" margin="none">
-          <Anchor href={link} primary={true} icon={linkIcon} label={linkText} />
-        </Heading>
+        <Box pad={{vertical: "small"}}>
+          <Anchor href={link} icon={linkIcon} label={linkText} />
+        </Box>
       );
     }
 
@@ -56,5 +57,6 @@ Callout.propTypes = {
 };
 
 Callout.defaultProps = {
-  linkText: 'Get the Details'
+  linkText: 'Get the Details',
+  linkIcon: <LinkNextIcon />
 };
