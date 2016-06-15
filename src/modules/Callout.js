@@ -48,3 +48,6 @@ Callout.propTypes = {
   linkText: PropTypes.string
 };
 
+Callout.defaultProps = {
+  linkText: 'Get the Details'
+};
