@@ -1,5 +1,9 @@
 .callout {
 
+  > .box {
+    background-color: #fff;
+  }
+
   &__thumbnail {
     width: 270px;
 
