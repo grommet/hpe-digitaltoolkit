@@ -19,7 +19,7 @@ export default class Callout extends Component {
     );
 
     const thumbnailStyles = {
-      backgroundImage: thumbnail
+      backgroundImage: `url(${thumbnail})`
     };
 
     return (

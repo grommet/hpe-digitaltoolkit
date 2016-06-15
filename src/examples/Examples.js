@@ -94,7 +94,7 @@ var Examples = React.createClass({
         {this._loremIpsum()}
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
           <Callout
-            thumbnail="url(/docs/img/Video_image.png)"
+            thumbnail="/docs/img/Video_image.png"
             label="VIDEO - 4:27"
             heading="Foundation Paraguay Empowers Microbusinesses"
             content="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
@@ -103,7 +103,7 @@ var Examples = React.createClass({
             linkText="Watch Now"
           />
           <Callout
-            thumbnail="url(/docs/img/Case_Study_image.png)"
+            thumbnail="/docs/img/Case_Study_image.png"
             label="CASE STUDY"
             heading="The Key Steps to Reducing Software Spend"
             content="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
