@@ -21,7 +21,8 @@ export default class Callout extends Component {
     };
   }
 
-  _toggleVideo () {
+  _toggleVideo (event) {
+    event.preventDefault();
     this.setState({ activeVideo : !this.state.activeVideo });
   }
 
@@ -50,7 +51,7 @@ export default class Callout extends Component {
     let videoMarkup;
     if (video && video.source && this.state.activeVideo) {
       videoMarkup = (
-        <Layer onClose={this._toggleVideo} flush={true}>
+        <Layer onClose={this._toggleVideo} closer={true} flush={true}>
           <Video>
             <source src="video/test.mp4" type="video/mp4"/>
           </Video>
