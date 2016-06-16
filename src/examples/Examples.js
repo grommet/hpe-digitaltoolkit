@@ -95,7 +95,7 @@ var Examples = React.createClass({
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
           <Callout
             thumbnail="/docs/img/Video_image.png"
-            label="Video - 4:27"
+            eyebrow="Video - 4:27"
             heading="Foundation Paraguay Empowers Microbusinesses"
             description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
             link="#"
@@ -104,7 +104,7 @@ var Examples = React.createClass({
           />
           <Callout
             thumbnail="/docs/img/Case_Study_image.png"
-            label="Case Study"
+            eyebrow="Case Study"
             heading="The Key Steps to Reducing Software Spend"
             description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
             link="#"

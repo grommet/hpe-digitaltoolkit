@@ -33,7 +33,7 @@ var CalloutDoc = React.createClass({
     var simpleCallout = (
       <Callout
         thumbnail="/docs/img/Case_Study_image.png"
-        label="Case Study"
+        eyebrow="Case Study"
         heading="The Key Steps to Reducing Software Spend"
         description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         link="#"
@@ -51,7 +51,7 @@ var CalloutDoc = React.createClass({
           <dl>
             <dt><code>thumbnail            {'{url}'}</code></dt>
             <dd>Url path to image. Required.</dd>
-            <dt><code>label                {'{string}'}</code></dt>
+            <dt><code>eyebrow              {'{string}'}</code></dt>
             <dd>Content label.</dd>
             <dt><code>heading              {'{string}'}</code></dt>
             <dd>Content heading. Required.</dd>
