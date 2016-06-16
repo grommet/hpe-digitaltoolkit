@@ -6,13 +6,27 @@ import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
 import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
+import Layer from 'grommet/components/Layer';
+import Video from 'grommet/components/Video';
 import LinkNextIcon from 'grommet/components/icons/base/LinkNext';
 
 const CLASS_ROOT = 'callout';
 
 export default class Callout extends Component {
+  constructor (props) {
+    super(props);
+    this._toggleVideo = this._toggleVideo.bind(this);
+    this.state = {
+      activeVideo: false
+    };
+  }
+
+  _toggleVideo () {
+    this.setState({ activeVideo : !this.state.activeVideo });
+  }
+
   render () {
-    const { thumbnail, description, heading, eyebrow, link, linkIcon, linkText } = this.props;
+    const { thumbnail, description, heading, eyebrow, link, linkIcon, linkText, video } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
@@ -27,8 +41,20 @@ export default class Callout extends Component {
     if (link) {
       linkMarkup = (
         <Box pad={{vertical: "small"}}>
-          <Anchor href={link} icon={linkIcon} label={linkText} />
+          <Anchor href={link} icon={linkIcon} label={linkText}
+            onClick={this._toggleVideo} />
         </Box>
+      );
+    }
+
+    let videoMarkup;
+    if (video && video.source && this.state.activeVideo) {
+      videoMarkup = (
+        <Layer onClose={this._toggleVideo} flush={true}>
+          <Video>
+            <source src="video/test.mp4" type="video/mp4"/>
+          </Video>
+        </Layer>
       );
     }
 
@@ -42,6 +68,7 @@ export default class Callout extends Component {
           <Paragraph margin="none">{description}</Paragraph>
           {linkMarkup}
         </Box>
+        {videoMarkup}
       </Box>
     );
   }
@@ -54,7 +81,11 @@ Callout.propTypes = {
   eyebrow: PropTypes.string,
   link: PropTypes.string,
   linkIcon: PropTypes.element,
-  linkText: PropTypes.string
+  linkText: PropTypes.string,
+  video: PropTypes.shape({
+    source: PropTypes.string.isRequired,
+    type: PropTypes.string
+  })
 };
 
 Callout.defaultProps = {
