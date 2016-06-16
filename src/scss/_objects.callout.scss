@@ -1,0 +1,19 @@
+.callout {
+
+  > .box {
+    background-color: #fff;
+  }
+
+  &__thumbnail {
+    width: 270px;
+
+    @include media-query(palm) {
+      width: 100%;
+      height: 210px;
+    }
+  }
+
+  .heading--uppercase {
+    letter-spacing: normal;
+  }
+}
