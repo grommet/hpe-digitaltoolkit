@@ -1,4 +1,4 @@
-.marquee {
+.grommet .marquee {
   overflow: hidden;
   position: relative;
 
@@ -51,6 +51,10 @@
         @include media-query(palm) {
           font-size: $h2-font-size;
         }
+      }
+
+      p {
+        color: $inuit-base-text-color;
       }
     }
 
