@@ -59,7 +59,7 @@ var Examples = React.createClass({
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/"
           responsiveBackgroundPosition="left" />
-        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee</strong></p></Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee, zoom out 25%</strong></p></Box>
         {this._loremIpsum()}
         <Marquee darkTheme={false}
           backgroundImage="url(/docs/img/TK_Marquee_Image.jpg)"
@@ -69,7 +69,7 @@ var Examples = React.createClass({
           justify="start"
           size="small"
           responsiveBackgroundPosition="right" />
-        <Box pad={{horizontal: 'large'}}><p><strong>Small Marquee</strong></p></Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Small Marquee, zoom out 25%</strong></p></Box>
         {this._loremIpsum()}
         <Marquee darkTheme={true}
           backgroundImage="url(/docs/img/Hero4_marquee.jpg)"
@@ -79,8 +79,9 @@ var Examples = React.createClass({
           justify="end"
           size="large"
           separator={true}
+          zoom="in"
           responsiveBackgroundPosition="left" />
-        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee, light text</strong></p></Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee, light text, zoom in 25%</strong></p></Box>
         {this._loremIpsum()}
         <MarqueeGrommet darkTheme={false}
           backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
