@@ -14805,10 +14805,17 @@ module.exports =
 	  _createClass(Marquee, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      var _this2 = this;
+
 	      window.addEventListener('scroll', this._handleScroll);
 	      window.addEventListener('resize', this._handleScroll);
 	      window.addEventListener('resize', this._setBackgroundColorIndex);
 	      this._setBackgroundColorIndex();
+	      this._getBackgroundImageRatio();
+
+	      setTimeout(function () {
+	        _this2._handleScroll();
+	      }, 100);
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
@@ -14820,7 +14827,7 @@ module.exports =
 	  }, {
 	    key: '_getBackgroundImageRatio',
 	    value: function _getBackgroundImageRatio() {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      var marqueeNode = _reactDom2.default.findDOMNode(this);
 	      var marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
@@ -14835,7 +14842,7 @@ module.exports =
 	            // in order for this to work properly in Safari,
 	            // we have to do the lookup for the image original width and height async
 	            setTimeout(function () {
-	              _this2._backgroundImageSize = {
+	              _this3._backgroundImageSize = {
 	                width: marqueeBackgroundImage.width || undefined,
 	                height: marqueeBackgroundImage.height || undefined
 	              };
@@ -14849,14 +14856,20 @@ module.exports =
 	  }, {
 	    key: '_handleScroll',
 	    value: function _handleScroll() {
+	      var _props = this.props;
+	      var size = _props.size;
+	      var zoom = _props.zoom;
+	      var zoomPercentage = _props.zoomPercentage;
+
+
 	      var marqueeOriginalHeight = window.innerHeight * 0.75;
 	      if (window.innerWidth < PALM_BREAKPOINT) {
-	        if (this.props.size === 'small') {
+	        if (size === 'small') {
 	          marqueeOriginalHeight = 270;
 	        } else {
 	          marqueeOriginalHeight = 300;
 	        }
-	      } else if (this.props.size === 'small') {
+	      } else if (size === 'small') {
 	        marqueeOriginalHeight = window.innerHeight * 0.60;
 	      }
 
@@ -14869,6 +14882,12 @@ module.exports =
 	      var marqueeRatio = marquee.offsetWidth / marqueeOriginalHeight;
 	      var backgroundHeight = 0;
 	      var backgroundWidth = 0;
+
+	      var startPositionPercentage = 1;
+	      if (zoom === 'out') {
+	        startPositionPercentage = 1 + zoomPercentage / 100;
+	      }
+
 	      if (backgroundRatio > marqueeRatio) {
 	        // constrained by marquee height
 	        backgroundHeight = marqueeOriginalHeight;
@@ -14887,7 +14906,7 @@ module.exports =
 	          marqueeText.style.height = 0;
 	          marqueeText.style.top = marqueeOriginalHeight + 'px';
 	        } else if (marqueeTop > 0) {
-	          marqueeText.style.height = marqueeOriginalHeight;
+	          marqueeText.style.height = marqueeOriginalHeight + 'px';
 	          marqueeText.style.top = 0;
 	        } else {
 	          marqueeText.style.height = marqueeOriginalHeight + marqueeTop + 'px';
@@ -14899,12 +14918,23 @@ module.exports =
 	        marqueeText.style.top = 0;
 	      }
 
-	      var positionPercentage = void 0;
-	      if (marqueeTop < 0) {
-	        positionPercentage = ((1 - positionRatio) * 50 + 100) / 100;
+	      var zoomPositionRatio = positionRatio;
+	      var finalPositionPercentage = 1;
+	      if (zoom === 'out') {
+	        finalPositionPercentage = 1 + zoomPercentage / 100;
 	      } else {
-	        positionPercentage = 1;
+	        zoomPositionRatio = 1 - positionRatio;
 	      }
+
+	      var positionPercentage = void 0;
+	      if (marqueeTop < 0 && marqueeTop >= -marqueeOriginalHeight) {
+	        positionPercentage = (zoomPositionRatio * zoomPercentage + 100) / 100;
+	      } else if (marqueeTop >= 0) {
+	        positionPercentage = startPositionPercentage;
+	      } else {
+	        positionPercentage = finalPositionPercentage;
+	      }
+
 	      marquee.style.backgroundSize = backgroundWidth * positionPercentage + 'px ' + backgroundHeight * positionPercentage + 'px';
 	    }
 	  }, {
@@ -14924,17 +14954,17 @@ module.exports =
 	    value: function render() {
 	      var _classnames;
 
-	      var _props = this.props;
-	      var backgroundImage = _props.backgroundImage;
-	      var flush = _props.flush;
-	      var headlineSize = _props.headlineSize;
-	      var headline = _props.headline;
-	      var justify = _props.justify;
-	      var link = _props.link;
-	      var linkIcon = _props.linkIcon;
-	      var linkText = _props.linkText;
-	      var onClick = _props.onClick;
-	      var subHeadline = _props.subHeadline;
+	      var _props2 = this.props;
+	      var backgroundImage = _props2.backgroundImage;
+	      var flush = _props2.flush;
+	      var headlineSize = _props2.headlineSize;
+	      var headline = _props2.headline;
+	      var justify = _props2.justify;
+	      var link = _props2.link;
+	      var linkIcon = _props2.linkIcon;
+	      var linkText = _props2.linkText;
+	      var onClick = _props2.onClick;
+	      var subHeadline = _props2.subHeadline;
 
 
 	      var classes = (0, _classnames4.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), _defineProperty(_classnames, CLASS_ROOT + '--bg-' + this.props.responsiveBackgroundPosition, this.props.responsiveBackgroundPosition), _defineProperty(_classnames, CLASS_ROOT + '--mobile-separator', this.props.separator), _classnames));
@@ -15008,7 +15038,9 @@ module.exports =
 	  responsiveBackgroundPosition: _react.PropTypes.oneOf(['left', 'center', 'right']),
 	  separator: _react.PropTypes.bool,
 	  size: _react.PropTypes.oneOf(['small', 'large']),
-	  subHeadline: _react.PropTypes.string
+	  subHeadline: _react.PropTypes.string,
+	  zoom: _react.PropTypes.oneOf(['in', 'out', 'none']),
+	  zoomPercentage: _react.PropTypes.number
 	};
 
 	Marquee.defaultProps = {
@@ -15019,7 +15051,9 @@ module.exports =
 	  linkText: 'Learn More',
 	  responsiveBackgroundPosition: 'center',
 	  separator: false,
-	  size: 'large'
+	  size: 'large',
+	  zoom: 'out',
+	  zoomPercentage: 25
 	};
 	module.exports = exports['default'];
 
@@ -16154,7 +16188,7 @@ module.exports =
 	          React.createElement(
 	            'strong',
 	            null,
-	            'Large Marquee'
+	            'Large Marquee, zoom out 25%'
 	          )
 	        )
 	      ),
@@ -16176,7 +16210,7 @@ module.exports =
 	          React.createElement(
 	            'strong',
 	            null,
-	            'Small Marquee'
+	            'Small Marquee, zoom out 25%'
 	          )
 	        )
 	      ),
@@ -16189,6 +16223,7 @@ module.exports =
 	        justify: 'end',
 	        size: 'large',
 	        separator: true,
+	        zoom: 'in',
 	        responsiveBackgroundPosition: 'left' }),
 	      React.createElement(
 	        Box,
@@ -16199,7 +16234,7 @@ module.exports =
 	          React.createElement(
 	            'strong',
 	            null,
-	            'Large Marquee, light text'
+	            'Large Marquee, light text, zoom in 25%'
 	          )
 	        )
 	      ),
