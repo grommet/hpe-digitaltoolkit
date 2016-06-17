@@ -246,6 +246,6 @@ Marquee.defaultProps = {
   responsiveBackgroundPosition: 'center',
   separator: false,
   size: 'large',
-  zoom: 'out',
+  zoom: 'in',
   zoomPercentage: 25
 };

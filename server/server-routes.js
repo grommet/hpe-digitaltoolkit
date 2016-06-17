@@ -15052,7 +15052,7 @@ module.exports =
 	  responsiveBackgroundPosition: 'center',
 	  separator: false,
 	  size: 'large',
-	  zoom: 'out',
+	  zoom: 'in',
 	  zoomPercentage: 25
 	};
 	module.exports = exports['default'];
@@ -16187,7 +16187,7 @@ module.exports =
 	          React.createElement(
 	            'strong',
 	            null,
-	            'Large Marquee, zoom out 25%'
+	            'Large Marquee'
 	          )
 	        )
 	      ),
@@ -16209,7 +16209,7 @@ module.exports =
 	          React.createElement(
 	            'strong',
 	            null,
-	            'Small Marquee, zoom out 25%'
+	            'Small Marquee'
 	          )
 	        )
 	      ),
@@ -16222,7 +16222,6 @@ module.exports =
 	        justify: 'end',
 	        size: 'large',
 	        separator: true,
-	        zoom: 'in',
 	        responsiveBackgroundPosition: 'left' }),
 	      React.createElement(
 	        Box,
@@ -16233,7 +16232,7 @@ module.exports =
 	          React.createElement(
 	            'strong',
 	            null,
-	            'Large Marquee, light text, zoom in 25%'
+	            'Large Marquee, light text'
 	          )
 	        )
 	      ),
