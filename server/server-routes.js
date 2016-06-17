@@ -56,7 +56,7 @@ module.exports =
 	var Home = __webpack_require__(34);
 	var Design = __webpack_require__(53);
 	var Develop = __webpack_require__(66);
-	var Examples = __webpack_require__(92);
+	var Examples = __webpack_require__(95);
 
 	module.exports = function (rootPath) {
 	  var DocsRouter = React.createClass({
@@ -9287,6 +9287,7 @@ module.exports =
 	var NavigationDoc = __webpack_require__(84);
 	var MarqueeDoc = __webpack_require__(85);
 	var WorldMapDoc = __webpack_require__(89);
+	var CalloutDoc = __webpack_require__(92);
 
 	//hjjs configuration
 	var hljs = __webpack_require__(60);
@@ -9302,7 +9303,7 @@ module.exports =
 	}, { label: 'Patterns',
 	  contents: [{ route: 'develop_dashboard', label: 'Dashboard', component: DashboardDoc }, { route: 'develop_navigation', label: 'Navigation', component: NavigationDoc }, { route: 'develop_actions', label: 'Actions', component: ActionsDoc }]
 	}, { label: 'Components',
-	  contents: [{ route: 'develop_box', label: 'Box', component: BoxDoc }, { route: 'develop_marquee', label: 'Marquee', component: MarqueeDoc }, { route: 'develop_world-map', label: 'WorldMap', component: WorldMapDoc }]
+	  contents: [{ route: 'develop_box', label: 'Box', component: BoxDoc }, { route: 'develop_marquee', label: 'Marquee', component: MarqueeDoc }, { route: 'develop_callout', label: 'Callout', component: CalloutDoc }, { route: 'develop_world-map', label: 'WorldMap', component: WorldMapDoc }]
 	}];
 
 	var Develop = React.createClass({
@@ -15591,12 +15592,482 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
+	var jsxToString = __webpack_require__(86);
+	var DocsArticle = __webpack_require__(58);
+	var Callout = __webpack_require__(93);
+
+	Callout.displayName = 'Callout';
+
+	var inline = "<Callout ... />";
+
+	var CalloutDoc = React.createClass({
+	  displayName: 'CalloutDoc',
+
+
+	  contextTypes: {
+	    routePrefix: React.PropTypes.string.isRequired
+	  },
+
+	  _renderCode: function _renderCode(name, jsx) {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h3',
+	        null,
+	        name
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'example' },
+	        jsx
+	      ),
+	      React.createElement(
+	        'pre',
+	        null,
+	        React.createElement(
+	          'code',
+	          { className: 'html hljs xml' },
+	          jsxToString(jsx)
+	        )
+	      )
+	    );
+	  },
+
+
+	  render: function render() {
+	    var simpleCallout = React.createElement(Callout, {
+	      thumbnail: '/docs/img/Case_Study_image.png',
+	      eyebrow: 'Case Study',
+	      heading: 'The Key Steps to Reducing Software Spend',
+	      description: 'HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes',
+	      link: '#'
+	    });
+
+	    return React.createElement(
+	      DocsArticle,
+	      { title: 'Callout', colorIndex: 'neutral-3' },
+	      React.createElement(
+	        'p',
+	        null,
+	        'The Callout module.'
+	      ),
+	      React.createElement(
+	        'pre',
+	        null,
+	        React.createElement(
+	          'code',
+	          { className: 'html hljs xml' },
+	          inline
+	        )
+	      ),
+	      React.createElement(
+	        'section',
+	        null,
+	        React.createElement(
+	          'h2',
+	          null,
+	          'Callout Options'
+	        ),
+	        React.createElement(
+	          'dl',
+	          null,
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'thumbnail            ',
+	              '{url}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Url path to image. Required.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'eyebrow              ',
+	              '{string}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Content label.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'heading              ',
+	              '{string}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Content heading. Required.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'description          ',
+	              '{string}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Content description. Required.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'link                 ',
+	              '{location}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Anchor hyperlink reference. If no ',
+	            React.createElement(
+	              'code',
+	              null,
+	              'link'
+	            ),
+	            ' is provided, ',
+	            React.createElement(
+	              'code',
+	              null,
+	              'linkIcon'
+	            ),
+	            ' and ',
+	            React.createElement(
+	              'code',
+	              null,
+	              'linkText'
+	            ),
+	            ' will not be displayed.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'linkIcon             ',
+	              '{element}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Anchor Icon element. Defaults to ',
+	            React.createElement(
+	              'code',
+	              null,
+	              '<LinkNext>'
+	            ),
+	            ' icon. See ',
+	            React.createElement(
+	              'a',
+	              { href: 'http://www.grommet.io/docs/develop/icon' },
+	              'Icon'
+	            ),
+	            '. '
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'linkText             ',
+	              '{string}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Anchor text. Defaults to "Get the Details".'
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'section',
+	        null,
+	        React.createElement(
+	          'h2',
+	          null,
+	          'Examples'
+	        ),
+	        this._renderCode('Default', simpleCallout)
+	      )
+	    );
+	  }
+	});
+
+	module.exports = CalloutDoc;
+
+/***/ },
+/* 93 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(24);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _Box = __webpack_require__(15);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Heading = __webpack_require__(94);
+
+	var _Heading2 = _interopRequireDefault(_Heading);
+
+	var _Paragraph = __webpack_require__(88);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
+	var _Anchor = __webpack_require__(44);
+
+	var _Anchor2 = _interopRequireDefault(_Anchor);
+
+	var _LinkNext = __webpack_require__(37);
+
+	var _LinkNext2 = _interopRequireDefault(_LinkNext);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'callout';
+
+	var Callout = function (_Component) {
+	  _inherits(Callout, _Component);
+
+	  function Callout() {
+	    _classCallCheck(this, Callout);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Callout).apply(this, arguments));
+	  }
+
+	  _createClass(Callout, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var thumbnail = _props.thumbnail;
+	      var description = _props.description;
+	      var heading = _props.heading;
+	      var eyebrow = _props.eyebrow;
+	      var link = _props.link;
+	      var linkIcon = _props.linkIcon;
+	      var linkText = _props.linkText;
+
+
+	      var classes = (0, _classnames2.default)(CLASS_ROOT, this.props.className);
+
+	      var thumbnailStyles = {
+	        backgroundImage: 'url(' + thumbnail + ')'
+	      };
+
+	      var linkMarkup = void 0;
+	      if (link) {
+	        linkMarkup = _react2.default.createElement(
+	          _Box2.default,
+	          { pad: { vertical: "small" } },
+	          _react2.default.createElement(_Anchor2.default, { href: link, icon: linkIcon, label: linkText })
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        { className: classes, direction: 'row', pad: { vertical: "medium" } },
+	        _react2.default.createElement(_Box2.default, { className: CLASS_ROOT + '__thumbnail', style: thumbnailStyles }),
+	        _react2.default.createElement(
+	          _Box2.default,
+	          { pad: 'medium' },
+	          _react2.default.createElement(
+	            _Heading2.default,
+	            { tag: 'h5', margin: 'none',
+	              uppercase: true },
+	            eyebrow
+	          ),
+	          _react2.default.createElement(
+	            _Heading2.default,
+	            { tag: 'h3', margin: 'none' },
+	            heading
+	          ),
+	          _react2.default.createElement(
+	            _Paragraph2.default,
+	            { margin: 'none' },
+	            description
+	          ),
+	          linkMarkup
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Callout;
+	}(_react.Component);
+
+	exports.default = Callout;
+	;
+
+	Callout.propTypes = {
+	  thumbnail: _react.PropTypes.string.isRequired,
+	  description: _react.PropTypes.string.isRequired,
+	  heading: _react.PropTypes.string.isRequired,
+	  eyebrow: _react.PropTypes.string,
+	  link: _react.PropTypes.string,
+	  linkIcon: _react.PropTypes.element,
+	  linkText: _react.PropTypes.string
+	};
+
+	Callout.defaultProps = {
+	  linkText: 'Get the Details',
+	  linkIcon: _react2.default.createElement(_LinkNext2.default, null)
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 94 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'heading';
+
+	var Heading = function (_Component) {
+	  _inherits(Heading, _Component);
+
+	  function Heading() {
+	    _classCallCheck(this, Heading);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Heading).apply(this, arguments));
+	  }
+
+	  _createClass(Heading, [{
+	    key: 'render',
+	    value: function render() {
+	      var classes = [CLASS_ROOT];
+	      if (this.props.size) {
+	        classes.push(CLASS_ROOT + '--' + this.props.size);
+	      }
+	      if (this.props.strong) {
+	        classes.push(CLASS_ROOT + '--strong');
+	      }
+	      if (this.props.align) {
+	        classes.push(CLASS_ROOT + '--align-' + this.props.align);
+	      }
+	      if (this.props.margin) {
+	        classes.push(CLASS_ROOT + '--margin-' + this.props.margin);
+	      }
+	      if (this.props.uppercase) {
+	        classes.push(CLASS_ROOT + '--uppercase');
+	      }
+	      if (this.props.className) {
+	        classes.push(this.props.className);
+	      }
+
+	      // we handle dangerouslySetInnerHTML to allow using Heading with Markdown.
+	      return _react2.default.createElement(
+	        this.props.tag,
+	        { id: this.props.id, className: classes.join(' '),
+	          dangerouslySetInnerHTML: this.props.dangerouslySetInnerHTML },
+	        this.props.children
+	      );
+	    }
+	  }]);
+
+	  return Heading;
+	}(_react.Component);
+
+	exports.default = Heading;
+
+
+	Heading.propTypes = {
+	  align: _react.PropTypes.oneOf(['start', 'center', 'end']),
+	  margin: _react.PropTypes.oneOf(['none', 'small', 'medium', 'large']),
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large']),
+	  strong: _react.PropTypes.bool,
+	  tag: _react.PropTypes.string,
+	  uppercase: _react.PropTypes.bool
+	};
+
+	Heading.defaultProps = {
+	  tag: 'h1'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 95 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var React = __webpack_require__(1);
 	var Router = __webpack_require__(2);
 	var Route = Router.Route;
 	var Box = __webpack_require__(15);
 	var Marquee = __webpack_require__(87);
-	var MarqueeGrommet = __webpack_require__(93);
-	var Header = __webpack_require__(94);
+	var MarqueeGrommet = __webpack_require__(96);
+	var Callout = __webpack_require__(93);
+	var PlayIcon = __webpack_require__(97);
+	var Header = __webpack_require__(98);
 
 	var Examples = React.createClass({
 	  displayName: 'Examples',
@@ -15752,7 +16223,27 @@ module.exports =
 	          )
 	        )
 	      ),
-	      this._loremIpsum()
+	      this._loremIpsum(),
+	      React.createElement(
+	        Box,
+	        { pad: { horizontal: 'large', vertical: 'none' } },
+	        React.createElement(Callout, {
+	          thumbnail: '/docs/img/Video_image.png',
+	          eyebrow: 'Video - 4:27',
+	          heading: 'Foundation Paraguay Empowers Microbusinesses',
+	          description: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
+	          link: '#',
+	          linkIcon: React.createElement(PlayIcon, null),
+	          linkText: 'Watch Now'
+	        }),
+	        React.createElement(Callout, {
+	          thumbnail: '/docs/img/Case_Study_image.png',
+	          eyebrow: 'Case Study',
+	          heading: 'The Key Steps to Reducing Software Spend',
+	          description: 'HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes',
+	          link: '#'
+	        })
+	      )
 	    );
 	  }
 	});
@@ -15764,7 +16255,7 @@ module.exports =
 	module.exports = Examples;
 
 /***/ },
-/* 93 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15953,7 +16444,111 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 94 */
+/* 97 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(24);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _FormattedMessage = __webpack_require__(13);
+
+	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'control-icon';
+
+	var Icon = function (_Component) {
+	  _inherits(Icon, _Component);
+
+	  function Icon() {
+	    _classCallCheck(this, Icon);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Icon).apply(this, arguments));
+	  }
+
+	  _createClass(Icon, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var a11yTitleId = _props.a11yTitleId;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var large = _props.large;
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var size = _props2.size;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-play', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+
+	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'play', defaultMessage: 'play' });
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { version: '1.1', viewBox: '0 0 24 24.3317', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
+	        _react2.default.createElement(
+	          'title',
+	          { id: a11yTitleId },
+	          a11yTitle
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          { id: 'play' },
+	          _react2.default.createElement('rect', { id: '_x2E_svg_101_', y: '0.1658', fill: 'none', width: '24', height: '24' }),
+	          _react2.default.createElement('polygon', { fill: 'none', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', points: '6,1.9658 6,22.3658 20,12.1658 \t' })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Icon;
+	}(_react.Component);
+
+	exports.default = Icon;
+	;
+
+	Icon.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
+	};
+
+	Icon.defaultProps = {
+	  a11yTitleId: 'play-title'
+	};
+
+	Icon.icon = true;
+
+	Icon.displayName = 'Play';
+	module.exports = exports['default'];
+
+/***/ },
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15984,11 +16579,11 @@ module.exports =
 
 	var _Title2 = _interopRequireDefault(_Title);
 
-	var _HeaderMenu = __webpack_require__(95);
+	var _HeaderMenu = __webpack_require__(99);
 
 	var _HeaderMenu2 = _interopRequireDefault(_HeaderMenu);
 
-	var _Logo = __webpack_require__(96);
+	var _Logo = __webpack_require__(100);
 
 	var _Logo2 = _interopRequireDefault(_Logo);
 
@@ -16136,7 +16731,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 95 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16238,7 +16833,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 96 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
