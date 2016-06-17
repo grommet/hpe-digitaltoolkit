@@ -11,7 +11,7 @@ const CLASS_ROOT = 'accordion';
 
 export default class Accordion extends Component {
   render () {
-    const { headline, subHeadline, children } = this.props;
+    const { headline, subHeadline, colorIndex, children } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
@@ -47,7 +47,7 @@ export default class Accordion extends Component {
     }
 
     return (
-      <Box className={classes}>
+      <Box className={classes} colorIndex={colorIndex}>
         {content}
         <List>
           {children}
@@ -60,4 +60,8 @@ export default class Accordion extends Component {
 Accordion.propTypes = {
   headline: PropTypes.string,
   subHeadline: PropTypes.string
+};
+
+Accordion.defaultProps = {
+  colorIndex: 'light-2'
 };
