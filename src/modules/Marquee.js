@@ -131,7 +131,6 @@ export default class Marquee extends Component {
       marqueeText.style.top = 0;
     }
 
-    let positionPercentage;
     let zoomPositionRatio = positionRatio;
     let finalPositionPercentage = 1;
     if (zoom === 'out') {
@@ -140,6 +139,7 @@ export default class Marquee extends Component {
       zoomPositionRatio = 1 - positionRatio;
     }
 
+    let positionPercentage;
     if (marqueeTop < 0 && marqueeTop >= -marqueeOriginalHeight) {
       positionPercentage = (zoomPositionRatio * zoomPercentage + 100) / 100;
     } else if (marqueeTop >= 0) {
