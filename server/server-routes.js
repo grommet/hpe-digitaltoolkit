@@ -16098,10 +16098,9 @@ module.exports =
 	var Route = Router.Route;
 	var Box = __webpack_require__(15);
 	var Marquee = __webpack_require__(87);
-	var MarqueeGrommet = __webpack_require__(96);
 	var Callout = __webpack_require__(93);
-	var PlayIcon = __webpack_require__(97);
-	var Header = __webpack_require__(98);
+	var PlayIcon = __webpack_require__(96);
+	var Header = __webpack_require__(97);
 
 	var Examples = React.createClass({
 	  displayName: 'Examples',
@@ -16239,26 +16238,6 @@ module.exports =
 	        )
 	      ),
 	      this._loremIpsum(),
-	      React.createElement(MarqueeGrommet, { darkTheme: false,
-	        backgroundImage: 'url(/docs/img/MarqueeImage_051916_H.jpg)',
-	        headline: 'Accelerate your transformation with the cloud',
-	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
-	        link: 'http://www.grommet.io/docs/',
-	        justify: 'end' }),
-	      React.createElement(
-	        Box,
-	        { pad: { horizontal: 'large' } },
-	        React.createElement(
-	          'p',
-	          null,
-	          React.createElement(
-	            'strong',
-	            null,
-	            'Grommet-only Marquee (no parallax, responsiveness)'
-	          )
-	        )
-	      ),
-	      this._loremIpsum(),
 	      React.createElement(
 	        Box,
 	        { pad: { horizontal: 'large', vertical: 'none' } },
@@ -16291,195 +16270,6 @@ module.exports =
 
 /***/ },
 /* 96 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames = __webpack_require__(24);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _Box = __webpack_require__(15);
-
-	var _Box2 = _interopRequireDefault(_Box);
-
-	var _Section = __webpack_require__(46);
-
-	var _Section2 = _interopRequireDefault(_Section);
-
-	var _Headline = __webpack_require__(47);
-
-	var _Headline2 = _interopRequireDefault(_Headline);
-
-	var _Paragraph = __webpack_require__(88);
-
-	var _Paragraph2 = _interopRequireDefault(_Paragraph);
-
-	var _Anchor = __webpack_require__(44);
-
-	var _Anchor2 = _interopRequireDefault(_Anchor);
-
-	var _Split = __webpack_require__(55);
-
-	var _Split2 = _interopRequireDefault(_Split);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = 'marquee-grommet';
-
-	var MarqueeGrommet = function (_Component) {
-	  _inherits(MarqueeGrommet, _Component);
-
-	  function MarqueeGrommet() {
-	    _classCallCheck(this, MarqueeGrommet);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(MarqueeGrommet).apply(this, arguments));
-	  }
-
-	  _createClass(MarqueeGrommet, [{
-	    key: 'render',
-	    value: function render() {
-	      var _props = this.props;
-	      var backgroundImage = _props.backgroundImage;
-	      var darkTheme = _props.darkTheme;
-	      var flush = _props.flush;
-	      var headlineSize = _props.headlineSize;
-	      var headline = _props.headline;
-	      var justify = _props.justify;
-	      var link = _props.link;
-	      var linkIcon = _props.linkIcon;
-	      var linkText = _props.linkText;
-	      var onClick = _props.onClick;
-	      var subHeadline = _props.subHeadline;
-
-
-	      var classes = (0, _classnames2.default)(CLASS_ROOT, this.props.className);
-
-	      var colorIndex = darkTheme ? 'grey-1' : 'light-1';
-	      var full = flush ? 'horizontal' : false;
-	      var pad = flush ? 'none' : 'large';
-
-	      var subHeadlineMarkup = void 0;
-	      if (subHeadline) {
-	        subHeadlineMarkup = _react2.default.createElement(
-	          _Paragraph2.default,
-	          { size: 'large', margin: 'none' },
-	          subHeadline
-	        );
-	      }
-
-	      var linkMarkup = void 0;
-	      if (link || onClick) {
-	        linkMarkup = _react2.default.createElement(
-	          'h3',
-	          null,
-	          _react2.default.createElement(_Anchor2.default, { href: link, primary: true, label: linkText, icon: linkIcon, onClick: onClick })
-	        );
-	      }
-
-	      var content = _react2.default.createElement(
-	        _Box2.default,
-	        { justify: justify, align: 'center', primary: true, direction: 'row', pad: { vertical: 'large', horizontal: 'none' } },
-	        _react2.default.createElement(
-	          _Box2.default,
-	          { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
-	          _react2.default.createElement(
-	            _Headline2.default,
-	            { size: headlineSize, strong: true, margin: 'none' },
-	            headline
-	          ),
-	          subHeadlineMarkup,
-	          linkMarkup
-	        )
-	      );
-
-	      var split = void 0;
-	      if (justify === 'start') {
-	        split = _react2.default.createElement(
-	          _Split2.default,
-	          null,
-	          content,
-	          _react2.default.createElement(_Box2.default, null)
-	        );
-	      } else if (justify === 'end') {
-	        split = _react2.default.createElement(
-	          _Split2.default,
-	          null,
-	          _react2.default.createElement(_Box2.default, null),
-	          content
-	        );
-	      } else {
-	        split = _react2.default.createElement(
-	          _Box2.default,
-	          { direction: 'row' },
-	          _react2.default.createElement(_Box2.default, { pad: 'large', size: 'small' }),
-	          content,
-	          _react2.default.createElement(_Box2.default, { pad: 'large', size: 'small' })
-	        );
-	      }
-
-	      return _react2.default.createElement(
-	        _Box2.default,
-	        { className: classes, colorIndex: colorIndex },
-	        _react2.default.createElement(
-	          _Section2.default,
-	          { appCentered: true, pad: pad,
-	            backgroundImage: backgroundImage, full: full },
-	          split
-	        )
-	      );
-	    }
-	  }]);
-
-	  return MarqueeGrommet;
-	}(_react.Component);
-
-	exports.default = MarqueeGrommet;
-	;
-
-	MarqueeGrommet.propTypes = {
-	  backgroundImage: _react.PropTypes.string.isRequired,
-	  darkTheme: _react.PropTypes.bool,
-	  flush: _react.PropTypes.bool,
-	  headline: _react.PropTypes.string.isRequired,
-	  headlineSize: _react.PropTypes.oneOf(['small', 'medium', 'large']),
-	  justify: _react.PropTypes.oneOf(['start', 'center', 'end']),
-	  link: _react.PropTypes.string,
-	  linkIcon: _react.PropTypes.element,
-	  linkText: _react.PropTypes.string,
-	  onClick: _react.PropTypes.func,
-	  size: _react.PropTypes.oneOf(['small', 'large']),
-	  subHeadline: _react.PropTypes.string
-	};
-
-	MarqueeGrommet.defaultProps = {
-	  darkTheme: true,
-	  flush: true,
-	  headlineSize: 'large',
-	  justify: 'end',
-	  linkText: 'Learn More',
-	  size: 'large'
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16583,7 +16373,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 98 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16614,11 +16404,11 @@ module.exports =
 
 	var _Title2 = _interopRequireDefault(_Title);
 
-	var _HeaderMenu = __webpack_require__(99);
+	var _HeaderMenu = __webpack_require__(98);
 
 	var _HeaderMenu2 = _interopRequireDefault(_HeaderMenu);
 
-	var _Logo = __webpack_require__(100);
+	var _Logo = __webpack_require__(99);
 
 	var _Logo2 = _interopRequireDefault(_Logo);
 
@@ -16766,7 +16556,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 99 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16868,7 +16658,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 100 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
