@@ -2,14 +2,10 @@
 
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
-import Anchor from 'grommet/components/Anchor';
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
 import ListItem from 'grommet/components/ListItem';
 import Paragraph from 'grommet/components/Paragraph';
-import Tile from 'grommet/components/Tile';
-import Tiles from 'grommet/components/Tiles';
-import Image from 'grommet/components/Image';
 import OpenIcon from 'grommet/components/icons/base/Add';
 import CloseIcon from 'grommet/components/icons/base/Subtract';
 
@@ -26,67 +22,18 @@ export default class AccordionPanel extends Component {
     };
   }
 
-  _renderCTA () {
-    const { ctaThumbnail } = this.props;
-    const { headline, subHeadline, link, label } = this.props.ctaData;
-    // TODO: add video overlay functionality for ctaVideo
-
-    return (
-      <Box direction="row" pad={{vertical: "medium"}}>
-        <Image src={ctaThumbnail} className={`${CLASS_ROOT}__image`} />
-        <Box pad="medium">
-          <Heading tag="h3" margin="none">{headline}</Heading>
-          <Paragraph margin="none">{subHeadline}</Paragraph>
-          <Anchor href={link} primary={true} label={label} />
-        </Box>
-      </Box>
-    );
-  }
-
-  _renderResources () {
-    const { resources } = this.props;
-    let resourceTiles;
-
-    if (resources) {
-      resourceTiles = resources.map(({ thumbnail, headline, subHeadline, link, label }, key) => {
-        return (
-          <Tile key={key} direction="row">
-            <Image src={thumbnail} className="resource__image" />
-            <Box pad="medium">
-              <Heading tag="h6" margin="none">{headline}</Heading>
-              <Paragraph margin="none">{subHeadline}</Paragraph>
-              <Anchor href={link} primary={true} label={label} />
-            </Box>
-          </Tile>
-        );
-      });
-
-      return (
-        <Box pad={{vertical: "medium"}}>
-          <Heading tag="h3">Resources</Heading>
-          <Tiles fill={true}>
-            {resourceTiles}
-          </Tiles>
-        </Box>
-      );
-    }
-
-    return undefined;
-  }
-
   _onClickPanel () {
     this.setState({ isOpen : !this.state.isOpen });
   }
 
   _renderPanelContent () {
     const { headline, subHeadline } = this.props;
+
     if (this.state.isOpen) {
       return (
         <Box full="horizontal" pad={{vertical: "medium"}}>
           <Heading tag="h3" margin="none">{headline}</Heading>
           <Paragraph margin="none">{subHeadline}</Paragraph>
-          {this._renderCTA()}
-          {this._renderResources()}
         </Box>
       );
     }
