@@ -5,7 +5,6 @@ import classnames from 'classnames';
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
 import ListItem from 'grommet/components/ListItem';
-import Paragraph from 'grommet/components/Paragraph';
 import OpenIcon from 'grommet/components/icons/base/Add';
 import CloseIcon from 'grommet/components/icons/base/Subtract';
 
@@ -26,11 +25,21 @@ export default class AccordionPanel extends Component {
     this.setState({ isOpen : !this.state.isOpen });
   }
 
-  _renderPanelContent () {
-    const { headline, subHeadline } = this.props;
+  render () {
+    const { panelTitle, headline, subHeadline } = this.props;
+
+    const classes = classnames(
+      CLASS_ROOT,
+      this.props.className
+    );
+
+    let panelControlIcon = <OpenIcon />;
+    let panelContent;
 
     if (this.state.isOpen) {
-      return (
+      panelControlIcon = <CloseIcon />;
+
+      panelContent = (
         <Box full="horizontal" pad={{vertical: "medium"}}>
           <Heading tag="h3" margin="none">{headline}</Heading>
           <Paragraph margin="none">{subHeadline}</Paragraph>
@@ -38,26 +47,13 @@ export default class AccordionPanel extends Component {
       );
     }
 
-    return undefined;
-  }
-
-  render () {
-    const { panelTitle } = this.props;
-
-    const classes = classnames(
-      CLASS_ROOT,
-      this.props.className
-    );
-
-    const panelControlIcon = (this.state.isOpen) ? <CloseIcon /> : <OpenIcon />;
-
     return (
       <ListItem className={classes} direction="column">
         <Box full="horizontal" direction="row" justify="between" align="center" onClick={this._onClickPanel} responsive={false}>
           <Heading tag="h2" margin="none">{panelTitle}</Heading>
           {panelControlIcon}
         </Box>
-        {this._renderPanelContent()}
+        {panelContent}
       </ListItem>
     );
   }
