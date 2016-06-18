@@ -26,7 +26,7 @@ export default class AccordionPanel extends Component {
   }
 
   render () {
-    const { panelTitle, headline, subHeadline } = this.props;
+    const { panelTitle, children } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
@@ -41,8 +41,7 @@ export default class AccordionPanel extends Component {
 
       panelContent = (
         <Box full="horizontal" pad={{vertical: "medium"}}>
-          <Heading tag="h3" margin="none">{headline}</Heading>
-          <Paragraph margin="none">{subHeadline}</Paragraph>
+          {children}
         </Box>
       );
     }

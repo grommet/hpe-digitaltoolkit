@@ -3,8 +3,11 @@
 var React = require('react');
 var jsxToString = require('jsx-to-string');
 var DocsArticle = require('../../DocsArticle');
+var Heading = require('grommet/components/Heading');
+var Paragraph = require('grommet/components/Paragraph');
 var Accordion = require('../../modules/Accordion');
 var AccordionPanel = require('../../modules/AccordionPanel');
+var Callout = require('../../modules/Callout');
 
 Accordion.displayName = 'Accordion';
 
@@ -32,36 +35,21 @@ var AccordionDoc = React.createClass({
 
   render: function() {
     var simpleAccordionPanel = (
-      <AccordionPanel
-        panelTitle="Enterprise Mobility Services"
-        headline="Empower your employees while ensuring your workplace remains
-enterprise grade, scalable and secure."
-        subHeadline="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life
-and help eliminate poverty in South America."
-        ctaData={{
-          headline: 'Foundation Paraguay Empowers Microbusinesses',
-          subHeadline: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
-          href: 'link url',
-          label: 'Watch Now'
-        }}
-        ctaThumbnail="../img/carousel-1.png"
-        resources={[
-          {
-            thumbnail: '../img/carousel-1.png',
-            headline: 'Lorem ipsum',
-            subHeadline: 'Lorem ipsum dolor sit amet dicat sonet.',
-            href: 'link url',
-            label: 'Learn more'
-          },
-          {
-            thumbnail: '../img/carousel-1.png',
-            headline: 'Lorem ipsum',
-            subHeadline: 'Lorem ipsum dolor sit amet dicat sonet.',
-            href: 'link url',
-            label: 'Learn more'
-          }
-        ]}
-      />
+      <AccordionPanel panelTitle="Enterprise Mobility Services">
+        <Heading tag="h3" margin="none">
+          Empower your employees while ensuring your workplace remains enterprise grade, scalable and secure.
+        </Heading>
+        <Paragraph margin="none">
+          See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.
+        </Paragraph>
+        <Callout
+          thumbnail="/docs/img/Case_Study_image.png"
+          eyebrow="Case Study"
+          heading="The Key Steps to Reducing Software Spend"
+          description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+          link="#"
+        />
+      </AccordionPanel>
     );
 
     var simpleAccordion = (
