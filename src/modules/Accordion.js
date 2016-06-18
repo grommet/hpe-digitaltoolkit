@@ -59,5 +59,6 @@ export default class Accordion extends Component {
 
 Accordion.propTypes = {
   headline: PropTypes.string,
-  subHeadline: PropTypes.string
+  subHeadline: PropTypes.string,
+  colorIndex: PropTypes.string
 };

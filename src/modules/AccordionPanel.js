@@ -59,22 +59,5 @@ export default class AccordionPanel extends Component {
 };
 
 AccordionPanel.propTypes = {
-  panelTitle: PropTypes.string.isRequired,
-  headline: PropTypes.string,
-  subHeadline: PropTypes.string,
-  ctaData: PropTypes.shape({
-    headline: PropTypes.string,
-    subHeadline: PropTypes.string,
-    link: PropTypes.string,
-    label: PropTypes.string
-  }),
-  ctaThumbnail: PropTypes.string,
-  ctaVideo: PropTypes.element,
-  resources: PropTypes.arrayOf(PropTypes.shape({
-    thumbnail: PropTypes.string,
-    headline: PropTypes.string,
-    subHeadline: PropTypes.string,
-    link: PropTypes.string,
-    label: PropTypes.string
-  }))
+  panelTitle: PropTypes.string.isRequired
 };
