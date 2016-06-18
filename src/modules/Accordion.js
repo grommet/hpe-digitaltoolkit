@@ -61,7 +61,3 @@ Accordion.propTypes = {
   headline: PropTypes.string,
   subHeadline: PropTypes.string
 };
-
-Accordion.defaultProps = {
-  colorIndex: 'light-2'
-};

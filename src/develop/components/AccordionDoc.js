@@ -54,6 +54,7 @@ var AccordionDoc = React.createClass({
 
     var simpleAccordion = (
       <Accordion
+        colorIndex="light-2"
         headline="Services Portfolio"
         subHeadline="Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est
         summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit

@@ -33,11 +33,11 @@ export default class AccordionPanel extends Component {
       this.props.className
     );
 
-    let panelControlIcon = <OpenIcon />;
+    let panelControlIcon = <OpenIcon colorIndex="brand" />;
     let panelContent;
 
     if (this.state.isOpen) {
-      panelControlIcon = <CloseIcon />;
+      panelControlIcon = <CloseIcon colorIndex="brand" />;
 
       panelContent = (
         <Box full="horizontal" pad={{vertical: "medium"}}>
