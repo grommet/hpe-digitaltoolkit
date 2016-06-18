@@ -11,7 +11,13 @@ var Callout = require('../../modules/Callout');
 
 Accordion.displayName = 'Accordion';
 
-var inline = "<Accordion ... />";
+var inline =
+  "<Accordion>\n" +
+  "  <AccordionPanel>\n" +
+  "   ...\n" +
+  "  </AccordionPanel>\n" +
+  "  ...\n" +
+  "</Accordion>";
 
 var AccordionDoc = React.createClass({
 
@@ -75,28 +81,21 @@ var AccordionDoc = React.createClass({
         <section>
           <h2>Accordion Options</h2>
           <dl>
-            <dt><code>headline            string</code></dt>
+            <dt><code>headline            {'{string}'}</code></dt>
             <dd>Headline of the section.</dd>
-            <dt><code>subHeadline         string</code></dt>
+            <dt><code>subHeadline         {'{string}'}</code></dt>
             <dd>Content for the subheadline.</dd>
+            <dt><code>colorIndex          {'{category}-{index}'}</code></dt>
+            <dd>The color identifier to use for the background color.
+              For example: <code>"neutral-1"</code></dd>
           </dl>
         </section>
 
         <section>
           <h2>AccordionPanel Options</h2>
           <dl>
-            <dt><code>panelTitle          string</code></dt>
+            <dt><code>panelTitle          {'{string}'}</code></dt>
             <dd>Title of panel, displayed when panel is collapsed. Required.</dd>
-            <dt><code>headline            string</code></dt>
-            <dd>Headline of the section.</dd>
-            <dt><code>subHeadline         string</code></dt>
-            <dd>Content for the subheadline.</dd>
-            <dt><code>ctaData             {`{headline: string, subHeadline: string, href: string, label: string}`}</code></dt>
-            <dd>Call to action content to display.</dd>
-            <dt><code>ctaThumbnail        {`{url}`}</code></dt>
-            <dd>Call to action thumbnail image.</dd>
-            <dt><code>resources           {`[{thumbnail: string, headline: string, subHeadline: string, href: string, label: element}, ...]`}</code></dt>
-            <dd>An array of resource tiles.</dd>
           </dl>
         </section>
 
