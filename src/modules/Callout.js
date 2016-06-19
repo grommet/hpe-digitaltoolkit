@@ -44,6 +44,10 @@ export default class Callout extends Component {
       backgroundImage: `url(${thumbnail})`
     };
 
+    let thumbnailMarkup = (
+      <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} />
+    );
+
     let linkMarkup;
     if (link || onClick || video) {
       linkMarkup = (
@@ -51,6 +55,12 @@ export default class Callout extends Component {
           <Anchor href={link} icon={linkIcon} label={linkText}
             onClick={this._handleClick} />
         </Box>
+      );
+
+      thumbnailMarkup = (
+        <Anchor href={link} onClick={this._handleClick}>
+          {thumbnailMarkup}
+        </Anchor>
       );
     }
 
@@ -67,7 +77,7 @@ export default class Callout extends Component {
 
     return (
       <Box className={classes} direction="row" pad={{vertical: "medium"}}>
-        <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} onClick={this._handleClick} />
+        {thumbnailMarkup}
         <Box pad="medium">
           <Heading tag="h5" margin="none"
             uppercase={true}>{eyebrow}</Heading>

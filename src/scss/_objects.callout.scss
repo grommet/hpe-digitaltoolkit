@@ -11,6 +11,12 @@
       width: 100%;
       height: 210px;
     }
+
+    .anchor & {
+      @include media-query(lap-and-up) {
+        height: 100%;
+      }
+    }
   }
 
   .heading--uppercase {
