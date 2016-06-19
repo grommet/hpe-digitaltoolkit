@@ -74,11 +74,21 @@ var CalloutDoc = React.createClass({
             <dt><code>description          {'{string}'}</code></dt>
             <dd>Content description. Required.</dd>
             <dt><code>link                 {'{location}'}</code></dt>
-            <dd>Anchor hyperlink reference. If no <code>link</code> is provided, <code>linkIcon</code> and <code>linkText</code> will not be displayed.</dd>
+            <dd>Anchor hyperlink reference.</dd>
             <dt><code>linkIcon             {'{element}'}</code></dt>
-            <dd>Anchor Icon element. Defaults to <code>&lt;LinkNext&gt;</code> icon. See <a href="http://www.grommet.io/docs/develop/icon">Icon</a>. </dd>
+            <dd>
+              Anchor Icon element. Defaults to <code>&lt;LinkNext&gt;</code> icon. See <a href="http://www.grommet.io/docs/develop/icon">Icon</a>.
+              If no <code>link, onClick, or video</code> is provided, <code>linkIcon</code> will not be displayed.
+            </dd>
             <dt><code>linkText             {'{string}'}</code></dt>
-            <dd>Anchor text. Defaults to "Get the Details".</dd>
+            <dd>
+              Anchor text. Defaults to "Get the Details".
+              If no <code>link, onClick, or video</code> is provided, <code>linkText</code> will not be displayed.
+            </dd>
+            <dt><code>onClick              {'{func}'}</code></dt>
+            <dd>Click handler.</dd>
+            <dt><code>video                {'{source: , type: }'}</code></dt>
+            <dd>Video type and source path.</dd>
           </dl>
         </section>
 
