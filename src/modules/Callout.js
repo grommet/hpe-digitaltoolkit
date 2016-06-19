@@ -15,19 +15,25 @@ const CLASS_ROOT = 'callout';
 export default class Callout extends Component {
   constructor (props) {
     super(props);
-    this._toggleVideo = this._toggleVideo.bind(this);
+    this._handleClick = this._handleClick.bind(this);
     this.state = {
       activeVideo: false
     };
   }
 
-  _toggleVideo (event) {
-    event.preventDefault();
-    this.setState({ activeVideo : !this.state.activeVideo });
+  _handleClick (event) {
+    const { onClick, video } = this.props;
+
+    if (onClick) {
+      onClick(event);
+    } else if (video) {
+      event.preventDefault();
+      this.setState({ activeVideo : !this.state.activeVideo });
+    }
   }
 
   render () {
-    const { thumbnail, description, heading, eyebrow, link, linkIcon, linkText, video } = this.props;
+    const { thumbnail, description, heading, eyebrow, link, linkIcon, linkText, onClick, video } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
@@ -39,11 +45,11 @@ export default class Callout extends Component {
     };
 
     let linkMarkup;
-    if (link) {
+    if (link || onClick || video) {
       linkMarkup = (
         <Box pad={{vertical: "small"}}>
           <Anchor href={link} icon={linkIcon} label={linkText}
-            onClick={this._toggleVideo} />
+            onClick={this._handleClick} />
         </Box>
       );
     }
@@ -51,7 +57,7 @@ export default class Callout extends Component {
     let videoMarkup;
     if (video && video.source && this.state.activeVideo) {
       videoMarkup = (
-        <Layer onClose={this._toggleVideo} closer={true} flush={true}>
+        <Layer onClose={this._handleClick} closer={true} flush={true}>
           <Video>
             <source src="video/test.mp4" type="video/mp4"/>
           </Video>
@@ -61,7 +67,7 @@ export default class Callout extends Component {
 
     return (
       <Box className={classes} direction="row" pad={{vertical: "medium"}}>
-        <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} />
+        <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} onClick={this._handleClick} />
         <Box pad="medium">
           <Heading tag="h5" margin="none"
             uppercase={true}>{eyebrow}</Heading>
@@ -83,6 +89,7 @@ Callout.propTypes = {
   link: PropTypes.string,
   linkIcon: PropTypes.element,
   linkText: PropTypes.string,
+  onClick: PropTypes.func,
   video: PropTypes.shape({
     source: PropTypes.string.isRequired,
     type: PropTypes.string

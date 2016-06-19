@@ -16,4 +16,8 @@
   .heading--uppercase {
     letter-spacing: normal;
   }
+
+  div:focus, a:focus {
+    outline: none;
+  }
 }
