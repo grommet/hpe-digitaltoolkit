@@ -12,12 +12,18 @@ const CLASS_ROOT = 'marquee';
 const LIGHT_COLORINDEX = 'light-1';
 const DARK_COLORINDEX = 'grey-1';
 const PALM_BREAKPOINT = 720;
+const BOX_CONTAINER_CLASSNAME = 'box__container';
 
 export default class Marquee extends Component {
   constructor (props) {
     super(props);
     this._handleScroll = this._handleScroll.bind(this);
     this._setBackgroundColorIndex = this._setBackgroundColorIndex.bind(this);
+
+    this._backgroundImageSize = {
+      width: undefined,
+      height: undefined
+    };
 
     this.state = {
       colorIndex: props.darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX
@@ -29,6 +35,11 @@ export default class Marquee extends Component {
     window.addEventListener('resize', this._handleScroll);
     window.addEventListener('resize', this._setBackgroundColorIndex);
     this._setBackgroundColorIndex();
+    this._getBackgroundImageRatio();
+
+    setTimeout(() => {
+      this._handleScroll();
+    }, 100);
   }
 
   componentWillUnmount () {
@@ -37,28 +48,59 @@ export default class Marquee extends Component {
     window.removeEventListener('resize', this._setBackgroundColorIndex);
   }
 
+  _getBackgroundImageRatio () {
+    let marqueeNode = ReactDOM.findDOMNode(this);
+    let marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
+
+    // cache original width and height to be used onScroll
+    if (!this._backgroundImageSize.width || !this._backgroundImageSize.height) {
+      let marqueeBackgroundImage = new Image();
+      marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
+
+      if (marqueeBackgroundImage.src) {
+        // in order for this to work properly in Safari,
+        // we have to do the lookup for the image original width and height async
+        setTimeout(() => {
+          this._backgroundImageSize = {
+            width: marqueeBackgroundImage.width || undefined,
+            height: marqueeBackgroundImage.height || undefined
+          };
+        }, 100);
+      }
+    }
+
+    return this._backgroundImageSize.width / this._backgroundImageSize.height;
+  }
+
   _handleScroll () {
+    const { size, zoom, zoomPercentage } = this.props;
+
     let marqueeOriginalHeight = window.innerHeight * 0.75;
     if (window.innerWidth < PALM_BREAKPOINT) {
-      if (this.props.size === 'small') {
+      if (size === 'small') {
         marqueeOriginalHeight = 270;
       } else {
         marqueeOriginalHeight = 300;
       }
-    } else if (this.props.size === 'small') {
+    } else if (size === 'small') {
       marqueeOriginalHeight = window.innerHeight * 0.60;
     }
+
     let marqueeNode = ReactDOM.findDOMNode(this);
-    let marquee = marqueeNode.getElementsByClassName('box__container')[0];
+    let marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
     let marqueeTop = marquee.getBoundingClientRect().top;
     let marqueeText = marqueeNode.getElementsByClassName('marquee__overlay')[0];
-    let marqueeBackgroundImage = new Image();
-    marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
 
-    let backgroundRatio = marqueeBackgroundImage.width / marqueeBackgroundImage.height;
+    let backgroundRatio = this._getBackgroundImageRatio();
     let marqueeRatio = marquee.offsetWidth / marqueeOriginalHeight;
     let backgroundHeight = 0;
     let backgroundWidth = 0;
+
+    let startPositionPercentage = 1;
+    if (zoom === 'out') {
+      startPositionPercentage = 1 + (zoomPercentage / 100);
+    }
+
     if (backgroundRatio > marqueeRatio) {
       // constrained by marquee height
       backgroundHeight = marqueeOriginalHeight;
@@ -77,7 +119,7 @@ export default class Marquee extends Component {
         marqueeText.style.height = 0;
         marqueeText.style.top = `${marqueeOriginalHeight}px`;
       } else if (marqueeTop > 0) {
-        marqueeText.style.height = marqueeOriginalHeight;
+        marqueeText.style.height = `${marqueeOriginalHeight}px`;
         marqueeText.style.top = 0;
       } else {
         marqueeText.style.height = `${marqueeOriginalHeight + marqueeTop}px`;
@@ -89,27 +131,38 @@ export default class Marquee extends Component {
       marqueeText.style.top = 0;
     }
 
-    let positionPercentage;
-    if (marqueeTop < 0) {
-      positionPercentage = ((1 - positionRatio) * 50 + 100) / 100;
+    let zoomPositionRatio = positionRatio;
+    let finalPositionPercentage = 1;
+    if (zoom === 'out') {
+      finalPositionPercentage = 1 + (zoomPercentage / 100);
     } else {
-      positionPercentage = 1;
+      zoomPositionRatio = 1 - positionRatio;
     }
+
+    let positionPercentage;
+    if (marqueeTop < 0 && marqueeTop >= -marqueeOriginalHeight) {
+      positionPercentage = (zoomPositionRatio * zoomPercentage + 100) / 100;
+    } else if (marqueeTop >= 0) {
+      positionPercentage = startPositionPercentage;
+    } else {
+      positionPercentage = finalPositionPercentage;
+    }
+
     marquee.style.backgroundSize = `${backgroundWidth * positionPercentage}px ${backgroundHeight * positionPercentage}px`;
   }
 
   _setBackgroundColorIndex () {
-    let { darkTheme } = this.props;
+    const { darkTheme } = this.props;
 
     if (window.innerWidth < PALM_BREAKPOINT) {
-      this.setState({colorIndex: LIGHT_COLORINDEX});
+      this.setState({ colorIndex: LIGHT_COLORINDEX });
     } else {
-      this.setState({colorIndex: darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX});
+      this.setState({ colorIndex: darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX });
     }
   }
 
   render () {
-    let { backgroundImage, flush, headlineSize, headline, justify, link, linkIcon, linkText, onClick, subHeadline } = this.props;
+    const { backgroundImage, flush, headlineSize, headline, justify, link, linkIcon, linkText, onClick, subHeadline } = this.props;
 
     let classes = classnames(
       CLASS_ROOT,
@@ -128,9 +181,9 @@ export default class Marquee extends Component {
     };
 
     let backgroundClasses = classnames(
-      'box__container',
+      BOX_CONTAINER_CLASSNAME,
       {
-        ['box__container--full-horizontal']: this.props.flush
+        [`${BOX_CONTAINER_CLASSNAME}--full-horizontal`]: this.props.flush
       }
     );
 
@@ -179,7 +232,9 @@ Marquee.propTypes = {
   responsiveBackgroundPosition: PropTypes.oneOf(['left', 'center', 'right']),
   separator: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'large']),
-  subHeadline: PropTypes.string
+  subHeadline: PropTypes.string,
+  zoom: PropTypes.oneOf(['in', 'out', 'none']),
+  zoomPercentage: PropTypes.number
 };
 
 Marquee.defaultProps = {
@@ -190,5 +245,7 @@ Marquee.defaultProps = {
   linkText: 'Learn More',
   responsiveBackgroundPosition: 'center',
   separator: false,
-  size: 'large'
+  size: 'large',
+  zoom: 'in',
+  zoomPercentage: 25
 };

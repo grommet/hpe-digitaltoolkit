@@ -74,11 +74,11 @@ var CalloutDoc = React.createClass({
             <dt><code>description          {'{string}'}</code></dt>
             <dd>Content description. Required.</dd>
             <dt><code>link                 {'{location}'}</code></dt>
-            <dd>Anchor hyperlink reference.</dd>
+            <dd>Anchor hyperlink reference. If no <code>link</code> is provided, <code>linkIcon</code> and <code>linkText</code> will not be displayed.</dd>
             <dt><code>linkIcon             {'{element}'}</code></dt>
-            <dd>Anchor Icon element.</dd>
+            <dd>Anchor Icon element. Defaults to <code>&lt;LinkNext&gt;</code> icon. See <a href="http://www.grommet.io/docs/develop/icon">Icon</a>. </dd>
             <dt><code>linkText             {'{string}'}</code></dt>
-            <dd>Anchor text.</dd>
+            <dd>Anchor text. Defaults to "Get the Details".</dd>
           </dl>
         </section>
 

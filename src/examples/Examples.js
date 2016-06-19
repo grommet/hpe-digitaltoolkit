@@ -5,7 +5,6 @@ var Router = require('react-router');
 var Route = Router.Route;
 var Box = require('grommet/components/Box');
 var Marquee = require('../modules/Marquee');
-var MarqueeGrommet = require('../modules/MarqueeGrommet');
 var Callout = require('../modules/Callout');
 var PlayIcon = require('grommet/components/icons/base/Play');
 var Header = require('./Header');
@@ -83,14 +82,6 @@ var Examples = React.createClass({
           separator={true}
           responsiveBackgroundPosition="left" />
         <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee, light text</strong></p></Box>
-        {this._loremIpsum()}
-        <MarqueeGrommet darkTheme={false}
-          backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
-          headline="Accelerate your transformation with the cloud"
-          subHeadline="HPE can help you benefit now from your right mix of cloud"
-          link="http://www.grommet.io/docs/"
-          justify="end" />
-        <Box pad={{horizontal: 'large'}}><p><strong>Grommet-only Marquee (no parallax, responsiveness)</strong></p></Box>
         {this._loremIpsum()}
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
           <Callout
