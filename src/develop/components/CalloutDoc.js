@@ -4,6 +4,7 @@ var React = require('react');
 var jsxToString = require('jsx-to-string');
 var DocsArticle = require('../../DocsArticle');
 var Callout = require('../../modules/Callout');
+var PlayIcon = require('grommet/components/icons/base/Play');
 
 Callout.displayName = 'Callout';
 
@@ -37,6 +38,17 @@ var CalloutDoc = React.createClass({
         heading="The Key Steps to Reducing Software Spend"
         description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         link="#"
+      />
+    );
+
+    var videoCallout = (
+      <Callout
+        thumbnail="/docs/img/Video_image.png"
+        eyebrow="Video - 4:27"
+        heading="Foundation Paraguay Empowers Microbusinesses"
+        description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
+        linkIcon={<PlayIcon />}
+        linkText="Watch Now"
         video={{
           source: '#',
           type: 'mp4'
@@ -74,6 +86,8 @@ var CalloutDoc = React.createClass({
           <h2>Examples</h2>
 
           {this._renderCode('Default', simpleCallout)}
+
+          {this._renderCode('Video', videoCallout)}
         </section>
       </DocsArticle>
     );

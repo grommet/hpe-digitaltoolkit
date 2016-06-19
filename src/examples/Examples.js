@@ -98,9 +98,12 @@ var Examples = React.createClass({
             eyebrow="Video - 4:27"
             heading="Foundation Paraguay Empowers Microbusinesses"
             description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
-            link="#"
             linkIcon={<PlayIcon />}
             linkText="Watch Now"
+            video={{
+              source: '#',
+              type: 'mp4'
+            }}
           />
           <Callout
             thumbnail="/docs/img/Case_Study_image.png"
