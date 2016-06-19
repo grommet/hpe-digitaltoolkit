@@ -92,7 +92,7 @@ var Examples = React.createClass({
             linkIcon={<PlayIcon />}
             linkText="Watch Now"
             video={{
-              source: '#',
+              source: 'video/test.mp4',
               type: 'mp4'
             }}
           />

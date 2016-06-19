@@ -59,7 +59,7 @@ export default class Callout extends Component {
       videoMarkup = (
         <Layer onClose={this._handleClick} closer={true} flush={true}>
           <Video>
-            <source src="video/test.mp4" type="video/mp4"/>
+            <source src={video.source} type={`video/${video.type}`}/>
           </Video>
         </Layer>
       );
