@@ -1,4 +1,9 @@
-.accordion-panel {
+.grommet .accordion-panel {
+
+  .heading,
+  .paragraph {
+    max-width: $size-medium;
+  }
 
   div:focus {
     outline: none;

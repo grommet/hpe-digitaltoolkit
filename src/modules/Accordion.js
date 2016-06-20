@@ -30,7 +30,11 @@ export default class Accordion extends Component {
     let subHeadlineMarkup;
     if (subHeadline) {
       subHeadlineMarkup = (
-        <Paragraph size="large" margin="none" align="center">
+        <Paragraph
+          className={`${CLASS_ROOT}__subHeadline`}
+          size="large"
+          align="center"
+        >
           {subHeadline}
         </Paragraph>
       );
@@ -49,9 +53,11 @@ export default class Accordion extends Component {
     return (
       <Box className={classes} colorIndex={colorIndex}>
         {content}
-        <List>
-          {children}
-        </List>
+        <Box separator="top">
+          <List>
+            {children}
+          </List>
+        </Box>
       </Box>
     );
   }
