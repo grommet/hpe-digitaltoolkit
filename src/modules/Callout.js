@@ -9,6 +9,7 @@ import Anchor from 'grommet/components/Anchor';
 import Layer from 'grommet/components/Layer';
 import Video from 'grommet/components/Video';
 import LinkNextIcon from 'grommet/components/icons/base/LinkNext';
+import PlayIcon from 'grommet/components/icons/base/Play';
 
 const CLASS_ROOT = 'callout';
 
@@ -48,11 +49,25 @@ export default class Callout extends Component {
       <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} />
     );
 
+    let anchorLabel = linkText;
+    if (!linkText && video) {
+      anchorLabel = 'Watch Now';
+    } else if (!linkText) {
+      anchorLabel = 'Get the Details';
+    }
+
+    let anchorIcon = linkIcon;
+    if (!linkIcon && video) {
+      anchorIcon = <PlayIcon />;
+    } else if (!linkIcon) {
+      anchorIcon = <LinkNextIcon />;
+    }
+
     let linkMarkup;
     if (link || onClick || video) {
       linkMarkup = (
         <Box pad={{vertical: "small"}}>
-          <Anchor href={link} icon={linkIcon} label={linkText}
+          <Anchor href={link} icon={anchorIcon} label={anchorLabel}
             onClick={this._handleClick} />
         </Box>
       );
@@ -104,9 +119,4 @@ Callout.propTypes = {
     source: PropTypes.string.isRequired,
     type: PropTypes.string
   })
-};
-
-Callout.defaultProps = {
-  linkText: 'Get the Details',
-  linkIcon: <LinkNextIcon />
 };
