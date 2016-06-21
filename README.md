@@ -26,6 +26,3 @@ This is the source code for the [Grommet website](http://grommet.io). To run the
       ```
       $ node server/server.js
       ```
-
-
-

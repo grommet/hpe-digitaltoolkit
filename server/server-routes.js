@@ -400,7 +400,7 @@ module.exports =
 	    return aKeys;
 	  }
 	};
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ },
 /* 7 */
@@ -1781,7 +1781,7 @@ module.exports =
 	    }
 	  }
 	};
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ },
 /* 20 */
@@ -1815,7 +1815,7 @@ module.exports =
 	    return obj;
 	  }
 	};
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ },
 /* 21 */
@@ -2275,7 +2275,6 @@ module.exports =
 	      var a11yTitleId = _props.a11yTitleId;
 	      var className = _props.className;
 	      var colorIndex = _props.colorIndex;
-	      var large = _props.large;
 	      var _props2 = this.props;
 	      var a11yTitle = _props2.a11yTitle;
 	      var size = _props2.size;
@@ -3408,7 +3407,6 @@ module.exports =
 	      var a11yTitleId = _props.a11yTitleId;
 	      var className = _props.className;
 	      var colorIndex = _props.colorIndex;
-	      var large = _props.large;
 	      var _props2 = this.props;
 	      var a11yTitle = _props2.a11yTitle;
 	      var size = _props2.size;
@@ -3512,7 +3510,6 @@ module.exports =
 	      var a11yTitleId = _props.a11yTitleId;
 	      var className = _props.className;
 	      var colorIndex = _props.colorIndex;
-	      var large = _props.large;
 	      var _props2 = this.props;
 	      var a11yTitle = _props2.a11yTitle;
 	      var size = _props2.size;
@@ -4860,7 +4857,7 @@ module.exports =
 	    }, 8);
 	  }
 	};
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ },
 /* 37 */
@@ -4916,7 +4913,6 @@ module.exports =
 	      var a11yTitleId = _props.a11yTitleId;
 	      var className = _props.className;
 	      var colorIndex = _props.colorIndex;
-	      var large = _props.large;
 	      var _props2 = this.props;
 	      var a11yTitle = _props2.a11yTitle;
 	      var size = _props2.size;
@@ -5020,7 +5016,6 @@ module.exports =
 	      var a11yTitleId = _props.a11yTitleId;
 	      var className = _props.className;
 	      var colorIndex = _props.colorIndex;
-	      var large = _props.large;
 	      var _props2 = this.props;
 	      var a11yTitle = _props2.a11yTitle;
 	      var size = _props2.size;
@@ -5124,7 +5119,6 @@ module.exports =
 	      var a11yTitleId = _props.a11yTitleId;
 	      var className = _props.className;
 	      var colorIndex = _props.colorIndex;
-	      var large = _props.large;
 	      var _props2 = this.props;
 	      var a11yTitle = _props2.a11yTitle;
 	      var size = _props2.size;
@@ -5966,10 +5960,6 @@ module.exports =
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Props = __webpack_require__(20);
-
-	var _Props2 = _interopRequireDefault(_Props);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5994,12 +5984,13 @@ module.exports =
 	    value: function render() {
 	      var classes = (0, _classnames2.default)(CLASS_ROOT, this.props.className);
 
-	      var boxProps = _Props2.default.pick(this.props, Object.keys(_Box2.default.propTypes));
+	      var boxProps = _extends({}, this.props);
+	      delete boxProps.className;
+	      delete boxProps.children;
 
 	      return _react2.default.createElement(
 	        _Box2.default,
-	        _extends({}, boxProps, { tag: 'section', className: classes,
-	          primary: this.props.primary }),
+	        _extends({}, boxProps, { tag: 'section', className: classes }),
 	        this.props.children
 	      );
 	    }
@@ -6519,7 +6510,7 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = Spinning;
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ },
 /* 50 */
@@ -6605,7 +6596,7 @@ module.exports =
 	    }
 	  }
 	};
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ },
 /* 51 */
@@ -6762,7 +6753,7 @@ module.exports =
 	  setClassFromIndexes: setClassFromIndexes,
 	  onClick: onClick
 	};
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ },
 /* 52 */
@@ -11226,7 +11217,6 @@ module.exports =
 	      var a11yTitleId = _props.a11yTitleId;
 	      var className = _props.className;
 	      var colorIndex = _props.colorIndex;
-	      var large = _props.large;
 	      var _props2 = this.props;
 	      var a11yTitle = _props2.a11yTitle;
 	      var size = _props2.size;
@@ -16321,7 +16311,6 @@ module.exports =
 	      var a11yTitleId = _props.a11yTitleId;
 	      var className = _props.className;
 	      var colorIndex = _props.colorIndex;
-	      var large = _props.large;
 	      var _props2 = this.props;
 	      var a11yTitle = _props2.a11yTitle;
 	      var size = _props2.size;
