@@ -31,7 +31,7 @@ export default class Accordion extends Component {
     if (subHeadline) {
       subHeadlineMarkup = (
         <Paragraph
-          className={`${CLASS_ROOT}__subHeadline`}
+          className={`${CLASS_ROOT}__sub-headline`}
           size="large"
           align="center"
         >
