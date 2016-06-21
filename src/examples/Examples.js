@@ -6,7 +6,6 @@ var Route = Router.Route;
 var Box = require('grommet/components/Box');
 var Marquee = require('../modules/Marquee');
 var Callout = require('../modules/Callout');
-var PlayIcon = require('grommet/components/icons/base/Play');
 var Header = require('./Header');
 
 var Examples = React.createClass({
@@ -89,8 +88,6 @@ var Examples = React.createClass({
             eyebrow="Video - 4:27"
             heading="Foundation Paraguay Empowers Microbusinesses"
             description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
-            linkIcon={<PlayIcon />}
-            linkText="Watch Now"
             video={{
               source: 'video/test.mp4',
               type: 'mp4'
