@@ -11,9 +11,9 @@ import Video from 'grommet/components/Video';
 import LinkNextIcon from 'grommet/components/icons/base/LinkNext';
 import PlayIcon from 'grommet/components/icons/base/Play';
 
-const CLASS_ROOT = 'callout';
+const CLASS_ROOT = 'content-card';
 
-export default class Callout extends Component {
+export default class ContentCard extends Component {
   constructor (props) {
     super(props);
     this._handleClick = this._handleClick.bind(this);
@@ -23,30 +23,25 @@ export default class Callout extends Component {
   }
 
   _handleClick (event) {
-    const { onClick, video } = this.props;
+    const { video, link } = this.props;
 
-    if (onClick) {
-      onClick(event);
-    } else if (video) {
+    if (video) {
       event.preventDefault();
       this.setState({ activeVideo : !this.state.activeVideo });
+    } else if (link) {
+      window.location.href = link;
     }
   }
 
   render () {
-    const { thumbnail, description, heading, overline, link, linkIcon, linkText, onClick, video } = this.props;
+    const { thumbnail, description, heading, overline, link, linkIcon, linkText, onClick, video, direction } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
+      {
+        [`${CLASS_ROOT}--direction-${this.props.direction}`]: this.props.direction
+      },
       this.props.className
-    );
-
-    const thumbnailStyles = {
-      backgroundImage: `url(${thumbnail})`
-    };
-
-    let thumbnailMarkup = (
-      <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} />
     );
 
     let anchorLabel = linkText;
@@ -67,12 +62,6 @@ export default class Callout extends Component {
             onClick={this._handleClick} />
         </Box>
       );
-
-      thumbnailMarkup = (
-        <Anchor href={link} onClick={this._handleClick}>
-          {thumbnailMarkup}
-        </Anchor>
-      );
     }
 
     let videoMarkup;
@@ -86,9 +75,23 @@ export default class Callout extends Component {
       );
     }
 
+    const thumbnailStyles = {
+      backgroundImage: `url(${thumbnail})`
+    };
+
+    let cardDirection = 'row';
+    if (direction === 'row') {
+      cardDirection = 'column';
+    }
+
+    let onContentCardClick = onClick;
+    if (!onContentCardClick && (link || video)) {
+      onContentCardClick = this._handleClick;
+    }
+
     return (
-      <Box className={classes} direction="row" pad={{vertical: "medium"}}>
-        {thumbnailMarkup}
+      <Box className={classes} direction={cardDirection} onClick={onContentCardClick}>
+        <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} />
         <Box className={`${CLASS_ROOT}__content`} pad="medium">
           <Heading tag="h5" margin="none"
             uppercase={true}>{overline}</Heading>
@@ -102,7 +105,7 @@ export default class Callout extends Component {
   }
 };
 
-Callout.propTypes = {
+ContentCard.propTypes = {
   thumbnail: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
@@ -114,5 +117,10 @@ Callout.propTypes = {
   video: PropTypes.shape({
     source: PropTypes.string.isRequired,
     type: PropTypes.string
-  })
+  }),
+  direction: PropTypes.oneOf(['row', 'column'])
+};
+
+ContentCard.defaultProps = {
+  direction: 'column'
 };
