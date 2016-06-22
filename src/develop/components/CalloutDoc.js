@@ -33,7 +33,7 @@ var CalloutDoc = React.createClass({
     var simpleCallout = (
       <Callout
         thumbnail="/docs/img/Case_Study_image.png"
-        eyebrow="Case Study"
+        overline="Case Study"
         heading="The Key Steps to Reducing Software Spend"
         description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
       />
@@ -42,7 +42,7 @@ var CalloutDoc = React.createClass({
     var linkCallout = (
       <Callout
         thumbnail="/docs/img/Case_Study_image.png"
-        eyebrow="Case Study"
+        overline="Case Study"
         heading="The Key Steps to Reducing Software Spend"
         description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         link="#"
@@ -52,7 +52,7 @@ var CalloutDoc = React.createClass({
     var videoCallout = (
       <Callout
         thumbnail="/docs/img/Video_image.png"
-        eyebrow="Video - 4:27"
+        overline="Video - 4:27"
         heading="Foundation Paraguay Empowers Microbusinesses"
         description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
         video={{
@@ -73,7 +73,7 @@ var CalloutDoc = React.createClass({
           <dl>
             <dt><code>thumbnail            {'{url}'}</code></dt>
             <dd>Url path to image. Required.</dd>
-            <dt><code>eyebrow              {'{string}'}</code></dt>
+            <dt><code>overline              {'{string}'}</code></dt>
             <dd>Content label.</dd>
             <dt><code>heading              {'{string}'}</code></dt>
             <dd>Content heading. Required.</dd>

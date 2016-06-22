@@ -103,7 +103,7 @@ var Examples = React.createClass({
               </Paragraph>
               <Callout
                 thumbnail="/docs/img/Video_image.png"
-                eyebrow="Video - 4:27"
+                overline="Video - 4:27"
                 heading="Foundation Paraguay Empowers Microbusinesses"
                 description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
                 video={{
@@ -125,7 +125,7 @@ var Examples = React.createClass({
               </Paragraph>
               <Callout
                 thumbnail="/docs/img/Case_Study_image.png"
-                eyebrow="Case Study"
+                overline="Case Study"
                 heading="The Key Steps to Reducing Software Spend"
                 description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
                 link="#"

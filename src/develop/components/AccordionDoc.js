@@ -50,7 +50,7 @@ var AccordionDoc = React.createClass({
         </Paragraph>
         <Callout
           thumbnail="/docs/img/Case_Study_image.png"
-          eyebrow="Case Study"
+          overline="Case Study"
           heading="The Key Steps to Reducing Software Spend"
           description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
           link="#"
