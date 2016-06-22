@@ -93,7 +93,7 @@ export default class Callout extends Component {
     return (
       <Box className={classes} direction="row" pad={{vertical: "medium"}}>
         {thumbnailMarkup}
-        <Box pad="medium">
+        <Box className={`${CLASS_ROOT}__content`} pad="medium">
           <Heading tag="h5" margin="none"
             uppercase={true}>{eyebrow}</Heading>
           <Heading tag="h3" margin="none">{heading}</Heading>
