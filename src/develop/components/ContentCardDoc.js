@@ -3,13 +3,14 @@
 var React = require('react');
 var jsxToString = require('jsx-to-string');
 var DocsArticle = require('../../DocsArticle');
-var Callout = require('../../modules/Callout');
+var ContentCard = require('../../modules/ContentCard');
+var Tiles = require('grommet/components/Tiles');
 
-Callout.displayName = 'Callout';
+ContentCard.displayName = 'ContentCard';
 
-var inline = "<Callout ... />";
+var inline = "<ContentCard ... />";
 
-var CalloutDoc = React.createClass({
+var ContentCardDoc = React.createClass({
 
   contextTypes: {
     routePrefix: React.PropTypes.string.isRequired
@@ -30,8 +31,8 @@ var CalloutDoc = React.createClass({
   },
 
   render: function() {
-    var simpleCallout = (
-      <Callout
+    var simpleContentCard = (
+      <ContentCard
         thumbnail="/docs/img/Case_Study_image.png"
         overline="Case Study"
         heading="The Key Steps to Reducing Software Spend"
@@ -39,8 +40,8 @@ var CalloutDoc = React.createClass({
       />
     );
 
-    var linkCallout = (
-      <Callout
+    var linkContentCard = (
+      <ContentCard
         thumbnail="/docs/img/Case_Study_image.png"
         overline="Case Study"
         heading="The Key Steps to Reducing Software Spend"
@@ -49,8 +50,8 @@ var CalloutDoc = React.createClass({
       />
     );
 
-    var videoCallout = (
-      <Callout
+    var videoContentCard = (
+      <ContentCard
         thumbnail="/docs/img/Video_image.png"
         overline="Video - 4:27"
         heading="Foundation Paraguay Empowers Microbusinesses"
@@ -62,14 +63,45 @@ var CalloutDoc = React.createClass({
       />
     );
 
-    return (
-      <DocsArticle title="Callout" colorIndex="neutral-3">
+    var contentCardTiles = (
+      <Tiles>
+       <ContentCard
+          direction="row"
+          thumbnail="/docs/img/Case_Study_image.png"
+          overline="Case Study"
+          heading="The Key Steps to Reducing Software Spend"
+          description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+          link="http://grommet.io"
+        />
+        <ContentCard
+          direction="row"
+          thumbnail="/docs/img/Video_image.png"
+          overline="Video - 4:27"
+          heading="Foundation Paraguay Empowers Microbusinesses"
+          description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
+          video={{
+            source: 'video/test.mp4',
+            type: 'mp4'
+          }}
+        />
+        <ContentCard
+          direction="row"
+          thumbnail="/docs/img/Case_Study_image.png"
+          overline="Case Study"
+          heading="The Key Steps to Reducing Software Spend"
+          description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+        />
+      </Tiles>
+    );
 
-        <p>The Callout module.</p>
+    return (
+      <DocsArticle title="ContentCard" colorIndex="neutral-3">
+
+        <p>The ContentCard module.</p>
         <pre><code className="html hljs xml">{inline}</code></pre>
 
         <section>
-          <h2>Callout Options</h2>
+          <h2>ContentCard Options</h2>
           <dl>
             <dt><code>thumbnail            {'{url}'}</code></dt>
             <dd>Url path to image. Required.</dd>
@@ -95,21 +127,25 @@ var CalloutDoc = React.createClass({
             <dd>Click handler.</dd>
             <dt><code>video                {'{source: , type: mp4|webm|ogg}'}</code></dt>
             <dd>Video media type and source path.</dd>
+            <dt><code>direction            {'{string}'}</code></dt>
+            <dd>Applies the ContentCards in a column (default) or row direction. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
           </dl>
         </section>
 
         <section>
           <h2>Examples</h2>
 
-          {this._renderCode('Default', simpleCallout)}
+          {this._renderCode('Default', simpleContentCard)}
 
-          {this._renderCode('Link', linkCallout)}
+          {this._renderCode('Link', linkContentCard)}
 
-          {this._renderCode('Video', videoCallout)}
+          {this._renderCode('Video', videoContentCard)}
+
+          {this._renderCode('Row Link, Row Video, Row', contentCardTiles)}
         </section>
       </DocsArticle>
     );
   }
 });
 
-module.exports = CalloutDoc;
+module.exports = ContentCardDoc;

@@ -7,7 +7,7 @@ var Box = require('grommet/components/Box');
 var Heading = require('grommet/components/Heading');
 var Paragraph = require('grommet/components/Paragraph');
 var Marquee = require('../modules/Marquee');
-var Callout = require('../modules/Callout');
+var ContentCard = require('../modules/ContentCard');
 var Accordion = require('../modules/Accordion');
 var AccordionPanel = require('../modules/AccordionPanel');
 var Header = require('./Header');
@@ -101,7 +101,7 @@ var Examples = React.createClass({
                 we can help your business develop new systems of engagement
                 while leveraging your legacy investments
               </Paragraph>
-              <Callout
+              <ContentCard
                 thumbnail="/docs/img/Video_image.png"
                 overline="Video - 4:27"
                 heading="Foundation Paraguay Empowers Microbusinesses"
@@ -123,7 +123,7 @@ var Examples = React.createClass({
                 control throughout your organization, and helping you meet
                 licensing compliance requirements
               </Paragraph>
-              <Callout
+              <ContentCard
                 thumbnail="/docs/img/Case_Study_image.png"
                 overline="Case Study"
                 heading="The Key Steps to Reducing Software Spend"

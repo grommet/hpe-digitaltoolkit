@@ -7,7 +7,7 @@ var Heading = require('grommet/components/Heading');
 var Paragraph = require('grommet/components/Paragraph');
 var Accordion = require('../../modules/Accordion');
 var AccordionPanel = require('../../modules/AccordionPanel');
-var Callout = require('../../modules/Callout');
+var ContentCard = require('../../modules/ContentCard');
 
 Accordion.displayName = 'Accordion';
 
@@ -48,7 +48,7 @@ var AccordionDoc = React.createClass({
         <Paragraph margin="none">
           See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.
         </Paragraph>
-        <Callout
+        <ContentCard
           thumbnail="/docs/img/Case_Study_image.png"
           overline="Case Study"
           heading="The Key Steps to Reducing Software Spend"
