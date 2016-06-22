@@ -50,17 +50,13 @@ export default class Callout extends Component {
     );
 
     let anchorLabel = linkText;
-    if (!linkText && video) {
-      anchorLabel = 'Watch Now';
-    } else if (!linkText) {
-      anchorLabel = 'Get the Details';
+    if (!linkText) {
+      anchorLabel = video ? 'Watch Now' : 'Get the Details';
     }
 
     let anchorIcon = linkIcon;
-    if (!linkIcon && video) {
-      anchorIcon = <PlayIcon />;
-    } else if (!linkIcon) {
-      anchorIcon = <LinkNextIcon />;
+    if (!linkIcon) {
+      anchorIcon = video ? <PlayIcon /> : <LinkNextIcon />;
     }
 
     let linkMarkup;
