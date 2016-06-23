@@ -1,16 +1,14 @@
 .content-card {
-  margin: halve($inuit-base-spacing-unit) 0;
-
   > .box {
-    background-color: #fff;
+    background-color: $background-color;
   }
 
   &__thumbnail {
-    width: 270px;
+    width: $inuit-base-spacing-unit * 11;
 
     @include media-query(palm) {
       width: 100%;
-      height: 270px;
+      height: $inuit-base-spacing-unit * 11;
     }
 
     .anchor & {
@@ -30,12 +28,18 @@
   }
 
   &--direction-row {
-    margin: halve($inuit-base-spacing-unit);
-    flex-basis: $tile-large-size;
-
     .content-card__thumbnail {
       width: 100%;
-      height: 270px;
+      height: $inuit-base-spacing-unit * 11;
+    }
+
+    @include media-query(lap-and-up) {
+      flex-basis: $tile-large-size;
+    }
+
+    @include media-query(palm) {
+      padding-left: 0px;
+      padding-right: 0px;
     }
   }
 }
