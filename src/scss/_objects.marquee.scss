@@ -1,44 +1,33 @@
 .grommet .marquee {
-  overflow: hidden;
   position: relative;
 
-  > .box__container {
-    display: flex;
-    overflow: hidden;
+  &__background {
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
+    left: 0;
   }
 
-  &--bg-left > .box__container {
+  &--bg-left > .marquee__background {
     @include media-query(palm) {
       background-position: top left;
     }
   }
 
-  &--bg-right > .box__container {
+  &--bg-right > .marquee__background {
     @include media-query(palm) {
       background-position: top right;
     }
   }
 
   &__overlay.box {
-    margin-top: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    overflow: hidden;
+    z-index: 1;
 
     .box {
-      width: 50%;
+      flex-basis: 50%;
 
       @include media-query(palm) {
-        width: 100%;
+        flex-basis: 100%;
       }
 
       .headline--large {
@@ -57,10 +46,6 @@
         color: $inuit-base-text-color;
       }
     }
-
-    @include media-query(palm) {
-      position: relative;
-    }
   }
 
   &--large {
@@ -70,7 +55,7 @@
       height: auto;
     }
 
-    > .box__container {
+    .marquee__background {
       height: 75vh;
 
       @include media-query(palm) {
@@ -83,7 +68,12 @@
 
       @include media-query(palm) {
         height: auto;
-        margin-top: 300px;
+      }
+    }
+
+    .marquee__image {
+      @include media-query(palm) {
+        height: 300px;
       }
     }
   }
@@ -95,7 +85,7 @@
       height: auto;
     }
 
-    > .box__container {
+    .marquee__background {
       height: 60vh;
 
       @include media-query(palm) {
@@ -108,7 +98,12 @@
 
       @include media-query(palm) {
         height: auto;
-        margin-top: 270px;
+      }
+    }
+
+    .marquee__image {
+      @include media-query(palm) {
+        height: 270px;
       }
     }
   }
