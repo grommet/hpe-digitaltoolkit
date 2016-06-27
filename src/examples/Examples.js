@@ -8,6 +8,7 @@ var PlayIcon = require('grommet/components/icons/base/Play');
 var Heading = require('grommet/components/Heading');
 var Paragraph = require('grommet/components/Paragraph');
 var Marquee = require('../modules/Marquee');
+var MarqueeParallax = require('../modules/MarqueeParallax');
 var Callout = require('../modules/Callout');
 var Accordion = require('../modules/Accordion');
 var AccordionPanel = require('../modules/AccordionPanel');
@@ -58,15 +59,14 @@ var Examples = React.createClass({
               }]
             }]
           } />
-        <Marquee darkTheme={false}
+        <MarqueeParallax darkTheme={false}
           backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/"
           responsiveBackgroundPosition="left" />
-        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee</strong></p></Box>
-        {this._loremIpsum()}
-        <Marquee darkTheme={false}
+        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with Parallax</strong></p></Box>
+        <MarqueeParallax darkTheme={false}
           backgroundImage="url(/docs/img/TK_Marquee_Image.jpg)"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
@@ -74,9 +74,8 @@ var Examples = React.createClass({
           justify="start"
           size="small"
           responsiveBackgroundPosition="right" />
-        <Box pad={{horizontal: 'large'}}><p><strong>Small Marquee</strong></p></Box>
-        {this._loremIpsum()}
-        <Marquee darkTheme={true}
+        <Box pad={{horizontal: 'large'}}><p><strong>Small Marquee with Parallax</strong></p></Box>
+        <MarqueeParallax darkTheme={true}
           backgroundImage="url(/docs/img/Hero4_marquee.jpg)"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
@@ -85,7 +84,14 @@ var Examples = React.createClass({
           size="large"
           separator={true}
           responsiveBackgroundPosition="left" />
-        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee, light text</strong></p></Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with Parallax, light text</strong></p></Box>
+        <Marquee darkTheme={false}
+          backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
+          headline="Accelerate your transformation with the cloud"
+          subHeadline="HPE can help you benefit now from your right mix of cloud"
+          link="http://www.grommet.io/docs/"
+          responsiveBackgroundPosition="left" />
+        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with NO Parallax</strong></p></Box>
         {this._loremIpsum()}
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
           <Accordion

@@ -53,10 +53,10 @@ module.exports =
 	var IndexRoute = Router.IndexRoute;
 
 	var Docs = __webpack_require__(3);
-	var Home = __webpack_require__(34);
-	var Design = __webpack_require__(53);
-	var Develop = __webpack_require__(66);
-	var Examples = __webpack_require__(102);
+	var Home = __webpack_require__(35);
+	var Design = __webpack_require__(54);
+	var Develop = __webpack_require__(67);
+	var Examples = __webpack_require__(105);
 
 	module.exports = function (rootPath) {
 	  var DocsRouter = React.createClass({
@@ -145,13 +145,23 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Locale = __webpack_require__(5);
+	var _classnames2 = __webpack_require__(5);
 
-	var _SkipLinks = __webpack_require__(12);
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _Locale = __webpack_require__(6);
+
+	var _SkipLinks = __webpack_require__(13);
 
 	var _SkipLinks2 = _interopRequireDefault(_SkipLinks);
 
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -159,7 +169,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'app';
+	var CLASS_ROOT = _CSSClassnames2.default.APP;
 
 	var supportedLocales = ['en-US', 'pt-BR'];
 
@@ -170,9 +180,9 @@ module.exports =
 	}
 
 	if (!localesSupported()) {
-	  __webpack_require__(31);
 	  __webpack_require__(32);
 	  __webpack_require__(33);
+	  __webpack_require__(34);
 	  Intl.NumberFormat = IntlPolyfill.NumberFormat;
 	  Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
 	}
@@ -202,29 +212,26 @@ module.exports =
 	        document.documentElement.setAttribute('lang', lang);
 	      }
 	      this.setState({ lang: lang });
-
-	      // Put the grommet class on the html element.
-	      document.documentElement.classList.add('grommet');
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var classes = ["grommet", CLASS_ROOT];
-	      if (this.props.centered) {
-	        classes.push(CLASS_ROOT + '--centered');
-	      }
-	      if (this.props.inline) {
-	        classes.push(CLASS_ROOT + '--inline');
-	      }
+	      var _classnames;
 
-	      if (this.props.className) {
-	        classes.push(this.props.className);
-	      }
+	      var _props = this.props;
+	      var centered = _props.centered;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var inline = _props.inline;
+	      var lang = this.state.lang;
+
+
+	      var classes = (0, _classnames3.default)('grommet', className, CLASS_ROOT, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--centered', centered), _defineProperty(_classnames, CLASS_ROOT + '--inline', inline), _classnames));
 
 	      return _react2.default.createElement(
 	        'div',
-	        { lang: this.state.lang, className: classes.join(' ') },
-	        this.props.children,
+	        { lang: lang, className: classes },
+	        children,
 	        _react2.default.createElement(_SkipLinks2.default, null)
 	      );
 	    }
@@ -247,6 +254,12 @@ module.exports =
 
 /***/ },
 /* 5 */
+/***/ function(module, exports) {
+
+	module.exports = require("classnames");
+
+/***/ },
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -261,7 +274,7 @@ module.exports =
 	exports.getCurrentLocale = getCurrentLocale;
 	exports.getLocaleData = getLocaleData;
 
-	var _Cookies = __webpack_require__(6);
+	var _Cookies = __webpack_require__(7);
 
 	var _Cookies2 = _interopRequireDefault(_Cookies);
 
@@ -303,7 +316,7 @@ module.exports =
 
 	  var grommetMessages = void 0;
 	  try {
-	    grommetMessages = __webpack_require__(7)("./" + locale);
+	    grommetMessages = __webpack_require__(8)("./" + locale);
 	  } catch (e) {
 	    grommetMessages = {};
 	  }
@@ -314,7 +327,7 @@ module.exports =
 	}
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -403,18 +416,18 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./en": 8,
-		"./en-US": 9,
-		"./en-US.js": 9,
-		"./en.js": 8,
-		"./icons/en-US": 10,
-		"./icons/en-US.js": 10,
-		"./pt-BR": 11,
-		"./pt-BR.js": 11
+		"./en": 9,
+		"./en-US": 10,
+		"./en-US.js": 10,
+		"./en.js": 9,
+		"./icons/en-US": 11,
+		"./icons/en-US.js": 11,
+		"./pt-BR": 12,
+		"./pt-BR.js": 12
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -427,21 +440,21 @@ module.exports =
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 7;
+	webpackContext.id = 8;
 
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	module.exports = __webpack_require__(9);
+	module.exports = __webpack_require__(10);
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -452,7 +465,7 @@ module.exports =
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var _enUS = __webpack_require__(10);
+	var _enUS = __webpack_require__(11);
 
 	var _enUS2 = _interopRequireDefault(_enUS);
 
@@ -529,7 +542,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -855,7 +868,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -950,7 +963,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -965,29 +978,33 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Layer = __webpack_require__(22);
+	var _Layer = __webpack_require__(24);
 
 	var _Layer2 = _interopRequireDefault(_Layer);
 
-	var _Menu = __webpack_require__(26);
+	var _Menu = __webpack_require__(27);
 
 	var _Menu2 = _interopRequireDefault(_Menu);
 
-	var _KeyboardAccelerators = __webpack_require__(16);
+	var _KeyboardAccelerators = __webpack_require__(17);
 
 	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
 
-	var _Intl = __webpack_require__(19);
+	var _Intl = __webpack_require__(20);
 
 	var _Intl2 = _interopRequireDefault(_Intl);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -996,6 +1013,8 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.SKIP_LINK_ANCHOR;
 
 	var SkipLinks = function (_Component) {
 	  _inherits(SkipLinks, _Component);
@@ -1046,7 +1065,7 @@ module.exports =
 	  }, {
 	    key: '_checkForSkipLink',
 	    value: function _checkForSkipLink(event) {
-	      var skipLinks = document.querySelectorAll('.skip-link-anchor');
+	      var skipLinks = document.querySelectorAll('.' + CLASS_ROOT);
 	      if (skipLinks.length > 0) {
 	        this._updateAnchors();
 	      } else if (this.state.anchors.length > 0) {
@@ -1056,7 +1075,7 @@ module.exports =
 	  }, {
 	    key: '_updateAnchors',
 	    value: function _updateAnchors() {
-	      var anchorElements = document.querySelectorAll('.skip-link-anchor');
+	      var anchorElements = document.querySelectorAll('.' + CLASS_ROOT);
 
 	      var anchors = Array.prototype.map.call(anchorElements, function (anchorElement) {
 	        return {
@@ -1157,7 +1176,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1170,7 +1189,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactIntl = __webpack_require__(14);
+	var _reactIntl = __webpack_require__(15);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1204,13 +1223,13 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-intl");
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1229,21 +1248,25 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _KeyboardAccelerators = __webpack_require__(16);
+	var _KeyboardAccelerators = __webpack_require__(17);
 
 	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
 
-	var _Intl = __webpack_require__(19);
+	var _Intl = __webpack_require__(20);
 
 	var _Intl2 = _interopRequireDefault(_Intl);
 
-	var _Props = __webpack_require__(20);
+	var _Props = __webpack_require__(21);
 
 	var _Props2 = _interopRequireDefault(_Props);
 
-	var _SkipLinkAnchor = __webpack_require__(21);
+	var _SkipLinkAnchor = __webpack_require__(22);
 
 	var _SkipLinkAnchor2 = _interopRequireDefault(_SkipLinkAnchor);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1253,7 +1276,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "box";
+	var CLASS_ROOT = _CSSClassnames2.default.BOX;
+	var BACKGROUND_COLOR_INDEX = _CSSClassnames2.default.BACKGROUND_COLOR_INDEX;
 
 	var Box = function (_Component) {
 	  _inherits(Box, _Component);
@@ -1338,14 +1362,14 @@ module.exports =
 	      if (this.props.appCentered) {
 	        this._addPropertyClass(containerClasses, CLASS_ROOT + "__container", 'full');
 	        if (this.props.colorIndex) {
-	          containerClasses.push("background-color-index-" + this.props.colorIndex);
+	          containerClasses.push(BACKGROUND_COLOR_INDEX + '-' + this.props.colorIndex);
 	        }
 	        if (this.props.containerClassName) {
 	          containerClasses.push(this.props.containerClassName);
 	        }
 	      } else {
 	        if (this.props.colorIndex) {
-	          classes.push("background-color-index-" + this.props.colorIndex);
+	          classes.push(BACKGROUND_COLOR_INDEX + '-' + this.props.colorIndex);
 	        }
 	      }
 
@@ -1469,7 +1493,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1478,9 +1502,9 @@ module.exports =
 	  value: true
 	});
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
-	var _DOM = __webpack_require__(18);
+	var _DOM = __webpack_require__(19);
 
 	var _DOM2 = _interopRequireDefault(_DOM);
 
@@ -1635,13 +1659,13 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-dom");
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1760,7 +1784,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1784,7 +1808,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1818,7 +1842,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1833,6 +1857,10 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1840,6 +1868,8 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.SKIP_LINK_ANCHOR;
 
 	var SkipLinkAnchor = function (_Component) {
 	  _inherits(SkipLinkAnchor, _Component);
@@ -1857,7 +1887,7 @@ module.exports =
 
 	      return _react2.default.createElement(
 	        'a',
-	        { tabIndex: '-1', 'aria-hidden': 'true', id: id, className: 'skip-link-anchor' },
+	        { tabIndex: '-1', 'aria-hidden': 'true', id: id, className: CLASS_ROOT },
 	        this.props.label
 	      );
 	    }
@@ -1875,7 +1905,92 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 22 */
+/* 23 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var namespace = exports.namespace = 'grommetux-';
+
+	exports.default = {
+	  ANCHOR: namespace + 'anchor',
+	  APP: namespace + 'app',
+	  ARTICLE: namespace + 'article',
+	  ATTRIBUTE: namespace + 'attribute',
+	  BACKGROUND_COLOR_INDEX: namespace + 'background-color-index',
+	  BOX: namespace + 'box',
+	  BORDER_COLOR_INDEX: namespace + 'border-color-index',
+	  BRICK: namespace + 'brick',
+	  BUTTON: namespace + 'button',
+	  CALENDAR: namespace + 'calendar',
+	  CAROUSEL: namespace + 'carousel',
+	  CAROUSEL_CONTROLS: namespace + 'carousel-controls',
+	  CHART: namespace + 'chart',
+	  CHECK_BOX: namespace + 'check-box',
+	  COLOR_INDEX: namespace + 'color-index',
+	  COLUMNS: namespace + 'columns',
+	  CONTROL_ICON: namespace + 'control-icon',
+	  DATE_TIME: namespace + 'date-time',
+	  DATE_TIME_DROP: namespace + 'date-time-drop',
+	  DISTRIBUTION: namespace + 'distribution',
+	  DROP: namespace + 'drop',
+	  FOOTER: namespace + 'footer',
+	  FORM: namespace + 'form',
+	  FORM_FIELD: namespace + 'form-field',
+	  FORM_FIELDS: namespace + 'form-fields',
+	  HEADER: namespace + 'header',
+	  HEADING: namespace + 'heading',
+	  HEADLINE: namespace + 'headline',
+	  IMAGE: namespace + 'image',
+	  IMAGE_FIELD: namespace + 'image-field',
+	  LABEL: namespace + 'label',
+	  LAYER: namespace + 'layer',
+	  LEGEND: namespace + 'legend',
+	  LIST: namespace + 'list',
+	  LIST_ITEM: namespace + 'list-item',
+	  LOGIN: namespace + 'login',
+	  LOGIN_FORM: namespace + 'login-form',
+	  LOGO_ICON: namespace + 'logo-icon',
+	  MAP: namespace + 'map',
+	  MENU: namespace + 'menu',
+	  METER: namespace + 'meter',
+	  NOTIFICATION: namespace + 'notification',
+	  NUMBER_INPUT: namespace + 'number-input',
+	  OBJECT: namespace + 'object',
+	  PARAGRAPH: namespace + 'paragraph',
+	  QUOTE: namespace + 'quote',
+	  RADIO_BUTTON: namespace + 'radio-button',
+	  SEARCH: namespace + 'search',
+	  SEARCH_INPUT: namespace + 'search-input',
+	  SECTION: namespace + 'section',
+	  SIDEBAR: namespace + 'sidebar',
+	  SKIP_LINK_ANCHOR: namespace + 'skip-link-anchor',
+	  SKIP_LINKS: namespace + 'skip-links',
+	  SPLIT: namespace + 'split',
+	  SPINNING: namespace + 'icon-spinning',
+	  STATUS_ICON: namespace + 'status-icon',
+	  TAB: namespace + 'tab',
+	  TABLE: namespace + 'table',
+	  TABLE_ROW: namespace + 'table-row',
+	  TABS: namespace + 'tabs',
+	  TAG: namespace + 'tag',
+	  TAGS: namespace + 'tags',
+	  TBD: namespace + 'tbd',
+	  TILE: namespace + 'tile',
+	  TILES: namespace + 'tiles',
+	  TIMESTAMP: namespace + 'timestamp',
+	  TITLE: namespace + 'title',
+	  TOPOLOGY: namespace + 'topology',
+	  VALUE: namespace + 'value',
+	  VIDEO: namespace + 'video',
+	  WORLD_MAP: namespace + 'world-map'
+	};
+
+/***/ },
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1894,29 +2009,33 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _Close = __webpack_require__(23);
+	var _Close = __webpack_require__(25);
 
 	var _Close2 = _interopRequireDefault(_Close);
 
-	var _KeyboardAccelerators = __webpack_require__(16);
+	var _KeyboardAccelerators = __webpack_require__(17);
 
 	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
 
-	var _DOM = __webpack_require__(18);
+	var _DOM = __webpack_require__(19);
 
 	var _DOM2 = _interopRequireDefault(_DOM);
 
-	var _Button = __webpack_require__(25);
+	var _Button = __webpack_require__(26);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Intl = __webpack_require__(19);
+	var _Intl = __webpack_require__(20);
 
 	var _Intl2 = _interopRequireDefault(_Intl);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1926,7 +2045,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "layer";
+	var CLASS_ROOT = _CSSClassnames2.default.LAYER;
+	var APP = _CSSClassnames2.default.APP;
 
 	var LayerContents = function (_Component) {
 	  _inherits(LayerContents, _Component);
@@ -2143,7 +2263,7 @@ module.exports =
 	      }
 	      element.className = this._classesFromProps().join(' ');
 	      // insert before .app, if possible.
-	      var appElements = document.querySelectorAll('.app');
+	      var appElements = document.querySelectorAll('.' + APP);
 	      var beforeElement;
 	      if (appElements.length > 0) {
 	        beforeElement = appElements[0];
@@ -2157,7 +2277,7 @@ module.exports =
 	    value: function _handleAriaHidden(hideOverlay) {
 	      var ariaHidden = hideOverlay || false;
 	      this._element.setAttribute('aria-hidden', ariaHidden);
-	      var grommetApps = document.querySelectorAll('.app');
+	      var grommetApps = document.querySelectorAll('.' + APP);
 
 	      if (grommetApps) {
 	        Array.prototype.slice.call(grommetApps).forEach(function (grommetApp) {
@@ -2222,7 +2342,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2237,13 +2357,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2255,7 +2379,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'control-icon';
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Icon = function (_Component) {
 	  _inherits(Icon, _Component);
@@ -2280,7 +2405,7 @@ module.exports =
 	      var size = _props2.size;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-close', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-close', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
 
 	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'close', defaultMessage: 'close' });
 
@@ -2325,13 +2450,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 24 */
-/***/ function(module, exports) {
-
-	module.exports = require("classnames");
-
-/***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2346,9 +2465,13 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2360,7 +2483,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'button';
+	var CLASS_ROOT = _CSSClassnames2.default.BUTTON;
 
 	var Button = function (_Component) {
 	  _inherits(Button, _Component);
@@ -2447,7 +2570,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2464,53 +2587,57 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _classnames3 = __webpack_require__(24);
+	var _classnames3 = __webpack_require__(5);
 
 	var _classnames4 = _interopRequireDefault(_classnames3);
 
-	var _KeyboardAccelerators = __webpack_require__(16);
+	var _KeyboardAccelerators = __webpack_require__(17);
 
 	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
 
-	var _DOM = __webpack_require__(18);
+	var _DOM = __webpack_require__(19);
 
 	var _DOM2 = _interopRequireDefault(_DOM);
 
-	var _Drop = __webpack_require__(27);
+	var _Drop = __webpack_require__(28);
 
 	var _Drop2 = _interopRequireDefault(_Drop);
 
-	var _Intl = __webpack_require__(19);
+	var _Intl = __webpack_require__(20);
 
 	var _Intl2 = _interopRequireDefault(_Intl);
 
-	var _Props = __webpack_require__(20);
+	var _Props = __webpack_require__(21);
 
 	var _Props2 = _interopRequireDefault(_Props);
 
-	var _Responsive = __webpack_require__(28);
+	var _Responsive = __webpack_require__(29);
 
 	var _Responsive2 = _interopRequireDefault(_Responsive);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Button = __webpack_require__(25);
+	var _Button = __webpack_require__(26);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Down = __webpack_require__(29);
+	var _Down = __webpack_require__(30);
 
 	var _Down2 = _interopRequireDefault(_Down);
 
-	var _More = __webpack_require__(30);
+	var _More = __webpack_require__(31);
 
 	var _More2 = _interopRequireDefault(_More);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2522,7 +2649,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'menu';
+	var CLASS_ROOT = _CSSClassnames2.default.MENU;
 
 	function isFunction(obj) {
 	  return obj && obj.constructor && obj.call && obj.apply;
@@ -2598,6 +2725,9 @@ module.exports =
 	    value: function componentWillUnmount() {
 	      if (this._originalFocusedElement.focus) {
 	        this._originalFocusedElement.focus();
+	      } else if (this._originalFocusedElement.parentNode && this._originalFocusedElement.parentNode.focus) {
+	        // required for IE11 and Edge
+	        this._originalFocusedElement.parentNode.focus();
 	      }
 	      _KeyboardAccelerators2.default.stopListeningToKeyboard(this, this._keyboardHandlers);
 	    }
@@ -3047,7 +3177,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3060,13 +3190,20 @@ module.exports =
 
 	var _react = __webpack_require__(1);
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
-	var _DOM = __webpack_require__(18);
+	var _DOM = __webpack_require__(19);
 
 	var _DOM2 = _interopRequireDefault(_DOM);
 
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.DROP;
+	var BACKGROUND_COLOR_INDEX = _CSSClassnames2.default.BACKGROUND_COLOR_INDEX;
 
 	/*
 	 * Drop is a utility for rendering components like drop down menus layered above
@@ -3142,9 +3279,9 @@ module.exports =
 
 	    // setup DOM
 	    drop.container = document.createElement('div');
-	    drop.container.className = 'grommet drop ' + (drop.options.className || '');
+	    drop.container.className = 'grommet ' + CLASS_ROOT + ' ' + (drop.options.className || '');
 	    if (drop.options.colorIndex) {
-	      drop.container.className += ' background-color-index-' + drop.options.colorIndex;
+	      drop.container.className += ' ' + BACKGROUND_COLOR_INDEX + '-' + drop.options.colorIndex;
 	    }
 	    // prepend in body to avoid browser scroll issues
 	    document.body.insertBefore(drop.container, document.body.firstChild);
@@ -3215,6 +3352,7 @@ module.exports =
 	        left = controlRect.left + controlRect.width - width;
 	      }
 	    }
+
 	    if (left + width > windowWidth) {
 	      left -= left + width - windowWidth;
 	    } else if (left < 0) {
@@ -3278,7 +3416,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3354,7 +3492,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3369,13 +3507,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3387,7 +3529,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'control-icon';
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Icon = function (_Component) {
 	  _inherits(Icon, _Component);
@@ -3412,7 +3555,7 @@ module.exports =
 	      var size = _props2.size;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-down', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-down', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
 
 	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'down', defaultMessage: 'down' });
 
@@ -3457,7 +3600,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3472,13 +3615,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3490,7 +3637,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'control-icon';
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Icon = function (_Component) {
 	  _inherits(Icon, _Component);
@@ -3515,7 +3663,7 @@ module.exports =
 	      var size = _props2.size;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-more', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-more', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
 
 	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'more', defaultMessage: 'more' });
 
@@ -3562,25 +3710,25 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports) {
 
 	module.exports = require("intl");
 
 /***/ },
-/* 32 */
+/* 33 */
 /***/ function(module, exports) {
 
 	IntlPolyfill.__addLocaleData({locale:"en-US",date:{ca:["gregory","buddhist","chinese","coptic","dangi","ethioaa","ethiopic","generic","hebrew","indian","islamic","islamicc","japanese","persian","roc"],hourNo0:true,hour12:true,formats:{short:"{1}, {0}",medium:"{1}, {0}",full:"{1} 'at' {0}",long:"{1} 'at' {0}",availableFormats:{"d":"d","E":"ccc",Ed:"d E",Ehm:"E h:mm a",EHm:"E HH:mm",Ehms:"E h:mm:ss a",EHms:"E HH:mm:ss",Gy:"y G",GyMMM:"MMM y G",GyMMMd:"MMM d, y G",GyMMMEd:"E, MMM d, y G","h":"h a","H":"HH",hm:"h:mm a",Hm:"HH:mm",hms:"h:mm:ss a",Hms:"HH:mm:ss",hmsv:"h:mm:ss a v",Hmsv:"HH:mm:ss v",hmv:"h:mm a v",Hmv:"HH:mm v","M":"L",Md:"M/d",MEd:"E, M/d",MMM:"LLL",MMMd:"MMM d",MMMEd:"E, MMM d",MMMMd:"MMMM d",ms:"mm:ss","y":"y",yM:"M/y",yMd:"M/d/y",yMEd:"E, M/d/y",yMMM:"MMM y",yMMMd:"MMM d, y",yMMMEd:"E, MMM d, y",yMMMM:"MMMM y",yQQQ:"QQQ y",yQQQQ:"QQQQ y"},dateFormats:{yMMMMEEEEd:"EEEE, MMMM d, y",yMMMMd:"MMMM d, y",yMMMd:"MMM d, y",yMd:"M/d/yy"},timeFormats:{hmmsszzzz:"h:mm:ss a zzzz",hmsz:"h:mm:ss a z",hms:"h:mm:ss a",hm:"h:mm a"}},calendars:{buddhist:{months:{narrow:["J","F","M","A","M","J","J","A","S","O","N","D"],short:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],long:["January","February","March","April","May","June","July","August","September","October","November","December"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["BE"],short:["BE"],long:["BE"]},dayPeriods:{am:"AM",pm:"PM"}},chinese:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Mo1","Mo2","Mo3","Mo4","Mo5","Mo6","Mo7","Mo8","Mo9","Mo10","Mo11","Mo12"],long:["Month1","Month2","Month3","Month4","Month5","Month6","Month7","Month8","Month9","Month10","Month11","Month12"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},dayPeriods:{am:"AM",pm:"PM"}},coptic:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12","13"],short:["Tout","Baba","Hator","Kiahk","Toba","Amshir","Baramhat","Baramouda","Bashans","Paona","Epep","Mesra","Nasie"],long:["Tout","Baba","Hator","Kiahk","Toba","Amshir","Baramhat","Baramouda","Bashans","Paona","Epep","Mesra","Nasie"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["ERA0","ERA1"],short:["ERA0","ERA1"],long:["ERA0","ERA1"]},dayPeriods:{am:"AM",pm:"PM"}},dangi:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Mo1","Mo2","Mo3","Mo4","Mo5","Mo6","Mo7","Mo8","Mo9","Mo10","Mo11","Mo12"],long:["Month1","Month2","Month3","Month4","Month5","Month6","Month7","Month8","Month9","Month10","Month11","Month12"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},dayPeriods:{am:"AM",pm:"PM"}},ethiopic:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12","13"],short:["Meskerem","Tekemt","Hedar","Tahsas","Ter","Yekatit","Megabit","Miazia","Genbot","Sene","Hamle","Nehasse","Pagumen"],long:["Meskerem","Tekemt","Hedar","Tahsas","Ter","Yekatit","Megabit","Miazia","Genbot","Sene","Hamle","Nehasse","Pagumen"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["ERA0","ERA1"],short:["ERA0","ERA1"],long:["ERA0","ERA1"]},dayPeriods:{am:"AM",pm:"PM"}},ethioaa:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12","13"],short:["Meskerem","Tekemt","Hedar","Tahsas","Ter","Yekatit","Megabit","Miazia","Genbot","Sene","Hamle","Nehasse","Pagumen"],long:["Meskerem","Tekemt","Hedar","Tahsas","Ter","Yekatit","Megabit","Miazia","Genbot","Sene","Hamle","Nehasse","Pagumen"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["ERA0"],short:["ERA0"],long:["ERA0"]},dayPeriods:{am:"AM",pm:"PM"}},generic:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["M01","M02","M03","M04","M05","M06","M07","M08","M09","M10","M11","M12"],long:["M01","M02","M03","M04","M05","M06","M07","M08","M09","M10","M11","M12"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["ERA0","ERA1"],short:["ERA0","ERA1"],long:["ERA0","ERA1"]},dayPeriods:{am:"AM",pm:"PM"}},gregory:{months:{narrow:["J","F","M","A","M","J","J","A","S","O","N","D"],short:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],long:["January","February","March","April","May","June","July","August","September","October","November","December"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["B","A","BCE","CE"],short:["BC","AD","BCE","CE"],long:["Before Christ","Anno Domini","Before Common Era","Common Era"]},dayPeriods:{am:"AM",pm:"PM"}},hebrew:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12","13","7"],short:["Tishri","Heshvan","Kislev","Tevet","Shevat","Adar I","Adar","Nisan","Iyar","Sivan","Tamuz","Av","Elul","Adar II"],long:["Tishri","Heshvan","Kislev","Tevet","Shevat","Adar I","Adar","Nisan","Iyar","Sivan","Tamuz","Av","Elul","Adar II"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["AM"],short:["AM"],long:["AM"]},dayPeriods:{am:"AM",pm:"PM"}},indian:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Chaitra","Vaisakha","Jyaistha","Asadha","Sravana","Bhadra","Asvina","Kartika","Agrahayana","Pausa","Magha","Phalguna"],long:["Chaitra","Vaisakha","Jyaistha","Asadha","Sravana","Bhadra","Asvina","Kartika","Agrahayana","Pausa","Magha","Phalguna"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["Saka"],short:["Saka"],long:["Saka"]},dayPeriods:{am:"AM",pm:"PM"}},islamic:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Muh.","Saf.","Rab. I","Rab. II","Jum. I","Jum. II","Raj.","Sha.","Ram.","Shaw.","Dhuʻl-Q.","Dhuʻl-H."],long:["Muharram","Safar","Rabiʻ I","Rabiʻ II","Jumada I","Jumada II","Rajab","Shaʻban","Ramadan","Shawwal","Dhuʻl-Qiʻdah","Dhuʻl-Hijjah"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["AH"],short:["AH"],long:["AH"]},dayPeriods:{am:"AM",pm:"PM"}},islamicc:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Muh.","Saf.","Rab. I","Rab. II","Jum. I","Jum. II","Raj.","Sha.","Ram.","Shaw.","Dhuʻl-Q.","Dhuʻl-H."],long:["Muharram","Safar","Rabiʻ I","Rabiʻ II","Jumada I","Jumada II","Rajab","Shaʻban","Ramadan","Shawwal","Dhuʻl-Qiʻdah","Dhuʻl-Hijjah"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["AH"],short:["AH"],long:["AH"]},dayPeriods:{am:"AM",pm:"PM"}},japanese:{months:{narrow:["J","F","M","A","M","J","J","A","S","O","N","D"],short:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],long:["January","February","March","April","May","June","July","August","September","October","November","December"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["Taika (645–650)","Hakuchi (650–671)","Hakuhō (672–686)","Shuchō (686–701)","Taihō (701–704)","Keiun (704–708)","Wadō (708–715)","Reiki (715–717)","Yōrō (717–724)","Jinki (724–729)","Tenpyō (729–749)","Tenpyō-kampō (749-749)","Tenpyō-shōhō (749-757)","Tenpyō-hōji (757-765)","Tenpyō-jingo (765-767)","Jingo-keiun (767-770)","Hōki (770–780)","Ten-ō (781-782)","Enryaku (782–806)","Daidō (806–810)","Kōnin (810–824)","Tenchō (824–834)","Jōwa (834–848)","Kajō (848–851)","Ninju (851–854)","Saikō (854–857)","Ten-an (857-859)","Jōgan (859–877)","Gangyō (877–885)","Ninna (885–889)","Kanpyō (889–898)","Shōtai (898–901)","Engi (901–923)","Enchō (923–931)","Jōhei (931–938)","Tengyō (938–947)","Tenryaku (947–957)","Tentoku (957–961)","Ōwa (961–964)","Kōhō (964–968)","Anna (968–970)","Tenroku (970–973)","Ten’en (973–976)","Jōgen (976–978)","Tengen (978–983)","Eikan (983–985)","Kanna (985–987)","Eien (987–989)","Eiso (989–990)","Shōryaku (990–995)","Chōtoku (995–999)","Chōhō (999–1004)","Kankō (1004–1012)","Chōwa (1012–1017)","Kannin (1017–1021)","Jian (1021–1024)","Manju (1024–1028)","Chōgen (1028–1037)","Chōryaku (1037–1040)","Chōkyū (1040–1044)","Kantoku (1044–1046)","Eishō (1046–1053)","Tengi (1053–1058)","Kōhei (1058–1065)","Jiryaku (1065–1069)","Enkyū (1069–1074)","Shōho (1074–1077)","Shōryaku (1077–1081)","Eihō (1081–1084)","Ōtoku (1084–1087)","Kanji (1087–1094)","Kahō (1094–1096)","Eichō (1096–1097)","Jōtoku (1097–1099)","Kōwa (1099–1104)","Chōji (1104–1106)","Kashō (1106–1108)","Tennin (1108–1110)","Ten-ei (1110-1113)","Eikyū (1113–1118)","Gen’ei (1118–1120)","Hōan (1120–1124)","Tenji (1124–1126)","Daiji (1126–1131)","Tenshō (1131–1132)","Chōshō (1132–1135)","Hōen (1135–1141)","Eiji (1141–1142)","Kōji (1142–1144)","Ten’yō (1144–1145)","Kyūan (1145–1151)","Ninpei (1151–1154)","Kyūju (1154–1156)","Hōgen (1156–1159)","Heiji (1159–1160)","Eiryaku (1160–1161)","Ōho (1161–1163)","Chōkan (1163–1165)","Eiman (1165–1166)","Nin’an (1166–1169)","Kaō (1169–1171)","Shōan (1171–1175)","Angen (1175–1177)","Jishō (1177–1181)","Yōwa (1181–1182)","Juei (1182–1184)","Genryaku (1184–1185)","Bunji (1185–1190)","Kenkyū (1190–1199)","Shōji (1199–1201)","Kennin (1201–1204)","Genkyū (1204–1206)","Ken’ei (1206–1207)","Jōgen (1207–1211)","Kenryaku (1211–1213)","Kenpō (1213–1219)","Jōkyū (1219–1222)","Jōō (1222–1224)","Gennin (1224–1225)","Karoku (1225–1227)","Antei (1227–1229)","Kanki (1229–1232)","Jōei (1232–1233)","Tenpuku (1233–1234)","Bunryaku (1234–1235)","Katei (1235–1238)","Ryakunin (1238–1239)","En’ō (1239–1240)","Ninji (1240–1243)","Kangen (1243–1247)","Hōji (1247–1249)","Kenchō (1249–1256)","Kōgen (1256–1257)","Shōka (1257–1259)","Shōgen (1259–1260)","Bun’ō (1260–1261)","Kōchō (1261–1264)","Bun’ei (1264–1275)","Kenji (1275–1278)","Kōan (1278–1288)","Shōō (1288–1293)","Einin (1293–1299)","Shōan (1299–1302)","Kengen (1302–1303)","Kagen (1303–1306)","Tokuji (1306–1308)","Enkyō (1308–1311)","Ōchō (1311–1312)","Shōwa (1312–1317)","Bunpō (1317–1319)","Genō (1319–1321)","Genkō (1321–1324)","Shōchū (1324–1326)","Karyaku (1326–1329)","Gentoku (1329–1331)","Genkō (1331–1334)","Kenmu (1334–1336)","Engen (1336–1340)","Kōkoku (1340–1346)","Shōhei (1346–1370)","Kentoku (1370–1372)","Bunchū (1372–1375)","Tenju (1375–1379)","Kōryaku (1379–1381)","Kōwa (1381–1384)","Genchū (1384–1392)","Meitoku (1384–1387)","Kakei (1387–1389)","Kōō (1389–1390)","Meitoku (1390–1394)","Ōei (1394–1428)","Shōchō (1428–1429)","Eikyō (1429–1441)","Kakitsu (1441–1444)","Bun’an (1444–1449)","Hōtoku (1449–1452)","Kyōtoku (1452–1455)","Kōshō (1455–1457)","Chōroku (1457–1460)","Kanshō (1460–1466)","Bunshō (1466–1467)","Ōnin (1467–1469)","Bunmei (1469–1487)","Chōkyō (1487–1489)","Entoku (1489–1492)","Meiō (1492–1501)","Bunki (1501–1504)","Eishō (1504–1521)","Taiei (1521–1528)","Kyōroku (1528–1532)","Tenbun (1532–1555)","Kōji (1555–1558)","Eiroku (1558–1570)","Genki (1570–1573)","Tenshō (1573–1592)","Bunroku (1592–1596)","Keichō (1596–1615)","Genna (1615–1624)","Kan’ei (1624–1644)","Shōho (1644–1648)","Keian (1648–1652)","Jōō (1652–1655)","Meireki (1655–1658)","Manji (1658–1661)","Kanbun (1661–1673)","Enpō (1673–1681)","Tenna (1681–1684)","Jōkyō (1684–1688)","Genroku (1688–1704)","Hōei (1704–1711)","Shōtoku (1711–1716)","Kyōhō (1716–1736)","Genbun (1736–1741)","Kanpō (1741–1744)","Enkyō (1744–1748)","Kan’en (1748–1751)","Hōreki (1751–1764)","Meiwa (1764–1772)","An’ei (1772–1781)","Tenmei (1781–1789)","Kansei (1789–1801)","Kyōwa (1801–1804)","Bunka (1804–1818)","Bunsei (1818–1830)","Tenpō (1830–1844)","Kōka (1844–1848)","Kaei (1848–1854)","Ansei (1854–1860)","Man’en (1860–1861)","Bunkyū (1861–1864)","Genji (1864–1865)","Keiō (1865–1868)","M","T","S","H"],short:["Taika (645–650)","Hakuchi (650–671)","Hakuhō (672–686)","Shuchō (686–701)","Taihō (701–704)","Keiun (704–708)","Wadō (708–715)","Reiki (715–717)","Yōrō (717–724)","Jinki (724–729)","Tenpyō (729–749)","Tenpyō-kampō (749-749)","Tenpyō-shōhō (749-757)","Tenpyō-hōji (757-765)","Tenpyō-jingo (765-767)","Jingo-keiun (767-770)","Hōki (770–780)","Ten-ō (781-782)","Enryaku (782–806)","Daidō (806–810)","Kōnin (810–824)","Tenchō (824–834)","Jōwa (834–848)","Kajō (848–851)","Ninju (851–854)","Saikō (854–857)","Ten-an (857-859)","Jōgan (859–877)","Gangyō (877–885)","Ninna (885–889)","Kanpyō (889–898)","Shōtai (898–901)","Engi (901–923)","Enchō (923–931)","Jōhei (931–938)","Tengyō (938–947)","Tenryaku (947–957)","Tentoku (957–961)","Ōwa (961–964)","Kōhō (964–968)","Anna (968–970)","Tenroku (970–973)","Ten’en (973–976)","Jōgen (976–978)","Tengen (978–983)","Eikan (983–985)","Kanna (985–987)","Eien (987–989)","Eiso (989–990)","Shōryaku (990–995)","Chōtoku (995–999)","Chōhō (999–1004)","Kankō (1004–1012)","Chōwa (1012–1017)","Kannin (1017–1021)","Jian (1021–1024)","Manju (1024–1028)","Chōgen (1028–1037)","Chōryaku (1037–1040)","Chōkyū (1040–1044)","Kantoku (1044–1046)","Eishō (1046–1053)","Tengi (1053–1058)","Kōhei (1058–1065)","Jiryaku (1065–1069)","Enkyū (1069–1074)","Shōho (1074–1077)","Shōryaku (1077–1081)","Eihō (1081–1084)","Ōtoku (1084–1087)","Kanji (1087–1094)","Kahō (1094–1096)","Eichō (1096–1097)","Jōtoku (1097–1099)","Kōwa (1099–1104)","Chōji (1104–1106)","Kashō (1106–1108)","Tennin (1108–1110)","Ten-ei (1110-1113)","Eikyū (1113–1118)","Gen’ei (1118–1120)","Hōan (1120–1124)","Tenji (1124–1126)","Daiji (1126–1131)","Tenshō (1131–1132)","Chōshō (1132–1135)","Hōen (1135–1141)","Eiji (1141–1142)","Kōji (1142–1144)","Ten’yō (1144–1145)","Kyūan (1145–1151)","Ninpei (1151–1154)","Kyūju (1154–1156)","Hōgen (1156–1159)","Heiji (1159–1160)","Eiryaku (1160–1161)","Ōho (1161–1163)","Chōkan (1163–1165)","Eiman (1165–1166)","Nin’an (1166–1169)","Kaō (1169–1171)","Shōan (1171–1175)","Angen (1175–1177)","Jishō (1177–1181)","Yōwa (1181–1182)","Juei (1182–1184)","Genryaku (1184–1185)","Bunji (1185–1190)","Kenkyū (1190–1199)","Shōji (1199–1201)","Kennin (1201–1204)","Genkyū (1204–1206)","Ken’ei (1206–1207)","Jōgen (1207–1211)","Kenryaku (1211–1213)","Kenpō (1213–1219)","Jōkyū (1219–1222)","Jōō (1222–1224)","Gennin (1224–1225)","Karoku (1225–1227)","Antei (1227–1229)","Kanki (1229–1232)","Jōei (1232–1233)","Tenpuku (1233–1234)","Bunryaku (1234–1235)","Katei (1235–1238)","Ryakunin (1238–1239)","En’ō (1239–1240)","Ninji (1240–1243)","Kangen (1243–1247)","Hōji (1247–1249)","Kenchō (1249–1256)","Kōgen (1256–1257)","Shōka (1257–1259)","Shōgen (1259–1260)","Bun’ō (1260–1261)","Kōchō (1261–1264)","Bun’ei (1264–1275)","Kenji (1275–1278)","Kōan (1278–1288)","Shōō (1288–1293)","Einin (1293–1299)","Shōan (1299–1302)","Kengen (1302–1303)","Kagen (1303–1306)","Tokuji (1306–1308)","Enkyō (1308–1311)","Ōchō (1311–1312)","Shōwa (1312–1317)","Bunpō (1317–1319)","Genō (1319–1321)","Genkō (1321–1324)","Shōchū (1324–1326)","Karyaku (1326–1329)","Gentoku (1329–1331)","Genkō (1331–1334)","Kenmu (1334–1336)","Engen (1336–1340)","Kōkoku (1340–1346)","Shōhei (1346–1370)","Kentoku (1370–1372)","Bunchū (1372–1375)","Tenju (1375–1379)","Kōryaku (1379–1381)","Kōwa (1381–1384)","Genchū (1384–1392)","Meitoku (1384–1387)","Kakei (1387–1389)","Kōō (1389–1390)","Meitoku (1390–1394)","Ōei (1394–1428)","Shōchō (1428–1429)","Eikyō (1429–1441)","Kakitsu (1441–1444)","Bun’an (1444–1449)","Hōtoku (1449–1452)","Kyōtoku (1452–1455)","Kōshō (1455–1457)","Chōroku (1457–1460)","Kanshō (1460–1466)","Bunshō (1466–1467)","Ōnin (1467–1469)","Bunmei (1469–1487)","Chōkyō (1487–1489)","Entoku (1489–1492)","Meiō (1492–1501)","Bunki (1501–1504)","Eishō (1504–1521)","Taiei (1521–1528)","Kyōroku (1528–1532)","Tenbun (1532–1555)","Kōji (1555–1558)","Eiroku (1558–1570)","Genki (1570–1573)","Tenshō (1573–1592)","Bunroku (1592–1596)","Keichō (1596–1615)","Genna (1615–1624)","Kan’ei (1624–1644)","Shōho (1644–1648)","Keian (1648–1652)","Jōō (1652–1655)","Meireki (1655–1658)","Manji (1658–1661)","Kanbun (1661–1673)","Enpō (1673–1681)","Tenna (1681–1684)","Jōkyō (1684–1688)","Genroku (1688–1704)","Hōei (1704–1711)","Shōtoku (1711–1716)","Kyōhō (1716–1736)","Genbun (1736–1741)","Kanpō (1741–1744)","Enkyō (1744–1748)","Kan’en (1748–1751)","Hōreki (1751–1764)","Meiwa (1764–1772)","An’ei (1772–1781)","Tenmei (1781–1789)","Kansei (1789–1801)","Kyōwa (1801–1804)","Bunka (1804–1818)","Bunsei (1818–1830)","Tenpō (1830–1844)","Kōka (1844–1848)","Kaei (1848–1854)","Ansei (1854–1860)","Man’en (1860–1861)","Bunkyū (1861–1864)","Genji (1864–1865)","Keiō (1865–1868)","Meiji","Taishō","Shōwa","Heisei"],long:["Taika (645–650)","Hakuchi (650–671)","Hakuhō (672–686)","Shuchō (686–701)","Taihō (701–704)","Keiun (704–708)","Wadō (708–715)","Reiki (715–717)","Yōrō (717–724)","Jinki (724–729)","Tenpyō (729–749)","Tenpyō-kampō (749-749)","Tenpyō-shōhō (749-757)","Tenpyō-hōji (757-765)","Tenpyō-jingo (765-767)","Jingo-keiun (767-770)","Hōki (770–780)","Ten-ō (781-782)","Enryaku (782–806)","Daidō (806–810)","Kōnin (810–824)","Tenchō (824–834)","Jōwa (834–848)","Kajō (848–851)","Ninju (851–854)","Saikō (854–857)","Ten-an (857-859)","Jōgan (859–877)","Gangyō (877–885)","Ninna (885–889)","Kanpyō (889–898)","Shōtai (898–901)","Engi (901–923)","Enchō (923–931)","Jōhei (931–938)","Tengyō (938–947)","Tenryaku (947–957)","Tentoku (957–961)","Ōwa (961–964)","Kōhō (964–968)","Anna (968–970)","Tenroku (970–973)","Ten’en (973–976)","Jōgen (976–978)","Tengen (978–983)","Eikan (983–985)","Kanna (985–987)","Eien (987–989)","Eiso (989–990)","Shōryaku (990–995)","Chōtoku (995–999)","Chōhō (999–1004)","Kankō (1004–1012)","Chōwa (1012–1017)","Kannin (1017–1021)","Jian (1021–1024)","Manju (1024–1028)","Chōgen (1028–1037)","Chōryaku (1037–1040)","Chōkyū (1040–1044)","Kantoku (1044–1046)","Eishō (1046–1053)","Tengi (1053–1058)","Kōhei (1058–1065)","Jiryaku (1065–1069)","Enkyū (1069–1074)","Shōho (1074–1077)","Shōryaku (1077–1081)","Eihō (1081–1084)","Ōtoku (1084–1087)","Kanji (1087–1094)","Kahō (1094–1096)","Eichō (1096–1097)","Jōtoku (1097–1099)","Kōwa (1099–1104)","Chōji (1104–1106)","Kashō (1106–1108)","Tennin (1108–1110)","Ten-ei (1110-1113)","Eikyū (1113–1118)","Gen’ei (1118–1120)","Hōan (1120–1124)","Tenji (1124–1126)","Daiji (1126–1131)","Tenshō (1131–1132)","Chōshō (1132–1135)","Hōen (1135–1141)","Eiji (1141–1142)","Kōji (1142–1144)","Ten’yō (1144–1145)","Kyūan (1145–1151)","Ninpei (1151–1154)","Kyūju (1154–1156)","Hōgen (1156–1159)","Heiji (1159–1160)","Eiryaku (1160–1161)","Ōho (1161–1163)","Chōkan (1163–1165)","Eiman (1165–1166)","Nin’an (1166–1169)","Kaō (1169–1171)","Shōan (1171–1175)","Angen (1175–1177)","Jishō (1177–1181)","Yōwa (1181–1182)","Juei (1182–1184)","Genryaku (1184–1185)","Bunji (1185–1190)","Kenkyū (1190–1199)","Shōji (1199–1201)","Kennin (1201–1204)","Genkyū (1204–1206)","Ken’ei (1206–1207)","Jōgen (1207–1211)","Kenryaku (1211–1213)","Kenpō (1213–1219)","Jōkyū (1219–1222)","Jōō (1222–1224)","Gennin (1224–1225)","Karoku (1225–1227)","Antei (1227–1229)","Kanki (1229–1232)","Jōei (1232–1233)","Tenpuku (1233–1234)","Bunryaku (1234–1235)","Katei (1235–1238)","Ryakunin (1238–1239)","En’ō (1239–1240)","Ninji (1240–1243)","Kangen (1243–1247)","Hōji (1247–1249)","Kenchō (1249–1256)","Kōgen (1256–1257)","Shōka (1257–1259)","Shōgen (1259–1260)","Bun’ō (1260–1261)","Kōchō (1261–1264)","Bun’ei (1264–1275)","Kenji (1275–1278)","Kōan (1278–1288)","Shōō (1288–1293)","Einin (1293–1299)","Shōan (1299–1302)","Kengen (1302–1303)","Kagen (1303–1306)","Tokuji (1306–1308)","Enkyō (1308–1311)","Ōchō (1311–1312)","Shōwa (1312–1317)","Bunpō (1317–1319)","Genō (1319–1321)","Genkō (1321–1324)","Shōchū (1324–1326)","Karyaku (1326–1329)","Gentoku (1329–1331)","Genkō (1331–1334)","Kenmu (1334–1336)","Engen (1336–1340)","Kōkoku (1340–1346)","Shōhei (1346–1370)","Kentoku (1370–1372)","Bunchū (1372–1375)","Tenju (1375–1379)","Kōryaku (1379–1381)","Kōwa (1381–1384)","Genchū (1384–1392)","Meitoku (1384–1387)","Kakei (1387–1389)","Kōō (1389–1390)","Meitoku (1390–1394)","Ōei (1394–1428)","Shōchō (1428–1429)","Eikyō (1429–1441)","Kakitsu (1441–1444)","Bun’an (1444–1449)","Hōtoku (1449–1452)","Kyōtoku (1452–1455)","Kōshō (1455–1457)","Chōroku (1457–1460)","Kanshō (1460–1466)","Bunshō (1466–1467)","Ōnin (1467–1469)","Bunmei (1469–1487)","Chōkyō (1487–1489)","Entoku (1489–1492)","Meiō (1492–1501)","Bunki (1501–1504)","Eishō (1504–1521)","Taiei (1521–1528)","Kyōroku (1528–1532)","Tenbun (1532–1555)","Kōji (1555–1558)","Eiroku (1558–1570)","Genki (1570–1573)","Tenshō (1573–1592)","Bunroku (1592–1596)","Keichō (1596–1615)","Genna (1615–1624)","Kan’ei (1624–1644)","Shōho (1644–1648)","Keian (1648–1652)","Jōō (1652–1655)","Meireki (1655–1658)","Manji (1658–1661)","Kanbun (1661–1673)","Enpō (1673–1681)","Tenna (1681–1684)","Jōkyō (1684–1688)","Genroku (1688–1704)","Hōei (1704–1711)","Shōtoku (1711–1716)","Kyōhō (1716–1736)","Genbun (1736–1741)","Kanpō (1741–1744)","Enkyō (1744–1748)","Kan’en (1748–1751)","Hōreki (1751–1764)","Meiwa (1764–1772)","An’ei (1772–1781)","Tenmei (1781–1789)","Kansei (1789–1801)","Kyōwa (1801–1804)","Bunka (1804–1818)","Bunsei (1818–1830)","Tenpō (1830–1844)","Kōka (1844–1848)","Kaei (1848–1854)","Ansei (1854–1860)","Man’en (1860–1861)","Bunkyū (1861–1864)","Genji (1864–1865)","Keiō (1865–1868)","Meiji","Taishō","Shōwa","Heisei"]},dayPeriods:{am:"AM",pm:"PM"}},persian:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Farvardin","Ordibehesht","Khordad","Tir","Mordad","Shahrivar","Mehr","Aban","Azar","Dey","Bahman","Esfand"],long:["Farvardin","Ordibehesht","Khordad","Tir","Mordad","Shahrivar","Mehr","Aban","Azar","Dey","Bahman","Esfand"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["AP"],short:["AP"],long:["AP"]},dayPeriods:{am:"AM",pm:"PM"}},roc:{months:{narrow:["J","F","M","A","M","J","J","A","S","O","N","D"],short:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],long:["January","February","March","April","May","June","July","August","September","October","November","December"]},days:{narrow:["S","M","T","W","T","F","S"],short:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],long:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]},eras:{narrow:["Before R.O.C.","Minguo"],short:["Before R.O.C.","Minguo"],long:["Before R.O.C.","Minguo"]},dayPeriods:{am:"AM",pm:"PM"}}}},number:{nu:["latn"],patterns:{decimal:{positivePattern:"{number}",negativePattern:"{minusSign}{number}"},currency:{positivePattern:"{currency}{number}",negativePattern:"{minusSign}{currency}{number}"},percent:{positivePattern:"{number}{percentSign}",negativePattern:"{minusSign}{number}{percentSign}"}},symbols:{latn:{decimal:".",group:",",nan:"NaN",plusSign:"+",minusSign:"-",percentSign:"%",infinity:"∞"}},currencies:{AUD:"A$",BRL:"R$",CAD:"CA$",CNY:"CN¥",EUR:"€",GBP:"£",HKD:"HK$",ILS:"₪",INR:"₹",JPY:"¥",KRW:"₩",MXN:"MX$",NZD:"NZ$",TWD:"NT$",USD:"$",VND:"₫",XAF:"FCFA",XCD:"EC$",XOF:"CFA",XPF:"CFPF"}}});
 
 /***/ },
-/* 33 */
+/* 34 */
 /***/ function(module, exports) {
 
 	IntlPolyfill.__addLocaleData({locale:"pt-BR",date:{ca:["gregory","buddhist","chinese","coptic","dangi","ethioaa","ethiopic","generic","hebrew","indian","islamic","islamicc","japanese","persian","roc"],hourNo0:true,hour12:false,formats:{short:"{1} {0}",medium:"{1} {0}",full:"{1} {0}",long:"{1} {0}",availableFormats:{"d":"d","E":"ccc",Ed:"E, d",Ehm:"E, h:mm a",EHm:"E, HH:mm",Ehms:"E, h:mm:ss a",EHms:"E, HH:mm:ss",Gy:"y G",GyMMM:"MMM 'de' y G",GyMMMd:"d 'de' MMM 'de' y G",GyMMMEd:"E, d 'de' MMM 'de' y G","h":"h a","H":"HH",hm:"h:mm a",Hm:"HH:mm",hms:"h:mm:ss a",Hms:"HH:mm:ss",hmsv:"h:mm:ss a v",Hmsv:"HH:mm:ss v",hmv:"h:mm a v",Hmv:"HH:mm v","M":"L",Md:"d/M",MEd:"E, dd/MM",MMdd:"dd/MM",MMM:"LLL",MMMd:"d 'de' MMM",MMMEd:"E, d 'de' MMM",MMMMd:"d 'de' MMMM",MMMMEd:"E, d 'de' MMMM",ms:"mm:ss","y":"y",yM:"MM/y",yMd:"dd/MM/y",yMEd:"E, dd/MM/y",yMM:"MM/y",yMMM:"MMM 'de' y",yMMMd:"d 'de' MMM 'de' y",yMMMEd:"E, d 'de' MMM 'de' y",yMMMM:"MMMM 'de' y",yMMMMd:"d 'de' MMMM 'de' y",yMMMMEd:"E, d 'de' MMMM 'de' y",yQQQ:"y QQQ",yQQQQ:"y QQQQ"},dateFormats:{yMMMMEEEEd:"EEEE, d 'de' MMMM 'de' y",yMMMMd:"d 'de' MMMM 'de' y",yMMMd:"d 'de' MMM 'de' y",yMd:"dd/MM/yy"},timeFormats:{hmmsszzzz:"HH:mm:ss zzzz",hmsz:"HH:mm:ss z",hms:"HH:mm:ss",hm:"HH:mm"}},calendars:{buddhist:{months:{narrow:["J","F","M","A","M","J","J","A","S","O","N","D"],short:["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"],long:["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["BE"],short:["BE"],long:["BE"]},dayPeriods:{am:"AM",pm:"PM"}},chinese:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Mês 1","Mês 2","Mês 3","Mês 4","Mês 5","Mês 6","Mês 7","Mês 8","Mês 9","Mês 10","Mês 11","Mês 12"],long:["Mês 1","Mês 2","Mês 3","Mês 4","Mês 5","Mês 6","Mês 7","Mês 8","Mês 9","Mês 10","Mês 11","Mês 12"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},dayPeriods:{am:"AM",pm:"PM"}},coptic:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12","13"],short:["Tout","Baba","Hator","Kiahk","Toba","Amshir","Baramhat","Baramouda","Bashans","Paona","Epep","Mesra","Nasie"],long:["Tout","Baba","Hator","Kiahk","Toba","Amshir","Baramhat","Baramouda","Bashans","Paona","Epep","Mesra","Nasie"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["ERA0","ERA1"],short:["ERA0","ERA1"],long:["ERA0","ERA1"]},dayPeriods:{am:"AM",pm:"PM"}},dangi:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Mês 1","Mês 2","Mês 3","Mês 4","Mês 5","Mês 6","Mês 7","Mês 8","Mês 9","Mês 10","Mês 11","Mês 12"],long:["Mês 1","Mês 2","Mês 3","Mês 4","Mês 5","Mês 6","Mês 7","Mês 8","Mês 9","Mês 10","Mês 11","Mês 12"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},dayPeriods:{am:"AM",pm:"PM"}},ethiopic:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12","13"],short:["Meskerem","Tekemt","Hedar","Tahsas","Ter","Yekatit","Megabit","Miazia","Genbot","Sene","Hamle","Nehasse","Pagumen"],long:["Meskerem","Tekemt","Hedar","Tahsas","Ter","Yekatit","Megabit","Miazia","Genbot","Sene","Hamle","Nehasse","Pagumen"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["ERA0","ERA1"],short:["ERA0","ERA1"],long:["ERA0","ERA1"]},dayPeriods:{am:"AM",pm:"PM"}},ethioaa:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12","13"],short:["Meskerem","Tekemt","Hedar","Tahsas","Ter","Yekatit","Megabit","Miazia","Genbot","Sene","Hamle","Nehasse","Pagumen"],long:["Meskerem","Tekemt","Hedar","Tahsas","Ter","Yekatit","Megabit","Miazia","Genbot","Sene","Hamle","Nehasse","Pagumen"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["ERA0"],short:["ERA0"],long:["ERA0"]},dayPeriods:{am:"AM",pm:"PM"}},generic:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["M01","M02","M03","M04","M05","M06","M07","M08","M09","M10","M11","M12"],long:["M01","M02","M03","M04","M05","M06","M07","M08","M09","M10","M11","M12"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["ERA0","ERA1"],short:["ERA0","ERA1"],long:["ERA0","ERA1"]},dayPeriods:{am:"AM",pm:"PM"}},gregory:{months:{narrow:["J","F","M","A","M","J","J","A","S","O","N","D"],short:["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"],long:["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["a.C.","d.C.","AEC","EC"],short:["a.C.","d.C.","AEC","EC"],long:["antes de Cristo","depois de Cristo","antes da Era Comum","Era Comum"]},dayPeriods:{am:"AM",pm:"PM"}},hebrew:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12","13","7"],short:["Tishri","Heshvan","Kislev","Tevet","Shevat","Adar I","Adar","Nisan","Iyar","Sivan","Tamuz","Av","Elul","Adar II"],long:["Tishri","Heshvan","Kislev","Tevet","Shevat","Adar I","Adar","Nisan","Iyar","Sivan","Tamuz","Av","Elul","Adar II"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["AM"],short:["AM"],long:["AM"]},dayPeriods:{am:"AM",pm:"PM"}},indian:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Chaitra","Vaisakha","Jyaistha","Asadha","Sravana","Bhadra","Asvina","Kartika","Agrahayana","Pausa","Magha","Phalguna"],long:["Chaitra","Vaisakha","Jyaistha","Asadha","Sravana","Bhadra","Asvina","Kartika","Agrahayana","Pausa","Magha","Phalguna"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["Saka"],short:["Saka"],long:["Saka"]},dayPeriods:{am:"AM",pm:"PM"}},islamic:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Muh.","Saf.","Rab. I","Rab. II","Jum. I","Jum. II","Raj.","Sha.","Ram.","Shaw.","Dhuʻl-Q.","Dhuʻl-H."],long:["Muharram","Safar","Rabiʻ I","Rabiʻ II","Jumada I","Jumada II","Rajab","Shaʻban","Ramadan","Shawwal","Dhuʻl-Qiʻdah","Dhuʻl-Hijjah"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["AH"],short:["AH"],long:["AH"]},dayPeriods:{am:"AM",pm:"PM"}},islamicc:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Muh.","Saf.","Rab. I","Rab. II","Jum. I","Jum. II","Raj.","Sha.","Ram.","Shaw.","Dhuʻl-Q.","Dhuʻl-H."],long:["Muharram","Safar","Rabiʻ I","Rabiʻ II","Jumada I","Jumada II","Rajab","Shaʻban","Ramadan","Shawwal","Dhuʻl-Qiʻdah","Dhuʻl-Hijjah"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["AH"],short:["AH"],long:["AH"]},dayPeriods:{am:"AM",pm:"PM"}},japanese:{months:{narrow:["J","F","M","A","M","J","J","A","S","O","N","D"],short:["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"],long:["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["Taika (645–650)","Hakuchi (650–671)","Hakuhō (672–686)","Shuchō (686–701)","Taihō (701–704)","Keiun (704–708)","Wadō (708–715)","Reiki (715–717)","Yōrō (717–724)","Jinki (724–729)","Tenpyō (729–749)","Tenpyō-kampō (749-749)","Tenpyō-shōhō (749-757)","Tenpyō-hōji (757-765)","Tenpyō-jingo (765-767)","Jingo-keiun (767-770)","Hōki (770–780)","Ten-ō (781-782)","Enryaku (782–806)","Daidō (806–810)","Kōnin (810–824)","Tenchō (824–834)","Jōwa (834–848)","Kajō (848–851)","Ninju (851–854)","Saikō (854–857)","Ten-an (857-859)","Jōgan (859–877)","Gangyō (877–885)","Ninna (885–889)","Kanpyō (889–898)","Shōtai (898–901)","Engi (901–923)","Enchō (923–931)","Jōhei (931–938)","Tengyō (938–947)","Tenryaku (947–957)","Tentoku (957–961)","Ōwa (961–964)","Kōhō (964–968)","Anna (968–970)","Tenroku (970–973)","Ten’en (973–976)","Jōgen (976–978)","Tengen (978–983)","Eikan (983–985)","Kanna (985–987)","Eien (987–989)","Eiso (989–990)","Shōryaku (990–995)","Chōtoku (995–999)","Chōhō (999–1004)","Kankō (1004–1012)","Chōwa (1012–1017)","Kannin (1017–1021)","Jian (1021–1024)","Manju (1024–1028)","Chōgen (1028–1037)","Chōryaku (1037–1040)","Chōkyū (1040–1044)","Kantoku (1044–1046)","Eishō (1046–1053)","Tengi (1053–1058)","Kōhei (1058–1065)","Jiryaku (1065–1069)","Enkyū (1069–1074)","Shōho (1074–1077)","Shōryaku (1077–1081)","Eihō (1081–1084)","Ōtoku (1084–1087)","Kanji (1087–1094)","Kahō (1094–1096)","Eichō (1096–1097)","Jōtoku (1097–1099)","Kōwa (1099–1104)","Chōji (1104–1106)","Kashō (1106–1108)","Tennin (1108–1110)","Ten-ei (1110-1113)","Eikyū (1113–1118)","Gen’ei (1118–1120)","Hōan (1120–1124)","Tenji (1124–1126)","Daiji (1126–1131)","Tenshō (1131–1132)","Chōshō (1132–1135)","Hōen (1135–1141)","Eiji (1141–1142)","Kōji (1142–1144)","Ten’yō (1144–1145)","Kyūan (1145–1151)","Ninpei (1151–1154)","Kyūju (1154–1156)","Hōgen (1156–1159)","Heiji (1159–1160)","Eiryaku (1160–1161)","Ōho (1161–1163)","Chōkan (1163–1165)","Eiman (1165–1166)","Nin’an (1166–1169)","Kaō (1169–1171)","Shōan (1171–1175)","Angen (1175–1177)","Jishō (1177–1181)","Yōwa (1181–1182)","Juei (1182–1184)","Genryaku (1184–1185)","Bunji (1185–1190)","Kenkyū (1190–1199)","Shōji (1199–1201)","Kennin (1201–1204)","Genkyū (1204–1206)","Ken’ei (1206–1207)","Jōgen (1207–1211)","Kenryaku (1211–1213)","Kenpō (1213–1219)","Jōkyū (1219–1222)","Jōō (1222–1224)","Gennin (1224–1225)","Karoku (1225–1227)","Antei (1227–1229)","Kanki (1229–1232)","Jōei (1232–1233)","Tenpuku (1233–1234)","Bunryaku (1234–1235)","Katei (1235–1238)","Ryakunin (1238–1239)","En’ō (1239–1240)","Ninji (1240–1243)","Kangen (1243–1247)","Hōji (1247–1249)","Kenchō (1249–1256)","Kōgen (1256–1257)","Shōka (1257–1259)","Shōgen (1259–1260)","Bun’ō (1260–1261)","Kōchō (1261–1264)","Bun’ei (1264–1275)","Kenji (1275–1278)","Kōan (1278–1288)","Shōō (1288–1293)","Einin (1293–1299)","Shōan (1299–1302)","Kengen (1302–1303)","Kagen (1303–1306)","Tokuji (1306–1308)","Enkyō (1308–1311)","Ōchō (1311–1312)","Shōwa (1312–1317)","Bunpō (1317–1319)","Genō (1319–1321)","Genkō (1321–1324)","Shōchū (1324–1326)","Karyaku (1326–1329)","Gentoku (1329–1331)","Genkō (1331–1334)","Kenmu (1334–1336)","Engen (1336–1340)","Kōkoku (1340–1346)","Shōhei (1346–1370)","Kentoku (1370–1372)","Bunchū (1372–1375)","Tenju (1375–1379)","Kōryaku (1379–1381)","Kōwa (1381–1384)","Genchū (1384–1392)","Meitoku (1384–1387)","Kakei (1387–1389)","Kōō (1389–1390)","Meitoku (1390–1394)","Ōei (1394–1428)","Shōchō (1428–1429)","Eikyō (1429–1441)","Kakitsu (1441–1444)","Bun’an (1444–1449)","Hōtoku (1449–1452)","Kyōtoku (1452–1455)","Kōshō (1455–1457)","Chōroku (1457–1460)","Kanshō (1460–1466)","Bunshō (1466–1467)","Ōnin (1467–1469)","Bunmei (1469–1487)","Chōkyō (1487–1489)","Entoku (1489–1492)","Meiō (1492–1501)","Bunki (1501–1504)","Eishō (1504–1521)","Taiei (1521–1528)","Kyōroku (1528–1532)","Tenbun (1532–1555)","Kōji (1555–1558)","Eiroku (1558–1570)","Genki (1570–1573)","Tenshō (1573–1592)","Bunroku (1592–1596)","Keichō (1596–1615)","Genna (1615–1624)","Kan’ei (1624–1644)","Shōho (1644–1648)","Keian (1648–1652)","Jōō (1652–1655)","Meireki (1655–1658)","Manji (1658–1661)","Kanbun (1661–1673)","Enpō (1673–1681)","Tenna (1681–1684)","Jōkyō (1684–1688)","Genroku (1688–1704)","Hōei (1704–1711)","Shōtoku (1711–1716)","Kyōhō (1716–1736)","Genbun (1736–1741)","Kanpō (1741–1744)","Enkyō (1744–1748)","Kan’en (1748–1751)","Hōreki (1751–1764)","Meiwa (1764–1772)","An’ei (1772–1781)","Tenmei (1781–1789)","Kansei (1789–1801)","Kyōwa (1801–1804)","Bunka (1804–1818)","Bunsei (1818–1830)","Tenpō (1830–1844)","Kōka (1844–1848)","Kaei (1848–1854)","Ansei (1854–1860)","Man’en (1860–1861)","Bunkyū (1861–1864)","Genji (1864–1865)","Keiō (1865–1868)","M","T","S","H"],short:["Taika (645–650)","Hakuchi (650–671)","Hakuhō (672–686)","Shuchō (686–701)","Taihō (701–704)","Keiun (704–708)","Wadō (708–715)","Reiki (715–717)","Yōrō (717–724)","Jinki (724–729)","Tenpyō (729–749)","Tenpyō-kampō (749-749)","Tenpyō-shōhō (749-757)","Tenpyō-hōji (757-765)","Tenpyō-jingo (765-767)","Jingo-keiun (767-770)","Hōki (770–780)","Ten-ō (781-782)","Enryaku (782–806)","Daidō (806–810)","Kōnin (810–824)","Tenchō (824–834)","Jōwa (834–848)","Kajō (848–851)","Ninju (851–854)","Saikō (854–857)","Ten-an (857-859)","Jōgan (859–877)","Gangyō (877–885)","Ninna (885–889)","Kanpyō (889–898)","Shōtai (898–901)","Engi (901–923)","Enchō (923–931)","Jōhei (931–938)","Tengyō (938–947)","Tenryaku (947–957)","Tentoku (957–961)","Ōwa (961–964)","Kōhō (964–968)","Anna (968–970)","Tenroku (970–973)","Ten’en (973–976)","Jōgen (976–978)","Tengen (978–983)","Eikan (983–985)","Kanna (985–987)","Eien (987–989)","Eiso (989–990)","Shōryaku (990–995)","Chōtoku (995–999)","Chōhō (999–1004)","Kankō (1004–1012)","Chōwa (1012–1017)","Kannin (1017–1021)","Jian (1021–1024)","Manju (1024–1028)","Chōgen (1028–1037)","Chōryaku (1037–1040)","Chōkyū (1040–1044)","Kantoku (1044–1046)","Eishō (1046–1053)","Tengi (1053–1058)","Kōhei (1058–1065)","Jiryaku (1065–1069)","Enkyū (1069–1074)","Shōho (1074–1077)","Shōryaku (1077–1081)","Eihō (1081–1084)","Ōtoku (1084–1087)","Kanji (1087–1094)","Kahō (1094–1096)","Eichō (1096–1097)","Jōtoku (1097–1099)","Kōwa (1099–1104)","Chōji (1104–1106)","Kashō (1106–1108)","Tennin (1108–1110)","Ten-ei (1110-1113)","Eikyū (1113–1118)","Gen’ei (1118–1120)","Hōan (1120–1124)","Tenji (1124–1126)","Daiji (1126–1131)","Tenshō (1131–1132)","Chōshō (1132–1135)","Hōen (1135–1141)","Eiji (1141–1142)","Kōji (1142–1144)","Ten’yō (1144–1145)","Kyūan (1145–1151)","Ninpei (1151–1154)","Kyūju (1154–1156)","Hōgen (1156–1159)","Heiji (1159–1160)","Eiryaku (1160–1161)","Ōho (1161–1163)","Chōkan (1163–1165)","Eiman (1165–1166)","Nin’an (1166–1169)","Kaō (1169–1171)","Shōan (1171–1175)","Angen (1175–1177)","Jishō (1177–1181)","Yōwa (1181–1182)","Juei (1182–1184)","Genryaku (1184–1185)","Bunji (1185–1190)","Kenkyū (1190–1199)","Shōji (1199–1201)","Kennin (1201–1204)","Genkyū (1204–1206)","Ken’ei (1206–1207)","Jōgen (1207–1211)","Kenryaku (1211–1213)","Kenpō (1213–1219)","Jōkyū (1219–1222)","Jōō (1222–1224)","Gennin (1224–1225)","Karoku (1225–1227)","Antei (1227–1229)","Kanki (1229–1232)","Jōei (1232–1233)","Tenpuku (1233–1234)","Bunryaku (1234–1235)","Katei (1235–1238)","Ryakunin (1238–1239)","En’ō (1239–1240)","Ninji (1240–1243)","Kangen (1243–1247)","Hōji (1247–1249)","Kenchō (1249–1256)","Kōgen (1256–1257)","Shōka (1257–1259)","Shōgen (1259–1260)","Bun’ō (1260–1261)","Kōchō (1261–1264)","Bun’ei (1264–1275)","Kenji (1275–1278)","Kōan (1278–1288)","Shōō (1288–1293)","Einin (1293–1299)","Shōan (1299–1302)","Kengen (1302–1303)","Kagen (1303–1306)","Tokuji (1306–1308)","Enkyō (1308–1311)","Ōchō (1311–1312)","Shōwa (1312–1317)","Bunpō (1317–1319)","Genō (1319–1321)","Genkō (1321–1324)","Shōchū (1324–1326)","Karyaku (1326–1329)","Gentoku (1329–1331)","Genkō (1331–1334)","Kenmu (1334–1336)","Engen (1336–1340)","Kōkoku (1340–1346)","Shōhei (1346–1370)","Kentoku (1370–1372)","Bunchū (1372–1375)","Tenju (1375–1379)","Kōryaku (1379–1381)","Kōwa (1381–1384)","Genchū (1384–1392)","Meitoku (1384–1387)","Kakei (1387–1389)","Kōō (1389–1390)","Meitoku (1390–1394)","Ōei (1394–1428)","Shōchō (1428–1429)","Eikyō (1429–1441)","Kakitsu (1441–1444)","Bun’an (1444–1449)","Hōtoku (1449–1452)","Kyōtoku (1452–1455)","Kōshō (1455–1457)","Chōroku (1457–1460)","Kanshō (1460–1466)","Bunshō (1466–1467)","Ōnin (1467–1469)","Bunmei (1469–1487)","Chōkyō (1487–1489)","Entoku (1489–1492)","Meiō (1492–1501)","Bunki (1501–1504)","Eishō (1504–1521)","Taiei (1521–1528)","Kyōroku (1528–1532)","Tenbun (1532–1555)","Kōji (1555–1558)","Eiroku (1558–1570)","Genki (1570–1573)","Tenshō (1573–1592)","Bunroku (1592–1596)","Keichō (1596–1615)","Genna (1615–1624)","Kan’ei (1624–1644)","Shōho (1644–1648)","Keian (1648–1652)","Jōō (1652–1655)","Meireki (1655–1658)","Manji (1658–1661)","Kanbun (1661–1673)","Enpō (1673–1681)","Tenna (1681–1684)","Jōkyō (1684–1688)","Genroku (1688–1704)","Hōei (1704–1711)","Shōtoku (1711–1716)","Kyōhō (1716–1736)","Genbun (1736–1741)","Kanpō (1741–1744)","Enkyō (1744–1748)","Kan’en (1748–1751)","Hōreki (1751–1764)","Meiwa (1764–1772)","An’ei (1772–1781)","Tenmei (1781–1789)","Kansei (1789–1801)","Kyōwa (1801–1804)","Bunka (1804–1818)","Bunsei (1818–1830)","Tenpō (1830–1844)","Kōka (1844–1848)","Kaei (1848–1854)","Ansei (1854–1860)","Man’en (1860–1861)","Bunkyū (1861–1864)","Genji (1864–1865)","Keiō (1865–1868)","Meiji","Taishō","Shōwa","Heisei"],long:["Taika (645–650)","Hakuchi (650–671)","Hakuhō (672–686)","Shuchō (686–701)","Taihō (701–704)","Keiun (704–708)","Wadō (708–715)","Reiki (715–717)","Yōrō (717–724)","Jinki (724–729)","Tenpyō (729–749)","Tenpyō-kampō (749-749)","Tenpyō-shōhō (749-757)","Tenpyō-hōji (757-765)","Tenpyō-jingo (765-767)","Jingo-keiun (767-770)","Hōki (770–780)","Ten-ō (781-782)","Enryaku (782–806)","Daidō (806–810)","Kōnin (810–824)","Tenchō (824–834)","Jōwa (834–848)","Kajō (848–851)","Ninju (851–854)","Saikō (854–857)","Ten-an (857-859)","Jōgan (859–877)","Gangyō (877–885)","Ninna (885–889)","Kanpyō (889–898)","Shōtai (898–901)","Engi (901–923)","Enchō (923–931)","Jōhei (931–938)","Tengyō (938–947)","Tenryaku (947–957)","Tentoku (957–961)","Ōwa (961–964)","Kōhō (964–968)","Anna (968–970)","Tenroku (970–973)","Ten’en (973–976)","Jōgen (976–978)","Tengen (978–983)","Eikan (983–985)","Kanna (985–987)","Eien (987–989)","Eiso (989–990)","Shōryaku (990–995)","Chōtoku (995–999)","Chōhō (999–1004)","Kankō (1004–1012)","Chōwa (1012–1017)","Kannin (1017–1021)","Jian (1021–1024)","Manju (1024–1028)","Chōgen (1028–1037)","Chōryaku (1037–1040)","Chōkyū (1040–1044)","Kantoku (1044–1046)","Eishō (1046–1053)","Tengi (1053–1058)","Kōhei (1058–1065)","Jiryaku (1065–1069)","Enkyū (1069–1074)","Shōho (1074–1077)","Shōryaku (1077–1081)","Eihō (1081–1084)","Ōtoku (1084–1087)","Kanji (1087–1094)","Kahō (1094–1096)","Eichō (1096–1097)","Jōtoku (1097–1099)","Kōwa (1099–1104)","Chōji (1104–1106)","Kashō (1106–1108)","Tennin (1108–1110)","Ten-ei (1110-1113)","Eikyū (1113–1118)","Gen’ei (1118–1120)","Hōan (1120–1124)","Tenji (1124–1126)","Daiji (1126–1131)","Tenshō (1131–1132)","Chōshō (1132–1135)","Hōen (1135–1141)","Eiji (1141–1142)","Kōji (1142–1144)","Ten’yō (1144–1145)","Kyūan (1145–1151)","Ninpei (1151–1154)","Kyūju (1154–1156)","Hōgen (1156–1159)","Heiji (1159–1160)","Eiryaku (1160–1161)","Ōho (1161–1163)","Chōkan (1163–1165)","Eiman (1165–1166)","Nin’an (1166–1169)","Kaō (1169–1171)","Shōan (1171–1175)","Angen (1175–1177)","Jishō (1177–1181)","Yōwa (1181–1182)","Juei (1182–1184)","Genryaku (1184–1185)","Bunji (1185–1190)","Kenkyū (1190–1199)","Shōji (1199–1201)","Kennin (1201–1204)","Genkyū (1204–1206)","Ken’ei (1206–1207)","Jōgen (1207–1211)","Kenryaku (1211–1213)","Kenpō (1213–1219)","Jōkyū (1219–1222)","Jōō (1222–1224)","Gennin (1224–1225)","Karoku (1225–1227)","Antei (1227–1229)","Kanki (1229–1232)","Jōei (1232–1233)","Tenpuku (1233–1234)","Bunryaku (1234–1235)","Katei (1235–1238)","Ryakunin (1238–1239)","En’ō (1239–1240)","Ninji (1240–1243)","Kangen (1243–1247)","Hōji (1247–1249)","Kenchō (1249–1256)","Kōgen (1256–1257)","Shōka (1257–1259)","Shōgen (1259–1260)","Bun’ō (1260–1261)","Kōchō (1261–1264)","Bun’ei (1264–1275)","Kenji (1275–1278)","Kōan (1278–1288)","Shōō (1288–1293)","Einin (1293–1299)","Shōan (1299–1302)","Kengen (1302–1303)","Kagen (1303–1306)","Tokuji (1306–1308)","Enkyō (1308–1311)","Ōchō (1311–1312)","Shōwa (1312–1317)","Bunpō (1317–1319)","Genō (1319–1321)","Genkō (1321–1324)","Shōchū (1324–1326)","Karyaku (1326–1329)","Gentoku (1329–1331)","Genkō (1331–1334)","Kenmu (1334–1336)","Engen (1336–1340)","Kōkoku (1340–1346)","Shōhei (1346–1370)","Kentoku (1370–1372)","Bunchū (1372–1375)","Tenju (1375–1379)","Kōryaku (1379–1381)","Kōwa (1381–1384)","Genchū (1384–1392)","Meitoku (1384–1387)","Kakei (1387–1389)","Kōō (1389–1390)","Meitoku (1390–1394)","Ōei (1394–1428)","Shōchō (1428–1429)","Eikyō (1429–1441)","Kakitsu (1441–1444)","Bun’an (1444–1449)","Hōtoku (1449–1452)","Kyōtoku (1452–1455)","Kōshō (1455–1457)","Chōroku (1457–1460)","Kanshō (1460–1466)","Bunshō (1466–1467)","Ōnin (1467–1469)","Bunmei (1469–1487)","Chōkyō (1487–1489)","Entoku (1489–1492)","Meiō (1492–1501)","Bunki (1501–1504)","Eishō (1504–1521)","Taiei (1521–1528)","Kyōroku (1528–1532)","Tenbun (1532–1555)","Kōji (1555–1558)","Eiroku (1558–1570)","Genki (1570–1573)","Tenshō (1573–1592)","Bunroku (1592–1596)","Keichō (1596–1615)","Genna (1615–1624)","Kan’ei (1624–1644)","Shōho (1644–1648)","Keian (1648–1652)","Jōō (1652–1655)","Meireki (1655–1658)","Manji (1658–1661)","Kanbun (1661–1673)","Enpō (1673–1681)","Tenna (1681–1684)","Jōkyō (1684–1688)","Genroku (1688–1704)","Hōei (1704–1711)","Shōtoku (1711–1716)","Kyōhō (1716–1736)","Genbun (1736–1741)","Kanpō (1741–1744)","Enkyō (1744–1748)","Kan’en (1748–1751)","Hōreki (1751–1764)","Meiwa (1764–1772)","An’ei (1772–1781)","Tenmei (1781–1789)","Kansei (1789–1801)","Kyōwa (1801–1804)","Bunka (1804–1818)","Bunsei (1818–1830)","Tenpō (1830–1844)","Kōka (1844–1848)","Kaei (1848–1854)","Ansei (1854–1860)","Man’en (1860–1861)","Bunkyū (1861–1864)","Genji (1864–1865)","Keiō (1865–1868)","Meiji","Taishō","Shōwa","Heisei"]},dayPeriods:{am:"AM",pm:"PM"}},persian:{months:{narrow:["1","2","3","4","5","6","7","8","9","10","11","12"],short:["Farvardin","Ordibehesht","Khordad","Tir","Mordad","Shahrivar","Mehr","Aban","Azar","Dey","Bahman","Esfand"],long:["Farvardin","Ordibehesht","Khordad","Tir","Mordad","Shahrivar","Mehr","Aban","Azar","Dey","Bahman","Esfand"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["AP"],short:["AP"],long:["AP"]},dayPeriods:{am:"AM",pm:"PM"}},roc:{months:{narrow:["J","F","M","A","M","J","J","A","S","O","N","D"],short:["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"],long:["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"]},days:{narrow:["D","S","T","Q","Q","S","S"],short:["dom","seg","ter","qua","qui","sex","sáb"],long:["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"]},eras:{narrow:["Antes de R.O.C.","R.O.C."],short:["Antes de R.O.C.","R.O.C."],long:["Antes de R.O.C.","R.O.C."]},dayPeriods:{am:"AM",pm:"PM"}}}},number:{nu:["latn"],patterns:{decimal:{positivePattern:"{number}",negativePattern:"{minusSign}{number}"},currency:{positivePattern:"{currency}{number}",negativePattern:"{minusSign}{currency}{number}"},percent:{positivePattern:"{number}{percentSign}",negativePattern:"{minusSign}{number}{percentSign}"}},symbols:{latn:{decimal:",",group:".",nan:"NaN",plusSign:"+",minusSign:"-",percentSign:"%",infinity:"∞"}},currencies:{AUD:"AU$",BRL:"R$",CAD:"CA$",CNY:"CN¥",EUR:"€",GBP:"£",HKD:"HK$",ILS:"₪",INR:"₹",JPY:"JP¥",KRW:"₩",MXN:"MX$",NZD:"NZ$",PTE:"Esc.",THB:"฿",TWD:"NT$",USD:"US$",VND:"₫",XAF:"FCFA",XCD:"EC$",XOF:"CFA",XPF:"CFPF"}}});
 
 /***/ },
-/* 34 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3590,18 +3738,18 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var Article = __webpack_require__(35);
-	var DocsHeader = __webpack_require__(40);
-	var Footer = __webpack_require__(45);
-	var Section = __webpack_require__(46);
-	var Headline = __webpack_require__(47);
-	var Tiles = __webpack_require__(48);
-	var Tile = __webpack_require__(52);
-	var Menu = __webpack_require__(26);
-	var Button = __webpack_require__(25);
-	var Anchor = __webpack_require__(44);
+	var Article = __webpack_require__(36);
+	var DocsHeader = __webpack_require__(41);
+	var Footer = __webpack_require__(46);
+	var Section = __webpack_require__(47);
+	var Headline = __webpack_require__(48);
+	var Tiles = __webpack_require__(49);
+	var Tile = __webpack_require__(53);
+	var Menu = __webpack_require__(27);
+	var Button = __webpack_require__(26);
+	var Anchor = __webpack_require__(45);
 	var Link = __webpack_require__(2).Link;
-	var GrommetLogo = __webpack_require__(43);
+	var GrommetLogo = __webpack_require__(44);
 
 	var HomeSection = React.createClass({
 	  displayName: 'HomeSection',
@@ -4110,7 +4258,7 @@ module.exports =
 	module.exports = Home;
 
 /***/ },
-/* 35 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4127,51 +4275,55 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _KeyboardAccelerators = __webpack_require__(16);
+	var _KeyboardAccelerators = __webpack_require__(17);
 
 	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
 
-	var _DOM = __webpack_require__(18);
+	var _DOM = __webpack_require__(19);
 
 	var _DOM2 = _interopRequireDefault(_DOM);
 
-	var _Props = __webpack_require__(20);
+	var _Props = __webpack_require__(21);
 
 	var _Props2 = _interopRequireDefault(_Props);
 
-	var _Scroll = __webpack_require__(36);
+	var _Scroll = __webpack_require__(37);
 
 	var _Scroll2 = _interopRequireDefault(_Scroll);
 
-	var _Responsive = __webpack_require__(28);
+	var _Responsive = __webpack_require__(29);
 
 	var _Responsive2 = _interopRequireDefault(_Responsive);
 
-	var _Button = __webpack_require__(25);
+	var _Button = __webpack_require__(26);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _LinkNext = __webpack_require__(37);
+	var _LinkNext = __webpack_require__(38);
 
 	var _LinkNext2 = _interopRequireDefault(_LinkNext);
 
-	var _LinkPrevious = __webpack_require__(38);
+	var _LinkPrevious = __webpack_require__(39);
 
 	var _LinkPrevious2 = _interopRequireDefault(_LinkPrevious);
 
-	var _Up = __webpack_require__(39);
+	var _Up = __webpack_require__(40);
 
 	var _Up2 = _interopRequireDefault(_Up);
 
-	var _Down = __webpack_require__(29);
+	var _Down = __webpack_require__(30);
 
 	var _Down2 = _interopRequireDefault(_Down);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4184,7 +4336,7 @@ module.exports =
 	// import CarouselControls from './CarouselControls';
 
 
-	var CLASS_ROOT = 'article';
+	var CLASS_ROOT = _CSSClassnames2.default.ARTICLE;
 	var DEFAULT_PLAY_INTERVAL = 10000; // 10s
 
 	var Article = function (_Component) {
@@ -4364,11 +4516,11 @@ module.exports =
 	        if (this._scrollingHorizontally) {
 	          // no-op
 	        } else if (!this._scrollingVertically) {
-	            if (Math.abs(event.deltaY * 2) > Math.abs(event.deltaX)) {
-	              // user is scrolling vertically
-	              this._shortTimer('_scrollingVertically', 1000);
-	            }
+	          if (Math.abs(event.deltaY * 2) > Math.abs(event.deltaX)) {
+	            // user is scrolling vertically
+	            this._shortTimer('_scrollingVertically', 1000);
 	          }
+	        }
 	      } else {
 	        // Give the user lots of control.
 	        var delta = event.deltaY;
@@ -4798,7 +4950,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 36 */
+/* 37 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4860,7 +5012,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 37 */
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4875,13 +5027,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4893,7 +5049,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'control-icon';
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Icon = function (_Component) {
 	  _inherits(Icon, _Component);
@@ -4918,7 +5075,7 @@ module.exports =
 	      var size = _props2.size;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-link-next', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-link-next', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
 
 	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'link-next', defaultMessage: 'link-next' });
 
@@ -4963,7 +5120,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 38 */
+/* 39 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4978,13 +5135,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -4996,7 +5157,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'control-icon';
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Icon = function (_Component) {
 	  _inherits(Icon, _Component);
@@ -5021,7 +5183,7 @@ module.exports =
 	      var size = _props2.size;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-link-previous', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-link-previous', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
 
 	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'link-previous', defaultMessage: 'link-previous' });
 
@@ -5066,7 +5228,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 39 */
+/* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5081,13 +5243,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5099,7 +5265,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'control-icon';
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Icon = function (_Component) {
 	  _inherits(Icon, _Component);
@@ -5124,7 +5291,7 @@ module.exports =
 	      var size = _props2.size;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-up', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-up', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
 
 	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'up', defaultMessage: 'up' });
 
@@ -5169,7 +5336,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 40 */
+/* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5177,12 +5344,12 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var Header = __webpack_require__(41);
-	var Title = __webpack_require__(42);
-	var Box = __webpack_require__(15);
-	var GrommetLogo = __webpack_require__(43);
-	var Menu = __webpack_require__(26);
-	var Anchor = __webpack_require__(44);
+	var Header = __webpack_require__(42);
+	var Title = __webpack_require__(43);
+	var Box = __webpack_require__(16);
+	var GrommetLogo = __webpack_require__(44);
+	var Menu = __webpack_require__(27);
+	var Anchor = __webpack_require__(45);
 	var Link = __webpack_require__(2).Link;
 
 	var DocsHeader = React.createClass({
@@ -5249,7 +5416,7 @@ module.exports =
 	module.exports = DocsHeader;
 
 /***/ },
-/* 41 */
+/* 42 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5266,17 +5433,21 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _Props = __webpack_require__(20);
+	var _Props = __webpack_require__(21);
 
 	var _Props2 = _interopRequireDefault(_Props);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5286,7 +5457,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "header";
+	var CLASS_ROOT = _CSSClassnames2.default.HEADER;
 
 	var Header = function (_Component) {
 	  _inherits(Header, _Component);
@@ -5428,7 +5599,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 42 */
+/* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5443,13 +5614,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Intl = __webpack_require__(19);
+	var _Intl = __webpack_require__(20);
 
 	var _Intl2 = _interopRequireDefault(_Intl);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5459,7 +5634,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "title";
+	var CLASS_ROOT = _CSSClassnames2.default.TITLE;
 
 	var Title = function (_Component) {
 	  _inherits(Title, _Component);
@@ -5540,7 +5715,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 43 */
+/* 44 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5555,9 +5730,13 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5567,7 +5746,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "logo-icon";
+	var CLASS_ROOT = _CSSClassnames2.default.LOGO_ICON;
 
 	var Grommet = function (_Component) {
 	  _inherits(Grommet, _Component);
@@ -5633,7 +5812,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 44 */
+/* 45 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5648,13 +5827,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _LinkNext = __webpack_require__(37);
+	var _LinkNext = __webpack_require__(38);
 
 	var _LinkNext2 = _interopRequireDefault(_LinkNext);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5666,7 +5849,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'anchor';
+	var CLASS_ROOT = _CSSClassnames2.default.ANCHOR;
 
 	var Anchor = function (_Component) {
 	  _inherits(Anchor, _Component);
@@ -5760,7 +5943,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 45 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5777,25 +5960,29 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _classnames4 = __webpack_require__(24);
+	var _classnames4 = __webpack_require__(5);
 
 	var _classnames5 = _interopRequireDefault(_classnames4);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _SkipLinkAnchor = __webpack_require__(21);
+	var _SkipLinkAnchor = __webpack_require__(22);
 
 	var _SkipLinkAnchor2 = _interopRequireDefault(_SkipLinkAnchor);
 
-	var _Props = __webpack_require__(20);
+	var _Props = __webpack_require__(21);
 
 	var _Props2 = _interopRequireDefault(_Props);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5807,7 +5994,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'footer';
+	var CLASS_ROOT = _CSSClassnames2.default.FOOTER;
 
 	var Footer = function (_Component) {
 	  _inherits(Footer, _Component);
@@ -5935,7 +6122,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 46 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5952,13 +6139,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(24);
+	var _classnames = __webpack_require__(5);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -5968,7 +6159,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'section';
+	var CLASS_ROOT = _CSSClassnames2.default.SECTION;
 
 	var Section = function (_Component) {
 	  _inherits(Section, _Component);
@@ -6012,7 +6203,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6027,9 +6218,13 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6041,7 +6236,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'headline';
+	var CLASS_ROOT = _CSSClassnames2.default.HEADLINE;
 
 	var Headline = function (_Component) {
 	  _inherits(Headline, _Component);
@@ -6082,7 +6277,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 48 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6099,43 +6294,47 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
-	var _Props = __webpack_require__(20);
+	var _Props = __webpack_require__(21);
 
 	var _Props2 = _interopRequireDefault(_Props);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Button = __webpack_require__(25);
+	var _Button = __webpack_require__(26);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Spinning = __webpack_require__(49);
+	var _Spinning = __webpack_require__(50);
 
 	var _Spinning2 = _interopRequireDefault(_Spinning);
 
-	var _Scroll = __webpack_require__(36);
+	var _Scroll = __webpack_require__(37);
 
 	var _Scroll2 = _interopRequireDefault(_Scroll);
 
-	var _InfiniteScroll = __webpack_require__(50);
+	var _InfiniteScroll = __webpack_require__(51);
 
 	var _InfiniteScroll2 = _interopRequireDefault(_InfiniteScroll);
 
-	var _Selection = __webpack_require__(51);
+	var _Selection = __webpack_require__(52);
 
 	var _Selection2 = _interopRequireDefault(_Selection);
 
-	var _LinkPrevious = __webpack_require__(38);
+	var _LinkPrevious = __webpack_require__(39);
 
 	var _LinkPrevious2 = _interopRequireDefault(_LinkPrevious);
 
-	var _LinkNext = __webpack_require__(37);
+	var _LinkNext = __webpack_require__(38);
 
 	var _LinkNext2 = _interopRequireDefault(_LinkNext);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6145,8 +6344,9 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "tiles";
-	var SELECTED_CLASS = "tile--selected";
+	var CLASS_ROOT = _CSSClassnames2.default.TILES;
+	var TILE = _CSSClassnames2.default.TILE;
+	var SELECTED_CLASS = TILE + '--selected';
 
 	var Tiles = function (_Component) {
 	  _inherits(Tiles, _Component);
@@ -6270,15 +6470,15 @@ module.exports =
 
 	        // mark any tiles that might be clipped
 	        var rect = tiles.getBoundingClientRect();
-	        var children = tiles.querySelectorAll('.tile');
+	        var children = tiles.querySelectorAll('.' + TILE);
 	        for (var i = 0; i < children.length; i += 1) {
 	          var child = children[i];
 	          var childRect = child.getBoundingClientRect();
 	          // 12 accounts for padding
 	          if (childRect.left + 12 < rect.left || childRect.right - 12 > rect.right) {
-	            child.classList.add('tile--eclipsed');
+	            child.classList.add(TILE + '--eclipsed');
 	          } else {
-	            child.classList.remove('tile--eclipsed');
+	            child.classList.remove(TILE + '--eclipsed');
 	          }
 	        }
 	      }
@@ -6304,7 +6504,7 @@ module.exports =
 	    value: function _setSelection() {
 	      _Selection2.default.setClassFromIndexes({
 	        containerElement: (0, _reactDom.findDOMNode)(this.refs.tiles),
-	        childSelector: '.tile',
+	        childSelector: '.' + TILE,
 	        selectedClass: SELECTED_CLASS,
 	        selectedIndexes: this.state.selected
 	      });
@@ -6314,7 +6514,7 @@ module.exports =
 	    value: function _onClick(event) {
 	      var selected = _Selection2.default.onClick(event, {
 	        containerElement: (0, _reactDom.findDOMNode)(this.refs.tiles),
-	        childSelector: '.tile',
+	        childSelector: '.' + TILE,
 	        selectedClass: SELECTED_CLASS,
 	        multiSelect: 'multiple' === this.props.selectable,
 	        priorSelectedIndexes: this.state.selected
@@ -6447,10 +6647,10 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 49 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -6462,6 +6662,10 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6470,7 +6674,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "icon-spinning";
+	var CLASS_ROOT = _CSSClassnames2.default.SPINNING;
 
 	var Spinning = function (_Component) {
 	  _inherits(Spinning, _Component);
@@ -6482,7 +6686,7 @@ module.exports =
 	  }
 
 	  _createClass(Spinning, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      var classes = [CLASS_ROOT];
 	      if (this.props.small) {
@@ -6492,16 +6696,16 @@ module.exports =
 	        classes.push(this.props.className);
 	      }
 	      return _react2.default.createElement(
-	        "svg",
-	        { className: classes.join(' '), viewBox: "0 0 48 48", version: "1.1",
-	          role: "img" },
+	        'svg',
+	        { className: classes.join(' '), viewBox: '0 0 48 48', version: '1.1',
+	          role: 'img' },
 	        _react2.default.createElement(
-	          "title",
+	          'title',
 	          null,
-	          "Spinning"
+	          'Spinning'
 	        ),
-	        _react2.default.createElement("circle", { stroke: "#ddd", strokeWidth: "4", strokeDasharray: "24px 8px", fill: "none", cx: "24", cy: "24", r: "20" }),
-	        _react2.default.createElement("circle", { stroke: "#333", strokeWidth: "4", strokeDasharray: "24px 104px", fill: "none", cx: "24", cy: "24", r: "20" })
+	        _react2.default.createElement('circle', { stroke: '#ddd', strokeWidth: '4', strokeDasharray: '24px 8px', fill: 'none', cx: '24', cy: '24', r: '20' }),
+	        _react2.default.createElement('circle', { stroke: '#333', strokeWidth: '4', strokeDasharray: '24px 104px', fill: 'none', cx: '24', cy: '24', r: '20' })
 	      );
 	    }
 	  }]);
@@ -6510,10 +6714,10 @@ module.exports =
 	}(_react.Component);
 
 	exports.default = Spinning;
-	module.exports = exports["default"];
+	module.exports = exports['default'];
 
 /***/ },
-/* 50 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -6522,7 +6726,7 @@ module.exports =
 	  value: true
 	});
 
-	var _DOM = __webpack_require__(18);
+	var _DOM = __webpack_require__(19);
 
 	var _DOM2 = _interopRequireDefault(_DOM);
 
@@ -6599,7 +6803,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 51 */
+/* 52 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -6756,7 +6960,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6773,17 +6977,21 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _Props = __webpack_require__(20);
+	var _Props = __webpack_require__(21);
 
 	var _Props2 = _interopRequireDefault(_Props);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6795,7 +7003,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "tile";
+	var CLASS_ROOT = _CSSClassnames2.default.TILE;
 
 	var Tile = function (_Component) {
 	  _inherits(Tile, _Component);
@@ -6833,7 +7041,7 @@ module.exports =
 	      // if Tiles flush is true, default borderSize to small (1px)
 	      var borderSize = hoverBorder ? hoverBorderSize ? hoverBorderSize : 'large' : 'small';
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--status-' + statusClass, status), _defineProperty(_classnames, CLASS_ROOT + '--wide', wide), _defineProperty(_classnames, CLASS_ROOT + '--selectable', onClick), _defineProperty(_classnames, CLASS_ROOT + '--selected', selected), _defineProperty(_classnames, '' + hoverStyle + (hoverStyle == 'border' ? borderSize ? '-' + borderSize : '-medium' : '') + '-hover-color-index-' + hoverColorIndex, hoverStyle), _defineProperty(_classnames, CLASS_ROOT + '--hover-border-' + borderSize, borderSize), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--status-' + statusClass, status), _defineProperty(_classnames, CLASS_ROOT + '--wide', wide), _defineProperty(_classnames, CLASS_ROOT + '--selectable', onClick), _defineProperty(_classnames, CLASS_ROOT + '--selected', selected), _defineProperty(_classnames, '' + _CSSClassnames2.default.namespace + hoverStyle + (hoverStyle == 'border' ? borderSize ? '-' + borderSize : '-medium' : '') + '-hover-color-index-' + hoverColorIndex, hoverStyle), _defineProperty(_classnames, CLASS_ROOT + '--hover-border-' + borderSize, borderSize), _classnames));
 
 	      var boxProps = _Props2.default.pick(this.props, Object.keys(_Box2.default.propTypes));
 
@@ -6869,7 +7077,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6881,13 +7089,13 @@ module.exports =
 	var Route = Router.Route;
 	var Link = Router.Link;
 
-	var Section = __webpack_require__(46);
-	var DocsSplit = __webpack_require__(54);
-	var DocsArticle = __webpack_require__(58);
-	var Menu = __webpack_require__(26);
-	var Anchor = __webpack_require__(44);
+	var Section = __webpack_require__(47);
+	var DocsSplit = __webpack_require__(55);
+	var DocsArticle = __webpack_require__(59);
+	var Menu = __webpack_require__(27);
+	var Anchor = __webpack_require__(45);
 
-	var Philosophy = __webpack_require__(65);
+	var Philosophy = __webpack_require__(66);
 
 	var CONTENTS = [{ route: "design_philosophy", label: 'Philosophy', component: Philosophy,
 	  contents: [{ label: 'Best Practices', id: 'best-practices' }, { label: 'Usability', id: 'usability' }, { label: 'Interactions', id: 'interactions' }, { label: 'Mobile', id: 'mobile' }, { label: 'Accessibility', id: 'accessibility' }]
@@ -7018,7 +7226,7 @@ module.exports =
 	module.exports = Design;
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7027,17 +7235,17 @@ module.exports =
 
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(2).Link;
-	var Split = __webpack_require__(55);
-	var Sidebar = __webpack_require__(56);
-	var Header = __webpack_require__(41);
-	var Title = __webpack_require__(42);
-	var Box = __webpack_require__(15);
-	var Menu = __webpack_require__(26);
-	var Button = __webpack_require__(25);
-	var CloseIcon = __webpack_require__(23);
-	var GrommetLogo = __webpack_require__(43);
-	var DocsMenu = __webpack_require__(57);
-	var DOM = __webpack_require__(18);
+	var Split = __webpack_require__(56);
+	var Sidebar = __webpack_require__(57);
+	var Header = __webpack_require__(42);
+	var Title = __webpack_require__(43);
+	var Box = __webpack_require__(16);
+	var Menu = __webpack_require__(27);
+	var Button = __webpack_require__(26);
+	var CloseIcon = __webpack_require__(25);
+	var GrommetLogo = __webpack_require__(44);
+	var DocsMenu = __webpack_require__(58);
+	var DOM = __webpack_require__(19);
 
 	var DocsSplit = React.createClass({
 	  displayName: 'DocsSplit',
@@ -7196,7 +7404,7 @@ module.exports =
 	module.exports = DocsSplit;
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7211,6 +7419,10 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -7219,7 +7431,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "split";
+	var CLASS_ROOT = _CSSClassnames2.default.SPLIT;
 	var BREAK_WIDTH = 720; //adds the breakpoint of single/multiple split
 
 	var Split = function (_Component) {
@@ -7364,7 +7576,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 56 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7381,17 +7593,21 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Props = __webpack_require__(20);
+	var _Props = __webpack_require__(21);
 
 	var _Props2 = _interopRequireDefault(_Props);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7403,7 +7619,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'sidebar';
+	var CLASS_ROOT = _CSSClassnames2.default.SIDEBAR;
 
 	var Sidebar = function (_Component) {
 	  _inherits(Sidebar, _Component);
@@ -7450,7 +7666,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 57 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7459,8 +7675,8 @@ module.exports =
 
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(2).Link;
-	var Menu = __webpack_require__(26);
-	var Header = __webpack_require__(41);
+	var Menu = __webpack_require__(27);
+	var Header = __webpack_require__(42);
 
 	var DocsMenu = React.createClass({
 	  displayName: 'DocsMenu',
@@ -7495,8 +7711,8 @@ module.exports =
 	        );
 	        //item = <a key={content.label} href={href}>{content.label}</a>;
 	      } else {
-	          item = content.label;
-	        }
+	        item = content.label;
+	      }
 
 	      if (!context) {
 	        item = React.createElement(
@@ -7548,7 +7764,7 @@ module.exports =
 	module.exports = DocsMenu;
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7556,17 +7772,17 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var Article = __webpack_require__(35);
-	var Header = __webpack_require__(41);
-	var Box = __webpack_require__(15);
-	var DocsFooter = __webpack_require__(59);
+	var Article = __webpack_require__(36);
+	var Header = __webpack_require__(42);
+	var Box = __webpack_require__(16);
+	var DocsFooter = __webpack_require__(60);
 
 	//hjjs configuration
-	var hljs = __webpack_require__(60);
-	hljs.registerLanguage('bash', __webpack_require__(61));
-	hljs.registerLanguage('xml', __webpack_require__(62));
-	hljs.registerLanguage('javascript', __webpack_require__(63));
-	hljs.registerLanguage('scss', __webpack_require__(64));
+	var hljs = __webpack_require__(61);
+	hljs.registerLanguage('bash', __webpack_require__(62));
+	hljs.registerLanguage('xml', __webpack_require__(63));
+	hljs.registerLanguage('javascript', __webpack_require__(64));
+	hljs.registerLanguage('scss', __webpack_require__(65));
 
 	var DocsArticle = React.createClass({
 	  displayName: 'DocsArticle',
@@ -7623,7 +7839,7 @@ module.exports =
 	module.exports = DocsArticle;
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7631,7 +7847,7 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var Footer = __webpack_require__(45);
+	var Footer = __webpack_require__(46);
 
 	var DocsFooter = React.createClass({
 	  displayName: 'DocsFooter',
@@ -7670,7 +7886,7 @@ module.exports =
 	module.exports = DocsFooter;
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -8460,7 +8676,7 @@ module.exports =
 
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -8539,7 +8755,7 @@ module.exports =
 	};
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -8646,7 +8862,7 @@ module.exports =
 	};
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -8764,7 +8980,7 @@ module.exports =
 	};
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -8866,7 +9082,7 @@ module.exports =
 	};
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8874,7 +9090,7 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(58);
+	var DocsArticle = __webpack_require__(59);
 
 	var Philosophy = React.createClass({
 	  displayName: 'Philosophy',
@@ -9252,7 +9468,7 @@ module.exports =
 	module.exports = Philosophy;
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9264,29 +9480,29 @@ module.exports =
 	var Route = Router.Route;
 	var Link = Router.Link;
 
-	var DocsSplit = __webpack_require__(54);
-	var DocsArticle = __webpack_require__(58);
-	var Menu = __webpack_require__(26);
-	var Anchor = __webpack_require__(44);
+	var DocsSplit = __webpack_require__(55);
+	var DocsArticle = __webpack_require__(59);
+	var Menu = __webpack_require__(27);
+	var Anchor = __webpack_require__(45);
 
-	var HelloWorld = __webpack_require__(67);
-	var GetStarted = __webpack_require__(68);
+	var HelloWorld = __webpack_require__(68);
+	var GetStarted = __webpack_require__(69);
 
-	var ActionsDoc = __webpack_require__(69);
-	var BoxDoc = __webpack_require__(70);
-	var DashboardDoc = __webpack_require__(71);
-	var NavigationDoc = __webpack_require__(84);
-	var MarqueeDoc = __webpack_require__(85);
-	var WorldMapDoc = __webpack_require__(89);
-	var AccordionDoc = __webpack_require__(92);
-	var CalloutDoc = __webpack_require__(101);
+	var ActionsDoc = __webpack_require__(70);
+	var BoxDoc = __webpack_require__(71);
+	var DashboardDoc = __webpack_require__(72);
+	var NavigationDoc = __webpack_require__(85);
+	var MarqueeDoc = __webpack_require__(86);
+	var WorldMapDoc = __webpack_require__(92);
+	var AccordionDoc = __webpack_require__(95);
+	var CalloutDoc = __webpack_require__(104);
 
 	//hjjs configuration
-	var hljs = __webpack_require__(60);
-	hljs.registerLanguage('bash', __webpack_require__(61));
-	hljs.registerLanguage('xml', __webpack_require__(62));
-	hljs.registerLanguage('javascript', __webpack_require__(63));
-	hljs.registerLanguage('scss', __webpack_require__(64));
+	var hljs = __webpack_require__(61);
+	hljs.registerLanguage('bash', __webpack_require__(62));
+	hljs.registerLanguage('xml', __webpack_require__(63));
+	hljs.registerLanguage('javascript', __webpack_require__(64));
+	hljs.registerLanguage('scss', __webpack_require__(65));
 
 	var CONTENTS = [{ label: 'Guides',
 	  contents: [{ route: 'develop_helloworld', label: 'Hello World',
@@ -9435,7 +9651,7 @@ module.exports =
 	module.exports = Develop;
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9443,12 +9659,12 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(58);
+	var DocsArticle = __webpack_require__(59);
 
 	var Router = __webpack_require__(2);
 	var Link = Router.Link;
 
-	var Anchor = __webpack_require__(44);
+	var Anchor = __webpack_require__(45);
 
 	var HelloWorld = React.createClass({
 	  displayName: 'HelloWorld',
@@ -9550,7 +9766,7 @@ module.exports =
 	module.exports = HelloWorld;
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9563,7 +9779,7 @@ module.exports =
 
 	var _reactRouter = __webpack_require__(2);
 
-	var _DocsArticle = __webpack_require__(58);
+	var _DocsArticle = __webpack_require__(59);
 
 	var _DocsArticle2 = _interopRequireDefault(_DocsArticle);
 
@@ -9996,7 +10212,7 @@ module.exports =
 	module.exports = GetStarted;
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10004,7 +10220,7 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(58);
+	var DocsArticle = __webpack_require__(59);
 
 	var ActionsDoc = React.createClass({
 	  displayName: 'ActionsDoc',
@@ -10049,7 +10265,7 @@ module.exports =
 	module.exports = ActionsDoc;
 
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10057,8 +10273,8 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(58);
-	var Box = __webpack_require__(15);
+	var DocsArticle = __webpack_require__(59);
+	var Box = __webpack_require__(16);
 
 	var COLORS = ['brand', 'neutral-1', 'neutral-1-t', 'neutral-2', 'neutral-2-t', 'neutral-3', 'neutral-3-t', 'neutral-4', 'accent-1', 'accent-1-t', 'accent-2', 'accent-2-t', 'grey-1', 'grey-2', 'grey-3', 'grey-4', 'light-2', 'light-1', 'critical', 'warning', 'ok', 'unknown'];
 
@@ -10578,7 +10794,7 @@ module.exports =
 	module.exports = BoxDoc;
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10586,15 +10802,15 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(58);
-	var Title = __webpack_require__(42);
-	var Header = __webpack_require__(41);
-	var Search = __webpack_require__(72);
-	var Gravatar = __webpack_require__(74);
-	var Tiles = __webpack_require__(48);
-	var Tile = __webpack_require__(52);
-	var Chart = __webpack_require__(75);
-	var Meter = __webpack_require__(77);
+	var DocsArticle = __webpack_require__(59);
+	var Title = __webpack_require__(43);
+	var Header = __webpack_require__(42);
+	var Search = __webpack_require__(73);
+	var Gravatar = __webpack_require__(75);
+	var Tiles = __webpack_require__(49);
+	var Tile = __webpack_require__(53);
+	var Chart = __webpack_require__(76);
+	var Meter = __webpack_require__(78);
 
 	var dateSeries = [{ label: 'first', values: [[new Date(Date.parse("2015-05-22")), 4], [new Date(Date.parse("2015-05-21")), 2], [new Date(Date.parse("2015-05-20")), 3], [new Date(Date.parse("2015-05-19")), 3], [new Date(Date.parse("2015-05-18")), 2]], colorIndex: "graph-4" }];
 	var dateSeriesXAxis = [{ label: 'May 22', value: dateSeries[0].values[0][0] }, { label: 'May 21', value: dateSeries[0].values[1][0] }, { label: 'May 20', value: dateSeries[0].values[2][0] }, { label: 'May 19', value: dateSeries[0].values[3][0] }, { label: 'May 18', value: dateSeries[0].values[4][0] }];
@@ -10708,7 +10924,7 @@ module.exports =
 	module.exports = DashboardDoc;
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10725,29 +10941,33 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames4 = __webpack_require__(24);
+	var _classnames4 = __webpack_require__(5);
 
 	var _classnames5 = _interopRequireDefault(_classnames4);
 
-	var _KeyboardAccelerators = __webpack_require__(16);
+	var _KeyboardAccelerators = __webpack_require__(17);
 
 	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
 
-	var _Drop = __webpack_require__(27);
+	var _Drop = __webpack_require__(28);
 
 	var _Drop2 = _interopRequireDefault(_Drop);
 
-	var _Responsive = __webpack_require__(28);
+	var _Responsive = __webpack_require__(29);
 
 	var _Responsive2 = _interopRequireDefault(_Responsive);
 
-	var _Button = __webpack_require__(25);
+	var _Button = __webpack_require__(26);
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Search = __webpack_require__(73);
+	var _Search = __webpack_require__(74);
 
 	var _Search2 = _interopRequireDefault(_Search);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10759,7 +10979,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "search";
+	var CLASS_ROOT = _CSSClassnames2.default.SEARCH;
+	var BACKGROUND_COLOR_INDEX = _CSSClassnames2.default.BACKGROUND_COLOR_INDEX;
 
 	var Search = function (_Component) {
 	  _inherits(Search, _Component);
@@ -11035,7 +11256,7 @@ module.exports =
 	    value: function _renderDrop() {
 	      var _classnames;
 
-	      var classes = (0, _classnames5.default)((_classnames = {}, _defineProperty(_classnames, 'background-color-index-' + this.props.dropColorIndex, this.props.dropColorIndex), _defineProperty(_classnames, CLASS_ROOT + '__drop', true), _defineProperty(_classnames, CLASS_ROOT + '__drop--controlled', !this.state.inline), _defineProperty(_classnames, CLASS_ROOT + '__drop--large', this.props.large), _classnames));
+	      var classes = (0, _classnames5.default)((_classnames = {}, _defineProperty(_classnames, BACKGROUND_COLOR_INDEX + '-' + this.props.dropColorIndex, this.props.dropColorIndex), _defineProperty(_classnames, CLASS_ROOT + '__drop', true), _defineProperty(_classnames, CLASS_ROOT + '__drop--controlled', !this.state.inline), _defineProperty(_classnames, CLASS_ROOT + '__drop--large', this.props.large), _classnames));
 
 	      var input = void 0;
 	      if (!this.state.inline) {
@@ -11165,7 +11386,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11180,13 +11401,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11198,7 +11423,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'control-icon';
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Icon = function (_Component) {
 	  _inherits(Icon, _Component);
@@ -11223,7 +11449,7 @@ module.exports =
 	      var size = _props2.size;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-search', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-search', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
 
 	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'search', defaultMessage: 'search' });
 
@@ -11268,13 +11494,13 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-gravatar");
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11289,21 +11515,25 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _Legend = __webpack_require__(76);
+	var _Legend = __webpack_require__(77);
 
 	var _Legend2 = _interopRequireDefault(_Legend);
 
-	var _Intl = __webpack_require__(19);
+	var _Intl = __webpack_require__(20);
 
 	var _Intl2 = _interopRequireDefault(_Intl);
 
-	var _KeyboardAccelerators = __webpack_require__(16);
+	var _KeyboardAccelerators = __webpack_require__(17);
 
 	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11313,7 +11543,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "chart";
+	var CLASS_ROOT = _CSSClassnames2.default.CHART;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var DEFAULT_WIDTH = 384;
 	var DEFAULT_HEIGHT = 192;
@@ -11816,7 +12047,7 @@ module.exports =
 	            var x = Math.max(POINT_RADIUS + 1, Math.min(bounds.graphWidth - (POINT_RADIUS + 1), coordinate[0]));
 	            var value = item.values[index];
 	            points.push(_react2.default.createElement('circle', { key: index,
-	              className: CLASS_ROOT + '__values-point color-index-' + colorIndex,
+	              className: CLASS_ROOT + '__values-point ' + COLOR_INDEX + '-' + colorIndex,
 	              cx: x, cy: coordinate[1], r: POINT_RADIUS, onClick: value.onClick }));
 	          }
 
@@ -11825,7 +12056,7 @@ module.exports =
 
 	        var linePath = void 0;
 	        if ('line' === _this2.props.type || _this2.props.points) {
-	          var classes = [CLASS_ROOT + '__values-line', 'color-index-' + colorIndex];
+	          var classes = [CLASS_ROOT + '__values-line', COLOR_INDEX + '-' + colorIndex];
 	          if (item.onClick) {
 	            classes.push(CLASS_ROOT + '__values-line--active');
 	          }
@@ -11838,7 +12069,7 @@ module.exports =
 	          // and across to the bottom of where we started.
 	          var close = 'L' + coordinates[coordinates.length - 1][0] + ',' + bounds.graphBottom + 'L' + coordinates[0][0] + ',' + bounds.graphBottom + 'Z';
 	          var areaCommands = commands + close;
-	          var _classes = [CLASS_ROOT + '__values-area', 'color-index-' + colorIndex];
+	          var _classes = [CLASS_ROOT + '__values-area', COLOR_INDEX + '-' + colorIndex];
 	          if (item.onClick) {
 	            _classes.push(CLASS_ROOT + '__values-area--active');
 	          }
@@ -11889,7 +12120,7 @@ module.exports =
 	          var stepBarBase = _this3._translateHeight(baseY);
 	          baseY += valueY;
 
-	          var classes = [CLASS_ROOT + '__values-bar', 'color-index-' + colorIndex];
+	          var classes = [CLASS_ROOT + '__values-bar', COLOR_INDEX + '-' + colorIndex];
 	          if (!_this3.props.legend || 'inline' === _this3.props.legend.position || xIndex === _this3.state.highlightXIndex) {
 	            classes.push(CLASS_ROOT + '__values-bar--highlight');
 	          }
@@ -12054,7 +12285,7 @@ module.exports =
 
 	      var bars = this.props.thresholds.map(function (item, index) {
 	        var classes = [CLASS_ROOT + '__bar'];
-	        classes.push('color-index-' + (item.colorIndex || 'graph-' + (index + 1)));
+	        classes.push(COLOR_INDEX + '-' + (item.colorIndex || 'graph-' + (index + 1)));
 	        if (index < _this5.props.thresholds.length - 1) {
 	          end = _this5.props.thresholds[index + 1].value;
 	        } else {
@@ -12192,7 +12423,7 @@ module.exports =
 	            coordinates = _this7._coordinates(value);
 	            var colorIndex = _this7._itemColorIndex(item, seriesIndex);
 	            return _react2.default.createElement('circle', { key: seriesIndex,
-	              className: CLASS_ROOT + '__cursor-point color-index-' + colorIndex,
+	              className: CLASS_ROOT + '__cursor-point ' + COLOR_INDEX + '-' + colorIndex,
 	              cx: x, cy: coordinates[1], r: Math.round(POINT_RADIUS * 1.2) });
 	          });
 	        }
@@ -12277,7 +12508,7 @@ module.exports =
 	        classes.push(CLASS_ROOT + '--loading');
 	        var valueClasses = [CLASS_ROOT + '__values'];
 	        valueClasses.push(CLASS_ROOT + '__values--loading');
-	        valueClasses.push("color-index-loading");
+	        valueClasses.push(COLOR_INDEX + '-loading');
 	        var commands = "M0," + this.state.height / 2 + " L" + this.state.width + "," + this.state.height / 2;
 	        values.push(_react2.default.createElement(
 	          'g',
@@ -12435,7 +12666,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12450,9 +12681,13 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12462,7 +12697,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "legend";
+	var CLASS_ROOT = _CSSClassnames2.default.LEGEND;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Legend = function (_Component) {
 	  _inherits(Legend, _Component);
@@ -12528,7 +12764,7 @@ module.exports =
 	        if (item.hasOwnProperty('colorIndex')) {
 	          swatch = _react2.default.createElement(
 	            'svg',
-	            { className: CLASS_ROOT + "__item-swatch color-index-" + colorIndex,
+	            { className: CLASS_ROOT + '__item-swatch ' + COLOR_INDEX + '-' + colorIndex,
 	              viewBox: '0 0 12 12' },
 	            _react2.default.createElement('path', { className: item.className, d: 'M 5 0 l 0 12' })
 	          );
@@ -12629,7 +12865,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12646,37 +12882,41 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _Responsive = __webpack_require__(28);
+	var _Responsive = __webpack_require__(29);
 
 	var _Responsive2 = _interopRequireDefault(_Responsive);
 
-	var _Legend = __webpack_require__(76);
+	var _Legend = __webpack_require__(77);
 
 	var _Legend2 = _interopRequireDefault(_Legend);
 
-	var _Bar = __webpack_require__(78);
+	var _Bar = __webpack_require__(79);
 
 	var _Bar2 = _interopRequireDefault(_Bar);
 
-	var _Spiral = __webpack_require__(81);
+	var _Spiral = __webpack_require__(82);
 
 	var _Spiral2 = _interopRequireDefault(_Spiral);
 
-	var _Circle = __webpack_require__(82);
+	var _Circle = __webpack_require__(83);
 
 	var _Circle2 = _interopRequireDefault(_Circle);
 
-	var _Arc = __webpack_require__(83);
+	var _Arc = __webpack_require__(84);
 
 	var _Arc2 = _interopRequireDefault(_Arc);
 
-	var _Intl = __webpack_require__(19);
+	var _Intl = __webpack_require__(20);
 
 	var _Intl2 = _interopRequireDefault(_Intl);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12686,7 +12926,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "meter";
+	var CLASS_ROOT = _CSSClassnames2.default.METER;
 
 	var TYPE_COMPONENT = {
 	  'bar': _Bar2.default,
@@ -13236,7 +13476,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13251,9 +13491,9 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _utils = __webpack_require__(79);
+	var _utils = __webpack_require__(80);
 
-	var _Graphic2 = __webpack_require__(80);
+	var _Graphic2 = __webpack_require__(81);
 
 	var _Graphic3 = _interopRequireDefault(_Graphic2);
 
@@ -13398,7 +13638,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13413,7 +13653,13 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var METER = _CSSClassnames2.default.METER;
 
 	function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
 	  var angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
@@ -13428,7 +13674,7 @@ module.exports =
 	  baseUnit: 24,
 	  baseDimension: 192, // 24 * 8
 
-	  classRoot: 'meter',
+	  classRoot: METER,
 
 	  propTypes: {
 	    activeIndex: _react.PropTypes.number,
@@ -13513,7 +13759,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13530,19 +13776,23 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(17);
+	var _reactDom = __webpack_require__(18);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _utils = __webpack_require__(79);
+	var _utils = __webpack_require__(80);
 
-	var _Intl = __webpack_require__(19);
+	var _Intl = __webpack_require__(20);
 
 	var _Intl2 = _interopRequireDefault(_Intl);
 
-	var _KeyboardAccelerators = __webpack_require__(16);
+	var _KeyboardAccelerators = __webpack_require__(17);
 
 	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13551,6 +13801,8 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var CLASS_ROOT = _utils.classRoot;
 	var MIN_WIDTH = 0.033;
@@ -13627,7 +13879,7 @@ module.exports =
 	          classes.push(CLASS_ROOT + "__slice--clickable");
 	        }
 
-	        classes.push('color-index-' + item.colorIndex);
+	        classes.push(COLOR_INDEX + '-' + item.colorIndex);
 
 	        var commands = this._sliceCommands(trackIndex, item, startValue, maxValue);
 
@@ -13722,7 +13974,7 @@ module.exports =
 	    value: function _renderLoading() {
 	      var classes = [CLASS_ROOT + '__slice'];
 	      classes.push(CLASS_ROOT + '__slice--loading');
-	      classes.push("color-index-loading");
+	      classes.push(COLOR_INDEX + '-loading');
 	      var commands = this._loadingCommands();
 	      return [_react2.default.createElement('path', { key: 'loading', className: classes.join(' '), d: commands })];
 	    }
@@ -13932,7 +14184,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -13947,9 +14199,9 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _utils = __webpack_require__(79);
+	var _utils = __webpack_require__(80);
 
-	var _Graphic2 = __webpack_require__(80);
+	var _Graphic2 = __webpack_require__(81);
 
 	var _Graphic3 = _interopRequireDefault(_Graphic2);
 
@@ -14064,7 +14316,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14075,9 +14327,9 @@ module.exports =
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _utils = __webpack_require__(79);
+	var _utils = __webpack_require__(80);
 
-	var _Graphic2 = __webpack_require__(80);
+	var _Graphic2 = __webpack_require__(81);
 
 	var _Graphic3 = _interopRequireDefault(_Graphic2);
 
@@ -14154,7 +14406,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14169,11 +14421,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _utils = __webpack_require__(79);
+	var _utils = __webpack_require__(80);
 
-	var _Graphic2 = __webpack_require__(80);
+	var _Graphic2 = __webpack_require__(81);
 
 	var _Graphic3 = _interopRequireDefault(_Graphic2);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14184,6 +14440,7 @@ module.exports =
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var CLASS_ROOT = _utils.classRoot;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var ARC_WIDTH = _utils.baseDimension;
 	var ARC_HEIGHT = Math.round(_utils.baseDimension * 0.75);
@@ -14267,7 +14524,7 @@ module.exports =
 	        var y = ARC_WIDTH / 2;
 	        var indicatorCommands = singleIndicatorCommands(x, y, ARC_RADIUS, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset, length);
 	        indicator = _react2.default.createElement('path', { fill: 'none',
-	          className: CLASS_ROOT + "__slice-indicator color-index-" + item.colorIndex,
+	          className: CLASS_ROOT + '__slice-indicator ' + COLOR_INDEX + '-' + item.colorIndex,
 	          d: indicatorCommands });
 	      }
 
@@ -14282,7 +14539,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14290,15 +14547,15 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(58);
-	var Sidebar = __webpack_require__(56);
-	var Header = __webpack_require__(41);
-	var Footer = __webpack_require__(45);
-	var Title = __webpack_require__(42);
-	var Menu = __webpack_require__(26);
-	var CloseIcon = __webpack_require__(23);
-	var Gravatar = __webpack_require__(74);
-	var Search = __webpack_require__(72);
+	var DocsArticle = __webpack_require__(59);
+	var Sidebar = __webpack_require__(57);
+	var Header = __webpack_require__(42);
+	var Footer = __webpack_require__(46);
+	var Title = __webpack_require__(43);
+	var Menu = __webpack_require__(27);
+	var CloseIcon = __webpack_require__(25);
+	var Gravatar = __webpack_require__(75);
+	var Search = __webpack_require__(73);
 
 	var NavigationDoc = React.createClass({
 	  displayName: 'NavigationDoc',
@@ -14427,7 +14684,7 @@ module.exports =
 	module.exports = NavigationDoc;
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14435,9 +14692,9 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var jsxToString = __webpack_require__(86);
-	var DocsArticle = __webpack_require__(58);
-	var Marquee = __webpack_require__(87);
+	var jsxToString = __webpack_require__(87);
+	var DocsArticle = __webpack_require__(59);
+	var Marquee = __webpack_require__(88);
 
 	Marquee.displayName = 'Marquee';
 
@@ -14710,13 +14967,13 @@ module.exports =
 	module.exports = MarqueeDoc;
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports) {
 
 	module.exports = require("jsx-to-string");
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14731,29 +14988,29 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(17);
+	var _classnames2 = __webpack_require__(5);
 
-	var _reactDom2 = _interopRequireDefault(_reactDom);
+	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _classnames3 = __webpack_require__(24);
-
-	var _classnames4 = _interopRequireDefault(_classnames3);
-
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Headline = __webpack_require__(47);
+	var _Headline = __webpack_require__(48);
 
 	var _Headline2 = _interopRequireDefault(_Headline);
 
-	var _Paragraph = __webpack_require__(88);
+	var _Paragraph = __webpack_require__(89);
 
 	var _Paragraph2 = _interopRequireDefault(_Paragraph);
 
-	var _Anchor = __webpack_require__(44);
+	var _Anchor = __webpack_require__(45);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
+
+	var _Image = __webpack_require__(90);
+
+	var _Image2 = _interopRequireDefault(_Image);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14769,7 +15026,6 @@ module.exports =
 	var LIGHT_COLORINDEX = 'light-1';
 	var DARK_COLORINDEX = 'grey-1';
 	var PALM_BREAKPOINT = 720;
-	var BOX_CONTAINER_CLASSNAME = 'box__container';
 
 	var Marquee = function (_Component) {
 	  _inherits(Marquee, _Component);
@@ -14779,16 +15035,12 @@ module.exports =
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Marquee).call(this, props));
 
-	    _this._handleScroll = _this._handleScroll.bind(_this);
+	    _this._setReverse = _this._setReverse.bind(_this);
 	    _this._setBackgroundColorIndex = _this._setBackgroundColorIndex.bind(_this);
 
-	    _this._backgroundImageSize = {
-	      width: undefined,
-	      height: undefined
-	    };
-
 	    _this.state = {
-	      colorIndex: props.darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX
+	      colorIndex: props.darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX,
+	      reverse: props.justify === 'start' ? true : false
 	    };
 	    return _this;
 	  }
@@ -14796,137 +15048,16 @@ module.exports =
 	  _createClass(Marquee, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-
-	      window.addEventListener('scroll', this._handleScroll);
-	      window.addEventListener('resize', this._handleScroll);
+	      window.addEventListener('resize', this._setReverse);
 	      window.addEventListener('resize', this._setBackgroundColorIndex);
+	      this._setReverse();
 	      this._setBackgroundColorIndex();
-	      this._getBackgroundImageRatio();
-
-	      setTimeout(function () {
-	        _this2._handleScroll();
-	      }, 100);
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      window.removeEventListener('scroll', this._handleScroll);
-	      window.removeEventListener('resize', this._handleScroll);
+	      window.removeEventListener('resize', this._setReverse);
 	      window.removeEventListener('resize', this._setBackgroundColorIndex);
-	    }
-	  }, {
-	    key: '_getBackgroundImageRatio',
-	    value: function _getBackgroundImageRatio() {
-	      var _this3 = this;
-
-	      var marqueeNode = _reactDom2.default.findDOMNode(this);
-	      var marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
-
-	      // cache original width and height to be used onScroll
-	      if (!this._backgroundImageSize.width || !this._backgroundImageSize.height) {
-	        (function () {
-	          var marqueeBackgroundImage = new Image();
-	          marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
-
-	          if (marqueeBackgroundImage.src) {
-	            // in order for this to work properly in Safari,
-	            // we have to do the lookup for the image original width and height async
-	            setTimeout(function () {
-	              _this3._backgroundImageSize = {
-	                width: marqueeBackgroundImage.width || undefined,
-	                height: marqueeBackgroundImage.height || undefined
-	              };
-	            }, 100);
-	          }
-	        })();
-	      }
-
-	      return this._backgroundImageSize.width / this._backgroundImageSize.height;
-	    }
-	  }, {
-	    key: '_handleScroll',
-	    value: function _handleScroll() {
-	      var _props = this.props;
-	      var size = _props.size;
-	      var zoom = _props.zoom;
-	      var zoomPercentage = _props.zoomPercentage;
-
-
-	      var marqueeOriginalHeight = window.innerHeight * 0.75;
-	      if (window.innerWidth < PALM_BREAKPOINT) {
-	        if (size === 'small') {
-	          marqueeOriginalHeight = 270;
-	        } else {
-	          marqueeOriginalHeight = 300;
-	        }
-	      } else if (size === 'small') {
-	        marqueeOriginalHeight = window.innerHeight * 0.60;
-	      }
-
-	      var marqueeNode = _reactDom2.default.findDOMNode(this);
-	      var marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
-	      var marqueeTop = marquee.getBoundingClientRect().top;
-	      var marqueeText = marqueeNode.getElementsByClassName('marquee__overlay')[0];
-
-	      var backgroundRatio = this._getBackgroundImageRatio();
-	      var marqueeRatio = marquee.offsetWidth / marqueeOriginalHeight;
-	      var backgroundHeight = 0;
-	      var backgroundWidth = 0;
-
-	      var startPositionPercentage = 1;
-	      if (zoom === 'out') {
-	        startPositionPercentage = 1 + zoomPercentage / 100;
-	      }
-
-	      if (backgroundRatio > marqueeRatio) {
-	        // constrained by marquee height
-	        backgroundHeight = marqueeOriginalHeight;
-	        backgroundWidth = backgroundHeight * backgroundRatio;
-	      } else {
-	        // constrained by marquee width
-	        backgroundWidth = marquee.offsetWidth;
-	        backgroundHeight = backgroundWidth / backgroundRatio;
-	      }
-
-	      var positionRatio = (marqueeOriginalHeight + marqueeTop) / marqueeOriginalHeight;
-	      if (window.innerWidth >= PALM_BREAKPOINT) {
-	        marqueeText.style.opacity = positionRatio;
-
-	        if (-marqueeTop > marqueeOriginalHeight) {
-	          marqueeText.style.height = 0;
-	          marqueeText.style.top = marqueeOriginalHeight + 'px';
-	        } else if (marqueeTop > 0) {
-	          marqueeText.style.height = marqueeOriginalHeight + 'px';
-	          marqueeText.style.top = 0;
-	        } else {
-	          marqueeText.style.height = marqueeOriginalHeight + marqueeTop + 'px';
-	          marqueeText.style.top = -marqueeTop + 'px';
-	        }
-	      } else {
-	        marqueeText.style.opacity = 1;
-	        marqueeText.style.height = '';
-	        marqueeText.style.top = 0;
-	      }
-
-	      var zoomPositionRatio = positionRatio;
-	      var finalPositionPercentage = 1;
-	      if (zoom === 'out') {
-	        finalPositionPercentage = 1 + zoomPercentage / 100;
-	      } else {
-	        zoomPositionRatio = 1 - positionRatio;
-	      }
-
-	      var positionPercentage = void 0;
-	      if (marqueeTop < 0 && marqueeTop >= -marqueeOriginalHeight) {
-	        positionPercentage = (zoomPositionRatio * zoomPercentage + 100) / 100;
-	      } else if (marqueeTop >= 0) {
-	        positionPercentage = startPositionPercentage;
-	      } else {
-	        positionPercentage = finalPositionPercentage;
-	      }
-
-	      marquee.style.backgroundSize = backgroundWidth * positionPercentage + 'px ' + backgroundHeight * positionPercentage + 'px';
 	    }
 	  }, {
 	    key: '_setBackgroundColorIndex',
@@ -14941,32 +15072,40 @@ module.exports =
 	      }
 	    }
 	  }, {
+	    key: '_setReverse',
+	    value: function _setReverse() {
+	      var justify = this.props.justify;
+
+
+	      if (window.innerWidth < PALM_BREAKPOINT) {
+	        this.setState({ reverse: false });
+	      } else {
+	        this.setState({ reverse: justify === 'start' ? true : false });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _classnames;
 
-	      var _props2 = this.props;
-	      var backgroundImage = _props2.backgroundImage;
-	      var flush = _props2.flush;
-	      var headlineSize = _props2.headlineSize;
-	      var headline = _props2.headline;
-	      var justify = _props2.justify;
-	      var link = _props2.link;
-	      var linkIcon = _props2.linkIcon;
-	      var linkText = _props2.linkText;
-	      var onClick = _props2.onClick;
-	      var subHeadline = _props2.subHeadline;
+	      var _props = this.props;
+	      var backgroundImage = _props.backgroundImage;
+	      var flush = _props.flush;
+	      var headlineSize = _props.headlineSize;
+	      var headline = _props.headline;
+	      var image = _props.image;
+	      var justify = _props.justify;
+	      var link = _props.link;
+	      var linkIcon = _props.linkIcon;
+	      var linkText = _props.linkText;
+	      var onClick = _props.onClick;
+	      var subHeadline = _props.subHeadline;
 
 
-	      var classes = (0, _classnames4.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), _defineProperty(_classnames, CLASS_ROOT + '--bg-' + this.props.responsiveBackgroundPosition, this.props.responsiveBackgroundPosition), _defineProperty(_classnames, CLASS_ROOT + '--mobile-separator', this.props.separator), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), _defineProperty(_classnames, CLASS_ROOT + '--bg-' + this.props.responsiveBackgroundPosition, this.props.responsiveBackgroundPosition), _defineProperty(_classnames, CLASS_ROOT + '--mobile-separator', this.props.separator), _classnames));
 
 	      var full = flush ? 'horizontal' : false;
-
-	      var styles = {
-	        backgroundImage: backgroundImage
-	      };
-
-	      var backgroundClasses = (0, _classnames4.default)(BOX_CONTAINER_CLASSNAME, _defineProperty({}, BOX_CONTAINER_CLASSNAME + '--full-horizontal', this.props.flush));
+	      var pad = flush ? 'none' : 'large';
 
 	      var subHeadlineMarkup = void 0;
 	      if (subHeadline) {
@@ -14986,11 +15125,9 @@ module.exports =
 	        );
 	      }
 
-	      return _react2.default.createElement(
-	        _Box2.default,
-	        { className: classes, colorIndex: this.state.colorIndex },
-	        _react2.default.createElement('div', { className: backgroundClasses, style: styles }),
-	        _react2.default.createElement(
+	      var contentMarkup = void 0;
+	      if (justify === 'center') {
+	        contentMarkup = _react2.default.createElement(
 	          _Box2.default,
 	          { className: 'marquee__overlay', justify: justify, align: 'center', primary: true, full: full, direction: 'row' },
 	          _react2.default.createElement(
@@ -15004,7 +15141,35 @@ module.exports =
 	            subHeadlineMarkup,
 	            linkMarkup
 	          )
-	        )
+	        );
+	      } else {
+	        contentMarkup = _react2.default.createElement(
+	          _Box2.default,
+	          { className: 'marquee__overlay', align: 'center', primary: true, full: full, direction: 'row', reverse: this.state.reverse },
+	          _react2.default.createElement(
+	            _Box2.default,
+	            { className: 'marquee__image', align: 'center', justify: 'center' },
+	            _react2.default.createElement(_Image2.default, { src: 'url(' + image + ')' })
+	          ),
+	          _react2.default.createElement(
+	            _Box2.default,
+	            { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
+	            _react2.default.createElement(
+	              _Headline2.default,
+	              { size: headlineSize, strong: true, margin: 'none' },
+	              headline
+	            ),
+	            subHeadlineMarkup,
+	            linkMarkup
+	          )
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        { className: classes, colorIndex: this.state.colorIndex },
+	        _react2.default.createElement(_Box2.default, { containerClassName: 'marquee__background', appCentered: true, pad: pad, backgroundImage: backgroundImage, full: full }),
+	        contentMarkup
 	      );
 	    }
 	  }]);
@@ -15021,6 +15186,7 @@ module.exports =
 	  flush: _react.PropTypes.bool,
 	  headline: _react.PropTypes.string.isRequired,
 	  headlineSize: _react.PropTypes.oneOf(['small', 'medium', 'large']),
+	  image: _react.PropTypes.string,
 	  justify: _react.PropTypes.oneOf(['start', 'center', 'end']),
 	  link: _react.PropTypes.string,
 	  linkIcon: _react.PropTypes.element,
@@ -15029,9 +15195,7 @@ module.exports =
 	  responsiveBackgroundPosition: _react.PropTypes.oneOf(['left', 'center', 'right']),
 	  separator: _react.PropTypes.bool,
 	  size: _react.PropTypes.oneOf(['small', 'large']),
-	  subHeadline: _react.PropTypes.string,
-	  zoom: _react.PropTypes.oneOf(['in', 'out', 'none']),
-	  zoomPercentage: _react.PropTypes.number
+	  subHeadline: _react.PropTypes.string
 	};
 
 	Marquee.defaultProps = {
@@ -15042,14 +15206,12 @@ module.exports =
 	  linkText: 'Learn More',
 	  responsiveBackgroundPosition: 'center',
 	  separator: false,
-	  size: 'large',
-	  zoom: 'in',
-	  zoomPercentage: 25
+	  size: 'large'
 	};
 	module.exports = exports['default'];
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15064,9 +15226,13 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15078,7 +15244,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'paragraph';
+	var CLASS_ROOT = _CSSClassnames2.default.PARAGRAPH;
 
 	var Paragraph = function (_Component) {
 	  _inherits(Paragraph, _Component);
@@ -15122,7 +15288,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15137,15 +15303,200 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DocsArticle = __webpack_require__(58);
+	var _classnames3 = __webpack_require__(5);
+
+	var _classnames4 = _interopRequireDefault(_classnames3);
+
+	var _Label = __webpack_require__(91);
+
+	var _Label2 = _interopRequireDefault(_Label);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.IMAGE;
+
+	var Image = function (_Component) {
+	  _inherits(Image, _Component);
+
+	  function Image() {
+	    _classCallCheck(this, Image);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Image).apply(this, arguments));
+	  }
+
+	  _createClass(Image, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var alt = _props.alt;
+	      var caption = _props.caption;
+	      var className = _props.className;
+	      var full = _props.full;
+	      var id = _props.id;
+	      var size = _props.size;
+	      var src = _props.src;
+	      var title = _props.title;
+	      var mask = _props.mask;
+
+	      var classes = (0, _classnames4.default)(CLASS_ROOT, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, CLASS_ROOT + '--full', typeof full === 'boolean' && full), _defineProperty(_classnames, CLASS_ROOT + '--full-' + full, typeof full === 'string'), _defineProperty(_classnames, CLASS_ROOT + '--mask', mask), _classnames), className);
+
+	      var captionText = typeof caption === 'string' ? caption : alt;
+	      var imgNode = _react2.default.createElement('img', { id: id, src: src, alt: alt, title: title, className: classes });
+
+	      var labelRoot = CLASS_ROOT + '__caption';
+	      var labelClasses = (0, _classnames4.default)(labelRoot, _defineProperty({}, labelRoot + '--' + size, size));
+	      return caption && captionText ? _react2.default.createElement(
+	        'span',
+	        { className: CLASS_ROOT + '__container' },
+	        imgNode,
+	        _react2.default.createElement(
+	          _Label2.default,
+	          { className: labelClasses },
+	          captionText
+	        )
+	      ) : imgNode;
+	    }
+	  }]);
+
+	  return Image;
+	}(_react.Component);
+
+	exports.default = Image;
+	;
+
+	Image.propTypes = {
+	  alt: _react.PropTypes.string,
+	  caption: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.string]),
+	  className: _react.PropTypes.string,
+	  full: _react.PropTypes.oneOf([true, 'horizontal', 'vertical', false]),
+	  id: _react.PropTypes.string,
+	  mask: _react.PropTypes.bool,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'thumb']),
+	  src: _react.PropTypes.string,
+	  title: _react.PropTypes.string
+	};
+
+	Image.defaultProps = {
+	  size: 'medium'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 91 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(5);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.LABEL;
+
+	var Label = function (_Component) {
+	  _inherits(Label, _Component);
+
+	  function Label() {
+	    _classCallCheck(this, Label);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Label).apply(this, arguments));
+	  }
+
+	  _createClass(Label, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--uppercase', this.props.uppercase), _defineProperty(_classnames, CLASS_ROOT + '--margin-' + this.props.margin, this.props.margin), _classnames));
+
+	      return _react2.default.createElement(
+	        'label',
+	        { className: classes, htmlFor: this.props.labelFor },
+	        this.props.children
+	      );
+	    }
+	  }]);
+
+	  return Label;
+	}(_react.Component);
+
+	exports.default = Label;
+	;
+
+	Label.propTypes = {
+	  labelFor: _react.PropTypes.string,
+	  margin: _react.PropTypes.oneOf(['none', 'small', 'medium', 'large']),
+	  uppercase: _react.PropTypes.bool
+	};
+
+	Label.defaultProps = {
+	  margin: 'medium'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 92 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _DocsArticle = __webpack_require__(59);
 
 	var _DocsArticle2 = _interopRequireDefault(_DocsArticle);
 
-	var _Example = __webpack_require__(90);
+	var _Example = __webpack_require__(93);
 
 	var _Example2 = _interopRequireDefault(_Example);
 
-	var _WorldMap = __webpack_require__(91);
+	var _WorldMap = __webpack_require__(94);
 
 	var _WorldMap2 = _interopRequireDefault(_WorldMap);
 
@@ -15319,7 +15670,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 90 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15334,7 +15685,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jsxToString = __webpack_require__(86);
+	var _jsxToString = __webpack_require__(87);
 
 	var _jsxToString2 = _interopRequireDefault(_jsxToString);
 
@@ -15421,7 +15772,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 91 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15436,6 +15787,10 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -15444,7 +15799,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2016 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'world-map';
+	var CLASS_ROOT = _CSSClassnames2.default.WORLD_MAP;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var CONTINENTS = [{
 	  id: "Australia",
@@ -15543,7 +15899,7 @@ module.exports =
 	    value: function _renderContinent(seriesData, index) {
 	      var continent = seriesData.continent;
 	      var colorIndex = seriesData.colorIndex || 'graph-' + index;
-	      var classes = [CLASS_ROOT + '__continent', 'color-index-' + colorIndex];
+	      var classes = [CLASS_ROOT + '__continent', COLOR_INDEX + '-' + colorIndex];
 	      if (index === this.state.activeIndex) {
 	        classes.push(CLASS_ROOT + '__continent--active');
 	      }
@@ -15609,7 +15965,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 92 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15617,13 +15973,13 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var jsxToString = __webpack_require__(86);
-	var DocsArticle = __webpack_require__(58);
-	var Heading = __webpack_require__(93);
-	var Paragraph = __webpack_require__(88);
-	var Accordion = __webpack_require__(94);
-	var AccordionPanel = __webpack_require__(96);
-	var Callout = __webpack_require__(100);
+	var jsxToString = __webpack_require__(87);
+	var DocsArticle = __webpack_require__(59);
+	var Heading = __webpack_require__(96);
+	var Paragraph = __webpack_require__(89);
+	var Accordion = __webpack_require__(97);
+	var AccordionPanel = __webpack_require__(99);
+	var Callout = __webpack_require__(103);
 
 	Accordion.displayName = 'Accordion';
 
@@ -15824,7 +16180,7 @@ module.exports =
 	module.exports = AccordionDoc;
 
 /***/ },
-/* 93 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15839,6 +16195,10 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -15847,7 +16207,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'heading';
+	var CLASS_ROOT = _CSSClassnames2.default.HEADING;
 
 	var Heading = function (_Component) {
 	  _inherits(Heading, _Component);
@@ -15912,7 +16272,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 94 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15927,23 +16287,23 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(24);
+	var _classnames = __webpack_require__(5);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Headline = __webpack_require__(47);
+	var _Headline = __webpack_require__(48);
 
 	var _Headline2 = _interopRequireDefault(_Headline);
 
-	var _List = __webpack_require__(95);
+	var _List = __webpack_require__(98);
 
 	var _List2 = _interopRequireDefault(_List);
 
-	var _Paragraph = __webpack_require__(88);
+	var _Paragraph = __webpack_require__(89);
 
 	var _Paragraph2 = _interopRequireDefault(_Paragraph);
 
@@ -16041,7 +16401,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 95 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16056,17 +16416,21 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Spinning = __webpack_require__(49);
+	var _Spinning = __webpack_require__(50);
 
 	var _Spinning2 = _interopRequireDefault(_Spinning);
 
-	var _InfiniteScroll = __webpack_require__(50);
+	var _InfiniteScroll = __webpack_require__(51);
 
 	var _InfiniteScroll2 = _interopRequireDefault(_InfiniteScroll);
 
-	var _Selection = __webpack_require__(51);
+	var _Selection = __webpack_require__(52);
 
 	var _Selection2 = _interopRequireDefault(_Selection);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16076,7 +16440,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = "list";
+	var CLASS_ROOT = _CSSClassnames2.default.LIST;
+	var LIST_ITEM = _CSSClassnames2.default.LIST_ITEM;
 	var SELECTED_CLASS = CLASS_ROOT + "-item--selected";
 
 	var List = function (_Component) {
@@ -16138,7 +16503,7 @@ module.exports =
 	    value: function _setSelection() {
 	      _Selection2.default.setClassFromIndexes({
 	        containerElement: this.refs.list,
-	        childSelector: '.list-item',
+	        childSelector: '.' + LIST_ITEM,
 	        selectedClass: SELECTED_CLASS,
 	        selectedIndexes: this.state.selected
 	      });
@@ -16152,7 +16517,7 @@ module.exports =
 
 	      var selected = _Selection2.default.onClick(event, {
 	        containerElement: this.refs.list,
-	        childSelector: '.list-item',
+	        childSelector: '.' + LIST_ITEM,
 	        selectedClass: SELECTED_CLASS,
 	        multiSelect: 'multiple' === this.props.selectable,
 	        priorSelectedIndexes: this.state.selected
@@ -16226,7 +16591,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 96 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16241,27 +16606,27 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(24);
+	var _classnames = __webpack_require__(5);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Heading = __webpack_require__(93);
+	var _Heading = __webpack_require__(96);
 
 	var _Heading2 = _interopRequireDefault(_Heading);
 
-	var _ListItem = __webpack_require__(97);
+	var _ListItem = __webpack_require__(100);
 
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 
-	var _Add = __webpack_require__(98);
+	var _Add = __webpack_require__(101);
 
 	var _Add2 = _interopRequireDefault(_Add);
 
-	var _Subtract = __webpack_require__(99);
+	var _Subtract = __webpack_require__(102);
 
 	var _Subtract2 = _interopRequireDefault(_Subtract);
 
@@ -16349,7 +16714,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 97 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16366,17 +16731,21 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Props = __webpack_require__(20);
+	var _Props = __webpack_require__(21);
 
 	var _Props2 = _interopRequireDefault(_Props);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16388,7 +16757,7 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'list-item';
+	var CLASS_ROOT = _CSSClassnames2.default.LIST_ITEM;
 
 	var ListItem = function (_Component) {
 	  _inherits(ListItem, _Component);
@@ -16446,7 +16815,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 98 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16461,13 +16830,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16479,7 +16852,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'control-icon';
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Icon = function (_Component) {
 	  _inherits(Icon, _Component);
@@ -16504,7 +16878,7 @@ module.exports =
 	      var size = _props2.size;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-add', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-add', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
 
 	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'add', defaultMessage: 'add' });
 
@@ -16549,7 +16923,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 99 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16564,13 +16938,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16582,7 +16960,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'control-icon';
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Icon = function (_Component) {
 	  _inherits(Icon, _Component);
@@ -16607,7 +16986,7 @@ module.exports =
 	      var size = _props2.size;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-subtract', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-subtract', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
 
 	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'subtract', defaultMessage: 'subtract' });
 
@@ -16652,7 +17031,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 100 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16667,27 +17046,27 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(24);
+	var _classnames = __webpack_require__(5);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Heading = __webpack_require__(93);
+	var _Heading = __webpack_require__(96);
 
 	var _Heading2 = _interopRequireDefault(_Heading);
 
-	var _Paragraph = __webpack_require__(88);
+	var _Paragraph = __webpack_require__(89);
 
 	var _Paragraph2 = _interopRequireDefault(_Paragraph);
 
-	var _Anchor = __webpack_require__(44);
+	var _Anchor = __webpack_require__(45);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
-	var _LinkNext = __webpack_require__(37);
+	var _LinkNext = __webpack_require__(38);
 
 	var _LinkNext2 = _interopRequireDefault(_LinkNext);
 
@@ -16790,7 +17169,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 101 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16798,9 +17177,9 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var jsxToString = __webpack_require__(86);
-	var DocsArticle = __webpack_require__(58);
-	var Callout = __webpack_require__(100);
+	var jsxToString = __webpack_require__(87);
+	var DocsArticle = __webpack_require__(59);
+	var Callout = __webpack_require__(103);
 
 	Callout.displayName = 'Callout';
 
@@ -17032,7 +17411,7 @@ module.exports =
 	module.exports = CalloutDoc;
 
 /***/ },
-/* 102 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17042,15 +17421,16 @@ module.exports =
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(2);
 	var Route = Router.Route;
-	var Box = __webpack_require__(15);
-	var PlayIcon = __webpack_require__(103);
-	var Heading = __webpack_require__(93);
-	var Paragraph = __webpack_require__(88);
-	var Marquee = __webpack_require__(87);
-	var Callout = __webpack_require__(100);
-	var Accordion = __webpack_require__(94);
-	var AccordionPanel = __webpack_require__(96);
-	var Header = __webpack_require__(104);
+	var Box = __webpack_require__(16);
+	var PlayIcon = __webpack_require__(106);
+	var Heading = __webpack_require__(96);
+	var Paragraph = __webpack_require__(89);
+	var Marquee = __webpack_require__(88);
+	var MarqueeParallax = __webpack_require__(107);
+	var Callout = __webpack_require__(103);
+	var Accordion = __webpack_require__(97);
+	var AccordionPanel = __webpack_require__(99);
+	var Header = __webpack_require__(108);
 
 	var Examples = React.createClass({
 	  displayName: 'Examples',
@@ -17122,7 +17502,7 @@ module.exports =
 	            href: '/docs/hpe/examples'
 	          }]
 	        }] }),
-	      React.createElement(Marquee, { darkTheme: false,
+	      React.createElement(MarqueeParallax, { darkTheme: false,
 	        backgroundImage: 'url(/docs/img/MarqueeImage_051916_H.jpg)',
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
@@ -17137,12 +17517,11 @@ module.exports =
 	          React.createElement(
 	            'strong',
 	            null,
-	            'Large Marquee'
+	            'Large Marquee with Parallax'
 	          )
 	        )
 	      ),
-	      this._loremIpsum(),
-	      React.createElement(Marquee, { darkTheme: false,
+	      React.createElement(MarqueeParallax, { darkTheme: false,
 	        backgroundImage: 'url(/docs/img/TK_Marquee_Image.jpg)',
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
@@ -17159,12 +17538,11 @@ module.exports =
 	          React.createElement(
 	            'strong',
 	            null,
-	            'Small Marquee'
+	            'Small Marquee with Parallax'
 	          )
 	        )
 	      ),
-	      this._loremIpsum(),
-	      React.createElement(Marquee, { darkTheme: true,
+	      React.createElement(MarqueeParallax, { darkTheme: true,
 	        backgroundImage: 'url(/docs/img/Hero4_marquee.jpg)',
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
@@ -17182,7 +17560,26 @@ module.exports =
 	          React.createElement(
 	            'strong',
 	            null,
-	            'Large Marquee, light text'
+	            'Large Marquee with Parallax, light text'
+	          )
+	        )
+	      ),
+	      React.createElement(Marquee, { darkTheme: false,
+	        backgroundImage: 'url(/docs/img/MarqueeImage_051916_H.jpg)',
+	        headline: 'Accelerate your transformation with the cloud',
+	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
+	        link: 'http://www.grommet.io/docs/',
+	        responsiveBackgroundPosition: 'left' }),
+	      React.createElement(
+	        Box,
+	        { pad: { horizontal: 'large' } },
+	        React.createElement(
+	          'p',
+	          null,
+	          React.createElement(
+	            'strong',
+	            null,
+	            'Large Marquee with NO Parallax'
 	          )
 	        )
 	      ),
@@ -17255,7 +17652,7 @@ module.exports =
 	module.exports = Examples;
 
 /***/ },
-/* 103 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17270,13 +17667,17 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(24);
+	var _classnames2 = __webpack_require__(5);
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(13);
+	var _FormattedMessage = __webpack_require__(14);
 
 	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(23);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17288,7 +17689,8 @@ module.exports =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = 'control-icon';
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var Icon = function (_Component) {
 	  _inherits(Icon, _Component);
@@ -17313,7 +17715,7 @@ module.exports =
 	      var size = _props2.size;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-play', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-play', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
 
 	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'play', defaultMessage: 'play' });
 
@@ -17358,7 +17760,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 104 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17373,27 +17775,360 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Responsive = __webpack_require__(28);
+	var _reactDom = __webpack_require__(18);
 
-	var _Responsive2 = _interopRequireDefault(_Responsive);
+	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _Box = __webpack_require__(15);
+	var _classnames3 = __webpack_require__(5);
+
+	var _classnames4 = _interopRequireDefault(_classnames3);
+
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Header = __webpack_require__(41);
+	var _Headline = __webpack_require__(48);
+
+	var _Headline2 = _interopRequireDefault(_Headline);
+
+	var _Paragraph = __webpack_require__(89);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
+	var _Anchor = __webpack_require__(45);
+
+	var _Anchor2 = _interopRequireDefault(_Anchor);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'marquee-parallax';
+	var LIGHT_COLORINDEX = 'light-1';
+	var DARK_COLORINDEX = 'grey-1';
+	var PALM_BREAKPOINT = 720;
+	var BOX_CONTAINER_CLASSNAME = 'box__container';
+
+	var MarqueeParallax = function (_Component) {
+	  _inherits(MarqueeParallax, _Component);
+
+	  function MarqueeParallax(props) {
+	    _classCallCheck(this, MarqueeParallax);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MarqueeParallax).call(this, props));
+
+	    _this._handleScroll = _this._handleScroll.bind(_this);
+	    _this._setBackgroundColorIndex = _this._setBackgroundColorIndex.bind(_this);
+
+	    _this._backgroundImageSize = {
+	      width: undefined,
+	      height: undefined
+	    };
+
+	    _this.state = {
+	      colorIndex: props.darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX
+	    };
+	    return _this;
+	  }
+
+	  _createClass(MarqueeParallax, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      window.addEventListener('scroll', this._handleScroll);
+	      window.addEventListener('resize', this._handleScroll);
+	      window.addEventListener('resize', this._setBackgroundColorIndex);
+	      this._setBackgroundColorIndex();
+	      this._getBackgroundImageRatio();
+
+	      setTimeout(function () {
+	        _this2._handleScroll();
+	      }, 100);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      window.removeEventListener('scroll', this._handleScroll);
+	      window.removeEventListener('resize', this._handleScroll);
+	      window.removeEventListener('resize', this._setBackgroundColorIndex);
+	    }
+	  }, {
+	    key: '_getBackgroundImageRatio',
+	    value: function _getBackgroundImageRatio() {
+	      var _this3 = this;
+
+	      var marqueeNode = _reactDom2.default.findDOMNode(this);
+	      var marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
+
+	      // cache original width and height to be used onScroll
+	      if (!this._backgroundImageSize.width || !this._backgroundImageSize.height) {
+	        (function () {
+	          var marqueeBackgroundImage = new Image();
+	          marqueeBackgroundImage.src = marquee.style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2').split(',')[0];
+
+	          if (marqueeBackgroundImage.src) {
+	            // in order for this to work properly in Safari,
+	            // we have to do the lookup for the image original width and height async
+	            setTimeout(function () {
+	              _this3._backgroundImageSize = {
+	                width: marqueeBackgroundImage.width || undefined,
+	                height: marqueeBackgroundImage.height || undefined
+	              };
+	            }, 100);
+	          }
+	        })();
+	      }
+
+	      return this._backgroundImageSize.width / this._backgroundImageSize.height;
+	    }
+	  }, {
+	    key: '_handleScroll',
+	    value: function _handleScroll() {
+	      var _props = this.props;
+	      var size = _props.size;
+	      var zoom = _props.zoom;
+	      var zoomPercentage = _props.zoomPercentage;
+
+
+	      var marqueeOriginalHeight = window.innerHeight * 0.75;
+	      if (window.innerWidth < PALM_BREAKPOINT) {
+	        if (size === 'small') {
+	          marqueeOriginalHeight = 270;
+	        } else {
+	          marqueeOriginalHeight = 300;
+	        }
+	      } else if (size === 'small') {
+	        marqueeOriginalHeight = window.innerHeight * 0.60;
+	      }
+
+	      var marqueeNode = _reactDom2.default.findDOMNode(this);
+	      var marquee = marqueeNode.getElementsByClassName(BOX_CONTAINER_CLASSNAME)[0];
+	      var marqueeTop = marquee.getBoundingClientRect().top;
+	      var marqueeText = marqueeNode.getElementsByClassName('marquee-parallax__overlay')[0];
+
+	      var backgroundRatio = this._getBackgroundImageRatio();
+	      var marqueeRatio = marquee.offsetWidth / marqueeOriginalHeight;
+	      var backgroundHeight = 0;
+	      var backgroundWidth = 0;
+
+	      var startPositionPercentage = 1;
+	      if (zoom === 'out') {
+	        startPositionPercentage = 1 + zoomPercentage / 100;
+	      }
+
+	      if (backgroundRatio > marqueeRatio) {
+	        // constrained by marquee height
+	        backgroundHeight = marqueeOriginalHeight;
+	        backgroundWidth = backgroundHeight * backgroundRatio;
+	      } else {
+	        // constrained by marquee width
+	        backgroundWidth = marquee.offsetWidth;
+	        backgroundHeight = backgroundWidth / backgroundRatio;
+	      }
+
+	      var positionRatio = (marqueeOriginalHeight + marqueeTop) / marqueeOriginalHeight;
+	      if (window.innerWidth >= PALM_BREAKPOINT) {
+	        marqueeText.style.opacity = positionRatio;
+
+	        if (-marqueeTop > marqueeOriginalHeight) {
+	          marqueeText.style.height = 0;
+	          marqueeText.style.top = marqueeOriginalHeight + 'px';
+	        } else if (marqueeTop > 0) {
+	          marqueeText.style.height = marqueeOriginalHeight + 'px';
+	          marqueeText.style.top = 0;
+	        } else {
+	          marqueeText.style.height = marqueeOriginalHeight + marqueeTop + 'px';
+	          marqueeText.style.top = -marqueeTop + 'px';
+	        }
+	      } else {
+	        marqueeText.style.opacity = 1;
+	        marqueeText.style.height = '';
+	        marqueeText.style.top = 0;
+	      }
+
+	      var zoomPositionRatio = positionRatio;
+	      var finalPositionPercentage = 1;
+	      if (zoom === 'out') {
+	        finalPositionPercentage = 1 + zoomPercentage / 100;
+	      } else {
+	        zoomPositionRatio = 1 - positionRatio;
+	      }
+
+	      var positionPercentage = void 0;
+	      if (marqueeTop < 0 && marqueeTop >= -marqueeOriginalHeight) {
+	        positionPercentage = (zoomPositionRatio * zoomPercentage + 100) / 100;
+	      } else if (marqueeTop >= 0) {
+	        positionPercentage = startPositionPercentage;
+	      } else {
+	        positionPercentage = finalPositionPercentage;
+	      }
+
+	      marquee.style.backgroundSize = backgroundWidth * positionPercentage + 'px ' + backgroundHeight * positionPercentage + 'px';
+	    }
+	  }, {
+	    key: '_setBackgroundColorIndex',
+	    value: function _setBackgroundColorIndex() {
+	      var darkTheme = this.props.darkTheme;
+
+
+	      if (window.innerWidth < PALM_BREAKPOINT) {
+	        this.setState({ colorIndex: LIGHT_COLORINDEX });
+	      } else {
+	        this.setState({ colorIndex: darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX });
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props2 = this.props;
+	      var backgroundImage = _props2.backgroundImage;
+	      var flush = _props2.flush;
+	      var headlineSize = _props2.headlineSize;
+	      var headline = _props2.headline;
+	      var justify = _props2.justify;
+	      var link = _props2.link;
+	      var linkIcon = _props2.linkIcon;
+	      var linkText = _props2.linkText;
+	      var onClick = _props2.onClick;
+	      var subHeadline = _props2.subHeadline;
+
+
+	      var classes = (0, _classnames4.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), _defineProperty(_classnames, CLASS_ROOT + '--bg-' + this.props.responsiveBackgroundPosition, this.props.responsiveBackgroundPosition), _defineProperty(_classnames, CLASS_ROOT + '--mobile-separator', this.props.separator), _classnames));
+
+	      var full = flush ? 'horizontal' : false;
+
+	      var styles = {
+	        backgroundImage: backgroundImage
+	      };
+
+	      var backgroundClasses = (0, _classnames4.default)(BOX_CONTAINER_CLASSNAME, _defineProperty({}, BOX_CONTAINER_CLASSNAME + '--full-horizontal', this.props.flush));
+
+	      var subHeadlineMarkup = void 0;
+	      if (subHeadline) {
+	        subHeadlineMarkup = _react2.default.createElement(
+	          _Paragraph2.default,
+	          { size: 'large', margin: 'none' },
+	          subHeadline
+	        );
+	      }
+
+	      var linkMarkup = void 0;
+	      if (link || onClick) {
+	        linkMarkup = _react2.default.createElement(
+	          'h3',
+	          null,
+	          _react2.default.createElement(_Anchor2.default, { href: link, primary: true, label: linkText, icon: linkIcon, onClick: onClick })
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        { className: classes, colorIndex: this.state.colorIndex },
+	        _react2.default.createElement('div', { className: backgroundClasses, style: styles }),
+	        _react2.default.createElement(
+	          _Box2.default,
+	          { className: 'marquee-parallax__overlay', justify: justify, align: 'center', primary: true, full: full, direction: 'row' },
+	          _react2.default.createElement(
+	            _Box2.default,
+	            { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
+	            _react2.default.createElement(
+	              _Headline2.default,
+	              { size: headlineSize, strong: true, margin: 'none' },
+	              headline
+	            ),
+	            subHeadlineMarkup,
+	            linkMarkup
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return MarqueeParallax;
+	}(_react.Component);
+
+	exports.default = MarqueeParallax;
+	;
+
+	MarqueeParallax.propTypes = {
+	  backgroundImage: _react.PropTypes.string.isRequired,
+	  darkTheme: _react.PropTypes.bool,
+	  flush: _react.PropTypes.bool,
+	  headline: _react.PropTypes.string.isRequired,
+	  headlineSize: _react.PropTypes.oneOf(['small', 'medium', 'large']),
+	  justify: _react.PropTypes.oneOf(['start', 'center', 'end']),
+	  link: _react.PropTypes.string,
+	  linkIcon: _react.PropTypes.element,
+	  linkText: _react.PropTypes.string,
+	  onClick: _react.PropTypes.func,
+	  responsiveBackgroundPosition: _react.PropTypes.oneOf(['left', 'center', 'right']),
+	  separator: _react.PropTypes.bool,
+	  size: _react.PropTypes.oneOf(['small', 'large']),
+	  subHeadline: _react.PropTypes.string,
+	  zoom: _react.PropTypes.oneOf(['in', 'out', 'none']),
+	  zoomPercentage: _react.PropTypes.number
+	};
+
+	MarqueeParallax.defaultProps = {
+	  darkTheme: true,
+	  flush: true,
+	  headlineSize: 'large',
+	  justify: 'end',
+	  linkText: 'Learn More',
+	  responsiveBackgroundPosition: 'center',
+	  separator: false,
+	  size: 'large',
+	  zoom: 'in',
+	  zoomPercentage: 25
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 108 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Responsive = __webpack_require__(29);
+
+	var _Responsive2 = _interopRequireDefault(_Responsive);
+
+	var _Box = __webpack_require__(16);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Header = __webpack_require__(42);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Title = __webpack_require__(42);
+	var _Title = __webpack_require__(43);
 
 	var _Title2 = _interopRequireDefault(_Title);
 
-	var _HeaderMenu = __webpack_require__(105);
+	var _HeaderMenu = __webpack_require__(109);
 
 	var _HeaderMenu2 = _interopRequireDefault(_HeaderMenu);
 
-	var _Logo = __webpack_require__(106);
+	var _Logo = __webpack_require__(110);
 
 	var _Logo2 = _interopRequireDefault(_Logo);
 
@@ -17541,7 +18276,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 105 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17554,15 +18289,15 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Menu = __webpack_require__(26);
+	var _Menu = __webpack_require__(27);
 
 	var _Menu2 = _interopRequireDefault(_Menu);
 
-	var _Box = __webpack_require__(15);
+	var _Box = __webpack_require__(16);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Anchor = __webpack_require__(44);
+	var _Anchor = __webpack_require__(45);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
@@ -17643,7 +18378,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 106 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
