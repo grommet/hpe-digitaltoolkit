@@ -1,27 +1,38 @@
-.grommet .marquee {
+.grommet .marquee-parallax {
+  overflow: hidden;
   position: relative;
 
-  &__background {
+  > .box__container {
+    display: flex;
+    overflow: hidden;
     position: absolute;
     top: 0;
-    right: 0;
     left: 0;
+    right: 0;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
   }
 
-  &--bg-left > .marquee__background {
+  &--bg-left > .box__container {
     @include media-query(palm) {
       background-position: top left;
     }
   }
 
-  &--bg-right > .marquee__background {
+  &--bg-right > .box__container {
     @include media-query(palm) {
       background-position: top right;
     }
   }
 
   &__overlay.grommetux-box {
-    z-index: 1;
+    margin-top: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
 
     .grommetux-box {
       width: 50%;
@@ -46,6 +57,10 @@
         color: $inuit-base-text-color;
       }
     }
+
+    @include media-query(palm) {
+      position: relative;
+    }
   }
 
   &--large {
@@ -55,7 +70,7 @@
       height: auto;
     }
 
-    .marquee__background {
+    > .box__container {
       height: 75vh;
 
       @include media-query(palm) {
@@ -63,17 +78,12 @@
       }
     }
 
-    .marquee__overlay.grommetux-box {
+    .marquee-parallax__overlay.grommetux-box {
       height: 75vh;
 
       @include media-query(palm) {
         height: auto;
-      }
-    }
-
-    .marquee__image {
-      @include media-query(palm) {
-        height: 300px;
+        margin-top: 300px;
       }
     }
   }
@@ -85,7 +95,7 @@
       height: auto;
     }
 
-    .marquee__background {
+    > .box__container {
       height: 60vh;
 
       @include media-query(palm) {
@@ -93,17 +103,12 @@
       }
     }
 
-    .marquee__overlay.grommetux-box {
+    .marquee-parallax__overlay.grommetux-box {
       height: 60vh;
 
       @include media-query(palm) {
         height: auto;
-      }
-    }
-
-    .marquee__image {
-      @include media-query(palm) {
-        height: 270px;
+        margin-top: 270px;
       }
     }
   }
