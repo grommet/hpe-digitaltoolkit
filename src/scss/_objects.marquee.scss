@@ -20,17 +20,17 @@
     }
   }
 
-  &__overlay.box {
+  &__overlay.grommetux-box {
     z-index: 1;
 
-    .box {
+    .grommetux-box {
       width: 50%;
 
       @include media-query(palm) {
         width: 100%;
       }
 
-      .headline--large {
+      .grommetux-headline--large {
         font-size: $large-large-number-font-size;
 
         @include media-query(portable) {
@@ -63,7 +63,7 @@
       }
     }
 
-    .marquee__overlay.box {
+    .marquee__overlay.grommetux-box {
       height: 75vh;
 
       @include media-query(palm) {
@@ -93,7 +93,7 @@
       }
     }
 
-    .marquee__overlay.box {
+    .marquee__overlay.grommetux-box {
       height: 60vh;
 
       @include media-query(palm) {

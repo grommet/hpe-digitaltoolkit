@@ -26,7 +26,7 @@
     }
   }
 
-  &__overlay.box {
+  &__overlay.grommetux-box {
     margin-top: 0;
     position: absolute;
     top: 0;
@@ -34,14 +34,14 @@
     right: 0;
     overflow: hidden;
 
-    .box {
+    .grommetux-box {
       width: 50%;
 
       @include media-query(palm) {
         width: 100%;
       }
 
-      .headline--large {
+      .grommetux-headline--large {
         font-size: $large-large-number-font-size;
 
         @include media-query(portable) {
@@ -78,7 +78,7 @@
       }
     }
 
-    .marquee-parallax__overlay.box {
+    .marquee-parallax__overlay.grommetux-box {
       height: 75vh;
 
       @include media-query(palm) {
@@ -103,7 +103,7 @@
       }
     }
 
-    .marquee-parallax__overlay.box {
+    .marquee-parallax__overlay.grommetux-box {
       height: 60vh;
 
       @include media-query(palm) {

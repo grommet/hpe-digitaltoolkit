@@ -104,7 +104,7 @@ export default class Marquee extends Component {
       contentMarkup = (
         <Box className="marquee__overlay" align="center" primary={true} full={full} direction="row" reverse={this.state.reverse} >
           <Box className="marquee__image" align="center" justify="center">
-            <Image src={image} />
+            <Image src={`url(${image})`} />
           </Box>
           <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
             <Headline size={headlineSize} strong={true} margin="none">
