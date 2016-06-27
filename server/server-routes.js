@@ -15168,7 +15168,7 @@ module.exports =
 	      return _react2.default.createElement(
 	        _Box2.default,
 	        { className: classes, colorIndex: this.state.colorIndex },
-	        _react2.default.createElement(_Box2.default, { containerClassName: 'marquee__background', appCentered: true, pad: pad, backgroundImage: backgroundImage, full: full }),
+	        _react2.default.createElement(_Box2.default, { containerClassName: 'marquee__background', appCentered: true, pad: pad, backgroundImage: 'url(' + backgroundImage + ')', full: full }),
 	        contentMarkup
 	      );
 	    }
@@ -17503,7 +17503,7 @@ module.exports =
 	          }]
 	        }] }),
 	      React.createElement(MarqueeParallax, { darkTheme: false,
-	        backgroundImage: 'url(/docs/img/MarqueeImage_051916_H.jpg)',
+	        backgroundImage: '/docs/img/MarqueeImage_051916_H.jpg',
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	        link: 'http://www.grommet.io/docs/',
@@ -17522,7 +17522,7 @@ module.exports =
 	        )
 	      ),
 	      React.createElement(MarqueeParallax, { darkTheme: false,
-	        backgroundImage: 'url(/docs/img/TK_Marquee_Image.jpg)',
+	        backgroundImage: '/docs/img/TK_Marquee_Image.jpg',
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	        link: 'http://www.grommet.io/docs/',
@@ -17543,7 +17543,7 @@ module.exports =
 	        )
 	      ),
 	      React.createElement(MarqueeParallax, { darkTheme: true,
-	        backgroundImage: 'url(/docs/img/Hero4_marquee.jpg)',
+	        backgroundImage: '/docs/img/Hero4_marquee.jpg',
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	        link: 'http://www.grommet.io/docs/',
@@ -17565,7 +17565,7 @@ module.exports =
 	        )
 	      ),
 	      React.createElement(Marquee, { darkTheme: false,
-	        backgroundImage: 'url(/docs/img/MarqueeImage_051916_H.jpg)',
+	        backgroundImage: '/docs/img/MarqueeImage_051916_H.jpg',
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	        link: 'http://www.grommet.io/docs/',
@@ -18007,7 +18007,7 @@ module.exports =
 	      var full = flush ? 'horizontal' : false;
 
 	      var styles = {
-	        backgroundImage: backgroundImage
+	        backgroundImage: 'url(' + backgroundImage + ')'
 	      };
 
 	      var backgroundClasses = (0, _classnames4.default)(BOX_CONTAINER_CLASSNAME, _defineProperty({}, BOX_CONTAINER_CLASSNAME + '--full-horizontal', this.props.flush));

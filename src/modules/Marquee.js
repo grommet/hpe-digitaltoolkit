@@ -119,7 +119,7 @@ export default class Marquee extends Component {
 
     return (
       <Box className={classes} colorIndex={this.state.colorIndex}>
-        <Box containerClassName="marquee__background" appCentered={true} pad={pad} backgroundImage={backgroundImage} full={full} />
+        <Box containerClassName="marquee__background" appCentered={true} pad={pad} backgroundImage={`url(${backgroundImage})`} full={full} />
         {contentMarkup}
       </Box>
     );
