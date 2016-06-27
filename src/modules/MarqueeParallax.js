@@ -177,7 +177,7 @@ export default class MarqueeParallax extends Component {
     let full = flush ? 'horizontal' : false;
 
     let styles = {
-      backgroundImage: backgroundImage
+      backgroundImage: `url(${backgroundImage})`
     };
 
     let backgroundClasses = classnames(
