@@ -75,13 +75,11 @@ export default class ContentCard extends Component {
       );
     }
 
-    const thumbnailStyles = {
-      backgroundImage: `url(${thumbnail})`
-    };
-
     let cardDirection = 'row';
+    let cardPad = {vertical: 'small'};
     if (direction === 'row') {
       cardDirection = 'column';
+      cardPad = 'small';
     }
 
     let onContentCardClick = onClick;
@@ -90,8 +88,8 @@ export default class ContentCard extends Component {
     }
 
     return (
-      <Box className={classes} direction={cardDirection} onClick={onContentCardClick}>
-        <Box className={`${CLASS_ROOT}__thumbnail`} style={thumbnailStyles} />
+      <Box className={classes} direction={cardDirection} onClick={onContentCardClick} pad={cardPad}>
+        <Box className={`${CLASS_ROOT}__thumbnail`} backgroundImage={`url(${thumbnail})`} />
         <Box className={`${CLASS_ROOT}__content`} pad="medium">
           <Heading tag="h5" margin="none"
             uppercase={true}>{overline}</Heading>
