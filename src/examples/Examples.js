@@ -8,6 +8,7 @@ var Heading = require('grommet/components/Heading');
 var Paragraph = require('grommet/components/Paragraph');
 var Marquee = require('../modules/Marquee');
 var ContentCard = require('../modules/ContentCard');
+var MarqueeParallax = require('../modules/MarqueeParallax');
 var Accordion = require('../modules/Accordion');
 var AccordionPanel = require('../modules/AccordionPanel');
 var Header = require('./Header');
@@ -57,26 +58,24 @@ var Examples = React.createClass({
               }]
             }]
           } />
-        <Marquee darkTheme={false}
-          backgroundImage="url(/docs/img/MarqueeImage_051916_H.jpg)"
+        <MarqueeParallax darkTheme={false}
+          backgroundImage="/docs/img/MarqueeImage_051916_H.jpg"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/"
           responsiveBackgroundPosition="left" />
-        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee</strong></p></Box>
-        {this._loremIpsum()}
-        <Marquee darkTheme={false}
-          backgroundImage="url(/docs/img/TK_Marquee_Image.jpg)"
+        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with Parallax</strong></p></Box>
+        <MarqueeParallax darkTheme={false}
+          backgroundImage="/docs/img/TK_Marquee_Image.jpg"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/"
           justify="start"
           size="small"
           responsiveBackgroundPosition="right" />
-        <Box pad={{horizontal: 'large'}}><p><strong>Small Marquee</strong></p></Box>
-        {this._loremIpsum()}
-        <Marquee darkTheme={true}
-          backgroundImage="url(/docs/img/Hero4_marquee.jpg)"
+        <Box pad={{horizontal: 'large'}}><p><strong>Small Marquee with Parallax</strong></p></Box>
+        <MarqueeParallax darkTheme={true}
+          backgroundImage="/docs/img/Hero4_marquee.jpg"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/"
@@ -84,7 +83,14 @@ var Examples = React.createClass({
           size="large"
           separator={true}
           responsiveBackgroundPosition="left" />
-        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee, light text</strong></p></Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with Parallax, light text</strong></p></Box>
+        <Marquee darkTheme={false}
+          backgroundImage="/docs/img/MarqueeImage_051916_H.jpg"
+          headline="Accelerate your transformation with the cloud"
+          subHeadline="HPE can help you benefit now from your right mix of cloud"
+          link="http://www.grommet.io/docs/"
+          responsiveBackgroundPosition="left" />
+        <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with NO Parallax</strong></p></Box>
         {this._loremIpsum()}
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
           <Accordion
