@@ -105,8 +105,9 @@ $step-duration: 0.7s;
           stroke-dashoffset: 264px;
         }
 
-        // Temporarily fix while waiting for this PR to be merged: https://github.com/tonyganch/gonzales-pe/pull/179
         @for $i from 1 through 6 {
+          // Temporarily fix "#{'-'}" while waiting for this PR to be merged:
+          // https://github.com/tonyganch/gonzales-pe/pull/179
           &#{'-'}#{$i} {
             @include animation('draw-text #{$step-duration} 11.#{$i}s ease-in-out forwards');
           }
