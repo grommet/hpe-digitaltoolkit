@@ -240,6 +240,7 @@ module.exports =
 	  return App;
 	}(_react.Component);
 
+	App.displayName = 'App';
 	exports.default = App;
 
 
@@ -1167,6 +1168,7 @@ module.exports =
 	  return SkipLinks;
 	}(_react.Component);
 
+	SkipLinks.displayName = 'SkipLinks';
 	exports.default = SkipLinks;
 
 
@@ -1444,6 +1446,7 @@ module.exports =
 	  return Box;
 	}(_react.Component);
 
+	Box.displayName = 'Box';
 	exports.default = Box;
 
 
@@ -1896,6 +1899,7 @@ module.exports =
 	  return SkipLinkAnchor;
 	}(_react.Component);
 
+	SkipLinkAnchor.displayName = 'SkipLinkAnchor';
 	exports.default = SkipLinkAnchor;
 	;
 
@@ -1957,6 +1961,7 @@ module.exports =
 	  MAP: namespace + 'map',
 	  MENU: namespace + 'menu',
 	  METER: namespace + 'meter',
+	  NAMESPACE: '' + namespace,
 	  NOTIFICATION: namespace + 'notification',
 	  NUMBER_INPUT: namespace + 'number-input',
 	  OBJECT: namespace + 'object',
@@ -2172,6 +2177,9 @@ module.exports =
 	  return LayerContents;
 	}(_react.Component);
 
+	LayerContents.displayName = 'LayerContents';
+
+
 	LayerContents.propTypes = {
 	  a11yTitle: _react.PropTypes.string,
 	  closer: _react.PropTypes.oneOfType([_react.PropTypes.node, _react.PropTypes.bool]),
@@ -2317,6 +2325,7 @@ module.exports =
 	  return Layer;
 	}(_react.Component);
 
+	Layer.displayName = 'Layer';
 	exports.default = Layer;
 
 
@@ -2430,6 +2439,7 @@ module.exports =
 	  return Icon;
 	}(_react.Component);
 
+	Icon.displayName = 'Icon';
 	exports.default = Icon;
 	;
 
@@ -2546,6 +2556,7 @@ module.exports =
 	  return Button;
 	}(_react.Component);
 
+	Button.displayName = 'Button';
 	exports.default = Button;
 	;
 
@@ -2868,6 +2879,9 @@ module.exports =
 	  return MenuDrop;
 	}(_react.Component);
 
+	MenuDrop.displayName = 'MenuDrop';
+
+
 	MenuDrop.propTypes = _extends({}, _Box2.default.propTypes, {
 	  control: _react.PropTypes.node,
 	  dropAlign: _Drop2.default.alignPropType,
@@ -3147,6 +3161,7 @@ module.exports =
 	  return Menu;
 	}(_react.Component);
 
+	Menu.displayName = 'Menu';
 	exports.default = Menu;
 
 
@@ -3580,6 +3595,7 @@ module.exports =
 	  return Icon;
 	}(_react.Component);
 
+	Icon.displayName = 'Icon';
 	exports.default = Icon;
 	;
 
@@ -3690,6 +3706,7 @@ module.exports =
 	  return Icon;
 	}(_react.Component);
 
+	Icon.displayName = 'Icon';
 	exports.default = Icon;
 	;
 
@@ -4927,6 +4944,7 @@ module.exports =
 	  return Article;
 	}(_react.Component);
 
+	Article.displayName = 'Article';
 	exports.default = Article;
 
 
@@ -5100,6 +5118,7 @@ module.exports =
 	  return Icon;
 	}(_react.Component);
 
+	Icon.displayName = 'Icon';
 	exports.default = Icon;
 	;
 
@@ -5208,6 +5227,7 @@ module.exports =
 	  return Icon;
 	}(_react.Component);
 
+	Icon.displayName = 'Icon';
 	exports.default = Icon;
 	;
 
@@ -5316,6 +5336,7 @@ module.exports =
 	  return Icon;
 	}(_react.Component);
 
+	Icon.displayName = 'Icon';
 	exports.default = Icon;
 	;
 
@@ -5577,6 +5598,7 @@ module.exports =
 	  return Header;
 	}(_react.Component);
 
+	Header.displayName = 'Header';
 	exports.default = Header;
 
 
@@ -5696,6 +5718,7 @@ module.exports =
 	  return Title;
 	}(_react.Component);
 
+	Title.displayName = 'Title';
 	exports.default = Title;
 
 
@@ -5795,6 +5818,7 @@ module.exports =
 	  return Grommet;
 	}(_react.Component);
 
+	Grommet.displayName = 'Grommet';
 	exports.default = Grommet;
 
 
@@ -5919,6 +5943,7 @@ module.exports =
 	  return Anchor;
 	}(_react.Component);
 
+	Anchor.displayName = 'Anchor';
 	exports.default = Anchor;
 	;
 
@@ -6105,6 +6130,7 @@ module.exports =
 	  return Footer;
 	}(_react.Component);
 
+	Footer.displayName = 'Footer';
 	exports.default = Footer;
 	;
 
@@ -6190,6 +6216,7 @@ module.exports =
 	  return Section;
 	}(_react.Component);
 
+	Section.displayName = 'Section';
 	exports.default = Section;
 	;
 
@@ -6265,6 +6292,7 @@ module.exports =
 	  return Headline;
 	}(_react.Component);
 
+	Headline.displayName = 'Headline';
 	exports.default = Headline;
 	;
 
@@ -6626,6 +6654,7 @@ module.exports =
 	  return Tiles;
 	}(_react.Component);
 
+	Tiles.displayName = 'Tiles';
 	exports.default = Tiles;
 
 
@@ -6713,6 +6742,7 @@ module.exports =
 	  return Spinning;
 	}(_react.Component);
 
+	Spinning.displayName = 'Spinning';
 	exports.default = Spinning;
 	module.exports = exports['default'];
 
@@ -7004,6 +7034,7 @@ module.exports =
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var CLASS_ROOT = _CSSClassnames2.default.TILE;
+	var NAMESPACE = _CSSClassnames2.default.NAMESPACE;
 
 	var Tile = function (_Component) {
 	  _inherits(Tile, _Component);
@@ -7041,7 +7072,7 @@ module.exports =
 	      // if Tiles flush is true, default borderSize to small (1px)
 	      var borderSize = hoverBorder ? hoverBorderSize ? hoverBorderSize : 'large' : 'small';
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--status-' + statusClass, status), _defineProperty(_classnames, CLASS_ROOT + '--wide', wide), _defineProperty(_classnames, CLASS_ROOT + '--selectable', onClick), _defineProperty(_classnames, CLASS_ROOT + '--selected', selected), _defineProperty(_classnames, '' + _CSSClassnames2.default.namespace + hoverStyle + (hoverStyle == 'border' ? borderSize ? '-' + borderSize : '-medium' : '') + '-hover-color-index-' + hoverColorIndex, hoverStyle), _defineProperty(_classnames, CLASS_ROOT + '--hover-border-' + borderSize, borderSize), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--status-' + statusClass, status), _defineProperty(_classnames, CLASS_ROOT + '--wide', wide), _defineProperty(_classnames, CLASS_ROOT + '--selectable', onClick), _defineProperty(_classnames, CLASS_ROOT + '--selected', selected), _defineProperty(_classnames, '' + NAMESPACE + hoverStyle + (hoverStyle == 'border' ? borderSize ? '-' + borderSize : '-medium' : '') + '-hover-color-index-' + hoverColorIndex, hoverStyle), _defineProperty(_classnames, CLASS_ROOT + '--hover-border-' + borderSize, borderSize), _classnames));
 
 	      var boxProps = _Props2.default.pick(this.props, Object.keys(_Box2.default.propTypes));
 
@@ -7056,6 +7087,7 @@ module.exports =
 	  return Tile;
 	}(_react.Component);
 
+	Tile.displayName = 'Tile';
 	exports.default = Tile;
 
 
@@ -7512,7 +7544,7 @@ module.exports =
 	    value: function _layout() {
 	      var splitElement = this.refs.split;
 	      if (splitElement) {
-	        if (splitElement.offsetWidth < BREAK_WIDTH) {
+	        if (splitElement.offsetWidth < BREAK_WIDTH && this.props.showOnResponsive === 'priority') {
 	          this._setResponsive('single');
 	        } else {
 	          this._setResponsive('multiple');
@@ -7522,6 +7554,8 @@ module.exports =
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      var classes = [CLASS_ROOT];
 	      if (this.props.flex) {
 	        classes.push(CLASS_ROOT + "--flex-" + this.props.flex);
@@ -7536,21 +7570,41 @@ module.exports =
 	        classes.push(this.props.className);
 	      }
 
-	      var children;
-	      if ('single' === this.state.responsive) {
-	        if ('left' === this.props.priority) {
-	          children = _react2.default.Children.toArray(this.props.children)[0];
-	        } else {
-	          children = _react2.default.Children.toArray(this.props.children).pop();
-	        }
-	      } else {
-	        children = this.props.children;
-	      }
-
+	      var children = _react2.default.Children.toArray(this.props.children);
 	      return _react2.default.createElement(
 	        'div',
 	        { ref: 'split', className: classes.join(' ') },
-	        children
+	        children.map(function (Component, idx) {
+	          var hidden = false;
+	          if ('single' === _this2.state.responsive) {
+	            if ('left' === _this2.props.priority) {
+	              // If priority = left and we're not
+	              // the first child, then hide
+	              if (idx !== 0) {
+	                hidden = true;
+	              }
+	            } else {
+	              // If priority = right and we're not
+	              // the last child, then hide
+	              if (idx !== children.length - 1) {
+	                hidden = true;
+	              }
+	            }
+	          }
+
+	          if (hidden) {
+	            return _react2.default.createElement(
+	              'div',
+	              { key: idx, style: { display: 'none' } },
+	              Component
+	            );
+	          }
+	          return _react2.default.createElement(
+	            'div',
+	            { key: idx },
+	            Component
+	          );
+	        })
 	      );
 	    }
 	  }]);
@@ -7558,6 +7612,7 @@ module.exports =
 	  return Split;
 	}(_react.Component);
 
+	Split.displayName = 'Split';
 	exports.default = Split;
 
 
@@ -7565,13 +7620,15 @@ module.exports =
 	  fixed: _react.PropTypes.bool,
 	  flex: _react.PropTypes.oneOf(['left', 'right', 'both']),
 	  priority: _react.PropTypes.oneOf(['left', 'right']),
-	  separator: _react.PropTypes.bool
+	  separator: _react.PropTypes.bool,
+	  showOnResponsive: _react.PropTypes.oneOf(['priority', 'both'])
 	};
 
 	Split.defaultProps = {
 	  fixed: true,
 	  flex: 'both',
-	  priority: 'right'
+	  priority: 'right',
+	  showOnResponsive: 'priority'
 	};
 	module.exports = exports['default'];
 
@@ -7650,6 +7707,7 @@ module.exports =
 	  return Sidebar;
 	}(_react.Component);
 
+	Sidebar.displayName = 'Sidebar';
 	exports.default = Sidebar;
 	;
 
@@ -7897,8 +7955,8 @@ module.exports =
 	(function(factory) {
 
 	  // Find the global object for export to both the browser and web workers.
-	  var globalObject = typeof window == 'object' && window ||
-	                     typeof self == 'object' && self;
+	  var globalObject = typeof window === 'object' && window ||
+	                     typeof self === 'object' && self;
 
 	  // Setup highlight.js for different environments. First is Node.js or
 	  // CommonJS.
@@ -7918,11 +7976,43 @@ module.exports =
 	  }
 
 	}(function(hljs) {
+	  // Convenience variables for build-in objects
+	  var ArrayProto = [],
+	      objectKeys = Object.keys;
+
+	  // Global internal variables used within the highlight.js library.
+	  var languages = {},
+	      aliases   = {};
+
+	  // Regular expressions used throughout the highlight.js library.
+	  var noHighlightRe    = /^(no-?highlight|plain|text)$/i,
+	      languagePrefixRe = /\blang(?:uage)?-([\w-]+)\b/i,
+	      fixMarkupRe      = /((^(<[^>]+>|\t|)+|(?:\n)))/gm;
+
+	  var spanEndTag = '</span>';
+
+	  // Global options used when within external APIs. This is modified when
+	  // calling the `hljs.configure` function.
+	  var options = {
+	    classPrefix: 'hljs-',
+	    tabReplace: null,
+	    useBR: false,
+	    languages: undefined
+	  };
+
+	  // Object map that is used to escape some common HTML characters.
+	  var escapeRegexMap = {
+	    '&': '&amp;',
+	    '<': '&lt;',
+	    '>': '&gt;'
+	  };
 
 	  /* Utility functions */
 
 	  function escape(value) {
-	    return value.replace(/&/gm, '&amp;').replace(/</gm, '&lt;').replace(/>/gm, '&gt;');
+	    return value.replace(/[&<>]/gm, function(character) {
+	      return escapeRegexMap[character];
+	    });
 	  }
 
 	  function tag(node) {
@@ -7931,35 +8021,40 @@ module.exports =
 
 	  function testRe(re, lexeme) {
 	    var match = re && re.exec(lexeme);
-	    return match && match.index == 0;
+	    return match && match.index === 0;
 	  }
 
 	  function isNotHighlighted(language) {
-	    return (/^(no-?highlight|plain|text)$/i).test(language);
+	    return noHighlightRe.test(language);
 	  }
 
 	  function blockLanguage(block) {
-	    var i, match, length,
-	        classes = block.className + ' ';
+	    var i, match, length, _class;
+	    var classes = block.className + ' ';
 
 	    classes += block.parentNode ? block.parentNode.className : '';
 
 	    // language-* takes precedence over non-prefixed class names.
-	    match = (/\blang(?:uage)?-([\w-]+)\b/i).exec(classes);
+	    match = languagePrefixRe.exec(classes);
 	    if (match) {
 	      return getLanguage(match[1]) ? match[1] : 'no-highlight';
 	    }
 
 	    classes = classes.split(/\s+/);
+
 	    for (i = 0, length = classes.length; i < length; i++) {
-	      if (getLanguage(classes[i]) || isNotHighlighted(classes[i])) {
-	        return classes[i];
+	      _class = classes[i]
+
+	      if (isNotHighlighted(_class) || getLanguage(_class)) {
+	        return _class;
 	      }
 	    }
 	  }
 
 	  function inherit(parent, obj) {
-	    var result = {}, key;
+	    var key;
+	    var result = {};
+
 	    for (key in parent)
 	      result[key] = parent[key];
 	    if (obj)
@@ -7974,9 +8069,9 @@ module.exports =
 	    var result = [];
 	    (function _nodeStream(node, offset) {
 	      for (var child = node.firstChild; child; child = child.nextSibling) {
-	        if (child.nodeType == 3)
+	        if (child.nodeType === 3)
 	          offset += child.nodeValue.length;
-	        else if (child.nodeType == 1) {
+	        else if (child.nodeType === 1) {
 	          result.push({
 	            event: 'start',
 	            offset: offset,
@@ -8009,7 +8104,7 @@ module.exports =
 	      if (!original.length || !highlighted.length) {
 	        return original.length ? original : highlighted;
 	      }
-	      if (original[0].offset != highlighted[0].offset) {
+	      if (original[0].offset !== highlighted[0].offset) {
 	        return (original[0].offset < highlighted[0].offset) ? original : highlighted;
 	      }
 
@@ -8028,12 +8123,12 @@ module.exports =
 
 	      ... which is collapsed to:
 	      */
-	      return highlighted[0].event == 'start' ? original : highlighted;
+	      return highlighted[0].event === 'start' ? original : highlighted;
 	    }
 
 	    function open(node) {
 	      function attr_str(a) {return ' ' + a.nodeName + '="' + escape(a.value) + '"';}
-	      result += '<' + tag(node) + Array.prototype.map.call(node.attributes, attr_str).join('') + '>';
+	      result += '<' + tag(node) + ArrayProto.map.call(node.attributes, attr_str).join('') + '>';
 	    }
 
 	    function close(node) {
@@ -8041,14 +8136,14 @@ module.exports =
 	    }
 
 	    function render(event) {
-	      (event.event == 'start' ? open : close)(event.node);
+	      (event.event === 'start' ? open : close)(event.node);
 	    }
 
 	    while (original.length || highlighted.length) {
 	      var stream = selectStream();
 	      result += escape(value.substr(processed, stream[0].offset - processed));
 	      processed = stream[0].offset;
-	      if (stream == original) {
+	      if (stream === original) {
 	        /*
 	        On any opening or closing tag of the original markup we first close
 	        the entire highlighted node stack, then render the original tag along
@@ -8059,10 +8154,10 @@ module.exports =
 	        do {
 	          render(stream.splice(0, 1)[0]);
 	          stream = selectStream();
-	        } while (stream == original && stream.length && stream[0].offset == processed);
+	        } while (stream === original && stream.length && stream[0].offset === processed);
 	        nodeStack.reverse().forEach(open);
 	      } else {
-	        if (stream[0].event == 'start') {
+	        if (stream[0].event === 'start') {
 	          nodeStack.push(stream[0].node);
 	        } else {
 	          nodeStack.pop();
@@ -8107,10 +8202,10 @@ module.exports =
 	          });
 	        };
 
-	        if (typeof mode.keywords == 'string') { // string
+	        if (typeof mode.keywords === 'string') { // string
 	          flatten('keyword', mode.keywords);
 	        } else {
-	          Object.keys(mode.keywords).forEach(function (className) {
+	          objectKeys(mode.keywords).forEach(function (className) {
 	            flatten(className, mode.keywords[className]);
 	          });
 	        }
@@ -8135,7 +8230,7 @@ module.exports =
 	      }
 	      if (mode.illegal)
 	        mode.illegalRe = langRe(mode.illegal);
-	      if (mode.relevance === undefined)
+	      if (mode.relevance == null)
 	        mode.relevance = 1;
 	      if (!mode.contains) {
 	        mode.contains = [];
@@ -8145,7 +8240,7 @@ module.exports =
 	        if (c.variants) {
 	          c.variants.forEach(function(v) {expanded_contains.push(inherit(c, v));});
 	        } else {
-	          expanded_contains.push(c == 'self' ? mode : c);
+	          expanded_contains.push(c === 'self' ? mode : c);
 	        }
 	      });
 	      mode.contains = expanded_contains;
@@ -8211,7 +8306,7 @@ module.exports =
 	    function buildSpan(classname, insideSpan, leaveOpen, noPrefix) {
 	      var classPrefix = noPrefix ? '' : options.classPrefix,
 	          openSpan    = '<span class="' + classPrefix,
-	          closeSpan   = leaveOpen ? '' : '</span>';
+	          closeSpan   = leaveOpen ? '' : spanEndTag
 
 	      openSpan += classname + '">';
 
@@ -8219,15 +8314,19 @@ module.exports =
 	    }
 
 	    function processKeywords() {
+	      var keyword_match, last_index, match, result;
+
 	      if (!top.keywords)
 	        return escape(mode_buffer);
-	      var result = '';
-	      var last_index = 0;
+
+	      result = '';
+	      last_index = 0;
 	      top.lexemesRe.lastIndex = 0;
-	      var match = top.lexemesRe.exec(mode_buffer);
+	      match = top.lexemesRe.exec(mode_buffer);
+
 	      while (match) {
 	        result += escape(mode_buffer.substr(last_index, match.index - last_index));
-	        var keyword_match = keywordMatch(top, match);
+	        keyword_match = keywordMatch(top, match);
 	        if (keyword_match) {
 	          relevance += keyword_match[1];
 	          result += buildSpan(keyword_match[0], escape(match[0]));
@@ -8241,7 +8340,7 @@ module.exports =
 	    }
 
 	    function processSubLanguage() {
-	      var explicit = typeof top.subLanguage == 'string';
+	      var explicit = typeof top.subLanguage === 'string';
 	      if (explicit && !languages[top.subLanguage]) {
 	        return escape(mode_buffer);
 	      }
@@ -8264,11 +8363,11 @@ module.exports =
 	    }
 
 	    function processBuffer() {
-	      result += (top.subLanguage !== undefined ? processSubLanguage() : processKeywords());
+	      result += (top.subLanguage != null ? processSubLanguage() : processKeywords());
 	      mode_buffer = '';
 	    }
 
-	    function startNewMode(mode, lexeme) {
+	    function startNewMode(mode) {
 	      result += mode.className? buildSpan(mode.className, '', true): '';
 	      top = Object.create(mode, {parent: {value: top}});
 	    }
@@ -8277,7 +8376,7 @@ module.exports =
 
 	      mode_buffer += buffer;
 
-	      if (lexeme === undefined) {
+	      if (lexeme == null) {
 	        processBuffer();
 	        return 0;
 	      }
@@ -8315,13 +8414,13 @@ module.exports =
 	        }
 	        do {
 	          if (top.className) {
-	            result += '</span>';
+	            result += spanEndTag;
 	          }
 	          if (!top.skip) {
 	            relevance += top.relevance;
 	          }
 	          top = top.parent;
-	        } while (top != end_mode.parent);
+	        } while (top !== end_mode.parent);
 	        if (end_mode.starts) {
 	          startNewMode(end_mode.starts, '');
 	        }
@@ -8349,7 +8448,7 @@ module.exports =
 	    var top = continuation || language;
 	    var continuations = {}; // keep continuations for sub-languages
 	    var result = '', current;
-	    for(current = top; current != language; current = current.parent) {
+	    for(current = top; current !== language; current = current.parent) {
 	      if (current.className) {
 	        result = buildSpan(current.className, '', true) + result;
 	      }
@@ -8369,7 +8468,7 @@ module.exports =
 	      processLexeme(value.substr(index));
 	      for(current = top; current.parent; current = current.parent) { // close dangling modes
 	        if (current.className) {
-	          result += '</span>';
+	          result += spanEndTag;
 	        }
 	      }
 	      return {
@@ -8379,7 +8478,7 @@ module.exports =
 	        top: top
 	      };
 	    } catch (e) {
-	      if (e.message.indexOf('Illegal') != -1) {
+	      if (e.message && e.message.indexOf('Illegal') !== -1) {
 	        return {
 	          relevance: 0,
 	          value: escape(value)
@@ -8402,7 +8501,7 @@ module.exports =
 
 	  */
 	  function highlightAuto(text, languageSubset) {
-	    languageSubset = languageSubset || options.languages || Object.keys(languages);
+	    languageSubset = languageSubset || options.languages || objectKeys(languages);
 	    var result = {
 	      relevance: 0,
 	      value: escape(text)
@@ -8433,15 +8532,15 @@ module.exports =
 
 	  */
 	  function fixMarkup(value) {
-	    if (options.tabReplace) {
-	      value = value.replace(/^((<[^>]+>|\t)+)/gm, function(match, p1 /*..., offset, s*/) {
-	        return p1.replace(/\t/g, options.tabReplace);
+	    return !(options.tabReplace || options.useBR)
+	      ? value
+	      : value.replace(fixMarkupRe, function(match, p1) {
+	          if (options.useBR && match === '\n') {
+	            return '<br>';
+	          } else if (options.tabReplace) {
+	            return p1.replace(/\t/g, options.tabReplace);
+	          }
 	      });
-	    }
-	    if (options.useBR) {
-	      value = value.replace(/\n/g, '<br>');
-	    }
-	    return value;
 	  }
 
 	  function buildClassName(prevClassName, currentLang, resultLang) {
@@ -8464,23 +8563,24 @@ module.exports =
 	  two optional parameters for fixMarkup.
 	  */
 	  function highlightBlock(block) {
+	    var node, originalStream, result, resultNode, text;
 	    var language = blockLanguage(block);
+
 	    if (isNotHighlighted(language))
 	        return;
 
-	    var node;
 	    if (options.useBR) {
 	      node = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
 	      node.innerHTML = block.innerHTML.replace(/\n/g, '').replace(/<br[ \/]*>/g, '\n');
 	    } else {
 	      node = block;
 	    }
-	    var text = node.textContent;
-	    var result = language ? highlight(language, text, true) : highlightAuto(text);
+	    text = node.textContent;
+	    result = language ? highlight(language, text, true) : highlightAuto(text);
 
-	    var originalStream = nodeStream(node);
+	    originalStream = nodeStream(node);
 	    if (originalStream.length) {
-	      var resultNode = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
+	      resultNode = document.createElementNS('http://www.w3.org/1999/xhtml', 'div');
 	      resultNode.innerHTML = result.value;
 	      result.value = mergeStreams(originalStream, nodeStream(resultNode), text);
 	    }
@@ -8500,13 +8600,6 @@ module.exports =
 	    }
 	  }
 
-	  var options = {
-	    classPrefix: 'hljs-',
-	    tabReplace: null,
-	    useBR: false,
-	    languages: undefined
-	  };
-
 	  /*
 	  Updates highlight.js global options with values passed in the form of an object.
 	  */
@@ -8523,7 +8616,7 @@ module.exports =
 	    initHighlighting.called = true;
 
 	    var blocks = document.querySelectorAll('pre code');
-	    Array.prototype.forEach.call(blocks, highlightBlock);
+	    ArrayProto.forEach.call(blocks, highlightBlock);
 	  }
 
 	  /*
@@ -8534,9 +8627,6 @@ module.exports =
 	    addEventListener('load', initHighlighting, false);
 	  }
 
-	  var languages = {};
-	  var aliases = {};
-
 	  function registerLanguage(name, language) {
 	    var lang = languages[name] = language(hljs);
 	    if (lang.aliases) {
@@ -8545,7 +8635,7 @@ module.exports =
 	  }
 
 	  function listLanguages() {
-	    return Object.keys(languages);
+	    return objectKeys(languages);
 	  }
 
 	  function getLanguage(name) {
@@ -8606,7 +8696,7 @@ module.exports =
 	    mode.contains.push(hljs.PHRASAL_WORDS_MODE);
 	    mode.contains.push({
 	      className: 'doctag',
-	      begin: "(?:TODO|FIXME|NOTE|BUG|XXX):",
+	      begin: '(?:TODO|FIXME|NOTE|BUG|XXX):',
 	      relevance: 0
 	    });
 	    return mode;
@@ -11354,6 +11444,7 @@ module.exports =
 	  return Search;
 	}(_react.Component);
 
+	Search.displayName = 'Search';
 	exports.default = Search;
 
 
@@ -11474,6 +11565,7 @@ module.exports =
 	  return Icon;
 	}(_react.Component);
 
+	Icon.displayName = 'Icon';
 	exports.default = Icon;
 	;
 
@@ -12598,6 +12690,7 @@ module.exports =
 	  return Chart;
 	}(_react.Component);
 
+	Chart.displayName = 'Chart';
 	exports.default = Chart;
 
 
@@ -12843,6 +12936,7 @@ module.exports =
 	  return Legend;
 	}(_react.Component);
 
+	Legend.displayName = 'Legend';
 	exports.default = Legend;
 
 
@@ -13420,6 +13514,7 @@ module.exports =
 	  return Meter;
 	}(_react.Component);
 
+	Meter.displayName = 'Meter';
 	exports.default = Meter;
 
 
@@ -14160,6 +14255,7 @@ module.exports =
 	  return Graphic;
 	}(_react.Component);
 
+	Graphic.displayName = 'Graphic';
 	exports.default = Graphic;
 
 
@@ -15275,6 +15371,7 @@ module.exports =
 	  return Paragraph;
 	}(_react.Component);
 
+	Paragraph.displayName = 'Paragraph';
 	exports.default = Paragraph;
 	;
 
@@ -15375,6 +15472,7 @@ module.exports =
 	  return Image;
 	}(_react.Component);
 
+	Image.displayName = 'Image';
 	exports.default = Image;
 	;
 
@@ -15458,6 +15556,7 @@ module.exports =
 	  return Label;
 	}(_react.Component);
 
+	Label.displayName = 'Label';
 	exports.default = Label;
 	;
 
@@ -15950,6 +16049,7 @@ module.exports =
 	  return WorldMap;
 	}(_react.Component);
 
+	WorldMap.displayName = 'WorldMap';
 	exports.default = WorldMap;
 
 
@@ -16254,6 +16354,7 @@ module.exports =
 	  return Heading;
 	}(_react.Component);
 
+	Heading.displayName = 'Heading';
 	exports.default = Heading;
 
 
@@ -16578,6 +16679,7 @@ module.exports =
 	  return List;
 	}(_react.Component);
 
+	List.displayName = 'List';
 	exports.default = List;
 
 
@@ -16799,6 +16901,7 @@ module.exports =
 	  return ListItem;
 	}(_react.Component);
 
+	ListItem.displayName = 'ListItem';
 	exports.default = ListItem;
 	;
 
@@ -16903,6 +17006,7 @@ module.exports =
 	  return Icon;
 	}(_react.Component);
 
+	Icon.displayName = 'Icon';
 	exports.default = Icon;
 	;
 
@@ -17011,6 +17115,7 @@ module.exports =
 	  return Icon;
 	}(_react.Component);
 
+	Icon.displayName = 'Icon';
 	exports.default = Icon;
 	;
 
@@ -17740,6 +17845,7 @@ module.exports =
 	  return Icon;
 	}(_react.Component);
 
+	Icon.displayName = 'Icon';
 	exports.default = Icon;
 	;
 
