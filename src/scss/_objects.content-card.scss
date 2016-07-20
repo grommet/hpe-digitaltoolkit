@@ -83,6 +83,7 @@
       // flex-basis: $tile-large-size;
       flex: 0 0 33.3333%;
       min-width: $tile-large-size;
+      max-width: $tile-large-size;
 
       // safari min-width flexbox hack
       _::-webkit-:not(:root:root),

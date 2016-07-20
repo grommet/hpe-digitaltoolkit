@@ -134,7 +134,7 @@ export default class ContentCard extends Component {
 };
 
 ContentCard.propTypes = {
-  thumbnail: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string,
   description: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
   overline: PropTypes.string,

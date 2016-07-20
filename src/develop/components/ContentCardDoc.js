@@ -33,7 +33,6 @@ var ContentCardDoc = React.createClass({
   render: function() {
     var simpleContentCard = (
       <ContentCard
-        direction="horizontal"
         thumbnail="/docs/img/Case_Study_image.png"
         overline="Featured Post"
         heading="The Key Steps to Reducing Software Spend"
@@ -43,7 +42,7 @@ var ContentCardDoc = React.createClass({
 
     var linkContentCard = (
       <ContentCard
-        direction="horizontal"
+        contentPlacement="bottom"
         thumbnail="/docs/img/Case_Study_image.png"
         overline="Featured Post"
         heading="The Key Steps to Reducing Software Spend"
@@ -114,8 +113,8 @@ var ContentCardDoc = React.createClass({
           <h2>ContentCard Options</h2>
           <dl>
             <dt><code>thumbnail            {'{url}'}</code></dt>
-            <dd>Url path to image. Required.</dd>
-            <dt><code>overline              {'{string}'}</code></dt>
+            <dd>Url path to image. Use contentPlacement option to position thumbnail within card.</dd>
+            <dt><code>overline             {'{string}'}</code></dt>
             <dd>Content label.</dd>
             <dt><code>heading              {'{string}'}</code></dt>
             <dd>Content heading. Required.</dd>
@@ -130,15 +129,17 @@ var ContentCardDoc = React.createClass({
             </dd>
             <dt><code>linkText             {'{string}'}</code></dt>
             <dd>
-              Anchor text. If video is provided, default is "Watch Now", else it is "Get the Details".
+              Anchor text. If video is provided, default is "Watch Now", else it is "Learn More".
               If no <code>link, onClick, or video</code> is provided, <code>linkText</code> will not be displayed.
             </dd>
             <dt><code>onClick              {'{func}'}</code></dt>
             <dd>Click handler.</dd>
-            <dt><code>video                {'{source: , type: mp4|webm|ogg}'}</code></dt>
+            <dt><code>video                {'{source: <string>, type: mp4|webm|ogg}'}</code></dt>
             <dd>Video media type and source path.</dd>
-            <dt><code>direction            {'{string}'}</code></dt>
-            <dd>Applies the ContentCards in a column (default) or row direction. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
+            <dt><code>direction            {'vertical|horizontal'}</code></dt>
+            <dd>Applies the ContentCards in a vertical (default) or horizontal direction. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
+            <dt><code>contentPlacement     {'top|bottom'}</code></dt>
+            <dd>If thumbnail url is set, align thumbnail to top or bottom of card.</dd>
           </dl>
         </section>
 
@@ -147,11 +148,11 @@ var ContentCardDoc = React.createClass({
 
           {this._renderCode('Default', simpleContentCard)}
 
-          {this._renderCode('Link', linkContentCard)}
+          {this._renderCode('Bottom contentPlacement, Link', linkContentCard)}
 
-          {this._renderCode('Video', videoContentCard)}
+          {this._renderCode('Horizontal, Video', videoContentCard)}
 
-          {this._renderCode('Row Link, Row Video, Row', contentCardTiles)}
+          {this._renderCode('Link, Video, Simple, Simple', contentCardTiles)}
         </section>
       </DocsArticle>
     );
