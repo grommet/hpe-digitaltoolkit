@@ -33,8 +33,9 @@ var ContentCardDoc = React.createClass({
   render: function() {
     var simpleContentCard = (
       <ContentCard
+        direction="horizontal"
         thumbnail="/docs/img/Case_Study_image.png"
-        overline="Case Study"
+        overline="Featured Post"
         heading="The Key Steps to Reducing Software Spend"
         description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
       />
@@ -42,8 +43,9 @@ var ContentCardDoc = React.createClass({
 
     var linkContentCard = (
       <ContentCard
+        direction="horizontal"
         thumbnail="/docs/img/Case_Study_image.png"
-        overline="Case Study"
+        overline="Featured Post"
         heading="The Key Steps to Reducing Software Spend"
         description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         link="#"
@@ -52,6 +54,7 @@ var ContentCardDoc = React.createClass({
 
     var videoContentCard = (
       <ContentCard
+        direction="horizontal"
         thumbnail="/docs/img/Video_image.png"
         overline="Video - 4:27"
         heading="Foundation Paraguay Empowers Microbusinesses"
@@ -66,15 +69,15 @@ var ContentCardDoc = React.createClass({
     var contentCardTiles = (
       <Tiles>
        <ContentCard
-          direction="row"
+          direction="vertical"
           thumbnail="/docs/img/Case_Study_image.png"
-          overline="Case Study"
-          heading="The Key Steps to Reducing Software Spend"
-          description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+          overline="Featured Post"
+          heading="Protect Your Digital Enterprise ipsum Learn More lorem dolores aeat"
+          description="It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. "
           link="http://grommet.io"
         />
         <ContentCard
-          direction="row"
+          direction="vertical"
           thumbnail="/docs/img/Video_image.png"
           overline="Video - 4:27"
           heading="Foundation Paraguay Empowers Microbusinesses"
@@ -85,9 +88,16 @@ var ContentCardDoc = React.createClass({
           }}
         />
         <ContentCard
-          direction="row"
+          direction="vertical"
           thumbnail="/docs/img/Case_Study_image.png"
-          overline="Case Study"
+          overline="Featured Post"
+          heading="The Key Steps to Reducing Software Spend"
+          description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+        />
+        <ContentCard
+          direction="vertical"
+          thumbnail="/docs/img/Case_Study_image.png"
+          overline="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
           description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         />
