@@ -33,20 +33,40 @@ export default class ContentCard extends Component {
     }
   }
 
+  _renderVideoMarkup () {
+    const { video } = this.props;
+    const { activeVideo } = this.state;
+    let videoMarkup;
+
+    if (video && video.source && activeVideo) {
+      videoMarkup = (
+        <Layer onClose={this._handleClick} closer={true} flush={true}>
+          <Video>
+            <source src={video.source} type={`video/${video.type}`}/>
+          </Video>
+        </Layer>
+      );
+    }
+
+    return videoMarkup;
+  }
+
   render () {
-    const { thumbnail, description, heading, overline, link, linkIcon, linkText, onClick, video, direction } = this.props;
+    const { thumbnail, description, heading, overline, link, linkIcon, linkText,
+      onClick, video, direction, contentPlacement } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
       {
-        [`${CLASS_ROOT}--direction-${this.props.direction}`]: this.props.direction
+        [`${CLASS_ROOT}--direction-${this.props.direction}`]: this.props.direction,
+        [`${CLASS_ROOT}--selectable`]: (link || onClick || video)
       },
       this.props.className
     );
 
     let anchorLabel = linkText;
     if (!linkText) {
-      anchorLabel = video ? 'Watch Now' : 'Get the Details';
+      anchorLabel = video ? 'Watch Now' : 'Learn More';
     }
 
     let anchorIcon = linkIcon;
@@ -64,22 +84,11 @@ export default class ContentCard extends Component {
       );
     }
 
-    let videoMarkup;
-    if (video && video.source && this.state.activeVideo) {
-      videoMarkup = (
-        <Layer onClose={this._handleClick} closer={true} flush={true}>
-          <Video>
-            <source src={video.source} type={`video/${video.type}`}/>
-          </Video>
-        </Layer>
-      );
-    }
-
-    let cardDirection = 'row';
-    let cardPad = {vertical: 'small'};
-    if (direction === 'row') {
-      cardDirection = 'column';
-      cardPad = 'small';
+    let cardDirection;
+    let cardPad = 'small';
+    if (direction === 'horizontal') {
+      cardDirection = 'row';
+      cardPad = {vertical: 'small'};
     }
 
     let onContentCardClick = onClick;
@@ -87,17 +96,38 @@ export default class ContentCard extends Component {
       onContentCardClick = this._handleClick;
     }
 
+    const contentMarkup = (
+      <Box className={`${CLASS_ROOT}__content`} pad="medium">
+        <Heading tag="h5" margin="none"
+          uppercase={true}>{overline}</Heading>
+        <Heading tag="h2" strong={true} margin="none">{heading}</Heading>
+        <Paragraph margin="none">{description}</Paragraph>
+        {linkMarkup}
+      </Box>
+    );
+
+    const thumbnailMarkup = (
+      <Box className={`${CLASS_ROOT}__thumbnail`} backgroundImage={`url(${thumbnail})`} />
+    );
+
+    let first = thumbnailMarkup;
+    let second = contentMarkup;
+    let cardJustify;
+
+    if (contentPlacement === 'bottom') {
+      first = contentMarkup;
+      second = thumbnailMarkup;
+      // align thumbnail to bottom of card for bottom cardPlacement
+      cardJustify = 'between';
+    }
+
     return (
-      <Box className={classes} direction={cardDirection} onClick={onContentCardClick} pad={cardPad}>
-        <Box className={`${CLASS_ROOT}__thumbnail`} backgroundImage={`url(${thumbnail})`} />
-        <Box className={`${CLASS_ROOT}__content`} pad="medium">
-          <Heading tag="h5" margin="none"
-            uppercase={true}>{overline}</Heading>
-          <Heading tag="h3" margin="none">{heading}</Heading>
-          <Paragraph margin="none">{description}</Paragraph>
-          {linkMarkup}
+      <Box className={classes} onClick={onContentCardClick} pad={cardPad}>
+        <Box direction={cardDirection} justify={cardJustify}>
+          {first}
+          {second}
+          {this._renderVideoMarkup()}
         </Box>
-        {videoMarkup}
       </Box>
     );
   }
@@ -116,9 +146,11 @@ ContentCard.propTypes = {
     source: PropTypes.string.isRequired,
     type: PropTypes.string
   }),
-  direction: PropTypes.oneOf(['row', 'column'])
+  direction: PropTypes.oneOf(['horizontal', 'vertical']),
+  contentPlacement: PropTypes.oneOf(['top', 'bottom'])
 };
 
 ContentCard.defaultProps = {
-  direction: 'column'
+  direction: 'vertical',
+  contentPlacement: 'top'
 };
