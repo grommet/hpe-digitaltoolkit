@@ -38,10 +38,12 @@
       &:after {
         content: '...';
         text-align: right;
-        bottom: 0;
+        top: 0;
         right: 0;
         display: block;
         position: absolute;
+        margin-top: 154px; // 22 * 7 (p line-height * (# lines - 1))
+        background: linear-gradient(to right, transparent, $background-color 50%);
       }
 
       @supports(-webkit-line-clamp: 1) {
@@ -52,7 +54,11 @@
 
       @include media-query(palm) {
         -webkit-line-clamp: 4;
-        max-height: 88px; // 22 * 4 (p line-height * # lines)
+        max-height: 110px; // 22 * 5 (p line-height * # lines)
+
+        &:after {
+          margin-top: 88px; // 22 * 4 (p line-height * (# lines - 1))
+        }
       }
     }
   }
@@ -105,9 +111,15 @@
 
   &--selectable {
     &:hover > div {
-      background-color: $hover-background-color;
+      background-color: rgba(246, 246, 246, 1);
       color: $hover-text-color;
       cursor: pointer;
+
+      .content-card__content {
+        .grommetux-paragraph:after {
+          background: linear-gradient(to right, transparent, rgba(246, 246, 246, 1) 50%);
+        }
+      }
     }
   }
 }
