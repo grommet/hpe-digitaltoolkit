@@ -157,6 +157,11 @@ var ContentCardDoc = React.createClass({
             <dd>Click handler.</dd>
             <dt><code>video                {'{source: <string>, type: mp4|webm|ogg}'}</code></dt>
             <dd>Video media type and source path.</dd>
+            <dt><code>socialIcon             {'{element}'}</code></dt>
+            <dd>
+              Icon element. See <a href="http://www.grommet.io/docs/develop/icon">Icon</a>.
+              If <code>socialIcon</code> is present, Anchor (<code>linkIcon</code> and <code>linkText</code>) will not be displayed.
+            </dd>
             <dt><code>direction            {'vertical|horizontal'}</code></dt>
             <dd>Applies the ContentCards in a vertical (default) or horizontal direction. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
             <dt><code>contentPlacement     {'top|bottom'}</code></dt>
