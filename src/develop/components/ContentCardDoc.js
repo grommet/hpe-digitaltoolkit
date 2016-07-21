@@ -5,6 +5,9 @@ var jsxToString = require('jsx-to-string');
 var DocsArticle = require('../../DocsArticle');
 var ContentCard = require('../../modules/ContentCard');
 var Tiles = require('grommet/components/Tiles');
+var Heading = require('grommet/components/Heading');
+var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
+
 
 ContentCard.displayName = 'ContentCard';
 
@@ -63,6 +66,24 @@ var ContentCardDoc = React.createClass({
           type: 'mp4'
         }}
       />
+    );
+
+    var socialCards = (
+      <Tiles>
+        <ContentCard
+          direction="vertical"
+          overline="Featured Post"
+          socialIcon={<SocialTwitterIcon />}
+          link="http://www.twitter.com">
+          <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+        </ContentCard>
+        <ContentCard
+          direction="vertical"
+          overline="Featured Post"
+          link="http://www.twitter.com">
+          <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+        </ContentCard>
+      </Tiles>
     );
 
     var contentCardTiles = (
@@ -151,6 +172,8 @@ var ContentCardDoc = React.createClass({
           {this._renderCode('Bottom contentPlacement, Link', linkContentCard)}
 
           {this._renderCode('Horizontal, Video', videoContentCard)}
+
+          {this._renderCode('socialIcon, Custom Children', socialCards)}
 
           {this._renderCode('Link, Video, Simple, Simple', contentCardTiles)}
         </section>
