@@ -33,6 +33,49 @@ export default class ContentCard extends Component {
     }
   }
 
+  _renderChildren () {
+    const { children, socialIcon } = this.props;
+
+    if (socialIcon) {
+      return (
+        <Box className="flex" pad={{between: 'large'}}>
+          {children}
+          <Box align="end">
+            {socialIcon}
+          </Box>
+        </Box>
+      );
+    }
+
+    return children;
+  }
+
+  _renderLinkMarkup () {
+    const { link, linkIcon, linkText, onClick, video } = this.props;
+
+    let linkMarkup;
+    let anchorLabel = linkText;
+    if (!linkText) {
+      anchorLabel = video ? 'Watch Now' : 'Learn More';
+    }
+
+    let anchorIcon = linkIcon;
+    if (!linkIcon) {
+      anchorIcon = video ? <PlayIcon /> : <LinkNextIcon />;
+    }
+
+    if (link || onClick || video) {
+      linkMarkup = (
+        <Box pad={{vertical: "small"}}>
+          <Anchor href={link} icon={anchorIcon} label={anchorLabel}
+            onClick={this._handleClick} />
+        </Box>
+      );
+    }
+
+    return linkMarkup;
+  }
+
   _renderVideoMarkup () {
     const { video } = this.props;
     const { activeVideo } = this.state;
@@ -52,8 +95,8 @@ export default class ContentCard extends Component {
   }
 
   render () {
-    const { thumbnail, description, heading, overline, link, linkIcon, linkText,
-      onClick, video, direction, contentPlacement } = this.props;
+    const { thumbnail, description, heading, overline, link, onClick,
+      video, socialIcon, direction, contentPlacement } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
@@ -63,26 +106,6 @@ export default class ContentCard extends Component {
       },
       this.props.className
     );
-
-    let anchorLabel = linkText;
-    if (!linkText) {
-      anchorLabel = video ? 'Watch Now' : 'Learn More';
-    }
-
-    let anchorIcon = linkIcon;
-    if (!linkIcon) {
-      anchorIcon = video ? <PlayIcon /> : <LinkNextIcon />;
-    }
-
-    let linkMarkup;
-    if (link || onClick || video) {
-      linkMarkup = (
-        <Box pad={{vertical: "small"}}>
-          <Anchor href={link} icon={anchorIcon} label={anchorLabel}
-            onClick={this._handleClick} />
-        </Box>
-      );
-    }
 
     let cardDirection;
     let cardPad = 'small';
@@ -98,17 +121,20 @@ export default class ContentCard extends Component {
 
     const contentMarkup = (
       <Box className={`${CLASS_ROOT}__content`} pad="medium">
-        <Heading tag="h5" margin="none"
-          uppercase={true}>{overline}</Heading>
-        <Heading tag="h2" strong={true} margin="none">{heading}</Heading>
+        <Heading tag="h5" uppercase={true} margin="none">{overline}</Heading>
+        <Heading tag="h2" strong={true}>{heading}</Heading>
         <Paragraph margin="none">{description}</Paragraph>
-        {linkMarkup}
+        {this._renderChildren()}
+        {(!socialIcon) ? this._renderLinkMarkup() : null}
       </Box>
     );
 
-    const thumbnailMarkup = (
-      <Box className={`${CLASS_ROOT}__thumbnail`} backgroundImage={`url(${thumbnail})`} />
-    );
+    let thumbnailMarkup;
+    if (thumbnail) {
+      thumbnailMarkup = (
+        <Box className={`${CLASS_ROOT}__thumbnail`} backgroundImage={`url(${thumbnail})`} />
+      );
+    }
 
     let first = thumbnailMarkup;
     let second = contentMarkup;
@@ -122,8 +148,8 @@ export default class ContentCard extends Component {
     }
 
     return (
-      <Box className={classes} onClick={onContentCardClick} pad={cardPad}>
-        <Box direction={cardDirection} justify={cardJustify}>
+      <Box className={classes} onClick={onContentCardClick} pad={cardPad} justify="">
+        <Box className="flex" direction={cardDirection} justify={cardJustify}>
           {first}
           {second}
           {this._renderVideoMarkup()}
@@ -139,7 +165,6 @@ ContentCard.propTypes = {
   heading: PropTypes.string.isRequired,
   overline: PropTypes.string,
   link: PropTypes.string,
-  linkIcon: PropTypes.element,
   linkText: PropTypes.string,
   onClick: PropTypes.func,
   video: PropTypes.shape({
@@ -147,7 +172,8 @@ ContentCard.propTypes = {
     type: PropTypes.string
   }),
   direction: PropTypes.oneOf(['horizontal', 'vertical']),
-  contentPlacement: PropTypes.oneOf(['top', 'bottom'])
+  contentPlacement: PropTypes.oneOf(['top', 'bottom']),
+  socialIcon: PropTypes.element
 };
 
 ContentCard.defaultProps = {
