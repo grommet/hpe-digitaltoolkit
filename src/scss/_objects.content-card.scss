@@ -7,11 +7,6 @@
     }
   }
 
-  > .grommetux-box {
-    // allow hover effects to expand full height of card
-    flex-grow: 1;
-  }
-
   &__thumbnail {
     width: 100%;
     height: $inuit-base-spacing-unit * 11;
@@ -44,6 +39,7 @@
         position: absolute;
         margin-top: 154px; // 22 * 7 (p line-height * (# lines - 1))
         background: linear-gradient(to right, transparent, $background-color 50%);
+        width: $inuit-base-spacing-unit;
       }
 
       @supports(-webkit-line-clamp: 1) {
@@ -81,21 +77,26 @@
     .content-card__content {
       flex: 0 0 50%;
       min-width: $inuit-base-spacing-unit * 11;
+
+      @include media-query(palm) {
+        flex: 0 1 auto;
+      }
     }
   }
 
   &--direction-vertical {
+    min-width: $tile-large-size;
+
+    // safari min-width flexbox hack
+    _::-webkit-:not(:root:root),
+    & {
+      min-width: 0;
+    }
+
     @include media-query(lap-and-up) {
       // flex-basis: $tile-large-size;
       flex: 0 0 33.3333%;
-      min-width: $tile-large-size;
       max-width: $tile-large-size;
-
-      // safari min-width flexbox hack
-      _::-webkit-:not(:root:root),
-      & {
-        min-width: 0;
-      }
     }
 
     @include media-query(portable) {
