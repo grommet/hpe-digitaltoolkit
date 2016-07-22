@@ -1,3 +1,15 @@
+@mixin column-count ($number-columns) {
+  -moz-column-count: $number-columns;
+  -webkit-column-count: $number-columns;
+  column-count: $number-columns;
+}
+
+@mixin column-gap ($column-gap-size) {
+  -moz-column-gap: $column-gap-size;
+  -webkit-column-gap: $column-gap-size;
+  column-gap: $column-gap-size;
+}
+
 .content-card {
   @include media-query(palm) {
     padding: 0;
@@ -122,5 +134,30 @@
         }
       }
     }
+  }
+
+  .masonry & {
+    min-width: 0;
+    flex: 0 1 auto;
+  }
+}
+
+.masonry-columns {
+  display: block;
+  @include column-count(3);
+  @incluide column-gap(0px);
+
+  @include media-query (portable) {
+    @include column-count(2);
+  }
+
+  @include media-query (palm) {
+    @include column-count(1);
+  }
+
+  .content-card {
+    display: inline-block;
+    width: 100%;
+    min-width: 0;
   }
 }
