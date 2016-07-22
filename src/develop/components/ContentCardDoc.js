@@ -169,9 +169,9 @@ var ContentCardDoc = React.createClass({
             <dt><code>overline             {'{string}'}</code></dt>
             <dd>Content label.</dd>
             <dt><code>heading              {'{string}'}</code></dt>
-            <dd>Content heading. Required.</dd>
+            <dd>Content heading.</dd>
             <dt><code>description          {'{string}'}</code></dt>
-            <dd>Content description. Required.</dd>
+            <dd>Content description.</dd>
             <dt><code>link                 {'{location}'}</code></dt>
             <dd>Anchor hyperlink reference.</dd>
             <dt><code>linkIcon             {'{element}'}</code></dt>
@@ -196,7 +196,7 @@ var ContentCardDoc = React.createClass({
             <dt><code>direction            {'vertical|horizontal'}</code></dt>
             <dd>Applies the ContentCards in a vertical (default) or horizontal direction. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
             <dt><code>contentPlacement     {'top|bottom'}</code></dt>
-            <dd>If thumbnail url is set, align thumbnail to top or bottom of card.</dd>
+            <dd>If thumbnail url is set, align thumbnail to top or bottom of card. Defaults to <code>'top'</code>.</dd>
           </dl>
         </section>
 
@@ -209,7 +209,7 @@ var ContentCardDoc = React.createClass({
 
           {this._renderCode('Horizontal, Video', videoContentCard)}
 
-          {this._renderCode('socialIcon, Custom Children (Tiles)', socialCards)}
+          {this._renderCode('Custom Children, with and without socialIcon (Tiles)', socialCards)}
 
           {this._renderCode('Link, Video, Simple, Simple (Tiles)', contentCardTiles)}
 

@@ -85,7 +85,7 @@ var MasonryDoc = React.createClass({
     return (
       <DocsArticle title="Masonry" colorIndex="neutral-3">
 
-        <p>The Masonry module.</p>
+        <p>The Masonry module. Fills masonry layout from left-to-right.</p>
         <pre><code className="html hljs xml">{inline}</code></pre>
 
         <section>

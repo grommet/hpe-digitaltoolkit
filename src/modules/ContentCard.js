@@ -161,10 +161,11 @@ export default class ContentCard extends Component {
 
 ContentCard.propTypes = {
   thumbnail: PropTypes.string,
-  description: PropTypes.string.isRequired,
-  heading: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  heading: PropTypes.string,
   overline: PropTypes.string,
   link: PropTypes.string,
+  linkIcon: PropTypes.element,
   linkText: PropTypes.string,
   onClick: PropTypes.func,
   video: PropTypes.shape({
