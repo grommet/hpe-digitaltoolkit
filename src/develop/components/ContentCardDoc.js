@@ -68,21 +68,39 @@ var ContentCardDoc = React.createClass({
       />
     );
 
+    var socialFeedCard = (
+      <ContentCard
+        direction="vertical"
+        overline="Featured Post"
+        socialIcon={<SocialTwitterIcon />}
+        link="http://www.twitter.com">
+        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+      </ContentCard>
+    );
+
+    var blogPostCard = (
+      <ContentCard
+        direction="vertical"
+        overline="Featured Post"
+        link="http://www.twitter.com">
+        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+      </ContentCard>
+    );
+
+    var featuredPostCard = (
+      <ContentCard
+        thumbnail="/docs/img/Case_Study_image.png"
+        direction="vertical"
+        overline="Featured Post"
+        link="http://www.twitter.com">
+        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+      </ContentCard>
+    );
+
     var socialCards = (
       <Tiles>
-        <ContentCard
-          direction="vertical"
-          overline="Featured Post"
-          socialIcon={<SocialTwitterIcon />}
-          link="http://www.twitter.com">
-          <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
-        </ContentCard>
-        <ContentCard
-          direction="vertical"
-          overline="Featured Post"
-          link="http://www.twitter.com">
-          <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
-        </ContentCard>
+        {socialFeedCard}
+        {blogPostCard}
       </Tiles>
     );
 
@@ -122,6 +140,19 @@ var ContentCardDoc = React.createClass({
           description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         />
       </Tiles>
+    );
+
+    var contentCardMasonryColumns = (
+      <div className="masonry-columns">
+        {blogPostCard}
+        {socialFeedCard}
+        {featuredPostCard}
+        {featuredPostCard}
+        {blogPostCard}
+        {blogPostCard}
+        {socialFeedCard}
+        {featuredPostCard}
+      </div>
     );
 
     return (
@@ -178,9 +209,11 @@ var ContentCardDoc = React.createClass({
 
           {this._renderCode('Horizontal, Video', videoContentCard)}
 
-          {this._renderCode('socialIcon, Custom Children', socialCards)}
+          {this._renderCode('socialIcon, Custom Children (Tiles)', socialCards)}
 
-          {this._renderCode('Link, Video, Simple, Simple', contentCardTiles)}
+          {this._renderCode('Link, Video, Simple, Simple (Tiles)', contentCardTiles)}
+
+          {this._renderCode('Masonry Columns Wrapper (3 Columns)', contentCardMasonryColumns)}
         </section>
       </DocsArticle>
     );
