@@ -145,7 +145,7 @@
 .masonry-columns {
   display: block;
   @include column-count(3);
-  @incluide column-gap(0px);
+  @include column-gap(0px);
 
   @include media-query (portable) {
     @include column-count(2);
@@ -159,5 +159,6 @@
     display: inline-block;
     width: 100%;
     min-width: 0;
+    max-width: none;
   }
 }
