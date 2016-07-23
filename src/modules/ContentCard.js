@@ -148,7 +148,7 @@ export default class ContentCard extends Component {
     }
 
     return (
-      <Box className={classes} onClick={onContentCardClick} pad={cardPad} justify="">
+      <Box className={classes} onClick={onContentCardClick} pad={cardPad}>
         <Box className="flex" direction={cardDirection} justify={cardJustify}>
           {first}
           {second}
