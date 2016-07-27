@@ -1,15 +1,3 @@
-@mixin column-count ($number-columns) {
-  -moz-column-count: $number-columns;
-  -webkit-column-count: $number-columns;
-  column-count: $number-columns;
-}
-
-@mixin column-gap ($column-gap-size) {
-  -moz-column-gap: $column-gap-size;
-  -webkit-column-gap: $column-gap-size;
-  column-gap: $column-gap-size;
-}
-
 .content-card {
   @include media-query(palm) {
     padding: 0;
