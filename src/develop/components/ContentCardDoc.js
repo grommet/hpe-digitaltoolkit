@@ -56,7 +56,7 @@ var ContentCardDoc = React.createClass({
 
     var videoContentCard = (
       <ContentCard
-        direction="horizontal"
+        orientation="horizontal"
         thumbnail="/docs/img/Video_image.png"
         overline="Video - 4:27"
         heading="Foundation Paraguay Empowers Microbusinesses"
@@ -70,7 +70,7 @@ var ContentCardDoc = React.createClass({
 
     var socialFeedCard = (
       <ContentCard
-        direction="vertical"
+        orientation="vertical"
         overline="Featured Post"
         socialIcon={<SocialTwitterIcon />}
         link="http://www.twitter.com">
@@ -80,7 +80,7 @@ var ContentCardDoc = React.createClass({
 
     var blogPostCard = (
       <ContentCard
-        direction="vertical"
+        orientation="vertical"
         overline="Featured Post"
         link="http://www.twitter.com">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
@@ -90,7 +90,7 @@ var ContentCardDoc = React.createClass({
     var featuredPostCard = (
       <ContentCard
         thumbnail="/docs/img/Case_Study_image.png"
-        direction="vertical"
+        orientation="vertical"
         overline="Featured Post"
         link="http://www.twitter.com">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
@@ -107,7 +107,7 @@ var ContentCardDoc = React.createClass({
     var contentCardTiles = (
       <Tiles>
        <ContentCard
-          direction="vertical"
+          orientation="vertical"
           thumbnail="/docs/img/Case_Study_image.png"
           overline="Featured Post"
           heading="Protect Your Digital Enterprise ipsum Learn More lorem dolores aeat"
@@ -115,7 +115,7 @@ var ContentCardDoc = React.createClass({
           link="http://grommet.io"
         />
         <ContentCard
-          direction="vertical"
+          orientation="vertical"
           thumbnail="/docs/img/Video_image.png"
           overline="Video - 4:27"
           heading="Foundation Paraguay Empowers Microbusinesses"
@@ -126,14 +126,14 @@ var ContentCardDoc = React.createClass({
           }}
         />
         <ContentCard
-          direction="vertical"
+          orientation="vertical"
           thumbnail="/docs/img/Case_Study_image.png"
           overline="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
           description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         />
         <ContentCard
-          direction="vertical"
+          orientation="vertical"
           thumbnail="/docs/img/Case_Study_image.png"
           overline="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
@@ -188,13 +188,13 @@ var ContentCardDoc = React.createClass({
             <dd>Click handler.</dd>
             <dt><code>video                {'{source: <string>, type: mp4|webm|ogg}'}</code></dt>
             <dd>Video media type and source path.</dd>
-            <dt><code>socialIcon             {'{element}'}</code></dt>
+            <dt><code>socialIcon           {'{element}'}</code></dt>
             <dd>
               Icon element. See <a href="http://www.grommet.io/docs/develop/icon">Icon</a>.
               If <code>socialIcon</code> is present, Anchor (<code>linkIcon</code> and <code>linkText</code>) will not be displayed.
             </dd>
-            <dt><code>direction            {'vertical|horizontal'}</code></dt>
-            <dd>Applies the ContentCards in a vertical (default) or horizontal direction. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
+            <dt><code>orientation          {'vertical|horizontal'}</code></dt>
+            <dd>Applies the ContentCards in a vertical (default) or horizontal orientation. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
             <dt><code>contentPlacement     {'top|bottom'}</code></dt>
             <dd>If thumbnail url is set, align thumbnail to top or bottom of card. Defaults to <code>'top'</code>.</dd>
           </dl>
