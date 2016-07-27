@@ -76,7 +76,7 @@
     outline: none;
   }
 
-  &--direction-horizontal {
+  &--orientation-horizontal {
     .content-card__thumbnail {
       height: auto;
 
@@ -96,7 +96,9 @@
     }
   }
 
-  &--direction-vertical {
+  &--orientation-vertical {
+    // allow vertical ContentCards not wrapped in Tiles to have
+    // large Tile dimensions
     min-width: $tile-large-size;
 
     // safari min-width flexbox hack
@@ -106,13 +108,7 @@
     }
 
     @include media-query(lap-and-up) {
-      // flex-basis: $tile-large-size;
-      flex: 0 0 33.3333%;
       max-width: $tile-large-size;
-    }
-
-    @include media-query(portable) {
-      flex: 0 0 50%;
     }
 
     @include media-query(palm) {
@@ -123,6 +119,11 @@
   }
 
   &--selectable {
+    &:hover:not(.grommetux-tile--selected) {
+      // hide Tile hover border style (gets set by onClick prop)
+      background-color: transparent;
+    }
+
     &:hover > div {
       background-color: rgba(246, 246, 246, 1);
       color: $hover-text-color;
@@ -135,30 +136,12 @@
       }
     }
   }
-
-  .masonry & {
-    min-width: 0;
-    flex: 0 1 auto;
-  }
 }
 
-.masonry-columns {
-  display: block;
-  @include column-count(3);
-  @include column-gap(0px);
-
-  @include media-query (portable) {
-    @include column-count(2);
-  }
-
-  @include media-query (palm) {
-    @include column-count(1);
-  }
-
-  .content-card {
-    display: inline-block;
-    width: 100%;
+// prevent overflow when ContentCard has Tiles wrapper
+// (and different size options)
+.grommetux-tiles .content-card--orientation-vertical {
+  @include media-query(lap-and-up) {
     min-width: 0;
-    max-width: none;
   }
 }
