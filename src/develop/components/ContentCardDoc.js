@@ -142,17 +142,17 @@ var ContentCardDoc = React.createClass({
       </Tiles>
     );
 
-    var contentCardMasonryColumns = (
-      <div className="masonry-columns">
+    var contentCardTilesMasonry = (
+      <Tiles masonry={true} numColumns={7}>
         {blogPostCard}
+        {featuredPostCard}
         {socialFeedCard}
-        {featuredPostCard}
-        {featuredPostCard}
-        {blogPostCard}
-        {blogPostCard}
         {socialFeedCard}
+        {blogPostCard}
         {featuredPostCard}
-      </div>
+        {featuredPostCard}
+        {blogPostCard}
+      </Tiles>
     );
 
     return (
@@ -213,7 +213,7 @@ var ContentCardDoc = React.createClass({
 
           {this._renderCode('Link, Video, Simple, Simple (Tiles)', contentCardTiles)}
 
-          {this._renderCode('Masonry Columns Wrapper (3 Columns)', contentCardMasonryColumns)}
+          {this._renderCode('Tiles with Masonry', contentCardTilesMasonry)}
         </section>
       </DocsArticle>
     );
