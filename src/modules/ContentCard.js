@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
+import Props from 'grommet/utils/Props';
 import Box from 'grommet/components/Box';
 import Tile from 'grommet/components/Tile';
 import Heading from 'grommet/components/Heading';
@@ -97,12 +98,15 @@ export default class ContentCard extends Component {
 
   render () {
     const { thumbnail, description, heading, overline, link, onClick,
-      video, socialIcon, orientation, contentPlacement } = this.props;
+      video, socialIcon, direction, contentPlacement, pad } = this.props;
+    const tileProps = Props.pick(this.props, Object.keys(Tile.propTypes));
+    delete tileProps.onClick;
+    delete tileProps.pad;
 
     const classes = classnames(
       CLASS_ROOT,
       {
-        [`${CLASS_ROOT}--orientation-${this.props.orientation}`]: this.props.orientation,
+        [`${CLASS_ROOT}--direction-${this.props.direction}`]: this.props.direction,
         [`${CLASS_ROOT}--selectable`]: (link || onClick || video)
       },
       this.props.className
@@ -142,18 +146,16 @@ export default class ContentCard extends Component {
       cardJustify = 'between';
     }
 
-    let cardDirection;
     let cardPad = 'small';
     let cardFull;
-    if (orientation === 'horizontal') {
-      cardDirection = 'row';
+    if (direction === 'row') {
       cardPad = {vertical: 'small'};
       cardFull = 'horizontal';
     }
 
     return (
-      <Tile className={classes} onClick={onContentCardClick} pad={cardPad}>
-        <Box className="flex" direction={cardDirection} justify={cardJustify} full={cardFull}>
+      <Tile className={classes} onClick={onContentCardClick} pad={(pad) ? pad : cardPad} {...tileProps}>
+        <Box className="flex" direction={direction} justify={cardJustify} full={cardFull}>
           {first}
           {second}
           {this._renderVideoMarkup()}
@@ -171,17 +173,16 @@ ContentCard.propTypes = {
   link: PropTypes.string,
   linkIcon: PropTypes.element,
   linkText: PropTypes.string,
-  onClick: PropTypes.func,
   video: PropTypes.shape({
     source: PropTypes.string.isRequired,
     type: PropTypes.string
   }),
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   contentPlacement: PropTypes.oneOf(['top', 'bottom']),
-  socialIcon: PropTypes.element
+  socialIcon: PropTypes.element,
+  ...Tile.propTypes
 };
 
 ContentCard.defaultProps = {
-  orientation: 'vertical',
-  contentPlacement: 'top'
+  contentPlacement: 'top',
+  direction: 'column'
 };

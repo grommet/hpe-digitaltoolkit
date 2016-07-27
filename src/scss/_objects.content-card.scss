@@ -76,7 +76,7 @@
     outline: none;
   }
 
-  &--orientation-horizontal {
+  &--direction-row {
     .content-card__thumbnail {
       height: auto;
 
@@ -96,8 +96,8 @@
     }
   }
 
-  &--orientation-vertical {
-    // allow vertical ContentCards not wrapped in Tiles to have
+  &--direction-column {
+    // allow column ContentCards not wrapped in Tiles to have
     // large Tile dimensions
     min-width: $tile-large-size;
 
@@ -140,7 +140,7 @@
 
 // prevent overflow when ContentCard has Tiles wrapper
 // (and different size options)
-.grommetux-tiles .content-card--orientation-vertical {
+.grommetux-tiles .content-card--direction-column {
   @include media-query(lap-and-up) {
     min-width: 0;
   }
