@@ -98,14 +98,14 @@ var ContentCardDoc = React.createClass({
     );
 
     var socialCards = (
-      <Tiles>
+      <Tiles size="large">
         {socialFeedCard}
         {blogPostCard}
       </Tiles>
     );
 
     var contentCardTiles = (
-      <Tiles>
+      <Tiles size="large">
        <ContentCard
           orientation="vertical"
           thumbnail="/docs/img/Case_Study_image.png"
@@ -143,7 +143,7 @@ var ContentCardDoc = React.createClass({
     );
 
     var contentCardTilesMasonry = (
-      <Tiles masonry={true} numColumns={7}>
+      <Tiles size="large" masonry={true} numColumns={7}>
         {blogPostCard}
         {featuredPostCard}
         {socialFeedCard}
