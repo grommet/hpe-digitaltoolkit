@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import Box from 'grommet/components/Box';
+import Tile from 'grommet/components/Tile';
 import Heading from 'grommet/components/Heading';
 import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
@@ -96,23 +97,17 @@ export default class ContentCard extends Component {
 
   render () {
     const { thumbnail, description, heading, overline, link, onClick,
-      video, socialIcon, direction, contentPlacement } = this.props;
+      video, socialIcon, orientation, contentPlacement } = this.props;
 
     const classes = classnames(
       CLASS_ROOT,
       {
-        [`${CLASS_ROOT}--direction-${this.props.direction}`]: this.props.direction,
+        [`${CLASS_ROOT}--orientation-${this.props.orientation}`]: this.props.orientation,
         [`${CLASS_ROOT}--selectable`]: (link || onClick || video)
       },
       this.props.className
     );
 
-    let cardDirection;
-    let cardPad = 'small';
-    if (direction === 'horizontal') {
-      cardDirection = 'row';
-      cardPad = {vertical: 'small'};
-    }
 
     let onContentCardClick = onClick;
     if (!onContentCardClick && (link || video)) {
@@ -147,14 +142,23 @@ export default class ContentCard extends Component {
       cardJustify = 'between';
     }
 
+    let cardDirection;
+    let cardPad = 'small';
+    let cardFull;
+    if (orientation === 'horizontal') {
+      cardDirection = 'row';
+      cardPad = {vertical: 'small'};
+      cardFull = 'horizontal';
+    }
+
     return (
-      <Box className={classes} onClick={onContentCardClick} pad={cardPad}>
-        <Box className="flex" direction={cardDirection} justify={cardJustify}>
+      <Tile className={classes} onClick={onContentCardClick} pad={cardPad}>
+        <Box className="flex" direction={cardDirection} justify={cardJustify} full={cardFull}>
           {first}
           {second}
           {this._renderVideoMarkup()}
         </Box>
-      </Box>
+      </Tile>
     );
   }
 };
@@ -172,12 +176,12 @@ ContentCard.propTypes = {
     source: PropTypes.string.isRequired,
     type: PropTypes.string
   }),
-  direction: PropTypes.oneOf(['horizontal', 'vertical']),
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   contentPlacement: PropTypes.oneOf(['top', 'bottom']),
   socialIcon: PropTypes.element
 };
 
 ContentCard.defaultProps = {
-  direction: 'vertical',
+  orientation: 'vertical',
   contentPlacement: 'top'
 };
