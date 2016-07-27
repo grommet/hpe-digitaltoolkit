@@ -56,7 +56,7 @@ var ContentCardDoc = React.createClass({
 
     var videoContentCard = (
       <ContentCard
-        orientation="horizontal"
+        direction="row"
         thumbnail="/docs/img/Video_image.png"
         overline="Video - 4:27"
         heading="Foundation Paraguay Empowers Microbusinesses"
@@ -70,7 +70,7 @@ var ContentCardDoc = React.createClass({
 
     var socialFeedCard = (
       <ContentCard
-        orientation="vertical"
+        direction="column"
         overline="Featured Post"
         socialIcon={<SocialTwitterIcon />}
         link="http://www.twitter.com">
@@ -80,7 +80,7 @@ var ContentCardDoc = React.createClass({
 
     var blogPostCard = (
       <ContentCard
-        orientation="vertical"
+        direction="column"
         overline="Featured Post"
         link="http://www.twitter.com">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
@@ -90,7 +90,7 @@ var ContentCardDoc = React.createClass({
     var featuredPostCard = (
       <ContentCard
         thumbnail="/docs/img/Case_Study_image.png"
-        orientation="vertical"
+        direction="column"
         overline="Featured Post"
         link="http://www.twitter.com">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
@@ -107,7 +107,7 @@ var ContentCardDoc = React.createClass({
     var contentCardTiles = (
       <Tiles size="large">
        <ContentCard
-          orientation="vertical"
+          direction="column"
           thumbnail="/docs/img/Case_Study_image.png"
           overline="Featured Post"
           heading="Protect Your Digital Enterprise ipsum Learn More lorem dolores aeat"
@@ -115,7 +115,7 @@ var ContentCardDoc = React.createClass({
           link="http://grommet.io"
         />
         <ContentCard
-          orientation="vertical"
+          direction="column"
           thumbnail="/docs/img/Video_image.png"
           overline="Video - 4:27"
           heading="Foundation Paraguay Empowers Microbusinesses"
@@ -126,14 +126,14 @@ var ContentCardDoc = React.createClass({
           }}
         />
         <ContentCard
-          orientation="vertical"
+          direction="column"
           thumbnail="/docs/img/Case_Study_image.png"
           overline="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
           description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         />
         <ContentCard
-          orientation="vertical"
+          direction="column"
           thumbnail="/docs/img/Case_Study_image.png"
           overline="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
@@ -193,8 +193,8 @@ var ContentCardDoc = React.createClass({
               Icon element. See <a href="http://www.grommet.io/docs/develop/icon">Icon</a>.
               If <code>socialIcon</code> is present, Anchor (<code>linkIcon</code> and <code>linkText</code>) will not be displayed.
             </dd>
-            <dt><code>orientation          {'vertical|horizontal'}</code></dt>
-            <dd>Applies the ContentCards in a vertical (default) or horizontal orientation. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
+            <dt><code>direction          {'column|row'}</code></dt>
+            <dd>Applies the ContentCards in a column (default) or row direction. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
             <dt><code>contentPlacement     {'top|bottom'}</code></dt>
             <dd>If thumbnail url is set, align thumbnail to top or bottom of card. Defaults to <code>'top'</code>.</dd>
           </dl>
@@ -207,7 +207,7 @@ var ContentCardDoc = React.createClass({
 
           {this._renderCode('Bottom contentPlacement, Link', linkContentCard)}
 
-          {this._renderCode('Horizontal, Video', videoContentCard)}
+          {this._renderCode('Row, Video', videoContentCard)}
 
           {this._renderCode('Custom Children, with and without socialIcon (Tiles)', socialCards)}
 
