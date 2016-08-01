@@ -4,7 +4,10 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import Box from 'grommet/components/Box';
-// import Paragraph from 'grommet/components/Paragraph';
+import Headline from 'grommet/components/Headline';
+import Heading from 'grommet/components/Heading';
+import Paragraph from 'grommet/components/Paragraph';
+import Anchor from 'grommet/components/Anchor';
 
 const CLASS_ROOT = 'stack';
 
@@ -31,25 +34,39 @@ export default class Stack extends Component {
     return (
       <Box className={classes}>
         {label &&
-          <p>{label}</p>
+          <Heading tag="h5" margin="none" uppercase={true}>
+            {label}
+          </Heading>
         }
         {headline &&
-          <h1>{headline}</h1>
+          <Headline strong={true} margin="none">
+            {headline}
+          </Headline>
         }
         {heading &&
-          <h2>{heading}</h2>
+          <Heading tag="h2">
+            {heading}
+          </Heading>
         }
         {subhead &&
-          <h3>{subhead}</h3>
+          <Heading tag="h3">
+            {subhead}
+          </Heading>
         }
         {paragraph &&
-          <p>{paragraph}</p>
+          <Paragraph size={paragraphSize} margin="none">
+            {paragraph}
+          </Paragraph>
         }
         {print &&
-          <p>{print}</p>
+          <Paragraph size="small">
+            {print}
+          </Paragraph>
         }
         {link &&
-          <a href={link}>{linkText}</a>
+          <Anchor primary={true} href={link}>
+            {linkText}
+          </Anchor>
         }
       </Box>
     );
@@ -58,3 +75,9 @@ export default class Stack extends Component {
 
 Stack.propTypes = {
 };
+
+Stack.defaultProps = {
+  linkText: 'Learn More',
+  paragraphSize: 'xlarge'
+};
+
