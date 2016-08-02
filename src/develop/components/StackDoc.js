@@ -20,7 +20,7 @@ export default class StackDoc extends Component {
         <section>
           <h2>Stack Options</h2>
           <dl>
-            <dt><code>size                 none|small|medium|large</code></dt>
+            <dt><code>size                 small|medium|large|xlarge</code></dt>
             <dd>Size of content within Stack. Defaults to <code>medium</code>.</dd>
             <dt><code>label                string</code></dt>
             <dd>Label content.</dd>
@@ -30,6 +30,8 @@ export default class StackDoc extends Component {
             <dd>If the Headline should be bold. Defaults to <code>true</code>.</dd>
             <dt><code>paragraph            string</code></dt>
             <dd>Paragraph content.</dd>
+            <dt><code>print                string</code></dt>
+            <dd>Small print content.</dd>
             <dt><code>link                 string</code></dt>
             <dd>Call to action hyperlink reference.</dd>
             <dt><code>linkText             string</code></dt>
@@ -44,7 +46,44 @@ export default class StackDoc extends Component {
             <Stack
               label="Label Light"
               headline="Headline Semibold, Light"
-              paragraph="Consectetur sunt nemo numquam quos vero sed iste vitae quis."
+              paragraph="Consectetur sunt nemo numquam."
+              print="Amet ipsa amet delectus culpa odit."
+              link="#"
+              linkText="CTA Semibold"
+            />
+          } />
+
+          <Example name="XLarge" code={
+            <Stack
+              size="xlarge"
+              label="Label Light"
+              headline="Headline Semibold, Light"
+              paragraph="Consectetur sunt nemo numquam."
+              print="Amet ipsa amet delectus culpa odit."
+              link="#"
+              linkText="CTA Semibold"
+            />
+          } />
+
+          <Example name="Large" code={
+            <Stack
+              size="large"
+              label="Label Light"
+              headline="Headline Semibold, Light"
+              paragraph="Consectetur sunt nemo numquam."
+              print="Amet ipsa amet delectus culpa odit."
+              link="#"
+              linkText="CTA Semibold"
+            />
+          } />
+
+          <Example name="Small" code={
+            <Stack
+              size="small"
+              label="Label Light"
+              headline="Headline Semibold, Light"
+              paragraph="Consectetur sunt nemo numquam."
+              print="Amet ipsa amet delectus culpa odit."
               link="#"
               linkText="CTA Semibold"
             />
