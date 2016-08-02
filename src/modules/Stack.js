@@ -4,7 +4,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import Box from 'grommet/components/Box';
-import Headline from 'grommet/components/Headline';
 import Heading from 'grommet/components/Heading';
 import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
@@ -19,6 +18,7 @@ export default class Stack extends Component {
       headline,
       headlineStrong,
       paragraph,
+      print,
       size,
       link,
       linkText
@@ -29,21 +29,52 @@ export default class Stack extends Component {
       className
     );
 
+    let labelTag;
+    let headlineTag;
+    let paragraphSize;
+    let printSize;
+    if (size === 'xlarge') {
+      labelTag = 'h3';
+      headlineTag = 'h1';
+      paragraphSize = 'xlarge';
+      printSize = 'large';
+    } else if (size === 'large') {
+      labelTag = 'h4';
+      headlineTag = 'h1';
+      paragraphSize = 'xlarge';
+      printSize = 'large';
+    } else if (size === 'small') {
+      labelTag = 'h5';
+      headlineTag = 'h3';
+      paragraphSize = 'medium';
+      printSize = 'small';
+    } else {
+      labelTag = 'h4';
+      headlineTag = 'h2';
+      paragraphSize = 'xlarge';
+      printSize = 'large';
+    }
+
     return (
       <Box className={classes}>
         {label &&
-          <Heading tag="h3" margin="none" uppercase={true}>
+          <Heading tag={labelTag} margin="none" uppercase={true}>
             {label}
           </Heading>
         }
         {headline &&
-          <Headline strong={headlineStrong} margin="none">
+          <Heading tag={headlineTag} strong={headlineStrong} margin="none">
             {headline}
-          </Headline>
+          </Heading>
         }
         {paragraph &&
-          <Paragraph margin="none">
+          <Paragraph size={paragraphSize} margin="none">
             {paragraph}
+          </Paragraph>
+        }
+        {print &&
+          <Paragraph size={printSize} margin="none">
+            {print}
           </Paragraph>
         }
         {link &&
