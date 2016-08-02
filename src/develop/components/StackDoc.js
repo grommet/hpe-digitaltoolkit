@@ -20,20 +20,16 @@ export default class StackDoc extends Component {
         <section>
           <h2>Stack Options</h2>
           <dl>
+            <dt><code>size                 none|small|medium|large</code></dt>
+            <dd>Size of content within Stack. Defaults to <code>medium</code>.</dd>
             <dt><code>label                string</code></dt>
             <dd>Label content.</dd>
             <dt><code>headline             string</code></dt>
             <dd>Headline content.</dd>
-            <dt><code>heading              string</code></dt>
-            <dd>Heading content.</dd>
-            <dt><code>subhead              string</code></dt>
-            <dd>Sub heading content.</dd>
+            <dt><code>headlineStrong       string</code></dt>
+            <dd>If the Headline should be bold. Defaults to <code>true</code>.</dd>
             <dt><code>paragraph            string</code></dt>
             <dd>Paragraph content.</dd>
-            <dt><code>paragraphSize        none|small|medium|large</code></dt>
-            <dd>Size of the paragraph. Defaults to <code>medium</code>.</dd>
-            <dt><code>print                string</code></dt>
-            <dd>Small print content.</dd>
             <dt><code>link                 string</code></dt>
             <dd>Call to action hyperlink reference.</dd>
             <dt><code>linkText             string</code></dt>
@@ -46,11 +42,11 @@ export default class StackDoc extends Component {
 
           <Example name="Default" code={
             <Stack
-              label="Label: 24. Light"
-              headline="Headline: 64, Semibold, Light"
-              paragraph="Paragraph XLarge: 32, Light"
+              label="Label Light"
+              headline="Headline Semibold, Light"
+              paragraph="Consectetur sunt nemo numquam quos vero sed iste vitae quis."
               link="#"
-              linkText="CTA: 19, Semibold"
+              linkText="CTA Semibold"
             />
           } />
 
