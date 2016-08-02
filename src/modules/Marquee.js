@@ -1,14 +1,12 @@
 // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 import React, { Component, PropTypes } from 'react';
-import classnames from 'classnames';
-import Box from 'grommet/components/Box';
 import Headline from 'grommet/components/Headline';
 import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
-import Image from 'grommet/components/Image';
+import Hero from 'grommet/components/Hero';
+import Video from 'grommet/components/Video';
 
-const CLASS_ROOT = 'marquee';
 const LIGHT_COLORINDEX = 'light-1';
 const DARK_COLORINDEX = 'grey-1';
 const PALM_BREAKPOINT = 720;
@@ -58,20 +56,7 @@ export default class Marquee extends Component {
   }
 
   render () {
-    const { backgroundImage, flush, headlineSize, headline, image, justify, link, linkIcon, linkText, onClick, subHeadline } = this.props;
-
-    let classes = classnames(
-      CLASS_ROOT,
-      this.props.className,
-      {
-        [`${CLASS_ROOT}--${this.props.size}`]: this.props.size,
-        [`${CLASS_ROOT}--bg-${this.props.responsiveBackgroundPosition}`]: this.props.responsiveBackgroundPosition,
-        [`${CLASS_ROOT}--mobile-separator`]: this.props.separator
-      }
-    );
-
-    let full = flush ? 'horizontal' : false;
-    let pad = flush ? 'none' : 'large';
+    const { backgroundImage, backgroundVideo, backgroundVideoLoop, backgroundVideoMuted, backgroundVideoPoster, flush, headlineSize, headline, image, justify, link, linkIcon, linkText, onClick, responsiveBackgroundPosition, separator, size, subHeadline } = this.props;
 
     let subHeadlineMarkup;
     if (subHeadline) {
@@ -87,47 +72,33 @@ export default class Marquee extends Component {
       );
     }
 
-    let contentMarkup;
-    if (justify === 'center') {
-      contentMarkup = (
-        <Box className="marquee__overlay" justify={justify} align="center" primary={true} full={full} direction="row" >
-          <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-            <Headline size={headlineSize} strong={true} margin="none">
-              {headline}
-            </Headline>
-            {subHeadlineMarkup}
-            {linkMarkup}
-          </Box>
-        </Box>
-      );
-    } else {
-      contentMarkup = (
-        <Box className="marquee__overlay" align="center" primary={true} full={full} direction="row" reverse={this.state.reverse} >
-          <Box className="marquee__image" align="center" justify="center">
-            <Image src={`url(${image})`} />
-          </Box>
-          <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-            <Headline size={headlineSize} strong={true} margin="none">
-              {headline}
-            </Headline>
-            {subHeadlineMarkup}
-            {linkMarkup}
-          </Box>
-        </Box>
+    let video;
+    if (backgroundVideo) {
+      video = (
+        <Video loop={backgroundVideoLoop} muted={backgroundVideoMuted} poster={backgroundVideoPoster} colorIndex={this.state.colorIndex}>
+          <source src={backgroundVideo} type='video/mp4'/>
+        </Video>
       );
     }
 
     return (
-      <Box className={classes} colorIndex={this.state.colorIndex}>
-        <Box containerClassName="marquee__background" appCentered={true} pad={pad} backgroundImage={`url(${backgroundImage})`} full={full} />
-        {contentMarkup}
-      </Box>
+      <Hero colorIndex={this.state.colorIndex} backgroundImage={backgroundImage} backgroundVideo={video} flush={flush} image={image} justify={justify} responsiveBackgroundPosition={responsiveBackgroundPosition} separator={separator} size={size}>
+        <Headline size={headlineSize} strong={true} margin="none">
+          {headline}
+        </Headline>
+        {subHeadlineMarkup}
+        {linkMarkup}
+      </Hero>
     );
   }
 };
 
 Marquee.propTypes = {
-  backgroundImage: PropTypes.string.isRequired,
+  backgroundImage: PropTypes.string,
+  backgroundVideo: PropTypes.string,
+  backgroundVideoLoop: PropTypes.bool,
+  backgroundVideoMuted: PropTypes.bool,
+  backgroundVideoPoster: PropTypes.string,
   darkTheme: PropTypes.bool,
   flush: PropTypes.bool,
   headline: PropTypes.string.isRequired,
