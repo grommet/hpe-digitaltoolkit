@@ -17,11 +17,9 @@ export default class Stack extends Component {
       className,
       label,
       headline,
-      heading,
-      subhead,
+      headlineStrong,
       paragraph,
-      paragraphSize,
-      print,
+      size,
       link,
       linkText
     } = this.props;
@@ -34,33 +32,18 @@ export default class Stack extends Component {
     return (
       <Box className={classes}>
         {label &&
-          <Heading tag="h5" margin="none" uppercase={true}>
+          <Heading tag="h3" margin="none" uppercase={true}>
             {label}
           </Heading>
         }
         {headline &&
-          <Headline strong={true} margin="none">
+          <Headline strong={headlineStrong} margin="none">
             {headline}
           </Headline>
         }
-        {heading &&
-          <Heading tag="h2">
-            {heading}
-          </Heading>
-        }
-        {subhead &&
-          <Heading tag="h3">
-            {subhead}
-          </Heading>
-        }
         {paragraph &&
-          <Paragraph size={paragraphSize} margin="none">
+          <Paragraph margin="none">
             {paragraph}
-          </Paragraph>
-        }
-        {print &&
-          <Paragraph size="small">
-            {print}
           </Paragraph>
         }
         {link &&
@@ -77,7 +60,8 @@ Stack.propTypes = {
 };
 
 Stack.defaultProps = {
-  linkText: 'Learn More',
-  paragraphSize: 'xlarge'
+  size: 'medium',
+  headlineStrong: true,
+  linkText: 'Learn More'
 };
 
