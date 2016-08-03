@@ -193,7 +193,7 @@ var ContentCardDoc = React.createClass({
               Icon element. See <a href="http://www.grommet.io/docs/develop/icon">Icon</a>.
               If <code>socialIcon</code> is present, Anchor (<code>linkIcon</code> and <code>linkText</code>) will not be displayed.
             </dd>
-            <dt><code>direction          {'column|row'}</code></dt>
+            <dt><code>direction            {'column|row'}</code></dt>
             <dd>Applies the ContentCards in a column (default) or row direction. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
             <dt><code>contentPlacement     {'top|bottom'}</code></dt>
             <dd>If thumbnail url is set, align thumbnail to top or bottom of card. Defaults to <code>'top'</code>.</dd>

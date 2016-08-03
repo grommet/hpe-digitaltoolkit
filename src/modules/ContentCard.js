@@ -98,7 +98,7 @@ export default class ContentCard extends Component {
 
   render () {
     const { thumbnail, description, heading, overline, link, onClick,
-      video, socialIcon, direction, contentPlacement, pad } = this.props;
+      video, socialIcon, direction, contentPlacement, pad, className} = this.props;
     const tileProps = Props.pick(this.props, Object.keys(Tile.propTypes));
     delete tileProps.onClick;
     delete tileProps.pad;
@@ -106,10 +106,10 @@ export default class ContentCard extends Component {
     const classes = classnames(
       CLASS_ROOT,
       {
-        [`${CLASS_ROOT}--direction-${this.props.direction}`]: this.props.direction,
+        [`${CLASS_ROOT}--direction-${direction}`]: this.props.direction,
         [`${CLASS_ROOT}--selectable`]: (link || onClick || video)
       },
-      this.props.className
+      className
     );
 
 
@@ -154,7 +154,7 @@ export default class ContentCard extends Component {
     }
 
     return (
-      <Tile className={classes} onClick={onContentCardClick} pad={(pad) ? pad : cardPad} {...tileProps}>
+      <Tile className={classes} onClick={onContentCardClick} pad={pad || cardPad} {...tileProps}>
         <Box className="flex" direction={direction} justify={cardJustify} full={cardFull}>
           {first}
           {second}
