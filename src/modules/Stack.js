@@ -1,7 +1,6 @@
 // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-// import React, { Component, PropTypes } from 'react';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
@@ -88,6 +87,14 @@ export default class Stack extends Component {
 };
 
 Stack.propTypes = {
+  size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+  label: PropTypes.string,
+  headline: PropTypes.string,
+  headlineStrong: PropTypes.bool,
+  paragraph: PropTypes.string,
+  print: PropTypes.string,
+  link: PropTypes.string,
+  linkText: PropTypes.string
 };
 
 Stack.defaultProps = {
