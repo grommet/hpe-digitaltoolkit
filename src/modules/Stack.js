@@ -25,7 +25,10 @@ export default class Stack extends Component {
 
     const classes = classnames(
       CLASS_ROOT,
-      className
+      className,
+      {
+        [`${CLASS_ROOT}--${size}`]: size
+      }
     );
 
     let labelTag;
@@ -57,7 +60,7 @@ export default class Stack extends Component {
     return (
       <Box className={classes}>
         {label &&
-          <Heading tag={labelTag} margin="none" uppercase={true}>
+          <Heading className={`${CLASS_ROOT}__label`} tag={labelTag} margin="none" uppercase={true}>
             {label}
           </Heading>
         }
