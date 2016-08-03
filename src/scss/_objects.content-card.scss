@@ -30,7 +30,7 @@
       position: relative;
 
       // fallback for -webkit-line-clamp
-      &:after {
+      &::after {
         content: '...';
         text-align: right;
         top: 0;
@@ -43,7 +43,7 @@
       }
 
       @supports(-webkit-line-clamp: 1) {
-        &:after {
+        &::after {
           display: none;
         }
       }
@@ -52,7 +52,7 @@
         -webkit-line-clamp: 4;
         max-height: 110px; // 22 * 5 (p line-height * # lines)
 
-        &:after {
+        &::after {
           margin-top: 88px; // 22 * 4 (p line-height * (# lines - 1))
         }
       }
@@ -109,7 +109,7 @@
       cursor: pointer;
 
       .content-card__content {
-        .grommetux-paragraph:after {
+        .grommetux-paragraph::after {
           background: linear-gradient(to right, transparent, rgba(246, 246, 246, 1) 50%);
         }
       }
