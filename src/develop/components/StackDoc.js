@@ -26,7 +26,7 @@ export default class StackDoc extends Component {
             <dd>Label content.</dd>
             <dt><code>headline             string</code></dt>
             <dd>Headline content.</dd>
-            <dt><code>headlineStrong       string</code></dt>
+            <dt><code>headlineStrong       true|false</code></dt>
             <dd>If the Headline should be bold. Defaults to <code>true</code>.</dd>
             <dt><code>paragraph            string</code></dt>
             <dd>Paragraph content.</dd>
@@ -41,17 +41,6 @@ export default class StackDoc extends Component {
 
         <section>
           <h2>Examples</h2>
-
-          <Example name="Default" code={
-            <Stack
-              label="Label Light"
-              headline="Headline Semibold, Light"
-              paragraph="Consectetur sunt nemo numquam."
-              print="Amet ipsa amet delectus culpa odit."
-              link="#"
-              linkText="CTA Semibold"
-            />
-          } />
 
           <Example name="XLarge" code={
             <Stack
@@ -68,6 +57,17 @@ export default class StackDoc extends Component {
           <Example name="Large" code={
             <Stack
               size="large"
+              label="Label Light"
+              headline="Headline Semibold, Light"
+              paragraph="Consectetur sunt nemo numquam."
+              print="Amet ipsa amet delectus culpa odit."
+              link="#"
+              linkText="CTA Semibold"
+            />
+          } />
+
+          <Example name="Medium" code={
+            <Stack
               label="Label Light"
               headline="Headline Semibold, Light"
               paragraph="Consectetur sunt nemo numquam."
