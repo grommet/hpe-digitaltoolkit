@@ -25,4 +25,37 @@
     line-height: 2;
   }
 
+  &--small {
+    .stack__headline {
+      @include media-query(portable) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  &--medium {
+    .stack__headline {
+      @include media-query(portable) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  &--large {
+    .stack__headline {
+      @include media-query(portable) {
+        font-size: 36px;
+      }
+    }
+  }
+
+  &--xlarge {
+    .stack__headline {
+      font-size: 64px;
+      @include media-query(portable) {
+        font-size: 48px;
+      }
+    }
+  }
+
 }
