@@ -106,7 +106,7 @@ export default class ContentCard extends Component {
     const classes = classnames(
       CLASS_ROOT,
       {
-        [`${CLASS_ROOT}--direction-${direction}`]: this.props.direction,
+        [`${CLASS_ROOT}--direction-${direction}`]: direction,
         [`${CLASS_ROOT}--selectable`]: (link || onClick || video)
       },
       className
