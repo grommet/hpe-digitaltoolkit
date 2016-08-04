@@ -2,29 +2,29 @@
 
   &__label {
     letter-spacing: normal;
-    margin-bottom: 0.375rem;
+    margin-bottom: 0.25em;
   }
 
   &__headline {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.125em;
   }
 
   &__paragraph {
     &.grommetux-paragraph {
-      margin-top: 0.25rem;
-      margin-bottom: 0.5rem;
+      margin-top: 0.125em;
+      margin-bottom: 0.25em;
     }
   }
 
   &__print {
     &.grommetux-paragraph {
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
+      margin-top: 0.333em;
+      margin-bottom: 0.333em;
     }
   }
 
   &__link {
-    margin-top: 0.5rem;
+    margin-top: 0.5em;
   }
 
   &--small {
