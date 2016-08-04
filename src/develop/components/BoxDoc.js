@@ -3,6 +3,9 @@
 var React = require('react');
 var DocsArticle = require('../../DocsArticle');
 var Box = require('grommet/components/Box');
+var Heading = require('grommet/components/Heading');
+var Paragraph = require('grommet/components/Paragraph');
+var ContentCard = require('../../modules/ContentCard');
 
 var COLORS = ['brand', 'neutral-1', 'neutral-1-t', 'neutral-2', 'neutral-2-t', 'neutral-3', 'neutral-3-t', 'neutral-4',
   'accent-1', 'accent-1-t', 'accent-2', 'accent-2-t',
@@ -17,6 +20,83 @@ var BoxDoc = React.createClass({
     var coloredBoxes = COLORS.map(function (color) {
       return <Box key={color} colorIndex={color} pad="small">{color}</Box>;
     });
+
+    var contentCardCustomChildren = function (pad) {
+      return (
+        <ContentCard pad={pad} direction="column">
+          <Heading tag="h2">Protect Your Digital Enterprise</Heading>
+          <Paragraph margin="none">
+            It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.
+          </Paragraph>
+        </ContentCard>
+      );
+    };
+
+    var contentCardDefault = function (pad) {
+      return (
+        <ContentCard pad={pad}
+          direction="column"
+          heading="The Key Steps to Reducing Software Spend"
+          description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+        />
+      );
+    };
+
+    var boxFourColumnsLargeSpacing = (
+      <Box pad="medium" columns={4}>
+        {contentCardCustomChildren('medium')}
+        {contentCardDefault('medium')}
+        {contentCardDefault('medium')}
+        {contentCardDefault('medium')}
+      </Box>
+    );
+
+    var boxFourColumnsMediumSpacing = (
+      <Box pad={{horizontal: 'small'}}>
+        <Box pad="medium" columns={4}>
+          {contentCardCustomChildren('small')}
+          {contentCardDefault('small')}
+          {contentCardDefault('small')}
+          {contentCardDefault('small')}
+        </Box>
+      </Box>
+    );
+
+    var boxThreeColumnsMediumSpacing = (
+      <Box pad={{horizontal: 'small'}}>
+        <Box pad="medium" columns={3}>
+          {contentCardCustomChildren('small')}
+          {contentCardDefault('small')}
+          {contentCardDefault('small')}
+        </Box>
+      </Box>
+    );
+
+    var boxTwoColumnsMediumSpacing = (
+      <Box pad={{horizontal: 'small'}}>
+        <Box pad="medium" columns={2}>
+          {contentCardCustomChildren('small')}
+          {contentCardDefault('small')}
+        </Box>
+      </Box>
+    );
+
+    var boxSixtyThirtyColumnsMediumSpacing = (
+      <Box pad={{horizontal: 'small'}}>
+        <Box pad="medium" columns={{ numColumns: 2, mainColumn: 'start'}}>
+          {contentCardCustomChildren('small')}
+          {contentCardDefault('small')}
+        </Box>
+      </Box>
+    );
+
+    var boxOneColumn = (
+      <Box columns={{ numColumns: 1}}>
+        <ContentCard pad="none" direction="column" textAlign="center">
+          <Heading tag="h2">It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.</Heading>
+        </ContentCard>
+      </Box>
+    );
 
     return (
       <DocsArticle title="Box" colorIndex="neutral-3">
@@ -117,13 +197,49 @@ var BoxDoc = React.createClass({
           </div>
           <pre><code className="html hljs xml">{"<Box direction=\"row\" align=\"center\" colorIndex=\"neutral-1\"\n  justify=\"between\" reverse={true} tag=\"aside\"> ..."}</code></pre>
 
-            <h3>Color indexes</h3>
-            <div className="example">
-              <Box direction="row" wrap={true}>
-                {coloredBoxes}
-              </Box>
-            </div>
-            <pre><code className="html hljs xml">{"<Box colorIndex=\"...\" pad=\"small\"> ..."}</code></pre>
+          <h3>Color indexes</h3>
+          <div className="example">
+            <Box direction="row" wrap={true}>
+              {coloredBoxes}
+            </Box>
+          </div>
+          <pre><code className="html hljs xml">{"<Box colorIndex=\"...\" pad=\"small\"> ..."}</code></pre>
+
+          <h3>Four Columns, Large Spacing (48px)</h3>
+          <div className="example">
+            {boxFourColumnsLargeSpacing}
+          </div>
+          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+
+          <h3>Four Columns, Medium Spacing (24px)</h3>
+          <div className="example">
+            {boxFourColumnsMediumSpacing}
+          </div>
+          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+
+          <h3>Three Columns, Medium Spacing (24px)</h3>
+          <div className="example">
+            {boxThreeColumnsMediumSpacing}
+          </div>
+          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+
+          <h3>Two Columns, Medium Spacing (24px)</h3>
+          <div className="example">
+            {boxTwoColumnsMediumSpacing}
+          </div>
+          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+
+          <h3>Two Columns (numColumns: 2, mainColumn: "start"), Medium Spacing (24px)</h3>
+          <div className="example">
+            {boxSixtyThirtyColumnsMediumSpacing}
+          </div>
+          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+
+          <h3>One Column</h3>
+          <div className="example">
+            {boxOneColumn}
+          </div>
+          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
 
         </section>
 

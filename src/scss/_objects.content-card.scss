@@ -1,6 +1,8 @@
 .content-card {
   @include media-query(palm) {
-    padding: 0;
+    &:not(&--pad) {
+      padding: 0;
+    }
 
     &:not(:last-child) {
       border-bottom: 1px solid $border-color;
@@ -88,6 +90,10 @@
     // allow column ContentCards not wrapped in Tiles to have
     // large Tile dimensions
     width: $tile-large-size;
+
+    > .grommetux-box {
+      max-width: 100%;
+    }
 
     @include media-query(palm) {
       padding-left: 0px;

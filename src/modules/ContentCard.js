@@ -107,7 +107,8 @@ export default class ContentCard extends Component {
       CLASS_ROOT,
       {
         [`${CLASS_ROOT}--direction-${direction}`]: direction,
-        [`${CLASS_ROOT}--selectable`]: (link || onClick || video)
+        [`${CLASS_ROOT}--selectable`]: (link || onClick || video),
+        [`${CLASS_ROOT}--pad`]: pad
       },
       className
     );
@@ -119,10 +120,10 @@ export default class ContentCard extends Component {
     }
 
     const contentMarkup = (
-      <Box className={`${CLASS_ROOT}__content`} pad="medium">
-        <Heading tag="h5" uppercase={true} margin="none">{overline}</Heading>
-        <Heading tag="h2" strong={true}>{heading}</Heading>
-        <Paragraph margin="none">{description}</Paragraph>
+      <Box className={`${CLASS_ROOT}__content`} pad={(pad) ? null : 'medium'}>
+        {overline ? (<Heading tag="h5" uppercase={true} margin="none">{overline}</Heading>) : null}
+        {heading ? (<Heading tag="h2" strong={true}>{heading}</Heading>) : null}
+        {description ? (<Paragraph margin="none">{description}</Paragraph>) : null}
         {this._renderChildren()}
         {(!socialIcon) ? this._renderLinkMarkup() : null}
       </Box>
