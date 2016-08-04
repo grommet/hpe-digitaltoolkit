@@ -2,6 +2,27 @@
 
   &__label {
     letter-spacing: normal;
+    line-height: 1.5;
+  }
+
+  &__headline {
+    line-height: 1.25;
+  }
+
+  &__paragraph {
+    &.grommetux-paragraph {
+      line-height: 1.5;
+    }
+  }
+
+  &__print {
+    &.grommetux-paragraph {
+      line-height: 2;
+    }
+  }
+
+  &__link {
+    line-height: 2;
   }
 
 }

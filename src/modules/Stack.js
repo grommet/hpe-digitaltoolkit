@@ -65,22 +65,25 @@ export default class Stack extends Component {
           </Heading>
         }
         {headline &&
-          <Heading tag={headlineTag} strong={headlineStrong} margin="none">
+          <Heading className={`${CLASS_ROOT}__headline`}
+            tag={headlineTag} strong={headlineStrong} margin="none">
             {headline}
           </Heading>
         }
         {paragraph &&
-          <Paragraph size={paragraphSize} margin="none">
+          <Paragraph className={`${CLASS_ROOT}__paragraph`} size={paragraphSize}
+            margin="none">
             {paragraph}
           </Paragraph>
         }
         {print &&
-          <Paragraph size={printSize} margin="none">
+          <Paragraph className={`${CLASS_ROOT}__print`} size={printSize}
+            margin="none">
             {print}
           </Paragraph>
         }
         {link &&
-          <Anchor primary={true} href={link}>
+          <Anchor className={`${CLASS_ROOT}__link`} primary={true} href={link}>
             {linkText}
           </Anchor>
         }
