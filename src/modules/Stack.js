@@ -10,6 +10,33 @@ import Anchor from 'grommet/components/Anchor';
 const CLASS_ROOT = 'stack';
 
 export default class Stack extends Component {
+
+  _renderParagraph (contents, size, type) {
+    if (typeof contents === 'string') {
+      return (
+        <Paragraph
+          className={`${CLASS_ROOT}__${type}`}
+          size={size}
+          margin="none"
+        >
+          {contents}
+        </Paragraph>
+      );
+    } else if (Array.isArray(contents)) {
+      return contents.map((content, index) => (
+        <Paragraph
+          key={`${type}_${index}`}
+          className={`${CLASS_ROOT}__${type}`}
+          size={size}
+          margin="none"
+        >
+          {content}
+        </Paragraph>
+      ));
+    }
+    return null;
+  }
+
   render () {
     const {
       className,
@@ -72,18 +99,8 @@ export default class Stack extends Component {
             {headline}
           </Heading>
         }
-        {paragraph &&
-          <Paragraph className={`${CLASS_ROOT}__paragraph`} size={paragraphSize}
-            margin="none">
-            {paragraph}
-          </Paragraph>
-        }
-        {print &&
-          <Paragraph className={`${CLASS_ROOT}__print`} size={printSize}
-            margin="none">
-            {print}
-          </Paragraph>
-        }
+        {this._renderParagraph(paragraph, paragraphSize, 'paragraph')}
+        {this._renderParagraph(print, printSize, 'print')}
         {(link || onClick) &&
           <Anchor className={`${CLASS_ROOT}__link`} primary={true} href={link}
             onClick={onClick}>
@@ -100,8 +117,8 @@ Stack.propTypes = {
   label: PropTypes.string,
   headline: PropTypes.string,
   headlineStrong: PropTypes.bool,
-  paragraph: PropTypes.string,
-  print: PropTypes.string,
+  paragraph: PropTypes.node,
+  print: PropTypes.node,
   link: PropTypes.string,
   linkText: PropTypes.string,
   onClick: PropTypes.func
