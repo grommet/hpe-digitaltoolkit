@@ -12,7 +12,7 @@ export default class StackDoc extends Component {
     return (
       <DocsArticle title="Stack" colorIndex="neutral-3">
 
-        <p>A stack component.</p>
+        <p>A text stack component.</p>
         <pre><code className="html hljs xml">
           {`<Stack />`}
         </code></pre>
@@ -28,10 +28,12 @@ export default class StackDoc extends Component {
             <dd>Headline content.</dd>
             <dt><code>headlineStrong       true|false</code></dt>
             <dd>If the Headline should be bold. Defaults to <code>true</code>.</dd>
-            <dt><code>paragraph            string</code></dt>
-            <dd>Paragraph content.</dd>
-            <dt><code>print                string</code></dt>
-            <dd>Small print content.</dd>
+            <dt><code>paragraph            string|[string, ...]</code></dt>
+            <dd>Paragraph content. Array of strings will render multiple
+              paragraphs.</dd>
+            <dt><code>print                string|[string, ...]</code></dt>
+            <dd>Small print content. Array of strings will render multiple print
+              paragraphs.</dd>
             <dt><code>link                 string</code></dt>
             <dd>Call to action hyperlink reference.</dd>
             <dt><code>linkText             string</code></dt>
