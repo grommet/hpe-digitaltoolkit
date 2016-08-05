@@ -36,6 +36,8 @@ export default class StackDoc extends Component {
             <dd>Call to action hyperlink reference.</dd>
             <dt><code>linkText             string</code></dt>
             <dd>Call to action text.</dd>
+            <dt><code>onClick              func</code></dt>
+            <dd>Click handler for the "Learn More" link.</dd>
           </dl>
         </section>
 
