@@ -29,7 +29,7 @@
   &--small {
     .stack__headline {
       @include media-query(portable) {
-        font-size: 18px;
+        font-size: $h4-font-size;
       }
     }
   }
@@ -37,7 +37,7 @@
   &--medium {
     .stack__headline {
       @include media-query(portable) {
-        font-size: 24px;
+        font-size: $h3-font-size;
       }
     }
   }
@@ -45,18 +45,19 @@
   &--large {
     .stack__headline {
       @include media-query(portable) {
-        font-size: 36px;
+        font-size: $h2-font-size;
       }
     }
   }
 
   &--xlarge {
     .stack__headline {
-      font-size: 64px;
+      font-size: $large-large-number-font-size;
       @include media-query(portable) {
-        font-size: 48px;
+        font-size: $h1-font-size;
       }
     }
   }
 
 }
+
