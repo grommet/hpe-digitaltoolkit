@@ -209,37 +209,37 @@ var BoxDoc = React.createClass({
           <div className="example">
             {boxFourColumnsLargeSpacing}
           </div>
-          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+          <pre><code className="html hljs xml">{"<Box columns=\{4\}> ..."}</code></pre>
 
           <h3>Four Columns, Medium Spacing (24px)</h3>
           <div className="example">
             {boxFourColumnsMediumSpacing}
           </div>
-          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+          <pre><code className="html hljs xml">{"<Box columns=\{4\}> ..."}</code></pre>
 
           <h3>Three Columns, Medium Spacing (24px)</h3>
           <div className="example">
             {boxThreeColumnsMediumSpacing}
           </div>
-          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+          <pre><code className="html hljs xml">{"<Box columns=\{3\}> ..."}</code></pre>
 
           <h3>Two Columns, Medium Spacing (24px)</h3>
           <div className="example">
             {boxTwoColumnsMediumSpacing}
           </div>
-          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+          <pre><code className="html hljs xml">{"<Box columns=\{2\}> ..."}</code></pre>
 
           <h3>Two Columns (numColumns: 2, mainColumn: "start"), Medium Spacing (24px)</h3>
           <div className="example">
             {boxSixtyThirtyColumnsMediumSpacing}
           </div>
-          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+          <pre><code className="html hljs xml">{`<Box columns={{ numColumns: 2, mainColumn: "start" }}> ...`}</code></pre>
 
           <h3>One Column</h3>
           <div className="example">
             {boxOneColumn}
           </div>
-          <pre><code className="html hljs xml">{"<Box columns=\"...\"> ..."}</code></pre>
+          <pre><code className="html hljs xml">{"<Box columns=\{1\}> ..."}</code></pre>
 
         </section>
 
