@@ -23,22 +23,27 @@ var BoxDoc = React.createClass({
 
     var contentCardCustomChildren = function (pad) {
       return (
-        <ContentCard pad={pad} direction="column">
-          <Heading tag="h2">Protect Your Digital Enterprise</Heading>
-          <Paragraph margin="none">
-            It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.
-          </Paragraph>
+        <ContentCard pad="none" direction="column" thumbnail="/docs/img/Video_image.png">
+          <Box pad={pad}>
+            <Heading tag="h2">Protect Your Digital Enterprise</Heading>
+            <Paragraph margin="none">
+              It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.
+            </Paragraph>
+          </Box>
         </ContentCard>
       );
     };
 
     var contentCardDefault = function (pad) {
       return (
-        <ContentCard pad={pad}
-          direction="column"
-          heading="The Key Steps to Reducing Software Spend"
-          description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
-        />
+        <ContentCard pad="none" direction="column" thumbnail="/docs/img/Case_Study_image.png">
+          <Box pad={pad}>
+            <Heading tag="h2">Protect Your Digital Enterprise</Heading>
+            <Paragraph margin="none">
+              HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes.
+            </Paragraph>
+          </Box>
+        </ContentCard>
       );
     };
 
@@ -83,7 +88,7 @@ var BoxDoc = React.createClass({
 
     var boxSixtyThirtyColumnsMediumSpacing = (
       <Box pad={{horizontal: 'small'}}>
-        <Box pad="medium" columns={{ numColumns: 2, mainColumn: 'start'}}>
+        <Box pad="medium" columns={{ numColumns: 2, mainColumn: 'start', fixed: true}}>
           {contentCardCustomChildren('small')}
           {contentCardDefault('small')}
         </Box>
@@ -229,11 +234,11 @@ var BoxDoc = React.createClass({
           </div>
           <pre><code className="html hljs xml">{"<Box columns=\{2\}> ..."}</code></pre>
 
-          <h3>Two Columns (numColumns: 2, mainColumn: "start"), Medium Spacing (24px)</h3>
+          <h3>Two Columns (numColumns: 2, mainColumn: "start", fixed: true), Medium Spacing (24px)</h3>
           <div className="example">
             {boxSixtyThirtyColumnsMediumSpacing}
           </div>
-          <pre><code className="html hljs xml">{`<Box columns={{ numColumns: 2, mainColumn: "start" }}> ...`}</code></pre>
+          <pre><code className="html hljs xml">{`<Box columns={{ numColumns: 2, mainColumn: "start", fixed: true }}> ...`}</code></pre>
 
           <h3>One Column</h3>
           <div className="example">
