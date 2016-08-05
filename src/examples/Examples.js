@@ -4,15 +4,14 @@ var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
 var Box = require('grommet/components/Box');
-var PlayIcon = require('grommet/components/icons/base/Play');
 var Heading = require('grommet/components/Heading');
 var Headline = require('grommet/components/Headline');
 var Paragraph = require('grommet/components/Paragraph');
 var Accordion = require('grommet/components/Accordion');
 var AccordionPanel = require('grommet/components/AccordionPanel');
 var Marquee = require('../modules/Marquee');
+var ContentCard = require('../modules/ContentCard');
 var MarqueeParallax = require('../modules/MarqueeParallax');
-var Callout = require('../modules/Callout');
 var Header = require('./Header');
 
 var Examples = React.createClass({
@@ -120,14 +119,16 @@ var Examples = React.createClass({
                   we can help your business develop new systems of engagement
                   while leveraging your legacy investments
                 </Paragraph>
-                <Callout
+                <ContentCard
+                  direction="row"
                   thumbnail="/docs/img/Video_image.png"
-                  eyebrow="Video - 4:27"
+                  overline="Video - 4:27"
                   heading="Foundation Paraguay Empowers Microbusinesses"
                   description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
-                  link="#"
-                  linkIcon={<PlayIcon />}
-                  linkText="Watch Now"
+                  video={{
+                    source: 'video/test.mp4',
+                    type: 'mp4'
+                  }}
                 />
               </Box>
             </AccordionPanel>
@@ -149,9 +150,10 @@ var Examples = React.createClass({
                   control throughout your organization, and helping you meet
                   licensing compliance requirements
                 </Paragraph>
-                <Callout
+                <ContentCard
+                  direction="row"
                   thumbnail="/docs/img/Case_Study_image.png"
-                  eyebrow="Case Study"
+                  overline="Case Study"
                   heading="The Key Steps to Reducing Software Spend"
                   description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
                   link="#"
