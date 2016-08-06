@@ -56,7 +56,7 @@ module.exports =
 	var Home = __webpack_require__(105);
 	var Design = __webpack_require__(135);
 	var Develop = __webpack_require__(148);
-	var Examples = __webpack_require__(193);
+	var Examples = __webpack_require__(195);
 
 	module.exports = function (rootPath) {
 	  var DocsRouter = React.createClass({
@@ -1710,7 +1710,7 @@ module.exports =
 
 	exports.default = (0, _extends3.default)({
 	  IndexFilters: {
-	    filters: '{quantity, plural,\n  =0 {Filters}\n  =1 {one filter}\n  other {# filters}\n}'
+	    filters: '{quantity, plural,\n  =0 {Filters}\n  =1 {one filter}\n  ' + 'other {# filters}\n}'
 	  }
 	}, _enUS2.default, {
 	  Active: 'Active',
@@ -2118,7 +2118,7 @@ module.exports =
 
 	exports.default = {
 	  IndexFilters: {
-	    filters: '{quantity, plural,\n  =0 {Filtros}\n  =1 {um filtro}\n  other {# filtros}\n}'
+	    filters: '{quantity, plural,\n  =0 {Filtros}\n  =1 {um filtro}\n  ' + 'other {# filtros}\n}'
 	  },
 	  Active: 'Ativos',
 	  add: 'add',
@@ -2689,7 +2689,8 @@ module.exports =
 	      if (this.props.appCentered) {
 	        return _react2.default.createElement(
 	          'div',
-	          (0, _extends3.default)({}, restProps, { ref: 'boxContainer', className: containerClasses.join(' '),
+	          (0, _extends3.default)({}, restProps, { ref: 'boxContainer',
+	            className: containerClasses.join(' '),
 	            style: style, role: this.props.role }, a11yProps),
 	          skipLinkAnchor,
 	          _react2.default.createElement(
@@ -4235,7 +4236,8 @@ module.exports =
 	      var onClick = _props.onClick;
 
 	      var boxProps = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
-	      delete boxProps.colorIndex; // manage colorIndex at the outer menuDrop element
+	      // manage colorIndex at the outer menuDrop element
+	      delete boxProps.colorIndex;
 
 	      delete boxProps.onClick;
 
@@ -4479,7 +4481,7 @@ module.exports =
 	    value: function _renderMenuDrop() {
 	      var closeLabel = _Intl2.default.getMessage(this.context.intl, 'Close');
 	      var menuLabel = _Intl2.default.getMessage(this.context.intl, 'Menu');
-	      var menuTitle = closeLabel + ' ' + (this.props.a11yTitle || this.props.label || '') + ' ' + menuLabel;
+	      var menuTitle = closeLabel + ' ' + (this.props.a11yTitle || this.props.label || '') + ' ' + ('' + menuLabel);
 
 	      var control = _react2.default.createElement(
 	        _Button2.default,
@@ -4533,7 +4535,7 @@ module.exports =
 	        var controlContents = this._renderControlContents();
 	        var openLabel = _Intl2.default.getMessage(this.context.intl, 'Open');
 	        var menuLabel = _Intl2.default.getMessage(this.context.intl, 'Menu');
-	        var menuTitle = openLabel + ' ' + (this.props.a11yTitle || this.props.label || '') + ' ' + menuLabel;
+	        var menuTitle = openLabel + ' ' + (this.props.a11yTitle || this.props.label || '') + ' ' + ('' + menuLabel);
 
 	        return _react2.default.createElement(
 	          'div',
@@ -4630,7 +4632,8 @@ module.exports =
 
 	exports.default = {
 
-	  // How callers can validate a property for drop alignment which will be passed to add().
+	  // How callers can validate a property for drop alignment which will be
+	  // passed to add().
 	  alignPropType: _react.PropTypes.shape({
 	    top: _react.PropTypes.oneOf(VERTICAL_ALIGN_OPTIONS),
 	    bottom: _react.PropTypes.oneOf(VERTICAL_ALIGN_OPTIONS),
@@ -5824,7 +5827,8 @@ module.exports =
 	    _this._onResponsive = _this._onResponsive.bind(_this);
 	    _this._updateHiddenElements = _this._updateHiddenElements.bind(_this);
 
-	    // Necessary to detect for Firefox or Edge to implement accessibility tabbing
+	    // Necessary to detect for Firefox or Edge to implement accessibility
+	    // tabbing
 	    var accessibilityTabbingCompatible = typeof navigator !== 'undefined' && navigator.userAgent.indexOf("Firefox") === -1 && navigator.userAgent.indexOf("Edge") === -1;
 
 	    _this.state = {
@@ -6188,7 +6192,8 @@ module.exports =
 	              _this7.props.onSelect(selectedIndex);
 	            }
 
-	            // Necessary to detect for Firefox or Edge to implement accessibility tabbing
+	            // Necessary to detect for Firefox or Edge to implement accessibility
+	            // tabbing
 	            if (_this7.props.direction === 'row' && _this7.state.accessibilityTabbingCompatible) {
 	              _this7.refs.anchorStep.focus();
 	              _this7._updateHiddenElements();
@@ -7345,7 +7350,8 @@ module.exports =
 	      }
 	      return _react2.default.createElement(
 	        'svg',
-	        { className: classes.join(' '), viewBox: '0 0 182 182', width: '182', height: '182',
+	        { className: classes.join(' '), viewBox: '0 0 182 182',
+	          width: '182', height: '182',
 	          version: '1.1', role: 'img', 'aria-labelledby': a11yTitleId },
 	        title,
 	        _react2.default.createElement('path', { role: 'presentation',
@@ -8078,7 +8084,9 @@ module.exports =
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(nextProps) {
 	      if (nextProps.selected) {
-	        this.setState({ selected: _Selection2.default.normalizeIndexes(nextProps.selected) });
+	        this.setState({
+	          selected: _Selection2.default.normalizeIndexes(nextProps.selected)
+	        });
 	      }
 	      if (this._scroll) {
 	        _InfiniteScroll2.default.stopListeningForScroll(this._scroll);
@@ -8253,7 +8261,8 @@ module.exports =
 	      var columns = columnsArray.map(function (current, i) {
 	        return _react2.default.createElement(
 	          _Box2.default,
-	          { className: CLASS_ROOT + '__masonry-column', key: 'column-' + numColumns + '-' + i },
+	          { className: CLASS_ROOT + '__masonry-column',
+	            key: 'column-' + numColumns + '-' + i },
 	          columnContents['column-' + i]
 	        );
 	      });
@@ -8660,8 +8669,10 @@ module.exports =
 	          null,
 	          'Spinning'
 	        ),
-	        _react2.default.createElement('circle', { stroke: '#ddd', strokeWidth: '4', strokeDasharray: '24px 8px', fill: 'none', cx: '24', cy: '24', r: '20' }),
-	        _react2.default.createElement('circle', { stroke: '#333', strokeWidth: '4', strokeDasharray: '24px 104px', fill: 'none', cx: '24', cy: '24', r: '20' })
+	        _react2.default.createElement('circle', { stroke: '#ddd', strokeWidth: '4', strokeDasharray: '24px 8px',
+	          fill: 'none', cx: '24', cy: '24', r: '20' }),
+	        _react2.default.createElement('circle', { stroke: '#333', strokeWidth: '4', strokeDasharray: '24px 104px',
+	          fill: 'none', cx: '24', cy: '24', r: '20' })
 	      );
 	    }
 	  }]);
@@ -8703,7 +8714,8 @@ module.exports =
 	      bottom = scrollState.scrollParent.getBoundingClientRect().bottom;
 	    }
 	    var indicatorRect = scrollState.indicatorElement.getBoundingClientRect();
-	    // Only if bottom isn't zero. This can happen when content hasn't arrived yet.
+	    // Only if bottom isn't zero. This can happen when content hasn't
+	    // arrived yet.
 	    // 10px offset is to ensure onEnd() gets called
 	    if (bottom && indicatorRect.bottom <= bottom + 10) {
 	      scrollState.onEnd();
@@ -8795,7 +8807,8 @@ module.exports =
 	}
 
 	// Sets the selectedClass on all children whose index is in selectedIndexes.
-	// options: {containerElement: , childSelector: , selectedClass: , selectedIndexes: []}
+	// options: {containerElement: , childSelector: , selectedClass: ,
+	//    selectedIndexes: []}
 	function setClassFromIndexes(options) {
 	  clearClass(options);
 	  if (options.selectedIndexes) {
@@ -8810,7 +8823,8 @@ module.exports =
 	  }
 	}
 
-	// Gets the selected selectedClass on all children whose index is in selectedIndexes.
+	// Gets the selected selectedClass on all children whose index is in
+	// selectedIndexes.
 	// options: {containerElement: , childSelector: , selectedClass: }
 	function getIndexesFromClass(options) {
 	  var items = options.containerElement.querySelectorAll(options.childSelector);
@@ -11549,6 +11563,7 @@ module.exports =
 	var WorldMapDoc = __webpack_require__(174);
 	var AccordionDoc = __webpack_require__(177);
 	var ContentCardDoc = __webpack_require__(191);
+	var StackDoc = __webpack_require__(193);
 
 	//hjjs configuration
 	var hljs = __webpack_require__(142);
@@ -11564,7 +11579,7 @@ module.exports =
 	}, { label: 'Patterns',
 	  contents: [{ route: 'develop_dashboard', label: 'Dashboard', component: DashboardDoc }, { route: 'develop_navigation', label: 'Navigation', component: NavigationDoc }, { route: 'develop_actions', label: 'Actions', component: ActionsDoc }]
 	}, { label: 'Components',
-	  contents: [{ route: 'develop_box', label: 'Box', component: BoxDoc }, { route: 'develop_marquee', label: 'Marquee', component: MarqueeDoc }, { route: 'develop_accordion', label: 'Accordion', component: AccordionDoc }, { route: 'develop_content-card', label: 'ContentCard', component: ContentCardDoc }, { route: 'develop_world-map', label: 'WorldMap', component: WorldMapDoc }]
+	  contents: [{ route: 'develop_box', label: 'Box', component: BoxDoc }, { route: 'develop_marquee', label: 'Marquee', component: MarqueeDoc }, { route: 'develop_accordion', label: 'Accordion', component: AccordionDoc }, { route: 'develop_content-card', label: 'ContentCard', component: ContentCardDoc }, { route: 'develop_stack', label: 'Stack', component: StackDoc }, { route: 'develop_world-map', label: 'WorldMap', component: WorldMapDoc }]
 	}];
 
 	var Develop = React.createClass({
@@ -13139,7 +13154,8 @@ module.exports =
 	      if (this.state.dropActive && !prevState.dropActive) {
 	        // Slow down adding the click handler,
 	        // otherwise the drop will close when the mouse is released.
-	        // Not observable in Safari, 1ms is sufficient for Chrome, Firefox needs 100ms though. :(
+	        // Not observable in Safari, 1ms is sufficient for Chrome,
+	        // Firefox needs 100ms though. :(
 	        // TODO: re-evaluate how to solve this without a timeout.
 	        document.addEventListener('click', this._onRemoveDrop);
 	        _KeyboardAccelerators2.default.startListeningToKeyboard(this, activeKeyboardHandlers);
@@ -14146,8 +14162,9 @@ module.exports =
 	            var x = Math.max(POINT_RADIUS + 1, Math.min(bounds.graphWidth - (POINT_RADIUS + 1), coordinate[0]));
 	            var value = item.values[index];
 	            points.push(_react2.default.createElement('circle', { key: index,
-	              className: CLASS_ROOT + '__values-point ' + COLOR_INDEX + '-' + colorIndex,
-	              cx: x, cy: coordinate[1], r: POINT_RADIUS, onClick: value.onClick }));
+	              className: CLASS_ROOT + '__values-point ' + (COLOR_INDEX + '-' + colorIndex),
+	              cx: x, cy: coordinate[1], r: POINT_RADIUS,
+	              onClick: value.onClick }));
 	          }
 
 	          previousControlCoordinates = controlCoordinates;
@@ -14316,7 +14333,8 @@ module.exports =
 	        x += bounds.barPadding;
 	        startX = x;
 	      }
-	      return { x: x, anchor: anchor, startX: startX, endX: startX + MIN_LABEL_WIDTH };
+	      return { x: x, anchor: anchor, startX: startX,
+	        endX: startX + MIN_LABEL_WIDTH };
 	    }
 	  }, {
 	    key: '_labelOverlaps',
@@ -14555,7 +14573,8 @@ module.exports =
 	      }
 	      // Offset it just a little if it is at an edge.
 	      var x = Math.max(1, Math.min(coordinates[0], this.state.bounds.graphWidth - 1));
-	      var line = _react2.default.createElement('line', { fill: 'none', x1: x, y1: bounds.graphTop, x2: x, y2: bounds.graphBottom });
+	      var line = _react2.default.createElement('line', { fill: 'none', x1: x, y1: bounds.graphTop, x2: x,
+	        y2: bounds.graphBottom });
 
 	      var points = void 0;
 	      if (this.props.points) {
@@ -14566,7 +14585,7 @@ module.exports =
 	            coordinates = _this7._coordinates(value);
 	            var colorIndex = _this7._itemColorIndex(item, seriesIndex);
 	            return _react2.default.createElement('circle', { key: seriesIndex,
-	              className: CLASS_ROOT + '__cursor-point ' + COLOR_INDEX + '-' + colorIndex,
+	              className: CLASS_ROOT + '__cursor-point ' + (COLOR_INDEX + '-' + colorIndex),
 	              cx: x, cy: coordinates[1], r: Math.round(POINT_RADIUS * 1.2) });
 	          });
 	        }
@@ -14929,7 +14948,7 @@ module.exports =
 	          swatch = _react2.default.createElement(
 	            'svg',
 	            {
-	              className: CLASS_ROOT + '__item-swatch ' + COLOR_INDEX + '-' + colorIndex,
+	              className: CLASS_ROOT + '__item-swatch ' + (COLOR_INDEX + '-' + colorIndex),
 	              viewBox: '0 0 12 12' },
 	            _react2.default.createElement('path', { className: item.className, d: 'M 5 0 l 0 12' })
 	          );
@@ -16615,7 +16634,8 @@ module.exports =
 	        startAngle: 0,
 	        anglePer: 270.0 / props.max.value,
 	        angleOffset: 180,
-	        // The last spiral ends out near but not quite at the edge of the view box.
+	        // The last spiral ends out near but not quite at the edge of the
+	        // view box.
 	        startRadius: Math.max(SPIRAL_RADIUS, RING_THICKNESS * (props.series.length + 0.5)) - Math.max(0, props.series.length - 1) * RING_THICKNESS,
 	        viewBoxWidth: viewBoxWidth,
 	        viewBoxHeight: viewBoxHeight
@@ -16923,7 +16943,7 @@ module.exports =
 	        var y = ARC_WIDTH / 2;
 	        var indicatorCommands = singleIndicatorCommands(x, y, ARC_RADIUS, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset, length);
 	        indicator = _react2.default.createElement('path', { fill: 'none',
-	          className: CLASS_ROOT + '__slice-indicator ' + COLOR_INDEX + '-' + item.colorIndex,
+	          className: CLASS_ROOT + '__slice-indicator ' + (COLOR_INDEX + '-' + item.colorIndex),
 	          d: indicatorCommands });
 	      }
 
@@ -18388,7 +18408,8 @@ module.exports =
 	        area = _react2.default.createElement('path', { stroke: 'none', fill: '#fff', fillOpacity: '0.01',
 	          d: this.state.area[continent] });
 	      }
-	      // We add the area so the mouse events work for the whole region, not just the dots
+	      // We add the area so the mouse events work for the whole region,
+	      // not just the dots
 	      return _react2.default.createElement(
 	        'g',
 	        { key: continent, id: continent, className: classes.join(' '),
@@ -19304,7 +19325,7 @@ module.exports =
 
 
 	      if (selected) {
-	        console.warn('Selected option has been deprecated, please use selected option at the List level.');
+	        console.warn('Selected option has been deprecated, please use selected ' + 'option at the List level.');
 	      }
 
 	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selected', selected), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selectable', onClick), _classnames));
@@ -20002,7 +20023,9 @@ module.exports =
 	      // Dynamically modifying a source element and its attribute when
 	      // the element is already inserted in a video or audio element will
 	      // have no effect.
-	      // From HTML Specs: https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element
+	      // From HTML Specs:
+	      // https://html.spec.whatwg.org/multipage/embedded-content.html
+	      //   #the-source-element
 	      // Using forceUpdate to force redraw of video when receiving new <source>
 	      this.forceUpdate();
 	    }
@@ -20179,7 +20202,8 @@ module.exports =
 
 	      var controlsContent = _react2.default.createElement(
 	        _Box2.default,
-	        { pad: 'none', align: 'center', justify: videoSummaryJustify, className: CLASS_ROOT + '__summary' },
+	        { pad: 'none', align: 'center', justify: videoSummaryJustify,
+	          className: CLASS_ROOT + '__summary' },
 	        videoHeader,
 	        _react2.default.createElement(
 	          _Box2.default,
@@ -21429,6 +21453,469 @@ module.exports =
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _DocsArticle = __webpack_require__(140);
+
+	var _DocsArticle2 = _interopRequireDefault(_DocsArticle);
+
+	var _Example = __webpack_require__(175);
+
+	var _Example2 = _interopRequireDefault(_Example);
+
+	var _Stack = __webpack_require__(194);
+
+	var _Stack2 = _interopRequireDefault(_Stack);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	_Stack2.default.displayName = 'Stack';
+
+	var StackDoc = function (_Component) {
+	  _inherits(StackDoc, _Component);
+
+	  function StackDoc() {
+	    _classCallCheck(this, StackDoc);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(StackDoc).apply(this, arguments));
+	  }
+
+	  _createClass(StackDoc, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        _DocsArticle2.default,
+	        { title: 'Stack', colorIndex: 'neutral-3' },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'A text stack component.'
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          _react2.default.createElement(
+	            'code',
+	            { className: 'html hljs xml' },
+	            '<Stack />'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'section',
+	          null,
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Stack Options'
+	          ),
+	          _react2.default.createElement(
+	            'dl',
+	            null,
+	            _react2.default.createElement(
+	              'dt',
+	              null,
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'size                 small|medium|large|xlarge'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'dd',
+	              null,
+	              'Size of content within Stack. Defaults to ',
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'medium'
+	              ),
+	              '.'
+	            ),
+	            _react2.default.createElement(
+	              'dt',
+	              null,
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'label                string'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'dd',
+	              null,
+	              'Label content.'
+	            ),
+	            _react2.default.createElement(
+	              'dt',
+	              null,
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'headline             string'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'dd',
+	              null,
+	              'Headline content.'
+	            ),
+	            _react2.default.createElement(
+	              'dt',
+	              null,
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'headlineStrong       true|false'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'dd',
+	              null,
+	              'If the Headline should be bold. Defaults to ',
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'true'
+	              ),
+	              '.'
+	            ),
+	            _react2.default.createElement(
+	              'dt',
+	              null,
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'paragraph            string|[string, ...]'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'dd',
+	              null,
+	              'Paragraph content. Array of strings will render multiple paragraphs.'
+	            ),
+	            _react2.default.createElement(
+	              'dt',
+	              null,
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'print                string|[string, ...]'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'dd',
+	              null,
+	              'Small print content. Array of strings will render multiple print paragraphs.'
+	            ),
+	            _react2.default.createElement(
+	              'dt',
+	              null,
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'link                 string'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'dd',
+	              null,
+	              'Call to action hyperlink reference.'
+	            ),
+	            _react2.default.createElement(
+	              'dt',
+	              null,
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'linkText             string'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'dd',
+	              null,
+	              'Call to action text.'
+	            ),
+	            _react2.default.createElement(
+	              'dt',
+	              null,
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'onClick              func'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'dd',
+	              null,
+	              'Click handler for the "Learn More" link.'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'section',
+	          null,
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Examples'
+	          ),
+	          _react2.default.createElement(_Example2.default, { name: 'XLarge', code: _react2.default.createElement(_Stack2.default, {
+	              size: 'xlarge',
+	              label: 'Label Light',
+	              headline: 'Headline Semibold, Light',
+	              paragraph: 'Consectetur sunt nemo numquam.',
+	              print: 'Amet ipsa amet delectus culpa odit.',
+	              link: '#',
+	              linkText: 'CTA Semibold'
+	            }) }),
+	          _react2.default.createElement(_Example2.default, { name: 'Large', code: _react2.default.createElement(_Stack2.default, {
+	              size: 'large',
+	              label: 'Label Light',
+	              headline: 'Headline Semibold, Light',
+	              paragraph: 'Consectetur sunt nemo numquam.',
+	              print: 'Amet ipsa amet delectus culpa odit.',
+	              link: '#',
+	              linkText: 'CTA Semibold'
+	            }) }),
+	          _react2.default.createElement(_Example2.default, { name: 'Medium', code: _react2.default.createElement(_Stack2.default, {
+	              label: 'Label Light',
+	              headline: 'Headline Semibold, Light',
+	              paragraph: 'Consectetur sunt nemo numquam.',
+	              print: 'Amet ipsa amet delectus culpa odit.',
+	              link: '#',
+	              linkText: 'CTA Semibold'
+	            }) }),
+	          _react2.default.createElement(_Example2.default, { name: 'Small', code: _react2.default.createElement(_Stack2.default, {
+	              size: 'small',
+	              label: 'Label Light',
+	              headline: 'Headline Semibold, Light',
+	              paragraph: 'Consectetur sunt nemo numquam.',
+	              print: 'Amet ipsa amet delectus culpa odit.',
+	              link: '#',
+	              linkText: 'CTA Semibold'
+	            }) })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return StackDoc;
+	}(_react.Component);
+
+	exports.default = StackDoc;
+	;
+
+	StackDoc.contextTypes = {
+	  routePrefix: _react2.default.PropTypes.string.isRequired
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _Box = __webpack_require__(83);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Heading = __webpack_require__(178);
+
+	var _Heading2 = _interopRequireDefault(_Heading);
+
+	var _Paragraph = __webpack_require__(171);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
+	var _Anchor = __webpack_require__(115);
+
+	var _Anchor2 = _interopRequireDefault(_Anchor);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'stack';
+
+	var Stack = function (_Component) {
+	  _inherits(Stack, _Component);
+
+	  function Stack() {
+	    _classCallCheck(this, Stack);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Stack).apply(this, arguments));
+	  }
+
+	  _createClass(Stack, [{
+	    key: '_renderParagraph',
+	    value: function _renderParagraph(contents, size, type) {
+	      if (typeof contents === 'string') {
+	        return _react2.default.createElement(
+	          _Paragraph2.default,
+	          {
+	            className: CLASS_ROOT + '__' + type,
+	            size: size,
+	            margin: 'none'
+	          },
+	          contents
+	        );
+	      } else if (Array.isArray(contents)) {
+	        return contents.map(function (content, index) {
+	          return _react2.default.createElement(
+	            _Paragraph2.default,
+	            {
+	              key: type + '_' + index,
+	              className: CLASS_ROOT + '__' + type,
+	              size: size,
+	              margin: 'none'
+	            },
+	            content
+	          );
+	        });
+	      }
+	      return null;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var className = _props.className;
+	      var label = _props.label;
+	      var headline = _props.headline;
+	      var headlineStrong = _props.headlineStrong;
+	      var paragraph = _props.paragraph;
+	      var print = _props.print;
+	      var size = _props.size;
+	      var link = _props.link;
+	      var linkText = _props.linkText;
+	      var onClick = _props.onClick;
+
+	      var props = _objectWithoutProperties(_props, ['className', 'label', 'headline', 'headlineStrong', 'paragraph', 'print', 'size', 'link', 'linkText', 'onClick']);
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, _defineProperty({}, CLASS_ROOT + '--' + size, size));
+
+	      var labelTag = void 0;
+	      var headlineTag = void 0;
+	      var paragraphSize = void 0;
+	      var printSize = void 0;
+	      if (size === 'xlarge') {
+	        labelTag = 'h3';
+	        headlineTag = 'h1';
+	        paragraphSize = 'xlarge';
+	        printSize = 'large';
+	      } else if (size === 'large') {
+	        labelTag = 'h4';
+	        headlineTag = 'h1';
+	        paragraphSize = 'xlarge';
+	        printSize = 'large';
+	      } else if (size === 'small') {
+	        labelTag = 'h5';
+	        headlineTag = 'h3';
+	        paragraphSize = 'medium';
+	        printSize = 'small';
+	      } else {
+	        labelTag = 'h4';
+	        headlineTag = 'h2';
+	        paragraphSize = 'xlarge';
+	        printSize = 'large';
+	      }
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        _extends({ className: classes }, props),
+	        label && _react2.default.createElement(
+	          _Heading2.default,
+	          { className: CLASS_ROOT + '__label', tag: labelTag, margin: 'none', uppercase: true },
+	          label
+	        ),
+	        headline && _react2.default.createElement(
+	          _Heading2.default,
+	          { className: CLASS_ROOT + '__headline',
+	            tag: headlineTag, strong: headlineStrong, margin: 'none' },
+	          headline
+	        ),
+	        this._renderParagraph(paragraph, paragraphSize, 'paragraph'),
+	        this._renderParagraph(print, printSize, 'print'),
+	        (link || onClick) && _react2.default.createElement(
+	          _Anchor2.default,
+	          { className: CLASS_ROOT + '__link', primary: true, href: link,
+	            onClick: onClick },
+	          linkText
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Stack;
+	}(_react.Component);
+
+	exports.default = Stack;
+	;
+
+	Stack.propTypes = {
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+	  label: _react.PropTypes.string,
+	  headline: _react.PropTypes.string,
+	  headlineStrong: _react.PropTypes.bool,
+	  paragraph: _react.PropTypes.node,
+	  print: _react.PropTypes.node,
+	  link: _react.PropTypes.string,
+	  linkText: _react.PropTypes.string,
+	  onClick: _react.PropTypes.func
+	};
+
+	Stack.defaultProps = {
+	  size: 'medium',
+	  headlineStrong: true,
+	  linkText: 'Learn More'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
@@ -21439,10 +21926,10 @@ module.exports =
 	var Paragraph = __webpack_require__(171);
 	var Marquee = __webpack_require__(170);
 	var ContentCard = __webpack_require__(185);
-	var MarqueeParallax = __webpack_require__(194);
+	var MarqueeParallax = __webpack_require__(196);
 	var Accordion = __webpack_require__(179);
 	var AccordionPanel = __webpack_require__(181);
-	var Header = __webpack_require__(195);
+	var Header = __webpack_require__(197);
 
 	var Examples = React.createClass({
 	  displayName: 'Examples',
@@ -21665,7 +22152,7 @@ module.exports =
 	module.exports = Examples;
 
 /***/ },
-/* 194 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21998,7 +22485,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 195 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22029,11 +22516,11 @@ module.exports =
 
 	var _Title2 = _interopRequireDefault(_Title);
 
-	var _HeaderMenu = __webpack_require__(196);
+	var _HeaderMenu = __webpack_require__(198);
 
 	var _HeaderMenu2 = _interopRequireDefault(_HeaderMenu);
 
-	var _Logo = __webpack_require__(197);
+	var _Logo = __webpack_require__(199);
 
 	var _Logo2 = _interopRequireDefault(_Logo);
 
@@ -22181,7 +22668,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 196 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22283,7 +22770,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 197 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
