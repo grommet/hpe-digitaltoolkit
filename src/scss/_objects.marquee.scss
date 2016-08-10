@@ -54,7 +54,7 @@
   &__overlay.#{$grommet-namespace}box {
     z-index: 1;
 
-    .#{$grommet-namespace}box {
+    > .#{$grommet-namespace}box {
       width: 50%;
 
       @include media-query(palm) {
@@ -128,6 +128,10 @@
       border-bottom: 1px solid $border-color;
       margin-bottom: $inuit-base-spacing-unit;
     }
+  }
+
+  &--show-video {
+    height: auto;
   }
 
   &__video-overlay {

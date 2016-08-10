@@ -3,12 +3,11 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
 import Box from 'grommet/components/Box';
-import Headline from 'grommet/components/Headline';
-import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
 import Image from 'grommet/components/Image';
 import PlayIcon from 'grommet/components/icons/base/Play';
 import CloseIcon from 'grommet/components/icons/base/Close';
+import Stack from './Stack';
 
 const CLASS_ROOT = 'marquee';
 const LIGHT_COLORINDEX = 'light-1';
@@ -77,11 +76,10 @@ export default class Marquee extends Component {
   }
 
   _renderMarquee () {
-    const { backgroundImage, backgroundVideo, flush, headlineSize, headline, image, justify, link, linkIcon, linkText, onClick, overlayVideo, responsiveBackgroundPosition, separator, size, subHeadline } = this.props;
+    const { backgroundImage, backgroundVideo, flush, headlineSize, headline, image, justify, link, linkIcon, linkText, onClick, overlayVideo, responsiveBackgroundPosition, separator, subHeadline } = this.props;
 
     let classes = classnames(
       {
-        [`${CLASS_ROOT}--${size}`]: size,
         [`${CLASS_ROOT}--bg-${responsiveBackgroundPosition}`]: responsiveBackgroundPosition,
         [`${CLASS_ROOT}--mobile-separator`]: separator
       }
@@ -106,30 +104,21 @@ export default class Marquee extends Component {
       imageMarkup = <Image src={`url(${image})`} />;
     }
 
-    let subHeadlineMarkup;
-    if (subHeadline) {
-      subHeadlineMarkup = (
-        <Paragraph size="large" margin="none">{subHeadline}</Paragraph>
-      );
-    }
-
-    let linkMarkup;
+    let linkCopy;
+    let icon;
     if (link || onClick || overlayVideo) {
-      let linkCopy = linkText;
       if (!linkText && backgroundImage) {
         linkCopy = "Learn More";
       } else if (!linkText && overlayVideo) {
         linkCopy = "Watch Now";
+      } else {
+        linkCopy = linkText;
       }
 
-      let icon = linkIcon;
+      icon = linkIcon;
       if (!linkIcon && overlayVideo) {
         icon = <PlayIcon />;
       }
-
-      linkMarkup = (
-        <h3><Anchor href={link} primary={true} label={linkCopy} icon={icon} onClick={this._onClick} /></h3>
-      );
     }
 
     let contentMarkup;
@@ -137,11 +126,7 @@ export default class Marquee extends Component {
       contentMarkup = (
         <Box className={CLASS_ROOT + "__overlay"} justify={justify} align="center" primary={true} full={full} direction="row" >
           <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-            <Headline size={headlineSize} strong={true} margin="none">
-              {headline}
-            </Headline>
-            {subHeadlineMarkup}
-            {linkMarkup}
+            <Stack size={headlineSize} headline={headline} paragraph={subHeadline} link={link} linkText={linkCopy} linkIcon={icon} onClick={this._onClick} />
           </Box>
         </Box>
       );
@@ -152,11 +137,7 @@ export default class Marquee extends Component {
             {imageMarkup}
           </Box>
           <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-            <Headline size={headlineSize} strong={true} margin="none">
-              {headline}
-            </Headline>
-            {subHeadlineMarkup}
-            {linkMarkup}
+            <Stack size={headlineSize} headline={headline} paragraph={subHeadline} link={link} linkText={linkCopy} linkIcon={icon} onClick={this._onClick} />
           </Box>
         </Box>
       );
@@ -182,12 +163,16 @@ export default class Marquee extends Component {
   }
 
   render () {
-    const { className } = this.props;
+    const { className, size } = this.props;
     let content;
 
     let classes = classnames(
       CLASS_ROOT,
-      className
+      className,
+      {
+        [`${CLASS_ROOT}--${size}`]: size,
+        [`${CLASS_ROOT}--show-video`]: this.state.showVideo
+      }
     );
 
     if (this.state.showVideo) {
