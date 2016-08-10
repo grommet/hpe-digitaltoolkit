@@ -3319,6 +3319,7 @@ module.exports =
 	  TILE: namespace + 'tile',
 	  TILES: namespace + 'tiles',
 	  TIMESTAMP: namespace + 'timestamp',
+	  TIP: namespace + 'tip',
 	  TITLE: namespace + 'title',
 	  TOPOLOGY: namespace + 'topology',
 	  VALUE: namespace + 'value',
@@ -4701,8 +4702,6 @@ module.exports =
 	    if (drop.options.colorIndex) {
 	      drop.container.className += ' ' + BACKGROUND_COLOR_INDEX + '-' + drop.options.colorIndex;
 	    }
-	    // prepend in body to avoid browser scroll issues
-	    document.body.insertBefore(drop.container, document.body.firstChild);
 	    (0, _reactDom.render)(content, drop.container);
 
 	    drop.scrollParents = _DOM2.default.findScrollParents(drop.control);
@@ -4717,6 +4716,9 @@ module.exports =
 
 	    // position content
 	    this._place(drop);
+
+	    // prepend in body to avoid browser scroll issues
+	    document.body.insertBefore(drop.container, document.body.firstChild);
 
 	    return drop;
 	  },
@@ -17155,7 +17157,7 @@ module.exports =
 
 	  render: function render() {
 	    var simpleMarquee = React.createElement(Marquee, { darkTheme: false,
-	      backgroundImage: 'url(../img/MarqueeImage_051916_H.jpg)',
+	      backgroundImage: '../img/MarqueeImage_051916_H.jpg',
 	      headline: 'Accelerate your transformation with the cloud',
 	      subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	      link: 'http://www.grommet.io/docs/' });
@@ -19723,7 +19725,7 @@ module.exports =
 	          children,
 	          _react2.default.createElement(
 	            _Box2.default,
-	            { align: 'end' },
+	            { className: CLASS_ROOT + '__social-icon', align: 'end' },
 	            socialIcon
 	          )
 	        );
@@ -19863,10 +19865,12 @@ module.exports =
 
 	      return _react2.default.createElement(
 	        _Tile2.default,
-	        _extends({ className: classes, onClick: onContentCardClick, pad: pad || cardPad }, tileProps),
+	        _extends({ className: classes, onClick: onContentCardClick,
+	          pad: pad || cardPad }, tileProps),
 	        _react2.default.createElement(
 	          _Box2.default,
-	          { className: 'flex', direction: direction, justify: cardJustify, full: cardFull },
+	          { className: 'flex', direction: direction, justify: cardJustify,
+	            full: cardFull, colorIndex: 'light-1' },
 	          first,
 	          second,
 	          this._renderVideoMarkup()
@@ -20845,6 +20849,7 @@ module.exports =
 	var jsxToString = __webpack_require__(169);
 	var DocsArticle = __webpack_require__(140);
 	var ContentCard = __webpack_require__(185);
+	var Box = __webpack_require__(83);
 	var Tiles = __webpack_require__(119);
 	var Heading = __webpack_require__(178);
 	var SocialTwitterIcon = __webpack_require__(192);
@@ -20889,39 +20894,51 @@ module.exports =
 
 
 	  render: function render() {
-	    var simpleContentCard = React.createElement(ContentCard, {
-	      thumbnail: '/docs/img/Case_Study_image.png',
-	      overline: 'Featured Post',
-	      heading: 'The Key Steps to Reducing Software Spend',
-	      description: 'HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes'
-	    });
+	    var simpleContentCard = React.createElement(
+	      Box,
+	      { colorIndex: 'light-2' },
+	      React.createElement(ContentCard, {
+	        thumbnail: '/docs/img/Case_Study_image.png',
+	        overline: 'Featured Post',
+	        heading: 'The Key Steps to Reducing Software Spend',
+	        description: 'HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes'
+	      })
+	    );
 
-	    var linkContentCard = React.createElement(ContentCard, {
-	      contentPlacement: 'bottom',
-	      thumbnail: '/docs/img/Case_Study_image.png',
-	      overline: 'Featured Post',
-	      heading: 'The Key Steps to Reducing Software Spend',
-	      description: 'HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes',
-	      link: '#'
-	    });
+	    var linkContentCard = React.createElement(
+	      Box,
+	      { colorIndex: 'light-2' },
+	      React.createElement(ContentCard, {
+	        contentPlacement: 'bottom',
+	        thumbnail: '/docs/img/Case_Study_image.png',
+	        overline: 'Featured Post',
+	        heading: 'The Key Steps to Reducing Software Spend',
+	        description: 'HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes',
+	        link: '#'
+	      })
+	    );
 
-	    var videoContentCard = React.createElement(ContentCard, {
-	      direction: 'row',
-	      thumbnail: '/docs/img/Video_image.png',
-	      overline: 'Video - 4:27',
-	      heading: 'Foundation Paraguay Empowers Microbusinesses',
-	      description: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
-	      video: {
-	        source: 'video/test.mp4',
-	        type: 'mp4'
-	      }
-	    });
+	    var videoContentCard = React.createElement(
+	      Box,
+	      { colorIndex: 'light-2' },
+	      React.createElement(ContentCard, {
+	        direction: 'row',
+	        thumbnail: '/docs/img/Video_image.png',
+	        overline: 'Video - 4:27',
+	        heading: 'Foundation Paraguay Empowers Microbusinesses',
+	        description: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
+	        video: {
+	          source: 'video/test.mp4',
+	          type: 'mp4'
+	        }
+	      })
+	    );
 
 	    var socialFeedCard = React.createElement(
 	      ContentCard,
 	      {
 	        direction: 'column',
-	        overline: 'Featured Post',
+	        overline: 'Social',
 	        socialIcon: React.createElement(SocialTwitterIcon, null),
 	        link: 'http://www.twitter.com' },
 	      React.createElement(
@@ -20960,14 +20977,14 @@ module.exports =
 
 	    var socialCards = React.createElement(
 	      Tiles,
-	      { size: 'large' },
+	      { size: 'large', colorIndex: 'light-2' },
 	      socialFeedCard,
 	      blogPostCard
 	    );
 
 	    var contentCardTiles = React.createElement(
 	      Tiles,
-	      { size: 'large' },
+	      { size: 'large', colorIndex: 'light-2' },
 	      React.createElement(ContentCard, {
 	        direction: 'column',
 	        thumbnail: '/docs/img/Case_Study_image.png',
@@ -21005,7 +21022,7 @@ module.exports =
 
 	    var contentCardTilesMasonry = React.createElement(
 	      Tiles,
-	      { size: 'large', masonry: true, numColumns: 7 },
+	      { size: 'large', masonry: true, numColumns: 7, colorIndex: 'light-2' },
 	      blogPostCard,
 	      featuredPostCard,
 	      socialFeedCard,
@@ -21921,9 +21938,11 @@ module.exports =
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(2);
 	var Route = Router.Route;
+	var Tiles = __webpack_require__(119);
 	var Box = __webpack_require__(83);
 	var Heading = __webpack_require__(178);
 	var Paragraph = __webpack_require__(171);
+	var SocialTwitterIcon = __webpack_require__(192);
 	var Marquee = __webpack_require__(170);
 	var ContentCard = __webpack_require__(185);
 	var MarqueeParallax = __webpack_require__(196);
@@ -21985,6 +22004,110 @@ module.exports =
 	    );
 	  },
 
+	  _renderNewsFeed: function _renderNewsFeed() {
+	    var socialFeedCard = React.createElement(
+	      ContentCard,
+	      {
+	        direction: 'column',
+	        overline: 'Social',
+	        socialIcon: React.createElement(SocialTwitterIcon, null),
+	        link: 'http://www.twitter.com' },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      )
+	    );
+
+	    var blogPostCard = React.createElement(
+	      ContentCard,
+	      {
+	        direction: 'column',
+	        overline: 'Featured Post',
+	        link: 'http://www.twitter.com' },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      )
+	    );
+
+	    var featuredPostCard = React.createElement(
+	      ContentCard,
+	      {
+	        thumbnail: '/docs/img/Case_Study_image.png',
+	        direction: 'column',
+	        overline: 'Featured Post',
+	        link: 'http://www.twitter.com' },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      )
+	    );
+
+	    return React.createElement(
+	      Box,
+	      { pad: { horizontal: 'large' } },
+	      React.createElement(
+	        Tiles,
+	        { size: 'large', masonry: true, numColumns: 7, colorIndex: 'light-2', justify: 'center' },
+	        blogPostCard,
+	        featuredPostCard,
+	        socialFeedCard,
+	        socialFeedCard,
+	        blogPostCard,
+	        featuredPostCard,
+	        featuredPostCard,
+	        blogPostCard
+	      )
+	    );
+	  },
+
+	  _renderContentCards: function _renderContentCards() {
+	    return React.createElement(
+	      Box,
+	      { pad: { horizontal: 'large' } },
+	      React.createElement(
+	        Tiles,
+	        { size: 'large', colorIndex: 'light-2', justify: 'center' },
+	        React.createElement(ContentCard, {
+	          direction: 'column',
+	          thumbnail: '/docs/img/Case_Study_image.png',
+	          overline: 'Featured Post',
+	          heading: 'Protect Your Digital Enterprise ipsum Learn More lorem dolores aeat',
+	          description: 'It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. ',
+	          link: 'http://grommet.io'
+	        }),
+	        React.createElement(ContentCard, {
+	          direction: 'column',
+	          thumbnail: '/docs/img/Video_image.png',
+	          overline: 'Video - 4:27',
+	          heading: 'Foundation Paraguay Empowers Microbusinesses',
+	          description: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
+	          video: {
+	            source: 'video/test.mp4',
+	            type: 'mp4'
+	          }
+	        }),
+	        React.createElement(ContentCard, {
+	          direction: 'column',
+	          thumbnail: '/docs/img/Case_Study_image.png',
+	          overline: 'Featured Post',
+	          heading: 'The Key Steps to Reducing Software Spend',
+	          description: 'HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes'
+	        }),
+	        React.createElement(ContentCard, {
+	          direction: 'column',
+	          thumbnail: '/docs/img/Case_Study_image.png',
+	          overline: 'Featured Post',
+	          heading: 'The Key Steps to Reducing Software Spend',
+	          description: 'HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes'
+	        })
+	      )
+	    );
+	  },
+
 	  render: function render() {
 	    return React.createElement(
 	      'div',
@@ -21992,13 +22115,16 @@ module.exports =
 	      React.createElement(Header, { external: true,
 	        logoLink: '/docs/hpe/examples',
 	        links: [{
-	          label: 'Examples',
+	          label: 'Documentation',
 	          links: [{
 	            label: 'Marquee',
-	            href: '/docs/hpe/examples'
+	            href: '/docs/hpe/develop/marquee'
 	          }, {
-	            label: 'TBD',
-	            href: '/docs/hpe/examples'
+	            label: 'ContentCard',
+	            href: '/docs/hpe/develop/contentcard'
+	          }, {
+	            label: 'Stack',
+	            href: '/docs/hpe/develop/stack'
 	          }]
 	        }] }),
 	      React.createElement(MarqueeParallax, { darkTheme: false,
@@ -22107,6 +22233,7 @@ module.exports =
 	              'With proficiency in the latest mobile and social technologies, we can help your business develop new systems of engagement while leveraging your legacy investments'
 	            ),
 	            React.createElement(ContentCard, {
+	              direction: 'row',
 	              thumbnail: '/docs/img/Video_image.png',
 	              overline: 'Video - 4:27',
 	              heading: 'Foundation Paraguay Empowers Microbusinesses',
@@ -22131,6 +22258,7 @@ module.exports =
 	              'We help you get the most out of your software investments by facilitating cost-efective acquisition, giving you better control throughout your organization, and helping you meet licensing compliance requirements'
 	            ),
 	            React.createElement(ContentCard, {
+	              direction: 'row',
 	              thumbnail: '/docs/img/Case_Study_image.png',
 	              overline: 'Case Study',
 	              heading: 'The Key Steps to Reducing Software Spend',
@@ -22140,7 +22268,49 @@ module.exports =
 	          )
 	        )
 	      ),
-	      this._loremIpsum()
+	      React.createElement(
+	        Box,
+	        { pad: { horizontal: 'large' } },
+	        React.createElement(
+	          'p',
+	          null,
+	          React.createElement(
+	            'strong',
+	            null,
+	            'Accordion with ContentCard, row direction'
+	          )
+	        )
+	      ),
+	      this._loremIpsum(),
+	      this._renderContentCards(),
+	      React.createElement(
+	        Box,
+	        { pad: { horizontal: 'large' } },
+	        React.createElement(
+	          'p',
+	          null,
+	          React.createElement(
+	            'strong',
+	            null,
+	            'ContentCard with Tiles wrapper'
+	          )
+	        )
+	      ),
+	      this._loremIpsum(),
+	      this._renderNewsFeed(),
+	      React.createElement(
+	        Box,
+	        { pad: { horizontal: 'large' } },
+	        React.createElement(
+	          'p',
+	          null,
+	          React.createElement(
+	            'strong',
+	            null,
+	            'ContentCard with Tiles wrapper, masonry option'
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
