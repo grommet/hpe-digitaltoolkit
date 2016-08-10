@@ -1,9 +1,19 @@
+$card-hover-color: #EBEBEB;
+$social-icon-color: #1DA1F2;
+
 .content-card {
   @include media-query(palm) {
     padding: 0;
 
     &:not(:last-child) {
       border-bottom: 1px solid $border-color;
+    }
+  }
+
+  &__social-icon {
+    .grommetux-control-icon {
+      fill: $social-icon-color;
+      stroke: $social-icon-color;
     }
   }
 
@@ -104,13 +114,13 @@
     }
 
     &:hover > div {
-      background-color: rgba(246, 246, 246, 1);
+      background-color: $card-hover-color;
       color: $hover-text-color;
       cursor: pointer;
 
       .content-card__content {
         .grommetux-paragraph::after {
-          background: linear-gradient(to right, transparent, rgba(246, 246, 246, 1) 50%);
+          background: linear-gradient(to right, transparent, $card-hover-color 50%);
         }
       }
     }
