@@ -7,6 +7,7 @@ var Tiles = require('grommet/components/Tiles');
 var Box = require('grommet/components/Box');
 var Heading = require('grommet/components/Heading');
 var Paragraph = require('grommet/components/Paragraph');
+var Video = require('grommet/components/Video');
 var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
 var Marquee = require('../modules/Marquee');
 var ContentCard = require('../modules/ContentCard');
@@ -184,6 +185,13 @@ var Examples = React.createClass({
           link="http://www.grommet.io/docs/"
           responsiveBackgroundPosition="left" />
         <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with NO Parallax</strong></p></Box>
+        <Marquee size="small" darkTheme={true} justify="start"
+          backgroundVideo={<Video muted={true} loop={true} autoPlay={true} showControls={false}><source src="/docs/img/VideoMarque_Part3V2.mp4" type='video/mp4'/></Video>}
+          headline="Accelerate your transformation with the cloud"
+          subHeadline="HPE can help you benefit now from your right mix of cloud"
+          responsiveBackgroundPosition="left"
+          overlayVideo={<Video autoPlay={true}><source src="/docs/img/VideoMarque_Part3V3.mp4" type='video/mp4'/></Video>} />
+        <Box pad={{horizontal: 'large'}}><p><strong>Small Video Marquee with NO Parallax</strong></p></Box>
         {this._loremIpsum()}
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
           <Accordion

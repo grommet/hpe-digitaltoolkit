@@ -1,11 +1,42 @@
 .grommet .marquee {
   position: relative;
+  overflow: hidden;
 
   &__background {
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
+    padding: 0;
+
+    &-video {
+      overflow: hidden;
+
+      .#{$grommet-namespace}video {
+        min-height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translate(0%, -50%);
+
+        &::before {
+          content: "";
+          display: block;
+          height: 0px;
+          padding-bottom: 57%;
+        }
+
+        video {
+          width: auto;
+          height: 100%;
+          position: absolute;
+          top: 0px;
+          left: 50%;
+          transform: translate(-50%, 0%);
+        }
+      }
+    }
   }
 
   &--bg-left > .marquee__background {
@@ -20,30 +51,14 @@
     }
   }
 
-  &__overlay.grommetux-box {
+  &__overlay.#{$grommet-namespace}box {
     z-index: 1;
 
-    .grommetux-box {
+    > .#{$grommet-namespace}box {
       width: 50%;
 
       @include media-query(palm) {
         width: 100%;
-      }
-
-      .grommetux-headline--large {
-        font-size: $large-large-number-font-size;
-
-        @include media-query(portable) {
-          font-size: $h2-font-size;
-        }
-
-        @include media-query(palm) {
-          font-size: $h2-font-size;
-        }
-      }
-
-      p {
-        color: $inuit-base-text-color;
       }
     }
   }
@@ -59,11 +74,11 @@
       height: 75vh;
 
       @include media-query(palm) {
-        height: 300px;
+        height: $inuit-base-spacing-unit * 12.5;
       }
     }
 
-    .marquee__overlay.grommetux-box {
+    .marquee__overlay.#{$grommet-namespace}box {
       height: 75vh;
 
       @include media-query(palm) {
@@ -73,7 +88,7 @@
 
     .marquee__image {
       @include media-query(palm) {
-        height: 300px;
+        height: $inuit-base-spacing-unit * 12.5;
       }
     }
   }
@@ -89,11 +104,11 @@
       height: 60vh;
 
       @include media-query(palm) {
-        height: 270px;
+        height: $inuit-base-spacing-unit * 11.25;
       }
     }
 
-    .marquee__overlay.grommetux-box {
+    .marquee__overlay.#{$grommet-namespace}box {
       height: 60vh;
 
       @include media-query(palm) {
@@ -103,7 +118,7 @@
 
     .marquee__image {
       @include media-query(palm) {
-        height: 270px;
+        height: $inuit-base-spacing-unit * 11.25;
       }
     }
   }
@@ -112,6 +127,21 @@
     @include media-query(palm) {
       border-bottom: 1px solid $border-color;
       margin-bottom: $inuit-base-spacing-unit;
+    }
+  }
+
+  &--show-video {
+    height: auto;
+  }
+
+  &__video-overlay {
+    position: relative;
+
+    .grommetux-anchor {
+      position: absolute;
+      top: halve($inuit-base-spacing-unit);
+      right: halve($inuit-base-spacing-unit);
+      z-index: 1;
     }
   }
 }

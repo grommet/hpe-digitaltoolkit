@@ -48,6 +48,7 @@ export default class Stack extends Component {
       size,
       link,
       linkText,
+      linkIcon,
       onClick,
       ...props
     } = this.props;
@@ -103,7 +104,7 @@ export default class Stack extends Component {
         {this._renderParagraph(print, printSize, 'print')}
         {(link || onClick) &&
           <Anchor className={`${CLASS_ROOT}__link`} primary={true} href={link}
-            onClick={onClick}>
+            onClick={onClick} icon={linkIcon}>
             {linkText}
           </Anchor>
         }
@@ -121,6 +122,7 @@ Stack.propTypes = {
   print: PropTypes.node,
   link: PropTypes.string,
   linkText: PropTypes.string,
+  linkIcon: PropTypes.element,
   onClick: PropTypes.func
 };
 

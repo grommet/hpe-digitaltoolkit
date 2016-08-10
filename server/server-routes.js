@@ -10254,7 +10254,9 @@ module.exports =
 	  function highlight(name, value, ignore_illegals, continuation) {
 
 	    function subMode(lexeme, mode) {
-	      for (var i = 0; i < mode.contains.length; i++) {
+	      var i, length;
+
+	      for (i = 0, length = mode.contains.length; i < length; i++) {
 	        if (testRe(mode.contains[i].beginRe, lexeme)) {
 	          return mode.contains[i];
 	        }
@@ -10776,7 +10778,7 @@ module.exports =
 
 	  return {
 	    aliases: ['sh', 'zsh'],
-	    lexemes: /-?[a-z\.]+/,
+	    lexemes: /-?[a-z\._]+/,
 	    keywords: {
 	      keyword:
 	        'if then else elif fi for while in do done case esac function',
@@ -11562,10 +11564,10 @@ module.exports =
 	var DashboardDoc = __webpack_require__(153);
 	var NavigationDoc = __webpack_require__(167);
 	var MarqueeDoc = __webpack_require__(168);
-	var WorldMapDoc = __webpack_require__(174);
-	var AccordionDoc = __webpack_require__(177);
-	var ContentCardDoc = __webpack_require__(191);
-	var StackDoc = __webpack_require__(193);
+	var WorldMapDoc = __webpack_require__(181);
+	var AccordionDoc = __webpack_require__(184);
+	var ContentCardDoc = __webpack_require__(192);
+	var StackDoc = __webpack_require__(194);
 
 	//hjjs configuration
 	var hljs = __webpack_require__(142);
@@ -17115,6 +17117,7 @@ module.exports =
 	var jsxToString = __webpack_require__(169);
 	var DocsArticle = __webpack_require__(140);
 	var Marquee = __webpack_require__(170);
+	var Video = __webpack_require__(177);
 
 	Marquee.displayName = 'Marquee';
 
@@ -17157,10 +17160,26 @@ module.exports =
 
 	  render: function render() {
 	    var simpleMarquee = React.createElement(Marquee, { darkTheme: false,
-	      backgroundImage: '../img/MarqueeImage_051916_H.jpg',
+	      backgroundImage: '/docs/img/MarqueeImage_051916_H.jpg',
 	      headline: 'Accelerate your transformation with the cloud',
 	      subHeadline: 'HPE can help you benefit now from your right mix of cloud',
-	      link: 'http://www.grommet.io/docs/' });
+	      link: 'http://www.grommet.io/docs/',
+	      responsiveBackgroundPosition: 'left' });
+
+	    var videoMarquee = React.createElement(Marquee, { size: 'small', darkTheme: true, justify: 'start',
+	      backgroundVideo: React.createElement(
+	        Video,
+	        { muted: true, loop: true, autoPlay: true, showControls: false },
+	        React.createElement('source', { src: '/docs/img/VideoMarque_Part3V2.mp4', type: 'video/mp4' })
+	      ),
+	      headline: 'Accelerate your transformation with the cloud',
+	      subHeadline: 'HPE can help you benefit now from your right mix of cloud',
+	      responsiveBackgroundPosition: 'left',
+	      overlayVideo: React.createElement(
+	        Video,
+	        { autoPlay: true },
+	        React.createElement('source', { src: '/docs/img/VideoMarque_Part3V3.mp4', type: 'video/mp4' })
+	      ) });
 
 	    return React.createElement(
 	      DocsArticle,
@@ -17196,13 +17215,14 @@ module.exports =
 	            React.createElement(
 	              'code',
 	              null,
-	              'backgroundImage            string'
+	              'backgroundImage                  ',
+	              "{string}"
 	            )
 	          ),
 	          React.createElement(
 	            'dd',
 	            null,
-	            'Background image for the marquee. Required.'
+	            'Source of image to be used as the background for the marquee.  Optional.'
 	          ),
 	          React.createElement(
 	            'dt',
@@ -17210,7 +17230,22 @@ module.exports =
 	            React.createElement(
 	              'code',
 	              null,
-	              'darkTheme                  true|false'
+	              'backgroundVideo                  ',
+	              "{element}"
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Video component to be used as the background for the marquee.  Optional.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'darkTheme                        true|false'
 	            )
 	          ),
 	          React.createElement(
@@ -17230,13 +17265,19 @@ module.exports =
 	            React.createElement(
 	              'code',
 	              null,
-	              'flush                      true|false'
+	              'flush                            true|false'
 	            )
 	          ),
 	          React.createElement(
 	            'dd',
 	            null,
-	            'If true, the marquee will horizontally fill the browser screen.  Defaults to true.'
+	            'If true, the marquee will horizontally fill the browser screen.  Defaults to ',
+	            React.createElement(
+	              'code',
+	              null,
+	              'true'
+	            ),
+	            '.'
 	          ),
 	          React.createElement(
 	            'dt',
@@ -17244,7 +17285,8 @@ module.exports =
 	            React.createElement(
 	              'code',
 	              null,
-	              'headline                   string'
+	              'headline                         ',
+	              "{string}"
 	            )
 	          ),
 	          React.createElement(
@@ -17258,7 +17300,7 @@ module.exports =
 	            React.createElement(
 	              'code',
 	              null,
-	              'headlineSize               small|medium|large'
+	              'headlineSize                     small|medium|large'
 	            )
 	          ),
 	          React.createElement(
@@ -17278,7 +17320,22 @@ module.exports =
 	            React.createElement(
 	              'code',
 	              null,
-	              'justify                    start|center|end'
+	              'image                            ',
+	              "{string}"
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Source of image to be shown opposite the text.  Optional.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'justify                          start|center|end'
 	            )
 	          ),
 	          React.createElement(
@@ -17298,13 +17355,14 @@ module.exports =
 	            React.createElement(
 	              'code',
 	              null,
-	              'link                       string'
+	              'link                             ',
+	              "{string}"
 	            )
 	          ),
 	          React.createElement(
 	            'dd',
 	            null,
-	            'External URL where the "Learn More" link should go.'
+	            'External URL where the link should go.  Optional.'
 	          ),
 	          React.createElement(
 	            'dt',
@@ -17312,13 +17370,14 @@ module.exports =
 	            React.createElement(
 	              'code',
 	              null,
-	              'onClick                    function'
+	              'linkIcon                         ',
+	              "{element}"
 	            )
 	          ),
 	          React.createElement(
 	            'dd',
 	            null,
-	            'Click handler for the "Learn More" link.'
+	            'Icon component to be used with the link.  Optional.'
 	          ),
 	          React.createElement(
 	            'dt',
@@ -17326,7 +17385,125 @@ module.exports =
 	            React.createElement(
 	              'code',
 	              null,
-	              'subHeadline                string'
+	              'linkText                         ',
+	              "{string}"
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Text to be shown for the link.  Defaults to ',
+	            React.createElement(
+	              'code',
+	              null,
+	              'Learn More'
+	            ),
+	            ' for an image Marquee, and ',
+	            React.createElement(
+	              'code',
+	              null,
+	              'Watch Now'
+	            ),
+	            ' for a video Marquee.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'onClick                          ',
+	              "{function}"
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Click handler for the link.  Optional.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'overlayVideo                     ',
+	              "{element}"
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Video component to be shown when the link is clicked.  Optional.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'responsiveBackgroundPosition     left|center|right'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Background position where the background image should be pinned for smaller screen sizes.  Defaults to ',
+	            React.createElement(
+	              'code',
+	              null,
+	              'center'
+	            ),
+	            '.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'separator                        true|false'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'A thin line that will be shown on mobile-size screens, to separate the Marquee text from the next component.  Defaults to ',
+	            React.createElement(
+	              'code',
+	              null,
+	              'false'
+	            ),
+	            '.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'size                             small|large'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'The size of the Marquee.  Defaults to ',
+	            React.createElement(
+	              'code',
+	              null,
+	              'large'
+	            ),
+	            '.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'subHeadline                      ',
+	              "{string}"
 	            )
 	          ),
 	          React.createElement(
@@ -17344,41 +17521,8 @@ module.exports =
 	          null,
 	          'Examples'
 	        ),
-	        this._renderCode('Default', simpleMarquee)
-	      ),
-	      React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	          'p',
-	          null,
-	          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae rhoncus dui, eu gravida est. Cras consectetur enim eget erat rutrum, et suscipit lorem iaculis. Maecenas sed metus nulla. Vestibulum nibh risus, facilisis non sem a, mattis venenatis lacus. Maecenas condimentum interdum arcu eu consectetur. Etiam magna ligula, elementum ac leo vel, sagittis tempus neque. Duis dapibus at velit aliquam varius. Nulla facilisi. Donec rutrum augue neque. Suspendisse ut metus neque. Praesent interdum ornare condimentum.'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Ut vel varius arcu. Suspendisse bibendum turpis eu nunc hendrerit suscipit. In feugiat nibh sed justo tincidunt, nec pellentesque quam tempor. Etiam condimentum iaculis dolor et semper. Curabitur tincidunt imperdiet ante, eu consequat nulla facilisis cursus. Cras metus ipsum, vehicula non vestibulum in, lacinia ut erat. Curabitur sed nulla porttitor, sollicitudin risus molestie, auctor massa. Curabitur porttitor sodales tincidunt. In in enim dapibus, lobortis dui vitae, vehicula augue. Quisque quis cursus ipsum, ut tincidunt dui. Donec eget bibendum turpis. Integer porttitor libero at luctus sodales. Donec varius consectetur quam, a vestibulum nulla rhoncus sit amet. Nunc blandit molestie dapibus. Etiam eleifend neque justo, et imperdiet augue euismod sed.'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Nullam mauris neque, dictum in nibh pulvinar, facilisis faucibus enim. Nullam semper sem vitae finibus molestie. Fusce sollicitudin lacus dolor, at placerat eros rhoncus et. Suspendisse id neque vel metus lobortis tristique at interdum nisl. Fusce pretium nulla in neque feugiat, ut fermentum libero pellentesque. Sed et malesuada ligula. Quisque quis blandit massa.'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Aliquam porta aliquam varius. Suspendisse interdum turpis sit amet bibendum efficitur. Phasellus finibus justo ac nisi porta sollicitudin. Vivamus lorem diam, dignissim ac posuere finibus, auctor nec nisi. Aenean pulvinar rhoncus eros sit amet porta. Nam egestas gravida risus quis dignissim. Nullam quis nibh vitae ipsum aliquam tristique vitae at ex. Praesent ultricies felis sit amet dolor interdum, vitae placerat diam lacinia. Quisque vitae pharetra magna, vitae commodo urna.'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Praesent lectus felis, malesuada vel tellus ut, maximus blandit orci. Nunc semper maximus nisi, a ornare magna vestibulum sit amet. Morbi rutrum ante quis nunc gravida porttitor. Nullam dignissim ex a odio tincidunt, in posuere massa dapibus. Duis pretium rutrum metus. Aliquam nulla sapien, aliquet ac efficitur sed, tempor vitae quam. Integer scelerisque tempus lorem eu volutpat. Integer egestas laoreet felis at convallis. Vivamus commodo euismod mauris, ut pulvinar mi iaculis non. Morbi tempor urna et gravida vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi vel neque libero.'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae rhoncus dui, eu gravida est. Cras consectetur enim eget erat rutrum, et suscipit lorem iaculis. Maecenas sed metus nulla. Vestibulum nibh risus, facilisis non sem a, mattis venenatis lacus. Maecenas condimentum interdum arcu eu consectetur. Etiam magna ligula, elementum ac leo vel, sagittis tempus neque. Duis dapibus at velit aliquam varius. Nulla facilisi. Donec rutrum augue neque. Suspendisse ut metus neque. Praesent interdum ornare condimentum.'
-	        )
+	        this._renderCode('Default', simpleMarquee),
+	        this._renderCode('Small video marquee', videoMarquee)
 	      )
 	    );
 	  }
@@ -17408,29 +17552,33 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(67);
+	var _classnames3 = __webpack_require__(67);
 
-	var _classnames3 = _interopRequireDefault(_classnames2);
+	var _classnames4 = _interopRequireDefault(_classnames3);
 
 	var _Box = __webpack_require__(83);
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Headline = __webpack_require__(118);
-
-	var _Headline2 = _interopRequireDefault(_Headline);
-
-	var _Paragraph = __webpack_require__(171);
-
-	var _Paragraph2 = _interopRequireDefault(_Paragraph);
-
 	var _Anchor = __webpack_require__(115);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
-	var _Image = __webpack_require__(172);
+	var _Image = __webpack_require__(171);
 
 	var _Image2 = _interopRequireDefault(_Image);
+
+	var _Play = __webpack_require__(173);
+
+	var _Play2 = _interopRequireDefault(_Play);
+
+	var _Close = __webpack_require__(95);
+
+	var _Close2 = _interopRequireDefault(_Close);
+
+	var _Stack = __webpack_require__(174);
+
+	var _Stack2 = _interopRequireDefault(_Stack);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17457,10 +17605,13 @@ module.exports =
 
 	    _this._setReverse = _this._setReverse.bind(_this);
 	    _this._setBackgroundColorIndex = _this._setBackgroundColorIndex.bind(_this);
+	    _this._onClick = _this._onClick.bind(_this);
+	    _this._onClose = _this._onClose.bind(_this);
 
 	    _this.state = {
 	      colorIndex: props.darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX,
-	      reverse: props.justify === 'start' ? true : false
+	      reverse: props.justify === 'start' ? true : false,
+	      showVideo: false
 	    };
 	    return _this;
 	  }
@@ -17504,92 +17655,156 @@ module.exports =
 	      }
 	    }
 	  }, {
-	    key: 'render',
-	    value: function render() {
+	    key: '_onClick',
+	    value: function _onClick() {
+	      var _props = this.props;
+	      var onClick = _props.onClick;
+	      var overlayVideo = _props.overlayVideo;
+
+
+	      if (overlayVideo) {
+	        this.setState({ showVideo: true });
+	      } else if (onClick) {
+	        onClick();
+	      }
+	    }
+	  }, {
+	    key: '_onClose',
+	    value: function _onClose() {
+	      this.setState({ showVideo: false });
+	    }
+	  }, {
+	    key: '_renderMarquee',
+	    value: function _renderMarquee() {
 	      var _classnames;
 
-	      var _props = this.props;
-	      var backgroundImage = _props.backgroundImage;
-	      var flush = _props.flush;
-	      var headlineSize = _props.headlineSize;
-	      var headline = _props.headline;
-	      var image = _props.image;
-	      var justify = _props.justify;
-	      var link = _props.link;
-	      var linkIcon = _props.linkIcon;
-	      var linkText = _props.linkText;
-	      var onClick = _props.onClick;
-	      var subHeadline = _props.subHeadline;
+	      var _props2 = this.props;
+	      var backgroundImage = _props2.backgroundImage;
+	      var backgroundVideo = _props2.backgroundVideo;
+	      var flush = _props2.flush;
+	      var headlineSize = _props2.headlineSize;
+	      var headline = _props2.headline;
+	      var image = _props2.image;
+	      var justify = _props2.justify;
+	      var link = _props2.link;
+	      var linkIcon = _props2.linkIcon;
+	      var linkText = _props2.linkText;
+	      var onClick = _props2.onClick;
+	      var overlayVideo = _props2.overlayVideo;
+	      var responsiveBackgroundPosition = _props2.responsiveBackgroundPosition;
+	      var separator = _props2.separator;
+	      var subHeadline = _props2.subHeadline;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), _defineProperty(_classnames, CLASS_ROOT + '--bg-' + this.props.responsiveBackgroundPosition, this.props.responsiveBackgroundPosition), _defineProperty(_classnames, CLASS_ROOT + '--mobile-separator', this.props.separator), _classnames));
+	      var classes = (0, _classnames4.default)((_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--bg-' + responsiveBackgroundPosition, responsiveBackgroundPosition), _defineProperty(_classnames, CLASS_ROOT + '--mobile-separator', separator), _classnames));
 
 	      var full = flush ? 'horizontal' : false;
 	      var pad = flush ? 'none' : 'large';
 
-	      var subHeadlineMarkup = void 0;
-	      if (subHeadline) {
-	        subHeadlineMarkup = _react2.default.createElement(
-	          _Paragraph2.default,
-	          { size: 'large', margin: 'none' },
-	          subHeadline
+	      var backgroundMarkup = void 0;
+	      if (backgroundImage) {
+	        backgroundMarkup = _react2.default.createElement(_Box2.default, { containerClassName: CLASS_ROOT + "__background", appCentered: true, pad: pad, backgroundImage: 'url(' + backgroundImage + ')', full: full });
+	      } else if (backgroundVideo) {
+	        backgroundMarkup = _react2.default.createElement(
+	          _Box2.default,
+	          { className: CLASS_ROOT + "__background " + CLASS_ROOT + "__background-video", ref: 'video' },
+	          backgroundVideo
 	        );
 	      }
 
-	      var linkMarkup = void 0;
-	      if (link || onClick) {
-	        linkMarkup = _react2.default.createElement(
-	          'h3',
-	          null,
-	          _react2.default.createElement(_Anchor2.default, { href: link, primary: true, label: linkText, icon: linkIcon, onClick: onClick })
-	        );
+	      var imageMarkup = _react2.default.createElement(_Box2.default, null);
+	      if (image) {
+	        imageMarkup = _react2.default.createElement(_Image2.default, { src: 'url(' + image + ')' });
+	      }
+
+	      var linkCopy = void 0;
+	      var icon = void 0;
+	      if (link || onClick || overlayVideo) {
+	        if (!linkText && backgroundImage) {
+	          linkCopy = "Learn More";
+	        } else if (!linkText && overlayVideo) {
+	          linkCopy = "Watch Now";
+	        } else {
+	          linkCopy = linkText;
+	        }
+
+	        icon = linkIcon;
+	        if (!linkIcon && overlayVideo) {
+	          icon = _react2.default.createElement(_Play2.default, null);
+	        }
 	      }
 
 	      var contentMarkup = void 0;
 	      if (justify === 'center') {
 	        contentMarkup = _react2.default.createElement(
 	          _Box2.default,
-	          { className: 'marquee__overlay', justify: justify, align: 'center', primary: true, full: full, direction: 'row' },
+	          { className: CLASS_ROOT + "__overlay", justify: justify, align: 'center', primary: true, full: full, direction: 'row' },
 	          _react2.default.createElement(
 	            _Box2.default,
 	            { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
-	            _react2.default.createElement(
-	              _Headline2.default,
-	              { size: headlineSize, strong: true, margin: 'none' },
-	              headline
-	            ),
-	            subHeadlineMarkup,
-	            linkMarkup
+	            _react2.default.createElement(_Stack2.default, { size: headlineSize, headline: headline, paragraph: subHeadline, link: link, linkText: linkCopy, linkIcon: icon, onClick: this._onClick })
 	          )
 	        );
 	      } else {
 	        contentMarkup = _react2.default.createElement(
 	          _Box2.default,
-	          { className: 'marquee__overlay', align: 'center', primary: true, full: full, direction: 'row', reverse: this.state.reverse },
+	          { className: CLASS_ROOT + "__overlay", align: 'center', primary: true, full: full, direction: 'row', reverse: this.state.reverse },
 	          _react2.default.createElement(
 	            _Box2.default,
-	            { className: 'marquee__image', align: 'center', justify: 'center' },
-	            _react2.default.createElement(_Image2.default, { src: 'url(' + image + ')' })
+	            { className: CLASS_ROOT + "__image", align: 'center', justify: 'center' },
+	            imageMarkup
 	          ),
 	          _react2.default.createElement(
 	            _Box2.default,
 	            { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
-	            _react2.default.createElement(
-	              _Headline2.default,
-	              { size: headlineSize, strong: true, margin: 'none' },
-	              headline
-	            ),
-	            subHeadlineMarkup,
-	            linkMarkup
+	            _react2.default.createElement(_Stack2.default, { size: headlineSize, headline: headline, paragraph: subHeadline, link: link, linkText: linkCopy, linkIcon: icon, onClick: this._onClick })
 	          )
 	        );
 	      }
 
 	      return _react2.default.createElement(
 	        _Box2.default,
-	        { className: classes, colorIndex: this.state.colorIndex },
-	        _react2.default.createElement(_Box2.default, { containerClassName: 'marquee__background', appCentered: true, pad: pad, backgroundImage: 'url(' + backgroundImage + ')', full: full }),
+	        { className: classes },
+	        backgroundMarkup,
 	        contentMarkup
+	      );
+	    }
+	  }, {
+	    key: '_renderVideo',
+	    value: function _renderVideo() {
+	      var overlayVideo = this.props.overlayVideo;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: CLASS_ROOT + '__video-overlay', key: this.state.timestamp },
+	        _react2.default.createElement(_Anchor2.default, { icon: _react2.default.createElement(_Close2.default, null), onClick: this._onClose }),
+	        overlayVideo
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _classnames2;
+
+	      var _props3 = this.props;
+	      var className = _props3.className;
+	      var size = _props3.size;
+
+	      var content = void 0;
+
+	      var classes = (0, _classnames4.default)(CLASS_ROOT, className, (_classnames2 = {}, _defineProperty(_classnames2, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames2, CLASS_ROOT + '--show-video', this.state.showVideo), _classnames2));
+
+	      if (this.state.showVideo) {
+	        content = this._renderVideo();
+	      } else {
+	        content = this._renderMarquee();
+	      }
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        { className: classes, colorIndex: this.state.colorIndex },
+	        content
 	      );
 	    }
 	  }]);
@@ -17601,7 +17816,8 @@ module.exports =
 	;
 
 	Marquee.propTypes = {
-	  backgroundImage: _react.PropTypes.string.isRequired,
+	  backgroundImage: _react.PropTypes.string,
+	  backgroundVideo: _react.PropTypes.element,
 	  darkTheme: _react.PropTypes.bool,
 	  flush: _react.PropTypes.bool,
 	  headline: _react.PropTypes.string.isRequired,
@@ -17612,6 +17828,7 @@ module.exports =
 	  linkIcon: _react.PropTypes.element,
 	  linkText: _react.PropTypes.string,
 	  onClick: _react.PropTypes.func,
+	  overlayVideo: _react.PropTypes.element,
 	  responsiveBackgroundPosition: _react.PropTypes.oneOf(['left', 'center', 'right']),
 	  separator: _react.PropTypes.bool,
 	  size: _react.PropTypes.oneOf(['small', 'large']),
@@ -17623,7 +17840,6 @@ module.exports =
 	  flush: true,
 	  headlineSize: 'large',
 	  justify: 'end',
-	  linkText: 'Learn More',
 	  responsiveBackgroundPosition: 'center',
 	  separator: false,
 	  size: 'large'
@@ -17668,101 +17884,11 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(67);
-
-	var _classnames3 = _interopRequireDefault(_classnames2);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CLASS_ROOT = _CSSClassnames2.default.PARAGRAPH; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var Paragraph = function (_Component) {
-	  (0, _inherits3.default)(Paragraph, _Component);
-
-	  function Paragraph() {
-	    (0, _classCallCheck3.default)(this, Paragraph);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Paragraph).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(Paragraph, [{
-	    key: 'render',
-	    value: function render() {
-	      var _classnames;
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--align-' + this.props.align, this.props.align), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--margin-' + this.props.margin, this.props.margin), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--width-' + this.props.width, this.props.width), _classnames));
-
-	      // we handle dangerouslySetInnerHTML to allow using Paragraph with Markdown.
-	      return _react2.default.createElement(
-	        'p',
-	        { id: this.props.id, className: classes,
-	          dangerouslySetInnerHTML: this.props.dangerouslySetInnerHTML },
-	        this.props.children
-	      );
-	    }
-	  }]);
-	  return Paragraph;
-	}(_react.Component);
-
-	Paragraph.displayName = 'Paragraph';
-	exports.default = Paragraph;
-	;
-
-	Paragraph.propTypes = {
-	  align: _react.PropTypes.oneOf(['start', 'center', 'end']),
-	  id: _react.PropTypes.string,
-	  margin: _react.PropTypes.oneOf(['none', 'small', 'medium', 'large']),
-	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
-	  width: _react.PropTypes.oneOf(['small', 'medium', 'large'])
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 172 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _defineProperty2 = __webpack_require__(5);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
 	var _classnames3 = __webpack_require__(67);
 
 	var _classnames4 = _interopRequireDefault(_classnames3);
 
-	var _Label = __webpack_require__(173);
+	var _Label = __webpack_require__(172);
 
 	var _Label2 = _interopRequireDefault(_Label);
 
@@ -17844,7 +17970,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 173 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17955,7 +18081,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 174 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -17964,304 +18090,9 @@ module.exports =
 	  value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _defineProperty2 = __webpack_require__(5);
 
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _DocsArticle = __webpack_require__(140);
-
-	var _DocsArticle2 = _interopRequireDefault(_DocsArticle);
-
-	var _Example = __webpack_require__(175);
-
-	var _Example2 = _interopRequireDefault(_Example);
-
-	var _WorldMap = __webpack_require__(176);
-
-	var _WorldMap2 = _interopRequireDefault(_WorldMap);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	_WorldMap2.default.displayName = 'WorldMap';
-
-	var series = [{ continent: 'NorthAmerica', label: 'North America', value: 40,
-	  colorIndex: 'graph-1', onClick: function onClick() {
-	    alert('North America');
-	  } }, { continent: 'SouthAmerica', label: 'South America', value: 30,
-	  colorIndex: 'accent-2', onClick: function onClick() {
-	    alert('North America');
-	  } }, { continent: 'Europe', label: 'Europe', value: 20,
-	  colorIndex: 'unset', onClick: function onClick() {
-	    alert('Europe');
-	  } }, { continent: 'Africa', label: 'Africa', value: 10,
-	  colorIndex: 'graph-2', onClick: function onClick() {
-	    alert('Africa');
-	  } }, { continent: 'Asia', label: 'Asia', value: 15,
-	  colorIndex: 'graph-3', onClick: function onClick() {
-	    alert('Asia');
-	  } }, { continent: 'Australia', label: 'Australia', value: 10,
-	  colorIndex: 'graph-4', onClick: function onClick() {
-	    alert('Australia');
-	  } }];
-
-	var WorldMapDoc = function (_Component) {
-	  _inherits(WorldMapDoc, _Component);
-
-	  function WorldMapDoc() {
-	    _classCallCheck(this, WorldMapDoc);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(WorldMapDoc).apply(this, arguments));
-	  }
-
-	  _createClass(WorldMapDoc, [{
-	    key: 'render',
-	    value: function render() {
-
-	      return _react2.default.createElement(
-	        _DocsArticle2.default,
-	        { title: 'WorldMap', colorIndex: 'neutral-3' },
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          'A world map of continents.'
-	        ),
-	        _react2.default.createElement(
-	          'pre',
-	          null,
-	          _react2.default.createElement(
-	            'code',
-	            { className: 'html hljs xml' },
-	            "<WorldMap series={[...]} />"
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          'Note: It is a good idea to include a ',
-	          _react2.default.createElement(
-	            'code',
-	            null,
-	            'Legend'
-	          ),
-	          ' along with this visualization. You can use the same ',
-	          _react2.default.createElement(
-	            'code',
-	            null,
-	            'series'
-	          ),
-	          'property for both ',
-	          _react2.default.createElement(
-	            'code',
-	            null,
-	            'WorldMap'
-	          ),
-	          ' and ',
-	          _react2.default.createElement(
-	            'code',
-	            null,
-	            'Legend'
-	          ),
-	          '.'
-	        ),
-	        _react2.default.createElement(
-	          'section',
-	          null,
-	          _react2.default.createElement(
-	            'h2',
-	            null,
-	            'Options'
-	          ),
-	          _react2.default.createElement(
-	            'dl',
-	            null,
-	            _react2.default.createElement(
-	              'dt',
-	              null,
-	              _react2.default.createElement(
-	                'code',
-	                null,
-	                'series      ',
-	                "[{continent: , colorIndex: , onClick: }, ...]"
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'dd',
-	              null,
-	              'An array of objects describing the data. The available continents are: ',
-	              _react2.default.createElement(
-	                'code',
-	                null,
-	                'NorthAmerica'
-	              ),
-	              ', ',
-	              _react2.default.createElement(
-	                'code',
-	                null,
-	                'SouthAmerica'
-	              ),
-	              ', ',
-	              _react2.default.createElement(
-	                'code',
-	                null,
-	                'Europe'
-	              ),
-	              ', ',
-	              _react2.default.createElement(
-	                'code',
-	                null,
-	                'Africa'
-	              ),
-	              ', ',
-	              _react2.default.createElement(
-	                'code',
-	                null,
-	                'Asia'
-	              ),
-	              ', and ',
-	              _react2.default.createElement(
-	                'code',
-	                null,
-	                'Australia'
-	              ),
-	              '. You must specify a continent in order for it to be rendered.'
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'section',
-	          null,
-	          _react2.default.createElement(_Example2.default, { name: 'Example', code: _react2.default.createElement(_WorldMap2.default, { series: series, legend: true, units: 'B' }) })
-	        )
-	      );
-	    }
-	  }]);
-
-	  return WorldMapDoc;
-	}(_react.Component);
-
-	exports.default = WorldMapDoc;
-	;
-	module.exports = exports['default'];
-
-/***/ },
-/* 175 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _jsxToString = __webpack_require__(169);
-
-	var _jsxToString2 = _interopRequireDefault(_jsxToString);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var Example = function (_Component) {
-	  _inherits(Example, _Component);
-
-	  function Example() {
-	    _classCallCheck(this, Example);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Example).apply(this, arguments));
-	  }
-
-	  _createClass(Example, [{
-	    key: '_renderCode',
-	    value: function _renderCode() {
-	      var _props = this.props;
-	      var code = _props.code;
-	      var overrides = _props.overrides;
-
-	      var keyValueOverride = {};
-	      if (overrides) {
-	        overrides.forEach(function (override) {
-	          keyValueOverride[override] = 'this._' + override;
-	        });
-	      }
-	      return (0, _jsxToString2.default)(code, { keyValueOverride: keyValueOverride });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _props2 = this.props;
-	      var code = _props2.code;
-	      var name = _props2.name;
-
-	      var heading = void 0;
-	      if (name) {
-	        heading = _react2.default.createElement(
-	          'h3',
-	          null,
-	          name
-	        );
-	      }
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        heading,
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'example' },
-	          code
-	        ),
-	        _react2.default.createElement(
-	          'pre',
-	          null,
-	          _react2.default.createElement(
-	            'code',
-	            { className: 'html hljs xml' },
-	            this._renderCode()
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Example;
-	}(_react.Component);
-
-	exports.default = Example;
-
-
-	Example.propTypes = {
-	  code: _react.PropTypes.node.isRequired,
-	  name: _react.PropTypes.string,
-	  overrides: _react.PropTypes.arrayOf(_react.PropTypes.string)
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 176 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 	var _getPrototypeOf = __webpack_require__(9);
 
@@ -18287,397 +18118,281 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _FormattedMessage = __webpack_require__(81);
+
+	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
 	var _CSSClassnames = __webpack_require__(93);
 
 	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = _CSSClassnames2.default.WORLD_MAP;
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
 	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
-	var CONTINENTS = [{
-	  id: "Australia",
-	  origin: [74, 32],
-	  area: [[4, 0], [7, 1], [15, 7], [13, 9], [0, 6], [0, 2]],
-	  dots: [[4, 0, 1], [2, 1, 6], [0, 2, 9], [0, 3, 10], [0, 4, 10], [0, 5, 3], [5, 5, 5], [5, 6, 4], [15, 7, 1], [14, 8, 1], [13, 9, 1]]
-	}, {
-	  id: "Asia",
-	  origin: [52, 1],
-	  area: [[16, 0], [38, 5], [40, 7], [28, 17], [24, 25], [29, 29], [19, 29], [11, 24], [3, 23], [0, 20], [0, 19], [6, 13], [7, 6]],
-	  dots: [[16, 0, 1], [17, 1, 2], [18, 2, 2], [15, 3, 6], [28, 3, 1], [30, 3, 1], [10, 4, 2], [13, 4, 10], [24, 4, 1], [9, 5, 22], [32, 5, 1], [38, 5, 1], [7, 6, 2], [10, 6, 1], [12, 6, 27], [7, 7, 34], [7, 8, 31], [7, 9, 26], [34, 9, 3], [7, 10, 22], [31, 10, 1], [33, 10, 1], [7, 11, 21], [32, 11, 2], [7, 12, 21], [32, 12, 1], [6, 13, 22], [32, 13, 1], [6, 14, 22], [5, 15, 22], [3, 16, 2], [6, 16, 20], [2, 17, 3], [6, 17, 16], [24, 17, 1], [28, 17, 1], [1, 18, 22], [26, 18, 2], [0, 19, 24], [0, 20, 5], [6, 20, 17], [2, 21, 5], [10, 21, 14], [2, 22, 5], [11, 22, 4], [16, 22, 4], [3, 23, 3], [11, 23, 2], [17, 23, 3], [23, 23, 1], [11, 24, 2], [18, 24, 2], [23, 24, 1], [24, 25, 1], [18, 26, 1], [22, 26, 1], [18, 27, 1], [20, 27, 4], [18, 28, 1], [21, 28, 1], [23, 28, 1], [26, 28, 3], [19, 29, 1], [28, 29, 2]]
-	}, {
-	  // 21X, 40Y
-	  id: "Africa",
-	  origin: [40, 19],
-	  area: [[3, 0], [6, 0], [11, 2], [16, 7], [16, 15], [11, 18], [9, 18], [0, 6], [0, 3]],
-	  dots: [[3, 0, 4], [2, 1, 6], [9, 1, 2], [1, 2, 11], [0, 3, 13], [0, 4, 14], [0, 5, 14], [0, 6, 16], [1, 7, 16], [2, 8, 2], [6, 8, 11], [7, 9, 9], [7, 10, 8], [7, 11, 7], [8, 12, 7], [7, 13, 8], [7, 14, 7], [16, 14, 1], [8, 15, 5], [15, 15, 2], [8, 16, 5], [9, 17, 3], [9, 18, 3]]
-	}, {
-	  id: "Europe",
-	  origin: [39, 2],
-	  area: [[8, 0], [10, 0], [20, 2], [19, 11], [18, 13], [14, 16], [3, 16], [0, 7]],
-	  dots: [[8, 0, 3], [9, 1, 1], [20, 2, 1], [19, 3, 1], [12, 4, 1], [19, 4, 1], [9, 5, 6], [9, 6, 7], [17, 6, 3], [0, 7, 1], [8, 7, 12], [7, 8, 3], [11, 8, 9], [7, 9, 3], [11, 9, 9], [4, 10, 1], [7, 10, 1], [9, 10, 1], [11, 10, 9], [3, 11, 2], [7, 11, 13], [4, 12, 1], [6, 12, 13], [4, 13, 15], [5, 14, 3], [9, 14, 4], [15, 14, 2], [3, 15, 3], [8, 15, 1], [10, 15, 5], [6, 15, 2], [3, 16, 2], [10, 16, 5]]
-	}, {
-	  id: "SouthAmerica",
-	  origin: [22, 26],
-	  area: [[2, 0], [5, 0], [11, 4], [11, 8], [3, 18], [2, 17], [0, 4], [0, 3]],
-	  dots: [[2, 0, 4], [1, 1, 7], [1, 2, 7], [0, 3, 10], [0, 4, 12], [1, 5, 11], [2, 6, 9], [3, 7, 8], [3, 8, 8], [3, 9, 6], [3, 10, 6], [3, 11, 5], [3, 12, 3], [2, 13, 3], [2, 14, 3], [2, 15, 2], [2, 16, 2], [2, 17, 2], [3, 18, 1]]
-	}, {
-	  id: "NorthAmerica",
-	  origin: [0, 0],
-	  area: [[21, 0], [39, 0], [39, 6], [22, 26], [16, 23], [2, 12], [0, 7]],
-	  dots: [[22, 0, 6], [29, 0, 1], [31, 0, 1], [33, 0, 5], [20, 1, 1], [22, 1, 1], [24, 1, 2], [27, 1, 13], [17, 2, 1], [20, 2, 5], [26, 2, 13], [13, 3, 1], [19, 3, 1], [21, 3, 3], [26, 3, 14], [14, 4, 1], [16, 4, 4], [21, 4, 3], [29, 4, 11], [12, 5, 3], [16, 5, 1], [18, 5, 1], [20, 5, 3], [24, 5, 1], [30, 5, 8], [14, 6, 3], [19, 6, 1], [22, 6, 4], [31, 6, 8], [0, 7, 15], [16, 7, 1], [18, 7, 4], [24, 7, 2], [30, 7, 7], [2, 8, 20], [24, 8, 3], [29, 8, 5], [2, 9, 20], [24, 9, 2], [30, 9, 3], [1, 10, 18], [23, 10, 2], [31, 10, 1], [2, 11, 2], [8, 11, 11], [23, 11, 2], [26, 11, 1], [2, 12, 1], [8, 12, 13], [24, 12, 3], [10, 13, 12], [23, 13, 5], [11, 14, 17], [11, 15, 9], [21, 15, 6], [28, 15, 2], [11, 16, 11], [23, 16, 4], [11, 17, 14], [12, 18, 11], [12, 19, 12], [13, 20, 9], [15, 21, 3], [22, 21, 1], [16, 22, 2], [16, 23, 2], [20, 23, 1], [23, 23, 1], [18, 24, 3], [21, 25, 1], [22, 26, 1]]
-	}];
+	var Icon = function (_Component) {
+	  (0, _inherits3.default)(Icon, _Component);
 
-	var FACTOR = 10;
-
-	var WorldMap = function (_Component) {
-	  (0, _inherits3.default)(WorldMap, _Component);
-
-	  function WorldMap() {
-	    (0, _classCallCheck3.default)(this, WorldMap);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(WorldMap).call(this));
-
-	    _this._onActivate = _this._onActivate.bind(_this);
-	    _this._onDeactivate = _this._onDeactivate.bind(_this);
-	    _this._renderContinent = _this._renderContinent.bind(_this);
-
-	    _this.state = _this._buildState();
-	    return _this;
+	  function Icon() {
+	    (0, _classCallCheck3.default)(this, Icon);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Icon).apply(this, arguments));
 	  }
 
-	  (0, _createClass3.default)(WorldMap, [{
-	    key: '_buildState',
-	    value: function _buildState() {
-	      var state = { activeIndex: -1, dots: {}, area: {} };
-	      var width = 0;
-	      var height = 0;
-	      CONTINENTS.forEach(function (continent) {
-	        var origin = continent.origin;
-	        state.dots[continent.id] = continent.dots.map(function (segment) {
-	          var dots = Array.apply(null, Array(segment[2])).map(function () {
-	            return 'h0';
-	          }).join(' m10,0 ');
-	          var x = FACTOR * (origin[0] + segment[0] + 1);
-	          var y = FACTOR * (origin[1] + segment[1] + 1);
-	          width = Math.max(width, FACTOR * (origin[0] + segment[0] + segment[2]));
-	          height = Math.max(height, y);
-	          return 'M' + x + ',' + y + ' ' + dots;
-	        }).join(' ');
-	        state.area[continent.id] = continent.area.map(function (point, index) {
-	          var x = FACTOR * (point[0] + origin[0] + 1);
-	          var y = FACTOR * (point[1] + origin[1] + 1);
-	          return '' + (index === 0 ? 'M' : 'L') + x + ',' + y;
-	        }).join(' ');
-	        if (state.area[continent.id]) {
-	          state.area[continent.id] += ' Z';
-	        }
-	      });
-	      state.width = width + FACTOR;
-	      state.height = height + FACTOR;
-	      return state;
-	    }
-	  }, {
-	    key: '_onActivate',
-	    value: function _onActivate(index) {
-	      this.setState({ activeIndex: index });
-	    }
-	  }, {
-	    key: '_onDeactivate',
-	    value: function _onDeactivate() {
-	      this.setState({ activeIndex: -1 });
-	    }
-	  }, {
-	    key: '_renderContinent',
-	    value: function _renderContinent(seriesData, index) {
-	      var continent = seriesData.continent;
-	      var colorIndex = seriesData.colorIndex || 'graph-' + index;
-	      var classes = [CLASS_ROOT + '__continent', COLOR_INDEX + '-' + colorIndex];
-	      if (index === this.state.activeIndex) {
-	        classes.push(CLASS_ROOT + '__continent--active');
-	      }
-	      var onMouseOver = void 0,
-	          onMouseLeave = void 0,
-	          onClick = void 0,
-	          area = void 0;
-	      if (seriesData.onClick) {
-	        onMouseOver = this._onActivate.bind(this, index);
-	        onMouseLeave = this._onDeactivate;
-	        onClick = seriesData.onClick;
-	        area = _react2.default.createElement('path', { stroke: 'none', fill: '#fff', fillOpacity: '0.01',
-	          d: this.state.area[continent] });
-	      }
-	      // We add the area so the mouse events work for the whole region,
-	      // not just the dots
-	      return _react2.default.createElement(
-	        'g',
-	        { key: continent, id: continent, className: classes.join(' '),
-	          onMouseOver: onMouseOver, onMouseLeave: onMouseLeave, onClick: onClick },
-	        area,
-	        _react2.default.createElement('path', { d: this.state.dots[continent] })
-	      );
-	    }
-	  }, {
+	  (0, _createClass3.default)(Icon, [{
 	    key: 'render',
 	    value: function render() {
-	      var series = this.props.series;
-	      var _state = this.state;
-	      var width = _state.width;
-	      var height = _state.height;
+	      var _classnames;
 
-	      var continents = series.map(this._renderContinent);
+	      var _props = this.props;
+	      var a11yTitleId = _props.a11yTitleId;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var size = _props2.size;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-play', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
+
+	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'play', defaultMessage: 'play' });
 
 	      return _react2.default.createElement(
 	        'svg',
-	        { className: CLASS_ROOT, version: '1.1',
-	          preserveAspectRatio: 'xMidYMid meet',
-	          width: width + 'px', viewBox: '0 0 ' + width + ' ' + height },
+	        { version: '1.1', viewBox: '0 0 24 24.3317', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
+	        _react2.default.createElement(
+	          'title',
+	          { id: a11yTitleId },
+	          a11yTitle
+	        ),
 	        _react2.default.createElement(
 	          'g',
-	          { stroke: 'none', fill: 'none', fillRule: 'evenodd' },
-	          continents
+	          null,
+	          _react2.default.createElement('rect', { y: '0.1658', fill: 'none', width: '24', height: '24' }),
+	          _react2.default.createElement('polygon', { fill: '#000000', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', points: '6,1.9658 6,22.3658 20,12.1658 \t' })
 	        )
 	      );
 	    }
 	  }]);
-	  return WorldMap;
+	  return Icon;
 	}(_react.Component);
 
-	WorldMap.displayName = 'WorldMap';
-	exports.default = WorldMap;
+	Icon.displayName = 'Icon';
+	exports.default = Icon;
+	;
 
-
-	WorldMap.propTypes = {
-	  series: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    continent: _react.PropTypes.oneOf(['NorthAmerica', 'SouthAmerica', 'Europe', 'Africa', 'Asia', 'Australia']),
-	    // value: PropTypes.number,
-	    colorIndex: _react.PropTypes.string,
-	    // important: PropTypes.bool,
-	    onClick: _react.PropTypes.func
-	  }))
+	Icon.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
 	};
+
+	Icon.defaultProps = {
+	  a11yTitleId: 'play-title'
+	};
+
+	Icon.icon = true;
+
+	Icon.displayName = 'Play';
 	module.exports = exports['default'];
 
 /***/ },
-/* 177 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var React = __webpack_require__(1);
-	var jsxToString = __webpack_require__(169);
-	var DocsArticle = __webpack_require__(140);
-	var Heading = __webpack_require__(178);
-	var Paragraph = __webpack_require__(171);
-	var Accordion = __webpack_require__(179);
-	var AccordionPanel = __webpack_require__(181);
-	var ContentCard = __webpack_require__(185);
-
-	Accordion.displayName = 'Accordion';
-
-	var inline = "<Accordion>\n" + "  <AccordionPanel>\n" + "   ...\n" + "  </AccordionPanel>\n" + "  ...\n" + "</Accordion>";
-
-	var AccordionDoc = React.createClass({
-	  displayName: 'AccordionDoc',
-
-
-	  contextTypes: {
-	    routePrefix: React.PropTypes.string.isRequired
-	  },
-
-	  _renderCode: function _renderCode(name, jsx) {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h3',
-	        null,
-	        name
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'example' },
-	        jsx
-	      ),
-	      React.createElement(
-	        'pre',
-	        null,
-	        React.createElement(
-	          'code',
-	          { className: 'html hljs xml' },
-	          jsxToString(jsx)
-	        )
-	      )
-	    );
-	  },
-
-
-	  render: function render() {
-	    var simpleAccordionPanel = React.createElement(
-	      AccordionPanel,
-	      { panelTitle: 'Enterprise Mobility Services' },
-	      React.createElement(
-	        Heading,
-	        { tag: 'h3', margin: 'none' },
-	        'Empower your employees while ensuring your workplace remains enterprise grade, scalable and secure.'
-	      ),
-	      React.createElement(
-	        Paragraph,
-	        { margin: 'none' },
-	        'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.'
-	      ),
-	      React.createElement(ContentCard, {
-	        thumbnail: '/docs/img/Case_Study_image.png',
-	        overline: 'Case Study',
-	        heading: 'The Key Steps to Reducing Software Spend',
-	        description: 'HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes',
-	        link: '#'
-	      })
-	    );
-
-	    var simpleAccordion = React.createElement(
-	      Accordion,
-	      {
-	        colorIndex: 'light-2',
-	        headline: 'Services Portfolio',
-	        subHeadline: 'Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me'
-	      },
-	      simpleAccordionPanel,
-	      simpleAccordionPanel,
-	      simpleAccordionPanel
-	    );
-
-	    return React.createElement(
-	      DocsArticle,
-	      { title: 'Accordion', colorIndex: 'neutral-3' },
-	      React.createElement(
-	        'p',
-	        null,
-	        'The Accordion module.'
-	      ),
-	      React.createElement(
-	        'pre',
-	        null,
-	        React.createElement(
-	          'code',
-	          { className: 'html hljs xml' },
-	          inline
-	        )
-	      ),
-	      React.createElement(
-	        'section',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Accordion Options'
-	        ),
-	        React.createElement(
-	          'dl',
-	          null,
-	          React.createElement(
-	            'dt',
-	            null,
-	            React.createElement(
-	              'code',
-	              null,
-	              'headline            ',
-	              '{string}'
-	            )
-	          ),
-	          React.createElement(
-	            'dd',
-	            null,
-	            'Headline of the section.'
-	          ),
-	          React.createElement(
-	            'dt',
-	            null,
-	            React.createElement(
-	              'code',
-	              null,
-	              'subHeadline         ',
-	              '{string}'
-	            )
-	          ),
-	          React.createElement(
-	            'dd',
-	            null,
-	            'Content for the subheadline.'
-	          ),
-	          React.createElement(
-	            'dt',
-	            null,
-	            React.createElement(
-	              'code',
-	              null,
-	              'colorIndex          ',
-	              '{category}-{index}'
-	            )
-	          ),
-	          React.createElement(
-	            'dd',
-	            null,
-	            'The color identifier to use for the background color. For example: ',
-	            React.createElement(
-	              'code',
-	              null,
-	              '"neutral-1"'
-	            )
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        'section',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'AccordionPanel Options'
-	        ),
-	        React.createElement(
-	          'dl',
-	          null,
-	          React.createElement(
-	            'dt',
-	            null,
-	            React.createElement(
-	              'code',
-	              null,
-	              'panelTitle          ',
-	              '{string}'
-	            )
-	          ),
-	          React.createElement(
-	            'dd',
-	            null,
-	            'Title of panel, displayed when panel is collapsed. Required.'
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        'section',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Examples'
-	        ),
-	        this._renderCode('Default', simpleAccordion)
-	      )
-	    );
-	  }
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
 	});
 
-	module.exports = AccordionDoc;
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _Box = __webpack_require__(83);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Heading = __webpack_require__(175);
+
+	var _Heading2 = _interopRequireDefault(_Heading);
+
+	var _Paragraph = __webpack_require__(176);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
+	var _Anchor = __webpack_require__(115);
+
+	var _Anchor2 = _interopRequireDefault(_Anchor);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'stack';
+
+	var Stack = function (_Component) {
+	  _inherits(Stack, _Component);
+
+	  function Stack() {
+	    _classCallCheck(this, Stack);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Stack).apply(this, arguments));
+	  }
+
+	  _createClass(Stack, [{
+	    key: '_renderParagraph',
+	    value: function _renderParagraph(contents, size, type) {
+	      if (typeof contents === 'string') {
+	        return _react2.default.createElement(
+	          _Paragraph2.default,
+	          {
+	            className: CLASS_ROOT + '__' + type,
+	            size: size,
+	            margin: 'none'
+	          },
+	          contents
+	        );
+	      } else if (Array.isArray(contents)) {
+	        return contents.map(function (content, index) {
+	          return _react2.default.createElement(
+	            _Paragraph2.default,
+	            {
+	              key: type + '_' + index,
+	              className: CLASS_ROOT + '__' + type,
+	              size: size,
+	              margin: 'none'
+	            },
+	            content
+	          );
+	        });
+	      }
+	      return null;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var className = _props.className;
+	      var label = _props.label;
+	      var headline = _props.headline;
+	      var headlineStrong = _props.headlineStrong;
+	      var paragraph = _props.paragraph;
+	      var print = _props.print;
+	      var size = _props.size;
+	      var link = _props.link;
+	      var linkText = _props.linkText;
+	      var linkIcon = _props.linkIcon;
+	      var onClick = _props.onClick;
+
+	      var props = _objectWithoutProperties(_props, ['className', 'label', 'headline', 'headlineStrong', 'paragraph', 'print', 'size', 'link', 'linkText', 'linkIcon', 'onClick']);
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, _defineProperty({}, CLASS_ROOT + '--' + size, size));
+
+	      var labelTag = void 0;
+	      var headlineTag = void 0;
+	      var paragraphSize = void 0;
+	      var printSize = void 0;
+	      if (size === 'xlarge') {
+	        labelTag = 'h3';
+	        headlineTag = 'h1';
+	        paragraphSize = 'xlarge';
+	        printSize = 'large';
+	      } else if (size === 'large') {
+	        labelTag = 'h4';
+	        headlineTag = 'h1';
+	        paragraphSize = 'xlarge';
+	        printSize = 'large';
+	      } else if (size === 'small') {
+	        labelTag = 'h5';
+	        headlineTag = 'h3';
+	        paragraphSize = 'medium';
+	        printSize = 'small';
+	      } else {
+	        labelTag = 'h4';
+	        headlineTag = 'h2';
+	        paragraphSize = 'xlarge';
+	        printSize = 'large';
+	      }
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        _extends({ className: classes }, props),
+	        label && _react2.default.createElement(
+	          _Heading2.default,
+	          { className: CLASS_ROOT + '__label', tag: labelTag, margin: 'none', uppercase: true },
+	          label
+	        ),
+	        headline && _react2.default.createElement(
+	          _Heading2.default,
+	          { className: CLASS_ROOT + '__headline',
+	            tag: headlineTag, strong: headlineStrong, margin: 'none' },
+	          headline
+	        ),
+	        this._renderParagraph(paragraph, paragraphSize, 'paragraph'),
+	        this._renderParagraph(print, printSize, 'print'),
+	        (link || onClick) && _react2.default.createElement(
+	          _Anchor2.default,
+	          { className: CLASS_ROOT + '__link', primary: true, href: link,
+	            onClick: onClick, icon: linkIcon },
+	          linkText
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Stack;
+	}(_react.Component);
+
+	exports.default = Stack;
+	;
+
+	Stack.propTypes = {
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+	  label: _react.PropTypes.string,
+	  headline: _react.PropTypes.string,
+	  headlineStrong: _react.PropTypes.bool,
+	  paragraph: _react.PropTypes.node,
+	  print: _react.PropTypes.node,
+	  link: _react.PropTypes.string,
+	  linkText: _react.PropTypes.string,
+	  linkIcon: _react.PropTypes.element,
+	  onClick: _react.PropTypes.func
+	};
+
+	Stack.defaultProps = {
+	  size: 'medium',
+	  headlineStrong: true,
+	  linkText: 'Learn More'
+	};
+	module.exports = exports['default'];
 
 /***/ },
-/* 178 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18782,586 +18497,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 179 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames = __webpack_require__(67);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _Box = __webpack_require__(83);
-
-	var _Box2 = _interopRequireDefault(_Box);
-
-	var _Headline = __webpack_require__(118);
-
-	var _Headline2 = _interopRequireDefault(_Headline);
-
-	var _List = __webpack_require__(180);
-
-	var _List2 = _interopRequireDefault(_List);
-
-	var _Paragraph = __webpack_require__(171);
-
-	var _Paragraph2 = _interopRequireDefault(_Paragraph);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = 'accordion';
-
-	var Accordion = function (_Component) {
-	  _inherits(Accordion, _Component);
-
-	  function Accordion() {
-	    _classCallCheck(this, Accordion);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Accordion).apply(this, arguments));
-	  }
-
-	  _createClass(Accordion, [{
-	    key: 'render',
-	    value: function render() {
-	      var _props = this.props;
-	      var headline = _props.headline;
-	      var subHeadline = _props.subHeadline;
-	      var colorIndex = _props.colorIndex;
-	      var children = _props.children;
-
-
-	      var classes = (0, _classnames2.default)(CLASS_ROOT, this.props.className);
-
-	      var headlineMarkup = void 0;
-	      if (headline) {
-	        headlineMarkup = _react2.default.createElement(
-	          _Headline2.default,
-	          { size: 'large', strong: true, margin: 'none', align: 'center' },
-	          headline
-	        );
-	      }
-
-	      var subHeadlineMarkup = void 0;
-	      if (subHeadline) {
-	        subHeadlineMarkup = _react2.default.createElement(
-	          _Paragraph2.default,
-	          {
-	            className: CLASS_ROOT + '__sub-headline',
-	            size: 'large',
-	            align: 'center'
-	          },
-	          subHeadline
-	        );
-	      }
-
-	      var content = void 0;
-	      if (headline || subHeadline) {
-	        content = _react2.default.createElement(
-	          _Box2.default,
-	          { align: 'center' },
-	          headlineMarkup,
-	          subHeadlineMarkup
-	        );
-	      }
-
-	      return _react2.default.createElement(
-	        _Box2.default,
-	        { className: classes, colorIndex: colorIndex },
-	        content,
-	        _react2.default.createElement(
-	          _Box2.default,
-	          { separator: 'top' },
-	          _react2.default.createElement(
-	            _List2.default,
-	            null,
-	            children
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Accordion;
-	}(_react.Component);
-
-	exports.default = Accordion;
-	;
-
-	Accordion.propTypes = {
-	  headline: _react.PropTypes.string,
-	  subHeadline: _react.PropTypes.string,
-	  colorIndex: _react.PropTypes.string
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 180 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _stringify = __webpack_require__(129);
-
-	var _stringify2 = _interopRequireDefault(_stringify);
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Spinning = __webpack_require__(131);
-
-	var _Spinning2 = _interopRequireDefault(_Spinning);
-
-	var _InfiniteScroll = __webpack_require__(132);
-
-	var _InfiniteScroll2 = _interopRequireDefault(_InfiniteScroll);
-
-	var _Selection = __webpack_require__(133);
-
-	var _Selection2 = _interopRequireDefault(_Selection);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CLASS_ROOT = _CSSClassnames2.default.LIST; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var LIST_ITEM = _CSSClassnames2.default.LIST_ITEM;
-	var SELECTED_CLASS = CLASS_ROOT + "-item--selected";
-
-	var List = function (_Component) {
-	  (0, _inherits3.default)(List, _Component);
-
-	  function List(props) {
-	    (0, _classCallCheck3.default)(this, List);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(List).call(this, props));
-
-	    _this._onClick = _this._onClick.bind(_this);
-
-	    _this.state = {
-	      selected: _Selection2.default.normalizeIndexes(props.selected)
-	    };
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(List, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this._setSelection();
-	      if (this.props.onMore) {
-	        this._scroll = _InfiniteScroll2.default.startListeningForScroll(this.refs.more, this.props.onMore);
-	      }
-	    }
-	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(nextProps) {
-	      if (this._scroll) {
-	        _InfiniteScroll2.default.stopListeningForScroll(this._scroll);
-	        this._scroll = null;
-	      }
-	      if (nextProps.hasOwnProperty('selected')) {
-	        this.setState({
-	          selected: _Selection2.default.normalizeIndexes(nextProps.selected)
-	        });
-	      }
-	    }
-	  }, {
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate(prevProps, prevState) {
-	      if ((0, _stringify2.default)(this.state.selected) !== (0, _stringify2.default)(prevState.selected)) {
-	        this._setSelection();
-	      }
-	      if (this.props.onMore && !this._scroll) {
-	        this._scroll = _InfiniteScroll2.default.startListeningForScroll(this.refs.more, this.props.onMore);
-	      }
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      if (this._scroll) {
-	        _InfiniteScroll2.default.stopListeningForScroll(this._scroll);
-	      }
-	    }
-	  }, {
-	    key: '_setSelection',
-	    value: function _setSelection() {
-	      _Selection2.default.setClassFromIndexes({
-	        containerElement: this.refs.list,
-	        childSelector: '.' + LIST_ITEM,
-	        selectedClass: SELECTED_CLASS,
-	        selectedIndexes: this.state.selected
-	      });
-	    }
-	  }, {
-	    key: '_onClick',
-	    value: function _onClick(event) {
-	      if (!this.props.selectable) {
-	        return;
-	      }
-
-	      var selected = _Selection2.default.onClick(event, {
-	        containerElement: this.refs.list,
-	        childSelector: '.' + LIST_ITEM,
-	        selectedClass: SELECTED_CLASS,
-	        multiSelect: 'multiple' === this.props.selectable,
-	        priorSelectedIndexes: this.state.selected
-	      });
-	      // only set the selected state and classes if the caller isn't managing it.
-	      if (!this.props.selected) {
-	        this.setState({ selected: selected }, this._setSelection);
-	      }
-
-	      if (this.props.onSelect) {
-	        // notify caller that the selection has changed
-	        if (selected.length === 1) {
-	          selected = selected[0];
-	        }
-	        this.props.onSelect(selected);
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var classes = [CLASS_ROOT];
-	      if (this.props.selectable) {
-	        classes.push(CLASS_ROOT + "--selectable");
-	      }
-	      if (this.props.className) {
-	        classes.push(this.props.className);
-	      }
-
-	      var empty = void 0;
-	      if (this.props.emptyIndicator) {
-	        empty = _react2.default.createElement(
-	          'li',
-	          { className: CLASS_ROOT + "__empty" },
-	          this.props.emptyIndicator
-	        );
-	      }
-
-	      var more;
-	      if (this.props.onMore) {
-	        classes.push(CLASS_ROOT + "--moreable");
-	        more = _react2.default.createElement(
-	          'li',
-	          { ref: 'more', className: CLASS_ROOT + "__more" },
-	          _react2.default.createElement(_Spinning2.default, null)
-	        );
-	      }
-
-	      return _react2.default.createElement(
-	        'ul',
-	        { ref: 'list', className: classes.join(' '), onClick: this._onClick },
-	        empty,
-	        this.props.children,
-	        more
-	      );
-	    }
-	  }]);
-	  return List;
-	}(_react.Component);
-
-	List.displayName = 'List';
-	exports.default = List;
-
-
-	List.propTypes = {
-	  emptyIndicator: _react.PropTypes.node,
-	  onMore: _react.PropTypes.func,
-	  onSelect: _react.PropTypes.func,
-	  selectable: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['multiple'])]),
-	  selected: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.arrayOf(_react.PropTypes.number)])
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 181 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames = __webpack_require__(67);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _Box = __webpack_require__(83);
-
-	var _Box2 = _interopRequireDefault(_Box);
-
-	var _Heading = __webpack_require__(178);
-
-	var _Heading2 = _interopRequireDefault(_Heading);
-
-	var _ListItem = __webpack_require__(182);
-
-	var _ListItem2 = _interopRequireDefault(_ListItem);
-
-	var _Add = __webpack_require__(183);
-
-	var _Add2 = _interopRequireDefault(_Add);
-
-	var _Subtract = __webpack_require__(184);
-
-	var _Subtract2 = _interopRequireDefault(_Subtract);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = 'accordion-panel';
-
-	var AccordionPanel = function (_Component) {
-	  _inherits(AccordionPanel, _Component);
-
-	  function AccordionPanel(props) {
-	    _classCallCheck(this, AccordionPanel);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AccordionPanel).call(this, props));
-
-	    _this._onClickPanel = _this._onClickPanel.bind(_this);
-
-	    _this.state = {
-	      isOpen: false
-	    };
-	    return _this;
-	  }
-
-	  _createClass(AccordionPanel, [{
-	    key: '_onClickPanel',
-	    value: function _onClickPanel() {
-	      this.setState({ isOpen: !this.state.isOpen });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _props = this.props;
-	      var panelTitle = _props.panelTitle;
-	      var children = _props.children;
-
-
-	      var classes = (0, _classnames2.default)(CLASS_ROOT, this.props.className);
-
-	      var panelControlIcon = _react2.default.createElement(_Add2.default, { colorIndex: 'brand' });
-	      var panelContent = void 0;
-
-	      if (this.state.isOpen) {
-	        panelControlIcon = _react2.default.createElement(_Subtract2.default, { colorIndex: 'brand' });
-
-	        panelContent = _react2.default.createElement(
-	          _Box2.default,
-	          { full: 'horizontal', pad: { vertical: "medium" } },
-	          children
-	        );
-	      }
-
-	      return _react2.default.createElement(
-	        _ListItem2.default,
-	        { className: classes, direction: 'column' },
-	        _react2.default.createElement(
-	          _Box2.default,
-	          { full: 'horizontal', direction: 'row', justify: 'between', align: 'center', onClick: this._onClickPanel, responsive: false },
-	          _react2.default.createElement(
-	            _Heading2.default,
-	            { tag: 'h2', margin: 'small' },
-	            panelTitle
-	          ),
-	          panelControlIcon
-	        ),
-	        panelContent
-	      );
-	    }
-	  }]);
-
-	  return AccordionPanel;
-	}(_react.Component);
-
-	exports.default = AccordionPanel;
-	;
-
-	AccordionPanel.propTypes = {
-	  panelTitle: _react.PropTypes.string.isRequired
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 182 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends2 = __webpack_require__(69);
-
-	var _extends3 = _interopRequireDefault(_extends2);
-
-	var _keys = __webpack_require__(84);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
-	var _defineProperty2 = __webpack_require__(5);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames2 = __webpack_require__(67);
-
-	var _classnames3 = _interopRequireDefault(_classnames2);
-
-	var _Box = __webpack_require__(83);
-
-	var _Box2 = _interopRequireDefault(_Box);
-
-	var _Props = __webpack_require__(91);
-
-	var _Props2 = _interopRequireDefault(_Props);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CLASS_ROOT = _CSSClassnames2.default.LIST_ITEM; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var ListItem = function (_Component) {
-	  (0, _inherits3.default)(ListItem, _Component);
-
-	  function ListItem() {
-	    (0, _classCallCheck3.default)(this, ListItem);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ListItem).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(ListItem, [{
-	    key: 'render',
-	    value: function render() {
-	      var _classnames;
-
-	      var _props = this.props;
-	      var children = _props.children;
-	      var className = _props.className;
-	      var onClick = _props.onClick;
-	      var selected = _props.selected;
-
-
-	      if (selected) {
-	        console.warn('Selected option has been deprecated, please use selected ' + 'option at the List level.');
-	      }
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selected', selected), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selectable', onClick), _classnames));
-
-	      var boxProps = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
-
-	      return _react2.default.createElement(
-	        _Box2.default,
-	        (0, _extends3.default)({}, boxProps, { tag: 'li', className: classes }),
-	        children
-	      );
-	    }
-	  }]);
-	  return ListItem;
-	}(_react.Component);
-
-	ListItem.displayName = 'ListItem';
-	exports.default = ListItem;
-	;
-
-	ListItem.propTypes = (0, _extends3.default)({
-	  selected: _react.PropTypes.bool
-	}, _Box2.default.propTypes);
-
-	ListItem.defaultProps = {
-	  align: 'center',
-	  direction: 'row',
-	  pad: { horizontal: 'medium', vertical: 'small' },
-	  separator: 'bottom'
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 183 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19402,513 +18538,56 @@ module.exports =
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _FormattedMessage = __webpack_require__(81);
-
-	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
-
 	var _CSSClassnames = __webpack_require__(93);
 
 	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+	var CLASS_ROOT = _CSSClassnames2.default.PARAGRAPH; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
-	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+	var Paragraph = function (_Component) {
+	  (0, _inherits3.default)(Paragraph, _Component);
 
-	var Icon = function (_Component) {
-	  (0, _inherits3.default)(Icon, _Component);
-
-	  function Icon() {
-	    (0, _classCallCheck3.default)(this, Icon);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Icon).apply(this, arguments));
+	  function Paragraph() {
+	    (0, _classCallCheck3.default)(this, Paragraph);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Paragraph).apply(this, arguments));
 	  }
 
-	  (0, _createClass3.default)(Icon, [{
+	  (0, _createClass3.default)(Paragraph, [{
 	    key: 'render',
 	    value: function render() {
 	      var _classnames;
 
-	      var _props = this.props;
-	      var a11yTitleId = _props.a11yTitleId;
-	      var className = _props.className;
-	      var colorIndex = _props.colorIndex;
-	      var _props2 = this.props;
-	      var a11yTitle = _props2.a11yTitle;
-	      var size = _props2.size;
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--align-' + this.props.align, this.props.align), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--margin-' + this.props.margin, this.props.margin), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--width-' + this.props.width, this.props.width), _classnames));
 
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-add', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
-
-	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'add', defaultMessage: 'add' });
-
+	      // we handle dangerouslySetInnerHTML to allow using Paragraph with Markdown.
 	      return _react2.default.createElement(
-	        'svg',
-	        { version: '1.1', viewBox: '0 0 24 24', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
-	        _react2.default.createElement(
-	          'title',
-	          { id: a11yTitleId },
-	          a11yTitle
-	        ),
-	        _react2.default.createElement(
-	          'g',
-	          null,
-	          _react2.default.createElement('rect', { x: '0', fill: 'none', width: '24', height: '24' }),
-	          _react2.default.createElement('path', { fill: 'none', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', d: 'M0,12h24 M12,24V0' })
-	        )
+	        'p',
+	        { id: this.props.id, className: classes,
+	          dangerouslySetInnerHTML: this.props.dangerouslySetInnerHTML },
+	        this.props.children
 	      );
 	    }
 	  }]);
-	  return Icon;
+	  return Paragraph;
 	}(_react.Component);
 
-	Icon.displayName = 'Icon';
-	exports.default = Icon;
+	Paragraph.displayName = 'Paragraph';
+	exports.default = Paragraph;
 	;
 
-	Icon.propTypes = {
-	  a11yTitle: _react.PropTypes.string,
-	  a11yTitleId: _react.PropTypes.string,
-	  colorIndex: _react.PropTypes.string,
-	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
-	};
-
-	Icon.defaultProps = {
-	  a11yTitleId: 'add-title'
-	};
-
-	Icon.icon = true;
-
-	Icon.displayName = 'Add';
-	module.exports = exports['default'];
-
-/***/ },
-/* 184 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _defineProperty2 = __webpack_require__(5);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames2 = __webpack_require__(67);
-
-	var _classnames3 = _interopRequireDefault(_classnames2);
-
-	var _FormattedMessage = __webpack_require__(81);
-
-	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
-	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
-
-	var Icon = function (_Component) {
-	  (0, _inherits3.default)(Icon, _Component);
-
-	  function Icon() {
-	    (0, _classCallCheck3.default)(this, Icon);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Icon).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(Icon, [{
-	    key: 'render',
-	    value: function render() {
-	      var _classnames;
-
-	      var _props = this.props;
-	      var a11yTitleId = _props.a11yTitleId;
-	      var className = _props.className;
-	      var colorIndex = _props.colorIndex;
-	      var _props2 = this.props;
-	      var a11yTitle = _props2.a11yTitle;
-	      var size = _props2.size;
-
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-subtract', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
-
-	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'subtract', defaultMessage: 'subtract' });
-
-	      return _react2.default.createElement(
-	        'svg',
-	        { version: '1.1', viewBox: '0 0 24 24', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
-	        _react2.default.createElement(
-	          'title',
-	          { id: a11yTitleId },
-	          a11yTitle
-	        ),
-	        _react2.default.createElement(
-	          'g',
-	          null,
-	          _react2.default.createElement('rect', { x: '0', y: '0', fill: 'none', width: '24', height: '24' }),
-	          _react2.default.createElement('line', { fill: 'none', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', x1: '0', y1: '12', x2: '24', y2: '12' })
-	        )
-	      );
-	    }
-	  }]);
-	  return Icon;
-	}(_react.Component);
-
-	Icon.displayName = 'Icon';
-	exports.default = Icon;
-	;
-
-	Icon.propTypes = {
-	  a11yTitle: _react.PropTypes.string,
-	  a11yTitleId: _react.PropTypes.string,
-	  colorIndex: _react.PropTypes.string,
-	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
-	};
-
-	Icon.defaultProps = {
-	  a11yTitleId: 'subtract-title'
-	};
-
-	Icon.icon = true;
-
-	Icon.displayName = 'Subtract';
-	module.exports = exports['default'];
-
-/***/ },
-/* 185 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames2 = __webpack_require__(67);
-
-	var _classnames3 = _interopRequireDefault(_classnames2);
-
-	var _Props = __webpack_require__(91);
-
-	var _Props2 = _interopRequireDefault(_Props);
-
-	var _Box = __webpack_require__(83);
-
-	var _Box2 = _interopRequireDefault(_Box);
-
-	var _Tile = __webpack_require__(134);
-
-	var _Tile2 = _interopRequireDefault(_Tile);
-
-	var _Heading = __webpack_require__(178);
-
-	var _Heading2 = _interopRequireDefault(_Heading);
-
-	var _Paragraph = __webpack_require__(171);
-
-	var _Paragraph2 = _interopRequireDefault(_Paragraph);
-
-	var _Anchor = __webpack_require__(115);
-
-	var _Anchor2 = _interopRequireDefault(_Anchor);
-
-	var _Layer = __webpack_require__(94);
-
-	var _Layer2 = _interopRequireDefault(_Layer);
-
-	var _Video = __webpack_require__(186);
-
-	var _Video2 = _interopRequireDefault(_Video);
-
-	var _LinkNext = __webpack_require__(108);
-
-	var _LinkNext2 = _interopRequireDefault(_LinkNext);
-
-	var _Play = __webpack_require__(188);
-
-	var _Play2 = _interopRequireDefault(_Play);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = 'content-card';
-
-	var ContentCard = function (_Component) {
-	  _inherits(ContentCard, _Component);
-
-	  function ContentCard(props) {
-	    _classCallCheck(this, ContentCard);
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ContentCard).call(this, props));
-
-	    _this._handleClick = _this._handleClick.bind(_this);
-	    _this.state = {
-	      activeVideo: false
-	    };
-	    return _this;
-	  }
-
-	  _createClass(ContentCard, [{
-	    key: '_handleClick',
-	    value: function _handleClick(event) {
-	      var _props = this.props;
-	      var video = _props.video;
-	      var link = _props.link;
-
-
-	      if (video) {
-	        event.preventDefault();
-	        this.setState({ activeVideo: !this.state.activeVideo });
-	      } else if (link) {
-	        window.location.href = link;
-	      }
-	    }
-	  }, {
-	    key: '_renderChildren',
-	    value: function _renderChildren() {
-	      var _props2 = this.props;
-	      var children = _props2.children;
-	      var socialIcon = _props2.socialIcon;
-
-
-	      if (socialIcon) {
-	        return _react2.default.createElement(
-	          _Box2.default,
-	          { className: 'flex', pad: { between: 'large' } },
-	          children,
-	          _react2.default.createElement(
-	            _Box2.default,
-	            { className: CLASS_ROOT + '__social-icon', align: 'end' },
-	            socialIcon
-	          )
-	        );
-	      }
-
-	      return children;
-	    }
-	  }, {
-	    key: '_renderLinkMarkup',
-	    value: function _renderLinkMarkup() {
-	      var _props3 = this.props;
-	      var link = _props3.link;
-	      var linkIcon = _props3.linkIcon;
-	      var linkText = _props3.linkText;
-	      var onClick = _props3.onClick;
-	      var video = _props3.video;
-
-
-	      var linkMarkup = void 0;
-	      var anchorLabel = linkText;
-	      if (!linkText) {
-	        anchorLabel = video ? 'Watch Now' : 'Learn More';
-	      }
-
-	      var anchorIcon = linkIcon;
-	      if (!linkIcon) {
-	        anchorIcon = video ? _react2.default.createElement(_Play2.default, null) : _react2.default.createElement(_LinkNext2.default, null);
-	      }
-
-	      if (link || onClick || video) {
-	        linkMarkup = _react2.default.createElement(
-	          _Box2.default,
-	          { pad: { vertical: "small" } },
-	          _react2.default.createElement(_Anchor2.default, { href: link, icon: anchorIcon, label: anchorLabel,
-	            onClick: this._handleClick })
-	        );
-	      }
-
-	      return linkMarkup;
-	    }
-	  }, {
-	    key: '_renderVideoMarkup',
-	    value: function _renderVideoMarkup() {
-	      var video = this.props.video;
-	      var activeVideo = this.state.activeVideo;
-
-	      var videoMarkup = void 0;
-
-	      if (video && video.source && activeVideo) {
-	        videoMarkup = _react2.default.createElement(
-	          _Layer2.default,
-	          { onClose: this._handleClick, closer: true, flush: true },
-	          _react2.default.createElement(
-	            _Video2.default,
-	            null,
-	            _react2.default.createElement('source', { src: video.source, type: 'video/' + video.type })
-	          )
-	        );
-	      }
-
-	      return videoMarkup;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _classnames;
-
-	      var _props4 = this.props;
-	      var thumbnail = _props4.thumbnail;
-	      var description = _props4.description;
-	      var heading = _props4.heading;
-	      var overline = _props4.overline;
-	      var link = _props4.link;
-	      var onClick = _props4.onClick;
-	      var video = _props4.video;
-	      var socialIcon = _props4.socialIcon;
-	      var direction = _props4.direction;
-	      var contentPlacement = _props4.contentPlacement;
-	      var pad = _props4.pad;
-	      var className = _props4.className;
-
-	      var tileProps = _Props2.default.pick(this.props, Object.keys(_Tile2.default.propTypes));
-	      delete tileProps.onClick;
-	      delete tileProps.pad;
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--direction-' + direction, direction), _defineProperty(_classnames, CLASS_ROOT + '--selectable', link || onClick || video), _classnames), className);
-
-	      var onContentCardClick = onClick;
-	      if (!onContentCardClick && (link || video)) {
-	        onContentCardClick = this._handleClick;
-	      }
-
-	      var contentMarkup = _react2.default.createElement(
-	        _Box2.default,
-	        { className: CLASS_ROOT + '__content', pad: 'medium' },
-	        _react2.default.createElement(
-	          _Heading2.default,
-	          { tag: 'h5', uppercase: true, margin: 'none' },
-	          overline
-	        ),
-	        _react2.default.createElement(
-	          _Heading2.default,
-	          { tag: 'h2', strong: true },
-	          heading
-	        ),
-	        _react2.default.createElement(
-	          _Paragraph2.default,
-	          { margin: 'none' },
-	          description
-	        ),
-	        this._renderChildren(),
-	        !socialIcon ? this._renderLinkMarkup() : null
-	      );
-
-	      var thumbnailMarkup = void 0;
-	      if (thumbnail) {
-	        thumbnailMarkup = _react2.default.createElement(_Box2.default, { className: CLASS_ROOT + '__thumbnail', backgroundImage: 'url(' + thumbnail + ')' });
-	      }
-
-	      var first = thumbnailMarkup;
-	      var second = contentMarkup;
-	      var cardJustify = void 0;
-
-	      if (contentPlacement === 'bottom') {
-	        first = contentMarkup;
-	        second = thumbnailMarkup;
-	        // align thumbnail to bottom of card for bottom cardPlacement
-	        cardJustify = 'between';
-	      }
-
-	      var cardPad = 'small';
-	      var cardFull = void 0;
-	      if (direction === 'row') {
-	        cardPad = { vertical: 'small' };
-	        cardFull = 'horizontal';
-	      }
-
-	      return _react2.default.createElement(
-	        _Tile2.default,
-	        _extends({ className: classes, onClick: onContentCardClick,
-	          pad: pad || cardPad }, tileProps),
-	        _react2.default.createElement(
-	          _Box2.default,
-	          { className: 'flex', direction: direction, justify: cardJustify,
-	            full: cardFull, colorIndex: 'light-1' },
-	          first,
-	          second,
-	          this._renderVideoMarkup()
-	        )
-	      );
-	    }
-	  }]);
-
-	  return ContentCard;
-	}(_react.Component);
-
-	exports.default = ContentCard;
-	;
-
-	ContentCard.propTypes = _extends({
-	  thumbnail: _react.PropTypes.string,
-	  description: _react.PropTypes.string,
-	  heading: _react.PropTypes.string,
-	  overline: _react.PropTypes.string,
-	  link: _react.PropTypes.string,
-	  linkIcon: _react.PropTypes.element,
-	  linkText: _react.PropTypes.string,
-	  video: _react.PropTypes.shape({
-	    source: _react.PropTypes.string.isRequired,
-	    type: _react.PropTypes.string
-	  }),
-	  contentPlacement: _react.PropTypes.oneOf(['top', 'bottom']),
-	  socialIcon: _react.PropTypes.element
-	}, _Tile2.default.propTypes);
-
-	ContentCard.defaultProps = {
-	  contentPlacement: 'top',
-	  direction: 'column'
+	Paragraph.propTypes = {
+	  align: _react.PropTypes.oneOf(['start', 'center', 'end']),
+	  id: _react.PropTypes.string,
+	  margin: _react.PropTypes.oneOf(['none', 'small', 'medium', 'large']),
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+	  width: _react.PropTypes.oneOf(['small', 'medium', 'large'])
 	};
 	module.exports = exports['default'];
 
 /***/ },
-/* 186 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19965,19 +18644,19 @@ module.exports =
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Expand = __webpack_require__(187);
+	var _Expand = __webpack_require__(178);
 
 	var _Expand2 = _interopRequireDefault(_Expand);
 
-	var _Play = __webpack_require__(188);
+	var _Play = __webpack_require__(173);
 
 	var _Play2 = _interopRequireDefault(_Play);
 
-	var _Pause = __webpack_require__(189);
+	var _Pause = __webpack_require__(179);
 
 	var _Pause2 = _interopRequireDefault(_Pause);
 
-	var _Refresh = __webpack_require__(190);
+	var _Refresh = __webpack_require__(180);
 
 	var _Refresh2 = _interopRequireDefault(_Refresh);
 
@@ -20346,7 +19025,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 187 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20469,130 +19148,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 188 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _defineProperty2 = __webpack_require__(5);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames2 = __webpack_require__(67);
-
-	var _classnames3 = _interopRequireDefault(_classnames2);
-
-	var _FormattedMessage = __webpack_require__(81);
-
-	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
-	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
-
-	var Icon = function (_Component) {
-	  (0, _inherits3.default)(Icon, _Component);
-
-	  function Icon() {
-	    (0, _classCallCheck3.default)(this, Icon);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Icon).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(Icon, [{
-	    key: 'render',
-	    value: function render() {
-	      var _classnames;
-
-	      var _props = this.props;
-	      var a11yTitleId = _props.a11yTitleId;
-	      var className = _props.className;
-	      var colorIndex = _props.colorIndex;
-	      var _props2 = this.props;
-	      var a11yTitle = _props2.a11yTitle;
-	      var size = _props2.size;
-
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-play', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
-
-	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'play', defaultMessage: 'play' });
-
-	      return _react2.default.createElement(
-	        'svg',
-	        { version: '1.1', viewBox: '0 0 24 24.3317', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
-	        _react2.default.createElement(
-	          'title',
-	          { id: a11yTitleId },
-	          a11yTitle
-	        ),
-	        _react2.default.createElement(
-	          'g',
-	          null,
-	          _react2.default.createElement('rect', { y: '0.1658', fill: 'none', width: '24', height: '24' }),
-	          _react2.default.createElement('polygon', { fill: '#000000', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', points: '6,1.9658 6,22.3658 20,12.1658 \t' })
-	        )
-	      );
-	    }
-	  }]);
-	  return Icon;
-	}(_react.Component);
-
-	Icon.displayName = 'Icon';
-	exports.default = Icon;
-	;
-
-	Icon.propTypes = {
-	  a11yTitle: _react.PropTypes.string,
-	  a11yTitleId: _react.PropTypes.string,
-	  colorIndex: _react.PropTypes.string,
-	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
-	};
-
-	Icon.defaultProps = {
-	  a11yTitleId: 'play-title'
-	};
-
-	Icon.icon = true;
-
-	Icon.displayName = 'Play';
-	module.exports = exports['default'];
-
-/***/ },
-/* 189 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20715,7 +19271,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 190 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20838,7 +19394,514 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 191 */
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _DocsArticle = __webpack_require__(140);
+
+	var _DocsArticle2 = _interopRequireDefault(_DocsArticle);
+
+	var _Example = __webpack_require__(182);
+
+	var _Example2 = _interopRequireDefault(_Example);
+
+	var _WorldMap = __webpack_require__(183);
+
+	var _WorldMap2 = _interopRequireDefault(_WorldMap);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	_WorldMap2.default.displayName = 'WorldMap';
+
+	var series = [{ continent: 'NorthAmerica', label: 'North America', value: 40,
+	  colorIndex: 'graph-1', onClick: function onClick() {
+	    alert('North America');
+	  } }, { continent: 'SouthAmerica', label: 'South America', value: 30,
+	  colorIndex: 'accent-2', onClick: function onClick() {
+	    alert('North America');
+	  } }, { continent: 'Europe', label: 'Europe', value: 20,
+	  colorIndex: 'unset', onClick: function onClick() {
+	    alert('Europe');
+	  } }, { continent: 'Africa', label: 'Africa', value: 10,
+	  colorIndex: 'graph-2', onClick: function onClick() {
+	    alert('Africa');
+	  } }, { continent: 'Asia', label: 'Asia', value: 15,
+	  colorIndex: 'graph-3', onClick: function onClick() {
+	    alert('Asia');
+	  } }, { continent: 'Australia', label: 'Australia', value: 10,
+	  colorIndex: 'graph-4', onClick: function onClick() {
+	    alert('Australia');
+	  } }];
+
+	var WorldMapDoc = function (_Component) {
+	  _inherits(WorldMapDoc, _Component);
+
+	  function WorldMapDoc() {
+	    _classCallCheck(this, WorldMapDoc);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(WorldMapDoc).apply(this, arguments));
+	  }
+
+	  _createClass(WorldMapDoc, [{
+	    key: 'render',
+	    value: function render() {
+
+	      return _react2.default.createElement(
+	        _DocsArticle2.default,
+	        { title: 'WorldMap', colorIndex: 'neutral-3' },
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'A world map of continents.'
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          _react2.default.createElement(
+	            'code',
+	            { className: 'html hljs xml' },
+	            "<WorldMap series={[...]} />"
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Note: It is a good idea to include a ',
+	          _react2.default.createElement(
+	            'code',
+	            null,
+	            'Legend'
+	          ),
+	          ' along with this visualization. You can use the same ',
+	          _react2.default.createElement(
+	            'code',
+	            null,
+	            'series'
+	          ),
+	          'property for both ',
+	          _react2.default.createElement(
+	            'code',
+	            null,
+	            'WorldMap'
+	          ),
+	          ' and ',
+	          _react2.default.createElement(
+	            'code',
+	            null,
+	            'Legend'
+	          ),
+	          '.'
+	        ),
+	        _react2.default.createElement(
+	          'section',
+	          null,
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            'Options'
+	          ),
+	          _react2.default.createElement(
+	            'dl',
+	            null,
+	            _react2.default.createElement(
+	              'dt',
+	              null,
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'series      ',
+	                "[{continent: , colorIndex: , onClick: }, ...]"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'dd',
+	              null,
+	              'An array of objects describing the data. The available continents are: ',
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'NorthAmerica'
+	              ),
+	              ', ',
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'SouthAmerica'
+	              ),
+	              ', ',
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'Europe'
+	              ),
+	              ', ',
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'Africa'
+	              ),
+	              ', ',
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'Asia'
+	              ),
+	              ', and ',
+	              _react2.default.createElement(
+	                'code',
+	                null,
+	                'Australia'
+	              ),
+	              '. You must specify a continent in order for it to be rendered.'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'section',
+	          null,
+	          _react2.default.createElement(_Example2.default, { name: 'Example', code: _react2.default.createElement(_WorldMap2.default, { series: series, legend: true, units: 'B' }) })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return WorldMapDoc;
+	}(_react.Component);
+
+	exports.default = WorldMapDoc;
+	;
+	module.exports = exports['default'];
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _jsxToString = __webpack_require__(169);
+
+	var _jsxToString2 = _interopRequireDefault(_jsxToString);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var Example = function (_Component) {
+	  _inherits(Example, _Component);
+
+	  function Example() {
+	    _classCallCheck(this, Example);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Example).apply(this, arguments));
+	  }
+
+	  _createClass(Example, [{
+	    key: '_renderCode',
+	    value: function _renderCode() {
+	      var _props = this.props;
+	      var code = _props.code;
+	      var overrides = _props.overrides;
+
+	      var keyValueOverride = {};
+	      if (overrides) {
+	        overrides.forEach(function (override) {
+	          keyValueOverride[override] = 'this._' + override;
+	        });
+	      }
+	      return (0, _jsxToString2.default)(code, { keyValueOverride: keyValueOverride });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props2 = this.props;
+	      var code = _props2.code;
+	      var name = _props2.name;
+
+	      var heading = void 0;
+	      if (name) {
+	        heading = _react2.default.createElement(
+	          'h3',
+	          null,
+	          name
+	        );
+	      }
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        heading,
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'example' },
+	          code
+	        ),
+	        _react2.default.createElement(
+	          'pre',
+	          null,
+	          _react2.default.createElement(
+	            'code',
+	            { className: 'html hljs xml' },
+	            this._renderCode()
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Example;
+	}(_react.Component);
+
+	exports.default = Example;
+
+
+	Example.propTypes = {
+	  code: _react.PropTypes.node.isRequired,
+	  name: _react.PropTypes.string,
+	  overrides: _react.PropTypes.arrayOf(_react.PropTypes.string)
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.WORLD_MAP;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var CONTINENTS = [{
+	  id: "Australia",
+	  origin: [74, 32],
+	  area: [[4, 0], [7, 1], [15, 7], [13, 9], [0, 6], [0, 2]],
+	  dots: [[4, 0, 1], [2, 1, 6], [0, 2, 9], [0, 3, 10], [0, 4, 10], [0, 5, 3], [5, 5, 5], [5, 6, 4], [15, 7, 1], [14, 8, 1], [13, 9, 1]]
+	}, {
+	  id: "Asia",
+	  origin: [52, 1],
+	  area: [[16, 0], [38, 5], [40, 7], [28, 17], [24, 25], [29, 29], [19, 29], [11, 24], [3, 23], [0, 20], [0, 19], [6, 13], [7, 6]],
+	  dots: [[16, 0, 1], [17, 1, 2], [18, 2, 2], [15, 3, 6], [28, 3, 1], [30, 3, 1], [10, 4, 2], [13, 4, 10], [24, 4, 1], [9, 5, 22], [32, 5, 1], [38, 5, 1], [7, 6, 2], [10, 6, 1], [12, 6, 27], [7, 7, 34], [7, 8, 31], [7, 9, 26], [34, 9, 3], [7, 10, 22], [31, 10, 1], [33, 10, 1], [7, 11, 21], [32, 11, 2], [7, 12, 21], [32, 12, 1], [6, 13, 22], [32, 13, 1], [6, 14, 22], [5, 15, 22], [3, 16, 2], [6, 16, 20], [2, 17, 3], [6, 17, 16], [24, 17, 1], [28, 17, 1], [1, 18, 22], [26, 18, 2], [0, 19, 24], [0, 20, 5], [6, 20, 17], [2, 21, 5], [10, 21, 14], [2, 22, 5], [11, 22, 4], [16, 22, 4], [3, 23, 3], [11, 23, 2], [17, 23, 3], [23, 23, 1], [11, 24, 2], [18, 24, 2], [23, 24, 1], [24, 25, 1], [18, 26, 1], [22, 26, 1], [18, 27, 1], [20, 27, 4], [18, 28, 1], [21, 28, 1], [23, 28, 1], [26, 28, 3], [19, 29, 1], [28, 29, 2]]
+	}, {
+	  // 21X, 40Y
+	  id: "Africa",
+	  origin: [40, 19],
+	  area: [[3, 0], [6, 0], [11, 2], [16, 7], [16, 15], [11, 18], [9, 18], [0, 6], [0, 3]],
+	  dots: [[3, 0, 4], [2, 1, 6], [9, 1, 2], [1, 2, 11], [0, 3, 13], [0, 4, 14], [0, 5, 14], [0, 6, 16], [1, 7, 16], [2, 8, 2], [6, 8, 11], [7, 9, 9], [7, 10, 8], [7, 11, 7], [8, 12, 7], [7, 13, 8], [7, 14, 7], [16, 14, 1], [8, 15, 5], [15, 15, 2], [8, 16, 5], [9, 17, 3], [9, 18, 3]]
+	}, {
+	  id: "Europe",
+	  origin: [39, 2],
+	  area: [[8, 0], [10, 0], [20, 2], [19, 11], [18, 13], [14, 16], [3, 16], [0, 7]],
+	  dots: [[8, 0, 3], [9, 1, 1], [20, 2, 1], [19, 3, 1], [12, 4, 1], [19, 4, 1], [9, 5, 6], [9, 6, 7], [17, 6, 3], [0, 7, 1], [8, 7, 12], [7, 8, 3], [11, 8, 9], [7, 9, 3], [11, 9, 9], [4, 10, 1], [7, 10, 1], [9, 10, 1], [11, 10, 9], [3, 11, 2], [7, 11, 13], [4, 12, 1], [6, 12, 13], [4, 13, 15], [5, 14, 3], [9, 14, 4], [15, 14, 2], [3, 15, 3], [8, 15, 1], [10, 15, 5], [6, 15, 2], [3, 16, 2], [10, 16, 5]]
+	}, {
+	  id: "SouthAmerica",
+	  origin: [22, 26],
+	  area: [[2, 0], [5, 0], [11, 4], [11, 8], [3, 18], [2, 17], [0, 4], [0, 3]],
+	  dots: [[2, 0, 4], [1, 1, 7], [1, 2, 7], [0, 3, 10], [0, 4, 12], [1, 5, 11], [2, 6, 9], [3, 7, 8], [3, 8, 8], [3, 9, 6], [3, 10, 6], [3, 11, 5], [3, 12, 3], [2, 13, 3], [2, 14, 3], [2, 15, 2], [2, 16, 2], [2, 17, 2], [3, 18, 1]]
+	}, {
+	  id: "NorthAmerica",
+	  origin: [0, 0],
+	  area: [[21, 0], [39, 0], [39, 6], [22, 26], [16, 23], [2, 12], [0, 7]],
+	  dots: [[22, 0, 6], [29, 0, 1], [31, 0, 1], [33, 0, 5], [20, 1, 1], [22, 1, 1], [24, 1, 2], [27, 1, 13], [17, 2, 1], [20, 2, 5], [26, 2, 13], [13, 3, 1], [19, 3, 1], [21, 3, 3], [26, 3, 14], [14, 4, 1], [16, 4, 4], [21, 4, 3], [29, 4, 11], [12, 5, 3], [16, 5, 1], [18, 5, 1], [20, 5, 3], [24, 5, 1], [30, 5, 8], [14, 6, 3], [19, 6, 1], [22, 6, 4], [31, 6, 8], [0, 7, 15], [16, 7, 1], [18, 7, 4], [24, 7, 2], [30, 7, 7], [2, 8, 20], [24, 8, 3], [29, 8, 5], [2, 9, 20], [24, 9, 2], [30, 9, 3], [1, 10, 18], [23, 10, 2], [31, 10, 1], [2, 11, 2], [8, 11, 11], [23, 11, 2], [26, 11, 1], [2, 12, 1], [8, 12, 13], [24, 12, 3], [10, 13, 12], [23, 13, 5], [11, 14, 17], [11, 15, 9], [21, 15, 6], [28, 15, 2], [11, 16, 11], [23, 16, 4], [11, 17, 14], [12, 18, 11], [12, 19, 12], [13, 20, 9], [15, 21, 3], [22, 21, 1], [16, 22, 2], [16, 23, 2], [20, 23, 1], [23, 23, 1], [18, 24, 3], [21, 25, 1], [22, 26, 1]]
+	}];
+
+	var FACTOR = 10;
+
+	var WorldMap = function (_Component) {
+	  (0, _inherits3.default)(WorldMap, _Component);
+
+	  function WorldMap() {
+	    (0, _classCallCheck3.default)(this, WorldMap);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(WorldMap).call(this));
+
+	    _this._onActivate = _this._onActivate.bind(_this);
+	    _this._onDeactivate = _this._onDeactivate.bind(_this);
+	    _this._renderContinent = _this._renderContinent.bind(_this);
+
+	    _this.state = _this._buildState();
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(WorldMap, [{
+	    key: '_buildState',
+	    value: function _buildState() {
+	      var state = { activeIndex: -1, dots: {}, area: {} };
+	      var width = 0;
+	      var height = 0;
+	      CONTINENTS.forEach(function (continent) {
+	        var origin = continent.origin;
+	        state.dots[continent.id] = continent.dots.map(function (segment) {
+	          var dots = Array.apply(null, Array(segment[2])).map(function () {
+	            return 'h0';
+	          }).join(' m10,0 ');
+	          var x = FACTOR * (origin[0] + segment[0] + 1);
+	          var y = FACTOR * (origin[1] + segment[1] + 1);
+	          width = Math.max(width, FACTOR * (origin[0] + segment[0] + segment[2]));
+	          height = Math.max(height, y);
+	          return 'M' + x + ',' + y + ' ' + dots;
+	        }).join(' ');
+	        state.area[continent.id] = continent.area.map(function (point, index) {
+	          var x = FACTOR * (point[0] + origin[0] + 1);
+	          var y = FACTOR * (point[1] + origin[1] + 1);
+	          return '' + (index === 0 ? 'M' : 'L') + x + ',' + y;
+	        }).join(' ');
+	        if (state.area[continent.id]) {
+	          state.area[continent.id] += ' Z';
+	        }
+	      });
+	      state.width = width + FACTOR;
+	      state.height = height + FACTOR;
+	      return state;
+	    }
+	  }, {
+	    key: '_onActivate',
+	    value: function _onActivate(index) {
+	      this.setState({ activeIndex: index });
+	    }
+	  }, {
+	    key: '_onDeactivate',
+	    value: function _onDeactivate() {
+	      this.setState({ activeIndex: -1 });
+	    }
+	  }, {
+	    key: '_renderContinent',
+	    value: function _renderContinent(seriesData, index) {
+	      var continent = seriesData.continent;
+	      var colorIndex = seriesData.colorIndex || 'graph-' + index;
+	      var classes = [CLASS_ROOT + '__continent', COLOR_INDEX + '-' + colorIndex];
+	      if (index === this.state.activeIndex) {
+	        classes.push(CLASS_ROOT + '__continent--active');
+	      }
+	      var onMouseOver = void 0,
+	          onMouseLeave = void 0,
+	          onClick = void 0,
+	          area = void 0;
+	      if (seriesData.onClick) {
+	        onMouseOver = this._onActivate.bind(this, index);
+	        onMouseLeave = this._onDeactivate;
+	        onClick = seriesData.onClick;
+	        area = _react2.default.createElement('path', { stroke: 'none', fill: '#fff', fillOpacity: '0.01',
+	          d: this.state.area[continent] });
+	      }
+	      // We add the area so the mouse events work for the whole region,
+	      // not just the dots
+	      return _react2.default.createElement(
+	        'g',
+	        { key: continent, id: continent, className: classes.join(' '),
+	          onMouseOver: onMouseOver, onMouseLeave: onMouseLeave, onClick: onClick },
+	        area,
+	        _react2.default.createElement('path', { d: this.state.dots[continent] })
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var series = this.props.series;
+	      var _state = this.state;
+	      var width = _state.width;
+	      var height = _state.height;
+
+	      var continents = series.map(this._renderContinent);
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { className: CLASS_ROOT, version: '1.1',
+	          preserveAspectRatio: 'xMidYMid meet',
+	          width: width + 'px', viewBox: '0 0 ' + width + ' ' + height },
+	        _react2.default.createElement(
+	          'g',
+	          { stroke: 'none', fill: 'none', fillRule: 'evenodd' },
+	          continents
+	        )
+	      );
+	    }
+	  }]);
+	  return WorldMap;
+	}(_react.Component);
+
+	WorldMap.displayName = 'WorldMap';
+	exports.default = WorldMap;
+
+
+	WorldMap.propTypes = {
+	  series: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    continent: _react.PropTypes.oneOf(['NorthAmerica', 'SouthAmerica', 'Europe', 'Africa', 'Asia', 'Australia']),
+	    // value: PropTypes.number,
+	    colorIndex: _react.PropTypes.string,
+	    // important: PropTypes.bool,
+	    onClick: _react.PropTypes.func
+	  }))
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20848,11 +19911,1352 @@ module.exports =
 	var React = __webpack_require__(1);
 	var jsxToString = __webpack_require__(169);
 	var DocsArticle = __webpack_require__(140);
-	var ContentCard = __webpack_require__(185);
+	var Heading = __webpack_require__(175);
+	var Paragraph = __webpack_require__(176);
+	var Accordion = __webpack_require__(185);
+	var AccordionPanel = __webpack_require__(187);
+	var ContentCard = __webpack_require__(191);
+
+	Accordion.displayName = 'Accordion';
+
+	var inline = "<Accordion>\n" + "  <AccordionPanel>\n" + "   ...\n" + "  </AccordionPanel>\n" + "  ...\n" + "</Accordion>";
+
+	var AccordionDoc = React.createClass({
+	  displayName: 'AccordionDoc',
+
+
+	  contextTypes: {
+	    routePrefix: React.PropTypes.string.isRequired
+	  },
+
+	  _renderCode: function _renderCode(name, jsx) {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h3',
+	        null,
+	        name
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'example' },
+	        jsx
+	      ),
+	      React.createElement(
+	        'pre',
+	        null,
+	        React.createElement(
+	          'code',
+	          { className: 'html hljs xml' },
+	          jsxToString(jsx)
+	        )
+	      )
+	    );
+	  },
+
+
+	  render: function render() {
+	    var simpleAccordionPanel = React.createElement(
+	      AccordionPanel,
+	      { panelTitle: 'Enterprise Mobility Services' },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h3', margin: 'none' },
+	        'Empower your employees while ensuring your workplace remains enterprise grade, scalable and secure.'
+	      ),
+	      React.createElement(
+	        Paragraph,
+	        { margin: 'none' },
+	        'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.'
+	      ),
+	      React.createElement(ContentCard, {
+	        thumbnail: '/docs/img/Case_Study_image.png',
+	        overline: 'Case Study',
+	        heading: 'The Key Steps to Reducing Software Spend',
+	        description: 'HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes',
+	        link: '#'
+	      })
+	    );
+
+	    var simpleAccordion = React.createElement(
+	      Accordion,
+	      {
+	        colorIndex: 'light-2',
+	        headline: 'Services Portfolio',
+	        subHeadline: 'Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me'
+	      },
+	      simpleAccordionPanel,
+	      simpleAccordionPanel,
+	      simpleAccordionPanel
+	    );
+
+	    return React.createElement(
+	      DocsArticle,
+	      { title: 'Accordion', colorIndex: 'neutral-3' },
+	      React.createElement(
+	        'p',
+	        null,
+	        'The Accordion module.'
+	      ),
+	      React.createElement(
+	        'pre',
+	        null,
+	        React.createElement(
+	          'code',
+	          { className: 'html hljs xml' },
+	          inline
+	        )
+	      ),
+	      React.createElement(
+	        'section',
+	        null,
+	        React.createElement(
+	          'h2',
+	          null,
+	          'Accordion Options'
+	        ),
+	        React.createElement(
+	          'dl',
+	          null,
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'headline            ',
+	              '{string}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Headline of the section.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'subHeadline         ',
+	              '{string}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Content for the subheadline.'
+	          ),
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'colorIndex          ',
+	              '{category}-{index}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'The color identifier to use for the background color. For example: ',
+	            React.createElement(
+	              'code',
+	              null,
+	              '"neutral-1"'
+	            )
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'section',
+	        null,
+	        React.createElement(
+	          'h2',
+	          null,
+	          'AccordionPanel Options'
+	        ),
+	        React.createElement(
+	          'dl',
+	          null,
+	          React.createElement(
+	            'dt',
+	            null,
+	            React.createElement(
+	              'code',
+	              null,
+	              'panelTitle          ',
+	              '{string}'
+	            )
+	          ),
+	          React.createElement(
+	            'dd',
+	            null,
+	            'Title of panel, displayed when panel is collapsed. Required.'
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'section',
+	        null,
+	        React.createElement(
+	          'h2',
+	          null,
+	          'Examples'
+	        ),
+	        this._renderCode('Default', simpleAccordion)
+	      )
+	    );
+	  }
+	});
+
+	module.exports = AccordionDoc;
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(67);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _Box = __webpack_require__(83);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Headline = __webpack_require__(118);
+
+	var _Headline2 = _interopRequireDefault(_Headline);
+
+	var _List = __webpack_require__(186);
+
+	var _List2 = _interopRequireDefault(_List);
+
+	var _Paragraph = __webpack_require__(176);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'accordion';
+
+	var Accordion = function (_Component) {
+	  _inherits(Accordion, _Component);
+
+	  function Accordion() {
+	    _classCallCheck(this, Accordion);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Accordion).apply(this, arguments));
+	  }
+
+	  _createClass(Accordion, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var headline = _props.headline;
+	      var subHeadline = _props.subHeadline;
+	      var colorIndex = _props.colorIndex;
+	      var children = _props.children;
+
+
+	      var classes = (0, _classnames2.default)(CLASS_ROOT, this.props.className);
+
+	      var headlineMarkup = void 0;
+	      if (headline) {
+	        headlineMarkup = _react2.default.createElement(
+	          _Headline2.default,
+	          { size: 'large', strong: true, margin: 'none', align: 'center' },
+	          headline
+	        );
+	      }
+
+	      var subHeadlineMarkup = void 0;
+	      if (subHeadline) {
+	        subHeadlineMarkup = _react2.default.createElement(
+	          _Paragraph2.default,
+	          {
+	            className: CLASS_ROOT + '__sub-headline',
+	            size: 'large',
+	            align: 'center'
+	          },
+	          subHeadline
+	        );
+	      }
+
+	      var content = void 0;
+	      if (headline || subHeadline) {
+	        content = _react2.default.createElement(
+	          _Box2.default,
+	          { align: 'center' },
+	          headlineMarkup,
+	          subHeadlineMarkup
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        { className: classes, colorIndex: colorIndex },
+	        content,
+	        _react2.default.createElement(
+	          _Box2.default,
+	          { separator: 'top' },
+	          _react2.default.createElement(
+	            _List2.default,
+	            null,
+	            children
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Accordion;
+	}(_react.Component);
+
+	exports.default = Accordion;
+	;
+
+	Accordion.propTypes = {
+	  headline: _react.PropTypes.string,
+	  subHeadline: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 186 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _stringify = __webpack_require__(129);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Spinning = __webpack_require__(131);
+
+	var _Spinning2 = _interopRequireDefault(_Spinning);
+
+	var _InfiniteScroll = __webpack_require__(132);
+
+	var _InfiniteScroll2 = _interopRequireDefault(_InfiniteScroll);
+
+	var _Selection = __webpack_require__(133);
+
+	var _Selection2 = _interopRequireDefault(_Selection);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.LIST; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var LIST_ITEM = _CSSClassnames2.default.LIST_ITEM;
+	var SELECTED_CLASS = CLASS_ROOT + "-item--selected";
+
+	var List = function (_Component) {
+	  (0, _inherits3.default)(List, _Component);
+
+	  function List(props) {
+	    (0, _classCallCheck3.default)(this, List);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(List).call(this, props));
+
+	    _this._onClick = _this._onClick.bind(_this);
+
+	    _this.state = {
+	      selected: _Selection2.default.normalizeIndexes(props.selected)
+	    };
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(List, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this._setSelection();
+	      if (this.props.onMore) {
+	        this._scroll = _InfiniteScroll2.default.startListeningForScroll(this.refs.more, this.props.onMore);
+	      }
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      if (this._scroll) {
+	        _InfiniteScroll2.default.stopListeningForScroll(this._scroll);
+	        this._scroll = null;
+	      }
+	      if (nextProps.hasOwnProperty('selected')) {
+	        this.setState({
+	          selected: _Selection2.default.normalizeIndexes(nextProps.selected)
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate(prevProps, prevState) {
+	      if ((0, _stringify2.default)(this.state.selected) !== (0, _stringify2.default)(prevState.selected)) {
+	        this._setSelection();
+	      }
+	      if (this.props.onMore && !this._scroll) {
+	        this._scroll = _InfiniteScroll2.default.startListeningForScroll(this.refs.more, this.props.onMore);
+	      }
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      if (this._scroll) {
+	        _InfiniteScroll2.default.stopListeningForScroll(this._scroll);
+	      }
+	    }
+	  }, {
+	    key: '_setSelection',
+	    value: function _setSelection() {
+	      _Selection2.default.setClassFromIndexes({
+	        containerElement: this.refs.list,
+	        childSelector: '.' + LIST_ITEM,
+	        selectedClass: SELECTED_CLASS,
+	        selectedIndexes: this.state.selected
+	      });
+	    }
+	  }, {
+	    key: '_onClick',
+	    value: function _onClick(event) {
+	      if (!this.props.selectable) {
+	        return;
+	      }
+
+	      var selected = _Selection2.default.onClick(event, {
+	        containerElement: this.refs.list,
+	        childSelector: '.' + LIST_ITEM,
+	        selectedClass: SELECTED_CLASS,
+	        multiSelect: 'multiple' === this.props.selectable,
+	        priorSelectedIndexes: this.state.selected
+	      });
+	      // only set the selected state and classes if the caller isn't managing it.
+	      if (!this.props.selected) {
+	        this.setState({ selected: selected }, this._setSelection);
+	      }
+
+	      if (this.props.onSelect) {
+	        // notify caller that the selection has changed
+	        if (selected.length === 1) {
+	          selected = selected[0];
+	        }
+	        this.props.onSelect(selected);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var classes = [CLASS_ROOT];
+	      if (this.props.selectable) {
+	        classes.push(CLASS_ROOT + "--selectable");
+	      }
+	      if (this.props.className) {
+	        classes.push(this.props.className);
+	      }
+
+	      var empty = void 0;
+	      if (this.props.emptyIndicator) {
+	        empty = _react2.default.createElement(
+	          'li',
+	          { className: CLASS_ROOT + "__empty" },
+	          this.props.emptyIndicator
+	        );
+	      }
+
+	      var more;
+	      if (this.props.onMore) {
+	        classes.push(CLASS_ROOT + "--moreable");
+	        more = _react2.default.createElement(
+	          'li',
+	          { ref: 'more', className: CLASS_ROOT + "__more" },
+	          _react2.default.createElement(_Spinning2.default, null)
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        'ul',
+	        { ref: 'list', className: classes.join(' '), onClick: this._onClick },
+	        empty,
+	        this.props.children,
+	        more
+	      );
+	    }
+	  }]);
+	  return List;
+	}(_react.Component);
+
+	List.displayName = 'List';
+	exports.default = List;
+
+
+	List.propTypes = {
+	  emptyIndicator: _react.PropTypes.node,
+	  onMore: _react.PropTypes.func,
+	  onSelect: _react.PropTypes.func,
+	  selectable: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['multiple'])]),
+	  selected: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.arrayOf(_react.PropTypes.number)])
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 187 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(67);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _Box = __webpack_require__(83);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Heading = __webpack_require__(175);
+
+	var _Heading2 = _interopRequireDefault(_Heading);
+
+	var _ListItem = __webpack_require__(188);
+
+	var _ListItem2 = _interopRequireDefault(_ListItem);
+
+	var _Add = __webpack_require__(189);
+
+	var _Add2 = _interopRequireDefault(_Add);
+
+	var _Subtract = __webpack_require__(190);
+
+	var _Subtract2 = _interopRequireDefault(_Subtract);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'accordion-panel';
+
+	var AccordionPanel = function (_Component) {
+	  _inherits(AccordionPanel, _Component);
+
+	  function AccordionPanel(props) {
+	    _classCallCheck(this, AccordionPanel);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(AccordionPanel).call(this, props));
+
+	    _this._onClickPanel = _this._onClickPanel.bind(_this);
+
+	    _this.state = {
+	      isOpen: false
+	    };
+	    return _this;
+	  }
+
+	  _createClass(AccordionPanel, [{
+	    key: '_onClickPanel',
+	    value: function _onClickPanel() {
+	      this.setState({ isOpen: !this.state.isOpen });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var panelTitle = _props.panelTitle;
+	      var children = _props.children;
+
+
+	      var classes = (0, _classnames2.default)(CLASS_ROOT, this.props.className);
+
+	      var panelControlIcon = _react2.default.createElement(_Add2.default, { colorIndex: 'brand' });
+	      var panelContent = void 0;
+
+	      if (this.state.isOpen) {
+	        panelControlIcon = _react2.default.createElement(_Subtract2.default, { colorIndex: 'brand' });
+
+	        panelContent = _react2.default.createElement(
+	          _Box2.default,
+	          { full: 'horizontal', pad: { vertical: "medium" } },
+	          children
+	        );
+	      }
+
+	      return _react2.default.createElement(
+	        _ListItem2.default,
+	        { className: classes, direction: 'column' },
+	        _react2.default.createElement(
+	          _Box2.default,
+	          { full: 'horizontal', direction: 'row', justify: 'between', align: 'center', onClick: this._onClickPanel, responsive: false },
+	          _react2.default.createElement(
+	            _Heading2.default,
+	            { tag: 'h2', margin: 'small' },
+	            panelTitle
+	          ),
+	          panelControlIcon
+	        ),
+	        panelContent
+	      );
+	    }
+	  }]);
+
+	  return AccordionPanel;
+	}(_react.Component);
+
+	exports.default = AccordionPanel;
+	;
+
+	AccordionPanel.propTypes = {
+	  panelTitle: _react.PropTypes.string.isRequired
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _keys = __webpack_require__(84);
+
+	var _keys2 = _interopRequireDefault(_keys);
+
+	var _defineProperty2 = __webpack_require__(5);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _Box = __webpack_require__(83);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Props = __webpack_require__(91);
+
+	var _Props2 = _interopRequireDefault(_Props);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.LIST_ITEM; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var ListItem = function (_Component) {
+	  (0, _inherits3.default)(ListItem, _Component);
+
+	  function ListItem() {
+	    (0, _classCallCheck3.default)(this, ListItem);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ListItem).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(ListItem, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var onClick = _props.onClick;
+	      var selected = _props.selected;
+
+
+	      if (selected) {
+	        console.warn('Selected option has been deprecated, please use selected ' + 'option at the List level.');
+	      }
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selected', selected), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selectable', onClick), _classnames));
+
+	      var boxProps = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        (0, _extends3.default)({}, boxProps, { tag: 'li', className: classes }),
+	        children
+	      );
+	    }
+	  }]);
+	  return ListItem;
+	}(_react.Component);
+
+	ListItem.displayName = 'ListItem';
+	exports.default = ListItem;
+	;
+
+	ListItem.propTypes = (0, _extends3.default)({
+	  selected: _react.PropTypes.bool
+	}, _Box2.default.propTypes);
+
+	ListItem.defaultProps = {
+	  align: 'center',
+	  direction: 'row',
+	  pad: { horizontal: 'medium', vertical: 'small' },
+	  separator: 'bottom'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 189 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _defineProperty2 = __webpack_require__(5);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _FormattedMessage = __webpack_require__(81);
+
+	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Icon = function (_Component) {
+	  (0, _inherits3.default)(Icon, _Component);
+
+	  function Icon() {
+	    (0, _classCallCheck3.default)(this, Icon);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Icon).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Icon, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var a11yTitleId = _props.a11yTitleId;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var size = _props2.size;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-add', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
+
+	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'add', defaultMessage: 'add' });
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { version: '1.1', viewBox: '0 0 24 24', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
+	        _react2.default.createElement(
+	          'title',
+	          { id: a11yTitleId },
+	          a11yTitle
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          null,
+	          _react2.default.createElement('rect', { x: '0', fill: 'none', width: '24', height: '24' }),
+	          _react2.default.createElement('path', { fill: 'none', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', d: 'M0,12h24 M12,24V0' })
+	        )
+	      );
+	    }
+	  }]);
+	  return Icon;
+	}(_react.Component);
+
+	Icon.displayName = 'Icon';
+	exports.default = Icon;
+	;
+
+	Icon.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
+	};
+
+	Icon.defaultProps = {
+	  a11yTitleId: 'add-title'
+	};
+
+	Icon.icon = true;
+
+	Icon.displayName = 'Add';
+	module.exports = exports['default'];
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _defineProperty2 = __webpack_require__(5);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _FormattedMessage = __webpack_require__(81);
+
+	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Icon = function (_Component) {
+	  (0, _inherits3.default)(Icon, _Component);
+
+	  function Icon() {
+	    (0, _classCallCheck3.default)(this, Icon);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Icon).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Icon, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var a11yTitleId = _props.a11yTitleId;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var size = _props2.size;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-subtract', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
+
+	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'subtract', defaultMessage: 'subtract' });
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { version: '1.1', viewBox: '0 0 24 24', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
+	        _react2.default.createElement(
+	          'title',
+	          { id: a11yTitleId },
+	          a11yTitle
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          null,
+	          _react2.default.createElement('rect', { x: '0', y: '0', fill: 'none', width: '24', height: '24' }),
+	          _react2.default.createElement('line', { fill: 'none', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', x1: '0', y1: '12', x2: '24', y2: '12' })
+	        )
+	      );
+	    }
+	  }]);
+	  return Icon;
+	}(_react.Component);
+
+	Icon.displayName = 'Icon';
+	exports.default = Icon;
+	;
+
+	Icon.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
+	};
+
+	Icon.defaultProps = {
+	  a11yTitleId: 'subtract-title'
+	};
+
+	Icon.icon = true;
+
+	Icon.displayName = 'Subtract';
+	module.exports = exports['default'];
+
+/***/ },
+/* 191 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _Props = __webpack_require__(91);
+
+	var _Props2 = _interopRequireDefault(_Props);
+
+	var _Box = __webpack_require__(83);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Tile = __webpack_require__(134);
+
+	var _Tile2 = _interopRequireDefault(_Tile);
+
+	var _Heading = __webpack_require__(175);
+
+	var _Heading2 = _interopRequireDefault(_Heading);
+
+	var _Paragraph = __webpack_require__(176);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
+	var _Anchor = __webpack_require__(115);
+
+	var _Anchor2 = _interopRequireDefault(_Anchor);
+
+	var _Layer = __webpack_require__(94);
+
+	var _Layer2 = _interopRequireDefault(_Layer);
+
+	var _Video = __webpack_require__(177);
+
+	var _Video2 = _interopRequireDefault(_Video);
+
+	var _LinkNext = __webpack_require__(108);
+
+	var _LinkNext2 = _interopRequireDefault(_LinkNext);
+
+	var _Play = __webpack_require__(173);
+
+	var _Play2 = _interopRequireDefault(_Play);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'content-card';
+
+	var ContentCard = function (_Component) {
+	  _inherits(ContentCard, _Component);
+
+	  function ContentCard(props) {
+	    _classCallCheck(this, ContentCard);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(ContentCard).call(this, props));
+
+	    _this._handleClick = _this._handleClick.bind(_this);
+	    _this.state = {
+	      activeVideo: false
+	    };
+	    return _this;
+	  }
+
+	  _createClass(ContentCard, [{
+	    key: '_handleClick',
+	    value: function _handleClick(event) {
+	      var _props = this.props;
+	      var video = _props.video;
+	      var link = _props.link;
+
+
+	      if (video) {
+	        event.preventDefault();
+	        this.setState({ activeVideo: !this.state.activeVideo });
+	      } else if (link) {
+	        window.location.href = link;
+	      }
+	    }
+	  }, {
+	    key: '_renderChildren',
+	    value: function _renderChildren() {
+	      var _props2 = this.props;
+	      var children = _props2.children;
+	      var socialIcon = _props2.socialIcon;
+
+
+	      if (socialIcon) {
+	        return _react2.default.createElement(
+	          _Box2.default,
+	          { className: 'flex', pad: { between: 'large' } },
+	          children,
+	          _react2.default.createElement(
+	            _Box2.default,
+	            { className: CLASS_ROOT + '__social-icon', align: 'end' },
+	            socialIcon
+	          )
+	        );
+	      }
+
+	      return children;
+	    }
+	  }, {
+	    key: '_renderLinkMarkup',
+	    value: function _renderLinkMarkup() {
+	      var _props3 = this.props;
+	      var link = _props3.link;
+	      var linkIcon = _props3.linkIcon;
+	      var linkText = _props3.linkText;
+	      var onClick = _props3.onClick;
+	      var video = _props3.video;
+
+
+	      var linkMarkup = void 0;
+	      var anchorLabel = linkText;
+	      if (!linkText) {
+	        anchorLabel = video ? 'Watch Now' : 'Learn More';
+	      }
+
+	      var anchorIcon = linkIcon;
+	      if (!linkIcon) {
+	        anchorIcon = video ? _react2.default.createElement(_Play2.default, null) : _react2.default.createElement(_LinkNext2.default, null);
+	      }
+
+	      if (link || onClick || video) {
+	        linkMarkup = _react2.default.createElement(
+	          _Box2.default,
+	          { pad: { vertical: "small" } },
+	          _react2.default.createElement(_Anchor2.default, { href: link, icon: anchorIcon, label: anchorLabel,
+	            onClick: this._handleClick })
+	        );
+	      }
+
+	      return linkMarkup;
+	    }
+	  }, {
+	    key: '_renderVideoMarkup',
+	    value: function _renderVideoMarkup() {
+	      var video = this.props.video;
+	      var activeVideo = this.state.activeVideo;
+
+	      var videoMarkup = void 0;
+
+	      if (video && video.source && activeVideo) {
+	        videoMarkup = _react2.default.createElement(
+	          _Layer2.default,
+	          { onClose: this._handleClick, closer: true, flush: true },
+	          _react2.default.createElement(
+	            _Video2.default,
+	            null,
+	            _react2.default.createElement('source', { src: video.source, type: 'video/' + video.type })
+	          )
+	        );
+	      }
+
+	      return videoMarkup;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props4 = this.props;
+	      var thumbnail = _props4.thumbnail;
+	      var description = _props4.description;
+	      var heading = _props4.heading;
+	      var overline = _props4.overline;
+	      var link = _props4.link;
+	      var onClick = _props4.onClick;
+	      var video = _props4.video;
+	      var socialIcon = _props4.socialIcon;
+	      var direction = _props4.direction;
+	      var contentPlacement = _props4.contentPlacement;
+	      var pad = _props4.pad;
+	      var className = _props4.className;
+
+	      var tileProps = _Props2.default.pick(this.props, Object.keys(_Tile2.default.propTypes));
+	      delete tileProps.onClick;
+	      delete tileProps.pad;
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--direction-' + direction, direction), _defineProperty(_classnames, CLASS_ROOT + '--selectable', link || onClick || video), _classnames), className);
+
+	      var onContentCardClick = onClick;
+	      if (!onContentCardClick && (link || video)) {
+	        onContentCardClick = this._handleClick;
+	      }
+
+	      var contentMarkup = _react2.default.createElement(
+	        _Box2.default,
+	        { className: CLASS_ROOT + '__content', pad: 'medium' },
+	        _react2.default.createElement(
+	          _Heading2.default,
+	          { tag: 'h5', uppercase: true, margin: 'none' },
+	          overline
+	        ),
+	        _react2.default.createElement(
+	          _Heading2.default,
+	          { tag: 'h2', strong: true },
+	          heading
+	        ),
+	        _react2.default.createElement(
+	          _Paragraph2.default,
+	          { margin: 'none' },
+	          description
+	        ),
+	        this._renderChildren(),
+	        !socialIcon ? this._renderLinkMarkup() : null
+	      );
+
+	      var thumbnailMarkup = void 0;
+	      if (thumbnail) {
+	        thumbnailMarkup = _react2.default.createElement(_Box2.default, { className: CLASS_ROOT + '__thumbnail', backgroundImage: 'url(' + thumbnail + ')' });
+	      }
+
+	      var first = thumbnailMarkup;
+	      var second = contentMarkup;
+	      var cardJustify = void 0;
+
+	      if (contentPlacement === 'bottom') {
+	        first = contentMarkup;
+	        second = thumbnailMarkup;
+	        // align thumbnail to bottom of card for bottom cardPlacement
+	        cardJustify = 'between';
+	      }
+
+	      var cardPad = 'small';
+	      var cardFull = void 0;
+	      if (direction === 'row') {
+	        cardPad = { vertical: 'small' };
+	        cardFull = 'horizontal';
+	      }
+
+	      return _react2.default.createElement(
+	        _Tile2.default,
+	        _extends({ className: classes, onClick: onContentCardClick,
+	          pad: pad || cardPad }, tileProps),
+	        _react2.default.createElement(
+	          _Box2.default,
+	          { className: 'flex', direction: direction, justify: cardJustify,
+	            full: cardFull, colorIndex: 'light-1' },
+	          first,
+	          second,
+	          this._renderVideoMarkup()
+	        )
+	      );
+	    }
+	  }]);
+
+	  return ContentCard;
+	}(_react.Component);
+
+	exports.default = ContentCard;
+	;
+
+	ContentCard.propTypes = _extends({
+	  thumbnail: _react.PropTypes.string,
+	  description: _react.PropTypes.string,
+	  heading: _react.PropTypes.string,
+	  overline: _react.PropTypes.string,
+	  link: _react.PropTypes.string,
+	  linkIcon: _react.PropTypes.element,
+	  linkText: _react.PropTypes.string,
+	  video: _react.PropTypes.shape({
+	    source: _react.PropTypes.string.isRequired,
+	    type: _react.PropTypes.string
+	  }),
+	  contentPlacement: _react.PropTypes.oneOf(['top', 'bottom']),
+	  socialIcon: _react.PropTypes.element
+	}, _Tile2.default.propTypes);
+
+	ContentCard.defaultProps = {
+	  contentPlacement: 'top',
+	  direction: 'column'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 192 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var React = __webpack_require__(1);
+	var jsxToString = __webpack_require__(169);
+	var DocsArticle = __webpack_require__(140);
+	var ContentCard = __webpack_require__(191);
 	var Box = __webpack_require__(83);
 	var Tiles = __webpack_require__(119);
-	var Heading = __webpack_require__(178);
-	var SocialTwitterIcon = __webpack_require__(192);
+	var Heading = __webpack_require__(175);
+	var SocialTwitterIcon = __webpack_require__(193);
 
 	ContentCard.displayName = 'ContentCard';
 
@@ -21343,7 +21747,7 @@ module.exports =
 	module.exports = ContentCardDoc;
 
 /***/ },
-/* 192 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21465,7 +21869,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21484,11 +21888,11 @@ module.exports =
 
 	var _DocsArticle2 = _interopRequireDefault(_DocsArticle);
 
-	var _Example = __webpack_require__(175);
+	var _Example = __webpack_require__(182);
 
 	var _Example2 = _interopRequireDefault(_Example);
 
-	var _Stack = __webpack_require__(194);
+	var _Stack = __webpack_require__(174);
 
 	var _Stack2 = _interopRequireDefault(_Stack);
 
@@ -21742,192 +22146,6 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 194 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames2 = __webpack_require__(67);
-
-	var _classnames3 = _interopRequireDefault(_classnames2);
-
-	var _Box = __webpack_require__(83);
-
-	var _Box2 = _interopRequireDefault(_Box);
-
-	var _Heading = __webpack_require__(178);
-
-	var _Heading2 = _interopRequireDefault(_Heading);
-
-	var _Paragraph = __webpack_require__(171);
-
-	var _Paragraph2 = _interopRequireDefault(_Paragraph);
-
-	var _Anchor = __webpack_require__(115);
-
-	var _Anchor2 = _interopRequireDefault(_Anchor);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = 'stack';
-
-	var Stack = function (_Component) {
-	  _inherits(Stack, _Component);
-
-	  function Stack() {
-	    _classCallCheck(this, Stack);
-
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Stack).apply(this, arguments));
-	  }
-
-	  _createClass(Stack, [{
-	    key: '_renderParagraph',
-	    value: function _renderParagraph(contents, size, type) {
-	      if (typeof contents === 'string') {
-	        return _react2.default.createElement(
-	          _Paragraph2.default,
-	          {
-	            className: CLASS_ROOT + '__' + type,
-	            size: size,
-	            margin: 'none'
-	          },
-	          contents
-	        );
-	      } else if (Array.isArray(contents)) {
-	        return contents.map(function (content, index) {
-	          return _react2.default.createElement(
-	            _Paragraph2.default,
-	            {
-	              key: type + '_' + index,
-	              className: CLASS_ROOT + '__' + type,
-	              size: size,
-	              margin: 'none'
-	            },
-	            content
-	          );
-	        });
-	      }
-	      return null;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _props = this.props;
-	      var className = _props.className;
-	      var label = _props.label;
-	      var headline = _props.headline;
-	      var headlineStrong = _props.headlineStrong;
-	      var paragraph = _props.paragraph;
-	      var print = _props.print;
-	      var size = _props.size;
-	      var link = _props.link;
-	      var linkText = _props.linkText;
-	      var onClick = _props.onClick;
-
-	      var props = _objectWithoutProperties(_props, ['className', 'label', 'headline', 'headlineStrong', 'paragraph', 'print', 'size', 'link', 'linkText', 'onClick']);
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, _defineProperty({}, CLASS_ROOT + '--' + size, size));
-
-	      var labelTag = void 0;
-	      var headlineTag = void 0;
-	      var paragraphSize = void 0;
-	      var printSize = void 0;
-	      if (size === 'xlarge') {
-	        labelTag = 'h3';
-	        headlineTag = 'h1';
-	        paragraphSize = 'xlarge';
-	        printSize = 'large';
-	      } else if (size === 'large') {
-	        labelTag = 'h4';
-	        headlineTag = 'h1';
-	        paragraphSize = 'xlarge';
-	        printSize = 'large';
-	      } else if (size === 'small') {
-	        labelTag = 'h5';
-	        headlineTag = 'h3';
-	        paragraphSize = 'medium';
-	        printSize = 'small';
-	      } else {
-	        labelTag = 'h4';
-	        headlineTag = 'h2';
-	        paragraphSize = 'xlarge';
-	        printSize = 'large';
-	      }
-
-	      return _react2.default.createElement(
-	        _Box2.default,
-	        _extends({ className: classes }, props),
-	        label && _react2.default.createElement(
-	          _Heading2.default,
-	          { className: CLASS_ROOT + '__label', tag: labelTag, margin: 'none', uppercase: true },
-	          label
-	        ),
-	        headline && _react2.default.createElement(
-	          _Heading2.default,
-	          { className: CLASS_ROOT + '__headline',
-	            tag: headlineTag, strong: headlineStrong, margin: 'none' },
-	          headline
-	        ),
-	        this._renderParagraph(paragraph, paragraphSize, 'paragraph'),
-	        this._renderParagraph(print, printSize, 'print'),
-	        (link || onClick) && _react2.default.createElement(
-	          _Anchor2.default,
-	          { className: CLASS_ROOT + '__link', primary: true, href: link,
-	            onClick: onClick },
-	          linkText
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Stack;
-	}(_react.Component);
-
-	exports.default = Stack;
-	;
-
-	Stack.propTypes = {
-	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
-	  label: _react.PropTypes.string,
-	  headline: _react.PropTypes.string,
-	  headlineStrong: _react.PropTypes.bool,
-	  paragraph: _react.PropTypes.node,
-	  print: _react.PropTypes.node,
-	  link: _react.PropTypes.string,
-	  linkText: _react.PropTypes.string,
-	  onClick: _react.PropTypes.func
-	};
-
-	Stack.defaultProps = {
-	  size: 'medium',
-	  headlineStrong: true,
-	  linkText: 'Learn More'
-	};
-	module.exports = exports['default'];
-
-/***/ },
 /* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -21940,14 +22158,15 @@ module.exports =
 	var Route = Router.Route;
 	var Tiles = __webpack_require__(119);
 	var Box = __webpack_require__(83);
-	var Heading = __webpack_require__(178);
-	var Paragraph = __webpack_require__(171);
-	var SocialTwitterIcon = __webpack_require__(192);
+	var Heading = __webpack_require__(175);
+	var Paragraph = __webpack_require__(176);
+	var Video = __webpack_require__(177);
+	var SocialTwitterIcon = __webpack_require__(193);
 	var Marquee = __webpack_require__(170);
-	var ContentCard = __webpack_require__(185);
+	var ContentCard = __webpack_require__(191);
 	var MarqueeParallax = __webpack_require__(196);
-	var Accordion = __webpack_require__(179);
-	var AccordionPanel = __webpack_require__(181);
+	var Accordion = __webpack_require__(185);
+	var AccordionPanel = __webpack_require__(187);
 	var Header = __webpack_require__(197);
 
 	var Examples = React.createClass({
@@ -22208,6 +22427,33 @@ module.exports =
 	          )
 	        )
 	      ),
+	      React.createElement(Marquee, { size: 'small', darkTheme: true, justify: 'start',
+	        backgroundVideo: React.createElement(
+	          Video,
+	          { muted: true, loop: true, autoPlay: true, showControls: false },
+	          React.createElement('source', { src: '/docs/img/VideoMarque_Part3V2.mp4', type: 'video/mp4' })
+	        ),
+	        headline: 'Accelerate your transformation with the cloud',
+	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
+	        responsiveBackgroundPosition: 'left',
+	        overlayVideo: React.createElement(
+	          Video,
+	          { autoPlay: true },
+	          React.createElement('source', { src: '/docs/img/VideoMarque_Part3V3.mp4', type: 'video/mp4' })
+	        ) }),
+	      React.createElement(
+	        Box,
+	        { pad: { horizontal: 'large' } },
+	        React.createElement(
+	          'p',
+	          null,
+	          React.createElement(
+	            'strong',
+	            null,
+	            'Small Video Marquee with NO Parallax'
+	          )
+	        )
+	      ),
 	      this._loremIpsum(),
 	      React.createElement(
 	        Box,
@@ -22353,7 +22599,7 @@ module.exports =
 
 	var _Headline2 = _interopRequireDefault(_Headline);
 
-	var _Paragraph = __webpack_require__(171);
+	var _Paragraph = __webpack_require__(176);
 
 	var _Paragraph2 = _interopRequireDefault(_Paragraph);
 
