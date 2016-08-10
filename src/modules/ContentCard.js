@@ -42,7 +42,7 @@ export default class ContentCard extends Component {
       return (
         <Box className="flex" pad={{between: 'large'}}>
           {children}
-          <Box align="end">
+          <Box className={`${CLASS_ROOT}__social-icon`} align="end">
             {socialIcon}
           </Box>
         </Box>
@@ -154,8 +154,10 @@ export default class ContentCard extends Component {
     }
 
     return (
-      <Tile className={classes} onClick={onContentCardClick} pad={pad || cardPad} {...tileProps}>
-        <Box className="flex" direction={direction} justify={cardJustify} full={cardFull}>
+      <Tile className={classes} onClick={onContentCardClick}
+        pad={pad || cardPad} {...tileProps}>
+        <Box className="flex" direction={direction} justify={cardJustify}
+          full={cardFull} colorIndex="light-1">
           {first}
           {second}
           {this._renderVideoMarkup()}
