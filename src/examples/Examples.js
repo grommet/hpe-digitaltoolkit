@@ -138,7 +138,7 @@ var Examples = React.createClass({
           logoLink={'/docs/hpe/examples'}
           links={
             [{
-              label: 'Examples',
+              label: 'Documentation',
               links: [{
                 label: 'Marquee',
                 href: '/docs/hpe/develop/marquee'
