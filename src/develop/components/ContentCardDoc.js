@@ -4,6 +4,7 @@ var React = require('react');
 var jsxToString = require('jsx-to-string');
 var DocsArticle = require('../../DocsArticle');
 var ContentCard = require('../../modules/ContentCard');
+var Box = require('grommet/components/Box');
 var Tiles = require('grommet/components/Tiles');
 var Heading = require('grommet/components/Heading');
 var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
@@ -35,43 +36,49 @@ var ContentCardDoc = React.createClass({
 
   render: function() {
     var simpleContentCard = (
-      <ContentCard
-        thumbnail="/docs/img/Case_Study_image.png"
-        overline="Featured Post"
-        heading="The Key Steps to Reducing Software Spend"
-        description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
-      />
+      <Box colorIndex="light-2">
+        <ContentCard
+          thumbnail="/docs/img/Case_Study_image.png"
+          overline="Featured Post"
+          heading="The Key Steps to Reducing Software Spend"
+          description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+        />
+      </Box>
     );
 
     var linkContentCard = (
-      <ContentCard
-        contentPlacement="bottom"
-        thumbnail="/docs/img/Case_Study_image.png"
-        overline="Featured Post"
-        heading="The Key Steps to Reducing Software Spend"
-        description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
-        link="#"
-      />
+      <Box colorIndex="light-2">
+        <ContentCard
+          contentPlacement="bottom"
+          thumbnail="/docs/img/Case_Study_image.png"
+          overline="Featured Post"
+          heading="The Key Steps to Reducing Software Spend"
+          description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+          link="#"
+        />
+      </Box>
     );
 
     var videoContentCard = (
-      <ContentCard
-        direction="row"
-        thumbnail="/docs/img/Video_image.png"
-        overline="Video - 4:27"
-        heading="Foundation Paraguay Empowers Microbusinesses"
-        description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
-        video={{
-          source: 'video/test.mp4',
-          type: 'mp4'
-        }}
-      />
+      <Box colorIndex="light-2">
+        <ContentCard
+          direction="row"
+          thumbnail="/docs/img/Video_image.png"
+          overline="Video - 4:27"
+          heading="Foundation Paraguay Empowers Microbusinesses"
+          description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
+          video={{
+            source: 'video/test.mp4',
+            type: 'mp4'
+          }}
+        />
+      </Box>
     );
 
     var socialFeedCard = (
       <ContentCard
         direction="column"
-        overline="Featured Post"
+        overline="Social"
         socialIcon={<SocialTwitterIcon />}
         link="http://www.twitter.com">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
@@ -98,15 +105,15 @@ var ContentCardDoc = React.createClass({
     );
 
     var socialCards = (
-      <Tiles size="large">
+      <Tiles size="large" colorIndex="light-2">
         {socialFeedCard}
         {blogPostCard}
       </Tiles>
     );
 
     var contentCardTiles = (
-      <Tiles size="large">
-       <ContentCard
+      <Tiles size="large" colorIndex="light-2">
+        <ContentCard
           direction="column"
           thumbnail="/docs/img/Case_Study_image.png"
           overline="Featured Post"
@@ -143,7 +150,7 @@ var ContentCardDoc = React.createClass({
     );
 
     var contentCardTilesMasonry = (
-      <Tiles size="large" masonry={true} numColumns={7}>
+      <Tiles size="large" masonry={true} numColumns={7} colorIndex="light-2">
         {blogPostCard}
         {featuredPostCard}
         {socialFeedCard}
