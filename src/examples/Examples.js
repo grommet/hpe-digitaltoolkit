@@ -3,12 +3,15 @@
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
+var Tiles = require('grommet/components/Tiles');
 var Box = require('grommet/components/Box');
 var Heading = require('grommet/components/Heading');
 var Headline = require('grommet/components/Headline');
 var Paragraph = require('grommet/components/Paragraph');
 var Accordion = require('grommet/components/Accordion');
 var AccordionPanel = require('grommet/components/AccordionPanel');
+var Video = require('grommet/components/Video');
+var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
 var Marquee = require('../modules/Marquee');
 var ContentCard = require('../modules/ContentCard');
 var MarqueeParallax = require('../modules/MarqueeParallax');
@@ -42,6 +45,94 @@ var Examples = React.createClass({
     );
   },
 
+  _renderNewsFeed: function () {
+    var socialFeedCard = (
+      <ContentCard
+        direction="column"
+        overline="Social"
+        socialIcon={<SocialTwitterIcon />}
+        link="http://www.twitter.com">
+        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+      </ContentCard>
+    );
+
+    var blogPostCard = (
+      <ContentCard
+        direction="column"
+        overline="Featured Post"
+        link="http://www.twitter.com">
+        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+      </ContentCard>
+    );
+
+    var featuredPostCard = (
+      <ContentCard
+        thumbnail="/docs/img/Case_Study_image.png"
+        direction="column"
+        overline="Featured Post"
+        link="http://www.twitter.com">
+        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+      </ContentCard>
+    );
+
+    return (
+      <Box pad={{horizontal: 'large'}}>
+        <Tiles size="large" masonry={true} numColumns={7} colorIndex="light-2" justify="center">
+          {blogPostCard}
+          {featuredPostCard}
+          {socialFeedCard}
+          {socialFeedCard}
+          {blogPostCard}
+          {featuredPostCard}
+          {featuredPostCard}
+          {blogPostCard}
+        </Tiles>
+      </Box>
+    );
+  },
+
+  _renderContentCards: function () {
+    return (
+      <Box pad={{horizontal: 'large'}}>
+        <Tiles size="large" colorIndex="light-2" justify="center">
+          <ContentCard
+            direction="column"
+            thumbnail="/docs/img/Case_Study_image.png"
+            overline="Featured Post"
+            heading="Protect Your Digital Enterprise ipsum Learn More lorem dolores aeat"
+            description="It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. "
+            link="http://grommet.io"
+          />
+          <ContentCard
+            direction="column"
+            thumbnail="/docs/img/Video_image.png"
+            overline="Video - 4:27"
+            heading="Foundation Paraguay Empowers Microbusinesses"
+            description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
+            video={{
+              source: 'video/test.mp4',
+              type: 'mp4'
+            }}
+          />
+          <ContentCard
+            direction="column"
+            thumbnail="/docs/img/Case_Study_image.png"
+            overline="Featured Post"
+            heading="The Key Steps to Reducing Software Spend"
+            description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+          />
+          <ContentCard
+            direction="column"
+            thumbnail="/docs/img/Case_Study_image.png"
+            overline="Featured Post"
+            heading="The Key Steps to Reducing Software Spend"
+            description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+          />
+        </Tiles>
+      </Box>
+    );
+  },
+
   render: function () {
     return (
       <div>
@@ -49,13 +140,16 @@ var Examples = React.createClass({
           logoLink={'/docs/hpe/examples'}
           links={
             [{
-              label: 'Examples',
+              label: 'Documentation',
               links: [{
                 label: 'Marquee',
-                href: '/docs/hpe/examples'
+                href: '/docs/hpe/develop/marquee'
               }, {
-                label: 'TBD',
-                href: '/docs/hpe/examples'
+                label: 'ContentCard',
+                href: '/docs/hpe/develop/contentcard'
+              }, {
+                label: 'Stack',
+                href: '/docs/hpe/develop/stack'
               }]
             }]
           } />
@@ -92,6 +186,13 @@ var Examples = React.createClass({
           link="http://www.grommet.io/docs/"
           responsiveBackgroundPosition="left" />
         <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with NO Parallax</strong></p></Box>
+        <Marquee size="small" darkTheme={true} justify="start"
+          backgroundVideo={<Video muted={true} loop={true} autoPlay={true} showControls={false}><source src="/docs/img/VideoMarque_Part3V2.mp4" type='video/mp4'/></Video>}
+          headline="Accelerate your transformation with the cloud"
+          subHeadline="HPE can help you benefit now from your right mix of cloud"
+          responsiveBackgroundPosition="left"
+          overlayVideo={<Video autoPlay={true}><source src="/docs/img/VideoMarque_Part3V3.mp4" type='video/mp4'/></Video>} />
+        <Box pad={{horizontal: 'large'}}><p><strong>Small Video Marquee with NO Parallax</strong></p></Box>
         {this._loremIpsum()}
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
           <Box align="center" separator="bottom">
@@ -162,7 +263,13 @@ var Examples = React.createClass({
             </AccordionPanel>
           </Accordion>
         </Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Accordion with ContentCard, row direction</strong></p></Box>
         {this._loremIpsum()}
+        {this._renderContentCards()}
+        <Box pad={{horizontal: 'large'}}><p><strong>ContentCard with Tiles wrapper</strong></p></Box>
+        {this._loremIpsum()}
+        {this._renderNewsFeed()}
+        <Box pad={{horizontal: 'large'}}><p><strong>ContentCard with Tiles wrapper, masonry option</strong></p></Box>
       </div>
     );
   }

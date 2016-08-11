@@ -20,6 +20,7 @@ var NavigationDoc = require('./patterns/NavigationDoc');
 var MarqueeDoc = require('./components/MarqueeDoc');
 var WorldMapDoc = require('./components/WorldMapDoc');
 var ContentCardDoc = require('./components/ContentCardDoc');
+var StackDoc = require('./components/StackDoc');
 
 //hjjs configuration
 var hljs = require('highlight.js/lib/highlight');
@@ -49,6 +50,7 @@ var CONTENTS = [
       {route: 'develop_box', label: 'Box', component: BoxDoc},
       {route: 'develop_marquee', label: 'Marquee', component: MarqueeDoc},
       {route: 'develop_content-card', label: 'ContentCard', component: ContentCardDoc},
+      {route: 'develop_stack', label: 'Stack', component: StackDoc},
       {route: 'develop_world-map', label: 'WorldMap', component: WorldMapDoc}
     ]
   }
