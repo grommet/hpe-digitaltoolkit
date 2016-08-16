@@ -76,7 +76,7 @@ export default class Marquee extends Component {
   }
 
   _renderMarquee () {
-    const { backgroundImage, backgroundVideo, flush, headlineSize, headline, image, justify, link, linkIcon, linkText, onClick, overlayVideo, responsiveBackgroundPosition, separator, subHeadline } = this.props;
+    const { backgroundImage, backgroundVideo, flush, headline, image, justify, link, linkIcon, linkText, onClick, overlayVideo, responsiveBackgroundPosition, separator, subHeadline } = this.props;
 
     let classes = classnames(
       {
@@ -126,7 +126,7 @@ export default class Marquee extends Component {
       contentMarkup = (
         <Box className={CLASS_ROOT + "__overlay"} justify={justify} align="center" primary={true} full={full} direction="row" >
           <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-            <Stack size={headlineSize} headline={headline} paragraph={subHeadline} link={link} linkText={linkCopy} linkIcon={icon} onClick={this._onClick} />
+            <Stack size="xlarge" headline={headline} paragraph={subHeadline} link={link} linkText={linkCopy} linkIcon={icon} onClick={this._onClick} />
           </Box>
         </Box>
       );
@@ -137,7 +137,7 @@ export default class Marquee extends Component {
             {imageMarkup}
           </Box>
           <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-            <Stack size={headlineSize} headline={headline} paragraph={subHeadline} link={link} linkText={linkCopy} linkIcon={icon} onClick={this._onClick} />
+            <Stack size="xlarge" headline={headline} paragraph={subHeadline} link={link} linkText={linkCopy} linkIcon={icon} onClick={this._onClick} />
           </Box>
         </Box>
       );
@@ -195,7 +195,6 @@ Marquee.propTypes = {
   darkTheme: PropTypes.bool,
   flush: PropTypes.bool,
   headline: PropTypes.string.isRequired,
-  headlineSize: PropTypes.oneOf(['small', 'medium', 'large']),
   image: PropTypes.string,
   justify: PropTypes.oneOf(['start', 'center', 'end']),
   link: PropTypes.string,
