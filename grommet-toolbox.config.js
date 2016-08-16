@@ -3,7 +3,7 @@ import path from 'path';
 
 export default {
   base: '.',
-  publicPath: 'docs',
+  publicPath: '/docs',
   dist: path.resolve(__dirname, 'dist/'),
   copyAssets: [
     'src/index.html',
