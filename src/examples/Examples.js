@@ -9,6 +9,7 @@ var Heading = require('grommet/components/Heading');
 var Paragraph = require('grommet/components/Paragraph');
 var Video = require('grommet/components/Video');
 var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
+var SocialFacebookIcon = require('grommet/components/icons/base/SocialFacebook');
 var Marquee = require('../modules/Marquee');
 var ContentCard = require('../modules/ContentCard');
 var MarqueeParallax = require('../modules/MarqueeParallax');
@@ -45,11 +46,21 @@ var Examples = React.createClass({
   },
 
   _renderNewsFeed: function () {
-    var socialFeedCard = (
+    var socialFeedCard1 = (
       <ContentCard
         direction="column"
         overline="Social"
         socialIcon={<SocialTwitterIcon />}
+        link="http://www.twitter.com">
+        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+      </ContentCard>
+    );
+
+    var socialFeedCard2 = (
+      <ContentCard
+        direction="column"
+        overline="Social"
+        socialIcon={<SocialFacebookIcon />}
         link="http://www.twitter.com">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
       </ContentCard>
@@ -79,8 +90,8 @@ var Examples = React.createClass({
         <Tiles size="large" masonry={true} numColumns={7} colorIndex="light-2" justify="center">
           {blogPostCard}
           {featuredPostCard}
-          {socialFeedCard}
-          {socialFeedCard}
+          {socialFeedCard1}
+          {socialFeedCard2}
           {blogPostCard}
           {featuredPostCard}
           {featuredPostCard}
