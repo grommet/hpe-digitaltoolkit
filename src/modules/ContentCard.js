@@ -11,7 +11,7 @@ import Anchor from 'grommet/components/Anchor';
 import Layer from 'grommet/components/Layer';
 import Video from 'grommet/components/Video';
 import LinkNextIcon from 'grommet/components/icons/base/LinkNext';
-import PlayIcon from 'grommet/components/icons/base/Play';
+import SVGIcon from 'grommet/components/SVGIcon';
 
 const CLASS_ROOT = 'content-card';
 
@@ -52,6 +52,18 @@ export default class ContentCard extends Component {
     return children;
   }
 
+  _renderWatchIcon (size) {
+    return (
+      <SVGIcon className="watch-icon" viewBox="-1 -1 25 25" version="1.1" type="control" a11yTitle="Watch Video" size={size}>
+        <g>
+          <path d="M12,0C5.4,0,0,5.4,0,12s5.4,12,12,12s12-5.4,12-12S18.6,0,12,0z M12,22C6.5,22,2,17.5,2,12
+            S6.5,2,12,2s10,4.5,10,10S17.5,22,12,22z"/>
+          <polygon points="9,16 17,12 9,8"/>
+        </g>
+      </SVGIcon>
+    );
+  }
+
   _renderLinkMarkup () {
     const { link, linkIcon, linkText, onClick, video } = this.props;
 
@@ -63,7 +75,7 @@ export default class ContentCard extends Component {
 
     let anchorIcon = linkIcon;
     if (!linkIcon) {
-      anchorIcon = video ? <PlayIcon /> : <LinkNextIcon />;
+      anchorIcon = video ? this._renderWatchIcon() : <LinkNextIcon />;
     }
 
     if (link || onClick || video) {
@@ -112,7 +124,6 @@ export default class ContentCard extends Component {
       className
     );
 
-
     let onContentCardClick = onClick;
     if (!onContentCardClick && (link || video)) {
       onContentCardClick = this._handleClick;
@@ -131,7 +142,9 @@ export default class ContentCard extends Component {
     let thumbnailMarkup;
     if (thumbnail) {
       thumbnailMarkup = (
-        <Box className={`${CLASS_ROOT}__thumbnail`} backgroundImage={`url(${thumbnail})`} />
+        <Box className={`${CLASS_ROOT}__thumbnail`} backgroundImage={`url(${thumbnail})`} justify="center" align="center">
+          {(video) ? <Anchor icon={this._renderWatchIcon('xlarge')} /> : null}
+        </Box>
       );
     }
 

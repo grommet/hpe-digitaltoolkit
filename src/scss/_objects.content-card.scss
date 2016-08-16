@@ -31,9 +31,16 @@ $social-linkedin-color: #0077B5;
     }
   }
 
+  .watch-icon,
+  .grommetux-anchor:hover .watch-icon {
+    stroke: none;
+    fill: $control-brand-color;
+  }
+
   &__thumbnail {
     width: 100%;
     height: $inuit-base-spacing-unit * 11;
+    flex-shrink: 1;
 
     .grommetux-anchor & {
       @include media-query(lap-and-up) {
