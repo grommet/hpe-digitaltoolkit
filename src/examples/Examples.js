@@ -115,7 +115,7 @@ var Examples = React.createClass({
           />
           <ContentCard
             direction="column"
-            thumbnail="/docs/img/Video_image.png"
+            thumbnail="/docs/img/Case_Study_image.png"
             overline="Video - 4:27"
             heading="Foundation Paraguay Empowers Microbusinesses"
             description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
@@ -221,7 +221,7 @@ var Examples = React.createClass({
               </Paragraph>
               <ContentCard
                 direction="row"
-                thumbnail="/docs/img/Video_image.png"
+                thumbnail="/docs/img/Case_Study_image.png"
                 overline="Video - 4:27"
                 heading="Foundation Paraguay Empowers Microbusinesses"
                 description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."

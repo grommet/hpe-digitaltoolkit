@@ -47,6 +47,14 @@ $social-linkedin-color: #0077B5;
         height: 100%;
       }
     }
+
+    .watch-icon {
+      @include media-query(palm) {
+        // don't shrink video WatchIcon when in mobile
+        width: round($inuit-base-spacing-unit * 6);
+        height: round($inuit-base-spacing-unit * 6);
+      }
+    }
   }
 
   &__content {
@@ -96,8 +104,11 @@ $social-linkedin-color: #0077B5;
   }
 
   &--direction-row {
+    max-width: $size-large;
+
     .content-card__thumbnail {
       height: auto;
+      width: $inuit-base-spacing-unit * 13; // 312px
 
       @include media-query(palm) {
         width: 100%;
@@ -106,7 +117,6 @@ $social-linkedin-color: #0077B5;
     }
 
     .content-card__content {
-      flex: 0 0 50%;
       min-width: $inuit-base-spacing-unit * 11;
 
       @include media-query(palm) {
