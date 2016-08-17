@@ -17278,6 +17278,7 @@ module.exports =
 	        { muted: true, loop: true, autoPlay: true, showControls: false },
 	        React.createElement('source', { src: '/docs/img/VideoMarque_Part3V2.mp4', type: 'video/mp4' })
 	      ),
+	      link: 'http://www.grommet.io/docs/',
 	      headline: 'Accelerate your transformation with the cloud',
 	      subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	      responsiveBackgroundPosition: 'left',
@@ -17504,13 +17505,7 @@ module.exports =
 	              null,
 	              'Learn More'
 	            ),
-	            ' for an image Marquee, and ',
-	            React.createElement(
-	              'code',
-	              null,
-	              'Watch Now'
-	            ),
-	            ' for a video Marquee.'
+	            '.'
 	          ),
 	          React.createElement(
 	            'dt',
@@ -17540,7 +17535,7 @@ module.exports =
 	          React.createElement(
 	            'dd',
 	            null,
-	            'Video component to be shown when the link is clicked.  Optional.'
+	            'Video component to be shown when the "Watch Now" link is clicked.  Optional.'
 	          ),
 	          React.createElement(
 	            'dt',
@@ -17711,7 +17706,7 @@ module.exports =
 
 	    _this._setReverse = _this._setReverse.bind(_this);
 	    _this._setBackgroundColorIndex = _this._setBackgroundColorIndex.bind(_this);
-	    _this._onClick = _this._onClick.bind(_this);
+	    _this._onShowVideo = _this._onShowVideo.bind(_this);
 	    _this._onClose = _this._onClose.bind(_this);
 
 	    _this.state = {
@@ -17761,17 +17756,13 @@ module.exports =
 	      }
 	    }
 	  }, {
-	    key: '_onClick',
-	    value: function _onClick() {
-	      var _props = this.props;
-	      var onClick = _props.onClick;
-	      var overlayVideo = _props.overlayVideo;
+	    key: '_onShowVideo',
+	    value: function _onShowVideo() {
+	      var overlayVideo = this.props.overlayVideo;
 
 
 	      if (overlayVideo) {
 	        this.setState({ showVideo: true });
-	      } else if (onClick) {
-	        onClick();
 	      }
 	    }
 	  }, {
@@ -17784,22 +17775,21 @@ module.exports =
 	    value: function _renderMarquee() {
 	      var _classnames;
 
-	      var _props2 = this.props;
-	      var backgroundImage = _props2.backgroundImage;
-	      var backgroundVideo = _props2.backgroundVideo;
-	      var flush = _props2.flush;
-	      var headlineSize = _props2.headlineSize;
-	      var headline = _props2.headline;
-	      var image = _props2.image;
-	      var justify = _props2.justify;
-	      var link = _props2.link;
-	      var linkIcon = _props2.linkIcon;
-	      var linkText = _props2.linkText;
-	      var onClick = _props2.onClick;
-	      var overlayVideo = _props2.overlayVideo;
-	      var responsiveBackgroundPosition = _props2.responsiveBackgroundPosition;
-	      var separator = _props2.separator;
-	      var subHeadline = _props2.subHeadline;
+	      var _props = this.props;
+	      var backgroundImage = _props.backgroundImage;
+	      var backgroundVideo = _props.backgroundVideo;
+	      var flush = _props.flush;
+	      var headline = _props.headline;
+	      var image = _props.image;
+	      var justify = _props.justify;
+	      var link = _props.link;
+	      var linkIcon = _props.linkIcon;
+	      var linkText = _props.linkText;
+	      var onClick = _props.onClick;
+	      var overlayVideo = _props.overlayVideo;
+	      var responsiveBackgroundPosition = _props.responsiveBackgroundPosition;
+	      var separator = _props.separator;
+	      var subHeadline = _props.subHeadline;
 
 
 	      var classes = (0, _classnames4.default)((_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--bg-' + responsiveBackgroundPosition, responsiveBackgroundPosition), _defineProperty(_classnames, CLASS_ROOT + '--mobile-separator', separator), _classnames));
@@ -17823,21 +17813,59 @@ module.exports =
 	        imageMarkup = _react2.default.createElement(_Image2.default, { src: 'url(' + image + ')' });
 	      }
 
-	      var linkCopy = void 0;
-	      var icon = void 0;
+	      var stack = void 0;
 	      if (link || onClick || overlayVideo) {
-	        if (!linkText && backgroundImage) {
+	        var linkCopy = void 0;
+	        if (!linkText) {
 	          linkCopy = "Learn More";
-	        } else if (!linkText && overlayVideo) {
-	          linkCopy = "Watch Now";
 	        } else {
 	          linkCopy = linkText;
 	        }
 
-	        icon = linkIcon;
-	        if (!linkIcon && overlayVideo) {
-	          icon = _react2.default.createElement(_Play2.default, null);
+	        if (overlayVideo) {
+	          var cta = void 0;
+	          if (link || onClick) {
+	            cta = _react2.default.createElement(
+	              _Box2.default,
+	              { direction: 'row' },
+	              _react2.default.createElement(_Box2.default, { pad: { horizontal: 'small' }, separator: 'right' }),
+	              _react2.default.createElement(_Box2.default, { pad: { horizontal: 'small' } }),
+	              _react2.default.createElement(
+	                _Anchor2.default,
+	                { primary: true, target: '_blank', href: link, onClick: onClick, icon: linkIcon },
+	                linkCopy
+	              )
+	            );
+	          }
+
+	          stack = _react2.default.createElement(
+	            _Box2.default,
+	            { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
+	            _react2.default.createElement(_Stack2.default, { size: 'xlarge', headline: headline, paragraph: subHeadline }),
+	            _react2.default.createElement(
+	              _Box2.default,
+	              { direction: 'row' },
+	              _react2.default.createElement(
+	                _Anchor2.default,
+	                { primary: true, onClick: this._onShowVideo, icon: _react2.default.createElement(_Play2.default, null) },
+	                'Watch Now'
+	              ),
+	              cta
+	            )
+	          );
+	        } else {
+	          stack = _react2.default.createElement(
+	            _Box2.default,
+	            { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
+	            _react2.default.createElement(_Stack2.default, { size: 'xlarge', headline: headline, paragraph: subHeadline, link: link, linkText: linkCopy, linkIcon: linkIcon, onClick: onClick })
+	          );
 	        }
+	      } else {
+	        stack = _react2.default.createElement(
+	          _Box2.default,
+	          { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
+	          _react2.default.createElement(_Stack2.default, { size: 'xlarge', headline: headline, paragraph: subHeadline })
+	        );
 	      }
 
 	      var contentMarkup = void 0;
@@ -17845,11 +17873,7 @@ module.exports =
 	        contentMarkup = _react2.default.createElement(
 	          _Box2.default,
 	          { className: CLASS_ROOT + "__overlay", justify: justify, align: 'center', primary: true, full: full, direction: 'row' },
-	          _react2.default.createElement(
-	            _Box2.default,
-	            { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
-	            _react2.default.createElement(_Stack2.default, { size: headlineSize, headline: headline, paragraph: subHeadline, link: link, linkText: linkCopy, linkIcon: icon, onClick: this._onClick })
-	          )
+	          stack
 	        );
 	      } else {
 	        contentMarkup = _react2.default.createElement(
@@ -17860,11 +17884,7 @@ module.exports =
 	            { className: CLASS_ROOT + "__image", align: 'center', justify: 'center' },
 	            imageMarkup
 	          ),
-	          _react2.default.createElement(
-	            _Box2.default,
-	            { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
-	            _react2.default.createElement(_Stack2.default, { size: headlineSize, headline: headline, paragraph: subHeadline, link: link, linkText: linkCopy, linkIcon: icon, onClick: this._onClick })
-	          )
+	          stack
 	        );
 	      }
 
@@ -17893,9 +17913,9 @@ module.exports =
 	    value: function render() {
 	      var _classnames2;
 
-	      var _props3 = this.props;
-	      var className = _props3.className;
-	      var size = _props3.size;
+	      var _props2 = this.props;
+	      var className = _props2.className;
+	      var size = _props2.size;
 
 	      var content = void 0;
 
@@ -17927,7 +17947,6 @@ module.exports =
 	  darkTheme: _react.PropTypes.bool,
 	  flush: _react.PropTypes.bool,
 	  headline: _react.PropTypes.string.isRequired,
-	  headlineSize: _react.PropTypes.oneOf(['small', 'medium', 'large']),
 	  image: _react.PropTypes.string,
 	  justify: _react.PropTypes.oneOf(['start', 'center', 'end']),
 	  link: _react.PropTypes.string,
@@ -18464,7 +18483,7 @@ module.exports =
 	        (link || onClick) && _react2.default.createElement(
 	          _Anchor2.default,
 	          { className: CLASS_ROOT + '__link', primary: true, href: link,
-	            onClick: onClick, icon: linkIcon },
+	            onClick: onClick, target: '_blank', icon: linkIcon },
 	          linkText
 	        )
 	      );
@@ -22946,6 +22965,7 @@ module.exports =
 	          { muted: true, loop: true, autoPlay: true, showControls: false },
 	          React.createElement('source', { src: '/docs/img/VideoMarque_Part3V2.mp4', type: 'video/mp4' })
 	        ),
+	        link: 'http://www.grommet.io/docs/',
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	        responsiveBackgroundPosition: 'left',
