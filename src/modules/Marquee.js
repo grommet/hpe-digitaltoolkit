@@ -127,7 +127,7 @@ export default class Marquee extends Component {
 
         stack = (
           <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-            <Stack size="xlarge" headline={headline} paragraph={subHeadline} />
+            <Stack size="xlarge" headline={headline} print={subHeadline} />
             <Box direction="row">
               <Anchor primary={true} onClick={this._onShowVideo} icon={<PlayIcon />}>
                 Watch Now
@@ -139,14 +139,14 @@ export default class Marquee extends Component {
       } else {
         stack = (
           <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-            <Stack size="xlarge" headline={headline} paragraph={subHeadline} link={link} linkText={linkCopy} linkIcon={linkIcon} onClick={onClick} />
+            <Stack size="xlarge" headline={headline} print={subHeadline} link={link} linkText={linkCopy} linkIcon={linkIcon} onClick={onClick} />
           </Box>
         );
       }
     } else {
       stack = (
         <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-          <Stack size="xlarge" headline={headline} paragraph={subHeadline} />
+          <Stack size="xlarge" headline={headline} print={subHeadline} />
         </Box>
       );
     }
