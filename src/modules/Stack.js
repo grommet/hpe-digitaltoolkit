@@ -83,8 +83,8 @@ export default class Stack extends Component {
     } else {
       labelTag = 'h4';
       headlineTag = 'h2';
-      paragraphSize = 'xlarge';
-      printSize = 'large';
+      paragraphSize = 'large';
+      printSize = 'medium';
     }
 
     return (
@@ -104,7 +104,7 @@ export default class Stack extends Component {
         {this._renderParagraph(print, printSize, 'print')}
         {(link || onClick) &&
           <Anchor className={`${CLASS_ROOT}__link`} primary={true} href={link}
-            onClick={onClick} icon={linkIcon}>
+            onClick={onClick} target="_blank" icon={linkIcon}>
             {linkText}
           </Anchor>
         }

@@ -12,6 +12,7 @@ var Accordion = require('grommet/components/Accordion');
 var AccordionPanel = require('grommet/components/AccordionPanel');
 var Video = require('grommet/components/Video');
 var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
+var SocialFacebookIcon = require('grommet/components/icons/base/SocialFacebook');
 var Marquee = require('../modules/Marquee');
 var ContentCard = require('../modules/ContentCard');
 var MarqueeParallax = require('../modules/MarqueeParallax');
@@ -46,11 +47,21 @@ var Examples = React.createClass({
   },
 
   _renderNewsFeed: function () {
-    var socialFeedCard = (
+    var socialFeedCard1 = (
       <ContentCard
         direction="column"
         overline="Social"
         socialIcon={<SocialTwitterIcon />}
+        link="http://www.twitter.com">
+        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+      </ContentCard>
+    );
+
+    var socialFeedCard2 = (
+      <ContentCard
+        direction="column"
+        overline="Social"
+        socialIcon={<SocialFacebookIcon />}
         link="http://www.twitter.com">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
       </ContentCard>
@@ -80,8 +91,8 @@ var Examples = React.createClass({
         <Tiles size="large" masonry={true} numColumns={7} colorIndex="light-2" justify="center">
           {blogPostCard}
           {featuredPostCard}
-          {socialFeedCard}
-          {socialFeedCard}
+          {socialFeedCard1}
+          {socialFeedCard2}
           {blogPostCard}
           {featuredPostCard}
           {featuredPostCard}
@@ -105,7 +116,7 @@ var Examples = React.createClass({
           />
           <ContentCard
             direction="column"
-            thumbnail="/docs/img/Video_image.png"
+            thumbnail="/docs/img/Case_Study_image.png"
             overline="Video - 4:27"
             heading="Foundation Paraguay Empowers Microbusinesses"
             description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
@@ -188,6 +199,7 @@ var Examples = React.createClass({
         <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with NO Parallax</strong></p></Box>
         <Marquee size="small" darkTheme={true} justify="start"
           backgroundVideo={<Video muted={true} loop={true} autoPlay={true} showControls={false}><source src="/docs/img/VideoMarque_Part3V2.mp4" type='video/mp4'/></Video>}
+          link="http://www.grommet.io/docs/"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           responsiveBackgroundPosition="left"
@@ -222,7 +234,7 @@ var Examples = React.createClass({
                 </Paragraph>
                 <ContentCard
                   direction="row"
-                  thumbnail="/docs/img/Video_image.png"
+                  thumbnail="/docs/img/Case_Study_image.png"
                   overline="Video - 4:27"
                   heading="Foundation Paraguay Empowers Microbusinesses"
                   description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."

@@ -1,5 +1,12 @@
 $card-hover-color: #EBEBEB;
-$social-icon-color: #1DA1F2;
+$social-twitter-color: #1DA1F2;
+$social-facebook-color: #3B5998;
+$social-linkedin-color: #0077B5;
+
+@mixin social-icon-color($social-color) {
+  fill: $social-color;
+  stroke: $social-color;
+}
 
 .content-card {
   @include media-query(palm) {
@@ -11,19 +18,41 @@ $social-icon-color: #1DA1F2;
   }
 
   &__social-icon {
-    .grommetux-control-icon {
-      fill: $social-icon-color;
-      stroke: $social-icon-color;
+    .grommetux-control-icon-social-twitter {
+      @include social-icon-color($social-twitter-color);
     }
+
+    .grommetux-control-icon-social-facebook {
+      @include social-icon-color($social-facebook-color);
+    }
+
+    .grommetux-control-icon-social-linkedin {
+      @include social-icon-color($social-linkedin-color);
+    }
+  }
+
+  .grommetux-control-icon-watch,
+  .grommetux-anchor:hover .grommetux-control-icon-watch {
+    stroke: none;
+    fill: $control-brand-color;
   }
 
   &__thumbnail {
     width: 100%;
     height: $inuit-base-spacing-unit * 11;
+    flex-shrink: 1;
 
     .grommetux-anchor & {
       @include media-query(lap-and-up) {
         height: 100%;
+      }
+    }
+
+    .grommetux-control-icon-watch {
+      @include media-query(palm) {
+        // don't shrink video WatchIcon when in mobile
+        width: round($inuit-base-spacing-unit * 6);
+        height: round($inuit-base-spacing-unit * 6);
       }
     }
   }
@@ -75,8 +104,11 @@ $social-icon-color: #1DA1F2;
   }
 
   &--direction-row {
+    max-width: $size-large;
+
     .content-card__thumbnail {
       height: auto;
+      width: $inuit-base-spacing-unit * 13; // 312px
 
       @include media-query(palm) {
         width: 100%;
@@ -85,7 +117,6 @@ $social-icon-color: #1DA1F2;
     }
 
     .content-card__content {
-      flex: 0 0 50%;
       min-width: $inuit-base-spacing-unit * 11;
 
       @include media-query(palm) {

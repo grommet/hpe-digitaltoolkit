@@ -19,7 +19,7 @@ export default class Marquee extends Component {
     super(props);
     this._setReverse = this._setReverse.bind(this);
     this._setBackgroundColorIndex = this._setBackgroundColorIndex.bind(this);
-    this._onClick = this._onClick.bind(this);
+    this._onShowVideo = this._onShowVideo.bind(this);
     this._onClose = this._onClose.bind(this);
 
     this.state = {
@@ -61,13 +61,11 @@ export default class Marquee extends Component {
     }
   }
 
-  _onClick () {
-    const { onClick, overlayVideo } = this.props;
+  _onShowVideo () {
+    const { overlayVideo } = this.props;
 
     if (overlayVideo) {
       this.setState({ showVideo: true });
-    } else if (onClick) {
-      onClick();
     }
   }
 
@@ -76,7 +74,7 @@ export default class Marquee extends Component {
   }
 
   _renderMarquee () {
-    const { backgroundImage, backgroundVideo, flush, headlineSize, headline, image, justify, link, linkIcon, linkText, onClick, overlayVideo, responsiveBackgroundPosition, separator, subHeadline } = this.props;
+    const { backgroundImage, backgroundVideo, flush, headline, image, justify, link, linkIcon, linkText, onClick, overlayVideo, responsiveBackgroundPosition, separator, subHeadline } = this.props;
 
     let classes = classnames(
       {
@@ -104,30 +102,60 @@ export default class Marquee extends Component {
       imageMarkup = <Image src={`url(${image})`} />;
     }
 
-    let linkCopy;
-    let icon;
+    let stack;
     if (link || onClick || overlayVideo) {
-      if (!linkText && backgroundImage) {
+      let linkCopy;
+      if (!linkText) {
         linkCopy = "Learn More";
-      } else if (!linkText && overlayVideo) {
-        linkCopy = "Watch Now";
       } else {
         linkCopy = linkText;
       }
 
-      icon = linkIcon;
-      if (!linkIcon && overlayVideo) {
-        icon = <PlayIcon />;
+      if (overlayVideo) {
+        let cta;
+        if (link || onClick) {
+          cta = (
+            <Box direction="row">
+              <Box pad={{ horizontal: 'small' }} separator="right" />
+              <Box pad={{ horizontal: 'small' }} />
+              <Anchor primary={true} target="_blank" href={link} onClick={onClick} icon={linkIcon}>
+                {linkCopy}
+              </Anchor>
+            </Box>
+          );
+        }
+
+        stack = (
+          <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
+            <Stack size="xlarge" headline={headline} print={subHeadline} />
+            <Box direction="row">
+              <Anchor primary={true} onClick={this._onShowVideo} icon={<PlayIcon />}>
+                Watch Now
+              </Anchor>
+              {cta}
+            </Box>
+          </Box>
+        );
+      } else {
+        stack = (
+          <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
+            <Stack size="xlarge" headline={headline} print={subHeadline} link={link} linkText={linkCopy} linkIcon={linkIcon} onClick={onClick} />
+          </Box>
+        );
       }
+    } else {
+      stack = (
+        <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
+          <Stack size="xlarge" headline={headline} print={subHeadline} />
+        </Box>
+      );
     }
 
     let contentMarkup;
     if (justify === 'center') {
       contentMarkup = (
         <Box className={CLASS_ROOT + "__overlay"} justify={justify} align="center" primary={true} full={full} direction="row" >
-          <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-            <Stack size={headlineSize} headline={headline} paragraph={subHeadline} link={link} linkText={linkCopy} linkIcon={icon} onClick={this._onClick} />
-          </Box>
+          {stack}
         </Box>
       );
     } else {
@@ -136,9 +164,7 @@ export default class Marquee extends Component {
           <Box className={CLASS_ROOT + "__image"} align="center" justify="center">
             {imageMarkup}
           </Box>
-          <Box pad={{horizontal: 'large', vertical: 'large', between: 'medium'}}>
-            <Stack size={headlineSize} headline={headline} paragraph={subHeadline} link={link} linkText={linkCopy} linkIcon={icon} onClick={this._onClick} />
-          </Box>
+          {stack}
         </Box>
       );
     }
@@ -195,7 +221,6 @@ Marquee.propTypes = {
   darkTheme: PropTypes.bool,
   flush: PropTypes.bool,
   headline: PropTypes.string.isRequired,
-  headlineSize: PropTypes.oneOf(['small', 'medium', 'large']),
   image: PropTypes.string,
   justify: PropTypes.oneOf(['start', 'center', 'end']),
   link: PropTypes.string,
