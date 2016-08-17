@@ -60,7 +60,7 @@
   "scripts": {
     "build": "gulp dist",
     "dev": "gulp dev",
-    "alias": "gulp dev --useAlias",
+    "dev:alias": "gulp dev --useAlias",
     "start": "node server/server.js"
   }
 }
