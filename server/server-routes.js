@@ -56,7 +56,7 @@ module.exports =
 	var Home = __webpack_require__(105);
 	var Design = __webpack_require__(135);
 	var Develop = __webpack_require__(148);
-	var Examples = __webpack_require__(195);
+	var Examples = __webpack_require__(198);
 
 	module.exports = function (rootPath) {
 	  var DocsRouter = React.createClass({
@@ -2564,10 +2564,12 @@ module.exports =
 	  (0, _createClass3.default)(Box, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      if (this.props.onClick) {
+	      var onClick = this.props.onClick;
+
+	      if (onClick) {
 	        var clickCallback = function () {
 	          if (this.refs.boxContainer === document.activeElement) {
-	            this.props.onClick();
+	            onClick();
 	          }
 	        }.bind(this);
 
@@ -2604,6 +2606,25 @@ module.exports =
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _props = this.props;
+	      var a11yTitle = _props.a11yTitle;
+	      var appCentered = _props.appCentered;
+	      var backgroundImage = _props.backgroundImage;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var containerClassName = _props.containerClassName;
+	      var flex = _props.flex;
+	      var focusable = _props.focusable;
+	      var id = _props.id;
+	      var onClick = _props.onClick;
+	      var primary = _props.primary;
+	      var role = _props.role;
+	      var size = _props.size;
+	      var tag = _props.tag;
+	      var tabIndex = _props.tabIndex;
+	      var texture = _props.texture;
+
 	      var classes = [CLASS_ROOT];
 	      var containerClasses = [CLASS_ROOT + "__container"];
 	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Box.propTypes));
@@ -2619,97 +2640,102 @@ module.exports =
 	      this._addPropertyClass(classes, CLASS_ROOT, 'size');
 	      this._addPropertyClass(classes, CLASS_ROOT, 'textAlign', 'text-align');
 	      this._addPropertyClass(classes, CLASS_ROOT, 'wrap');
+
 	      if (this.props.hasOwnProperty('flex')) {
-	        if (this.props.flex) {
+	        if (flex) {
 	          classes.push('flex');
 	        } else {
 	          classes.push('no-flex');
 	        }
 	      }
 	      if (this.props.hasOwnProperty('size')) {
-	        if (this.props.size) {
+	        if (size) {
 	          classes.push(CLASS_ROOT + '--size');
 	        }
 	      }
 
-	      if (this.props.appCentered) {
+	      if (appCentered) {
 	        this._addPropertyClass(containerClasses, CLASS_ROOT + "__container", 'full');
-	        if (this.props.colorIndex) {
-	          containerClasses.push(BACKGROUND_COLOR_INDEX + '-' + this.props.colorIndex);
+	        if (colorIndex) {
+	          containerClasses.push(BACKGROUND_COLOR_INDEX + '-' + colorIndex);
 	        }
-	        if (this.props.containerClassName) {
-	          containerClasses.push(this.props.containerClassName);
+	        if (containerClassName) {
+	          containerClasses.push(containerClassName);
 	        }
 	      } else {
-	        if (this.props.colorIndex) {
-	          classes.push(BACKGROUND_COLOR_INDEX + '-' + this.props.colorIndex);
+	        if (colorIndex) {
+	          classes.push(BACKGROUND_COLOR_INDEX + '-' + colorIndex);
 	        }
 	      }
 
 	      var a11yProps = {};
-	      if (this.props.onClick) {
+	      if (onClick) {
 	        classes.push(CLASS_ROOT + "--clickable");
-	        if (this.props.focusable) {
-	          var boxLabel = this.props.a11yTitle || _Intl2.default.getMessage(this.context.intl, 'Box');
+	        if (focusable) {
+	          var boxLabel = a11yTitle || _Intl2.default.getMessage(this.context.intl, 'Box');
 	          a11yProps.tabIndex = 0;
 	          a11yProps["aria-label"] = boxLabel;
-	          a11yProps.role = this.props.role || 'link';
+	          a11yProps.role = role || 'link';
 	        }
 	      }
 
 	      var skipLinkAnchor = void 0;
-	      if (this.props.primary) {
+	      if (primary) {
 	        var mainContentLabel = _Intl2.default.getMessage(this.context.intl, 'Main Content');
 	        skipLinkAnchor = _react2.default.createElement(_SkipLinkAnchor2.default, { label: mainContentLabel });
 	      }
 
-	      if (this.props.className) {
-	        classes.push(this.props.className);
+	      if (className) {
+	        classes.push(className);
 	      }
 
 	      var style = {};
-	      if (this.props.texture && 'string' === typeof this.props.texture) {
-	        style.backgroundImage = this.props.texture;
-	      } else if (this.props.backgroundImage) {
-	        style.background = this.props.backgroundImage + " no-repeat center center";
+	      if (texture && 'string' === typeof texture) {
+	        if (texture.indexOf('url(') !== -1) {
+	          style.backgroundImage = texture;
+	        } else {
+	          style.backgroundImage = 'url(' + texture + ')';
+	        }
+	      } else if (backgroundImage) {
+	        style.background = backgroundImage + " no-repeat center center";
 	        style.backgroundSize = "cover";
 	      }
 	      style = (0, _extends3.default)({}, style, restProps.style);
-	      var texture = void 0;
-	      if ('object' === (0, _typeof3.default)(this.props.texture)) {
-	        texture = _react2.default.createElement(
+	      var textureMarkup = void 0;
+	      if ('object' === (typeof texture === 'undefined' ? 'undefined' : (0, _typeof3.default)(texture))) {
+	        textureMarkup = _react2.default.createElement(
 	          'div',
 	          { className: CLASS_ROOT + "__texture" },
-	          this.props.texture
+	          texture
 	        );
 	      }
 
-	      var Component = this.props.tag;
+	      var Component = tag;
 
-	      if (this.props.appCentered) {
+	      if (appCentered) {
 	        return _react2.default.createElement(
 	          'div',
 	          (0, _extends3.default)({}, restProps, { ref: 'boxContainer',
 	            className: containerClasses.join(' '),
-	            style: style, role: this.props.role }, a11yProps),
+	            style: style, role: role }, a11yProps),
 	          skipLinkAnchor,
 	          _react2.default.createElement(
 	            Component,
-	            { id: this.props.id, className: classes.join(' ') },
-	            texture,
-	            this.props.children
+	            { id: id, className: classes.join(' ') },
+	            textureMarkup,
+	            children
 	          )
 	        );
 	      } else {
 	        return _react2.default.createElement(
 	          Component,
-	          (0, _extends3.default)({}, restProps, { ref: 'boxContainer', id: this.props.id,
+	          (0, _extends3.default)({}, restProps, { ref: 'boxContainer', id: id,
 	            className: classes.join(' '), style: style,
-	            role: this.props.role, tabIndex: this.props.tabIndex,
-	            onClick: this.props.onClick }, a11yProps),
+	            role: role, tabIndex: tabIndex,
+	            onClick: onClick }, a11yProps),
 	          skipLinkAnchor,
-	          texture,
-	          this.props.children
+	          textureMarkup,
+	          children
 	        );
 	      }
 	    }
@@ -3407,10 +3433,10 @@ module.exports =
 	var LayerContents = function (_Component) {
 	  (0, _inherits3.default)(LayerContents, _Component);
 
-	  function LayerContents() {
+	  function LayerContents(props, context) {
 	    (0, _classCallCheck3.default)(this, LayerContents);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(LayerContents).call(this));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(LayerContents).call(this, props, context));
 
 	    _this._onClick = _this._onClick.bind(_this);
 	    _this._processTab = _this._processTab.bind(_this);
@@ -4071,10 +4097,10 @@ module.exports =
 	var MenuDrop = function (_Component) {
 	  (0, _inherits3.default)(MenuDrop, _Component);
 
-	  function MenuDrop() {
+	  function MenuDrop(props, context) {
 	    (0, _classCallCheck3.default)(this, MenuDrop);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(MenuDrop).call(this));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(MenuDrop).call(this, props, context));
 
 	    _this._onUpKeyPress = _this._onUpKeyPress.bind(_this);
 	    _this._onDownKeyPress = _this._onDownKeyPress.bind(_this);
@@ -4122,13 +4148,6 @@ module.exports =
 	      }
 
 	      container.setAttribute('aria-activedescendant', menuItems[0].getAttribute('id'));
-
-	      var menuDrop = _reactDom2.default.findDOMNode(this.refs.menuDrop);
-	      var items = menuDrop.getElementsByTagName('*');
-	      var firstFocusable = _DOM2.default.getBestFirstFocusable(items);
-	      if (firstFocusable) {
-	        firstFocusable.focus();
-	      }
 	    }
 	  }, {
 	    key: 'componentWillUnmount',
@@ -4301,10 +4320,10 @@ module.exports =
 	var Menu = function (_Component2) {
 	  (0, _inherits3.default)(Menu, _Component2);
 
-	  function Menu(props) {
+	  function Menu(props, context) {
 	    (0, _classCallCheck3.default)(this, Menu);
 
-	    var _this2 = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Menu).call(this, props));
+	    var _this2 = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Menu).call(this, props, context));
 
 	    _this2._onOpen = _this2._onOpen.bind(_this2);
 	    _this2._onClose = _this2._onClose.bind(_this2);
@@ -4393,7 +4412,6 @@ module.exports =
 	              align: this.props.dropAlign,
 	              colorIndex: this.props.dropColorIndex
 	            });
-	            this._drop.render(this._renderMenuDrop());
 	            break;
 	        }
 	      } else if (this.state.state === 'expanded') {
@@ -4693,7 +4711,8 @@ module.exports =
 	          bottom: align.bottom,
 	          left: align.left,
 	          right: align.right
-	        }
+	        },
+	        responsive: options.responsive !== false ? true : options.responsive
 	      })
 	    };
 	    if (!drop.options.align.top && !drop.options.align.bottom) {
@@ -4709,6 +4728,10 @@ module.exports =
 	    if (drop.options.colorIndex) {
 	      drop.container.className += ' ' + BACKGROUND_COLOR_INDEX + '-' + drop.options.colorIndex;
 	    }
+
+	    // prepend in body to avoid browser scroll issues
+	    document.body.insertBefore(drop.container, document.body.firstChild);
+
 	    (0, _reactDom.render)(content, drop.container);
 
 	    drop.scrollParents = _DOM2.default.findScrollParents(drop.control);
@@ -4719,13 +4742,34 @@ module.exports =
 	    drop.scrollParents.forEach(function (scrollParent) {
 	      scrollParent.addEventListener('scroll', drop.place);
 	    });
-	    window.addEventListener('resize', drop.place);
+
+	    // we intentionally skipped debounce as we believe resizing
+	    // will not be a common action. Also the UI looks better if the Drop
+	    // doesn’t lag to align with the control component.
+	    window.addEventListener('resize', function () {
+	      // we need to update scroll parents as Responsive options may change
+	      // the parent for the target element
+	      drop.scrollParents.forEach(function (scrollParent) {
+	        scrollParent.removeEventListener('scroll', drop.place);
+	      });
+
+	      drop.scrollParents = _DOM2.default.findScrollParents(drop.control);
+
+	      drop.scrollParents.forEach(function (scrollParent) {
+	        scrollParent.addEventListener('scroll', drop.place);
+	      });
+
+	      drop.place();
+	    });
 
 	    // position content
 	    this._place(drop);
 
-	    // prepend in body to avoid browser scroll issues
-	    document.body.insertBefore(drop.container, document.body.firstChild);
+	    var items = drop.container.firstChild.getElementsByTagName('*');
+	    var firstFocusable = _DOM2.default.getBestFirstFocusable(items);
+	    if (firstFocusable) {
+	      firstFocusable.focus();
+	    }
 
 	    return drop;
 	  },
@@ -4799,10 +4843,10 @@ module.exports =
 	      }
 	    } else if (align.bottom) {
 	      if ('bottom' === align.bottom) {
-	        top = Math.max(0, controlRect.bottom - containerRect.height);
+	        top = controlRect.bottom - containerRect.height;
 	        maxHeight = Math.max(controlRect.bottom, 0);
 	      } else {
-	        top = Math.max(0, controlRect.top - containerRect.height);
+	        top = controlRect.top - containerRect.height;
 	        maxHeight = Math.max(controlRect.top, 0);
 	      }
 	    }
@@ -4813,19 +4857,27 @@ module.exports =
 	      if (align.top && top > windowHeight / 2) {
 	        // We put it below, but there's more room above, put it above
 	        if (align.top === 'bottom') {
-	          top = Math.max(controlRect.top - containerRect.height, 0);
+	          if (drop.options.responsive) {
+	            top = Math.max(controlRect.top - containerRect.height, 0);
+	          }
 	          maxHeight = controlRect.top;
 	        } else {
-	          top = Math.max(controlRect.bottom - containerRect.height, 0);
+	          if (drop.options.responsive) {
+	            top = Math.max(controlRect.bottom - containerRect.height, 0);
+	          }
 	          maxHeight = controlRect.bottom;
 	        }
 	      } else if (align.bottom && maxHeight < windowHeight / 2) {
 	        // We put it above but there's more room below, put it below
 	        if (align.bottom === 'bottom') {
-	          top = controlRect.top;
+	          if (drop.options.responsive) {
+	            top = controlRect.top;
+	          }
 	          maxHeight = Math.min(windowHeight - top, windowHeight);
 	        } else {
-	          top = controlRect.bottom;
+	          if (drop.options.responsive) {
+	            top = controlRect.bottom;
+	          }
 	          maxHeight = Math.min(windowHeight - top, windowHeight - controlRect.height);
 	        }
 	      }
@@ -5816,10 +5868,10 @@ module.exports =
 	var Article = function (_Component) {
 	  (0, _inherits3.default)(Article, _Component);
 
-	  function Article(props) {
+	  function Article(props, context) {
 	    (0, _classCallCheck3.default)(this, Article);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Article).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Article).call(this, props, context));
 
 	    _this._onFocusChange = _this._onFocusChange.bind(_this);
 	    _this._onScroll = _this._onScroll.bind(_this);
@@ -7044,10 +7096,10 @@ module.exports =
 	var Header = function (_Component) {
 	  (0, _inherits3.default)(Header, _Component);
 
-	  function Header() {
+	  function Header(props, context) {
 	    (0, _classCallCheck3.default)(this, Header);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Header).call(this));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Header).call(this, props, context));
 
 	    _this._onResize = _this._onResize.bind(_this);
 	    return _this;
@@ -7645,10 +7697,10 @@ module.exports =
 	var Footer = function (_Component) {
 	  (0, _inherits3.default)(Footer, _Component);
 
-	  function Footer() {
+	  function Footer(props, context) {
 	    (0, _classCallCheck3.default)(this, Footer);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Footer).call(this));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Footer).call(this, props, context));
 
 	    _this._alignMirror = _this._alignMirror.bind(_this);
 	    _this._onResize = _this._onResize.bind(_this);
@@ -8060,10 +8112,10 @@ module.exports =
 	var Tiles = function (_Component) {
 	  (0, _inherits3.default)(Tiles, _Component);
 
-	  function Tiles(props) {
+	  function Tiles(props, context) {
 	    (0, _classCallCheck3.default)(this, Tiles);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Tiles).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Tiles).call(this, props, context));
 
 	    _this._onLeft = _this._onLeft.bind(_this);
 	    _this._onRight = _this._onRight.bind(_this);
@@ -9069,6 +9121,7 @@ module.exports =
 	      delete restProps.hoverColorIndex;
 	      delete restProps.hoverBorder;
 	      delete restProps.hoverBorderSize;
+	      delete restProps.wide;
 
 	      if (selected) {
 	        console.warn('Selected option has been deprecated, please use ' + 'selected option at the Tiles level.');
@@ -9488,10 +9541,10 @@ module.exports =
 	var Split = function (_Component) {
 	  (0, _inherits3.default)(Split, _Component);
 
-	  function Split() {
+	  function Split(props, context) {
 	    (0, _classCallCheck3.default)(this, Split);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Split).call(this));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Split).call(this, props, context));
 
 	    _this._onResize = _this._onResize.bind(_this);
 	    _this._layout = _this._layout.bind(_this);
@@ -11605,8 +11658,8 @@ module.exports =
 	var MarqueeDoc = __webpack_require__(168);
 	var WorldMapDoc = __webpack_require__(181);
 	var AccordionDoc = __webpack_require__(184);
-	var ContentCardDoc = __webpack_require__(192);
-	var StackDoc = __webpack_require__(194);
+	var ContentCardDoc = __webpack_require__(193);
+	var StackDoc = __webpack_require__(197);
 
 	//hjjs configuration
 	var hljs = __webpack_require__(142);
@@ -13044,9 +13097,17 @@ module.exports =
 	  value: true
 	});
 
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
 	var _defineProperty2 = __webpack_require__(5);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _keys = __webpack_require__(84);
+
+	var _keys2 = _interopRequireDefault(_keys);
 
 	var _typeof2 = __webpack_require__(24);
 
@@ -13088,6 +13149,10 @@ module.exports =
 
 	var _Drop2 = _interopRequireDefault(_Drop);
 
+	var _Props = __webpack_require__(91);
+
+	var _Props2 = _interopRequireDefault(_Props);
+
 	var _Responsive = __webpack_require__(99);
 
 	var _Responsive2 = _interopRequireDefault(_Responsive);
@@ -13106,18 +13171,17 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+	var CLASS_ROOT = _CSSClassnames2.default.SEARCH; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = _CSSClassnames2.default.SEARCH;
 	var BACKGROUND_COLOR_INDEX = _CSSClassnames2.default.BACKGROUND_COLOR_INDEX;
 
 	var Search = function (_Component) {
 	  (0, _inherits3.default)(Search, _Component);
 
-	  function Search(props) {
+	  function Search(props, context) {
 	    (0, _classCallCheck3.default)(this, Search);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Search).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Search).call(this, props, context));
 
 	    _this._onAddDrop = _this._onAddDrop.bind(_this);
 	    _this._onRemoveDrop = _this._onRemoveDrop.bind(_this);
@@ -13385,16 +13449,17 @@ module.exports =
 	    value: function _renderDrop() {
 	      var _classnames;
 
+	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Search.propTypes));
 	      var classes = (0, _classnames5.default)((_classnames = {}, (0, _defineProperty3.default)(_classnames, BACKGROUND_COLOR_INDEX + '-' + this.props.dropColorIndex, this.props.dropColorIndex), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__drop', true), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__drop--controlled', !this.state.inline), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__drop--large', this.props.large), _classnames));
 
 	      var input = void 0;
 	      if (!this.state.inline) {
-	        input = _react2.default.createElement('input', { key: 'input', id: 'search-drop-input', type: 'search',
+	        input = _react2.default.createElement('input', (0, _extends3.default)({}, restProps, { key: 'input', id: 'search-drop-input', type: 'search',
 	          autoComplete: 'off',
 	          defaultValue: this.props.defaultValue,
 	          value: this.props.value,
 	          className: CLASS_ROOT + '__input',
-	          onChange: this._onChangeInput });
+	          onChange: this._onChangeInput }));
 	      }
 
 	      var suggestions = void 0;
@@ -13446,13 +13511,14 @@ module.exports =
 	    value: function render() {
 	      var _classnames3;
 
+	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Search.propTypes));
 	      var classes = (0, _classnames5.default)(CLASS_ROOT, (_classnames3 = {}, (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--controlled', !this.state.inline), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--fill', this.props.fill), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--icon-align-' + this.props.iconAlign, this.props.iconAlign), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--inline', this.state.inline), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--large', this.props.large && !this.props.size), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--' + this.props.size, this.props.size), _classnames3), this.props.className);
 
 	      if (this.state.inline) {
 	        return _react2.default.createElement(
 	          'div',
 	          { className: classes },
-	          _react2.default.createElement('input', { ref: 'input', type: 'search',
+	          _react2.default.createElement('input', (0, _extends3.default)({}, restProps, { ref: 'input', type: 'search',
 	            id: this.props.id,
 	            placeholder: this.props.placeHolder,
 	            autoComplete: 'off',
@@ -13461,7 +13527,7 @@ module.exports =
 	            className: CLASS_ROOT + '__input',
 	            onFocus: this._onFocusInput,
 	            onBlur: this._onBlurInput,
-	            onChange: this._onChangeInput }),
+	            onChange: this._onChangeInput })),
 	          _react2.default.createElement(_Search2.default, null)
 	        );
 	      } else {
@@ -13487,6 +13553,7 @@ module.exports =
 
 
 	Search.propTypes = {
+	  align: _react.PropTypes.string,
 	  defaultValue: _react.PropTypes.string,
 	  dropAlign: _Drop2.default.alignPropType,
 	  dropColorIndex: _react.PropTypes.string,
@@ -13718,10 +13785,10 @@ module.exports =
 	var Chart = function (_Component) {
 	  (0, _inherits3.default)(Chart, _Component);
 
-	  function Chart(props) {
+	  function Chart(props, context) {
 	    (0, _classCallCheck3.default)(this, Chart);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Chart).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Chart).call(this, props, context));
 
 	    _this._onRequestForNextLegend = _this._onRequestForNextLegend.bind(_this);
 	    _this._onRequestForPreviousLegend = _this._onRequestForPreviousLegend.bind(_this);
@@ -14927,10 +14994,10 @@ module.exports =
 	var Legend = function (_Component) {
 	  (0, _inherits3.default)(Legend, _Component);
 
-	  function Legend(props) {
+	  function Legend(props, context) {
 	    (0, _classCallCheck3.default)(this, Legend);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Legend).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Legend).call(this, props, context));
 
 	    _this._onActive = _this._onActive.bind(_this);
 
@@ -15239,10 +15306,10 @@ module.exports =
 	var Meter = function (_Component) {
 	  (0, _inherits3.default)(Meter, _Component);
 
-	  function Meter(props) {
+	  function Meter(props, context) {
 	    (0, _classCallCheck3.default)(this, Meter);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Meter).call(this));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Meter).call(this, props, context));
 
 	    _this._onResponsive = _this._onResponsive.bind(_this);
 	    _this._initialTimeout = _this._initialTimeout.bind(_this);
@@ -15895,12 +15962,12 @@ module.exports =
 	var Bar = function (_Graphic) {
 	  (0, _inherits3.default)(Bar, _Graphic);
 
-	  function Bar(props) {
+	  function Bar(props, context) {
 	    (0, _classCallCheck3.default)(this, Bar);
 
 	    //needed in Graphic.js to fix minification issues
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Bar).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Bar).call(this, props, context));
 
 	    _this.displayName = 'Bar';
 	    return _this;
@@ -16223,10 +16290,10 @@ module.exports =
 	var Graphic = function (_Component) {
 	  (0, _inherits3.default)(Graphic, _Component);
 
-	  function Graphic(props) {
+	  function Graphic(props, context) {
 	    (0, _classCallCheck3.default)(this, Graphic);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Graphic).call(this));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Graphic).call(this, props, context));
 
 	    _this.state = _this._stateFromProps(props);
 
@@ -16656,12 +16723,12 @@ module.exports =
 	var Spiral = function (_Graphic) {
 	  (0, _inherits3.default)(Spiral, _Graphic);
 
-	  function Spiral(props) {
+	  function Spiral(props, context) {
 	    (0, _classCallCheck3.default)(this, Spiral);
 
 	    //needed in Graphic.js to fix minification issues
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Spiral).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Spiral).call(this, props, context));
 
 	    _this.displayName = 'Spiral';
 	    return _this;
@@ -16796,12 +16863,12 @@ module.exports =
 	var Circle = function (_Graphic) {
 	  (0, _inherits3.default)(Circle, _Graphic);
 
-	  function Circle(props) {
+	  function Circle(props, context) {
 	    (0, _classCallCheck3.default)(this, Circle);
 
 	    //needed in Graphic.js to fix minification issues
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Circle).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Circle).call(this, props, context));
 
 	    _this.displayName = 'Circle';
 	    return _this;
@@ -16920,12 +16987,12 @@ module.exports =
 	var Arc = function (_Graphic) {
 	  (0, _inherits3.default)(Arc, _Graphic);
 
-	  function Arc(props) {
+	  function Arc(props, context) {
 	    (0, _classCallCheck3.default)(this, Arc);
 
 	    //needed in Graphic.js to fix minification issues
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Arc).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Arc).call(this, props, context));
 
 	    _this.displayName = 'Arc';
 	    return _this;
@@ -18712,10 +18779,10 @@ module.exports =
 	var Video = function (_Component) {
 	  (0, _inherits3.default)(Video, _Component);
 
-	  function Video() {
+	  function Video(props, context) {
 	    (0, _classCallCheck3.default)(this, Video);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Video).call(this));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Video).call(this, props, context));
 
 	    _this._onResponsive = _this._onResponsive.bind(_this);
 	    _this._onPlaying = _this._onPlaying.bind(_this);
@@ -19814,10 +19881,10 @@ module.exports =
 	var WorldMap = function (_Component) {
 	  (0, _inherits3.default)(WorldMap, _Component);
 
-	  function WorldMap() {
+	  function WorldMap(props, context) {
 	    (0, _classCallCheck3.default)(this, WorldMap);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(WorldMap).call(this));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(WorldMap).call(this, props, context));
 
 	    _this._onActivate = _this._onActivate.bind(_this);
 	    _this._onDeactivate = _this._onDeactivate.bind(_this);
@@ -20347,10 +20414,10 @@ module.exports =
 	var List = function (_Component) {
 	  (0, _inherits3.default)(List, _Component);
 
-	  function List(props) {
+	  function List(props, context) {
 	    (0, _classCallCheck3.default)(this, List);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(List).call(this, props));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(List).call(this, props, context));
 
 	    _this._onClick = _this._onClick.bind(_this);
 
@@ -21037,9 +21104,9 @@ module.exports =
 
 	var _LinkNext2 = _interopRequireDefault(_LinkNext);
 
-	var _Play = __webpack_require__(173);
+	var _Watch = __webpack_require__(192);
 
-	var _Play2 = _interopRequireDefault(_Play);
+	var _Watch2 = _interopRequireDefault(_Watch);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21050,6 +21117,9 @@ module.exports =
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	// TODO: replace icon when grommet-core PR gets merged
+	// import WatchIcon from 'grommet/components/icons/base/Watch';
 
 	var CLASS_ROOT = 'content-card';
 
@@ -21125,7 +21195,7 @@ module.exports =
 
 	      var anchorIcon = linkIcon;
 	      if (!linkIcon) {
-	        anchorIcon = video ? _react2.default.createElement(_Play2.default, null) : _react2.default.createElement(_LinkNext2.default, null);
+	        anchorIcon = video ? _react2.default.createElement(_Watch2.default, null) : _react2.default.createElement(_LinkNext2.default, null);
 	      }
 
 	      if (link || onClick || video) {
@@ -21215,7 +21285,12 @@ module.exports =
 
 	      var thumbnailMarkup = void 0;
 	      if (thumbnail) {
-	        thumbnailMarkup = _react2.default.createElement(_Box2.default, { className: CLASS_ROOT + '__thumbnail', backgroundImage: 'url(' + thumbnail + ')' });
+	        thumbnailMarkup = _react2.default.createElement(
+	          _Box2.default,
+	          { className: CLASS_ROOT + '__thumbnail', backgroundImage: 'url(' + thumbnail + ')', justify: 'center', align: 'center' },
+	          video ? _react2.default.createElement(_Anchor2.default, { icon: _react2.default.createElement(_Watch2.default, { size: 'xlarge' }) }) : null,
+	          '}'
+	        );
 	      }
 
 	      var first = thumbnailMarkup;
@@ -21286,6 +21361,114 @@ module.exports =
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _FormattedMessage = __webpack_require__(81);
+
+	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Icon = function (_Component) {
+	  _inherits(Icon, _Component);
+
+	  function Icon() {
+	    _classCallCheck(this, Icon);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Icon).apply(this, arguments));
+	  }
+
+	  _createClass(Icon, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var a11yTitleId = _props.a11yTitleId;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var size = _props2.size;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-watch', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
+
+	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'watch', defaultMessage: 'watch' });
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { version: '1.1', viewBox: '0 0 24 24', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
+	        _react2.default.createElement(
+	          'title',
+	          { id: a11yTitleId },
+	          a11yTitle
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          null,
+	          _react2.default.createElement('path', { d: 'M12,0C5.4,0,0,5.4,0,12s5.4,12,12,12s12-5.4,12-12S18.6,0,12,0z M12,22C6.5,22,2,17.5,2,12\r S6.5,2,12,2s10,4.5,10,10S17.5,22,12,22z' }),
+	          _react2.default.createElement('polygon', { points: '9,16 17,12 9,8' })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Icon;
+	}(_react.Component);
+
+	exports.default = Icon;
+	;
+
+	Icon.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
+	};
+
+	Icon.defaultProps = {
+	  a11yTitleId: 'watch-title'
+	};
+
+	Icon.icon = true;
+
+	Icon.displayName = 'Watch';
+	module.exports = exports['default'];
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
@@ -21295,7 +21478,9 @@ module.exports =
 	var Box = __webpack_require__(83);
 	var Tiles = __webpack_require__(119);
 	var Heading = __webpack_require__(175);
-	var SocialTwitterIcon = __webpack_require__(193);
+	var SocialTwitterIcon = __webpack_require__(194);
+	var SocialFacebookIcon = __webpack_require__(195);
+	var SocialLinkedinIcon = __webpack_require__(196);
 
 	ContentCard.displayName = 'ContentCard';
 
@@ -21366,7 +21551,7 @@ module.exports =
 	      { colorIndex: 'light-2' },
 	      React.createElement(ContentCard, {
 	        direction: 'row',
-	        thumbnail: '/docs/img/Video_image.png',
+	        thumbnail: '/docs/img/Case_Study_image.png',
 	        overline: 'Video - 4:27',
 	        heading: 'Foundation Paraguay Empowers Microbusinesses',
 	        description: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
@@ -21377,12 +21562,40 @@ module.exports =
 	      })
 	    );
 
-	    var socialFeedCard = React.createElement(
+	    var socialFeedCard1 = React.createElement(
 	      ContentCard,
 	      {
 	        direction: 'column',
 	        overline: 'Social',
 	        socialIcon: React.createElement(SocialTwitterIcon, null),
+	        link: 'http://www.twitter.com' },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      )
+	    );
+
+	    var socialFeedCard2 = React.createElement(
+	      ContentCard,
+	      {
+	        direction: 'column',
+	        overline: 'Social',
+	        socialIcon: React.createElement(SocialFacebookIcon, null),
+	        link: 'http://www.twitter.com' },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      )
+	    );
+
+	    var socialFeedCard3 = React.createElement(
+	      ContentCard,
+	      {
+	        direction: 'column',
+	        overline: 'Social',
+	        socialIcon: React.createElement(SocialLinkedinIcon, null),
 	        link: 'http://www.twitter.com' },
 	      React.createElement(
 	        Heading,
@@ -21421,8 +21634,10 @@ module.exports =
 	    var socialCards = React.createElement(
 	      Tiles,
 	      { size: 'large', colorIndex: 'light-2' },
-	      socialFeedCard,
-	      blogPostCard
+	      socialFeedCard1,
+	      blogPostCard,
+	      socialFeedCard2,
+	      socialFeedCard3
 	    );
 
 	    var contentCardTiles = React.createElement(
@@ -21438,7 +21653,7 @@ module.exports =
 	      }),
 	      React.createElement(ContentCard, {
 	        direction: 'column',
-	        thumbnail: '/docs/img/Video_image.png',
+	        thumbnail: '/docs/img/Case_Study_image.png',
 	        overline: 'Video - 4:27',
 	        heading: 'Foundation Paraguay Empowers Microbusinesses',
 	        description: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
@@ -21468,8 +21683,8 @@ module.exports =
 	      { size: 'large', masonry: true, numColumns: 7, colorIndex: 'light-2' },
 	      blogPostCard,
 	      featuredPostCard,
-	      socialFeedCard,
-	      socialFeedCard,
+	      socialFeedCard1,
+	      socialFeedCard1,
 	      blogPostCard,
 	      featuredPostCard,
 	      featuredPostCard,
@@ -21786,7 +22001,7 @@ module.exports =
 	module.exports = ContentCardDoc;
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21908,7 +22123,251 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 194 */
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _defineProperty2 = __webpack_require__(5);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _FormattedMessage = __webpack_require__(81);
+
+	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Icon = function (_Component) {
+	  (0, _inherits3.default)(Icon, _Component);
+
+	  function Icon() {
+	    (0, _classCallCheck3.default)(this, Icon);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Icon).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Icon, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var a11yTitleId = _props.a11yTitleId;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var size = _props2.size;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-social-facebook', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
+
+	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'social-facebook', defaultMessage: 'social-facebook' });
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { version: '1.1', viewBox: '0 0 24 24', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
+	        _react2.default.createElement(
+	          'title',
+	          { id: a11yTitleId },
+	          a11yTitle
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          null,
+	          _react2.default.createElement('path', { stroke: 'none', fill: '#000000', d: 'M14,23 L14,13 L17,13 L18,9 L14,9 L14,7 C14,5.5 15,5 16,5 L18,5 L18,1 C17.5,1 16.5,1 15,1 C12,1 10,3 10,6 L10,9 L7,9 L7,13 L10,13 L10,23 L14,23 Z' })
+	        )
+	      );
+	    }
+	  }]);
+	  return Icon;
+	}(_react.Component);
+
+	Icon.displayName = 'Icon';
+	exports.default = Icon;
+	;
+
+	Icon.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
+	};
+
+	Icon.defaultProps = {
+	  a11yTitleId: 'social-facebook-title'
+	};
+
+	Icon.icon = true;
+
+	Icon.displayName = 'SocialFacebook';
+	module.exports = exports['default'];
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _defineProperty2 = __webpack_require__(5);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _FormattedMessage = __webpack_require__(81);
+
+	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Icon = function (_Component) {
+	  (0, _inherits3.default)(Icon, _Component);
+
+	  function Icon() {
+	    (0, _classCallCheck3.default)(this, Icon);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Icon).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Icon, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var a11yTitleId = _props.a11yTitleId;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var size = _props2.size;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-social-linkedin', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
+
+	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'social-linkedin', defaultMessage: 'social-linkedin' });
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { version: '1.1', viewBox: '0 0 24 24', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
+	        _react2.default.createElement(
+	          'title',
+	          { id: a11yTitleId },
+	          a11yTitle
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          null,
+	          _react2.default.createElement('path', { stroke: 'none', fill: '#000000', d: 'M22,23 L18,23 L18,17 C18,15 17.5,13 15,13 C12.5,13 12,15 12,17 L12,23 L8,23 L8,9 L12,9 L12,12 C12,12 13.5,9 17,9 C19.5,9 22,11 22,15.5 L22,23 Z M6,23 L2,23 L2,9 L6,9 L6,23 Z M4,7 C5,7 6.5,6 6.5,4.5 C6.5,3 5,2 4,2 C2.5,2 1.5,3 1.5,4.5 C1.5,6 2.5,7 4,7 Z' })
+	        )
+	      );
+	    }
+	  }]);
+	  return Icon;
+	}(_react.Component);
+
+	Icon.displayName = 'Icon';
+	exports.default = Icon;
+	;
+
+	Icon.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
+	};
+
+	Icon.defaultProps = {
+	  a11yTitleId: 'social-linkedin-title'
+	};
+
+	Icon.icon = true;
+
+	Icon.displayName = 'SocialLinkedin';
+	module.exports = exports['default'];
+
+/***/ },
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22185,7 +22644,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 195 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22200,13 +22659,14 @@ module.exports =
 	var Heading = __webpack_require__(175);
 	var Paragraph = __webpack_require__(176);
 	var Video = __webpack_require__(177);
-	var SocialTwitterIcon = __webpack_require__(193);
+	var SocialTwitterIcon = __webpack_require__(194);
+	var SocialFacebookIcon = __webpack_require__(195);
 	var Marquee = __webpack_require__(170);
 	var ContentCard = __webpack_require__(191);
-	var MarqueeParallax = __webpack_require__(196);
+	var MarqueeParallax = __webpack_require__(199);
 	var Accordion = __webpack_require__(185);
 	var AccordionPanel = __webpack_require__(187);
-	var Header = __webpack_require__(197);
+	var Header = __webpack_require__(200);
 
 	var Examples = React.createClass({
 	  displayName: 'Examples',
@@ -22263,12 +22723,26 @@ module.exports =
 	  },
 
 	  _renderNewsFeed: function _renderNewsFeed() {
-	    var socialFeedCard = React.createElement(
+	    var socialFeedCard1 = React.createElement(
 	      ContentCard,
 	      {
 	        direction: 'column',
 	        overline: 'Social',
 	        socialIcon: React.createElement(SocialTwitterIcon, null),
+	        link: 'http://www.twitter.com' },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      )
+	    );
+
+	    var socialFeedCard2 = React.createElement(
+	      ContentCard,
+	      {
+	        direction: 'column',
+	        overline: 'Social',
+	        socialIcon: React.createElement(SocialFacebookIcon, null),
 	        link: 'http://www.twitter.com' },
 	      React.createElement(
 	        Heading,
@@ -22312,8 +22786,8 @@ module.exports =
 	        { size: 'large', masonry: true, numColumns: 7, colorIndex: 'light-2', justify: 'center' },
 	        blogPostCard,
 	        featuredPostCard,
-	        socialFeedCard,
-	        socialFeedCard,
+	        socialFeedCard1,
+	        socialFeedCard2,
 	        blogPostCard,
 	        featuredPostCard,
 	        featuredPostCard,
@@ -22339,7 +22813,7 @@ module.exports =
 	        }),
 	        React.createElement(ContentCard, {
 	          direction: 'column',
-	          thumbnail: '/docs/img/Video_image.png',
+	          thumbnail: '/docs/img/Case_Study_image.png',
 	          overline: 'Video - 4:27',
 	          heading: 'Foundation Paraguay Empowers Microbusinesses',
 	          description: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
@@ -22519,7 +22993,7 @@ module.exports =
 	            ),
 	            React.createElement(ContentCard, {
 	              direction: 'row',
-	              thumbnail: '/docs/img/Video_image.png',
+	              thumbnail: '/docs/img/Case_Study_image.png',
 	              overline: 'Video - 4:27',
 	              heading: 'Foundation Paraguay Empowers Microbusinesses',
 	              description: 'See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America.',
@@ -22607,7 +23081,7 @@ module.exports =
 	module.exports = Examples;
 
 /***/ },
-/* 196 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22940,7 +23414,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 197 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22971,11 +23445,11 @@ module.exports =
 
 	var _Title2 = _interopRequireDefault(_Title);
 
-	var _HeaderMenu = __webpack_require__(198);
+	var _HeaderMenu = __webpack_require__(201);
 
 	var _HeaderMenu2 = _interopRequireDefault(_HeaderMenu);
 
-	var _Logo = __webpack_require__(199);
+	var _Logo = __webpack_require__(202);
 
 	var _Logo2 = _interopRequireDefault(_Logo);
 
@@ -23123,7 +23597,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 198 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23225,7 +23699,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 199 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

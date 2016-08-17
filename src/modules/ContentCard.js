@@ -11,7 +11,9 @@ import Anchor from 'grommet/components/Anchor';
 import Layer from 'grommet/components/Layer';
 import Video from 'grommet/components/Video';
 import LinkNextIcon from 'grommet/components/icons/base/LinkNext';
-import PlayIcon from 'grommet/components/icons/base/Play';
+import WatchIcon from './Watch';
+// TODO: replace icon when grommet-core PR gets merged
+// import WatchIcon from 'grommet/components/icons/base/Watch';
 
 const CLASS_ROOT = 'content-card';
 
@@ -63,7 +65,7 @@ export default class ContentCard extends Component {
 
     let anchorIcon = linkIcon;
     if (!linkIcon) {
-      anchorIcon = video ? <PlayIcon /> : <LinkNextIcon />;
+      anchorIcon = video ? <WatchIcon /> : <LinkNextIcon />;
     }
 
     if (link || onClick || video) {
@@ -112,7 +114,6 @@ export default class ContentCard extends Component {
       className
     );
 
-
     let onContentCardClick = onClick;
     if (!onContentCardClick && (link || video)) {
       onContentCardClick = this._handleClick;
@@ -131,7 +132,9 @@ export default class ContentCard extends Component {
     let thumbnailMarkup;
     if (thumbnail) {
       thumbnailMarkup = (
-        <Box className={`${CLASS_ROOT}__thumbnail`} backgroundImage={`url(${thumbnail})`} />
+        <Box className={`${CLASS_ROOT}__thumbnail`} backgroundImage={`url(${thumbnail})`} justify="center" align="center">
+          {(video) ? <Anchor icon={<WatchIcon size="xlarge" />} /> : null}}
+        </Box>
       );
     }
 
