@@ -17841,7 +17841,7 @@ module.exports =
 	          stack = _react2.default.createElement(
 	            _Box2.default,
 	            { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
-	            _react2.default.createElement(_Stack2.default, { size: 'xlarge', headline: headline, paragraph: subHeadline }),
+	            _react2.default.createElement(_Stack2.default, { size: 'xlarge', headline: headline, print: subHeadline }),
 	            _react2.default.createElement(
 	              _Box2.default,
 	              { direction: 'row' },
@@ -17857,14 +17857,14 @@ module.exports =
 	          stack = _react2.default.createElement(
 	            _Box2.default,
 	            { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
-	            _react2.default.createElement(_Stack2.default, { size: 'xlarge', headline: headline, paragraph: subHeadline, link: link, linkText: linkCopy, linkIcon: linkIcon, onClick: onClick })
+	            _react2.default.createElement(_Stack2.default, { size: 'xlarge', headline: headline, print: subHeadline, link: link, linkText: linkCopy, linkIcon: linkIcon, onClick: onClick })
 	          );
 	        }
 	      } else {
 	        stack = _react2.default.createElement(
 	          _Box2.default,
 	          { pad: { horizontal: 'large', vertical: 'large', between: 'medium' } },
-	          _react2.default.createElement(_Stack2.default, { size: 'xlarge', headline: headline, paragraph: subHeadline })
+	          _react2.default.createElement(_Stack2.default, { size: 'xlarge', headline: headline, print: subHeadline })
 	        );
 	      }
 
