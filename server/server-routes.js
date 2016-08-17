@@ -18441,8 +18441,8 @@ module.exports =
 	      } else {
 	        labelTag = 'h4';
 	        headlineTag = 'h2';
-	        paragraphSize = 'xlarge';
-	        printSize = 'large';
+	        paragraphSize = 'large';
+	        printSize = 'medium';
 	      }
 
 	      return _react2.default.createElement(
