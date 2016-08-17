@@ -8,6 +8,8 @@ var Box = require('grommet/components/Box');
 var Tiles = require('grommet/components/Tiles');
 var Heading = require('grommet/components/Heading');
 var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
+var SocialFacebookIcon = require('grommet/components/icons/base/SocialFacebook');
+var SocialLinkedinIcon = require('grommet/components/icons/base/SocialLinkedin');
 
 
 ContentCard.displayName = 'ContentCard';
@@ -63,7 +65,7 @@ var ContentCardDoc = React.createClass({
       <Box colorIndex="light-2">
         <ContentCard
           direction="row"
-          thumbnail="/docs/img/Video_image.png"
+          thumbnail="/docs/img/Case_Study_image.png"
           overline="Video - 4:27"
           heading="Foundation Paraguay Empowers Microbusinesses"
           description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
@@ -75,11 +77,31 @@ var ContentCardDoc = React.createClass({
       </Box>
     );
 
-    var socialFeedCard = (
+    var socialFeedCard1 = (
       <ContentCard
         direction="column"
         overline="Social"
         socialIcon={<SocialTwitterIcon />}
+        link="http://www.twitter.com">
+        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+      </ContentCard>
+    );
+
+    var socialFeedCard2 = (
+      <ContentCard
+        direction="column"
+        overline="Social"
+        socialIcon={<SocialFacebookIcon />}
+        link="http://www.twitter.com">
+        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+      </ContentCard>
+    );
+
+    var socialFeedCard3 = (
+      <ContentCard
+        direction="column"
+        overline="Social"
+        socialIcon={<SocialLinkedinIcon />}
         link="http://www.twitter.com">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
       </ContentCard>
@@ -106,8 +128,10 @@ var ContentCardDoc = React.createClass({
 
     var socialCards = (
       <Tiles size="large" colorIndex="light-2">
-        {socialFeedCard}
+        {socialFeedCard1}
         {blogPostCard}
+        {socialFeedCard2}
+        {socialFeedCard3}
       </Tiles>
     );
 
@@ -123,7 +147,7 @@ var ContentCardDoc = React.createClass({
         />
         <ContentCard
           direction="column"
-          thumbnail="/docs/img/Video_image.png"
+          thumbnail="/docs/img/Case_Study_image.png"
           overline="Video - 4:27"
           heading="Foundation Paraguay Empowers Microbusinesses"
           description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
@@ -153,8 +177,8 @@ var ContentCardDoc = React.createClass({
       <Tiles size="large" masonry={true} numColumns={7} colorIndex="light-2">
         {blogPostCard}
         {featuredPostCard}
-        {socialFeedCard}
-        {socialFeedCard}
+        {socialFeedCard1}
+        {socialFeedCard1}
         {blogPostCard}
         {featuredPostCard}
         {featuredPostCard}
