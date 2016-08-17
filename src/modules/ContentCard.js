@@ -11,7 +11,9 @@ import Anchor from 'grommet/components/Anchor';
 import Layer from 'grommet/components/Layer';
 import Video from 'grommet/components/Video';
 import LinkNextIcon from 'grommet/components/icons/base/LinkNext';
-import WatchIcon from 'grommet/components/icons/base/Watch';
+import WatchIcon from './Watch';
+// TODO: replace icon when grommet-core PR gets merged
+// import WatchIcon from 'grommet/components/icons/base/Watch';
 
 const CLASS_ROOT = 'content-card';
 
