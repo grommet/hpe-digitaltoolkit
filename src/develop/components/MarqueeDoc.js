@@ -43,6 +43,7 @@ var MarqueeDoc = React.createClass({
     var videoMarquee = (
       <Marquee size="small" darkTheme={true} justify="start"
         backgroundVideo={<Video muted={true} loop={true} autoPlay={true} showControls={false}><source src="/docs/img/VideoMarque_Part3V2.mp4" type='video/mp4'/></Video>}
+        link="http://www.grommet.io/docs/"
         headline="Accelerate your transformation with the cloud"
         subHeadline="HPE can help you benefit now from your right mix of cloud"
         responsiveBackgroundPosition="left"
@@ -79,11 +80,11 @@ var MarqueeDoc = React.createClass({
             <dt><code>linkIcon                         {"{element}"}</code></dt>
             <dd>Icon component to be used with the link.  Optional.</dd>
             <dt><code>linkText                         {"{string}"}</code></dt>
-            <dd>Text to be shown for the link.  Defaults to <code>Learn More</code> for an image Marquee, and <code>Watch Now</code> for a video Marquee.</dd>
+            <dd>Text to be shown for the link.  Defaults to <code>Learn More</code>.</dd>
             <dt><code>onClick                          {"{function}"}</code></dt>
             <dd>Click handler for the link.  Optional.</dd>
             <dt><code>overlayVideo                     {"{element}"}</code></dt>
-            <dd>Video component to be shown when the link is clicked.  Optional.</dd>
+            <dd>Video component to be shown when the "Watch Now" link is clicked.  Optional.</dd>
             <dt><code>responsiveBackgroundPosition     left|center|right</code></dt>
             <dd>Background position where the background image should be pinned for smaller screen sizes.  Defaults to <code>center</code>.</dd>
             <dt><code>separator                        true|false</code></dt>

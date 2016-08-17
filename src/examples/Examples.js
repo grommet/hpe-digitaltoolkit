@@ -187,6 +187,7 @@ var Examples = React.createClass({
         <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with NO Parallax</strong></p></Box>
         <Marquee size="small" darkTheme={true} justify="start"
           backgroundVideo={<Video muted={true} loop={true} autoPlay={true} showControls={false}><source src="/docs/img/VideoMarque_Part3V2.mp4" type='video/mp4'/></Video>}
+          link="http://www.grommet.io/docs/"
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           responsiveBackgroundPosition="left"
