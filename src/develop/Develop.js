@@ -19,7 +19,6 @@ var DashboardDoc = require('./patterns/DashboardDoc');
 var NavigationDoc = require('./patterns/NavigationDoc');
 var MarqueeDoc = require('./components/MarqueeDoc');
 var WorldMapDoc = require('./components/WorldMapDoc');
-var AccordionDoc = require('./components/AccordionDoc');
 var ContentCardDoc = require('./components/ContentCardDoc');
 var StackDoc = require('./components/StackDoc');
 
@@ -50,7 +49,6 @@ var CONTENTS = [
     contents: [
       {route: 'develop_box', label: 'Box', component: BoxDoc},
       {route: 'develop_marquee', label: 'Marquee', component: MarqueeDoc},
-      {route: 'develop_accordion', label: 'Accordion', component: AccordionDoc},
       {route: 'develop_content-card', label: 'ContentCard', component: ContentCardDoc},
       {route: 'develop_stack', label: 'Stack', component: StackDoc},
       {route: 'develop_world-map', label: 'WorldMap', component: WorldMapDoc}

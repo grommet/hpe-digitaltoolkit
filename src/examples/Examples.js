@@ -6,15 +6,16 @@ var Route = Router.Route;
 var Tiles = require('grommet/components/Tiles');
 var Box = require('grommet/components/Box');
 var Heading = require('grommet/components/Heading');
+var Headline = require('grommet/components/Headline');
 var Paragraph = require('grommet/components/Paragraph');
+var Accordion = require('grommet/components/Accordion');
+var AccordionPanel = require('grommet/components/AccordionPanel');
 var Video = require('grommet/components/Video');
 var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
 var SocialFacebookIcon = require('grommet/components/icons/base/SocialFacebook');
 var Marquee = require('../modules/Marquee');
 var ContentCard = require('../modules/ContentCard');
 var MarqueeParallax = require('../modules/MarqueeParallax');
-var Accordion = require('../modules/Accordion');
-var AccordionPanel = require('../modules/AccordionPanel');
 var Header = require('./Header');
 
 var Examples = React.createClass({
@@ -206,51 +207,71 @@ var Examples = React.createClass({
         <Box pad={{horizontal: 'large'}}><p><strong>Small Video Marquee with NO Parallax</strong></p></Box>
         {this._loremIpsum()}
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
-          <Accordion
-            colorIndex="light-2"
-            headline="Services Portfolio"
-            subHeadline="Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me."
-          >
-            <AccordionPanel panelTitle="Enterprise Mobility Services">
-              <Heading tag="h3" margin="none">
-                Empower your employees while ensuring your workplace remains enterprise grade, scalable and secure.
-              </Heading>
-              <Paragraph margin="small">
-                With proficiency in the latest mobile and social technologies,
-                we can help your business develop new systems of engagement
-                while leveraging your legacy investments
-              </Paragraph>
-              <ContentCard
-                direction="row"
-                thumbnail="/docs/img/Case_Study_image.png"
-                overline="Video - 4:27"
-                heading="Foundation Paraguay Empowers Microbusinesses"
-                description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
-                video={{
-                  source: 'video/test.mp4',
-                  type: 'mp4'
-                }}
-              />
+          <Box align="center" separator="bottom">
+            <Headline size="large" strong={true} margin="none" align="center">
+              Services Portfolio
+            </Headline>
+            <Paragraph size="large"	align="center">
+              Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
+            </Paragraph>
+          </Box>
+          <Accordion>
+            <AccordionPanel
+              heading={
+                <Heading tag="h2">
+                  Enterprise Mobility Services
+                </Heading>
+              }
+            >
+              <Box pad="medium">
+                <Heading tag="h3" margin="none">
+                  Empower your employees while ensuring your workplace remains enterprise grade, scalable and secure.
+                </Heading>
+                <Paragraph margin="small">
+                  With proficiency in the latest mobile and social technologies,
+                  we can help your business develop new systems of engagement
+                  while leveraging your legacy investments
+                </Paragraph>
+                <ContentCard
+                  direction="row"
+                  thumbnail="/docs/img/Case_Study_image.png"
+                  overline="Video - 4:27"
+                  heading="Foundation Paraguay Empowers Microbusinesses"
+                  description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
+                  video={{
+                    source: 'video/test.mp4',
+                    type: 'mp4'
+                  }}
+                />
+              </Box>
             </AccordionPanel>
-            <AccordionPanel panelTitle="Software Licensings and Managment">
-              <Heading tag="h3" margin="none">
-                Manage control, compliance and cost through our value-added
-                Licensing, Advisory Services and Software Asset Management.
-              </Heading>
-              <Paragraph margin="small">
-                We help you get the most out of your software investments by
-                facilitating cost-efective acquisition, giving you better
-                control throughout your organization, and helping you meet
-                licensing compliance requirements
-              </Paragraph>
-              <ContentCard
-                direction="row"
-                thumbnail="/docs/img/Case_Study_image.png"
-                overline="Case Study"
-                heading="The Key Steps to Reducing Software Spend"
-                description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
-                link="#"
-              />
+            <AccordionPanel
+              heading={
+                <Heading tag="h2">
+                  Software Licensings and Managment
+                </Heading>
+              }
+            >
+              <Box pad="medium">
+                <Heading tag="h3" margin="none">
+                  Manage control, compliance and cost through our value-added
+                  Licensing, Advisory Services and Software Asset Management.
+                </Heading>
+                <Paragraph margin="small">
+                  We help you get the most out of your software investments by
+                  facilitating cost-efective acquisition, giving you better
+                  control throughout your organization, and helping you meet
+                  licensing compliance requirements
+                </Paragraph>
+                <ContentCard
+                  direction="row"
+                  thumbnail="/docs/img/Case_Study_image.png"
+                  overline="Case Study"
+                  heading="The Key Steps to Reducing Software Spend"
+                  description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+                  link="#"
+                />
+              </Box>
             </AccordionPanel>
           </Accordion>
         </Box>
