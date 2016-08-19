@@ -3,14 +3,16 @@
 var React = require('react');
 var jsxToString = require('jsx-to-string');
 var DocsArticle = require('../../DocsArticle');
-var ContentCard = require('../../modules/ContentCard');
+var ContentCard = require('grommet/components/ContentCard');
+var Anchor = require('grommet/components/Anchor');
 var Box = require('grommet/components/Box');
+var Paragraph = require('grommet/components/Paragraph');
 var Tiles = require('grommet/components/Tiles');
 var Heading = require('grommet/components/Heading');
 var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
 var SocialFacebookIcon = require('grommet/components/icons/base/SocialFacebook');
 var SocialLinkedinIcon = require('grommet/components/icons/base/SocialLinkedin');
-
+var WatchIcon = require('grommet/components/icons/base/Watch');
 
 ContentCard.displayName = 'ContentCard';
 
@@ -41,7 +43,7 @@ var ContentCardDoc = React.createClass({
       <Box colorIndex="light-2">
         <ContentCard
           thumbnail="/docs/img/Case_Study_image.png"
-          overline="Featured Post"
+          label="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
           description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         />
@@ -51,12 +53,12 @@ var ContentCardDoc = React.createClass({
     var linkContentCard = (
       <Box colorIndex="light-2">
         <ContentCard
-          contentPlacement="bottom"
+          reverse={true}
           thumbnail="/docs/img/Case_Study_image.png"
-          overline="Featured Post"
+          label="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
           description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
-          link="#"
+          link={<Anchor href="#" label="Learn More" primary={true} />}
         />
       </Box>
     );
@@ -66,13 +68,14 @@ var ContentCardDoc = React.createClass({
         <ContentCard
           direction="row"
           thumbnail="/docs/img/Case_Study_image.png"
-          overline="Video - 4:27"
+          label="Video - 4:27"
           heading="Foundation Paraguay Empowers Microbusinesses"
           description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
           video={{
             source: 'video/test.mp4',
             type: 'mp4'
           }}
+          link={<Anchor href="#" label="Watch Now" primary={true} icon={<WatchIcon />} />}
         />
       </Box>
     );
@@ -80,19 +83,22 @@ var ContentCardDoc = React.createClass({
     var socialFeedCard1 = (
       <ContentCard
         direction="column"
-        overline="Social"
+        label="Social"
         socialIcon={<SocialTwitterIcon />}
-        link="http://www.twitter.com">
+        link={<Anchor href="#" label="Learn More" primary={true} />}>
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+        <Paragraph size="large">
+          It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.
+        </Paragraph>
       </ContentCard>
     );
 
     var socialFeedCard2 = (
       <ContentCard
         direction="column"
-        overline="Social"
+        label="Social"
         socialIcon={<SocialFacebookIcon />}
-        link="http://www.twitter.com">
+        link={<Anchor href="#" label="Learn More" primary={true} />}>
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
       </ContentCard>
     );
@@ -100,9 +106,9 @@ var ContentCardDoc = React.createClass({
     var socialFeedCard3 = (
       <ContentCard
         direction="column"
-        overline="Social"
+        label="Social"
         socialIcon={<SocialLinkedinIcon />}
-        link="http://www.twitter.com">
+        link={<Anchor href="#" label="Learn More" primary={true} />}>
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
       </ContentCard>
     );
@@ -110,8 +116,8 @@ var ContentCardDoc = React.createClass({
     var blogPostCard = (
       <ContentCard
         direction="column"
-        overline="Featured Post"
-        link="http://www.twitter.com">
+        label="Featured Post"
+        link={<Anchor href="#" label="Learn More" primary={true} />}>
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
       </ContentCard>
     );
@@ -120,8 +126,8 @@ var ContentCardDoc = React.createClass({
       <ContentCard
         thumbnail="/docs/img/Case_Study_image.png"
         direction="column"
-        overline="Featured Post"
-        link="http://www.twitter.com">
+        label="Featured Post"
+        link={<Anchor href="#" label="Learn More" primary={true} />}>
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
       </ContentCard>
     );
@@ -140,33 +146,34 @@ var ContentCardDoc = React.createClass({
         <ContentCard
           direction="column"
           thumbnail="/docs/img/Case_Study_image.png"
-          overline="Featured Post"
+          label="Featured Post"
           heading="Protect Your Digital Enterprise ipsum Learn More lorem dolores aeat"
           description="It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. "
-          link="http://grommet.io"
+          link={<Anchor href="#" label="Learn More" primary={true} />}
         />
         <ContentCard
           direction="column"
           thumbnail="/docs/img/Case_Study_image.png"
-          overline="Video - 4:27"
+          label="Video - 4:27"
           heading="Foundation Paraguay Empowers Microbusinesses"
           description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
           video={{
             source: 'video/test.mp4',
             type: 'mp4'
           }}
+          link={<Anchor href="#" label="Watch Now" primary={true} icon={<WatchIcon />} />}
         />
         <ContentCard
           direction="column"
           thumbnail="/docs/img/Case_Study_image.png"
-          overline="Featured Post"
+          label="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
           description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         />
         <ContentCard
           direction="column"
           thumbnail="/docs/img/Case_Study_image.png"
-          overline="Featured Post"
+          label="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
           description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
         />
@@ -196,8 +203,8 @@ var ContentCardDoc = React.createClass({
           <h2>ContentCard Options</h2>
           <dl>
             <dt><code>thumbnail            {'{url}'}</code></dt>
-            <dd>Url path to image. Use contentPlacement option to position thumbnail within card.</dd>
-            <dt><code>overline             {'{string}'}</code></dt>
+            <dd>Url path to image. Use reverse option to position thumbnail within card.</dd>
+            <dt><code>label                {'{string}'}</code></dt>
             <dd>Content label.</dd>
             <dt><code>heading              {'{string}'}</code></dt>
             <dd>Content heading.</dd>
@@ -226,7 +233,7 @@ var ContentCardDoc = React.createClass({
             </dd>
             <dt><code>direction            {'column|row'}</code></dt>
             <dd>Applies the ContentCards in a column (default) or row direction. Expects multiple ContentCard modules to be wrapped in a <a href="http://www.grommet.io/docs/hpe/develop/tiles">Tiles</a> component.</dd>
-            <dt><code>contentPlacement     {'top|bottom'}</code></dt>
+            <dt><code>reverse     {'top|bottom'}</code></dt>
             <dd>If thumbnail url is set, align thumbnail to top or bottom of card. Defaults to <code>'top'</code>.</dd>
           </dl>
         </section>
@@ -236,7 +243,7 @@ var ContentCardDoc = React.createClass({
 
           {this._renderCode('Default', simpleContentCard)}
 
-          {this._renderCode('Bottom contentPlacement, Link', linkContentCard)}
+          {this._renderCode('Bottom reverse, Link', linkContentCard)}
 
           {this._renderCode('Row, Video', videoContentCard)}
 
