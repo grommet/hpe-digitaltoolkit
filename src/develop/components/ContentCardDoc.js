@@ -3,7 +3,7 @@
 var React = require('react');
 var jsxToString = require('jsx-to-string');
 var DocsArticle = require('../../DocsArticle');
-var ContentCard = require('grommet/components/ContentCard');
+var ContentCard = require('grommet/components/Card');
 var Anchor = require('grommet/components/Anchor');
 var Box = require('grommet/components/Box');
 var Paragraph = require('grommet/components/Paragraph');
@@ -12,6 +12,7 @@ var Heading = require('grommet/components/Heading');
 var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
 var SocialFacebookIcon = require('grommet/components/icons/base/SocialFacebook');
 var SocialLinkedinIcon = require('grommet/components/icons/base/SocialLinkedin');
+var LinkNextIcon = require('grommet/components/icons/base/LinkNext');
 var WatchIcon = require('grommet/components/icons/base/Watch');
 
 ContentCard.displayName = 'ContentCard';
@@ -58,7 +59,7 @@ var ContentCardDoc = React.createClass({
           label="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
           description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
-          link={<Anchor href="#" label="Learn More" primary={true} />}
+          link={<Anchor href="#" label="Learn More" icon={<LinkNextIcon />} />}
         />
       </Box>
     );
@@ -75,41 +76,56 @@ var ContentCardDoc = React.createClass({
             source: 'video/test.mp4',
             type: 'mp4'
           }}
-          link={<Anchor href="#" label="Watch Now" primary={true} icon={<WatchIcon />} />}
+          link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
         />
+      </Box>
+    );
+
+    var twitterIconBox = (
+      <Box align="end">
+        <SocialTwitterIcon />
+      </Box>
+    );
+
+    var facebookIconBox = (
+      <Box align="end">
+        <SocialFacebookIcon />
+      </Box>
+    );
+
+    var linkedinIconBox = (
+      <Box align="end">
+        <SocialLinkedinIcon />
       </Box>
     );
 
     var socialFeedCard1 = (
       <ContentCard
         direction="column"
-        label="Social"
-        socialIcon={<SocialTwitterIcon />}
-        link={<Anchor href="#" label="Learn More" primary={true} />}>
+        label="Social">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
         <Paragraph size="large">
           It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.
         </Paragraph>
+        {twitterIconBox}
       </ContentCard>
     );
 
     var socialFeedCard2 = (
       <ContentCard
         direction="column"
-        label="Social"
-        socialIcon={<SocialFacebookIcon />}
-        link={<Anchor href="#" label="Learn More" primary={true} />}>
+        label="Social">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+        {facebookIconBox}
       </ContentCard>
     );
 
     var socialFeedCard3 = (
       <ContentCard
         direction="column"
-        label="Social"
-        socialIcon={<SocialLinkedinIcon />}
-        link={<Anchor href="#" label="Learn More" primary={true} />}>
+        label="Social">
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
+        {linkedinIconBox}
       </ContentCard>
     );
 
@@ -117,7 +133,7 @@ var ContentCardDoc = React.createClass({
       <ContentCard
         direction="column"
         label="Featured Post"
-        link={<Anchor href="#" label="Learn More" primary={true} />}>
+        link={<Anchor href="#" label="Learn More" icon={<LinkNextIcon />} />}>
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
       </ContentCard>
     );
@@ -127,7 +143,7 @@ var ContentCardDoc = React.createClass({
         thumbnail="/docs/img/Case_Study_image.png"
         direction="column"
         label="Featured Post"
-        link={<Anchor href="#" label="Learn More" primary={true} />}>
+        link={<Anchor href="#" label="Learn More" icon={<LinkNextIcon />} />}>
         <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
       </ContentCard>
     );
@@ -149,7 +165,7 @@ var ContentCardDoc = React.createClass({
           label="Featured Post"
           heading="Protect Your Digital Enterprise ipsum Learn More lorem dolores aeat"
           description="It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. "
-          link={<Anchor href="#" label="Learn More" primary={true} />}
+          link={<Anchor href="#" label="Learn More" icon={<LinkNextIcon />} />}
         />
         <ContentCard
           direction="column"
@@ -161,7 +177,7 @@ var ContentCardDoc = React.createClass({
             source: 'video/test.mp4',
             type: 'mp4'
           }}
-          link={<Anchor href="#" label="Watch Now" primary={true} icon={<WatchIcon />} />}
+          link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
         />
         <ContentCard
           direction="column"
