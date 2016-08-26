@@ -56,25 +56,25 @@ var Examples = React.createClass({
   },
 
   _renderNewsFeed: function () {
-    let twitterIconBox = (
+    const twitterIconBox = (
       <Box align="end">
         <SocialTwitterIcon />
       </Box>
     );
 
-    let facebookIconBox = (
+    const facebookIconBox = (
       <Box align="end">
         <SocialFacebookIcon />
       </Box>
     );
 
-    let linkedinIconBox = (
+    const linkedinIconBox = (
       <Box align="end">
         <SocialLinkedinIcon />
       </Box>
     );
 
-    let socialFeedCard1 = (
+    const socialFeedCard1 = (
       <Card
         onClick={this._onClickCard.bind(this, 'http://www.twitter.com')}
         direction="column"
@@ -86,7 +86,7 @@ var Examples = React.createClass({
       </Card>
     );
 
-    let socialFeedCard2 = (
+    const socialFeedCard2 = (
       <Card
         onClick={this._onClickCard.bind(this, 'http://www.facebook.com')}
         direction="column"
@@ -98,7 +98,7 @@ var Examples = React.createClass({
       </Card>
     );
 
-    let socialFeedCard3 = (
+    const socialFeedCard3 = (
       <Card
         onClick={this._onClickCard.bind(this, 'http://www.linkedin.com')}
         direction="column"
@@ -110,7 +110,7 @@ var Examples = React.createClass({
       </Card>
     );
 
-    let blogPostCard = (
+    const blogPostCard = (
       <Card
         onClick={this._onClickCard.bind(this, window.location.pathname + '#')}
         direction="column"
@@ -122,7 +122,7 @@ var Examples = React.createClass({
       </Card>
     );
 
-    let featuredPostCard = (
+    const featuredPostCard = (
       <Card
         onClick={this._onClickCard.bind(this, window.location.pathname + '#')}
         thumbnail="/docs/img/carousel-1.png"
@@ -161,17 +161,17 @@ var Examples = React.createClass({
             thumbnail="/docs/img/Case_Study_image.png"
             label="Featured Post"
             heading="Protect Your Digital Enterprise ipsum dolores aeat"
-            description={`It’s not an either/or world. It’s about finding the
-              right platform for each app, workload and service. Learn how
-              hybrid infrastructure can help you achieve cloud agility with
-              traditional IT predictability. It’s not an either/or world. It’s
-              about finding the right platform for each app, workload and
-              service. Learn how hybrid infrastructure can help you achieve
-              cloud agility with traditional IT predictability. It’s not an
-              either/or world. It’s about finding the right platform for each
-              app, workload and service. Learn how hybrid infrastructure can
-              help you achieve cloud agility with traditional IT
-              predictability.`}
+            description={"It’s not an either/or world. It’s about finding the " +
+              "right platform for each app, workload and service. Learn how " +
+              "hybrid infrastructure can help you achieve cloud agility with " +
+              "traditional IT predictability. It’s not an either/or world. It’s " +
+              "about finding the right platform for each app, workload and " +
+              "service. Learn how hybrid infrastructure can help you achieve " +
+              "cloud agility with traditional IT predictability. It’s not an " +
+              "either/or world. It’s about finding the right platform for each " +
+              "app, workload and service. Learn how hybrid infrastructure can " +
+              "help you achieve cloud agility with traditional IT " +
+              "predictability."}
             link={<Anchor href="#" label="Learn More" icon={<LinkNextIcon />} />}
           />
           <Card
@@ -179,9 +179,9 @@ var Examples = React.createClass({
             thumbnail="/docs/img/Case_Study_image.png"
             label="Video - 4:27"
             heading="Foundation Paraguay Empowers Microbusinesses"
-            description={`See how Hewlett Packard Enterprise delivers mobile
-              solutions to improve quality of life and help eliminate poverty
-              in South America.`}
+            description={"See how Hewlett Packard Enterprise delivers mobile " +
+              "solutions to improve quality of life and help eliminate poverty " +
+              "in South America."}
             video={{
               source: 'video/test.mp4',
               type: 'mp4'
@@ -193,18 +193,18 @@ var Examples = React.createClass({
             thumbnail="/docs/img/Case_Study_image.png"
             label="Featured Post"
             heading="The Key Steps to Reducing Software Spend"
-            description={`HPE Software Licensing and Management Solutions can
-              help you optimize your software investments through control of
-              complex negotiations and renewal processes`}
+            description={"HPE Software Licensing and Management Solutions can " +
+              "help you optimize your software investments through control of " +
+              "complex negotiations and renewal processes"}
           />
           <Card
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
             label="Featured Post"
             heading="The Key Steps to Reducing Software Spend"
-            description={`HPE Software Licensing and Management Solutions can
-              help you optimize your software investments through control of
-              complex negotiations and renewal processes`}
+            description={"HPE Software Licensing and Management Solutions can " +
+              "help you optimize your software investments through control of " +
+              "complex negotiations and renewal processes"}
           />
         </Tiles>
       </Box>
