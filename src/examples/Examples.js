@@ -22,6 +22,8 @@ var Marquee = require('../modules/Marquee');
 var MarqueeParallax = require('../modules/MarqueeParallax');
 var Header = require('./Header');
 
+const grommetPath = 'http://grommet.github.io';
+
 var Examples = React.createClass({
   contextTypes: {
     routePrefix: React.PropTypes.string.isRequired
@@ -112,10 +114,10 @@ var Examples = React.createClass({
 
     const blogPostCard = (
       <Card
-        onClick={this._onClickCard.bind(this, window.location.pathname + '#')}
+        onClick={this._onClickCard.bind(this, grommetPath)}
         direction="column"
         label="Featured Post"
-        link={<Anchor href="#" label="Learn More" icon={<LinkNextIcon />} />}>
+        link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}>
         <Heading tag="h2">
           Protect Your Digital Enterprise ipsum lorem dolores aeat el
         </Heading>
@@ -124,11 +126,11 @@ var Examples = React.createClass({
 
     const featuredPostCard = (
       <Card
-        onClick={this._onClickCard.bind(this, window.location.pathname + '#')}
+        onClick={this._onClickCard.bind(this, grommetPath)}
         thumbnail="/docs/img/carousel-1.png"
         direction="column"
         label="Featured Post"
-        link={<Anchor href="#" label="Learn More" icon={<LinkNextIcon />} />}>
+        link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}>
         <Heading tag="h2">
           Protect Your Digital Enterprise ipsum lorem dolores aeat el
         </Heading>
@@ -156,7 +158,7 @@ var Examples = React.createClass({
       <Box pad={{horizontal: 'large'}}>
         <Tiles size="large" colorIndex="light-2" justify="center">
           <Card
-            onClick={this._onClickCard.bind(this, window.location.pathname + '#')}
+            onClick={this._onClickCard.bind(this, grommetPath)}
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
             label="Featured Post"
@@ -172,7 +174,7 @@ var Examples = React.createClass({
               app, workload and service. Learn how hybrid infrastructure can
               help you achieve cloud agility with traditional IT
               predictability.`}
-            link={<Anchor href="#" label="Learn More" icon={<LinkNextIcon />} />}
+            link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}
           />
           <Card
             direction="column"
