@@ -22436,6 +22436,8 @@ module.exports =
 	var MarqueeParallax = __webpack_require__(215);
 	var Header = __webpack_require__(216);
 
+	var grommetPath = 'http://grommet.github.io';
+
 	var Examples = React.createClass({
 	  displayName: 'Examples',
 
@@ -22559,10 +22561,10 @@ module.exports =
 	    var blogPostCard = React.createElement(
 	      Card,
 	      {
-	        onClick: this._onClickCard.bind(this, window.location.pathname + '#'),
+	        onClick: this._onClickCard.bind(this, grommetPath),
 	        direction: 'column',
 	        label: 'Featured Post',
-	        link: React.createElement(Anchor, { href: '#', label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
+	        link: React.createElement(Anchor, { href: grommetPath, label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
 	      React.createElement(
 	        Heading,
 	        { tag: 'h2' },
@@ -22573,11 +22575,11 @@ module.exports =
 	    var featuredPostCard = React.createElement(
 	      Card,
 	      {
-	        onClick: this._onClickCard.bind(this, window.location.pathname + '#'),
+	        onClick: this._onClickCard.bind(this, grommetPath),
 	        thumbnail: '/docs/img/carousel-1.png',
 	        direction: 'column',
 	        label: 'Featured Post',
-	        link: React.createElement(Anchor, { href: '#', label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
+	        link: React.createElement(Anchor, { href: grommetPath, label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
 	      React.createElement(
 	        Heading,
 	        { tag: 'h2' },
@@ -22611,13 +22613,13 @@ module.exports =
 	        Tiles,
 	        { size: 'large', colorIndex: 'light-2', justify: 'center' },
 	        React.createElement(Card, {
-	          onClick: this._onClickCard.bind(this, window.location.pathname + '#'),
+	          onClick: this._onClickCard.bind(this, grommetPath),
 	          direction: 'column',
 	          thumbnail: '/docs/img/Case_Study_image.png',
 	          label: 'Featured Post',
 	          heading: 'Protect Your Digital Enterprise ipsum dolores aeat',
 	          description: 'It’s not an either/or world. It’s about finding the\n              right platform for each app, workload and service. Learn how\n              hybrid infrastructure can help you achieve cloud agility with\n              traditional IT predictability. It’s not an either/or world. It’s\n              about finding the right platform for each app, workload and\n              service. Learn how hybrid infrastructure can help you achieve\n              cloud agility with traditional IT predictability. It’s not an\n              either/or world. It’s about finding the right platform for each\n              app, workload and service. Learn how hybrid infrastructure can\n              help you achieve cloud agility with traditional IT\n              predictability.',
-	          link: React.createElement(Anchor, { href: '#', label: 'Learn More', icon: React.createElement(LinkNextIcon, null) })
+	          link: React.createElement(Anchor, { href: grommetPath, label: 'Learn More', icon: React.createElement(LinkNextIcon, null) })
 	        }),
 	        React.createElement(Card, {
 	          direction: 'column',
