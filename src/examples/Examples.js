@@ -3,15 +3,26 @@
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
+var Tiles = require('grommet/components/Tiles');
 var Box = require('grommet/components/Box');
 var Heading = require('grommet/components/Heading');
+var Headline = require('grommet/components/Headline');
 var Paragraph = require('grommet/components/Paragraph');
+var Accordion = require('grommet/components/Accordion');
+var AccordionPanel = require('grommet/components/AccordionPanel');
+var Card = require('grommet/components/Card');
+var Anchor = require('grommet/components/Anchor');
+var Video = require('grommet/components/Video');
+var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
+var SocialFacebookIcon = require('grommet/components/icons/base/SocialFacebook');
+var SocialLinkedinIcon = require('grommet/components/icons/base/SocialLinkedin');
+var LinkNextIcon = require('grommet/components/icons/base/LinkNext');
+var WatchIcon = require('grommet/components/icons/base/Watch');
 var Marquee = require('../modules/Marquee');
-var ContentCard = require('../modules/ContentCard');
 var MarqueeParallax = require('../modules/MarqueeParallax');
-var Accordion = require('../modules/Accordion');
-var AccordionPanel = require('../modules/AccordionPanel');
 var Header = require('./Header');
+
+const grommetPath = 'http://grommet.github.io';
 
 var Examples = React.createClass({
   contextTypes: {
@@ -41,6 +52,167 @@ var Examples = React.createClass({
     );
   },
 
+  _onClickCard: function (path, event) {
+    event.preventDefault();
+    window.location.href = path;
+  },
+
+  _renderNewsFeed: function () {
+    const twitterIconBox = (
+      <Box align="end">
+        <SocialTwitterIcon />
+      </Box>
+    );
+
+    const facebookIconBox = (
+      <Box align="end">
+        <SocialFacebookIcon />
+      </Box>
+    );
+
+    const linkedinIconBox = (
+      <Box align="end">
+        <SocialLinkedinIcon />
+      </Box>
+    );
+
+    const socialFeedCard1 = (
+      <Card
+        onClick={this._onClickCard.bind(this, 'http://www.twitter.com')}
+        direction="column"
+        label="Social">
+        <Heading tag="h2">
+          Protect Your Digital Enterprise ipsum lorem dolores aeat el
+        </Heading>
+        {twitterIconBox}
+      </Card>
+    );
+
+    const socialFeedCard2 = (
+      <Card
+        onClick={this._onClickCard.bind(this, 'http://www.facebook.com')}
+        direction="column"
+        label="Social">
+        <Heading tag="h2">
+          Protect Your Digital Enterprise ipsum lorem dolores aeat el
+        </Heading>
+        {facebookIconBox}
+      </Card>
+    );
+
+    const socialFeedCard3 = (
+      <Card
+        onClick={this._onClickCard.bind(this, 'http://www.linkedin.com')}
+        direction="column"
+        label="Social">
+        <Heading tag="h2">
+          Protect Your Digital Enterprise ipsum lorem dolores aeat el
+        </Heading>
+        {linkedinIconBox}
+      </Card>
+    );
+
+    const blogPostCard = (
+      <Card
+        onClick={this._onClickCard.bind(this, grommetPath)}
+        direction="column"
+        label="Featured Post"
+        link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}>
+        <Heading tag="h2">
+          Protect Your Digital Enterprise ipsum lorem dolores aeat el
+        </Heading>
+      </Card>
+    );
+
+    const featuredPostCard = (
+      <Card
+        onClick={this._onClickCard.bind(this, grommetPath)}
+        thumbnail="/docs/img/carousel-1.png"
+        direction="column"
+        label="Featured Post"
+        link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}>
+        <Heading tag="h2">
+          Protect Your Digital Enterprise ipsum lorem dolores aeat el
+        </Heading>
+      </Card>
+    );
+
+    return (
+      <Box pad={{horizontal: 'large'}}>
+        <Tiles size="large" masonry={true} numColumns={7} colorIndex="light-2" justify="center">
+          {blogPostCard}
+          {featuredPostCard}
+          {socialFeedCard1}
+          {socialFeedCard2}
+          {blogPostCard}
+          {featuredPostCard}
+          {featuredPostCard}
+          {socialFeedCard3}
+        </Tiles>
+      </Box>
+    );
+  },
+
+  _renderCards: function () {
+    return (
+      <Box pad={{horizontal: 'large'}}>
+        <Tiles size="large" colorIndex="light-2" justify="center">
+          <Card
+            onClick={this._onClickCard.bind(this, grommetPath)}
+            direction="column"
+            thumbnail="/docs/img/Case_Study_image.png"
+            label="Featured Post"
+            heading="Protect Your Digital Enterprise ipsum dolores aeat"
+            description={`It’s not an either/or world. It’s about finding the
+              right platform for each app, workload and service. Learn how
+              hybrid infrastructure can help you achieve cloud agility with
+              traditional IT predictability. It’s not an either/or world. It’s
+              about finding the right platform for each app, workload and
+              service. Learn how hybrid infrastructure can help you achieve
+              cloud agility with traditional IT predictability. It’s not an
+              either/or world. It’s about finding the right platform for each
+              app, workload and service. Learn how hybrid infrastructure can
+              help you achieve cloud agility with traditional IT
+              predictability.`}
+            link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}
+          />
+          <Card
+            direction="column"
+            thumbnail="/docs/img/Case_Study_image.png"
+            label="Video - 4:27"
+            heading="Foundation Paraguay Empowers Microbusinesses"
+            description={`See how Hewlett Packard Enterprise delivers mobile
+              solutions to improve quality of life and help eliminate poverty
+              in South America.`}
+            video={{
+              source: 'video/test.mp4',
+              type: 'mp4'
+            }}
+            link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
+          />
+          <Card
+            direction="column"
+            thumbnail="/docs/img/Case_Study_image.png"
+            label="Featured Post"
+            heading="The Key Steps to Reducing Software Spend"
+            description={`HPE Software Licensing and Management Solutions can
+              help you optimize your software investments through control of
+              complex negotiations and renewal processes`}
+          />
+          <Card
+            direction="column"
+            thumbnail="/docs/img/Case_Study_image.png"
+            label="Featured Post"
+            heading="The Key Steps to Reducing Software Spend"
+            description={`HPE Software Licensing and Management Solutions can
+              help you optimize your software investments through control of
+              complex negotiations and renewal processes`}
+          />
+        </Tiles>
+      </Box>
+    );
+  },
+
   render: function () {
     return (
       <div>
@@ -48,13 +220,19 @@ var Examples = React.createClass({
           logoLink={'/docs/hpe/examples'}
           links={
             [{
-              label: 'Examples',
+              label: 'Documentation',
               links: [{
-                label: 'Marquee',
-                href: '/docs/hpe/examples'
+                label: 'Accordion',
+                href: 'http://grommet.github.io/docs/accordion/'
               }, {
-                label: 'TBD',
-                href: '/docs/hpe/examples'
+                label: 'Card',
+                href: 'http://grommet.github.io/docs/card/'
+              }, {
+                label: 'Marquee',
+                href: '/docs/hpe/develop/marquee'
+              }, {
+                label: 'Stack',
+                href: '/docs/hpe/develop/stack'
               }]
             }]
           } />
@@ -91,55 +269,96 @@ var Examples = React.createClass({
           link="http://www.grommet.io/docs/"
           responsiveBackgroundPosition="left" />
         <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with NO Parallax</strong></p></Box>
+        <Marquee size="small" darkTheme={true} justify="start"
+          backgroundVideo={<Video muted={true} loop={true} autoPlay={true} showControls={false}><source src="/docs/img/VideoMarque_Part3V2.mp4" type='video/mp4'/></Video>}
+          link="http://www.grommet.io/docs/"
+          headline="Accelerate your transformation with the cloud"
+          subHeadline="HPE can help you benefit now from your right mix of cloud"
+          responsiveBackgroundPosition="left"
+          overlayVideo={<Video autoPlay={true}><source src="/docs/img/VideoMarque_Part3V3.mp4" type='video/mp4'/></Video>} />
+        <Box pad={{horizontal: 'large'}}><p><strong>Small Video Marquee with NO Parallax</strong></p></Box>
         {this._loremIpsum()}
         <Box pad={{ horizontal: 'large', vertical: 'none' }}>
-          <Accordion
-            colorIndex="light-2"
-            headline="Services Portfolio"
-            subHeadline="Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me."
-          >
-            <AccordionPanel panelTitle="Enterprise Mobility Services">
-              <Heading tag="h3" margin="none">
-                Empower your employees while ensuring your workplace remains enterprise grade, scalable and secure.
-              </Heading>
-              <Paragraph margin="small">
-                With proficiency in the latest mobile and social technologies,
-                we can help your business develop new systems of engagement
-                while leveraging your legacy investments
-              </Paragraph>
-              <ContentCard
-                thumbnail="/docs/img/Video_image.png"
-                overline="Video - 4:27"
-                heading="Foundation Paraguay Empowers Microbusinesses"
-                description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
-                video={{
-                  source: 'video/test.mp4',
-                  type: 'mp4'
-                }}
-              />
+          <Box align="center" separator="bottom">
+            <Headline size="large" strong={true} margin="none" align="center">
+              Services Portfolio
+            </Headline>
+            <Paragraph size="large"	align="center">
+              Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
+            </Paragraph>
+          </Box>
+          <Accordion>
+            <AccordionPanel
+              heading={
+                <Heading tag="h2">
+                  Enterprise Mobility Services
+                </Heading>
+              }
+            >
+              <Box pad="medium">
+                <Heading tag="h3" margin="none">
+                  Empower your employees while ensuring your workplace remains enterprise grade, scalable and secure.
+                </Heading>
+                <Paragraph margin="small">
+                  With proficiency in the latest mobile and social technologies,
+                  we can help your business develop new systems of engagement
+                  while leveraging your legacy investments
+                </Paragraph>
+                <Card
+                  direction="row"
+                  thumbnail="/docs/img/Case_Study_image.png"
+                  label="Video - 4:27"
+                  heading="Foundation Paraguay Empowers Microbusinesses"
+                  description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
+                  video={{
+                    source: 'video/test.mp4',
+                    type: 'mp4'
+                  }}
+                  link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
+                />
+              </Box>
             </AccordionPanel>
-            <AccordionPanel panelTitle="Software Licensings and Managment">
-              <Heading tag="h3" margin="none">
-                Manage control, compliance and cost through our value-added
-                Licensing, Advisory Services and Software Asset Management.
-              </Heading>
-              <Paragraph margin="small">
-                We help you get the most out of your software investments by
-                facilitating cost-efective acquisition, giving you better
-                control throughout your organization, and helping you meet
-                licensing compliance requirements
-              </Paragraph>
-              <ContentCard
-                thumbnail="/docs/img/Case_Study_image.png"
-                overline="Case Study"
-                heading="The Key Steps to Reducing Software Spend"
-                description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
-                link="#"
-              />
+            <AccordionPanel
+              heading={
+                <Heading tag="h2">
+                  Software Licensings and Managment
+                </Heading>
+              }
+            >
+              <Box pad="medium">
+                <Heading tag="h3" margin="none">
+                  Manage control, compliance and cost through our value-added
+                  Licensing, Advisory Services and Software Asset Management.
+                </Heading>
+                <Paragraph margin="small">
+                  We help you get the most out of your software investments by
+                  facilitating cost-efective acquisition, giving you better
+                  control throughout your organization, and helping you meet
+                  licensing compliance requirements
+                </Paragraph>
+                <Card
+                  direction="row"
+                  thumbnail="/docs/img/Case_Study_image.png"
+                  label="Case Study"
+                  heading="The Key Steps to Reducing Software Spend"
+                  description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+                  video={{
+                    source: 'video/test.mp4',
+                    type: 'mp4'
+                  }}
+                  link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
+                />
+              </Box>
             </AccordionPanel>
           </Accordion>
         </Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Accordion with Card, row direction</strong></p></Box>
         {this._loremIpsum()}
+        {this._renderCards()}
+        <Box pad={{horizontal: 'large'}}><p><strong>Card with Tiles wrapper</strong></p></Box>
+        {this._loremIpsum()}
+        {this._renderNewsFeed()}
+        <Box pad={{horizontal: 'large'}}><p><strong>Card with Tiles wrapper, masonry option</strong></p></Box>
       </div>
     );
   }

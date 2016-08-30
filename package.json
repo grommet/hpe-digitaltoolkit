@@ -1,6 +1,6 @@
 {
-  "name": "grommet-docs",
-  "version": "0.4.0",
+  "name": "hpe-digitaltoolkit",
+  "version": "0.0.0",
   "main": "src/index.js",
   "description": "Website for Grommet framework.",
   "authors": [
@@ -60,6 +60,8 @@
   },
   "scripts": {
     "build": "gulp dist",
+    "dev": "gulp dev",
+    "dev:alias": "gulp dev --useAlias",
     "start": "node server/server.js"
   }
 }
