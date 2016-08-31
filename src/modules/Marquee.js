@@ -52,7 +52,9 @@ export default class Marquee extends Component {
     if (window.innerWidth < PALM_BREAKPOINT) {
       this.setState({ colorIndex: LIGHT_COLORINDEX });
     } else {
-      this.setState({ colorIndex: darkTheme ? DARK_COLORINDEX : LIGHT_COLORINDEX });
+      this.setState({ colorIndex: darkTheme ?
+        DARK_COLORINDEX :
+        LIGHT_COLORINDEX });
     }
   }
 
@@ -70,9 +72,13 @@ export default class Marquee extends Component {
     const { textBackgroundColorIndex } = this.props;
 
     if (window.innerWidth < PALM_BREAKPOINT) {
-      this.setState({ textPad: textBackgroundColorIndex ? { horizontal: 'none', vertical: 'none', between: 'medium' } : { horizontal: 'large', vertical: 'large', between: 'medium' } });
+      this.setState({ textPad: textBackgroundColorIndex ?
+        { horizontal: 'none', vertical: 'none', between: 'medium' } :
+        { horizontal: 'large', vertical: 'large', between: 'medium' } });
     } else {
-      this.setState({ textPad: { horizontal: 'large', vertical: 'large', between: 'medium' } });
+      this.setState({
+        textPad: { horizontal: 'large', vertical: 'large', between: 'medium' }
+      });
     }
   }
 
@@ -94,11 +100,18 @@ export default class Marquee extends Component {
     const full = flush ? 'horizontal' : false;
     const pad = flush ? 'none' : 'large';
 
+    const backgroundVideoClasses =
+      `${CLASS_ROOT}__background ${CLASS_ROOT}__background-video`;
+
     if (backgroundImage) {
-      return <Box containerClassName={CLASS_ROOT + "__background"} appCentered={true} pad={pad} backgroundImage={`url(${backgroundImage})`} full={full} />;
+      return (
+        <Box containerClassName={CLASS_ROOT + "__background"}
+          appCentered={true} pad={pad}
+          backgroundImage={`url(${backgroundImage})`} full={full} />
+      );
     } else if (backgroundVideo) {
       return (
-        <Box className={CLASS_ROOT + "__background " + CLASS_ROOT + "__background-video"} ref="video">
+        <Box className={backgroundVideoClasses} ref="video">
           {backgroundVideo}
         </Box>
       );
@@ -140,7 +153,8 @@ export default class Marquee extends Component {
         <Box direction="row" responsive={false}>
           <Box pad={{ horizontal: 'small' }} separator="right" />
           <Box pad={{ horizontal: 'small' }} />
-          <Anchor primary={true} target="_blank" href={link} onClick={onClick} icon={linkIcon}>
+          <Anchor primary={true} target="_blank" href={link} onClick={onClick}
+            icon={linkIcon}>
             {this._linkCopy}
           </Anchor>
         </Box>
@@ -161,7 +175,8 @@ export default class Marquee extends Component {
   }
 
   _renderStack() {
-    const { headline, label, link, linkIcon, onClick, overlayVideo, stackSize, subHeadline, textBackgroundColorIndex } = this.props;
+    const { headline, label, link, linkIcon, onClick, overlayVideo, stackSize,
+      subHeadline, textBackgroundColorIndex } = this.props;
 
     const logoMarkup = this._renderLogo();
 
@@ -176,11 +191,16 @@ export default class Marquee extends Component {
       if (overlayVideo) {
         return (
           <Box className={CLASS_ROOT + "__stack"} pad={this.state.textPad}>
-            <Box pad={textPad} colorIndex={transparentTextBackgroundColorIndex}>
+            <Box pad={textPad}
+              colorIndex={transparentTextBackgroundColorIndex}>
               {logoMarkup}
-              <Stack size={stackSize} headline={headline} print={subHeadline} label={label} />
-              <Box direction="row" pad={{ horizontal: 'none', vertical: 'small'}} responsive={false}>
-                <Anchor primary={true} onClick={this._onShowVideo} icon={<WatchIcon />}>
+              <Stack size={stackSize} headline={headline} print={subHeadline}
+                label={label} />
+              <Box direction="row"
+                pad={{ horizontal: 'none', vertical: 'small'}}
+                responsive={false}>
+                <Anchor primary={true} onClick={this._onShowVideo}
+                  icon={<WatchIcon />}>
                   Watch Now
                 </Anchor>
                 {this._renderCta()}
@@ -191,9 +211,12 @@ export default class Marquee extends Component {
       } else {
         return (
           <Box className={CLASS_ROOT + "__stack"} pad={this.state.textPad}>
-            <Box pad={textPad} colorIndex={transparentTextBackgroundColorIndex}>
+            <Box pad={textPad}
+              colorIndex={transparentTextBackgroundColorIndex}>
               {logoMarkup}
-              <Stack size={stackSize} headline={headline} print={subHeadline} label={label} link={link} linkText={this._linkCopy()} linkIcon={linkIcon} onClick={onClick} />
+              <Stack size={stackSize} headline={headline} print={subHeadline}
+                label={label} link={link} linkText={this._linkCopy()}
+                linkIcon={linkIcon} onClick={onClick} />
             </Box>
           </Box>
         );
@@ -203,7 +226,8 @@ export default class Marquee extends Component {
         <Box className={CLASS_ROOT + "__stack"} pad={this.state.textPad}>
           <Box pad={textPad} colorIndex={transparentTextBackgroundColorIndex}>
             {logoMarkup}
-            <Stack size={stackSize} headline={headline} print={subHeadline} label={label} />
+            <Stack size={stackSize} headline={headline} print={subHeadline}
+              label={label} />
           </Box>
         </Box>
       );
@@ -223,14 +247,19 @@ export default class Marquee extends Component {
 
     if (justify === 'center') {
       return (
-        <Box className={CLASS_ROOT + "__overlay"} colorIndex={overlayColorIndex} justify={justify} align="center" primary={true} full={full} direction="row" textAlign="center">
+        <Box className={CLASS_ROOT + "__overlay"}
+          colorIndex={overlayColorIndex} justify={justify} align="center"
+          primary={true} full={full} direction="row" textAlign="center">
           {stack}
         </Box>
       );
     } else {
       return (
-        <Box className={CLASS_ROOT + "__overlay"} colorIndex={overlayColorIndex} align="center" primary={true} full={full} direction="row" reverse={this.state.reverse} >
-          <Box className={CLASS_ROOT + "__image"} align="center" justify="center">
+        <Box className={CLASS_ROOT + "__overlay"}
+          colorIndex={overlayColorIndex} align="center" primary={true}
+          full={full} direction="row" reverse={this.state.reverse} >
+          <Box className={CLASS_ROOT + "__image"} align="center"
+            justify="center">
             {this._renderImage()}
           </Box>
           {stack}
@@ -261,7 +290,8 @@ export default class Marquee extends Component {
     const { overlayVideo } = this.props;
 
     return (
-      <div className={`${CLASS_ROOT}__video-overlay`} key={this.state.timestamp}>
+      <div className={`${CLASS_ROOT}__video-overlay`}
+        key={this.state.timestamp}>
         <Anchor icon={<CloseIcon />} onClick={this._onClose} />
         {overlayVideo}
       </div>
