@@ -139,7 +139,7 @@ var Examples = React.createClass({
 
     return (
       <Box pad={{horizontal: 'large'}}>
-        <Tiles size="large" masonry={true} numColumns={7} colorIndex="light-2" justify="center">
+        <Tiles size="medium" masonry={true} numColumns={7} colorIndex="light-2" justify="center">
           {blogPostCard}
           {featuredPostCard}
           {socialFeedCard1}
@@ -156,7 +156,7 @@ var Examples = React.createClass({
   _renderCards: function () {
     return (
       <Box pad={{horizontal: 'large'}}>
-        <Tiles size="large" colorIndex="light-2" justify="center">
+        <Tiles size="medium" colorIndex="light-2" justify="center">
           <Card
             onClick={this._onClickCard.bind(this, grommetPath)}
             direction="column"

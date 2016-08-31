@@ -5,7 +5,7 @@ var DocsArticle = require('../../DocsArticle');
 var Box = require('grommet/components/Box');
 var Heading = require('grommet/components/Heading');
 var Paragraph = require('grommet/components/Paragraph');
-var ContentCard = require('../../modules/ContentCard');
+var Card = require('grommet/components/Card');
 
 var COLORS = ['brand', 'neutral-1', 'neutral-1-t', 'neutral-2', 'neutral-2-t', 'neutral-3', 'neutral-3-t', 'neutral-4',
   'accent-1', 'accent-1-t', 'accent-2', 'accent-2-t',
@@ -21,85 +21,85 @@ var BoxDoc = React.createClass({
       return <Box key={color} colorIndex={color} pad="small">{color}</Box>;
     });
 
-    var contentCardCustomChildren = function (pad) {
+    var cardCustomChildren = function (pad, basis) {
       return (
-        <ContentCard pad="none" direction="column" thumbnail="/docs/img/Video_image.png">
+        <Card pad="none" direction="column" thumbnail="/docs/img/Video_image.png" basis={basis}>
           <Box pad={pad}>
             <Heading tag="h2">Protect Your Digital Enterprise</Heading>
             <Paragraph margin="none">
               It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.
             </Paragraph>
           </Box>
-        </ContentCard>
+        </Card>
       );
     };
 
-    var contentCardDefault = function (pad) {
+    var cardDefault = function (pad, basis) {
       return (
-        <ContentCard pad="none" direction="column" thumbnail="/docs/img/Case_Study_image.png">
+        <Card pad="none" direction="column" thumbnail="/docs/img/Case_Study_image.png" basis={basis}>
           <Box pad={pad}>
             <Heading tag="h2">Protect Your Digital Enterprise</Heading>
             <Paragraph margin="none">
               HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes.
             </Paragraph>
           </Box>
-        </ContentCard>
+        </Card>
       );
     };
 
     var boxFourColumnsLargeSpacing = (
-      <Box pad="medium" columns={4}>
-        {contentCardCustomChildren('medium')}
-        {contentCardDefault('medium')}
-        {contentCardDefault('medium')}
-        {contentCardDefault('medium')}
+      <Box pad="medium" direction="row" wrap={true}>
+        {cardCustomChildren('medium', '1/4')}
+        {cardDefault('medium', '1/4')}
+        {cardDefault('medium', '1/4')}
+        {cardDefault('medium', '1/4')}
       </Box>
     );
 
     var boxFourColumnsMediumSpacing = (
       <Box pad={{horizontal: 'small'}}>
-        <Box pad="medium" columns={4}>
-          {contentCardCustomChildren('small')}
-          {contentCardDefault('small')}
-          {contentCardDefault('small')}
-          {contentCardDefault('small')}
+        <Box pad="medium" direction="row" wrap={true}>
+          {cardCustomChildren('small', '1/4')}
+          {cardDefault('small', '1/4')}
+          {cardDefault('small', '1/4')}
+          {cardDefault('small', '1/4')}
         </Box>
       </Box>
     );
 
     var boxThreeColumnsMediumSpacing = (
       <Box pad={{horizontal: 'small'}}>
-        <Box pad="medium" columns={3}>
-          {contentCardCustomChildren('small')}
-          {contentCardDefault('small')}
-          {contentCardDefault('small')}
+        <Box pad="medium" direction="row" wrap={true}>
+          {cardCustomChildren('small', '1/3')}
+          {cardDefault('small', '1/3')}
+          {cardDefault('small', '1/3')}
         </Box>
       </Box>
     );
 
     var boxTwoColumnsMediumSpacing = (
       <Box pad={{horizontal: 'small'}}>
-        <Box pad="medium" columns={2}>
-          {contentCardCustomChildren('small')}
-          {contentCardDefault('small')}
+        <Box pad="medium" direction="row" wrap={true}>
+          {cardCustomChildren('small', '1/2')}
+          {cardDefault('small', '1/2')}
         </Box>
       </Box>
     );
 
     var boxSixtyThirtyColumnsMediumSpacing = (
       <Box pad={{horizontal: 'small'}}>
-        <Box pad="medium" columns={{ numColumns: 2, mainColumn: 'start', fixed: true}}>
-          {contentCardCustomChildren('small')}
-          {contentCardDefault('small')}
+        <Box pad="medium" direction="row" wrap={true}>
+          {cardCustomChildren('small', '2/3')}
+          {cardDefault('small', '1/3')}
         </Box>
       </Box>
     );
 
     var boxOneColumn = (
-      <Box columns={{ numColumns: 1}}>
-        <ContentCard pad="none" direction="column" textAlign="center">
+      <Box align="center">
+        <Card pad="none" direction="column" textAlign="center" size={{width: {max: 'xxlarge'}}}>
           <Heading tag="h2">It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.</Heading>
-        </ContentCard>
+        </Card>
       </Box>
     );
 
