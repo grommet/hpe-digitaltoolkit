@@ -10,13 +10,19 @@ var Headline = require('grommet/components/Headline');
 var Paragraph = require('grommet/components/Paragraph');
 var Accordion = require('grommet/components/Accordion');
 var AccordionPanel = require('grommet/components/AccordionPanel');
+var Card = require('grommet/components/Card');
+var Anchor = require('grommet/components/Anchor');
 var Video = require('grommet/components/Video');
 var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
 var SocialFacebookIcon = require('grommet/components/icons/base/SocialFacebook');
+var SocialLinkedinIcon = require('grommet/components/icons/base/SocialLinkedin');
+var LinkNextIcon = require('grommet/components/icons/base/LinkNext');
+var WatchIcon = require('grommet/components/icons/base/Watch');
 var Marquee = require('../modules/Marquee');
-var ContentCard = require('../modules/ContentCard');
 var MarqueeParallax = require('../modules/MarqueeParallax');
 var Header = require('./Header');
+
+const grommetPath = 'http://grommet.github.io';
 
 var Examples = React.createClass({
   contextTypes: {
@@ -46,44 +52,89 @@ var Examples = React.createClass({
     );
   },
 
+  _onClickCard: function (path, event) {
+    event.preventDefault();
+    window.location.href = path;
+  },
+
   _renderNewsFeed: function () {
-    var socialFeedCard1 = (
-      <ContentCard
-        direction="column"
-        overline="Social"
-        socialIcon={<SocialTwitterIcon />}
-        link="http://www.twitter.com">
-        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
-      </ContentCard>
+    const twitterIconBox = (
+      <Box align="end">
+        <SocialTwitterIcon />
+      </Box>
     );
 
-    var socialFeedCard2 = (
-      <ContentCard
-        direction="column"
-        overline="Social"
-        socialIcon={<SocialFacebookIcon />}
-        link="http://www.twitter.com">
-        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
-      </ContentCard>
+    const facebookIconBox = (
+      <Box align="end">
+        <SocialFacebookIcon />
+      </Box>
     );
 
-    var blogPostCard = (
-      <ContentCard
-        direction="column"
-        overline="Featured Post"
-        link="http://www.twitter.com">
-        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
-      </ContentCard>
+    const linkedinIconBox = (
+      <Box align="end">
+        <SocialLinkedinIcon />
+      </Box>
     );
 
-    var featuredPostCard = (
-      <ContentCard
-        thumbnail="/docs/img/Case_Study_image.png"
+    const socialFeedCard1 = (
+      <Card
+        onClick={this._onClickCard.bind(this, 'http://www.twitter.com')}
         direction="column"
-        overline="Featured Post"
-        link="http://www.twitter.com">
-        <Heading tag="h2">Protect Your Digital Enterprise ipsum lorem dolores aeat el</Heading>
-      </ContentCard>
+        label="Social">
+        <Heading tag="h2">
+          Protect Your Digital Enterprise ipsum lorem dolores aeat el
+        </Heading>
+        {twitterIconBox}
+      </Card>
+    );
+
+    const socialFeedCard2 = (
+      <Card
+        onClick={this._onClickCard.bind(this, 'http://www.facebook.com')}
+        direction="column"
+        label="Social">
+        <Heading tag="h2">
+          Protect Your Digital Enterprise ipsum lorem dolores aeat el
+        </Heading>
+        {facebookIconBox}
+      </Card>
+    );
+
+    const socialFeedCard3 = (
+      <Card
+        onClick={this._onClickCard.bind(this, 'http://www.linkedin.com')}
+        direction="column"
+        label="Social">
+        <Heading tag="h2">
+          Protect Your Digital Enterprise ipsum lorem dolores aeat el
+        </Heading>
+        {linkedinIconBox}
+      </Card>
+    );
+
+    const blogPostCard = (
+      <Card
+        onClick={this._onClickCard.bind(this, grommetPath)}
+        direction="column"
+        label="Featured Post"
+        link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}>
+        <Heading tag="h2">
+          Protect Your Digital Enterprise ipsum lorem dolores aeat el
+        </Heading>
+      </Card>
+    );
+
+    const featuredPostCard = (
+      <Card
+        onClick={this._onClickCard.bind(this, grommetPath)}
+        thumbnail="/docs/img/carousel-1.png"
+        direction="column"
+        label="Featured Post"
+        link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}>
+        <Heading tag="h2">
+          Protect Your Digital Enterprise ipsum lorem dolores aeat el
+        </Heading>
+      </Card>
     );
 
     return (
@@ -96,48 +147,66 @@ var Examples = React.createClass({
           {blogPostCard}
           {featuredPostCard}
           {featuredPostCard}
-          {blogPostCard}
+          {socialFeedCard3}
         </Tiles>
       </Box>
     );
   },
 
-  _renderContentCards: function () {
+  _renderCards: function () {
     return (
       <Box pad={{horizontal: 'large'}}>
         <Tiles size="large" colorIndex="light-2" justify="center">
-          <ContentCard
+          <Card
+            onClick={this._onClickCard.bind(this, grommetPath)}
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
-            overline="Featured Post"
-            heading="Protect Your Digital Enterprise ipsum Learn More lorem dolores aeat"
-            description="It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. "
-            link="http://grommet.io"
+            label="Featured Post"
+            heading="Protect Your Digital Enterprise ipsum dolores aeat"
+            description={`It’s not an either/or world. It’s about finding the
+              right platform for each app, workload and service. Learn how
+              hybrid infrastructure can help you achieve cloud agility with
+              traditional IT predictability. It’s not an either/or world. It’s
+              about finding the right platform for each app, workload and
+              service. Learn how hybrid infrastructure can help you achieve
+              cloud agility with traditional IT predictability. It’s not an
+              either/or world. It’s about finding the right platform for each
+              app, workload and service. Learn how hybrid infrastructure can
+              help you achieve cloud agility with traditional IT
+              predictability.`}
+            link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}
           />
-          <ContentCard
+          <Card
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
-            overline="Video - 4:27"
+            label="Video - 4:27"
             heading="Foundation Paraguay Empowers Microbusinesses"
-            description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
+            description={`See how Hewlett Packard Enterprise delivers mobile
+              solutions to improve quality of life and help eliminate poverty
+              in South America.`}
             video={{
               source: 'video/test.mp4',
               type: 'mp4'
             }}
+            link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
           />
-          <ContentCard
+          <Card
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
-            overline="Featured Post"
+            label="Featured Post"
             heading="The Key Steps to Reducing Software Spend"
-            description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+            description={`HPE Software Licensing and Management Solutions can
+              help you optimize your software investments through control of
+              complex negotiations and renewal processes`}
           />
-          <ContentCard
+          <Card
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
-            overline="Featured Post"
+            label="Featured Post"
             heading="The Key Steps to Reducing Software Spend"
-            description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
+            description={`HPE Software Licensing and Management Solutions can
+              help you optimize your software investments through control of
+              complex negotiations and renewal processes`}
           />
         </Tiles>
       </Box>
@@ -153,11 +222,14 @@ var Examples = React.createClass({
             [{
               label: 'Documentation',
               links: [{
+                label: 'Accordion',
+                href: 'http://grommet.github.io/docs/accordion/'
+              }, {
+                label: 'Card',
+                href: 'http://grommet.github.io/docs/card/'
+              }, {
                 label: 'Marquee',
                 href: '/docs/hpe/develop/marquee'
-              }, {
-                label: 'ContentCard',
-                href: '/docs/hpe/develop/contentcard'
               }, {
                 label: 'Stack',
                 href: '/docs/hpe/develop/stack'
@@ -294,16 +366,17 @@ var Examples = React.createClass({
                   we can help your business develop new systems of engagement
                   while leveraging your legacy investments
                 </Paragraph>
-                <ContentCard
+                <Card
                   direction="row"
                   thumbnail="/docs/img/Case_Study_image.png"
-                  overline="Video - 4:27"
+                  label="Video - 4:27"
                   heading="Foundation Paraguay Empowers Microbusinesses"
                   description="See how Hewlett Packard Enterprise delivers mobile solutions to improve quality of life and help eliminate poverty in South America."
                   video={{
                     source: 'video/test.mp4',
                     type: 'mp4'
                   }}
+                  link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
                 />
               </Box>
             </AccordionPanel>
@@ -325,25 +398,29 @@ var Examples = React.createClass({
                   control throughout your organization, and helping you meet
                   licensing compliance requirements
                 </Paragraph>
-                <ContentCard
+                <Card
                   direction="row"
                   thumbnail="/docs/img/Case_Study_image.png"
-                  overline="Case Study"
+                  label="Case Study"
                   heading="The Key Steps to Reducing Software Spend"
                   description="HPE Software Licensing and Management Solutions can help you optimize your software investments through control of complex negotiations and renewal processes"
-                  link="#"
+                  video={{
+                    source: 'video/test.mp4',
+                    type: 'mp4'
+                  }}
+                  link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
                 />
               </Box>
             </AccordionPanel>
           </Accordion>
         </Box>
-        <Box pad={{horizontal: 'large'}}><p><strong>Accordion with ContentCard, row direction</strong></p></Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Accordion with Card, row direction</strong></p></Box>
         {this._loremIpsum()}
-        {this._renderContentCards()}
-        <Box pad={{horizontal: 'large'}}><p><strong>ContentCard with Tiles wrapper</strong></p></Box>
+        {this._renderCards()}
+        <Box pad={{horizontal: 'large'}}><p><strong>Card with Tiles wrapper</strong></p></Box>
         {this._loremIpsum()}
         {this._renderNewsFeed()}
-        <Box pad={{horizontal: 'large'}}><p><strong>ContentCard with Tiles wrapper, masonry option</strong></p></Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Card with Tiles wrapper, masonry option</strong></p></Box>
       </div>
     );
   }
