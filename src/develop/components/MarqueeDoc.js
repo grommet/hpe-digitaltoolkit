@@ -45,7 +45,7 @@ var MarqueeDoc = React.createClass({
         backgroundVideo={<Video muted={true} loop={true} autoPlay={true} showControls={false}><source src="/docs/img/VideoMarque_Part3V2.mp4" type='video/mp4'/></Video>}
         link="http://www.grommet.io/docs/"
         headline="Accelerate your transformation with the cloud"
-        subHeadline="HPE can help you benefit now from your right mix of cloud"
+        subHeadline="HPE can help you benefit now from the right mix of cloud"
         responsiveBackgroundPosition="left"
         overlayVideo={<Video autoPlay={true}><source src="/docs/img/VideoMarque_Part3V3.mp4" type='video/mp4'/></Video>} />
     );
