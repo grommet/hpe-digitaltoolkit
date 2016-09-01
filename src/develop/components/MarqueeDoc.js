@@ -45,7 +45,7 @@ var MarqueeDoc = React.createClass({
         backgroundVideo={<Video muted={true} loop={true} autoPlay={true} showControls={false}><source src="/docs/img/VideoMarque_Part3V2.mp4" type='video/mp4'/></Video>}
         link="http://www.grommet.io/docs/"
         headline="Accelerate your transformation with the cloud"
-        subHeadline="HPE can help you benefit now from your right mix of cloud"
+        subHeadline="HPE can help you benefit now from the right mix of cloud"
         responsiveBackgroundPosition="left"
         overlayVideo={<Video autoPlay={true}><source src="/docs/img/VideoMarque_Part3V3.mp4" type='video/mp4'/></Video>} />
     );
@@ -63,36 +63,46 @@ var MarqueeDoc = React.createClass({
             <dd>Source of image to be used as the background for the marquee.  Optional.</dd>
             <dt><code>backgroundVideo                  {"{element}"}</code></dt>
             <dd>Video component to be used as the background for the marquee.  Optional.</dd>
+            <dt><code>backgroundOverlayColorIndex      {"{string}"}</code></dt>
+            <dd>Color index for the colored mask on top of the background image.  Optional.</dd>
             <dt><code>darkTheme                        true|false</code></dt>
             <dd>Text will be light-colored if true, dark if false.  Defaults to <code>true</code>.</dd>
             <dt><code>flush                            true|false</code></dt>
             <dd>If true, the marquee will horizontally fill the browser screen.  Defaults to <code>true</code>.</dd>
             <dt><code>headline                         {"{string}"}</code></dt>
             <dd>Headline of the marquee.  Required.</dd>
-            <dt><code>headlineSize                     small|medium|large</code></dt>
-            <dd>Size of the headline.  Defaults to <code>large</code>.</dd>
             <dt><code>image                            {"{string}"}</code></dt>
             <dd>Source of image to be shown opposite the text.  Optional.</dd>
             <dt><code>justify                          start|center|end</code></dt>
             <dd>Position of the text on the marquee.  Defaults to <code>end</code>.</dd>
+            <dt><code>label                            {"{string}"}</code></dt>
+            <dd>Label that goes above the headline.  Optional.</dd>
             <dt><code>link                             {"{string}"}</code></dt>
             <dd>External URL where the link should go.  Optional.</dd>
             <dt><code>linkIcon                         {"{element}"}</code></dt>
             <dd>Icon component to be used with the link.  Optional.</dd>
             <dt><code>linkText                         {"{string}"}</code></dt>
             <dd>Text to be shown for the link.  Defaults to <code>Learn More</code>.</dd>
+            <dt><code>logo                             {"{string}"}</code></dt>
+            <dd>Logo that will go above the headline.  Optional.</dd>
             <dt><code>onClick                          {"{function}"}</code></dt>
             <dd>Click handler for the link.  Optional.</dd>
             <dt><code>overlayVideo                     {"{element}"}</code></dt>
             <dd>Video component to be shown when the "Watch Now" link is clicked.  Optional.</dd>
             <dt><code>responsiveBackgroundPosition     left|center|right</code></dt>
             <dd>Background position where the background image should be pinned for smaller screen sizes.  Defaults to <code>center</code>.</dd>
+            <dt><code>responsiveDropText               true|false</code></dt>
+            <dd>Whether the text portion of the Marquee should drop below the image for mobile-size screens.  Defaults to <code>true</code>.</dd>
             <dt><code>separator                        true|false</code></dt>
             <dd>A thin line that will be shown on mobile-size screens, to separate the Marquee text from the next component.  Defaults to <code>false</code>.</dd>
             <dt><code>size                             small|large</code></dt>
             <dd>The size of the Marquee.  Defaults to <code>large</code>.</dd>
+            <dt><code>stackSize                        large|xlarge</code></dt>
+            <dd>Relative sizes of the text.  Defaults to <code>xlarge</code>.</dd>
             <dt><code>subHeadline                      {"{string}"}</code></dt>
             <dd>Content for the subtext.  Required.</dd>
+            <dt><code>textBackgroundColorIndex         {"{string}"}</code></dt>
+            <dd>Color index for the colored box behind the box.  Optional.</dd>
           </dl>
         </section>
 
