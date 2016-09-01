@@ -169,7 +169,6 @@
   }
 
   &:not(.marquee--responsive-drop) {
-
     .marquee__background {
       @include media-query(palm) {
         height: 100%;
