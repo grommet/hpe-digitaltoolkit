@@ -3,7 +3,6 @@ node_js: 5
 sudo: false
 before_script:
 - npm install -g gulp
-- gem install scss_lint
 script:
 - npm run build
 after_success:
