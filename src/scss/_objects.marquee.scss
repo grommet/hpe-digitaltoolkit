@@ -144,4 +144,46 @@
       z-index: 1;
     }
   }
+
+  &__logo {
+    width: auto;
+    align-self: flex-start;
+  }
+
+  .grommetux-box--justify-center {
+    .marquee__logo {
+      align-self: center;
+    }
+
+    .grommetux-paragraph {
+      max-width: 100%;
+    }
+  }
+
+  &--responsive-drop .grommetux-box--justify-center {
+    .marquee__stack {
+      @include media-query(palm) {
+        margin-top: $inuit-base-spacing-unit * 12.5;
+      }
+    }
+  }
+
+  &:not(.marquee--responsive-drop) {
+    .marquee__background {
+      @include media-query(palm) {
+        height: 100%;
+      }
+    }
+
+    .marquee__image {
+      @include media-query(palm) {
+        height: auto;
+      }
+    }
+
+    .marquee__stack > .grommetux-box {
+      padding-top: $inuit-base-spacing-unit * 4;
+      padding-bottom: $inuit-base-spacing-unit * 4;
+    }
+  }
 }
