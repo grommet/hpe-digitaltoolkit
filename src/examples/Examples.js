@@ -3,6 +3,7 @@
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
+var Columns = require('grommet/components/Columns');
 var Tiles = require('grommet/components/Tiles');
 var Box = require('grommet/components/Box');
 var Heading = require('grommet/components/Heading');
@@ -139,16 +140,19 @@ var Examples = React.createClass({
 
     return (
       <Box pad={{horizontal: 'large'}}>
-        <Tiles size="medium" masonry={true} numColumns={7} colorIndex="light-2" justify="center">
-          {blogPostCard}
-          {featuredPostCard}
-          {socialFeedCard1}
-          {socialFeedCard2}
-          {blogPostCard}
-          {featuredPostCard}
-          {featuredPostCard}
-          {socialFeedCard3}
-        </Tiles>
+        <Box colorIndex="light-2">
+          <Columns size="medium" masonry={true} maxCount={7} justify="center"
+            responsive={true}>
+            {blogPostCard}
+            {featuredPostCard}
+            {socialFeedCard1}
+            {socialFeedCard2}
+            {blogPostCard}
+            {featuredPostCard}
+            {featuredPostCard}
+            {socialFeedCard3}
+          </Columns>
+        </Box>
       </Box>
     );
   },
