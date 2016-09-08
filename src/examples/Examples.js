@@ -79,6 +79,7 @@ var Examples = React.createClass({
 
     const socialFeedCard1 = (
       <Card
+        contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.twitter.com')}
         direction="column"
         label="Social">
@@ -91,6 +92,7 @@ var Examples = React.createClass({
 
     const socialFeedCard2 = (
       <Card
+        contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.facebook.com')}
         direction="column"
         label="Social">
@@ -103,6 +105,7 @@ var Examples = React.createClass({
 
     const socialFeedCard3 = (
       <Card
+        contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.linkedin.com')}
         direction="column"
         label="Social">
@@ -115,6 +118,7 @@ var Examples = React.createClass({
 
     const blogPostCard = (
       <Card
+        contentPad="medium"
         onClick={this._onClickCard.bind(this, grommetPath)}
         direction="column"
         label="Featured Post"
@@ -127,6 +131,7 @@ var Examples = React.createClass({
 
     const featuredPostCard = (
       <Card
+        contentPad="medium"
         onClick={this._onClickCard.bind(this, grommetPath)}
         thumbnail="/docs/img/carousel-1.png"
         direction="column"
@@ -162,6 +167,7 @@ var Examples = React.createClass({
       <Box pad={{horizontal: 'large'}}>
         <Tiles size="medium" colorIndex="light-2" justify="center">
           <Card
+            contentPad="medium"
             onClick={this._onClickCard.bind(this, grommetPath)}
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
@@ -181,6 +187,7 @@ var Examples = React.createClass({
             link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}
           />
           <Card
+            contentPad="medium"
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
             label="Video - 4:27"
@@ -195,6 +202,7 @@ var Examples = React.createClass({
             link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
           />
           <Card
+            contentPad="medium"
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
             label="Featured Post"
@@ -204,6 +212,7 @@ var Examples = React.createClass({
               complex negotiations and renewal processes`}
           />
           <Card
+            contentPad="medium"
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
             label="Featured Post"
@@ -309,6 +318,7 @@ var Examples = React.createClass({
                   while leveraging your legacy investments
                 </Paragraph>
                 <Card
+                  contentPad="medium"
                   direction="row"
                   thumbnail="/docs/img/Case_Study_image.png"
                   label="Video - 4:27"
@@ -341,6 +351,7 @@ var Examples = React.createClass({
                   licensing compliance requirements
                 </Paragraph>
                 <Card
+                  contentPad="medium"
                   direction="row"
                   thumbnail="/docs/img/Case_Study_image.png"
                   label="Case Study"
