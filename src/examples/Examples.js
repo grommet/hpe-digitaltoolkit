@@ -373,7 +373,7 @@ var Examples = React.createClass({
         <Box pad={{horizontal: 'large'}}><p><strong>Card with Tiles wrapper</strong></p></Box>
         {this._loremIpsum()}
         {this._renderNewsFeed()}
-        <Box pad={{horizontal: 'large'}}><p><strong>Card with Tiles wrapper, masonry option</strong></p></Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Card with Columns wrapper, masonry option</strong></p></Box>
       </div>
     );
   }
