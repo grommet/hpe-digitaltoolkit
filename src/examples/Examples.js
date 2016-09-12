@@ -3,6 +3,7 @@
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
+var Columns = require('grommet/components/Columns');
 var Tiles = require('grommet/components/Tiles');
 var Box = require('grommet/components/Box');
 var Heading = require('grommet/components/Heading');
@@ -78,6 +79,7 @@ var Examples = React.createClass({
 
     const socialFeedCard1 = (
       <Card
+        contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.twitter.com')}
         direction="column"
         label="Social">
@@ -90,6 +92,7 @@ var Examples = React.createClass({
 
     const socialFeedCard2 = (
       <Card
+        contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.facebook.com')}
         direction="column"
         label="Social">
@@ -102,6 +105,7 @@ var Examples = React.createClass({
 
     const socialFeedCard3 = (
       <Card
+        contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.linkedin.com')}
         direction="column"
         label="Social">
@@ -114,6 +118,7 @@ var Examples = React.createClass({
 
     const blogPostCard = (
       <Card
+        contentPad="medium"
         onClick={this._onClickCard.bind(this, grommetPath)}
         direction="column"
         label="Featured Post"
@@ -126,6 +131,7 @@ var Examples = React.createClass({
 
     const featuredPostCard = (
       <Card
+        contentPad="medium"
         onClick={this._onClickCard.bind(this, grommetPath)}
         thumbnail="/docs/img/carousel-1.png"
         direction="column"
@@ -139,16 +145,19 @@ var Examples = React.createClass({
 
     return (
       <Box pad={{horizontal: 'large'}}>
-        <Tiles size="large" masonry={true} numColumns={7} colorIndex="light-2" justify="center">
-          {blogPostCard}
-          {featuredPostCard}
-          {socialFeedCard1}
-          {socialFeedCard2}
-          {blogPostCard}
-          {featuredPostCard}
-          {featuredPostCard}
-          {socialFeedCard3}
-        </Tiles>
+        <Box colorIndex="light-2">
+          <Columns size="medium" masonry={true} maxCount={7} justify="center"
+            responsive={true}>
+            {blogPostCard}
+            {featuredPostCard}
+            {socialFeedCard1}
+            {socialFeedCard2}
+            {blogPostCard}
+            {featuredPostCard}
+            {featuredPostCard}
+            {socialFeedCard3}
+          </Columns>
+        </Box>
       </Box>
     );
   },
@@ -156,8 +165,9 @@ var Examples = React.createClass({
   _renderCards: function () {
     return (
       <Box pad={{horizontal: 'large'}}>
-        <Tiles size="large" colorIndex="light-2" justify="center">
+        <Tiles size="medium" colorIndex="light-2" justify="center">
           <Card
+            contentPad="medium"
             onClick={this._onClickCard.bind(this, grommetPath)}
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
@@ -177,6 +187,7 @@ var Examples = React.createClass({
             link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}
           />
           <Card
+            contentPad="medium"
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
             label="Video - 4:27"
@@ -191,6 +202,7 @@ var Examples = React.createClass({
             link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
           />
           <Card
+            contentPad="medium"
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
             label="Featured Post"
@@ -200,6 +212,7 @@ var Examples = React.createClass({
               complex negotiations and renewal processes`}
           />
           <Card
+            contentPad="medium"
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
             label="Featured Post"
@@ -367,6 +380,7 @@ var Examples = React.createClass({
                   while leveraging your legacy investments
                 </Paragraph>
                 <Card
+                  contentPad="medium"
                   direction="row"
                   thumbnail="/docs/img/Case_Study_image.png"
                   label="Video - 4:27"
@@ -399,6 +413,7 @@ var Examples = React.createClass({
                   licensing compliance requirements
                 </Paragraph>
                 <Card
+                  contentPad="medium"
                   direction="row"
                   thumbnail="/docs/img/Case_Study_image.png"
                   label="Case Study"
@@ -420,7 +435,7 @@ var Examples = React.createClass({
         <Box pad={{horizontal: 'large'}}><p><strong>Card with Tiles wrapper</strong></p></Box>
         {this._loremIpsum()}
         {this._renderNewsFeed()}
-        <Box pad={{horizontal: 'large'}}><p><strong>Card with Tiles wrapper, masonry option</strong></p></Box>
+        <Box pad={{horizontal: 'large'}}><p><strong>Card with Columns wrapper, masonry option</strong></p></Box>
       </div>
     );
   }
