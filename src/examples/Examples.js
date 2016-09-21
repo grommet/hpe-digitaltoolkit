@@ -79,6 +79,7 @@ var Examples = React.createClass({
 
     const socialFeedCard1 = (
       <Card
+        margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.twitter.com')}
         direction="column"
@@ -92,6 +93,7 @@ var Examples = React.createClass({
 
     const socialFeedCard2 = (
       <Card
+        margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.facebook.com')}
         direction="column"
@@ -105,6 +107,7 @@ var Examples = React.createClass({
 
     const socialFeedCard3 = (
       <Card
+        margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.linkedin.com')}
         direction="column"
@@ -118,6 +121,7 @@ var Examples = React.createClass({
 
     const blogPostCard = (
       <Card
+        margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, grommetPath)}
         direction="column"
@@ -131,6 +135,7 @@ var Examples = React.createClass({
 
     const featuredPostCard = (
       <Card
+        margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, grommetPath)}
         thumbnail="/docs/img/carousel-1.png"
@@ -167,6 +172,7 @@ var Examples = React.createClass({
       <Box pad={{horizontal: 'large'}}>
         <Tiles size="medium" colorIndex="light-2" justify="center">
           <Card
+            margin="small"
             contentPad="medium"
             onClick={this._onClickCard.bind(this, grommetPath)}
             direction="column"
@@ -187,6 +193,7 @@ var Examples = React.createClass({
             link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}
           />
           <Card
+            margin="small"
             contentPad="medium"
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
@@ -202,6 +209,7 @@ var Examples = React.createClass({
             link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
           />
           <Card
+            margin="small"
             contentPad="medium"
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
@@ -212,6 +220,7 @@ var Examples = React.createClass({
               complex negotiations and renewal processes`}
           />
           <Card
+            margin="small"
             contentPad="medium"
             direction="column"
             thumbnail="/docs/img/Case_Study_image.png"
@@ -358,7 +367,7 @@ var Examples = React.createClass({
             <Headline size="large" strong={true} margin="none" align="center">
               Services Portfolio
             </Headline>
-            <Paragraph size="large"	align="center">
+            <Paragraph size="large" align="center">
               Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
             </Paragraph>
           </Box>
@@ -380,6 +389,7 @@ var Examples = React.createClass({
                   while leveraging your legacy investments
                 </Paragraph>
                 <Card
+                  margin="small"
                   contentPad="medium"
                   direction="row"
                   thumbnail="/docs/img/Case_Study_image.png"
@@ -413,6 +423,7 @@ var Examples = React.createClass({
                   licensing compliance requirements
                 </Paragraph>
                 <Card
+                  margin="small"
                   contentPad="medium"
                   direction="row"
                   thumbnail="/docs/img/Case_Study_image.png"
