@@ -8,6 +8,7 @@ var Home = require('./Home');
 var Design = require('./design/Design');
 var Develop = require('./develop/Develop');
 var Examples = require('./examples/Examples');
+var Primary = require('./examples/Primary');
 
 module.exports = function (rootPath) {
   var DocsRouter = React.createClass({
@@ -37,6 +38,7 @@ module.exports = function (rootPath) {
       {Design.routes()}
       {Develop.routes()}
       {Examples.routes()}
+      {Primary.routes()}
     </Route>
   );
 };
