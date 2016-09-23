@@ -158,6 +158,10 @@
     .grommetux-paragraph {
       max-width: 100%;
     }
+
+    .grommetux-box {
+      justify-content: center;
+    }
   }
 
   &--responsive-drop .grommetux-box--justify-center {
@@ -182,8 +186,10 @@
     }
 
     .marquee__stack > .grommetux-box {
-      padding-top: $inuit-base-spacing-unit * 4;
-      padding-bottom: $inuit-base-spacing-unit * 4;
+      @include media-query(palm) {
+        padding-top: $inuit-base-spacing-unit * 4;
+        padding-bottom: $inuit-base-spacing-unit * 4;
+      }
     }
   }
 }
