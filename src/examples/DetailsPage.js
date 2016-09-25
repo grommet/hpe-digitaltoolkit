@@ -4,15 +4,20 @@ import React, { Component } from 'react';
 import { Route } from 'react-router';
 import Section from 'grommet/components/Section';
 import Box from 'grommet/components/Box';
+import Card from 'grommet/components/Card';
 import Heading from 'grommet/components/Heading';
 import Paragraph from 'grommet/components/Paragraph';
 import Label from 'grommet/components/Label';
 import Hero from 'grommet/components/Hero';
 import Anchor from 'grommet/components/Anchor';
 import WatchIcon from 'grommet/components/icons/base/Watch';
+import LinkNext from 'grommet/components/icons/base/LinkNext';
 import Quote from 'grommet/components/Quote';
 import Image from 'grommet/components/Image';
 import Video from 'grommet/components/Video';
+import Form from 'grommet/components/Form';
+import FormField from 'grommet/components/FormField';
+import SocialShare from 'grommet/components/SocialShare';
 import Chart, { Area, Axis, Base, Layers } from 'grommet/components/chart/Chart';
 import Marquee from '../modules/Marquee';
 
@@ -77,7 +82,15 @@ export default class DetailsPage extends Component {
                 mollitia molestiae illum aspernatur velit odit odit? Consectetur
                 blanditiis omnis.
               </Paragraph>
-              Share
+              <Box direction="row" align="center" justify="between">
+                <Label uppercase={true}>Share</Label>
+                <Box direction="row" responsive={false}>
+                  <SocialShare type="email" link="http://www.grommet.io/docs/" />
+                  <SocialShare type="twitter" link="http://www.grommet.io/docs/" />
+                  <SocialShare type="facebook" link="http://www.grommet.io/docs/" />
+                  <SocialShare type="linkedin" link="http://www.grommet.io/docs/" />
+                </Box>
+              </Box>
             </Box>
           </Box>
         </Section>
@@ -381,6 +394,42 @@ export default class DetailsPage extends Component {
               doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
               debitis sed mollitia laudantium sit?
             </Paragraph>
+          </Box>
+        </Section>
+        <Section
+          align="center"
+          colorIndex="accent-2"
+        >
+          <Box
+            direction="row"
+            justify="between"
+            size={{width: 'xxlarge'}}
+            pad={{vertical: 'large'}}
+          >
+            <Box basis="1/2" pad="large">
+              <Form pad={{vertical: 'small'}}>
+                <FormField size="large" label="Share the article">
+                  <input className="share-link" type="text" value="http://www.grommet.io/docs/"
+                    readOnly />
+                </FormField>
+              </Form>
+              <Box direction="row" responsive={false}>
+                <SocialShare type="email" link="http://www.grommet.io/docs/" />
+                <SocialShare type="twitter" link="http://www.grommet.io/docs/" />
+                <SocialShare type="facebook" link="http://www.grommet.io/docs/" />
+                <SocialShare type="linkedin" link="http://www.grommet.io/docs/" />
+              </Box>
+            </Box>
+            <Box basis="1/2" pad="large" separator="left">
+              <Card
+                colorIndex=""
+                label="Next Article"
+                heading="Pellentesque porta ut augue ac ultricies."
+                link={
+                  <Anchor href="" label="Learn More" icon={<LinkNext />} />
+                }
+              />
+            </Box>
           </Box>
         </Section>
       </div>
