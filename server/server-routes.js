@@ -11995,8 +11995,8 @@ module.exports =
 	var DashboardDoc = __webpack_require__(190);
 	var NavigationDoc = __webpack_require__(204);
 	var MarqueeDoc = __webpack_require__(205);
-	var WorldMapDoc = __webpack_require__(208);
-	var StackDoc = __webpack_require__(210);
+	var WorldMapDoc = __webpack_require__(207);
+	var StackDoc = __webpack_require__(209);
 
 	//hjjs configuration
 	var hljs = __webpack_require__(143);
@@ -18395,11 +18395,12 @@ module.exports =
 	    _this._onResponsive = _this._onResponsive.bind(_this);
 
 	    _this.state = {
+	      activeSuggestionIndex: -1,
 	      align: 'left',
 	      controlFocused: false,
-	      inline: props.inline,
 	      dropActive: false,
-	      activeSuggestionIndex: -1
+	      inline: props.inline,
+	      small: false
 	    };
 	    return _this;
 	  }
@@ -18418,6 +18419,9 @@ module.exports =
 	        this.setState({ dropActive: true });
 	      } else if ((!nextProps.suggestions || nextProps.suggestions.length === 0) && this.state.inline) {
 	        this.setState({ dropActive: false });
+	      }
+	      if (!this.state.small) {
+	        this.setState({ inline: nextProps.inline });
 	      }
 	    }
 	  }, {
@@ -18610,6 +18614,13 @@ module.exports =
 	      }
 	    }
 	  }, {
+	    key: '_onMouseUp',
+	    value: function _onMouseUp(event) {
+	      // This fixes a Safari bug which prevents the input
+	      // text from being selected on focus.
+	      event.preventDefault();
+	    }
+	  }, {
 	    key: '_onSink',
 	    value: function _onSink(event) {
 	      event.stopPropagation();
@@ -18619,9 +18630,9 @@ module.exports =
 	    key: '_onResponsive',
 	    value: function _onResponsive(small) {
 	      if (small) {
-	        this.setState({ inline: false });
+	        this.setState({ inline: false, small: small });
 	      } else {
-	        this.setState({ inline: this.props.inline });
+	        this.setState({ inline: this.props.inline, small: small });
 	      }
 	    }
 	  }, {
@@ -18727,7 +18738,8 @@ module.exports =
 	            className: CLASS_ROOT + '__input',
 	            onFocus: this._onFocusInput,
 	            onBlur: this._onBlurInput,
-	            onChange: this._onChangeInput })),
+	            onChange: this._onChangeInput,
+	            onMouseUp: this._onMouseUp })),
 	          _react2.default.createElement(_Search2.default, null)
 	        );
 	      } else {
@@ -23027,6 +23039,18 @@ module.exports =
 
 	var _Image2 = _interopRequireDefault(_Image);
 
+	var _Card = __webpack_require__(158);
+
+	var _Card2 = _interopRequireDefault(_Card);
+
+	var _Headline = __webpack_require__(119);
+
+	var _Headline2 = _interopRequireDefault(_Headline);
+
+	var _Paragraph = __webpack_require__(157);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
 	var _Watch = __webpack_require__(189);
 
 	var _Watch2 = _interopRequireDefault(_Watch);
@@ -23034,10 +23058,6 @@ module.exports =
 	var _Close = __webpack_require__(97);
 
 	var _Close2 = _interopRequireDefault(_Close);
-
-	var _Stack = __webpack_require__(207);
-
-	var _Stack2 = _interopRequireDefault(_Stack);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23211,23 +23231,45 @@ module.exports =
 	      var link = _props2.link;
 	      var linkIcon = _props2.linkIcon;
 	      var onClick = _props2.onClick;
+	      var overlayVideo = _props2.overlayVideo;
 
 
+	      var anchor = void 0;
+	      var watchNow = void 0;
+	      var separator = void 0;
 	      if (link || onClick) {
+	        anchor = _react2.default.createElement(_Anchor2.default, { primary: true, target: '_blank', href: link, onClick: onClick,
+	          label: this._linkCopy() });
+	        if (linkIcon) {
+	          anchor = _react2.default.createElement(_Anchor2.default, { target: '_blank', href: link, onClick: onClick, icon: linkIcon,
+	            label: this._linkCopy() });
+	        }
+	      }
+
+	      if (overlayVideo) {
+	        watchNow = _react2.default.createElement(_Anchor2.default, { onClick: this._onShowVideo, icon: _react2.default.createElement(_Watch2.default, null), label: 'Watch Now' });
+	      }
+
+	      if ((link || onClick) && overlayVideo) {
+	        separator = _react2.default.createElement(
+	          _Box2.default,
+	          { direction: 'row', responsive: 'false' },
+	          _react2.default.createElement(_Box2.default, { pad: { horizontal: 'small' }, separator: 'right' }),
+	          _react2.default.createElement(_Box2.default, { pad: { horizontal: 'small' } })
+	        );
+	      }
+
+	      if (link || onClick || overlayVideo) {
 	        return _react2.default.createElement(
 	          _Box2.default,
-	          { direction: 'row', responsive: false },
-	          _react2.default.createElement(_Box2.default, { pad: { horizontal: 'small' }, separator: 'right' }),
-	          _react2.default.createElement(_Box2.default, { pad: { horizontal: 'small' } }),
-	          _react2.default.createElement(
-	            _Anchor2.default,
-	            { primary: true, target: '_blank', href: link, onClick: onClick,
-	              icon: linkIcon },
-	            this._linkCopy
-	          )
+	          { direction: 'row', responsive: false,
+	            pad: { horizontal: "none", vertical: "small" } },
+	          watchNow,
+	          separator,
+	          anchor
 	        );
 	      } else {
-	        return undefined;
+	        return null;
 	      }
 	    }
 	  }, {
@@ -23249,7 +23291,6 @@ module.exports =
 	      var headline = _props3.headline;
 	      var label = _props3.label;
 	      var link = _props3.link;
-	      var linkIcon = _props3.linkIcon;
 	      var onClick = _props3.onClick;
 	      var overlayVideo = _props3.overlayVideo;
 	      var stackSize = _props3.stackSize;
@@ -23276,19 +23317,19 @@ module.exports =
 	              { pad: textPad,
 	                colorIndex: transparentTextBackgroundColorIndex },
 	              logoMarkup,
-	              _react2.default.createElement(_Stack2.default, { size: stackSize, headline: headline, print: subHeadline,
-	                label: label }),
 	              _react2.default.createElement(
-	                _Box2.default,
-	                { direction: 'row',
-	                  pad: { horizontal: 'none', vertical: 'small' },
-	                  responsive: false },
-	                _react2.default.createElement(
-	                  _Anchor2.default,
-	                  { primary: true, onClick: this._onShowVideo,
-	                    icon: _react2.default.createElement(_Watch2.default, null) },
-	                  'Watch Now'
-	                ),
+	                _Card2.default,
+	                { size: 'full', contentPad: 'none', colorIndex: '',
+	                  textSize: stackSize, heading: _react2.default.createElement(
+	                    _Headline2.default,
+	                    { strong: true, margin: 'none' },
+	                    headline
+	                  ),
+	                  description: _react2.default.createElement(
+	                    _Paragraph2.default,
+	                    { margin: 'medium', size: 'xlarge' },
+	                    subHeadline
+	                  ), pad: 'none', label: label },
 	                this._renderCta()
 	              )
 	            )
@@ -23302,9 +23343,21 @@ module.exports =
 	              { pad: textPad,
 	                colorIndex: transparentTextBackgroundColorIndex },
 	              logoMarkup,
-	              _react2.default.createElement(_Stack2.default, { size: stackSize, headline: headline, print: subHeadline,
-	                label: label, link: link, linkText: this._linkCopy(),
-	                linkIcon: linkIcon, onClick: onClick })
+	              _react2.default.createElement(
+	                _Card2.default,
+	                { size: 'full', contentPad: 'none', colorIndex: '',
+	                  textSize: stackSize, heading: _react2.default.createElement(
+	                    _Headline2.default,
+	                    { strong: true, margin: 'none' },
+	                    headline
+	                  ),
+	                  description: _react2.default.createElement(
+	                    _Paragraph2.default,
+	                    { margin: 'medium', size: 'xlarge' },
+	                    subHeadline
+	                  ), pad: 'none', label: label },
+	                this._renderCta()
+	              )
 	            )
 	          );
 	        }
@@ -23316,8 +23369,17 @@ module.exports =
 	            _Box2.default,
 	            { pad: textPad, colorIndex: transparentTextBackgroundColorIndex },
 	            logoMarkup,
-	            _react2.default.createElement(_Stack2.default, { size: stackSize, headline: headline, print: subHeadline,
-	              label: label })
+	            _react2.default.createElement(_Card2.default, { size: 'full', contentPad: 'none', colorIndex: '',
+	              textSize: stackSize, heading: _react2.default.createElement(
+	                _Headline2.default,
+	                { strong: true, margin: 'none' },
+	                headline
+	              ),
+	              description: _react2.default.createElement(
+	                _Paragraph2.default,
+	                { margin: 'medium', size: 'xlarge' },
+	                subHeadline
+	              ), pad: 'none', label: label })
 	          )
 	        );
 	      }
@@ -23477,194 +23539,6 @@ module.exports =
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames2 = __webpack_require__(67);
-
-	var _classnames3 = _interopRequireDefault(_classnames2);
-
-	var _Box = __webpack_require__(83);
-
-	var _Box2 = _interopRequireDefault(_Box);
-
-	var _Heading = __webpack_require__(156);
-
-	var _Heading2 = _interopRequireDefault(_Heading);
-
-	var _Paragraph = __webpack_require__(157);
-
-	var _Paragraph2 = _interopRequireDefault(_Paragraph);
-
-	var _Anchor = __webpack_require__(116);
-
-	var _Anchor2 = _interopRequireDefault(_Anchor);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = 'stack';
-
-	var Stack = function (_Component) {
-	  _inherits(Stack, _Component);
-
-	  function Stack() {
-	    _classCallCheck(this, Stack);
-
-	    return _possibleConstructorReturn(this, (Stack.__proto__ || Object.getPrototypeOf(Stack)).apply(this, arguments));
-	  }
-
-	  _createClass(Stack, [{
-	    key: '_renderParagraph',
-	    value: function _renderParagraph(contents, size, type) {
-	      if (typeof contents === 'string') {
-	        return _react2.default.createElement(
-	          _Paragraph2.default,
-	          {
-	            className: CLASS_ROOT + '__' + type,
-	            size: size,
-	            margin: 'none'
-	          },
-	          contents
-	        );
-	      } else if (Array.isArray(contents)) {
-	        return contents.map(function (content, index) {
-	          return _react2.default.createElement(
-	            _Paragraph2.default,
-	            {
-	              key: type + '_' + index,
-	              className: CLASS_ROOT + '__' + type,
-	              size: size,
-	              margin: 'none'
-	            },
-	            content
-	          );
-	        });
-	      }
-	      return null;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _props = this.props;
-	      var className = _props.className;
-	      var label = _props.label;
-	      var headline = _props.headline;
-	      var headlineStrong = _props.headlineStrong;
-	      var paragraph = _props.paragraph;
-	      var print = _props.print;
-	      var size = _props.size;
-	      var link = _props.link;
-	      var linkText = _props.linkText;
-	      var linkIcon = _props.linkIcon;
-	      var onClick = _props.onClick;
-
-	      var props = _objectWithoutProperties(_props, ['className', 'label', 'headline', 'headlineStrong', 'paragraph', 'print', 'size', 'link', 'linkText', 'linkIcon', 'onClick']);
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, _defineProperty({}, CLASS_ROOT + '--' + size, size));
-
-	      var labelTag = void 0;
-	      var headlineTag = void 0;
-	      var paragraphSize = void 0;
-	      var printSize = void 0;
-	      if (size === 'xlarge') {
-	        labelTag = 'h3';
-	        headlineTag = 'h1';
-	        paragraphSize = 'xlarge';
-	        printSize = 'large';
-	      } else if (size === 'large') {
-	        labelTag = 'h4';
-	        headlineTag = 'h1';
-	        paragraphSize = 'xlarge';
-	        printSize = 'large';
-	      } else if (size === 'small') {
-	        labelTag = 'h5';
-	        headlineTag = 'h3';
-	        paragraphSize = 'medium';
-	        printSize = 'small';
-	      } else {
-	        labelTag = 'h4';
-	        headlineTag = 'h2';
-	        paragraphSize = 'large';
-	        printSize = 'medium';
-	      }
-
-	      return _react2.default.createElement(
-	        _Box2.default,
-	        _extends({ className: classes }, props),
-	        label && _react2.default.createElement(
-	          _Heading2.default,
-	          { className: CLASS_ROOT + '__label', tag: labelTag, margin: 'none', uppercase: true },
-	          label
-	        ),
-	        headline && _react2.default.createElement(
-	          _Heading2.default,
-	          { className: CLASS_ROOT + '__headline',
-	            tag: headlineTag, strong: headlineStrong, margin: 'none' },
-	          headline
-	        ),
-	        this._renderParagraph(paragraph, paragraphSize, 'paragraph'),
-	        this._renderParagraph(print, printSize, 'print'),
-	        (link || onClick) && _react2.default.createElement(
-	          _Anchor2.default,
-	          { className: CLASS_ROOT + '__link', primary: true, href: link,
-	            onClick: onClick, target: '_blank', icon: linkIcon },
-	          linkText
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Stack;
-	}(_react.Component);
-
-	exports.default = Stack;
-	;
-
-	Stack.propTypes = {
-	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
-	  label: _react.PropTypes.string,
-	  headline: _react.PropTypes.string,
-	  headlineStrong: _react.PropTypes.bool,
-	  paragraph: _react.PropTypes.node,
-	  print: _react.PropTypes.node,
-	  link: _react.PropTypes.string,
-	  linkText: _react.PropTypes.string,
-	  linkIcon: _react.PropTypes.element,
-	  onClick: _react.PropTypes.func
-	};
-
-	Stack.defaultProps = {
-	  size: 'medium',
-	  headlineStrong: true,
-	  linkText: 'Learn More'
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 208 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -23679,7 +23553,7 @@ module.exports =
 
 	var _Example2 = _interopRequireDefault(_Example);
 
-	var _WorldMap = __webpack_require__(209);
+	var _WorldMap = __webpack_require__(208);
 
 	var _WorldMap2 = _interopRequireDefault(_WorldMap);
 
@@ -23853,7 +23727,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 209 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24061,7 +23935,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 210 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24084,7 +23958,7 @@ module.exports =
 
 	var _Example2 = _interopRequireDefault(_Example);
 
-	var _Stack = __webpack_require__(207);
+	var _Stack = __webpack_require__(210);
 
 	var _Stack2 = _interopRequireDefault(_Stack);
 
@@ -24338,6 +24212,194 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _Box = __webpack_require__(83);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Heading = __webpack_require__(156);
+
+	var _Heading2 = _interopRequireDefault(_Heading);
+
+	var _Paragraph = __webpack_require__(157);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
+	var _Anchor = __webpack_require__(116);
+
+	var _Anchor2 = _interopRequireDefault(_Anchor);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = 'stack';
+
+	var Stack = function (_Component) {
+	  _inherits(Stack, _Component);
+
+	  function Stack() {
+	    _classCallCheck(this, Stack);
+
+	    return _possibleConstructorReturn(this, (Stack.__proto__ || Object.getPrototypeOf(Stack)).apply(this, arguments));
+	  }
+
+	  _createClass(Stack, [{
+	    key: '_renderParagraph',
+	    value: function _renderParagraph(contents, size, type) {
+	      if (typeof contents === 'string') {
+	        return _react2.default.createElement(
+	          _Paragraph2.default,
+	          {
+	            className: CLASS_ROOT + '__' + type,
+	            size: size,
+	            margin: 'none'
+	          },
+	          contents
+	        );
+	      } else if (Array.isArray(contents)) {
+	        return contents.map(function (content, index) {
+	          return _react2.default.createElement(
+	            _Paragraph2.default,
+	            {
+	              key: type + '_' + index,
+	              className: CLASS_ROOT + '__' + type,
+	              size: size,
+	              margin: 'none'
+	            },
+	            content
+	          );
+	        });
+	      }
+	      return null;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var className = _props.className;
+	      var label = _props.label;
+	      var headline = _props.headline;
+	      var headlineStrong = _props.headlineStrong;
+	      var paragraph = _props.paragraph;
+	      var print = _props.print;
+	      var size = _props.size;
+	      var link = _props.link;
+	      var linkText = _props.linkText;
+	      var linkIcon = _props.linkIcon;
+	      var onClick = _props.onClick;
+
+	      var props = _objectWithoutProperties(_props, ['className', 'label', 'headline', 'headlineStrong', 'paragraph', 'print', 'size', 'link', 'linkText', 'linkIcon', 'onClick']);
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, _defineProperty({}, CLASS_ROOT + '--' + size, size));
+
+	      var labelTag = void 0;
+	      var headlineTag = void 0;
+	      var paragraphSize = void 0;
+	      var printSize = void 0;
+	      if (size === 'xlarge') {
+	        labelTag = 'h3';
+	        headlineTag = 'h1';
+	        paragraphSize = 'xlarge';
+	        printSize = 'large';
+	      } else if (size === 'large') {
+	        labelTag = 'h4';
+	        headlineTag = 'h1';
+	        paragraphSize = 'xlarge';
+	        printSize = 'large';
+	      } else if (size === 'small') {
+	        labelTag = 'h5';
+	        headlineTag = 'h3';
+	        paragraphSize = 'medium';
+	        printSize = 'small';
+	      } else {
+	        labelTag = 'h4';
+	        headlineTag = 'h2';
+	        paragraphSize = 'large';
+	        printSize = 'medium';
+	      }
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        _extends({ className: classes }, props),
+	        label && _react2.default.createElement(
+	          _Heading2.default,
+	          { className: CLASS_ROOT + '__label', tag: labelTag, margin: 'none', uppercase: true },
+	          label
+	        ),
+	        headline && _react2.default.createElement(
+	          _Heading2.default,
+	          { className: CLASS_ROOT + '__headline',
+	            tag: headlineTag, strong: headlineStrong, margin: 'none' },
+	          headline
+	        ),
+	        this._renderParagraph(paragraph, paragraphSize, 'paragraph'),
+	        this._renderParagraph(print, printSize, 'print'),
+	        (link || onClick) && _react2.default.createElement(
+	          _Anchor2.default,
+	          { className: CLASS_ROOT + '__link', primary: true, href: link,
+	            onClick: onClick, target: '_blank', icon: linkIcon },
+	          linkText
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Stack;
+	}(_react.Component);
+
+	exports.default = Stack;
+	;
+
+	Stack.propTypes = {
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+	  label: _react.PropTypes.string,
+	  headline: _react.PropTypes.string,
+	  headlineStrong: _react.PropTypes.bool,
+	  paragraph: _react.PropTypes.node,
+	  print: _react.PropTypes.node,
+	  link: _react.PropTypes.string,
+	  linkText: _react.PropTypes.string,
+	  linkIcon: _react.PropTypes.element,
+	  onClick: _react.PropTypes.func
+	};
+
+	Stack.defaultProps = {
+	  size: 'medium',
+	  headlineStrong: true,
+	  linkText: 'Learn More'
+	};
+	module.exports = exports['default'];
+
+/***/ },
 /* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -24355,7 +24417,7 @@ module.exports =
 	var Headline = __webpack_require__(119);
 	var Paragraph = __webpack_require__(157);
 	var Accordion = __webpack_require__(213);
-	var AccordionPanel = __webpack_require__(220);
+	var AccordionPanel = __webpack_require__(221);
 	var Card = __webpack_require__(158);
 	var Anchor = __webpack_require__(116);
 	var Video = __webpack_require__(165);
@@ -24365,8 +24427,8 @@ module.exports =
 	var LinkNextIcon = __webpack_require__(109);
 	var WatchIcon = __webpack_require__(189);
 	var Marquee = __webpack_require__(206);
-	var MarqueeParallax = __webpack_require__(225);
-	var Header = __webpack_require__(226);
+	var MarqueeParallax = __webpack_require__(226);
+	var Header = __webpack_require__(227);
 
 	var grommetPath = 'http://grommet.github.io';
 
@@ -24695,6 +24757,7 @@ module.exports =
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: 'HPE can help you benefit now from your right mix of cloud',
 	        link: 'http://www.grommet.io/docs/',
+	        linkIcon: React.createElement(SocialTwitterIcon, null),
 	        responsiveBackgroundPosition: 'left' }),
 	      React.createElement(
 	        Box,
@@ -25354,7 +25417,11 @@ module.exports =
 
 	var _keys2 = _interopRequireDefault(_keys);
 
-	var _isInteger = __webpack_require__(214);
+	var _toConsumableArray2 = __webpack_require__(214);
+
+	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+	var _isInteger = __webpack_require__(215);
 
 	var _isInteger2 = _interopRequireDefault(_isInteger);
 
@@ -25386,7 +25453,7 @@ module.exports =
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _List = __webpack_require__(218);
+	var _List = __webpack_require__(219);
 
 	var _List2 = _interopRequireDefault(_List);
 
@@ -25437,14 +25504,14 @@ module.exports =
 	  (0, _createClass3.default)(Accordion, [{
 	    key: 'componentWillReceiveProps',
 	    value: function componentWillReceiveProps(newProps) {
-	      if (newProps.active !== this.state.active) {
+	      if (newProps.active !== this.props.active) {
 	        this.setState({ active: newProps.active || [] });
 	      }
 	    }
 	  }, {
 	    key: '_onPanelChange',
 	    value: function _onPanelChange(index) {
-	      var active = this.state.active;
+	      var active = [].concat((0, _toConsumableArray3.default)(this.state.active));
 	      var _props = this.props;
 	      var onActive = _props.onActive;
 	      var openMulti = _props.openMulti;
@@ -25526,26 +25593,52 @@ module.exports =
 /* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(215), __esModule: true };
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _from = __webpack_require__(121);
+
+	var _from2 = _interopRequireDefault(_from);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (arr) {
+	  if (Array.isArray(arr)) {
+	    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+	      arr2[i] = arr[i];
+	    }
+
+	    return arr2;
+	  } else {
+	    return (0, _from2.default)(arr);
+	  }
+	};
 
 /***/ },
 /* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(216);
-	module.exports = __webpack_require__(17).Number.isInteger;
+	module.exports = { "default": __webpack_require__(216), __esModule: true };
 
 /***/ },
 /* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// 20.1.2.3 Number.isInteger(number)
-	var $export = __webpack_require__(15);
-
-	$export($export.S, 'Number', {isInteger: __webpack_require__(217)});
+	__webpack_require__(217);
+	module.exports = __webpack_require__(17).Number.isInteger;
 
 /***/ },
 /* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// 20.1.2.3 Number.isInteger(number)
+	var $export = __webpack_require__(15);
+
+	$export($export.S, 'Number', {isInteger: __webpack_require__(218)});
+
+/***/ },
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 20.1.2.3 Number.isInteger(number)
@@ -25556,7 +25649,7 @@ module.exports =
 	};
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25573,7 +25666,7 @@ module.exports =
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _objectWithoutProperties2 = __webpack_require__(219);
+	var _objectWithoutProperties2 = __webpack_require__(220);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -25796,7 +25889,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25816,7 +25909,7 @@ module.exports =
 	};
 
 /***/ },
-/* 220 */
+/* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25861,15 +25954,15 @@ module.exports =
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _ListItem = __webpack_require__(221);
+	var _ListItem = __webpack_require__(222);
 
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 
-	var _TabNext = __webpack_require__(222);
+	var _TabNext = __webpack_require__(223);
 
 	var _TabNext2 = _interopRequireDefault(_TabNext);
 
-	var _Collapsible = __webpack_require__(223);
+	var _Collapsible = __webpack_require__(224);
 
 	var _Collapsible2 = _interopRequireDefault(_Collapsible);
 
@@ -25941,7 +26034,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26062,7 +26155,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26188,7 +26281,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26233,7 +26326,7 @@ module.exports =
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactAddonsTransitionGroup = __webpack_require__(224);
+	var _reactAddonsTransitionGroup = __webpack_require__(225);
 
 	var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
 
@@ -26356,13 +26449,13 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-addons-transition-group");
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26695,7 +26788,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26726,11 +26819,11 @@ module.exports =
 
 	var _Title2 = _interopRequireDefault(_Title);
 
-	var _HeaderMenu = __webpack_require__(227);
+	var _HeaderMenu = __webpack_require__(228);
 
 	var _HeaderMenu2 = _interopRequireDefault(_HeaderMenu);
 
-	var _Logo = __webpack_require__(228);
+	var _Logo = __webpack_require__(229);
 
 	var _Logo2 = _interopRequireDefault(_Logo);
 
@@ -26878,7 +26971,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 227 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26980,7 +27073,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 228 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

@@ -5,9 +5,11 @@ import classnames from 'classnames';
 import Box from 'grommet/components/Box';
 import Anchor from 'grommet/components/Anchor';
 import Image from 'grommet/components/Image';
+import Card from 'grommet/components/Card';
+import Headline from 'grommet/components/Headline';
+import Paragraph from 'grommet/components/Paragraph';
 import WatchIcon from 'grommet/components/icons/base/Watch';
 import CloseIcon from 'grommet/components/icons/base/Close';
-import Stack from './Stack';
 
 const CLASS_ROOT = 'marquee';
 const LIGHT_COLORINDEX = 'light-1';
@@ -146,22 +148,52 @@ export default class Marquee extends Component {
   }
 
   _renderCta() {
-    const { link, linkIcon, onClick } = this.props;
+    const { link, linkIcon, onClick, overlayVideo } = this.props;
 
+    let anchor;
+    let watchNow;
+    let separator;
     if (link || onClick) {
-      return (
-        <Box direction="row" responsive={false}>
+      anchor = (
+        <Anchor primary={true} target="_blank" href={link} onClick={onClick}
+          label={this._linkCopy()} />
+      );
+      if (linkIcon) {
+        anchor = (
+          <Anchor target="_blank" href={link} onClick={onClick} icon={linkIcon}
+            label={this._linkCopy()} />
+        );
+      }
+    }
+
+    if (overlayVideo) {
+      watchNow = (
+        <Anchor onClick={this._onShowVideo} icon={<WatchIcon />} label="Watch Now" />
+      );
+    }
+
+    if ((link || onClick) && overlayVideo) {
+      separator = (
+        <Box direction="row" responsive="false">
           <Box pad={{ horizontal: 'small' }} separator="right" />
           <Box pad={{ horizontal: 'small' }} />
-          <Anchor primary={true} target="_blank" href={link} onClick={onClick}
-            icon={linkIcon}>
-            {this._linkCopy}
-          </Anchor>
+        </Box>
+      );
+    }
+
+    if (link || onClick || overlayVideo) {
+      return (
+        <Box direction="row" responsive={false}
+          pad={{ horizontal:"none", vertical:"small" }}>
+          {watchNow}
+          {separator}
+          {anchor}
         </Box>
       );
     } else {
-      return undefined;
+      return null;
     }
+
   }
 
   _linkCopy() {
@@ -175,7 +207,7 @@ export default class Marquee extends Component {
   }
 
   _renderStack() {
-    const { headline, label, link, linkIcon, onClick, overlayVideo, stackSize,
+    const { headline, label, link, onClick, overlayVideo, stackSize,
       subHeadline, textBackgroundColorIndex } = this.props;
 
     const logoMarkup = this._renderLogo();
@@ -194,17 +226,17 @@ export default class Marquee extends Component {
             <Box pad={textPad}
               colorIndex={transparentTextBackgroundColorIndex}>
               {logoMarkup}
-              <Stack size={stackSize} headline={headline} print={subHeadline}
-                label={label} />
-              <Box direction="row"
-                pad={{ horizontal: 'none', vertical: 'small'}}
-                responsive={false}>
-                <Anchor primary={true} onClick={this._onShowVideo}
-                  icon={<WatchIcon />}>
-                  Watch Now
-                </Anchor>
+              <Card size="full" contentPad="none" colorIndex=""
+                textSize={stackSize} heading={
+                  <Headline strong={true} margin="none">{headline}</Headline>
+                }
+                description={
+                  <Paragraph margin="medium" size="xlarge">
+                    {subHeadline}
+                  </Paragraph>
+                } pad="none" label={label}>
                 {this._renderCta()}
-              </Box>
+              </Card>
             </Box>
           </Box>
         );
@@ -214,9 +246,17 @@ export default class Marquee extends Component {
             <Box pad={textPad}
               colorIndex={transparentTextBackgroundColorIndex}>
               {logoMarkup}
-              <Stack size={stackSize} headline={headline} print={subHeadline}
-                label={label} link={link} linkText={this._linkCopy()}
-                linkIcon={linkIcon} onClick={onClick} />
+              <Card size="full" contentPad="none" colorIndex=""
+                textSize={stackSize} heading={
+                  <Headline strong={true} margin="none">{headline}</Headline>
+                }
+                description={
+                  <Paragraph margin="medium" size="xlarge">
+                    {subHeadline}
+                  </Paragraph>
+                } pad="none" label={label}>
+                {this._renderCta()}
+              </Card>
             </Box>
           </Box>
         );
@@ -226,8 +266,15 @@ export default class Marquee extends Component {
         <Box className={CLASS_ROOT + "__stack"} pad={this.state.textPad}>
           <Box pad={textPad} colorIndex={transparentTextBackgroundColorIndex}>
             {logoMarkup}
-            <Stack size={stackSize} headline={headline} print={subHeadline}
-              label={label} />
+            <Card size="full" contentPad="none" colorIndex=""
+              textSize={stackSize} heading={
+                <Headline strong={true} margin="none">{headline}</Headline>
+              }
+              description={
+                <Paragraph margin="medium" size="xlarge">
+                  {subHeadline}
+                </Paragraph>
+              } pad="none" label={label} />
           </Box>
         </Box>
       );
