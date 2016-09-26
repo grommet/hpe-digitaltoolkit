@@ -301,6 +301,7 @@ var Examples = React.createClass({
           headline="Accelerate your transformation with the cloud"
           subHeadline="HPE can help you benefit now from your right mix of cloud"
           link="http://www.grommet.io/docs/"
+          linkIcon={<SocialTwitterIcon />}
           responsiveBackgroundPosition="left" />
         <Box pad={{horizontal: 'large'}}><p><strong>Large Marquee with NO Parallax</strong></p></Box>
         <Marquee size="small" darkTheme={true} justify="start"
