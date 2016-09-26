@@ -3,23 +3,21 @@
 const React = require('react');
 const Router = require('react-router');
 const Route = Router.Route;
-const Columns = require('grommet/components/Columns');
+const Anchor = require('grommet/components/Anchor');
 const Box = require('grommet/components/Box');
+const Card = require('grommet/components/Card');
 const Heading = require('grommet/components/Heading');
 const Headline = require('grommet/components/Headline');
 const Paragraph = require('grommet/components/Paragraph');
-const Card = require('grommet/components/Card');
-const Anchor = require('grommet/components/Anchor');
-const SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
-const SocialFacebookIcon = require('grommet/components/icons/base/SocialFacebook');
-const SocialLinkedinIcon = require('grommet/components/icons/base/SocialLinkedin');
+const Tiles = require('grommet/components/Tiles');
+const Video = require('grommet/components/Video');
 const LinkNextIcon = require('grommet/components/icons/base/LinkNext');
 const Marquee = require('../modules/Marquee');
 const Header = require('./Header');
 
 const grommetPath = 'http://grommet.github.io';
 
-const Primary = React.createClass({
+const SubPage = React.createClass({
   contextTypes: {
     routePrefix: React.PropTypes.string.isRequired
   },
@@ -30,7 +28,7 @@ const Primary = React.createClass({
 
   getChildContext: function() {
     return {
-      routePrefix: this.context.routePrefix + 'primary/'
+      routePrefix: this.context.routePrefix + 'sub/'
     };
   },
 
@@ -52,119 +50,65 @@ const Primary = React.createClass({
     window.location.href = path;
   },
 
-  _renderNewsFeed: function () {
-    const twitterIconBox = (
-      <Box align="end">
-        <SocialTwitterIcon colorIndex="light-1" />
-      </Box>
-    );
-
-    const facebookIconBox = (
-      <Box align="end">
-        <SocialFacebookIcon colorIndex="light-1" />
-      </Box>
-    );
-
-    const linkedinIconBox = (
-      <Box align="end">
-        <SocialLinkedinIcon colorIndex="light-1" />
-      </Box>
-    );
-
-    const socialFeedCard1 = (
-      <Card
-        className="social-card-twitter"
-        colorIndex="neutral-1"
-        margin="small"
-        contentPad="medium"
-        onClick={this._onClickCard.bind(this, 'http://www.twitter.com')}
-        direction="column"
-        label="Social">
-        <Heading tag="h2">
-          Protect Your Digital Enterprise ipsum lorem dolores aeat el
-        </Heading>
-        {twitterIconBox}
-      </Card>
-    );
-
-    const socialFeedCard2 = (
-      <Card
-        className="social-card-facebook"
-        colorIndex="neutral-1"
-        margin="small"
-        contentPad="medium"
-        onClick={this._onClickCard.bind(this, 'http://www.facebook.com')}
-        direction="column"
-        label="Social">
-        <Heading tag="h2">
-          Protect Your Digital Enterprise ipsum lorem dolores aeat el
-        </Heading>
-        {facebookIconBox}
-      </Card>
-    );
-
-    const socialFeedCard3 = (
-      <Card
-        className="social-card-linkedin"
-        colorIndex="neutral-1"
-        margin="small"
-        contentPad="medium"
-        onClick={this._onClickCard.bind(this, 'http://www.linkedin.com')}
-        direction="column"
-        label="Social">
-        <Heading tag="h2">
-          Protect Your Digital Enterprise ipsum lorem dolores aeat el
-        </Heading>
-        {linkedinIconBox}
-      </Card>
-    );
-
-    const blogPostCard = (
-      <Card
-        colorIndex="light-1"
-        margin="small"
-        contentPad="medium"
-        onClick={this._onClickCard.bind(this, grommetPath)}
-        direction="column"
-        label="Featured Post"
-        link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}>
-        <Heading tag="h2">
-          Protect Your Digital Enterprise ipsum lorem dolores aeat el
-        </Heading>
-      </Card>
-    );
-
-    const featuredPostCard = (
-      <Card
-        colorIndex="light-1"
-        margin="small"
-        contentPad="medium"
-        onClick={this._onClickCard.bind(this, grommetPath)}
-        thumbnail="/docs/img/carousel-1.png"
-        direction="column"
-        label="Featured Post"
-        link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}>
-        <Heading tag="h2">
-          Protect Your Digital Enterprise ipsum lorem dolores aeat el
-        </Heading>
-      </Card>
-    );
-
+  _renderCardTiles: function () {
     return (
-      <Box className="columns-container" colorIndex="light-2"
-        pad={{horizontal: "large"}} size={{width: {max: "xxlarge"}}}>
-        <Columns size="medium" justify="center" masonry={true}
-          maxCount={7} responsive={true}>
-          {blogPostCard}
-          {featuredPostCard}
-          {socialFeedCard1}
-          {socialFeedCard2}
-          {blogPostCard}
-          {featuredPostCard}
-          {featuredPostCard}
-          {socialFeedCard3}
-        </Columns>
-      </Box>
+      <Tiles size="medium" justify="center">
+        <Card
+          textSize="small"
+          colorIndex="light-1"
+          margin="small"
+          contentPad="medium"
+          onClick={this._onClickCard.bind(this, grommetPath)}
+          direction="column"
+          thumbnail="/docs/img/Case_Study_image.png"
+          label="Featured Post"
+          heading="Protect Your Digital Enterprise ipsum dolores aeat"
+          link={<Anchor href={grommetPath} 
+            label="Learn More" icon={<LinkNextIcon />} />}>
+          <Paragraph>
+            {`It’s not an either/or world. It’s about finding the
+              right platform for each app, workload and service. Learn how
+              hybrid infrastructure can help you achieve cloud agility with
+              traditional IT predictability. It’s not an either/or world. It’s
+              about finding the right platform for each app, workload and
+              service.`}
+          </Paragraph>
+        </Card>
+        <Card
+          textSize="small"
+          colorIndex="light-1"
+          margin="small"
+          contentPad="medium"
+          direction="column"
+          thumbnail="/docs/img/Case_Study_image.png"
+          label="Featured Post"
+          heading="Foundation Paraguay Empowers Microbusinesses"
+          link={<Anchor href={grommetPath} 
+            label="Learn More" icon={<LinkNextIcon />} />}>
+          <Paragraph>
+            {`See how Hewlett Packard Enterprise delivers mobile
+              solutions to improve quality of life and help eliminate poverty
+              in South America.`}
+          </Paragraph>
+        </Card>
+        <Card
+          textSize="small"
+          colorIndex="light-1"
+          margin="small"
+          contentPad="medium"
+          direction="column"
+          thumbnail="/docs/img/Case_Study_image.png"
+          label="Featured Post"
+          heading="The Key Steps to Reducing Software Spend"
+          link={<Anchor href={grommetPath} 
+            label="Learn More" icon={<LinkNextIcon />} />}>
+          <Paragraph>
+            {`HPE Software Licensing and Management Solutions can
+            help you optimize your software investments through control of
+            complex negotiations and renewal processes`}
+          </Paragraph>
+        </Card>
+      </Tiles>
     );
   },
 
@@ -225,48 +169,61 @@ const Primary = React.createClass({
               Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
             </Paragraph>
           </Box>
-        </Box>
-        <Box className="recent-news-section" colorIndex="light-2" pad={{vertical: "large"}} align="center">
-          <Box size={{"width": "xxlarge"}} pad={{horizontal: "large"}}>
-            <Heading tag="h2" strong={true}>
-              Recent News
-            </Heading>
-          </Box>
-          {this._renderNewsFeed()}
-        </Box>
-        <Box colorIndex="accent-2-t" pad="large" align="center">
-          <Box className="footer-cards-container" pad={{vertical: "medium"}}
+          <Box className="width-full" pad={{vertical: "medium"}}
             size={{width: {max: "xxlarge"}}} direction="row">
             <Card 
-              pad={{horizontal: "large"}}
               contentPad={{horizontal: "medium"}}
               basis="1/2"
               direction="row"
-              heading="Lorem ipsum dolor sit amet"
-              label="Label"
-              link={<Anchor href="http://www.grommet.io/docs/" primary={true}>
-                Learn More</Anchor>}
-              separator="right" />
+              heading="Lorem ipsum dolor sit amet">
+              <Paragraph width="large">
+                Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
+              </Paragraph>
+            </Card>
             <Card
-              pad={{horizontal: "large"}}
               contentPad={{horizontal: "medium"}}
               basis="1/2"
               direction="row"
-              heading="Lorem ipsum dolor sit amet"
-              label="Label"
-              link={<Anchor href="http://www.grommet.io/docs/" primary={true}>
-                Learn More</Anchor>} />
+              heading="Lorem ipsum dolor sit amet">
+              <Paragraph width="large">
+                Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
+              </Paragraph>
+            </Card>
           </Box>
         </Box>
+        <Marquee darkTheme={false}
+          backgroundImage="/docs/img/section-3.jpg"
+          headline="Head of the class at the IDC MarketScape"
+          justify="start"
+          logo="/docs/img/idc-logo-dark.png"
+          subHeadline="Hewlett Packard Enterprise is recognized as a 2014 IDC MarketScape leader in Cloud, Security, Big Data, Storage, ITIL/ITSM, and Project Management Training."
+          responsiveBackgroundPosition="left"
+          responsiveDropText={false}
+          stackSize="large"
+          overlayVideo={<Video autoPlay={true}><source src="/docs/img/VideoMarque_Part3V3.mp4" type='video/mp4'/></Video>} />
+        <Marquee darkTheme={false}
+          backgroundImage="/docs/img/section-4.jpg"
+          headline="Head of the class at the IDC MarketScape"
+          logo="/docs/img/idc-logo-dark.png"
+          subHeadline="Hewlett Packard Enterprise is recognized as a 2014 IDC MarketScape leader in Cloud, Security, Big Data, Storage, ITIL/ITSM, and Project Management Training."
+          responsiveBackgroundPosition="left"
+          stackSize="large"
+          link="http://www.grommet.io/docs/" />
+        <Box colorIndex="light-2" pad={{vertical: "large"}} align="center">
+          <Box className="width-full" size={{"width": {"max": "xxlarge"}}}>
+            {this._renderCardTiles()}
+          </Box>
+        </Box>
+        
       </div>
     );
   }
 });
 
-Primary.routes = function () {
+SubPage.routes = function () {
   return [
-    <Route key="top" path="primary" component={Primary} />
+    <Route key="top" path="sub" component={SubPage} />
   ];
 };
 
-module.exports = Primary;
+module.exports = SubPage;

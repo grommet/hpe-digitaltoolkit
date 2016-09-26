@@ -256,6 +256,18 @@ var Examples = React.createClass({
                 label: 'Stack',
                 href: '/docs/hpe/develop/stack'
               }]
+            }, {
+              label: 'Page Templates',
+              links: [{
+                label: 'Primary',
+                href: '/docs/hpe/primary'
+              }, {
+                label: 'Sub',
+                href: '/docs/hpe/sub'
+              }, {
+                label: 'Details',
+                href: '#'
+              }]
             }]
           } />
         <MarqueeParallax darkTheme={false}

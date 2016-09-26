@@ -9,6 +9,7 @@ var Design = require('./design/Design');
 var Develop = require('./develop/Develop');
 var Examples = require('./examples/Examples');
 var Primary = require('./examples/Primary');
+var Sub = require('./examples/Sub');
 
 module.exports = function (rootPath) {
   var DocsRouter = React.createClass({
@@ -39,6 +40,7 @@ module.exports = function (rootPath) {
       {Develop.routes()}
       {Examples.routes()}
       {Primary.routes()}
+      {Sub.routes()}
     </Route>
   );
 };
