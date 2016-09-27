@@ -79,6 +79,7 @@ var Examples = React.createClass({
 
     const socialFeedCard1 = (
       <Card
+        colorIndex="light-1"
         margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.twitter.com')}
@@ -93,6 +94,7 @@ var Examples = React.createClass({
 
     const socialFeedCard2 = (
       <Card
+        colorIndex="light-1"
         margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.facebook.com')}
@@ -107,6 +109,7 @@ var Examples = React.createClass({
 
     const socialFeedCard3 = (
       <Card
+        colorIndex="light-1"
         margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.linkedin.com')}
@@ -121,6 +124,7 @@ var Examples = React.createClass({
 
     const blogPostCard = (
       <Card
+        colorIndex="light-1"
         margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, grommetPath)}
@@ -135,6 +139,7 @@ var Examples = React.createClass({
 
     const featuredPostCard = (
       <Card
+        colorIndex="light-1"
         margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, grommetPath)}
@@ -172,6 +177,7 @@ var Examples = React.createClass({
       <Box pad={{horizontal: 'large'}}>
         <Tiles size="medium" colorIndex="light-2" justify="center">
           <Card
+            colorIndex="light-1"
             margin="small"
             contentPad="medium"
             onClick={this._onClickCard.bind(this, grommetPath)}
@@ -193,6 +199,7 @@ var Examples = React.createClass({
             link={<Anchor href={grommetPath} label="Learn More" icon={<LinkNextIcon />} />}
           />
           <Card
+            colorIndex="light-1"
             margin="small"
             contentPad="medium"
             direction="column"
@@ -209,6 +216,7 @@ var Examples = React.createClass({
             link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
           />
           <Card
+            colorIndex="light-1"
             margin="small"
             contentPad="medium"
             direction="column"
@@ -220,6 +228,7 @@ var Examples = React.createClass({
               complex negotiations and renewal processes`}
           />
           <Card
+            colorIndex="light-1"
             margin="small"
             contentPad="medium"
             direction="column"
