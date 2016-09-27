@@ -6,7 +6,6 @@ const Route = Router.Route;
 const Columns = require('grommet/components/Columns');
 const Box = require('grommet/components/Box');
 const Heading = require('grommet/components/Heading');
-const Headline = require('grommet/components/Headline');
 const Paragraph = require('grommet/components/Paragraph');
 const Card = require('grommet/components/Card');
 const Anchor = require('grommet/components/Anchor');
@@ -55,26 +54,25 @@ const Primary = React.createClass({
   _renderNewsFeed: function () {
     const twitterIconBox = (
       <Box align="end">
-        <SocialTwitterIcon colorIndex="light-1" />
+        <SocialTwitterIcon />
       </Box>
     );
 
     const facebookIconBox = (
       <Box align="end">
-        <SocialFacebookIcon colorIndex="light-1" />
+        <SocialFacebookIcon />
       </Box>
     );
 
     const linkedinIconBox = (
       <Box align="end">
-        <SocialLinkedinIcon colorIndex="light-1" />
+        <SocialLinkedinIcon />
       </Box>
     );
 
     const socialFeedCard1 = (
       <Card
-        className="social-card-twitter"
-        colorIndex="neutral-1"
+        colorIndex="light-1"
         margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.twitter.com')}
@@ -89,8 +87,7 @@ const Primary = React.createClass({
 
     const socialFeedCard2 = (
       <Card
-        className="social-card-facebook"
-        colorIndex="neutral-1"
+        colorIndex="light-1"
         margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.facebook.com')}
@@ -105,8 +102,7 @@ const Primary = React.createClass({
 
     const socialFeedCard3 = (
       <Card
-        className="social-card-linkedin"
-        colorIndex="neutral-1"
+        colorIndex="light-1"
         margin="small"
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.linkedin.com')}
@@ -208,15 +204,15 @@ const Primary = React.createClass({
           darkTheme={false}
           backgroundImage="/docs/img/MarqueeImage_051916_H.jpg"
           label="label"
-          headline={<Headline size="medium" margin="small" strong={true}>
-            Accelerate your transformation with the cloud
-          </Headline>}
-          subHeadline="HPE can help you benefit now from your right mix of cloud"
+          headline="Accelerate your transformation with the cloud"
+          subHeadline={<Paragraph margin="none" size="large">
+            HPE can help you benefit now from your right mix of cloud
+          </Paragraph>}
           link="http://www.grommet.io/docs/"
-          textSize="medium"
+          stackSize="medium"
           responsiveBackgroundPosition="left" />
         <Box align="center">
-          <Box className="width-full" pad="large" align="center" textAlign="center" 
+          <Box pad="large" align="center" textAlign="center"
             size={{"width": {"max": "xxlarge"}}}>
             <Heading tag="h1" strong={true}>
               Sumo accumsan mel ignota hendrerit.
@@ -226,7 +222,7 @@ const Primary = React.createClass({
             </Paragraph>
           </Box>
         </Box>
-        <Box className="recent-news-section" colorIndex="light-2" pad={{vertical: "large"}} align="center">
+        <Box colorIndex="light-2" pad={{vertical: "large"}} align="center">
           <Box size={{"width": "xxlarge"}} pad={{horizontal: "large"}}>
             <Heading tag="h2" strong={true}>
               Recent News
@@ -236,10 +232,10 @@ const Primary = React.createClass({
         </Box>
         <Box colorIndex="accent-2-t" pad="large" align="center">
           <Box className="footer-cards-container" pad={{vertical: "medium"}}
-            size={{width: {max: "xxlarge"}}} direction="row">
-            <Card 
+            size={{width: "xxlarge"}} direction="row">
+            <Card
               pad={{horizontal: "large"}}
-              contentPad={{horizontal: "medium"}}
+              contentPad="medium"
               basis="1/2"
               direction="row"
               heading="Lorem ipsum dolor sit amet"
@@ -249,7 +245,7 @@ const Primary = React.createClass({
               separator="right" />
             <Card
               pad={{horizontal: "large"}}
-              contentPad={{horizontal: "medium"}}
+              contentPad="medium"
               basis="1/2"
               direction="row"
               heading="Lorem ipsum dolor sit amet"

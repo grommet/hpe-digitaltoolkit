@@ -165,7 +165,6 @@
   }
 
   &--responsive-drop .grommetux-box--justify-center {
-    .marquee__card,
     .marquee__stack {
       @include media-query(palm) {
         margin-top: $inuit-base-spacing-unit * 12.5;
@@ -186,7 +185,6 @@
       }
     }
 
-    .marquee__card > .grommetux-box,
     .marquee__stack > .grommetux-box {
       @include media-query(palm) {
         padding-top: $inuit-base-spacing-unit * 4;

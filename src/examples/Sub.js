@@ -10,8 +10,9 @@ const Heading = require('grommet/components/Heading');
 const Headline = require('grommet/components/Headline');
 const Paragraph = require('grommet/components/Paragraph');
 const Tiles = require('grommet/components/Tiles');
-const Video = require('grommet/components/Video');
 const LinkNextIcon = require('grommet/components/icons/base/LinkNext');
+const CubesIcon = require('grommet/components/icons/base/Cubes');
+const ComplianceIcon = require('grommet/components/icons/base/Compliance');
 const Marquee = require('../modules/Marquee');
 const Header = require('./Header');
 
@@ -63,7 +64,7 @@ const SubPage = React.createClass({
           thumbnail="/docs/img/Case_Study_image.png"
           label="Featured Post"
           heading="Protect Your Digital Enterprise ipsum dolores aeat"
-          link={<Anchor href={grommetPath} 
+          link={<Anchor href={grommetPath}
             label="Learn More" icon={<LinkNextIcon />} />}>
           <Paragraph>
             {`It’s not an either/or world. It’s about finding the
@@ -79,11 +80,12 @@ const SubPage = React.createClass({
           colorIndex="light-1"
           margin="small"
           contentPad="medium"
+          onClick={this._onClickCard.bind(this, grommetPath)}
           direction="column"
           thumbnail="/docs/img/Case_Study_image.png"
           label="Featured Post"
           heading="Foundation Paraguay Empowers Microbusinesses"
-          link={<Anchor href={grommetPath} 
+          link={<Anchor href={grommetPath}
             label="Learn More" icon={<LinkNextIcon />} />}>
           <Paragraph>
             {`See how Hewlett Packard Enterprise delivers mobile
@@ -96,11 +98,12 @@ const SubPage = React.createClass({
           colorIndex="light-1"
           margin="small"
           contentPad="medium"
+          onClick={this._onClickCard.bind(this, grommetPath)}
           direction="column"
           thumbnail="/docs/img/Case_Study_image.png"
           label="Featured Post"
           heading="The Key Steps to Reducing Software Spend"
-          link={<Anchor href={grommetPath} 
+          link={<Anchor href={grommetPath}
             label="Learn More" icon={<LinkNextIcon />} />}>
           <Paragraph>
             {`HPE Software Licensing and Management Solutions can
@@ -152,69 +155,74 @@ const SubPage = React.createClass({
           darkTheme={false}
           backgroundImage="/docs/img/MarqueeImage_051916_H.jpg"
           label="label"
-          headline={<Headline size="medium" margin="small" strong={true}>
-            Accelerate your transformation with the cloud
-          </Headline>}
-          subHeadline="HPE can help you benefit now from your right mix of cloud"
+          headline="Accelerate your transformation with the cloud"
+          subHeadline={<Paragraph margin="none" size="large">
+            HPE can help you benefit now from your right mix of cloud
+          </Paragraph>}
           link="http://www.grommet.io/docs/"
           textSize="medium"
           responsiveBackgroundPosition="left" />
         <Box align="center">
-          <Box className="width-full" pad="large" align="center" textAlign="center" 
+          <Box pad="large" align="center" textAlign="center"
             size={{"width": {"max": "xxlarge"}}}>
             <Heading tag="h1" strong={true}>
               Sumo accumsan mel ignota hendrerit.
             </Heading>
-            <Paragraph size="xlarge" width="large">
+            <Paragraph size="xlarge" width="large" margin="none">
               Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
             </Paragraph>
           </Box>
-          <Box className="width-full" pad={{vertical: "medium"}}
-            size={{width: {max: "xxlarge"}}} direction="row">
-            <Card 
-              contentPad={{horizontal: "medium"}}
-              basis="1/2"
-              direction="row"
-              heading="Lorem ipsum dolor sit amet">
-              <Paragraph width="large">
+          <Box size={{width: {max: "xxlarge"}}} direction="row">
+            <Box pad="medium" basis="1/2">
+              <CubesIcon colorIndex="brand" size="large" />
+              <Headline size="small" strong={true} margin="medium">
+                Lorem ipsum dolor sit amet
+              </Headline>
+              <Paragraph>
                 Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
               </Paragraph>
-            </Card>
-            <Card
-              contentPad={{horizontal: "medium"}}
-              basis="1/2"
-              direction="row"
-              heading="Lorem ipsum dolor sit amet">
-              <Paragraph width="large">
+            </Box>
+            <Box pad="medium" basis="1/2">
+              <ComplianceIcon colorIndex="brand" size="large" />
+              <Headline size="small" strong={true} margin="medium">
+                Lorem ipsum dolor sit amet
+              </Headline>
+              <Paragraph>
                 Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
               </Paragraph>
-            </Card>
+            </Box>
           </Box>
         </Box>
         <Marquee darkTheme={false}
           backgroundImage="/docs/img/section-3.jpg"
-          headline="Head of the class at the IDC MarketScape"
+          label="Section 01"
+          headline={<Heading tag="h1" strong={true}>
+            Accelerate your transformation with the cloud
+          </Heading>}
           justify="start"
-          logo="/docs/img/idc-logo-dark.png"
-          subHeadline="Hewlett Packard Enterprise is recognized as a 2014 IDC MarketScape leader in Cloud, Security, Big Data, Storage, ITIL/ITSM, and Project Management Training."
+          subHeadline={<Paragraph margin="none" size="large">
+            HPE can help you benefit now from your right mix of cloud
+          </Paragraph>}
           responsiveBackgroundPosition="left"
-          responsiveDropText={false}
-          stackSize="large"
-          overlayVideo={<Video autoPlay={true}><source src="/docs/img/VideoMarque_Part3V3.mp4" type='video/mp4'/></Video>} />
+          textSize="medium"
+          link="http://www.grommet.io/docs/" />
         <Marquee darkTheme={false}
           backgroundImage="/docs/img/section-4.jpg"
-          headline="Head of the class at the IDC MarketScape"
-          logo="/docs/img/idc-logo-dark.png"
-          subHeadline="Hewlett Packard Enterprise is recognized as a 2014 IDC MarketScape leader in Cloud, Security, Big Data, Storage, ITIL/ITSM, and Project Management Training."
+          label="Section 02"
+          headline={<Heading tag="h1" strong={true}>
+            Accelerate your transformation with the cloud
+          </Heading>}
+          subHeadline={<Paragraph margin="none" size="large">
+            HPE can help you benefit now from your right mix of cloud
+          </Paragraph>}
           responsiveBackgroundPosition="left"
-          stackSize="large"
+          textSize="medium"
           link="http://www.grommet.io/docs/" />
         <Box colorIndex="light-2" pad={{vertical: "large"}} align="center">
-          <Box className="width-full" size={{"width": {"max": "xxlarge"}}}>
+          <Box size={{"width": {"max": "xxlarge"}}}>
             {this._renderCardTiles()}
           </Box>
         </Box>
-        
       </div>
     );
   }
