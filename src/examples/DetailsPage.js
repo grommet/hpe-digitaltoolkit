@@ -25,24 +25,36 @@ export default class DetailsPage extends Component {
   render () {
     return (
       <div>
-        <Marquee darkTheme justify="start"
-          backgroundImage="/docs/img/details_marquee.jpg"
-          headline="Lorem ipsum dolor sit amet consectetur elit."
-          subHeadline="Pellentesque porta ut augue ac ultricies. Sed vehicula
-          metus a vulputate egestas."
-          link="http://www.grommet.io/docs/"
-          responsiveBackgroundPosition="left" />
-        <Box pad={{horizontal: 'large'}}>
-          <Paragraph margin="none">
-            <strong>By Kirk Bresniker, Hewlett Packard Labs Chief Architect
-              and HPE Fellow</strong>
-          </Paragraph>
-        </Box>
+        <Section pad="none" align="center">
+          <Marquee darkTheme justify="start"
+            backgroundImage="/docs/img/details_marquee.jpg"
+            headline="Lorem ipsum dolor sit amet consectetur elit."
+            subHeadline="Pellentesque porta ut augue ac ultricies. Sed vehicula
+            metus a vulputate egestas."
+            link="http://www.grommet.io/docs/"
+            responsiveBackgroundPosition="left"
+          />
+          <Box
+            direction="row"
+            size={{width: 'xxlarge'}}
+            pad={{horizontal: 'large'}}
+          >
+            <Paragraph margin="small">
+              <strong>By Kirk Bresniker, Hewlett Packard Labs Chief Architect
+                and HPE Fellow</strong>
+            </Paragraph>
+          </Box>
+        </Section>
 
-        <Section align="center">
-          <Box direction="row" justify="center" size={{width: 'xxlarge'}} pad={{between: 'large'}}>
+        <Section pad="none" align="center">
+          <Box
+            direction="row"
+            justify="center"
+            size={{width: 'xxlarge'}}
+            pad={{horizontal: 'large', vertical: 'medium', between: 'large'}}
+          >
             <Box>
-              <Paragraph size="xlarge">
+              <Paragraph size="xlarge" margin="none">
                 Dolor eveniet possimus possimus aut praesentium dignissimos sit
                 debitis. Fugit minima totam provident optio aliquam! Magni tenetur
                 doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
@@ -72,37 +84,76 @@ export default class DetailsPage extends Component {
             </Box>
             <Box basis="1/3">
               <img src="/docs/img/Case_Study_image.png" alt="example image" />
-              <Label size="small" uppercase>The Author</Label>
-              <Paragraph size="large"><strong>Kirk Bresniker</strong></Paragraph>
-              <Paragraph>
-                Lorem delectus accusantium alias voluptate explicabo? Quaerat
-                eius veniam corrupti laboriosam odio, consectetur, autem
-                aspernatur enim nulla. Animi dolorem ipsum nobis quibusdam
-                possimus quae non quis reprehenderit iusto. Esse mollitia
-                mollitia molestiae illum aspernatur velit odit odit? Consectetur
-                blanditiis omnis.
-              </Paragraph>
-              <Box direction="row" align="center" justify="between">
-                <Label uppercase={true}>Share</Label>
-                <Box direction="row" responsive={false}>
-                  <SocialShare type="email" link="http://www.grommet.io/docs/" />
-                  <SocialShare type="twitter" link="http://www.grommet.io/docs/" />
-                  <SocialShare type="facebook" link="http://www.grommet.io/docs/" />
-                  <SocialShare type="linkedin" link="http://www.grommet.io/docs/" />
+              <Box margin={{top: 'medium'}}>
+                <Label size="small" uppercase>The Author</Label>
+                <Paragraph size="large" margin="none">
+                  <strong>Kirk Bresniker</strong>
+                </Paragraph>
+                <Paragraph margin="medium">
+                  Lorem delectus accusantium alias voluptate explicabo? Quaerat
+                  eius veniam corrupti laboriosam odio, consectetur, autem
+                  aspernatur enim nulla. Animi dolorem ipsum nobis quibusdam
+                  possimus quae non quis reprehenderit iusto. Esse mollitia
+                  mollitia molestiae illum aspernatur velit odit odit? Consectetur
+                  blanditiis omnis.
+                </Paragraph>
+              </Box>
+              <Box
+                direction="row"
+                justify="between"
+                separator="top"
+              >
+                <Label margin="small" size="small" uppercase={true}>
+                  <strong>Share</strong>
+                </Label>
+                <Box
+                  align="center"
+                  direction="row"
+                  responsive={false}
+                  colorIndex="light"
+                >
+                  <SocialShare
+                    type="email"
+                    link="http://www.grommet.io/docs/"
+                    colorIndex="grey-4"
+                  />
+                  <SocialShare
+                    type="twitter"
+                    link="http://www.grommet.io/docs/"
+                    colorIndex="grey-4"
+                  />
+                  <SocialShare
+                    type="facebook"
+                    link="http://www.grommet.io/docs/"
+                    colorIndex="grey-4"
+                  />
+                  <SocialShare
+                    type="linkedin"
+                    link="http://www.grommet.io/docs/"
+                    colorIndex="grey-4"
+                  />
                 </Box>
               </Box>
             </Box>
           </Box>
         </Section>
-        <Hero
-          backgroundType="image"
-          backgroundImage="/docs/img/section-1.jpg"
-        />
-        <Box pad={{horizontal: 'large'}}>
-          <Paragraph margin="none">
-            Photos by Michael Blumenfeld
-          </Paragraph>
-        </Box>
+
+        <Section pad="none" align="center">
+          <Hero
+            backgroundType="image"
+            backgroundImage="/docs/img/section-1.jpg"
+          />
+          <Box
+            direction="row"
+            size={{width: 'xxlarge'}}
+            pad={{horizontal: 'large'}}
+          >
+            <Paragraph margin="small">
+              Photos by Michael Blumenfeld
+            </Paragraph>
+          </Box>
+        </Section>
+
         <Section align="center">
           <Box direction="row" justify="center" size={{width: 'xxlarge'}} pad={{between: 'large'}}>
             <Box>
@@ -167,6 +218,7 @@ export default class DetailsPage extends Component {
                 Lorem delectus accusantium alias voluptate explicabo? Quaerat
                 eius veniam corrupti laboriosam odio, consectetur, autem
                 aspernatur enim nulla.
+                <br/>
                 <Anchor href="#" label="Watch the video" icon={<WatchIcon />} />
               </Paragraph>
               <img src="/docs/img/Case_Study_image.png" alt="example image" />
@@ -174,6 +226,7 @@ export default class DetailsPage extends Component {
                 Lorem delectus accusantium alias voluptate explicabo? Quaerat
                 eius veniam corrupti laboriosam odio, consectetur, autem
                 aspernatur enim nulla.
+                <br/>
                 <Anchor href="#" label="Watch the video" icon={<WatchIcon />} />
               </Paragraph>
               <Heading tag="h3">Media Coverage</Heading>
