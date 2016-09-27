@@ -60,21 +60,21 @@ export default class DetailsPage extends Component {
                 doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
                 debitis sed mollitia laudantium sit?
               </Paragraph>
-              <Paragraph size="large">
+              <Paragraph size="large" margin="small">
                 Sit architecto veritatis neque ex laboriosam, laboriosam?
                 Aliquid illum ullam tenetur molestiae veniam velit quam. Facilis
                 ipsam hic labore cupiditate illo soluta error molestias corporis
                 quia, ipsa. Nobis ipsa nam eius esse illum unde. Veritatis
                 tenetur incidunt consectetur dolore blanditiis.
               </Paragraph>
-              <Paragraph size="large">
+              <Paragraph size="large" margin="small">
                 Lorem dolores incidunt similique aliquid rerum reiciendis est!
                 Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
                 aut consequatur consequuntur sequi delectus quam qui. Illo odio
                 dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde
                 laboriosam, laborum ratione, dicta nihil culpa.
               </Paragraph>
-              <Paragraph size="large">
+              <Paragraph size="large" margin="small">
                 Dolor amet voluptate nisi molestias praesentium. Eveniet
                 consectetur aliquid earum reprehenderit nam dicta tempora!
                 Maiores nostrum eius quo odit et facere quaerat maxime beatae
@@ -155,10 +155,20 @@ export default class DetailsPage extends Component {
         </Section>
 
         <Section align="center">
-          <Box direction="row" justify="center" size={{width: 'xxlarge'}} pad={{between: 'large'}}>
+          <Box
+            size={{width: 'xxlarge'}}
+            pad={{horizontal: 'large', between: 'large'}}
+          >
+            <Heading margin="none" strong>Pellentesque porta</Heading>
+          </Box>
+          <Box
+            direction="row"
+            justify="center"
+            size={{width: 'xxlarge'}}
+            pad={{horizontal: 'large', vertical: 'medium', between: 'large'}}
+          >
             <Box>
-              <Heading strong>Pellentesque porta</Heading>
-              <Paragraph size="large">
+              <Paragraph size="large" margin="small">
                 Lorem dolores incidunt similique aliquid rerum reiciendis est!
                 Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
                 aut consequatur consequuntur sequi delectus quam qui. Illo odio
@@ -169,21 +179,21 @@ export default class DetailsPage extends Component {
                 doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
                 debitis sed mollitia laudantium sit?
               </Paragraph>
-              <Paragraph size="large">
+              <Paragraph size="large" margin="small">
                 Sit architecto veritatis neque ex laboriosam, laboriosam?
                 Aliquid illum ullam tenetur molestiae veniam velit quam. Facilis
                 ipsam hic labore cupiditate illo soluta error molestias corporis
                 quia, ipsa. Nobis ipsa nam eius esse illum unde. Veritatis
                 tenetur incidunt consectetur dolore blanditiis.
               </Paragraph>
-              <Paragraph size="large">
+              <Paragraph size="large" margin="small">
                 Lorem dolores incidunt similique aliquid rerum reiciendis est!
                 Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
                 aut consequatur consequuntur sequi delectus quam qui. Illo odio
                 dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde
                 laboriosam, laborum ratione, dicta nihil culpa.
               </Paragraph>
-              <Paragraph size="large">
+              <Paragraph size="large" margin="small">
                 Dolor amet voluptate nisi molestias praesentium. Eveniet
                 consectetur aliquid earum reprehenderit nam dicta tempora!
                 Maiores nostrum eius quo odit et facere quaerat maxime beatae
@@ -194,6 +204,7 @@ export default class DetailsPage extends Component {
                 borderColorIndex="accent-1"
                 credit="Cullen Basg, Director at HPE"
                 size="medium"
+                margin={{top: 'medium'}}
               >
                 <Paragraph size="xlarge">
                   Quisque eleifned tempor arcu, quis fringilla sem. Pellentesque
@@ -203,8 +214,8 @@ export default class DetailsPage extends Component {
               </Quote>
             </Box>
             <Box basis="1/3">
-              <Heading tag="h3">The Team</Heading>
-              <Paragraph>
+              <Heading tag="h3" margin="none">The Team</Heading>
+              <Paragraph margin="small">
                 Pellentesque porta ut augue ac ultricies. Sed vehicula metus a
                 vulputate egestas. Lorem delectus accusantium alias voluptate
                 explicabo? Quaerat eius veniam corrupti laboriosam odio,
@@ -212,29 +223,35 @@ export default class DetailsPage extends Component {
                 nobis quibusdam possimus quae non quis reprehenderit iusto.
                 Esse mollitia mollitia molestiae illum aspernatur velit odit.
               </Paragraph>
-              <Heading tag="h3">Highlights</Heading>
-              <img src="/docs/img/Case_Study_image.png" alt="example image" />
-              <Paragraph>
-                Lorem delectus accusantium alias voluptate explicabo? Quaerat
-                eius veniam corrupti laboriosam odio, consectetur, autem
-                aspernatur enim nulla.
-                <br/>
-                <Anchor href="#" label="Watch the video" icon={<WatchIcon />} />
-              </Paragraph>
-              <img src="/docs/img/Case_Study_image.png" alt="example image" />
-              <Paragraph>
-                Lorem delectus accusantium alias voluptate explicabo? Quaerat
-                eius veniam corrupti laboriosam odio, consectetur, autem
-                aspernatur enim nulla.
-                <br/>
-                <Anchor href="#" label="Watch the video" icon={<WatchIcon />} />
-              </Paragraph>
-              <Heading tag="h3">Media Coverage</Heading>
-              <Paragraph>
+              <Heading tag="h3" margin="none">Highlights</Heading>
+              <Box margin={{vertical: 'small'}}>
+                <img src="/docs/img/Case_Study_image.png" alt="example image" />
+                <Paragraph margin="small">
+                  Lorem delectus accusantium alias voluptate explicabo? Quaerat
+                  eius veniam corrupti laboriosam odio, consectetur, autem
+                  aspernatur enim nulla.
+                </Paragraph>
+                <Box margin={{bottom: 'small'}}>
+                  <Anchor href="#" label="Watch the video" icon={<WatchIcon />} />
+                </Box>
+              </Box>
+              <Box margin={{vertical: 'small'}}>
+                <img src="/docs/img/Case_Study_image.png" alt="example image" />
+                <Paragraph margin="small">
+                  Lorem delectus accusantium alias voluptate explicabo? Quaerat
+                  eius veniam corrupti laboriosam odio, consectetur, autem
+                  aspernatur enim nulla.
+                </Paragraph>
+                <Box margin={{bottom: 'small'}}>
+                  <Anchor href="#" label="Watch the video" icon={<WatchIcon />} />
+                </Box>
+              </Box>
+              <Heading tag="h3" margin="none">Media Coverage</Heading>
+              <Paragraph margin="small">
                 <a href="#">The Machine is coming:</a> Star Trek beyond Meets The machine - and
                 the Future of Technology Begins.
               </Paragraph>
-              <Paragraph>
+              <Paragraph margin="small">
                 For media enquiries, send an email to <a href="#">corpmediarelations@hpe.com</a>
               </Paragraph>
             </Box>
