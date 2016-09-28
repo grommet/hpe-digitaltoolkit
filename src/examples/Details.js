@@ -22,7 +22,7 @@ import Chart, { Area, Axis, Base, Layers } from 'grommet/components/chart/Chart'
 import Marquee from '../modules/Marquee';
 import Header from './Header';
 
-export default class DetailsPage extends Component {
+export default class Details extends Component {
   render () {
     return (
       <div>
@@ -569,11 +569,11 @@ export default class DetailsPage extends Component {
   }
 };
 
-DetailsPage.defaultProps = {
+Details.defaultProps = {
 };
 
-DetailsPage.routes = () => {
+Details.routes = () => {
   return [
-    <Route path="details-page" component={DetailsPage} />
+    <Route path="details" component={Details} />
   ];
 };
