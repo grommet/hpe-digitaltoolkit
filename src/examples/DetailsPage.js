@@ -299,9 +299,10 @@ export default class DetailsPage extends Component {
           >
             <Box basis="1/3">
               <Quote
+                pad="medium"
                 borderColorIndex="accent-1"
                 credit="Cullen Basg, Director at HPE"
-                size="medium"
+                size="full"
               >
                 <Paragraph size="xlarge">
                   Quisque eleifned tempor arcu, quis fringilla sem. Pellentesque
