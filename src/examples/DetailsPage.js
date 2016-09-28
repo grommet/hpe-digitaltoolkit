@@ -40,8 +40,8 @@ export default class DetailsPage extends Component {
             pad={{horizontal: 'large'}}
           >
             <Paragraph margin="small">
-              <strong>By Kirk Bresniker, Hewlett Packard Labs Chief Architect
-                and HPE Fellow</strong>
+              By Kirk Bresniker, Hewlett Packard Labs Chief Architect
+              and HPE Fellow
             </Paragraph>
           </Box>
         </Section>
@@ -53,7 +53,7 @@ export default class DetailsPage extends Component {
             size={{width: 'xxlarge'}}
             pad={{horizontal: 'large', vertical: 'medium', between: 'large'}}
           >
-            <Box>
+            <Box basis="2/3">
               <Paragraph size="xlarge" margin="none">
                 Dolor eveniet possimus possimus aut praesentium dignissimos sit
                 debitis. Fugit minima totam provident optio aliquam! Magni tenetur
@@ -83,7 +83,7 @@ export default class DetailsPage extends Component {
               </Paragraph>
             </Box>
             <Box basis="1/3">
-              <img src="/docs/img/Case_Study_image.png" alt="example image" />
+              <Image src="/docs/img/Case_Study_image.png" alt="example image" />
               <Box margin={{top: 'medium'}}>
                 <Label size="small" uppercase>The Author</Label>
                 <Paragraph size="large" margin="none">
@@ -167,7 +167,7 @@ export default class DetailsPage extends Component {
             size={{width: 'xxlarge'}}
             pad={{horizontal: 'large', vertical: 'medium', between: 'large'}}
           >
-            <Box>
+            <Box basis="2/3">
               <Paragraph size="large" margin="small">
                 Lorem dolores incidunt similique aliquid rerum reiciendis est!
                 Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
@@ -203,8 +203,8 @@ export default class DetailsPage extends Component {
               <Quote
                 borderColorIndex="accent-1"
                 credit="Cullen Basg, Director at HPE"
-                size="medium"
                 margin={{top: 'medium'}}
+                size="full"
               >
                 <Paragraph size="xlarge">
                   Quisque eleifned tempor arcu, quis fringilla sem. Pellentesque
@@ -225,7 +225,7 @@ export default class DetailsPage extends Component {
               </Paragraph>
               <Heading tag="h3" margin="none">Highlights</Heading>
               <Box margin={{vertical: 'small'}}>
-                <img src="/docs/img/Case_Study_image.png" alt="example image" />
+                <Image src="/docs/img/Case_Study_image.png" alt="example image" />
                 <Paragraph margin="small">
                   Lorem delectus accusantium alias voluptate explicabo? Quaerat
                   eius veniam corrupti laboriosam odio, consectetur, autem
@@ -236,7 +236,7 @@ export default class DetailsPage extends Component {
                 </Box>
               </Box>
               <Box margin={{vertical: 'small'}}>
-                <img src="/docs/img/Case_Study_image.png" alt="example image" />
+                <Image src="/docs/img/Case_Study_image.png" alt="example image" />
                 <Paragraph margin="small">
                   Lorem delectus accusantium alias voluptate explicabo? Quaerat
                   eius veniam corrupti laboriosam odio, consectetur, autem
@@ -269,22 +269,34 @@ export default class DetailsPage extends Component {
           stackSize="large"
           link="http://www.grommet.io/docs/"
         />
-        <Section align="center">
-          <Box justify="center" size={{width: 'xxlarge'}}>
-            <Heading strong>Pellentesque porta</Heading>
-            <Paragraph size="large">
+        <Section pad="none" align="center" colorIndex="light-2">
+          <Box
+            size={{width: 'xxlarge'}}
+            pad={{horizontal: 'large', vertical: 'medium'}}
+          >
+            <Heading margin="small" strong>Lorem ipsum dolor</Heading>
+            <Paragraph size="large" margin="small">
               Lorem dolores incidunt similique aliquid rerum reiciendis est!
               Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
               aut consequatur consequuntur sequi delectus quam qui. Illo odio
-              dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde
-              laboriosam, laborum ratione, dicta nihil culpa.
-              Dolor eveniet possimus possimus aut praesentium dignissimos sit
-              debitis. Fugit minima totam provident optio aliquam! Magni tenetur
+              dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit.
+            </Paragraph>
+            <Paragraph size="large" margin="small">
+              Laboriosam, laborum ratione, dicta nihil culpa.  Dolor eveniet
+              possimus possimus aut praesentium dignissimos sit debitis.
+              Fugit minima totam provident optio aliquam! Magni tenetur
               doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
               debitis sed mollitia laudantium sit?
             </Paragraph>
           </Box>
-          <Box direction="row" align="center" justify="center" size={{width: 'xxlarge'}} pad={{between: 'large'}}>
+          <Box
+            align="center"
+            direction="row"
+            justify="center"
+            size={{width: 'xxlarge'}}
+            pad={{horizontal: 'large', vertical: 'medium', between: 'large'}}
+            margin={{bottom: 'large'}}
+          >
             <Box basis="1/3">
               <Quote
                 borderColorIndex="accent-1"
@@ -298,8 +310,8 @@ export default class DetailsPage extends Component {
                 </Paragraph>
               </Quote>
             </Box>
-            <Box>
-              <Paragraph size="large">
+            <Box basis="2/3">
+              <Paragraph size="large" margin="small">
                 Lorem dolores incidunt similique aliquid rerum reiciendis est!
                 Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
                 aut consequatur consequuntur sequi delectus quam qui. Illo odio
@@ -310,22 +322,28 @@ export default class DetailsPage extends Component {
                 doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
                 debitis sed mollitia laudantium sit?
               </Paragraph>
-              <Paragraph size="large">
+              <Paragraph size="large" margin="small">
                 Sit architecto veritatis neque ex laboriosam, laboriosam?
                 Aliquid illum ullam tenetur molestiae veniam velit quam. Facilis
                 ipsam hic labore cupiditate illo soluta error molestias corporis
                 quia, ipsa. Nobis ipsa nam eius esse illum unde. Veritatis
                 tenetur incidunt consectetur dolore blanditiis.
               </Paragraph>
-              <Paragraph size="large">
+              <Paragraph size="large" margin="small">
                 Lorem dolores incidunt similique aliquid rerum reiciendis est!
                 Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
                 aut consequatur consequuntur sequi delectus quam qui. Illo odio
                 dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde
                 laboriosam, laborum ratione, dicta nihil culpa.
               </Paragraph>
-              <img src="/docs/img/details_marquee.jpg" alt="smaple image" />
-              <Paragraph size="large">
+              <Box pad={{vertical: 'medium'}}>
+                <Image
+                  full="horizontal"
+                  src="/docs/img/details_marquee.jpg"
+                  alt="smaple image"
+                />
+              </Box>
+              <Paragraph size="large" margin="small">
                 Dolor amet voluptate nisi molestias praesentium. Eveniet
                 consectetur aliquid earum reprehenderit nam dicta tempora!
                 Maiores nostrum eius quo odit et facere quaerat maxime beatae
@@ -334,9 +352,14 @@ export default class DetailsPage extends Component {
               </Paragraph>
             </Box>
           </Box>
-          <Box justify="center" size={{width: 'xxlarge'}}>
-            <Heading strong>Aenean sit amet solicitudin eros.</Heading>
-            <Paragraph size="large">
+        </Section>
+        <Section pad="none" align="center">
+          <Box
+            size={{width: 'xxlarge'}}
+            pad={{horizontal: 'large', vertical: 'medium'}}
+          >
+            <Heading margin="small" strong>Aenean sit amet solicitudin eros.</Heading>
+            <Paragraph size="large" margin="small">
               Lorem dolores incidunt similique aliquid rerum reiciendis est!
               Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
               aut consequatur consequuntur sequi delectus quam qui. Illo odio
@@ -347,21 +370,21 @@ export default class DetailsPage extends Component {
               doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
               debitis sed mollitia laudantium sit?
             </Paragraph>
-            <Paragraph size="large">
+            <Paragraph size="large" margin="small">
               Sit architecto veritatis neque ex laboriosam, laboriosam?
               Aliquid illum ullam tenetur molestiae veniam velit quam. Facilis
               ipsam hic labore cupiditate illo soluta error molestias corporis
               quia, ipsa. Nobis ipsa nam eius esse illum unde. Veritatis
               tenetur incidunt consectetur dolore blanditiis.
             </Paragraph>
-            <Paragraph size="large">
+            <Paragraph size="large" margin="small">
               Lorem dolores incidunt similique aliquid rerum reiciendis est!
               Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
               aut consequatur consequuntur sequi delectus quam qui. Illo odio
               dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde
               laboriosam, laborum ratione, dicta nihil culpa.
             </Paragraph>
-            <Paragraph size="large">
+            <Paragraph size="large" margin="small">
               Dolor amet voluptate nisi molestias praesentium. Eveniet
               consectetur aliquid earum reprehenderit nam dicta tempora!
               Maiores nostrum eius quo odit et facere quaerat maxime beatae
@@ -370,6 +393,7 @@ export default class DetailsPage extends Component {
             </Paragraph>
           </Box>
         </Section>
+
         <Box direction="row" justify="between" full="horizontal" pad={{between: 'medium'}}>
           <Box>
             <Image size="large" src="/docs/img/Case_Study_image.png" alt="example image" />
@@ -381,40 +405,43 @@ export default class DetailsPage extends Component {
             <Image size="large" src="/docs/img/Case_Study_image.png" alt="example image" />
           </Box>
         </Box>
-        <Section align="center">
-          <Box justify="center" size={{width: 'xxlarge'}}>
-            <Heading strong>Pellentesque porta</Heading>
-            <Paragraph size="large">
+
+        <Section pad="none" align="center">
+          <Box
+            size={{width: 'xxlarge'}}
+            pad={{horizontal: 'large', vertical: 'medium'}}
+          >
+            <Heading margin="small" strong>Pellentesque porta</Heading>
+            <Paragraph size="large" margin="small">
               Lorem dolores incidunt similique aliquid rerum reiciendis est!
               Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
               aut consequatur consequuntur sequi delectus quam qui. Illo odio
               dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde
               laboriosam, laborum ratione, dicta nihil culpa.
+            </Paragraph>
+            <Paragraph size="large" margin="small">
               Dolor eveniet possimus possimus aut praesentium dignissimos sit
               debitis. Fugit minima totam provident optio aliquam! Magni tenetur
               doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
               debitis sed mollitia laudantium sit?
             </Paragraph>
-            <Video>
-              <source src="/video/test.mp4" type="video/mp4" />
-            </Video>
-            <Box>
-              <Paragraph margin="none">
+            <Box margin={{top: 'large'}}>
+              <Video>
+                <source src="/video/test.mp4" type="video/mp4" />
+              </Video>
+              <Paragraph margin="small">
                 Photos by Michael Blumenfeld
               </Paragraph>
             </Box>
-            <Paragraph size="large">
-              Lorem dolores incidunt similique aliquid rerum reiciendis est!
-              Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
-              aut consequatur consequuntur sequi delectus quam qui. Illo odio
-              dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde
-              laboriosam, laborum ratione, dicta nihil culpa.
-              Dolor eveniet possimus possimus aut praesentium dignissimos sit
-              debitis. Fugit minima totam provident optio aliquam! Magni tenetur
-              doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
-              debitis sed mollitia laudantium sit?
+            <Paragraph size="large" margin="small">
+              Ipsum repudiandae corrupti eos hic libero, nulla facere provident.
+              Sequi inventore eveniet minus quaerat aut. Voluptas qui voluptate
+              eveniet ea ipsum? Eaque rerum excepturi vitae quis veniam officiis
+              amet, id natus quibusdam! Dolorum culpa repellat minima doloribus
+              facilis harum. Praesentium ea assumenda veritatis corporis quam
+              doloremque.
             </Paragraph>
-            <Paragraph size="large">
+            <Paragraph size="large" margin="small">
               Lorem dolores incidunt similique aliquid rerum reiciendis est!
               Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
               aut consequatur consequuntur sequi delectus quam qui. Illo odio
@@ -422,8 +449,7 @@ export default class DetailsPage extends Component {
               laboriosam, laborum ratione, dicta nihil culpa.
               Dolor eveniet possimus possimus aut praesentium dignissimos sit
               debitis. Fugit minima totam provident optio aliquam! Magni tenetur
-              doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
-              debitis sed mollitia laudantium sit?
+              doloremque rem tempore amet voluptatibus ipsum.
             </Paragraph>
           </Box>
           <Chart vertical={true} full={true}>
@@ -441,28 +467,25 @@ export default class DetailsPage extends Component {
               {"index": 5, "label": "May 21"}
             ]} />
           </Chart>
-          <Box justify="center" size={{width: 'xxlarge'}}>
-            <Paragraph size="large">
-              Lorem dolores incidunt similique aliquid rerum reiciendis est!
-              Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
-              aut consequatur consequuntur sequi delectus quam qui. Illo odio
-              dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde
-              laboriosam, laborum ratione, dicta nihil culpa.
-              Dolor eveniet possimus possimus aut praesentium dignissimos sit
-              debitis. Fugit minima totam provident optio aliquam! Magni tenetur
-              doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
-              debitis sed mollitia laudantium sit?
+          <Box
+            size={{width: 'xxlarge'}}
+            pad={{horizontal: 'large', vertical: 'medium'}}
+          >
+            <Paragraph size="large" margin="small">
+              Consectetur quas quia distinctio nam neque commodi asperiores
+              incidunt. Dignissimos non vel laboriosam provident veritatis
+              nesciunt modi. Sapiente quisquam ab nam assumenda dolor voluptate
+              soluta et neque aspernatur nemo omnis adipisci blanditiis aliquam
+              illo magni expedita aliquid, odio dolorem molestias eligendi iure
+              nulla enim animi? Excepturi veniam in quia quis totam. Nisi aut
+              accusantium eos distinctio error.
             </Paragraph>
-            <Paragraph size="large">
+            <Paragraph size="large" margin="small">
               Lorem dolores incidunt similique aliquid rerum reiciendis est!
               Placeat minima voluptas quis tenetur deleniti harum. Nesciunt
               aut consequatur consequuntur sequi delectus quam qui. Illo odio
               dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde
               laboriosam, laborum ratione, dicta nihil culpa.
-              Dolor eveniet possimus possimus aut praesentium dignissimos sit
-              debitis. Fugit minima totam provident optio aliquam! Magni tenetur
-              doloremque rem tempore amet voluptatibus ipsum. Eos aliquid
-              debitis sed mollitia laudantium sit?
             </Paragraph>
           </Box>
         </Section>
