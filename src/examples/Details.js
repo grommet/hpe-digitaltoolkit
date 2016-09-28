@@ -11,7 +11,6 @@ import Label from 'grommet/components/Label';
 import Hero from 'grommet/components/Hero';
 import Anchor from 'grommet/components/Anchor';
 import WatchIcon from 'grommet/components/icons/base/Watch';
-import LinkNext from 'grommet/components/icons/base/LinkNext';
 import Quote from 'grommet/components/Quote';
 import Image from 'grommet/components/Image';
 import Video from 'grommet/components/Video';
@@ -525,15 +524,15 @@ export default class Details extends Component {
         </Section>
         <Section
           align="center"
-          colorIndex="accent-2"
+          colorIndex="accent-2-t"
         >
           <Box
+            align="center"
             direction="row"
-            justify="between"
             size={{width: 'xxlarge'}}
             pad={{vertical: 'large'}}
           >
-            <Box basis="1/2" pad="large">
+            <Box basis="1/2" pad={{horizontal: 'large'}}>
               <Label uppercase>Share the article</Label>
               <Box direction="row" responsive={false} pad={{between: 'medium'}}>
                 <FormField>
@@ -545,23 +544,23 @@ export default class Details extends Component {
                 </FormField>
                 <Button label="COPY" onClick={() => console.log('hello')} />
               </Box>
-              <Box direction="row" pad={{vertical: 'medium'}} responsive={false}>
+              <Box direction="row" margin={{top: 'medium'}} responsive={false}>
                 <SocialShare type="email" link="http://www.grommet.io/docs/" />
                 <SocialShare type="twitter" link="http://www.grommet.io/docs/" />
                 <SocialShare type="facebook" link="http://www.grommet.io/docs/" />
                 <SocialShare type="linkedin" link="http://www.grommet.io/docs/" />
               </Box>
             </Box>
-            <Box basis="1/2" pad="large" separator="left">
-              <Card
-                colorIndex=""
-                label="Next Article"
-                heading="Pellentesque porta ut augue ac ultricies."
-                link={
-                  <Anchor href="" label="Learn More" icon={<LinkNext />} />
-                }
-              />
-            </Box>
+            <Card
+              contentPad="large"
+              basis="1/2"
+              direction="row"
+              heading="Pellentesque porta ut augue ac ultricies."
+              label="Next Article"
+              link={<Anchor href="http://www.grommet.io/docs/" primary={true}>
+                Learn More</Anchor>}
+              separator="left"
+            />
           </Box>
         </Section>
       </div>
