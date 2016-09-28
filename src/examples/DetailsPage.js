@@ -15,7 +15,7 @@ import LinkNext from 'grommet/components/icons/base/LinkNext';
 import Quote from 'grommet/components/Quote';
 import Image from 'grommet/components/Image';
 import Video from 'grommet/components/Video';
-import Form from 'grommet/components/Form';
+import Button from 'grommet/components/Button';
 import FormField from 'grommet/components/FormField';
 import SocialShare from 'grommet/components/SocialShare';
 import Chart, { Area, Axis, Base, Layers } from 'grommet/components/chart/Chart';
@@ -477,13 +477,18 @@ export default class DetailsPage extends Component {
             pad={{vertical: 'large'}}
           >
             <Box basis="1/2" pad="large">
-              <Form pad={{vertical: 'small'}}>
-                <FormField size="large" label="Share the article">
-                  <input className="share-link" type="text" value="http://www.grommet.io/docs/"
-                    readOnly />
+              <Label uppercase>Share the article</Label>
+              <Box direction="row" responsive={false} pad={{between: 'medium'}}>
+                <FormField>
+                  <input
+                    type="text"
+                    value="http://www.grommet.io/docs/"
+                    readOnly
+                  />
                 </FormField>
-              </Form>
-              <Box direction="row" responsive={false}>
+                <Button label="COPY" onClick={() => console.log('hello')} />
+              </Box>
+              <Box direction="row" pad={{vertical: 'medium'}} responsive={false}>
                 <SocialShare type="email" link="http://www.grommet.io/docs/" />
                 <SocialShare type="twitter" link="http://www.grommet.io/docs/" />
                 <SocialShare type="facebook" link="http://www.grommet.io/docs/" />
