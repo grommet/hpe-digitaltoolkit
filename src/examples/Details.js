@@ -60,11 +60,12 @@ export default class Details extends Component {
         <Section pad="none" align="center">
           <Marquee darkTheme justify="start"
             backgroundImage="/docs/img/details_marquee.jpg"
+            label="Challenge"
             headline="Lorem ipsum dolor sit amet consectetur elit."
             subHeadline="Pellentesque porta ut augue ac ultricies. Sed vehicula
             metus a vulputate egestas."
-            link="http://www.grommet.io/docs/"
             responsiveBackgroundPosition="left"
+            separator={true}
           />
           <Box
             direction="row"
