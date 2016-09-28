@@ -8,6 +8,8 @@ var Home = require('./Home');
 var Design = require('./design/Design');
 var Develop = require('./develop/Develop');
 var Examples = require('./examples/Examples');
+var Primary = require('./examples/Primary');
+var Sub = require('./examples/Sub');
 var DetailsPage = require('./examples/DetailsPage');
 
 module.exports = function (rootPath) {
@@ -38,6 +40,8 @@ module.exports = function (rootPath) {
       {Design.routes()}
       {Develop.routes()}
       {Examples.routes()}
+      {Primary.routes()}
+      {Sub.routes()}
       {DetailsPage.routes()}
     </Route>
   );
