@@ -20,11 +20,44 @@ import FormField from 'grommet/components/FormField';
 import SocialShare from 'grommet/components/SocialShare';
 import Chart, { Area, Axis, Base, Layers } from 'grommet/components/chart/Chart';
 import Marquee from '../modules/Marquee';
+import Header from './Header';
 
 export default class DetailsPage extends Component {
   render () {
     return (
       <div>
+        <Header external={true}
+          logoLink={'/docs/hpe/examples'}
+          links={
+            [{
+              label: 'Documentation',
+              links: [{
+                label: 'Accordion',
+                href: 'http://grommet.github.io/docs/accordion/'
+              }, {
+                label: 'Card',
+                href: 'http://grommet.github.io/docs/card/'
+              }, {
+                label: 'Marquee',
+                href: '/docs/hpe/develop/marquee'
+              }, {
+                label: 'Stack',
+                href: '/docs/hpe/develop/stack'
+              }]
+            }, {
+              label: 'Page Templates',
+              links: [{
+                label: 'Primary',
+                href: '/docs/hpe/primary'
+              }, {
+                label: 'Sub',
+                href: '/docs/hpe/sub'
+              }, {
+                label: 'Details',
+                href: '/docs/hpe/details'
+              }]
+            }]
+          } />
         <Section pad="none" align="center">
           <Marquee darkTheme justify="start"
             backgroundImage="/docs/img/details_marquee.jpg"

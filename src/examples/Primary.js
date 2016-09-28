@@ -182,7 +182,7 @@ const Primary = React.createClass({
                 href: '/docs/hpe/sub'
               }, {
                 label: 'Details',
-                href: '#'
+                href: '/docs/hpe/details'
               }]
             }]
           } />
