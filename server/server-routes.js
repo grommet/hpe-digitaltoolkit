@@ -57,6 +57,8 @@ module.exports =
 	var Design = __webpack_require__(136);
 	var Develop = __webpack_require__(149);
 	var Examples = __webpack_require__(211);
+	var Primary = __webpack_require__(230);
+	var Sub = __webpack_require__(231);
 
 	module.exports = function (rootPath) {
 	  var DocsRouter = React.createClass({
@@ -86,7 +88,9 @@ module.exports =
 	    React.createElement(IndexRoute, { component: Home }),
 	    Design.routes(),
 	    Develop.routes(),
-	    Examples.routes()
+	    Examples.routes(),
+	    Primary.routes(),
+	    Sub.routes()
 	  );
 	};
 
@@ -2693,6 +2697,10 @@ module.exports =
 	            // don't apply 100% max-width when size using size.width.max option
 	            classes.push(CLASS_ROOT + '--size');
 	          }
+	          if (size.width && size.width.max) {
+	            // allow widths to shrink, apply 100% width
+	            classes.push(CLASS_ROOT + '--width-max');
+	          }
 	        }
 	      }
 
@@ -3400,6 +3408,7 @@ module.exports =
 	  HERO: namespace + 'hero',
 	  IMAGE: namespace + 'image',
 	  IMAGE_FIELD: namespace + 'image-field',
+	  INPUT: namespace + 'input',
 	  LABEL: namespace + 'label',
 	  LAYER: namespace + 'layer',
 	  LEGEND: namespace + 'legend',
@@ -3422,6 +3431,7 @@ module.exports =
 	  SEARCH: namespace + 'search',
 	  SEARCH_INPUT: namespace + 'search-input',
 	  SECTION: namespace + 'section',
+	  SELECT: namespace + 'select',
 	  SIDEBAR: namespace + 'sidebar',
 	  SKIP_LINK_ANCHOR: namespace + 'skip-link-anchor',
 	  SKIP_LINKS: namespace + 'skip-links',
@@ -3436,6 +3446,7 @@ module.exports =
 	  TAG: namespace + 'tag',
 	  TAGS: namespace + 'tags',
 	  TBD: namespace + 'tbd',
+	  TEXT_INPUT: namespace + 'text-input',
 	  TILE: namespace + 'tile',
 	  TILES: namespace + 'tiles',
 	  TIMESTAMP: namespace + 'timestamp',
@@ -14064,7 +14075,7 @@ module.exports =
 
 	      var text = _react2.default.createElement(
 	        _Box2.default,
-	        { className: CLASS_ROOT + '__content', pad: contentPad },
+	        { className: CLASS_ROOT + '__content', flex: true, pad: contentPad },
 	        label,
 	        heading,
 	        description,
@@ -14119,7 +14130,6 @@ module.exports =
 	}, _Box2.default.propTypes);
 
 	Card.defaultProps = {
-	  colorIndex: 'light-1',
 	  contentPad: 'medium',
 	  headingStrong: true,
 	  textSize: 'small'
@@ -18370,6 +18380,7 @@ module.exports =
 
 	var CLASS_ROOT = _CSSClassnames2.default.SEARCH; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
+	var INPUT = _CSSClassnames2.default.INPUT;
 	var BACKGROUND_COLOR_INDEX = _CSSClassnames2.default.BACKGROUND_COLOR_INDEX;
 
 	var Search = function (_Component) {
@@ -18658,7 +18669,7 @@ module.exports =
 	      var _classnames;
 
 	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Search.propTypes));
-	      var classes = (0, _classnames5.default)((_classnames = {}, (0, _defineProperty3.default)(_classnames, BACKGROUND_COLOR_INDEX + '-' + this.props.dropColorIndex, this.props.dropColorIndex), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__drop', true), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__drop--controlled', !this.state.inline), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__drop--large', this.props.large), _classnames));
+	      var classes = (0, _classnames5.default)((_classnames = {}, (0, _defineProperty3.default)(_classnames, BACKGROUND_COLOR_INDEX + '-' + this.props.dropColorIndex, this.props.dropColorIndex), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__drop', true), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__drop--controlled', !this.state.inline), _classnames));
 
 	      var input = void 0;
 	      if (!this.state.inline) {
@@ -18666,7 +18677,7 @@ module.exports =
 	          autoComplete: 'off',
 	          defaultValue: this.props.defaultValue,
 	          value: this.props.value,
-	          className: CLASS_ROOT + '__input',
+	          className: INPUT + ' ' + CLASS_ROOT + '__input',
 	          onChange: this._onChangeInput }));
 	      }
 
@@ -18721,7 +18732,7 @@ module.exports =
 	          _this2 = this;
 
 	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Search.propTypes));
-	      var classes = (0, _classnames5.default)(CLASS_ROOT, (_classnames3 = {}, (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--controlled', !this.state.inline), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--fill', this.props.fill), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--icon-align-' + this.props.iconAlign, this.props.iconAlign), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--inline', this.state.inline), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--large', this.props.large && !this.props.size), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--' + this.props.size, this.props.size), _classnames3), this.props.className);
+	      var classes = (0, _classnames5.default)(CLASS_ROOT, (_classnames3 = {}, (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--controlled', !this.state.inline), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--fill', this.props.fill), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--icon-align-' + this.props.iconAlign, this.props.iconAlign), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--pad-' + this.props.pad, this.props.pad), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--inline', this.state.inline), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--' + this.props.size, this.props.size), _classnames3), this.props.className);
 
 	      if (this.state.inline) {
 	        return _react2.default.createElement(
@@ -18735,7 +18746,7 @@ module.exports =
 	            autoComplete: 'off',
 	            defaultValue: this._renderLabel(this.props.defaultValue),
 	            value: this._renderLabel(this.props.value),
-	            className: CLASS_ROOT + '__input',
+	            className: INPUT + ' ' + CLASS_ROOT + '__input',
 	            onFocus: this._onFocusInput,
 	            onBlur: this._onBlurInput,
 	            onChange: this._onChangeInput,
@@ -18772,14 +18783,15 @@ module.exports =
 	  dropAlign: _Drop2.default.alignPropType,
 	  dropColorIndex: _react.PropTypes.string,
 	  fill: _react.PropTypes.bool,
-	  iconAlign: _react2.default.PropTypes.oneOf(['start', 'end']),
-	  id: _react2.default.PropTypes.string,
+	  iconAlign: _react.PropTypes.oneOf(['start', 'end']),
+	  id: _react.PropTypes.string,
 	  inline: _react.PropTypes.bool,
 	  onDOMChange: _react.PropTypes.func,
 	  onSelect: _react.PropTypes.func,
+	  pad: _react.PropTypes.oneOf(['small', 'medium']),
 	  placeHolder: _react.PropTypes.string,
 	  responsive: _react.PropTypes.bool,
-	  size: _react2.default.PropTypes.oneOf(['small', 'medium', 'large']),
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large']),
 	  suggestions: _react.PropTypes.arrayOf(_react.PropTypes.oneOfType([_react.PropTypes.shape({
 	    label: _react.PropTypes.node,
 	    value: _react.PropTypes.any
@@ -23325,11 +23337,11 @@ module.exports =
 	                    { strong: true, margin: 'none' },
 	                    headline
 	                  ),
-	                  description: _react2.default.createElement(
+	                  description: typeof subHeadline === 'string' ? _react2.default.createElement(
 	                    _Paragraph2.default,
-	                    { margin: 'medium', size: 'xlarge' },
+	                    { margin: 'medium', size: stackSize },
 	                    subHeadline
-	                  ), pad: 'none', label: label },
+	                  ) : subHeadline, pad: 'none', label: label },
 	                this._renderCta()
 	              )
 	            )
@@ -23351,11 +23363,11 @@ module.exports =
 	                    { strong: true, margin: 'none' },
 	                    headline
 	                  ),
-	                  description: _react2.default.createElement(
+	                  description: typeof subHeadline === 'string' ? _react2.default.createElement(
 	                    _Paragraph2.default,
-	                    { margin: 'medium', size: 'xlarge' },
+	                    { margin: 'medium', size: stackSize },
 	                    subHeadline
-	                  ), pad: 'none', label: label },
+	                  ) : subHeadline, pad: 'none', label: label },
 	                this._renderCta()
 	              )
 	            )
@@ -23375,11 +23387,11 @@ module.exports =
 	                { strong: true, margin: 'none' },
 	                headline
 	              ),
-	              description: _react2.default.createElement(
+	              description: typeof subHeadline === 'string' ? _react2.default.createElement(
 	                _Paragraph2.default,
-	                { margin: 'medium', size: 'xlarge' },
+	                { margin: 'medium', size: stackSize },
 	                subHeadline
-	              ), pad: 'none', label: label })
+	              ) : subHeadline, pad: 'none', label: label })
 	          )
 	        );
 	      }
@@ -23498,7 +23510,7 @@ module.exports =
 	  backgroundOverlayColorIndex: _react.PropTypes.string,
 	  darkTheme: _react.PropTypes.bool,
 	  flush: _react.PropTypes.bool,
-	  headline: _react.PropTypes.string.isRequired,
+	  headline: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
 	  image: _react.PropTypes.string,
 	  justify: _react.PropTypes.oneOf(['start', 'center', 'end']),
 	  label: _react.PropTypes.string,
@@ -23512,8 +23524,8 @@ module.exports =
 	  responsiveDropText: _react.PropTypes.bool,
 	  separator: _react.PropTypes.bool,
 	  size: _react.PropTypes.oneOf(['small', 'large']),
-	  stackSize: _react.PropTypes.oneOf(['large', 'xlarge']),
-	  subHeadline: _react.PropTypes.string,
+	  stackSize: _react.PropTypes.oneOf(['medium', 'large', 'xlarge']),
+	  subHeadline: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
 	  textBackgroundColorIndex: _react.PropTypes.string
 	};
 
@@ -24513,6 +24525,7 @@ module.exports =
 	    var socialFeedCard1 = React.createElement(
 	      Card,
 	      {
+	        colorIndex: 'light-1',
 	        margin: 'small',
 	        contentPad: 'medium',
 	        onClick: this._onClickCard.bind(this, 'http://www.twitter.com'),
@@ -24529,6 +24542,7 @@ module.exports =
 	    var socialFeedCard2 = React.createElement(
 	      Card,
 	      {
+	        colorIndex: 'light-1',
 	        margin: 'small',
 	        contentPad: 'medium',
 	        onClick: this._onClickCard.bind(this, 'http://www.facebook.com'),
@@ -24545,6 +24559,7 @@ module.exports =
 	    var socialFeedCard3 = React.createElement(
 	      Card,
 	      {
+	        colorIndex: 'light-1',
 	        margin: 'small',
 	        contentPad: 'medium',
 	        onClick: this._onClickCard.bind(this, 'http://www.linkedin.com'),
@@ -24561,6 +24576,7 @@ module.exports =
 	    var blogPostCard = React.createElement(
 	      Card,
 	      {
+	        colorIndex: 'light-1',
 	        margin: 'small',
 	        contentPad: 'medium',
 	        onClick: this._onClickCard.bind(this, grommetPath),
@@ -24577,6 +24593,7 @@ module.exports =
 	    var featuredPostCard = React.createElement(
 	      Card,
 	      {
+	        colorIndex: 'light-1',
 	        margin: 'small',
 	        contentPad: 'medium',
 	        onClick: this._onClickCard.bind(this, grommetPath),
@@ -24622,6 +24639,7 @@ module.exports =
 	        Tiles,
 	        { size: 'medium', colorIndex: 'light-2', justify: 'center' },
 	        React.createElement(Card, {
+	          colorIndex: 'light-1',
 	          margin: 'small',
 	          contentPad: 'medium',
 	          onClick: this._onClickCard.bind(this, grommetPath),
@@ -24633,6 +24651,7 @@ module.exports =
 	          link: React.createElement(Anchor, { href: grommetPath, label: 'Learn More', icon: React.createElement(LinkNextIcon, null) })
 	        }),
 	        React.createElement(Card, {
+	          colorIndex: 'light-1',
 	          margin: 'small',
 	          contentPad: 'medium',
 	          direction: 'column',
@@ -24647,6 +24666,7 @@ module.exports =
 	          link: React.createElement(Anchor, { href: '#', label: 'Watch Now', icon: React.createElement(WatchIcon, null) })
 	        }),
 	        React.createElement(Card, {
+	          colorIndex: 'light-1',
 	          margin: 'small',
 	          contentPad: 'medium',
 	          direction: 'column',
@@ -24656,6 +24676,7 @@ module.exports =
 	          description: 'HPE Software Licensing and Management Solutions can\n              help you optimize your software investments through control of\n              complex negotiations and renewal processes'
 	        }),
 	        React.createElement(Card, {
+	          colorIndex: 'light-1',
 	          margin: 'small',
 	          contentPad: 'medium',
 	          direction: 'column',
@@ -24688,6 +24709,18 @@ module.exports =
 	          }, {
 	            label: 'Stack',
 	            href: '/docs/hpe/develop/stack'
+	          }]
+	        }, {
+	          label: 'Page Templates',
+	          links: [{
+	            label: 'Primary',
+	            href: '/docs/hpe/primary'
+	          }, {
+	            label: 'Sub',
+	            href: '/docs/hpe/sub'
+	          }, {
+	            label: 'Details',
+	            href: '#'
 	          }]
 	        }] }),
 	      React.createElement(MarqueeParallax, { darkTheme: false,
@@ -27116,6 +27149,824 @@ module.exports =
 	};
 
 	exports.default = Logo;
+	module.exports = exports['default'];
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var React = __webpack_require__(1);
+	var Router = __webpack_require__(2);
+	var Route = Router.Route;
+	var Columns = __webpack_require__(212);
+	var Box = __webpack_require__(83);
+	var Heading = __webpack_require__(156);
+	var Paragraph = __webpack_require__(157);
+	var Card = __webpack_require__(158);
+	var Anchor = __webpack_require__(116);
+	var SocialTwitterIcon = __webpack_require__(181);
+	var SocialFacebookIcon = __webpack_require__(182);
+	var SocialLinkedinIcon = __webpack_require__(184);
+	var LinkNextIcon = __webpack_require__(109);
+	var Marquee = __webpack_require__(206);
+	var Header = __webpack_require__(227);
+
+	var grommetPath = 'http://grommet.github.io';
+
+	var Primary = React.createClass({
+	  displayName: 'Primary',
+
+	  contextTypes: {
+	    routePrefix: React.PropTypes.string.isRequired
+	  },
+
+	  childContextTypes: {
+	    routePrefix: React.PropTypes.string.isRequired
+	  },
+
+	  getChildContext: function getChildContext() {
+	    return {
+	      routePrefix: this.context.routePrefix + 'primary/'
+	    };
+	  },
+
+	  _onClickCard: function _onClickCard(path, event) {
+	    event.preventDefault();
+	    window.location.href = path;
+	  },
+
+	  _renderNewsFeed: function _renderNewsFeed() {
+	    var twitterIconBox = React.createElement(
+	      Box,
+	      { align: 'end' },
+	      React.createElement(SocialTwitterIcon, null)
+	    );
+
+	    var facebookIconBox = React.createElement(
+	      Box,
+	      { align: 'end' },
+	      React.createElement(SocialFacebookIcon, null)
+	    );
+
+	    var linkedinIconBox = React.createElement(
+	      Box,
+	      { align: 'end' },
+	      React.createElement(SocialLinkedinIcon, null)
+	    );
+
+	    var socialFeedCard1 = React.createElement(
+	      Card,
+	      {
+	        colorIndex: 'light-1',
+	        margin: 'small',
+	        contentPad: 'medium',
+	        onClick: this._onClickCard.bind(this, 'http://www.twitter.com'),
+	        direction: 'column',
+	        label: 'Social' },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      ),
+	      twitterIconBox
+	    );
+
+	    var socialFeedCard2 = React.createElement(
+	      Card,
+	      {
+	        colorIndex: 'light-1',
+	        margin: 'small',
+	        contentPad: 'medium',
+	        onClick: this._onClickCard.bind(this, 'http://www.facebook.com'),
+	        direction: 'column',
+	        label: 'Social' },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      ),
+	      facebookIconBox
+	    );
+
+	    var socialFeedCard3 = React.createElement(
+	      Card,
+	      {
+	        colorIndex: 'light-1',
+	        margin: 'small',
+	        contentPad: 'medium',
+	        onClick: this._onClickCard.bind(this, 'http://www.linkedin.com'),
+	        direction: 'column',
+	        label: 'Social' },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      ),
+	      linkedinIconBox
+	    );
+
+	    var blogPostCard = React.createElement(
+	      Card,
+	      {
+	        colorIndex: 'light-1',
+	        margin: 'small',
+	        contentPad: 'medium',
+	        onClick: this._onClickCard.bind(this, grommetPath),
+	        direction: 'column',
+	        label: 'Featured Post',
+	        link: React.createElement(Anchor, { href: grommetPath, label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      )
+	    );
+
+	    var featuredPostCard = React.createElement(
+	      Card,
+	      {
+	        colorIndex: 'light-1',
+	        margin: 'small',
+	        contentPad: 'medium',
+	        onClick: this._onClickCard.bind(this, grommetPath),
+	        thumbnail: '/docs/img/carousel-1.png',
+	        direction: 'column',
+	        label: 'Featured Post',
+	        link: React.createElement(Anchor, { href: grommetPath, label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
+	      React.createElement(
+	        Heading,
+	        { tag: 'h2' },
+	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
+	      )
+	    );
+
+	    return React.createElement(
+	      Box,
+	      { className: 'columns-container', colorIndex: 'light-2',
+	        pad: { horizontal: "large" }, size: { width: { max: "xxlarge" } } },
+	      React.createElement(
+	        Columns,
+	        { size: 'medium', justify: 'center', masonry: true,
+	          maxCount: 7, responsive: true },
+	        blogPostCard,
+	        featuredPostCard,
+	        socialFeedCard1,
+	        socialFeedCard2,
+	        blogPostCard,
+	        featuredPostCard,
+	        featuredPostCard,
+	        socialFeedCard3
+	      )
+	    );
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(Header, { external: true,
+	        logoLink: '/docs/hpe/examples',
+	        links: [{
+	          label: 'Documentation',
+	          links: [{
+	            label: 'Accordion',
+	            href: 'http://grommet.github.io/docs/accordion/'
+	          }, {
+	            label: 'Card',
+	            href: 'http://grommet.github.io/docs/card/'
+	          }, {
+	            label: 'Marquee',
+	            href: '/docs/hpe/develop/marquee'
+	          }, {
+	            label: 'Stack',
+	            href: '/docs/hpe/develop/stack'
+	          }]
+	        }, {
+	          label: 'Page Templates',
+	          links: [{
+	            label: 'Primary',
+	            href: '/docs/hpe/primary'
+	          }, {
+	            label: 'Sub',
+	            href: '/docs/hpe/sub'
+	          }, {
+	            label: 'Details',
+	            href: '#'
+	          }]
+	        }] }),
+	      React.createElement(Marquee, {
+	        separator: true,
+	        darkTheme: false,
+	        backgroundImage: '/docs/img/MarqueeImage_051916_H.jpg',
+	        label: 'label',
+	        headline: 'Accelerate your transformation with the cloud',
+	        subHeadline: React.createElement(
+	          Paragraph,
+	          { margin: 'none', size: 'large' },
+	          'HPE can help you benefit now from your right mix of cloud'
+	        ),
+	        link: 'http://www.grommet.io/docs/',
+	        stackSize: 'medium',
+	        responsiveBackgroundPosition: 'left' }),
+	      React.createElement(
+	        Box,
+	        { align: 'center' },
+	        React.createElement(
+	          Box,
+	          { pad: 'large', align: 'center', textAlign: 'center',
+	            size: { "width": { "max": "xxlarge" } } },
+	          React.createElement(
+	            Heading,
+	            { tag: 'h1', strong: true },
+	            'Sumo accumsan mel ignota hendrerit.'
+	          ),
+	          React.createElement(
+	            Paragraph,
+	            { size: 'xlarge', width: 'large' },
+	            'Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.'
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        Box,
+	        { colorIndex: 'light-2', pad: { vertical: "large" }, align: 'center' },
+	        React.createElement(
+	          Box,
+	          { size: { "width": "xxlarge" }, pad: { horizontal: "large" } },
+	          React.createElement(
+	            Heading,
+	            { tag: 'h2', strong: true },
+	            'Recent News'
+	          )
+	        ),
+	        this._renderNewsFeed()
+	      ),
+	      React.createElement(
+	        Box,
+	        { colorIndex: 'accent-2-t', pad: 'large', align: 'center' },
+	        React.createElement(
+	          Box,
+	          { className: 'footer-cards-container', pad: { vertical: "medium" },
+	            size: { width: "xxlarge" }, direction: 'row' },
+	          React.createElement(Card, {
+	            pad: { horizontal: "large" },
+	            contentPad: 'medium',
+	            basis: '1/2',
+	            direction: 'row',
+	            heading: 'Lorem ipsum dolor sit amet',
+	            label: 'Label',
+	            link: React.createElement(
+	              Anchor,
+	              { href: 'http://www.grommet.io/docs/', primary: true },
+	              'Learn More'
+	            ),
+	            separator: 'right' }),
+	          React.createElement(Card, {
+	            pad: { horizontal: "large" },
+	            contentPad: 'medium',
+	            basis: '1/2',
+	            direction: 'row',
+	            heading: 'Lorem ipsum dolor sit amet',
+	            label: 'Label',
+	            link: React.createElement(
+	              Anchor,
+	              { href: 'http://www.grommet.io/docs/', primary: true },
+	              'Learn More'
+	            ) })
+	        )
+	      )
+	    );
+	  }
+	});
+
+	Primary.routes = function () {
+	  return [React.createElement(Route, { key: 'top', path: 'primary', component: Primary })];
+	};
+
+	module.exports = Primary;
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var React = __webpack_require__(1);
+	var Router = __webpack_require__(2);
+	var Route = Router.Route;
+	var Anchor = __webpack_require__(116);
+	var Box = __webpack_require__(83);
+	var Card = __webpack_require__(158);
+	var Heading = __webpack_require__(156);
+	var Headline = __webpack_require__(119);
+	var Paragraph = __webpack_require__(157);
+	var Tiles = __webpack_require__(120);
+	var LinkNextIcon = __webpack_require__(109);
+	var CubesIcon = __webpack_require__(232);
+	var ComplianceIcon = __webpack_require__(233);
+	var Marquee = __webpack_require__(206);
+	var Header = __webpack_require__(227);
+
+	var grommetPath = 'http://grommet.github.io';
+
+	var SubPage = React.createClass({
+	  displayName: 'SubPage',
+
+	  contextTypes: {
+	    routePrefix: React.PropTypes.string.isRequired
+	  },
+
+	  childContextTypes: {
+	    routePrefix: React.PropTypes.string.isRequired
+	  },
+
+	  getChildContext: function getChildContext() {
+	    return {
+	      routePrefix: this.context.routePrefix + 'sub/'
+	    };
+	  },
+
+	  _onClickCard: function _onClickCard(path, event) {
+	    event.preventDefault();
+	    window.location.href = path;
+	  },
+
+	  _renderCardTiles: function _renderCardTiles() {
+	    return React.createElement(
+	      Tiles,
+	      { size: 'medium', justify: 'center' },
+	      React.createElement(
+	        Card,
+	        {
+	          textSize: 'small',
+	          colorIndex: 'light-1',
+	          margin: 'small',
+	          contentPad: 'medium',
+	          onClick: this._onClickCard.bind(this, grommetPath),
+	          direction: 'column',
+	          thumbnail: '/docs/img/Case_Study_image.png',
+	          label: 'Featured Post',
+	          heading: 'Protect Your Digital Enterprise ipsum dolores aeat',
+	          link: React.createElement(Anchor, { href: grommetPath,
+	            label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
+	        React.createElement(
+	          Paragraph,
+	          null,
+	          'It’s not an either/or world. It’s about finding the\n              right platform for each app, workload and service. Learn how\n              hybrid infrastructure can help you achieve cloud agility with\n              traditional IT predictability. It’s not an either/or world. It’s\n              about finding the right platform for each app, workload and\n              service.'
+	        )
+	      ),
+	      React.createElement(
+	        Card,
+	        {
+	          textSize: 'small',
+	          colorIndex: 'light-1',
+	          margin: 'small',
+	          contentPad: 'medium',
+	          onClick: this._onClickCard.bind(this, grommetPath),
+	          direction: 'column',
+	          thumbnail: '/docs/img/Case_Study_image.png',
+	          label: 'Featured Post',
+	          heading: 'Foundation Paraguay Empowers Microbusinesses',
+	          link: React.createElement(Anchor, { href: grommetPath,
+	            label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
+	        React.createElement(
+	          Paragraph,
+	          null,
+	          'See how Hewlett Packard Enterprise delivers mobile\n              solutions to improve quality of life and help eliminate poverty\n              in South America.'
+	        )
+	      ),
+	      React.createElement(
+	        Card,
+	        {
+	          textSize: 'small',
+	          colorIndex: 'light-1',
+	          margin: 'small',
+	          contentPad: 'medium',
+	          onClick: this._onClickCard.bind(this, grommetPath),
+	          direction: 'column',
+	          thumbnail: '/docs/img/Case_Study_image.png',
+	          label: 'Featured Post',
+	          heading: 'The Key Steps to Reducing Software Spend',
+	          link: React.createElement(Anchor, { href: grommetPath,
+	            label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
+	        React.createElement(
+	          Paragraph,
+	          null,
+	          'HPE Software Licensing and Management Solutions can\n            help you optimize your software investments through control of\n            complex negotiations and renewal processes'
+	        )
+	      )
+	    );
+	  },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(Header, { external: true,
+	        logoLink: '/docs/hpe/examples',
+	        links: [{
+	          label: 'Documentation',
+	          links: [{
+	            label: 'Accordion',
+	            href: 'http://grommet.github.io/docs/accordion/'
+	          }, {
+	            label: 'Card',
+	            href: 'http://grommet.github.io/docs/card/'
+	          }, {
+	            label: 'Marquee',
+	            href: '/docs/hpe/develop/marquee'
+	          }, {
+	            label: 'Stack',
+	            href: '/docs/hpe/develop/stack'
+	          }]
+	        }, {
+	          label: 'Page Templates',
+	          links: [{
+	            label: 'Primary',
+	            href: '/docs/hpe/primary'
+	          }, {
+	            label: 'Sub',
+	            href: '/docs/hpe/sub'
+	          }, {
+	            label: 'Details',
+	            href: '#'
+	          }]
+	        }] }),
+	      React.createElement(Marquee, {
+	        separator: true,
+	        darkTheme: false,
+	        backgroundImage: '/docs/img/MarqueeImage_051916_H.jpg',
+	        label: 'label',
+	        headline: 'Accelerate your transformation with the cloud',
+	        subHeadline: React.createElement(
+	          Paragraph,
+	          { margin: 'none', size: 'large' },
+	          'HPE can help you benefit now from your right mix of cloud'
+	        ),
+	        link: 'http://www.grommet.io/docs/',
+	        textSize: 'medium',
+	        responsiveBackgroundPosition: 'left' }),
+	      React.createElement(
+	        Box,
+	        { align: 'center' },
+	        React.createElement(
+	          Box,
+	          { pad: 'large', align: 'center', textAlign: 'center',
+	            size: { "width": { "max": "xxlarge" } } },
+	          React.createElement(
+	            Heading,
+	            { tag: 'h1', strong: true },
+	            'Sumo accumsan mel ignota hendrerit.'
+	          ),
+	          React.createElement(
+	            Paragraph,
+	            { size: 'xlarge', width: 'large', margin: 'none' },
+	            'Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.'
+	          )
+	        ),
+	        React.createElement(
+	          Box,
+	          { size: { width: { max: "xxlarge" } }, direction: 'row' },
+	          React.createElement(
+	            Box,
+	            { pad: 'medium', basis: '1/2' },
+	            React.createElement(CubesIcon, { colorIndex: 'brand', size: 'large' }),
+	            React.createElement(
+	              Headline,
+	              { size: 'small', strong: true, margin: 'medium' },
+	              'Lorem ipsum dolor sit amet'
+	            ),
+	            React.createElement(
+	              Paragraph,
+	              null,
+	              'Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.'
+	            )
+	          ),
+	          React.createElement(
+	            Box,
+	            { pad: 'medium', basis: '1/2' },
+	            React.createElement(ComplianceIcon, { colorIndex: 'brand', size: 'large' }),
+	            React.createElement(
+	              Headline,
+	              { size: 'small', strong: true, margin: 'medium' },
+	              'Lorem ipsum dolor sit amet'
+	            ),
+	            React.createElement(
+	              Paragraph,
+	              null,
+	              'Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.'
+	            )
+	          )
+	        )
+	      ),
+	      React.createElement(Marquee, { darkTheme: false,
+	        backgroundImage: '/docs/img/section-3.jpg',
+	        label: 'Section 01',
+	        headline: React.createElement(
+	          Heading,
+	          { tag: 'h1', strong: true },
+	          'Accelerate your transformation with the cloud'
+	        ),
+	        justify: 'start',
+	        subHeadline: React.createElement(
+	          Paragraph,
+	          { margin: 'none', size: 'large' },
+	          'HPE can help you benefit now from your right mix of cloud'
+	        ),
+	        responsiveBackgroundPosition: 'left',
+	        textSize: 'medium',
+	        link: 'http://www.grommet.io/docs/' }),
+	      React.createElement(Marquee, { darkTheme: false,
+	        backgroundImage: '/docs/img/section-4.jpg',
+	        label: 'Section 02',
+	        headline: React.createElement(
+	          Heading,
+	          { tag: 'h1', strong: true },
+	          'Accelerate your transformation with the cloud'
+	        ),
+	        subHeadline: React.createElement(
+	          Paragraph,
+	          { margin: 'none', size: 'large' },
+	          'HPE can help you benefit now from your right mix of cloud'
+	        ),
+	        responsiveBackgroundPosition: 'left',
+	        textSize: 'medium',
+	        link: 'http://www.grommet.io/docs/' }),
+	      React.createElement(
+	        Box,
+	        { colorIndex: 'light-2', pad: { vertical: "large" }, align: 'center' },
+	        React.createElement(
+	          Box,
+	          { size: { "width": { "max": "xxlarge" } } },
+	          this._renderCardTiles()
+	        )
+	      )
+	    );
+	  }
+	});
+
+	SubPage.routes = function () {
+	  return [React.createElement(Route, { key: 'top', path: 'sub', component: SubPage })];
+	};
+
+	module.exports = SubPage;
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _defineProperty2 = __webpack_require__(5);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _FormattedMessage = __webpack_require__(81);
+
+	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Icon = function (_Component) {
+	  (0, _inherits3.default)(Icon, _Component);
+
+	  function Icon() {
+	    (0, _classCallCheck3.default)(this, Icon);
+	    return (0, _possibleConstructorReturn3.default)(this, (Icon.__proto__ || (0, _getPrototypeOf2.default)(Icon)).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Icon, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var a11yTitleId = _props.a11yTitleId;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var size = _props2.size;
+	      var responsive = _props2.responsive;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-cubes', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--responsive', responsive), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
+
+	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'cubes', defaultMessage: 'cubes' });
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { version: '1.1', viewBox: '0 0 26 26.1147', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
+	        _react2.default.createElement(
+	          'title',
+	          { id: a11yTitleId },
+	          a11yTitle
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          null,
+	          _react2.default.createElement('rect', { x: '1', y: '2.1147', fill: 'none', width: '24', height: '24' }),
+	          _react2.default.createElement('path', { fill: 'none', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', d: 'M1,14.0692l6-2.9545l6,2.9545v7.0909l-6,2.9545\r l-6-2.9545V14.0692z M1,14.0692l6,2.9545l6-2.9545 M7,17.1147v7 M13,21.1601l6,2.9545l6-2.9545v-7.0909l-6-2.9545l-6,2.9545\r V21.1601z M13,14.0692l6,2.9545l6-2.9545 M19,17.1147v7 M7,11.1601l6,2.9545l6-2.9545V4.0692l-6-2.9545L7,4.0692V11.1601z\r M7,4.0692l6,2.9545l6-2.9545 M13,7.1147v7' })
+	        )
+	      );
+	    }
+	  }]);
+	  return Icon;
+	}(_react.Component);
+
+	Icon.displayName = 'Icon';
+	exports.default = Icon;
+	;
+
+	Icon.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge']),
+	  responsive: _react.PropTypes.bool
+	};
+
+	Icon.defaultProps = {
+	  a11yTitleId: 'cubes-title',
+	  responsive: true
+	};
+
+	Icon.icon = true;
+
+	Icon.displayName = 'Cubes';
+	module.exports = exports['default'];
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _defineProperty2 = __webpack_require__(5);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _FormattedMessage = __webpack_require__(81);
+
+	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Icon = function (_Component) {
+	  (0, _inherits3.default)(Icon, _Component);
+
+	  function Icon() {
+	    (0, _classCallCheck3.default)(this, Icon);
+	    return (0, _possibleConstructorReturn3.default)(this, (Icon.__proto__ || (0, _getPrototypeOf2.default)(Icon)).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Icon, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var a11yTitleId = _props.a11yTitleId;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var size = _props2.size;
+	      var responsive = _props2.responsive;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-compliance', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--responsive', responsive), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
+
+	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'compliance', defaultMessage: 'compliance' });
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { version: '1.1', viewBox: '0 0 24 24', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
+	        _react2.default.createElement(
+	          'title',
+	          { id: a11yTitleId },
+	          a11yTitle
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          null,
+	          _react2.default.createElement('rect', { fill: 'none', width: '24', height: '24' }),
+	          _react2.default.createElement('path', { fill: 'none', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', d: 'M16,3h5v20H3V3h5 M16,1H8v5h8V1z M8,14l3,3l6-6' })
+	        )
+	      );
+	    }
+	  }]);
+	  return Icon;
+	}(_react.Component);
+
+	Icon.displayName = 'Icon';
+	exports.default = Icon;
+	;
+
+	Icon.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge']),
+	  responsive: _react.PropTypes.bool
+	};
+
+	Icon.defaultProps = {
+	  a11yTitleId: 'compliance-title',
+	  responsive: true
+	};
+
+	Icon.icon = true;
+
+	Icon.displayName = 'Compliance';
 	module.exports = exports['default'];
 
 /***/ }

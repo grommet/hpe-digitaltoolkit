@@ -230,10 +230,10 @@ export default class Marquee extends Component {
                 textSize={stackSize} heading={
                   <Headline strong={true} margin="none">{headline}</Headline>
                 }
-                description={
-                  <Paragraph margin="medium" size="xlarge">
+                description={(typeof subHeadline === 'string') ?
+                  <Paragraph margin="medium" size={stackSize}>
                     {subHeadline}
-                  </Paragraph>
+                  </Paragraph> : subHeadline
                 } pad="none" label={label}>
                 {this._renderCta()}
               </Card>
@@ -250,10 +250,10 @@ export default class Marquee extends Component {
                 textSize={stackSize} heading={
                   <Headline strong={true} margin="none">{headline}</Headline>
                 }
-                description={
-                  <Paragraph margin="medium" size="xlarge">
+                description={(typeof subHeadline === 'string') ?
+                  <Paragraph margin="medium" size={stackSize}>
                     {subHeadline}
-                  </Paragraph>
+                  </Paragraph> : subHeadline
                 } pad="none" label={label}>
                 {this._renderCta()}
               </Card>
@@ -270,10 +270,10 @@ export default class Marquee extends Component {
               textSize={stackSize} heading={
                 <Headline strong={true} margin="none">{headline}</Headline>
               }
-              description={
-                <Paragraph margin="medium" size="xlarge">
+              description={(typeof subHeadline === 'string') ?
+                <Paragraph margin="medium" size={stackSize}>
                   {subHeadline}
-                </Paragraph>
+                </Paragraph> : subHeadline
               } pad="none" label={label} />
           </Box>
         </Box>
@@ -379,7 +379,10 @@ Marquee.propTypes = {
   backgroundOverlayColorIndex: PropTypes.string,
   darkTheme: PropTypes.bool,
   flush: PropTypes.bool,
-  headline: PropTypes.string.isRequired,
+  headline: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
   image: PropTypes.string,
   justify: PropTypes.oneOf(['start', 'center', 'end']),
   label: PropTypes.string,
@@ -393,8 +396,11 @@ Marquee.propTypes = {
   responsiveDropText: PropTypes.bool,
   separator: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'large']),
-  stackSize: PropTypes.oneOf(['large', 'xlarge']),
-  subHeadline: PropTypes.string,
+  stackSize: PropTypes.oneOf(['medium', 'large', 'xlarge']),
+  subHeadline: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element
+  ]),
   textBackgroundColorIndex: PropTypes.string
 };
 
