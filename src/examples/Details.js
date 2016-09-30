@@ -8,7 +8,6 @@ import Card from 'grommet/components/Card';
 import Heading from 'grommet/components/Heading';
 import Paragraph from 'grommet/components/Paragraph';
 import Label from 'grommet/components/Label';
-import Hero from 'grommet/components/Hero';
 import Anchor from 'grommet/components/Anchor';
 import WatchIcon from 'grommet/components/icons/base/Watch';
 import Quote from 'grommet/components/Quote';
@@ -172,10 +171,9 @@ export default class Details extends Component {
         </Section>
 
         <Section pad="none" align="center">
-          <Hero
-            backgroundType="image"
-            backgroundImage="/docs/img/section-1.jpg"
-          />
+          <Box full="horizontal">
+            <Image full src="/docs/img/section-1.jpg" />
+          </Box>
           <Box
             direction="row"
             size={{width: 'xxlarge'}}
@@ -429,14 +427,14 @@ export default class Details extends Component {
         </Section>
 
         <Box direction="row" justify="between" full="horizontal" pad={{between: 'medium'}}>
-          <Box>
-            <Image size="large" src="/docs/img/Case_Study_image.png" alt="example image" />
+          <Box full="horizontal">
+            <Image full size="large" src="/docs/img/Case_Study_image.png" alt="example image" />
           </Box>
-          <Box>
-            <Image size="large" src="/docs/img/Case_Study_image.png" alt="example image" />
+          <Box full="horizontal">
+            <Image full size="large" src="/docs/img/Case_Study_image.png" alt="example image" />
           </Box>
-          <Box>
-            <Image size="large" src="/docs/img/Case_Study_image.png" alt="example image" />
+          <Box full="horizontal">
+            <Image full size="large" src="/docs/img/Case_Study_image.png" alt="example image" />
           </Box>
         </Box>
 
