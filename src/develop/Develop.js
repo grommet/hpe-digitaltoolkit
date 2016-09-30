@@ -14,7 +14,6 @@ var HelloWorld = require('./HelloWorld');
 var GetStarted = require('./GetStarted');
 
 var BoxDoc = require('./components/BoxDoc');
-var NavigationDoc = require('./patterns/NavigationDoc');
 var MarqueeDoc = require('./components/MarqueeDoc');
 var WorldMapDoc = require('./components/WorldMapDoc');
 var StackDoc = require('./components/StackDoc');
@@ -33,11 +32,6 @@ var CONTENTS = [
         component: HelloWorld},
       {route: 'develop_getstarted', label: 'Get Started',
         component: GetStarted}
-    ]
-  },
-  {label: 'Patterns',
-    contents: [
-      {route: 'develop_navigation', label: 'Navigation', component: NavigationDoc}
     ]
   },
   {label: 'Components',
