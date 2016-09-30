@@ -525,13 +525,13 @@ export default class Details extends Component {
         </Section>
         <Section
           align="center"
+          pad="large"
           colorIndex="accent-2-t"
         >
           <Box
             align="center"
             direction="row"
             size={{width: 'xxlarge'}}
-            pad={{vertical: 'large'}}
           >
             <Box basis="1/2" pad={{horizontal: 'large'}}>
               <Label uppercase>Share the article</Label>
