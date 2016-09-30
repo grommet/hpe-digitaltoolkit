@@ -135,9 +135,9 @@ const Primary = React.createClass({
 
     return (
       <Box className="columns-container" colorIndex="light-2"
-        pad={{horizontal: "large"}} size={{width: {max: "xxlarge"}}}>
+        pad={{horizontal: "large"}} size={{width: {max: "full"}}}>
         <Columns size="medium" justify="center" masonry={true}
-          maxCount={7} responsive={true}>
+          maxCount={3} responsive={true}>
           {blogPostCard}
           {featuredPostCard}
           {socialFeedCard1}
@@ -210,7 +210,7 @@ const Primary = React.createClass({
           </Box>
         </Box>
         <Box colorIndex="light-2" pad={{vertical: "large"}} align="center">
-          <Box size={{"width": "xxlarge"}} pad={{horizontal: "large"}}>
+          <Box align="start" size={{"width": "xxlarge"}} pad={{horizontal: "large"}}>
             <Heading tag="h2" strong={true}>
               Recent News
             </Heading>
