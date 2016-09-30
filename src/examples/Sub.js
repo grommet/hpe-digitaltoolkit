@@ -53,7 +53,7 @@ const SubPage = React.createClass({
           heading="Protect Your Digital Enterprise ipsum dolores aeat"
           link={<Anchor href={grommetPath}
             label="Learn More" icon={<LinkNextIcon />} />}>
-          <Paragraph>
+          <Paragraph margin="small">
             {`It’s not an either/or world. It’s about finding the
               right platform for each app, workload and service. Learn how
               hybrid infrastructure can help you achieve cloud agility with
@@ -74,7 +74,7 @@ const SubPage = React.createClass({
           heading="Foundation Paraguay Empowers Microbusinesses"
           link={<Anchor href={grommetPath}
             label="Learn More" icon={<LinkNextIcon />} />}>
-          <Paragraph>
+          <Paragraph margin="small">
             {`See how Hewlett Packard Enterprise delivers mobile
               solutions to improve quality of life and help eliminate poverty
               in South America.`}
@@ -92,7 +92,7 @@ const SubPage = React.createClass({
           heading="The Key Steps to Reducing Software Spend"
           link={<Anchor href={grommetPath}
             label="Learn More" icon={<LinkNextIcon />} />}>
-          <Paragraph>
+          <Paragraph margin="small">
             {`HPE Software Licensing and Management Solutions can
             help you optimize your software investments through control of
             complex negotiations and renewal processes`}
@@ -133,7 +133,7 @@ const SubPage = React.createClass({
                 href: '/docs/hpe/sub'
               }, {
                 label: 'Details',
-                href: '#'
+                href: '/docs/hpe/details'
               }]
             }]
           } />
@@ -149,8 +149,8 @@ const SubPage = React.createClass({
           link="http://www.grommet.io/docs/"
           textSize="medium"
           responsiveBackgroundPosition="left" />
-        <Box align="center">
-          <Box pad="large" align="center" textAlign="center"
+        <Box align="center" pad={{vertical: "large", between: "small"}}>
+          <Box pad={{horizontal: "large"}} align="center" textAlign="center"
             size={{"width": {"max": "xxlarge"}}}>
             <Heading tag="h1" strong={true}>
               Sumo accumsan mel ignota hendrerit.
@@ -165,7 +165,7 @@ const SubPage = React.createClass({
               <Headline size="small" strong={true} margin="medium">
                 Lorem ipsum dolor sit amet
               </Headline>
-              <Paragraph>
+              <Paragraph margin="none">
                 Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
               </Paragraph>
             </Box>
@@ -174,7 +174,7 @@ const SubPage = React.createClass({
               <Headline size="small" strong={true} margin="medium">
                 Lorem ipsum dolor sit amet
               </Headline>
-              <Paragraph>
+              <Paragraph margin="none">
                 Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.
               </Paragraph>
             </Box>

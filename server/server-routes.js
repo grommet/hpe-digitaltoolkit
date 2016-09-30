@@ -54,11 +54,12 @@ module.exports =
 
 	var Docs = __webpack_require__(3);
 	var Home = __webpack_require__(106);
-	var Design = __webpack_require__(136);
-	var Develop = __webpack_require__(149);
-	var Examples = __webpack_require__(211);
-	var Primary = __webpack_require__(230);
-	var Sub = __webpack_require__(231);
+	var Design = __webpack_require__(137);
+	var Develop = __webpack_require__(150);
+	var Examples = __webpack_require__(196);
+	var Primary = __webpack_require__(214);
+	var Sub = __webpack_require__(215);
+	var Details = __webpack_require__(218);
 
 	module.exports = function (rootPath) {
 	  var DocsRouter = React.createClass({
@@ -90,7 +91,8 @@ module.exports =
 	    Develop.routes(),
 	    Examples.routes(),
 	    Primary.routes(),
-	    Sub.routes()
+	    Sub.routes(),
+	    Details.routes()
 	  );
 	};
 
@@ -1462,8 +1464,8 @@ module.exports =
 	}
 
 	function getLocaleData() {
-	  var appMessages = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	  var locale = arguments.length <= 1 || arguments[1] === undefined ? getCurrentLocale() : arguments[1];
+	  var appMessages = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var locale = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : getCurrentLocale();
 
 	  var grommetMessages = void 0;
 	  try {
@@ -1718,6 +1720,8 @@ module.exports =
 	  }
 	}, _enUS2.default, {
 	  Active: 'Active',
+	  Activate: 'Activate',
+	  Activated: 'Activated',
 	  Alerts: 'Alerts',
 	  All: 'All',
 	  Arc: 'Arc',
@@ -1727,6 +1731,7 @@ module.exports =
 	  bar: 'bar',
 	  Blank: 'Blank',
 	  Box: 'Box',
+	  Carousel: 'Carousel',
 	  Category: 'Category',
 	  Circle: 'Circle',
 	  Chart: 'Chart',
@@ -1737,6 +1742,7 @@ module.exports =
 	  Completed: 'Completed',
 	  created: 'Created',
 	  Critical: 'Critical',
+	  'Currently Active': 'Currently Active',
 	  Disabled: 'Disabled',
 	  Distribution: 'Distribution',
 	  Email: 'Email',
@@ -1762,14 +1768,17 @@ module.exports =
 	  modified: 'Modified',
 	  monitor: 'monitor',
 	  Name: 'Name',
+	  'Next Slide': 'Next Slide',
 	  OK: 'OK',
 	  Open: 'Open',
 	  Password: 'Password',
+	  'Previous Slide': 'Previous Slide',
 	  'Remember me': 'Remember me',
 	  Resource: 'Resource',
 	  Running: 'Running',
 	  Search: 'Search',
 	  'Skip to': 'Skip to',
+	  'Slide Number': 'Slide {slideNumber}',
 	  Sort: 'Sort',
 	  Spiral: 'Spiral',
 	  State: 'State',
@@ -2132,6 +2141,8 @@ module.exports =
 	    filters: '{quantity, plural,\n  =0 {Filtros}\n  =1 {um filtro}\n  ' + 'other {# filtros}\n}'
 	  },
 	  Active: 'Ativos',
+	  Activate: 'Ativar',
+	  Activated: 'Ativado',
 	  add: 'add',
 	  Alerts: 'Alertas',
 	  All: 'Todos',
@@ -2141,6 +2152,7 @@ module.exports =
 	  bar: 'bar',
 	  Blank: 'Em branco',
 	  Box: 'Box',
+	  Carousel: 'Carrossel',
 	  camera: 'Câmera',
 	  Category: 'Categoria',
 	  Circle: 'Círculo',
@@ -2154,6 +2166,7 @@ module.exports =
 	  Completed: 'Completado',
 	  created: 'Criado',
 	  Critical: 'Crítico',
+	  'Currently Active': 'Ativo Atualmente',
 	  Disabled: 'Desabilitado',
 	  Distribution: 'Distribuição',
 	  down: 'baixo',
@@ -2184,16 +2197,19 @@ module.exports =
 	  monitor: 'monitor',
 	  more: 'mais',
 	  Name: 'Nome',
+	  'Next Slide': 'Próximo Slide',
 	  OK: 'OK',
 	  Open: 'Abrir',
 	  Password: 'Senha',
 	  power: 'power',
+	  'Previous Slide': 'Slide Anterior',
 	  'Remember me': 'Lembrar Usuário',
 	  Resource: 'Recurso',
 	  Running: 'Executando',
 	  Search: 'Buscar',
 	  search: 'buscar',
 	  'Skip to': 'Saltar para',
+	  'Slide Number': 'Slide {slideNumber}',
 	  State: 'Estado',
 	  Status: 'Situaçāo',
 	  SubBurstLabel: 'SubBurst: pressione setas de nevegação para interagir',
@@ -2618,7 +2634,7 @@ module.exports =
 	    value: function _addPropertyClass(classes, property) {
 	      var _this2 = this;
 
-	      var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	      var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
 	      var value = (options.object || this.props)[property];
 	      var elementName = options.elementName || CLASS_ROOT;
@@ -2731,7 +2747,7 @@ module.exports =
 	        if (focusable) {
 	          var boxLabel = a11yTitle || _Intl2.default.getMessage(this.context.intl, 'Box');
 	          a11yProps.tabIndex = 0;
-	          a11yProps["aria-label"] = boxLabel;
+	          a11yProps["aria-label"] = this.props['aria-label'] || boxLabel;
 	          a11yProps.role = role || 'link';
 	        }
 	      }
@@ -2829,7 +2845,7 @@ module.exports =
 	  focusable: _react.PropTypes.bool,
 	  flex: _react.PropTypes.oneOf(['grow', 'shrink', true, false]),
 	  full: _react.PropTypes.oneOf([true, 'horizontal', 'vertical', false]),
-	  // remove in 1.0
+	  // remove in 1.0?
 	  onClick: _react.PropTypes.func,
 	  justify: _react.PropTypes.oneOf(['start', 'center', 'between', 'end']),
 	  margin: _react.PropTypes.oneOfType([_react.PropTypes.oneOf(MARGIN_SIZES), _react.PropTypes.shape({
@@ -3477,18 +3493,25 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var CLASS_ROOT = _CSSClassnames2.default.APP;
+	var CLASS_ROOT = _CSSClassnames2.default.APP; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	function clearAnnouncer() {
+	  var announcer = document.querySelector('.' + CLASS_ROOT + '__announcer');
+	  announcer.innerHTML = '';
+	};
 
 	function announcePageLoaded(title) {
 	  announce(title + ' page was loaded');
 	}
 
 	function announce(message) {
-	  var mode = arguments.length <= 1 || arguments[1] === undefined ? 'assertive' : arguments[1];
+	  var mode = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'assertive';
 
 	  var announcer = document.querySelector('.' + CLASS_ROOT + '__announcer');
-	  announcer.setAttribute('aria-live', mode);
+	  announcer.setAttribute('aria-live', 'off');
 	  announcer.innerHTML = message;
+	  setTimeout(clearAnnouncer, 500);
+	  announcer.setAttribute('aria-live', mode);
 	}
 
 	exports.default = { announce: announce, announcePageLoaded: announcePageLoaded };
@@ -3843,7 +3866,7 @@ module.exports =
 
 	      if (grommetApps) {
 	        Array.prototype.slice.call(grommetApps).forEach(function (grommetApp) {
-	          grommetApp.setAttribute('aria-hidden', !ariaHidden);
+	          grommetApp.setAttribute('aria-hidden', ariaHidden);
 	          if (ariaHidden) {
 	            grommetApp.classList.remove(APP + '--hidden');
 	            // this must be null to work
@@ -3978,13 +4001,21 @@ module.exports =
 
 	  function Button() {
 	    (0, _classCallCheck3.default)(this, Button);
-	    return (0, _possibleConstructorReturn3.default)(this, (Button.__proto__ || (0, _getPrototypeOf2.default)(Button)).apply(this, arguments));
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Button.__proto__ || (0, _getPrototypeOf2.default)(Button)).call(this));
+
+	    _this.state = {
+	      mouseActive: false,
+	      focus: false
+	    };
+	    return _this;
 	  }
 
 	  (0, _createClass3.default)(Button, [{
 	    key: 'render',
 	    value: function render() {
-	      var _classnames;
+	      var _classnames,
+	          _this2 = this;
 
 	      var plain = this.props.plain !== undefined ? this.props.plain : this.props.icon && !this.props.label;
 
@@ -4010,7 +4041,7 @@ module.exports =
 	        return child;
 	      });
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--primary', this.props.primary), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--secondary', this.props.secondary), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--accent', this.props.accent), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--disabled', !this.props.onClick && !this.props.href), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--fill', this.props.fill), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--plain', plain), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--icon', this.props.icon || hasIcon), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--align-' + this.props.align, this.props.align), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--focus', this.state.focus), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--primary', this.props.primary), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--secondary', this.props.secondary), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--accent', this.props.accent), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--disabled', !this.props.onClick && !this.props.href), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--fill', this.props.fill), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--plain', plain), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--icon', this.props.icon || hasIcon), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--align-' + this.props.align, this.props.align), _classnames));
 
 	      if (!children) {
 	        children = this.props.label;
@@ -4026,7 +4057,21 @@ module.exports =
 	        { href: this.props.href, id: this.props.id, type: type,
 	          className: classes, 'aria-label': this.props.a11yTitle,
 	          onClick: this.props.onClick,
-	          disabled: !this.props.onClick && !this.props.href },
+	          disabled: !this.props.onClick && !this.props.href,
+	          onMouseDown: function onMouseDown() {
+	            return _this2.setState({ mouseActive: true });
+	          },
+	          onMouseUp: function onMouseUp() {
+	            return _this2.setState({ mouseActive: false });
+	          },
+	          onFocus: function onFocus() {
+	            if (_this2.state.mouseActive === false) {
+	              _this2.setState({ focus: true });
+	            }
+	          },
+	          onBlur: function onBlur() {
+	            return _this2.setState({ focus: false });
+	          } },
 	        icon,
 	        children
 	      );
@@ -5468,8 +5513,8 @@ module.exports =
 	var Footer = __webpack_require__(117);
 	var Section = __webpack_require__(118);
 	var Headline = __webpack_require__(119);
-	var Tiles = __webpack_require__(120);
-	var Tile = __webpack_require__(135);
+	var Tiles = __webpack_require__(121);
+	var Tile = __webpack_require__(136);
 	var Menu = __webpack_require__(98);
 	var Button = __webpack_require__(96);
 	var Anchor = __webpack_require__(116);
@@ -5567,7 +5612,7 @@ module.exports =
 	        React.createElement(
 	          Headline,
 	          { size: 'small' },
-	          'We’ve tried it all in enterprise and we think we’ve got a good foundation.'
+	          'We\u2019ve tried it all in enterprise and we think we\u2019ve got a good foundation.'
 	        ),
 	        React.createElement(
 	          Menu,
@@ -5682,7 +5727,7 @@ module.exports =
 	        React.createElement(
 	          Headline,
 	          { size: 'small' },
-	          'Let’s get an application on your local environment!'
+	          'Let\u2019s get an application on your local environment!'
 	        ),
 	        React.createElement(
 	          Menu,
@@ -5837,7 +5882,7 @@ module.exports =
 	        React.createElement(
 	          Headline,
 	          null,
-	          'Let’s keep in touch!'
+	          'Let\u2019s keep in touch!'
 	        ),
 	        React.createElement(
 	          Headline,
@@ -7384,6 +7429,7 @@ module.exports =
 	      var containerClasses = [CLASS_ROOT + '__container'];
 	      var wrapperClasses = [CLASS_ROOT + '__wrapper'];
 	      var other = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
+	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Header.propTypes));
 	      if (this.props.fixed) {
 	        containerClasses.push(CLASS_ROOT + '__container--fixed');
 
@@ -7405,15 +7451,8 @@ module.exports =
 	      if (this.props.splash) {
 	        classes.push(CLASS_ROOT + '--splash');
 	      }
-	      if (this.props.strong) {
-	        console.warn('Header: string prop has been deprecated. ' + 'Use a separate Heading instead.');
-	        classes.push(CLASS_ROOT + '--strong');
-	      }
 	      if (this.props.className) {
 	        classes.push(this.props.className);
-	      }
-	      if (this.props.tag && 'header' !== this.props.tag) {
-	        console.warn('Header: tag prop has been deprecated. ' + 'Use a separate Heading instead.');
 	      }
 
 	      if (this.props.fixed) {
@@ -7432,7 +7471,8 @@ module.exports =
 	              (0, _extends3.default)({ ref: function ref(_ref2) {
 	                  return _this2.contentRef = _ref2;
 	                },
-	                tag: this.props.header }, other, { className: classes.join(' ') }),
+	                tag: 'header' }, other, restProps, {
+	                className: classes.join(' ') }),
 	              this.props.children
 	            )
 	          )
@@ -7440,7 +7480,8 @@ module.exports =
 	      } else {
 	        return _react2.default.createElement(
 	          _Box2.default,
-	          (0, _extends3.default)({ tag: this.props.header }, other, { className: classes.join(' '),
+	          (0, _extends3.default)({ tag: 'header' }, other, restProps, { role: this.props.role,
+	            className: classes.join(' '),
 	            containerClassName: containerClasses.join(' ') }),
 	          this.props.children
 	        );
@@ -7458,16 +7499,14 @@ module.exports =
 	  fixed: _react.PropTypes.bool,
 	  float: _react.PropTypes.bool,
 	  size: _react.PropTypes.oneOf(['small', 'medium', 'large']),
-	  splash: _react.PropTypes.bool,
-	  strong: _react.PropTypes.bool, // remove in 1.0
-	  tag: _react.PropTypes.string }, _Box2.default.propTypes);
+	  splash: _react.PropTypes.bool
+	}, _Box2.default.propTypes);
 
 	Header.defaultProps = {
 	  pad: { horizontal: 'none', vertical: 'none', between: 'small' },
 	  direction: 'row',
 	  align: 'center',
-	  responsive: false,
-	  tag: 'header' // remove in 1.0
+	  responsive: false
 	};
 	module.exports = exports['default'];
 
@@ -7792,8 +7831,10 @@ module.exports =
 	      if (this.props.icon) {
 	        icon = this.props.icon;
 	      } else if (this.props.primary) {
-	        icon = _react2.default.createElement(_LinkNext2.default, { a11yTitle: this.props.id + '-icon' || 'primary icon',
-	          a11yTitleId: this.props.id + '-icon' || 'anchor-next-title-id' });
+	        icon = _react2.default.createElement(_LinkNext2.default, {
+	          a11yTitle: this.props.id ? this.props.id + '-icon' : 'link next',
+	          a11yTitleId: this.props.id ? this.props.id + '-icon' : 'anchor-next-title-id'
+	        });
 	      }
 
 	      if (icon && !this.props.primary && !this.props.label) {
@@ -8172,9 +8213,17 @@ module.exports =
 	  value: true
 	});
 
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
 	var _defineProperty2 = __webpack_require__(5);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _objectWithoutProperties2 = __webpack_require__(120);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 	var _getPrototypeOf = __webpack_require__(9);
 
@@ -8225,12 +8274,21 @@ module.exports =
 	    value: function render() {
 	      var _classnames;
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--align-' + this.props.align, this.props.align), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--margin-' + this.props.margin, this.props.margin), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--strong', this.props.strong), _classnames), this.props.className);
+	      var _props = this.props;
+	      var align = _props.align;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var margin = _props.margin;
+	      var size = _props.size;
+	      var strong = _props.strong;
+	      var props = (0, _objectWithoutProperties3.default)(_props, ['align', 'children', 'className', 'margin', 'size', 'strong']);
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--align-' + align, align), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--margin-' + margin, margin), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--strong', strong), _classnames), className);
 
 	      return _react2.default.createElement(
 	        'div',
-	        { className: classes },
-	        this.props.children
+	        (0, _extends3.default)({}, props, { className: classes }),
+	        children
 	      );
 	    }
 	  }]);
@@ -8251,6 +8309,26 @@ module.exports =
 
 /***/ },
 /* 120 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	exports.default = function (obj, keys) {
+	  var target = {};
+
+	  for (var i in obj) {
+	    if (keys.indexOf(i) >= 0) continue;
+	    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+	    target[i] = obj[i];
+	  }
+
+	  return target;
+	};
+
+/***/ },
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8271,11 +8349,11 @@ module.exports =
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _from = __webpack_require__(121);
+	var _from = __webpack_require__(122);
 
 	var _from2 = _interopRequireDefault(_from);
 
-	var _stringify = __webpack_require__(130);
+	var _stringify = __webpack_require__(131);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
@@ -8321,7 +8399,7 @@ module.exports =
 
 	var _Button2 = _interopRequireDefault(_Button);
 
-	var _Spinning = __webpack_require__(132);
+	var _Spinning = __webpack_require__(133);
 
 	var _Spinning2 = _interopRequireDefault(_Spinning);
 
@@ -8329,11 +8407,11 @@ module.exports =
 
 	var _Scroll2 = _interopRequireDefault(_Scroll);
 
-	var _InfiniteScroll = __webpack_require__(133);
+	var _InfiniteScroll = __webpack_require__(134);
 
 	var _InfiniteScroll2 = _interopRequireDefault(_InfiniteScroll);
 
-	var _Selection = __webpack_require__(134);
+	var _Selection = __webpack_require__(135);
 
 	var _Selection2 = _interopRequireDefault(_Selection);
 
@@ -8374,9 +8452,7 @@ module.exports =
 
 	    _this.state = {
 	      overflow: false,
-	      selected: _Selection2.default.normalizeIndexes(props.selected),
-	      numColumns: _this.props.numColumns,
-	      columnBreakpoints: null
+	      selected: _Selection2.default.normalizeIndexes(props.selected)
 	    };
 	    return _this;
 	  }
@@ -8384,8 +8460,6 @@ module.exports =
 	  (0, _createClass3.default)(Tiles, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-
 	      this._setSelection();
 	      if (this.props.onMore) {
 	        this._scroll = _InfiniteScroll2.default.startListeningForScroll(this.moreRef, this.props.onMore);
@@ -8396,34 +8470,6 @@ module.exports =
 	        this._trackHorizontalScroll();
 	        // give browser a chance to stabilize
 	        setTimeout(this._layout, 10);
-	      } else if (this.props.masonry) {
-	        (function () {
-	          var tiles = (0, _reactDom.findDOMNode)(_this2.tilesRef);
-	          var tile = tiles.querySelectorAll('.' + CLASS_ROOT + '__masonry-column .' + TILE);
-	          // default to medium tile size ($tile-size = 192px)
-	          var minColumnWidth = 192;
-
-	          if (!_this2.props.fill) {
-	            // grab CSS styles from DOM after component mounted
-	            minColumnWidth = _this2._getPropertyFromTile('width', tile);
-	          } else {
-	            var tileColumn = tiles.querySelectorAll('.' + CLASS_ROOT + '__masonry-column');
-	            var tileFlexBasis = _this2._getPropertyFromTile('minWidth', tileColumn);
-	            var tilePad = _this2._getPropertyFromTile('padding', tile) || _this2._getPropertyFromTile('padding-right', tile);
-
-	            // take horizontal padding into account for column breakpoints
-	            minColumnWidth = tilePad ? tileFlexBasis + tilePad * 2 : tileFlexBasis;
-	          }
-
-	          // create array of breakpoints for 1 through this.props.numColumns
-	          // number of columns of minColumnWidth width.
-	          var columnBreakpoints = Array.apply(null, Array(_this2.props.numColumns)).map(function (currentNumColumns, index) {
-	            return (index + 1) * minColumnWidth;
-	          });
-	          _this2.setState({ columnBreakpoints: columnBreakpoints });
-	          window.addEventListener('resize', _this2._onResize);
-	          setTimeout(_this2._layout, 10);
-	        })();
 	      }
 	    }
 	  }, {
@@ -8465,8 +8511,6 @@ module.exports =
 	          var tiles = (0, _reactDom.findDOMNode)(this.tilesRef);
 	          tiles.removeEventListener('scroll', this._onScrollHorizontal);
 	        }
-	      } else if (this.props.masonry) {
-	        window.removeEventListener('resize', this._onResize);
 	      }
 	    }
 	  }, {
@@ -8500,50 +8544,18 @@ module.exports =
 	      }
 	    }
 	  }, {
-	    key: '_getPropertyFromTile',
-	    value: function _getPropertyFromTile(propertyName, tile) {
-	      if (tile && tile.length > 0) {
-	        var columnTile = window.getComputedStyle(tile[0]);
-	        if (columnTile && columnTile[propertyName]) {
-	          return parseFloat(columnTile[propertyName]);
-	        }
-	      }
-	    }
-	  }, {
-	    key: '_getNumberColumns',
-	    value: function _getNumberColumns() {
-	      var columnBreakpoints = this.state.columnBreakpoints;
-
-	      var tiles = (0, _reactDom.findDOMNode)(this.tilesRef);
-	      var maxColumnWidthIndex = void 0;
-
-	      if (tiles) {
-	        maxColumnWidthIndex = columnBreakpoints.filter(function (currentMin) {
-	          return currentMin <= tiles.offsetWidth;
-	        }).reduce(function (maxIndex, currentMin, index, columnWidths) {
-	          return currentMin > columnWidths[maxIndex] ? index : maxIndex;
-	        }, 0);
-
-	        return maxColumnWidthIndex + 1; // return appropriate number of columns
-	      }
-
-	      return maxColumnWidthIndex;
-	    }
-	  }, {
 	    key: '_layout',
 	    value: function _layout() {
-	      var _this3 = this;
+	      var _this2 = this;
 
-	      var _props = this.props;
-	      var direction = _props.direction;
-	      var masonry = _props.masonry;
+	      var direction = this.props.direction;
 
 	      if ('row' === direction) {
 	        (function () {
 	          // determine if we have more tiles than room to fit
-	          var tiles = (0, _reactDom.findDOMNode)(_this3.tilesRef);
+	          var tiles = (0, _reactDom.findDOMNode)(_this2.tilesRef);
 	          // 20 is to allow some fuzziness as scrollbars come and go
-	          _this3.setState({
+	          _this2.setState({
 	            overflow: tiles.scrollWidth > tiles.offsetWidth + 20,
 	            overflowStart: tiles.scrollLeft <= 20,
 	            overflowEnd: tiles.scrollLeft >= tiles.scrollWidth - tiles.offsetWidth
@@ -8563,14 +8575,6 @@ module.exports =
 	            }
 	          });
 	        })();
-	      } else if (masonry) {
-	        // check for appropriate number of columns, if using masonry option
-	        var numColumns = this.state.numColumns;
-
-	        var newNumColumns = this._getNumberColumns();
-	        if (newNumColumns && numColumns !== newNumColumns) {
-	          this.setState({ numColumns: newNumColumns });
-	        }
 	      }
 	    }
 	  }, {
@@ -8588,42 +8592,6 @@ module.exports =
 	      }
 
 	      return undefined;
-	    }
-	  }, {
-	    key: '_renderMasonryColumns',
-	    value: function _renderMasonryColumns() {
-	      var _this4 = this;
-
-	      var children = this.props.children;
-	      var numColumns = this.state.numColumns;
-
-	      var columnContents = {};
-
-	      _react.Children.map(children, function (element, index) {
-	        var currentColumn = index % numColumns;
-
-	        if (!columnContents['column-' + currentColumn]) {
-	          columnContents['column-' + currentColumn] = [];
-	        }
-
-	        // place children into appropriate column
-	        var child = _this4._renderChild(element);
-	        if (child) {
-	          columnContents['column-' + currentColumn].push(child);
-	        }
-	      }, this);
-
-	      var columnsArray = Array.apply(null, Array(numColumns));
-	      var columns = columnsArray.map(function (current, i) {
-	        return _react2.default.createElement(
-	          _Box2.default,
-	          { className: CLASS_ROOT + '__masonry-column',
-	            key: 'column-' + numColumns + '-' + i },
-	          columnContents['column-' + i]
-	        );
-	      });
-
-	      return columns;
 	    }
 	  }, {
 	    key: '_onResize',
@@ -8681,17 +8649,16 @@ module.exports =
 	    key: 'render',
 	    value: function render() {
 	      var _classnames,
-	          _this5 = this;
+	          _this3 = this;
 
-	      var _props2 = this.props;
-	      var onMore = _props2.onMore;
-	      var selectable = _props2.selectable;
-	      var masonry = _props2.masonry;
-	      var direction = _props2.direction;
+	      var _props = this.props;
+	      var onMore = _props.onMore;
+	      var selectable = _props.selectable;
+	      var direction = _props.direction;
 	      var overflow = this.state.overflow;
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--fill', this.props.fill), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--flush', this.props.flush), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selectable', this.props.selectable), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--moreable', this.props.onMore), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--overflowed', this.state.overflow), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--masonry', this.props.masonry), _classnames), this.props.className);
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--fill', this.props.fill), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--flush', this.props.flush), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selectable', this.props.selectable), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--moreable', this.props.onMore), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--overflowed', this.state.overflow), _classnames), this.props.className);
 
 	      var other = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
 
@@ -8700,7 +8667,7 @@ module.exports =
 	        more = _react2.default.createElement(
 	          'div',
 	          { ref: function ref(_ref) {
-	              return _this5.moreRef = _ref;
+	              return _this3.moreRef = _ref;
 	            }, className: CLASS_ROOT + '__more' },
 	          _react2.default.createElement(_Spinning2.default, null)
 	        );
@@ -8711,20 +8678,14 @@ module.exports =
 	        onClickHandler = this._onClick;
 	      }
 
-	      var children = this.props.children;
-	      if (masonry) {
-	        console.warn('Tiles: masonry prop has been deprecated. ' + 'Use a Columns instead.');
-	        children = this._renderMasonryColumns();
-	      } else {
-	        children = _react.Children.map(this.props.children, function (element) {
-	          return _this5._renderChild(element);
-	        }, this);
-	      }
+	      var children = _react.Children.map(this.props.children, function (element) {
+	        return _this3._renderChild(element);
+	      });
 
 	      var contents = _react2.default.createElement(
 	        _Box2.default,
 	        (0, _extends3.default)({ ref: function ref(_ref2) {
-	            return _this5.tilesRef = _ref2;
+	            return _this3.tilesRef = _ref2;
 	          } }, other, {
 	          wrap: direction ? false : true,
 	          direction: direction ? direction : 'row',
@@ -8768,52 +8729,48 @@ module.exports =
 
 
 	Tiles.propTypes = (0, _extends3.default)({
-	  fill: _react.PropTypes.bool, // remove in 1.0, rely on Box props
-	  flush: _react.PropTypes.bool, // remove in 1.0, already in Box
+	  fill: _react.PropTypes.bool,
+	  flush: _react.PropTypes.bool,
 	  onMore: _react.PropTypes.func,
 	  onSelect: _react.PropTypes.func,
 	  selectable: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.oneOf(['multiple'])]),
-	  selected: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.arrayOf(_react.PropTypes.number)]),
-	  size: _react.PropTypes.oneOf(['small', 'medium', 'large']), // remove in 1.0
-	  // already in Box
-	  numColumns: _react.PropTypes.number, // remove in 1.0
-	  masonry: _react.PropTypes.bool }, _Box2.default.propTypes);
+	  selected: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.arrayOf(_react.PropTypes.number)])
+	}, _Box2.default.propTypes);
 
 	Tiles.defaultProps = {
 	  flush: true,
 	  justify: 'start',
-	  pad: 'small',
-	  numColumns: 1
+	  pad: 'small'
 	};
 	module.exports = exports['default'];
-
-/***/ },
-/* 121 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(122), __esModule: true };
 
 /***/ },
 /* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(27);
-	__webpack_require__(123);
-	module.exports = __webpack_require__(17).Array.from;
+	module.exports = { "default": __webpack_require__(123), __esModule: true };
 
 /***/ },
 /* 123 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(27);
+	__webpack_require__(124);
+	module.exports = __webpack_require__(17).Array.from;
+
+/***/ },
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var ctx         = __webpack_require__(18)
 	  , $export     = __webpack_require__(15)
 	  , toObject    = __webpack_require__(12)
-	  , call        = __webpack_require__(124)
-	  , isArrayIter = __webpack_require__(125)
-	  , toLength    = __webpack_require__(126)
-	  , getIterFn   = __webpack_require__(127);
-	$export($export.S + $export.F * !__webpack_require__(129)(function(iter){ Array.from(iter); }), 'Array', {
+	  , call        = __webpack_require__(125)
+	  , isArrayIter = __webpack_require__(126)
+	  , toLength    = __webpack_require__(127)
+	  , getIterFn   = __webpack_require__(128);
+	$export($export.S + $export.F * !__webpack_require__(130)(function(iter){ Array.from(iter); }), 'Array', {
 	  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
 	  from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
 	    var O       = toObject(arrayLike)
@@ -8844,7 +8801,7 @@ module.exports =
 
 
 /***/ },
-/* 124 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// call something on iterator step with safe closing on error
@@ -8861,7 +8818,7 @@ module.exports =
 	};
 
 /***/ },
-/* 125 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// check on default Array iterator
@@ -8874,7 +8831,7 @@ module.exports =
 	};
 
 /***/ },
-/* 126 */
+/* 127 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.1.15 ToLength
@@ -8885,10 +8842,10 @@ module.exports =
 	};
 
 /***/ },
-/* 127 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var classof   = __webpack_require__(128)
+	var classof   = __webpack_require__(129)
 	  , ITERATOR  = __webpack_require__(40)('iterator')
 	  , Iterators = __webpack_require__(37);
 	module.exports = __webpack_require__(17).getIteratorMethod = function(it){
@@ -8898,7 +8855,7 @@ module.exports =
 	};
 
 /***/ },
-/* 128 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// getting tag from 19.1.3.6 Object.prototype.toString()
@@ -8919,7 +8876,7 @@ module.exports =
 	};
 
 /***/ },
-/* 129 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ITERATOR     = __webpack_require__(40)('iterator')
@@ -8945,13 +8902,13 @@ module.exports =
 	};
 
 /***/ },
-/* 130 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(131), __esModule: true };
+	module.exports = { "default": __webpack_require__(132), __esModule: true };
 
 /***/ },
-/* 131 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var core = __webpack_require__(17);
@@ -8960,7 +8917,7 @@ module.exports =
 	};
 
 /***/ },
-/* 132 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9045,7 +9002,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 133 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9133,7 +9090,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 134 */
+/* 135 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9294,7 +9251,7 @@ module.exports =
 	module.exports = exports["default"];
 
 /***/ },
-/* 135 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9380,7 +9337,6 @@ module.exports =
 	      var onClick = _props.onClick;
 	      var wide = _props.wide;
 	      var status = _props.status;
-	      var selected = _props.selected;
 	      var hoverStyle = _props.hoverStyle;
 	      var hoverColorIndex = _props.hoverColorIndex;
 	      var hoverBorder = _props.hoverBorder;
@@ -9393,15 +9349,11 @@ module.exports =
 	      delete restProps.hoverBorderSize;
 	      delete restProps.wide;
 
-	      if (selected) {
-	        console.warn('Selected option has been deprecated, please use ' + 'selected option at the Tiles level.');
-	      }
-
 	      var statusClass = status ? status.toLowerCase() : undefined;
 	      // if Tiles flush is true, default borderSize to small (1px)
 	      var borderSize = hoverBorder ? hoverBorderSize ? hoverBorderSize : 'large' : 'small';
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--status-' + statusClass, status), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--wide', wide), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selectable', onClick), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selected', selected), (0, _defineProperty3.default)(_classnames, '' + NAMESPACE + hoverStyle + (hoverStyle == 'border' ? borderSize ? '-' + borderSize : '-medium' : '') + '-hover-color-index-' + hoverColorIndex, hoverStyle), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--hover-border-' + borderSize, borderSize), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--status-' + statusClass, status), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--wide', wide), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selectable', onClick), (0, _defineProperty3.default)(_classnames, '' + NAMESPACE + hoverStyle + (hoverStyle == 'border' ? borderSize ? '-' + borderSize : '-medium' : '') + '-hover-color-index-' + hoverColorIndex, hoverStyle), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--hover-border-' + borderSize, borderSize), _classnames));
 
 	      var boxProps = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
 
@@ -9423,7 +9375,6 @@ module.exports =
 	  hoverStyle: _react.PropTypes.oneOf(['border', 'background', 'none']),
 	  hoverColorIndex: _react.PropTypes.string,
 	  hoverBorderSize: _react.PropTypes.oneOf(['small', 'medium', 'large']),
-	  selected: _react.PropTypes.bool,
 	  wide: _react.PropTypes.bool }, _Box2.default.propTypes);
 
 	Tile.defaultProps = {
@@ -9436,7 +9387,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 136 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9449,12 +9400,12 @@ module.exports =
 	var Link = Router.Link;
 
 	var Section = __webpack_require__(118);
-	var DocsSplit = __webpack_require__(137);
-	var DocsArticle = __webpack_require__(141);
+	var DocsSplit = __webpack_require__(138);
+	var DocsArticle = __webpack_require__(142);
 	var Menu = __webpack_require__(98);
 	var Anchor = __webpack_require__(116);
 
-	var Philosophy = __webpack_require__(148);
+	var Philosophy = __webpack_require__(149);
 
 	var CONTENTS = [{ route: "design_philosophy", label: 'Philosophy', component: Philosophy,
 	  contents: [{ label: 'Best Practices', id: 'best-practices' }, { label: 'Usability', id: 'usability' }, { label: 'Interactions', id: 'interactions' }, { label: 'Mobile', id: 'mobile' }, { label: 'Accessibility', id: 'accessibility' }]
@@ -9585,7 +9536,7 @@ module.exports =
 	module.exports = Design;
 
 /***/ },
-/* 137 */
+/* 138 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9594,8 +9545,8 @@ module.exports =
 
 	var React = __webpack_require__(1);
 	var Link = __webpack_require__(2).Link;
-	var Split = __webpack_require__(138);
-	var Sidebar = __webpack_require__(139);
+	var Split = __webpack_require__(139);
+	var Sidebar = __webpack_require__(140);
 	var Header = __webpack_require__(113);
 	var Title = __webpack_require__(114);
 	var Box = __webpack_require__(83);
@@ -9603,7 +9554,7 @@ module.exports =
 	var Button = __webpack_require__(96);
 	var CloseIcon = __webpack_require__(97);
 	var GrommetLogo = __webpack_require__(115);
-	var DocsMenu = __webpack_require__(140);
+	var DocsMenu = __webpack_require__(141);
 	var DOM = __webpack_require__(89);
 
 	var DocsSplit = React.createClass({
@@ -9763,7 +9714,7 @@ module.exports =
 	module.exports = DocsSplit;
 
 /***/ },
-/* 138 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9978,7 +9929,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 139 */
+/* 140 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10088,7 +10039,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 140 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10186,7 +10137,7 @@ module.exports =
 	module.exports = DocsMenu;
 
 /***/ },
-/* 141 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10197,14 +10148,14 @@ module.exports =
 	var Article = __webpack_require__(107);
 	var Header = __webpack_require__(113);
 	var Box = __webpack_require__(83);
-	var DocsFooter = __webpack_require__(142);
+	var DocsFooter = __webpack_require__(143);
 
 	//hjjs configuration
-	var hljs = __webpack_require__(143);
-	hljs.registerLanguage('bash', __webpack_require__(144));
-	hljs.registerLanguage('xml', __webpack_require__(145));
-	hljs.registerLanguage('javascript', __webpack_require__(146));
-	hljs.registerLanguage('scss', __webpack_require__(147));
+	var hljs = __webpack_require__(144);
+	hljs.registerLanguage('bash', __webpack_require__(145));
+	hljs.registerLanguage('xml', __webpack_require__(146));
+	hljs.registerLanguage('javascript', __webpack_require__(147));
+	hljs.registerLanguage('scss', __webpack_require__(148));
 
 	var DocsArticle = React.createClass({
 	  displayName: 'DocsArticle',
@@ -10261,7 +10212,7 @@ module.exports =
 	module.exports = DocsArticle;
 
 /***/ },
-/* 142 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10308,7 +10259,7 @@ module.exports =
 	module.exports = DocsFooter;
 
 /***/ },
-/* 143 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -11132,7 +11083,7 @@ module.exports =
 
 
 /***/ },
-/* 144 */
+/* 145 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -11211,7 +11162,7 @@ module.exports =
 	};
 
 /***/ },
-/* 145 */
+/* 146 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -11318,7 +11269,7 @@ module.exports =
 	};
 
 /***/ },
-/* 146 */
+/* 147 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -11493,7 +11444,7 @@ module.exports =
 	};
 
 /***/ },
-/* 147 */
+/* 148 */
 /***/ function(module, exports) {
 
 	module.exports = function(hljs) {
@@ -11595,7 +11546,7 @@ module.exports =
 	};
 
 /***/ },
-/* 148 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11603,7 +11554,7 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(141);
+	var DocsArticle = __webpack_require__(142);
 
 	var Philosophy = React.createClass({
 	  displayName: 'Philosophy',
@@ -11686,7 +11637,7 @@ module.exports =
 	          React.createElement(
 	            'dt',
 	            null,
-	            'Don’t drown the user in data'
+	            'Don\u2019t drown the user in data'
 	          ),
 	          React.createElement(
 	            'dd',
@@ -11741,7 +11692,7 @@ module.exports =
 	          React.createElement(
 	            'dd',
 	            null,
-	            'Understand how your customers will interact with your product. Talk with different users to understand all the touch points. Consider creating a user journey for each persona. Share this deliverable with your team to leverage the impact of each person’s role in the project, increasing individual ownership and commitment.'
+	            'Understand how your customers will interact with your product. Talk with different users to understand all the touch points. Consider creating a user journey for each persona. Share this deliverable with your team to leverage the impact of each person\u2019s role in the project, increasing individual ownership and commitment.'
 	          )
 	        )
 	      ),
@@ -11827,7 +11778,7 @@ module.exports =
 	          React.createElement(
 	            'dd',
 	            null,
-	            'Animations should be natural and reinforce the user’s interaction with  your application.  They should not be distracting or disruptive.'
+	            'Animations should be natural and reinforce the user\u2019s interaction with  your application.  They should not be distracting or disruptive.'
 	          )
 	        )
 	      ),
@@ -11981,7 +11932,7 @@ module.exports =
 	module.exports = Philosophy;
 
 /***/ },
-/* 149 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11993,35 +11944,30 @@ module.exports =
 	var Route = Router.Route;
 	var Link = Router.Link;
 
-	var DocsSplit = __webpack_require__(137);
-	var DocsArticle = __webpack_require__(141);
+	var DocsSplit = __webpack_require__(138);
+	var DocsArticle = __webpack_require__(142);
 	var Menu = __webpack_require__(98);
 	var Anchor = __webpack_require__(116);
 
-	var HelloWorld = __webpack_require__(150);
-	var GetStarted = __webpack_require__(151);
+	var HelloWorld = __webpack_require__(151);
+	var GetStarted = __webpack_require__(152);
 
-	var ActionsDoc = __webpack_require__(152);
 	var BoxDoc = __webpack_require__(153);
-	var DashboardDoc = __webpack_require__(190);
-	var NavigationDoc = __webpack_require__(204);
-	var MarqueeDoc = __webpack_require__(205);
-	var WorldMapDoc = __webpack_require__(207);
-	var StackDoc = __webpack_require__(209);
+	var MarqueeDoc = __webpack_require__(190);
+	var WorldMapDoc = __webpack_require__(192);
+	var StackDoc = __webpack_require__(194);
 
 	//hjjs configuration
-	var hljs = __webpack_require__(143);
-	hljs.registerLanguage('bash', __webpack_require__(144));
-	hljs.registerLanguage('xml', __webpack_require__(145));
-	hljs.registerLanguage('javascript', __webpack_require__(146));
-	hljs.registerLanguage('scss', __webpack_require__(147));
+	var hljs = __webpack_require__(144);
+	hljs.registerLanguage('bash', __webpack_require__(145));
+	hljs.registerLanguage('xml', __webpack_require__(146));
+	hljs.registerLanguage('javascript', __webpack_require__(147));
+	hljs.registerLanguage('scss', __webpack_require__(148));
 
 	var CONTENTS = [{ label: 'Guides',
 	  contents: [{ route: 'develop_helloworld', label: 'Hello World',
 	    component: HelloWorld }, { route: 'develop_getstarted', label: 'Get Started',
 	    component: GetStarted }]
-	}, { label: 'Patterns',
-	  contents: [{ route: 'develop_dashboard', label: 'Dashboard', component: DashboardDoc }, { route: 'develop_navigation', label: 'Navigation', component: NavigationDoc }, { route: 'develop_actions', label: 'Actions', component: ActionsDoc }]
 	}, { label: 'Components',
 	  contents: [{ route: 'develop_box', label: 'Box', component: BoxDoc }, { route: 'develop_marquee', label: 'Marquee', component: MarqueeDoc }, { route: 'develop_stack', label: 'Stack', component: StackDoc }, { route: 'develop_world-map', label: 'WorldMap', component: WorldMapDoc }]
 	}];
@@ -12061,7 +12007,7 @@ module.exports =
 	          React.createElement(
 	            'p',
 	            null,
-	            'Grommet was created to give developers and designers alike access to tools that otherwise are out of reach of most product teams. Grommet’s goal is to assist in creating experiences that work accross the many different interaction methods and screen sizes.'
+	            'Grommet was created to give developers and designers alike access to tools that otherwise are out of reach of most product teams. Grommet\u2019s goal is to assist in creating experiences that work accross the many different interaction methods and screen sizes.'
 	          ),
 	          React.createElement(
 	            Menu,
@@ -12163,7 +12109,7 @@ module.exports =
 	module.exports = Develop;
 
 /***/ },
-/* 150 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12171,7 +12117,7 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(141);
+	var DocsArticle = __webpack_require__(142);
 
 	var Router = __webpack_require__(2);
 	var Link = Router.Link;
@@ -12278,7 +12224,7 @@ module.exports =
 	module.exports = HelloWorld;
 
 /***/ },
-/* 151 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12291,7 +12237,7 @@ module.exports =
 
 	var _reactRouter = __webpack_require__(2);
 
-	var _DocsArticle = __webpack_require__(141);
+	var _DocsArticle = __webpack_require__(142);
 
 	var _DocsArticle2 = _interopRequireDefault(_DocsArticle);
 
@@ -12724,59 +12670,6 @@ module.exports =
 	module.exports = GetStarted;
 
 /***/ },
-/* 152 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(141);
-
-	var ActionsDoc = React.createClass({
-	  displayName: 'ActionsDoc',
-
-	  render: function render() {
-	    return React.createElement(
-	      DocsArticle,
-	      { title: 'Actions', colorIndex: 'neutral-2' },
-	      React.createElement(
-	        'p',
-	        null,
-	        'TBD'
-	      ),
-	      React.createElement(
-	        'section',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Example'
-	        ),
-	        React.createElement('div', { className: 'example' })
-	      ),
-	      React.createElement(
-	        'section',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Details'
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'tbd' },
-	          'TBD'
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = ActionsDoc;
-
-/***/ },
 /* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -12792,7 +12685,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DocsArticle = __webpack_require__(141);
+	var _DocsArticle = __webpack_require__(142);
 
 	var _DocsArticle2 = _interopRequireDefault(_DocsArticle);
 
@@ -12861,7 +12754,7 @@ module.exports =
 	            _react2.default.createElement(
 	              _Paragraph2.default,
 	              { margin: 'none' },
-	              'It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.'
+	              'It\u2019s not an either/or world. It\u2019s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It\u2019s not an either/or world. It\u2019s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability. It\u2019s not an either/or world. It\u2019s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.'
 	            )
 	          )
 	        );
@@ -12954,7 +12847,7 @@ module.exports =
 	          _react2.default.createElement(
 	            _Heading2.default,
 	            { tag: 'h2' },
-	            'It’s not an either/or world. It’s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.'
+	            'It\u2019s not an either/or world. It\u2019s about finding the right platform for each app, workload and service. Learn how hybrid infrastructure can help you achieve cloud agility with traditional IT predictability.'
 	          )
 	        )
 	      );
@@ -13690,9 +13583,17 @@ module.exports =
 	  value: true
 	});
 
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
 	var _defineProperty2 = __webpack_require__(5);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _objectWithoutProperties2 = __webpack_require__(120);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 	var _getPrototypeOf = __webpack_require__(9);
 
@@ -13743,14 +13644,21 @@ module.exports =
 	    value: function render() {
 	      var _classnames;
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--align-' + this.props.align, this.props.align), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--margin-' + this.props.margin, this.props.margin), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--width-' + this.props.width, this.props.width), _classnames));
+	      var _props = this.props;
+	      var align = _props.align;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var margin = _props.margin;
+	      var size = _props.size;
+	      var width = _props.width;
+	      var props = (0, _objectWithoutProperties3.default)(_props, ['align', 'children', 'className', 'margin', 'size', 'width']);
 
-	      // we handle dangerouslySetInnerHTML to allow using Paragraph with Markdown.
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--align-' + align, align), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--margin-' + margin, margin), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--width-' + width, width), _classnames), className);
+
 	      return _react2.default.createElement(
 	        'p',
-	        { id: this.props.id, className: classes,
-	          dangerouslySetInnerHTML: this.props.dangerouslySetInnerHTML },
-	        this.props.children
+	        (0, _extends3.default)({}, props, { className: classes }),
+	        children
 	      );
 	    }
 	  }]);
@@ -13763,7 +13671,6 @@ module.exports =
 
 	Paragraph.propTypes = {
 	  align: _react.PropTypes.oneOf(['start', 'center', 'end']),
-	  id: _react.PropTypes.string,
 	  margin: _react.PropTypes.oneOf(['none', 'small', 'medium', 'large']),
 	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
 	  width: _react.PropTypes.oneOf(['small', 'medium', 'large'])
@@ -13816,9 +13723,9 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames2 = __webpack_require__(67);
+	var _classnames3 = __webpack_require__(67);
 
-	var _classnames3 = _interopRequireDefault(_classnames2);
+	var _classnames4 = _interopRequireDefault(_classnames3);
 
 	var _CSSClassnames = __webpack_require__(93);
 
@@ -14049,17 +13956,21 @@ module.exports =
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _classnames2;
+
 	      var _props5 = this.props;
 	      var children = _props5.children;
 	      var className = _props5.className;
 	      var contentPad = _props5.contentPad;
 	      var onClick = _props5.onClick;
 	      var reverse = _props5.reverse;
+	      var truncate = _props5.truncate;
 	      var video = _props5.video;
 
 	      var boxProps = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
+	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Card.propTypes));
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, (0, _defineProperty3.default)({}, CLASS_ROOT + '--selectable', onClick || video), className);
+	      var classes = (0, _classnames4.default)(CLASS_ROOT, (0, _defineProperty3.default)({}, CLASS_ROOT + '--selectable', onClick || video), className);
 
 	      var onCardClick = onClick;
 	      if (!onCardClick && video) {
@@ -14073,9 +13984,11 @@ module.exports =
 	      var link = this._renderLink();
 	      var videoLayer = this._renderVideoLayer();
 
+	      var contentClasses = (0, _classnames4.default)((_classnames2 = {}, (0, _defineProperty3.default)(_classnames2, CLASS_ROOT + '__content', true), (0, _defineProperty3.default)(_classnames2, CLASS_ROOT + '__content--truncate', truncate), _classnames2));
+
 	      var text = _react2.default.createElement(
 	        _Box2.default,
-	        { className: CLASS_ROOT + '__content', flex: true, pad: contentPad },
+	        { className: contentClasses, flex: true, pad: contentPad },
 	        label,
 	        heading,
 	        description,
@@ -14099,8 +14012,8 @@ module.exports =
 
 	      return _react2.default.createElement(
 	        _Box2.default,
-	        (0, _extends3.default)({}, boxProps, { className: classes, justify: cardJustify,
-	          onClick: onCardClick }),
+	        (0, _extends3.default)({}, boxProps, restProps, { className: classes,
+	          justify: cardJustify, onClick: onCardClick }),
 	        thumbnail,
 	        text,
 	        videoLayer
@@ -14123,6 +14036,7 @@ module.exports =
 	  link: _react.PropTypes.element,
 	  textSize: _react.PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
 	  thumbnail: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
+	  truncate: _react.PropTypes.bool,
 	  video: _react.PropTypes.oneOfType([_react.PropTypes.shape({
 	    source: _react.PropTypes.string.isRequired,
 	    type: _react.PropTypes.string
@@ -14150,13 +14064,13 @@ module.exports =
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _keys = __webpack_require__(84);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
 	var _defineProperty2 = __webpack_require__(5);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _objectWithoutProperties2 = __webpack_require__(120);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 	var _getPrototypeOf = __webpack_require__(9);
 
@@ -14190,15 +14104,9 @@ module.exports =
 
 	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
-	var _Props = __webpack_require__(91);
-
-	var _Props2 = _interopRequireDefault(_Props);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = _CSSClassnames2.default.LABEL;
+	var CLASS_ROOT = _CSSClassnames2.default.LABEL; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
 	var Label = function (_Component) {
 	  (0, _inherits3.default)(Label, _Component);
@@ -14214,17 +14122,21 @@ module.exports =
 	      var _classnames;
 
 	      var _props = this.props;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var labelFor = _props.labelFor;
 	      var margin = _props.margin;
 	      var size = _props.size;
+	      var uppercase = _props.uppercase;
+	      var props = (0, _objectWithoutProperties3.default)(_props, ['children', 'className', 'labelFor', 'margin', 'size', 'uppercase']);
 
-	      margin = margin ? margin : 'small' === size ? 'none' : 'medium';
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--uppercase', this.props.uppercase), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--margin-' + margin, margin), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), _classnames));
-	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Label.propTypes));
+	      var labelMargin = margin ? margin : 'small' === size ? 'none' : 'medium';
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--uppercase', uppercase), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--margin-' + labelMargin, labelMargin), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), _classnames), className);
 
 	      return _react2.default.createElement(
 	        'label',
-	        (0, _extends3.default)({}, restProps, { className: classes, htmlFor: this.props.labelFor }),
-	        this.props.children
+	        (0, _extends3.default)({}, props, { className: classes, htmlFor: labelFor }),
+	        children
 	      );
 	    }
 	  }]);
@@ -14371,7 +14283,7 @@ module.exports =
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _stringify = __webpack_require__(130);
+	var _stringify = __webpack_require__(131);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
@@ -14403,15 +14315,15 @@ module.exports =
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _Spinning = __webpack_require__(132);
+	var _Spinning = __webpack_require__(133);
 
 	var _Spinning2 = _interopRequireDefault(_Spinning);
 
-	var _InfiniteScroll = __webpack_require__(133);
+	var _InfiniteScroll = __webpack_require__(134);
 
 	var _InfiniteScroll2 = _interopRequireDefault(_InfiniteScroll);
 
-	var _Selection = __webpack_require__(134);
+	var _Selection = __webpack_require__(135);
 
 	var _Selection2 = _interopRequireDefault(_Selection);
 
@@ -14717,9 +14629,17 @@ module.exports =
 	  value: true
 	});
 
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
 	var _defineProperty2 = __webpack_require__(5);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _objectWithoutProperties2 = __webpack_require__(120);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 	var _getPrototypeOf = __webpack_require__(9);
 
@@ -14777,20 +14697,17 @@ module.exports =
 	      var _classnames;
 
 	      var _props = this.props;
-	      var alt = _props.alt;
 	      var caption = _props.caption;
 	      var className = _props.className;
 	      var full = _props.full;
-	      var id = _props.id;
-	      var size = _props.size;
-	      var src = _props.src;
-	      var title = _props.title;
 	      var mask = _props.mask;
+	      var size = _props.size;
+	      var props = (0, _objectWithoutProperties3.default)(_props, ['caption', 'className', 'full', 'mask', 'size']);
 
 	      var classes = (0, _classnames4.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--full', typeof full === 'boolean' && full), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--full-' + full, typeof full === 'string'), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--mask', mask), _classnames), className);
 
-	      var captionText = typeof caption === 'string' ? caption : alt;
-	      var imgNode = _react2.default.createElement('img', { id: id, src: src, alt: alt, title: title, className: classes });
+	      var captionText = typeof caption === 'string' ? caption : props.alt;
+	      var imgNode = _react2.default.createElement('img', (0, _extends3.default)({}, props, { className: classes }));
 
 	      var labelRoot = CLASS_ROOT + '__caption';
 	      var labelClasses = (0, _classnames4.default)(labelRoot, (0, _defineProperty3.default)({}, labelRoot + '--' + size, size));
@@ -14817,7 +14734,6 @@ module.exports =
 	  alt: _react.PropTypes.string,
 	  caption: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.string]),
 	  full: _react.PropTypes.oneOf([true, 'horizontal', 'vertical', false]),
-	  id: _react.PropTypes.string,
 	  mask: _react.PropTypes.bool,
 	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'thumb']),
 	  src: _react.PropTypes.string,
@@ -15061,8 +14977,7 @@ module.exports =
 	    value: function _renderControls() {
 	      var extendedProps = (0, _assign2.default)({
 	        title: this.props.title,
-	        videoHeader: this.props.videoHeader,
-	        togglePlay: this.props.onClick || this._togglePlay,
+	        togglePlay: this._togglePlay,
 	        toggleMute: this._toggleMute,
 	        play: this._play,
 	        pause: this._pause,
@@ -15108,12 +15023,6 @@ module.exports =
 
 	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--full', full), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--interacting', interacting), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--playing', playing), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--hasPlayed', hasPlayed), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--ended', ended), (0, _defineProperty3.default)(_classnames, BACKGROUND_COLOR_INDEX + '--' + colorIndex, colorIndex), _classnames), className);
 
-	      var deprecatedProps = [];
-	      if (this.props.videoHeader) deprecatedProps.push('videoHeader');
-	      if (this.props.onClick) deprecatedProps.push('onClick');
-	      if (this.props.duration) deprecatedProps.push('duration');
-	      if (deprecatedProps.length > 0) console.warn('Video: ' + deprecatedProps.join(', ') + ' ' + 'prop has been deprecated.');
-
 	      return _react2.default.createElement(
 	        'div',
 	        { className: classes, onMouseMove: this._onMouseMove },
@@ -15144,11 +15053,9 @@ module.exports =
 	  allowFullScreen: _react.PropTypes.bool,
 	  autoPlay: _react.PropTypes.bool,
 	  colorIndex: _react.PropTypes.string,
-	  duration: _react.PropTypes.number, // remove in 1.0
 	  full: _react.PropTypes.oneOf([true, 'horizontal', 'vertical', false]),
 	  loop: _react.PropTypes.bool,
 	  muted: _react.PropTypes.bool,
-	  onClick: _react.PropTypes.func, // remove in 1.0
 	  poster: _react.PropTypes.string,
 	  shareLink: _react.PropTypes.string,
 	  shareHeadline: _react.PropTypes.string,
@@ -15159,8 +15066,7 @@ module.exports =
 	    label: _react.PropTypes.string,
 	    time: _react.PropTypes.number
 	  })),
-	  title: _react.PropTypes.node,
-	  videoHeader: _react.PropTypes.node // remove in 1.0
+	  title: _react.PropTypes.node
 	};
 
 	Video.defaultProps = {
@@ -18015,8 +17921,8 @@ module.exports =
 	});
 
 	exports.default = function (fn) {
-	  var threshhold = arguments.length <= 1 || arguments[1] === undefined ? 250 : arguments[1];
-	  var scope = arguments.length <= 2 || arguments[2] === undefined ? this : arguments[2];
+	  var threshhold = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 250;
+	  var scope = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this;
 
 	  var last = void 0;
 	  var deferTimer = void 0;
@@ -18173,4364 +18079,9 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(141);
-	var Title = __webpack_require__(114);
-	var Header = __webpack_require__(113);
-	var Search = __webpack_require__(191);
-	var Gravatar = __webpack_require__(193);
-	var Tiles = __webpack_require__(120);
-	var Tile = __webpack_require__(135);
-	var Chart = __webpack_require__(194);
-	var Meter = __webpack_require__(196);
-
-	var dateSeries = [{ label: 'first', values: [[new Date(Date.parse("2015-05-22")), 4], [new Date(Date.parse("2015-05-21")), 2], [new Date(Date.parse("2015-05-20")), 3], [new Date(Date.parse("2015-05-19")), 3], [new Date(Date.parse("2015-05-18")), 2]], colorIndex: "graph-4" }];
-	var dateSeriesXAxis = [{ label: 'May 22', value: dateSeries[0].values[0][0] }, { label: 'May 21', value: dateSeries[0].values[1][0] }, { label: 'May 20', value: dateSeries[0].values[2][0] }, { label: 'May 19', value: dateSeries[0].values[3][0] }, { label: 'May 18', value: dateSeries[0].values[4][0] }];
-
-	var DashboardDoc = React.createClass({
-	  displayName: 'DashboardDoc',
-
-	  render: function render() {
-	    return React.createElement(
-	      DocsArticle,
-	      { title: 'Dashboard', colorIndex: 'neutral-2' },
-	      React.createElement(
-	        'p',
-	        null,
-	        'The dashboard shows the most important information in the simplest way possible. Content on the dashboard provides direct navigation to further detail.'
-	      ),
-	      React.createElement(
-	        'p',
-	        null,
-	        'Typically it is the initial content shown after logging in. And, because the content is navigable, the dashboard functions well as a home page.'
-	      ),
-	      React.createElement(
-	        'section',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Example'
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'example' },
-	          React.createElement(
-	            Header,
-	            null,
-	            React.createElement(
-	              'span',
-	              null,
-	              React.createElement(
-	                Title,
-	                null,
-	                React.createElement(
-	                  'span',
-	                  null,
-	                  'App'
-	                )
-	              ),
-	              React.createElement(Search, { inline: true })
-	            ),
-	            React.createElement(Gravatar, { email: '', 'default': 'mm' })
-	          ),
-	          React.createElement(
-	            Tiles,
-	            { fill: true, flush: false },
-	            React.createElement(
-	              Tile,
-	              { wide: true },
-	              React.createElement(Chart, { series: dateSeries, min: 0, max: 5, threshold: 2,
-	                type: 'area', smooth: true, legend: {}, small: true,
-	                xAxis: dateSeriesXAxis })
-	            ),
-	            React.createElement(
-	              Tile,
-	              null,
-	              React.createElement(
-	                Header,
-	                { small: true },
-	                React.createElement(
-	                  'h4',
-	                  null,
-	                  'Utilization'
-	                )
-	              ),
-	              React.createElement(Meter, { value: 40, type: 'arc', units: 'TB' })
-	            ),
-	            React.createElement(
-	              Tile,
-	              null,
-	              React.createElement(
-	                Header,
-	                { small: true },
-	                React.createElement(
-	                  'h4',
-	                  null,
-	                  'Throughput'
-	                )
-	              ),
-	              React.createElement(Meter, { value: 80, type: 'arc', units: 'GB/s' })
-	            )
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        'section',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Details'
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'tbd' },
-	          'TBD'
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = DashboardDoc;
-
-/***/ },
-/* 191 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends2 = __webpack_require__(69);
-
-	var _extends3 = _interopRequireDefault(_extends2);
-
-	var _defineProperty2 = __webpack_require__(5);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	var _keys = __webpack_require__(84);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
-	var _typeof2 = __webpack_require__(24);
-
-	var _typeof3 = _interopRequireDefault(_typeof2);
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames4 = __webpack_require__(67);
-
-	var _classnames5 = _interopRequireDefault(_classnames4);
-
-	var _KeyboardAccelerators = __webpack_require__(87);
-
-	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
-
-	var _Drop = __webpack_require__(99);
-
-	var _Drop2 = _interopRequireDefault(_Drop);
-
-	var _Props = __webpack_require__(91);
-
-	var _Props2 = _interopRequireDefault(_Props);
-
-	var _Responsive = __webpack_require__(100);
-
-	var _Responsive2 = _interopRequireDefault(_Responsive);
-
-	var _Button = __webpack_require__(96);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
-	var _Search = __webpack_require__(192);
-
-	var _Search2 = _interopRequireDefault(_Search);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CLASS_ROOT = _CSSClassnames2.default.SEARCH; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var INPUT = _CSSClassnames2.default.INPUT;
-	var BACKGROUND_COLOR_INDEX = _CSSClassnames2.default.BACKGROUND_COLOR_INDEX;
-
-	var Search = function (_Component) {
-	  (0, _inherits3.default)(Search, _Component);
-
-	  function Search(props, context) {
-	    (0, _classCallCheck3.default)(this, Search);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Search.__proto__ || (0, _getPrototypeOf2.default)(Search)).call(this, props, context));
-
-	    _this._onAddDrop = _this._onAddDrop.bind(_this);
-	    _this._onRemoveDrop = _this._onRemoveDrop.bind(_this);
-	    _this._onFocusControl = _this._onFocusControl.bind(_this);
-	    _this._onBlurControl = _this._onBlurControl.bind(_this);
-	    _this._onFocusInput = _this._onFocusInput.bind(_this);
-	    _this._onBlurInput = _this._onBlurInput.bind(_this);
-	    _this._onChangeInput = _this._onChangeInput.bind(_this);
-	    _this._onNextSuggestion = _this._onNextSuggestion.bind(_this);
-	    _this._onPreviousSuggestion = _this._onPreviousSuggestion.bind(_this);
-	    _this._onEnter = _this._onEnter.bind(_this);
-	    _this._onClickSuggestion = _this._onClickSuggestion.bind(_this);
-	    _this._onSink = _this._onSink.bind(_this);
-	    _this._onResponsive = _this._onResponsive.bind(_this);
-
-	    _this.state = {
-	      activeSuggestionIndex: -1,
-	      align: 'left',
-	      controlFocused: false,
-	      dropActive: false,
-	      inline: props.inline,
-	      small: false
-	    };
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(Search, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      if (this.props.inline && this.props.responsive) {
-	        this._responsive = _Responsive2.default.start(this._onResponsive);
-	      }
-	    }
-	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(nextProps) {
-	      if (nextProps.suggestions && nextProps.suggestions.length > 0 && !this.state.dropActive && this.inputRef === document.activeElement) {
-	        this.setState({ dropActive: true });
-	      } else if ((!nextProps.suggestions || nextProps.suggestions.length === 0) && this.state.inline) {
-	        this.setState({ dropActive: false });
-	      }
-	      if (!this.state.small) {
-	        this.setState({ inline: nextProps.inline });
-	      }
-	    }
-	  }, {
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate(prevProps, prevState) {
-	      // Set up keyboard listeners appropriate to the current state.
-
-	      var activeKeyboardHandlers = {
-	        esc: this._onRemoveDrop,
-	        tab: this._onRemoveDrop,
-	        up: this._onPreviousSuggestion,
-	        down: this._onNextSuggestion,
-	        enter: this._onEnter
-	      };
-	      var focusedKeyboardHandlers = {
-	        space: this._onAddDrop
-	      };
-
-	      // the order here is important, need to turn off keys before turning on
-
-	      if (!this.state.controlFocused && prevState.controlFocused) {
-	        _KeyboardAccelerators2.default.stopListeningToKeyboard(this, focusedKeyboardHandlers);
-	      }
-
-	      if (!this.state.dropActive && prevState.dropActive) {
-	        document.removeEventListener('click', this._onRemoveDrop);
-	        _KeyboardAccelerators2.default.stopListeningToKeyboard(this, activeKeyboardHandlers);
-	        if (this._drop) {
-	          this._drop.remove();
-	          this._drop = null;
-	        }
-	      }
-
-	      if (this.state.controlFocused && !prevState.controlFocused) {
-	        _KeyboardAccelerators2.default.startListeningToKeyboard(this, focusedKeyboardHandlers);
-	      }
-
-	      if (this.state.dropActive && !prevState.dropActive) {
-	        // Slow down adding the click handler,
-	        // otherwise the drop will close when the mouse is released.
-	        // Not observable in Safari, 1ms is sufficient for Chrome,
-	        // Firefox needs 100ms though. :(
-	        // TODO: re-evaluate how to solve this without a timeout.
-	        document.addEventListener('click', this._onRemoveDrop);
-	        _KeyboardAccelerators2.default.startListeningToKeyboard(this, activeKeyboardHandlers);
-
-	        var baseElement = void 0;
-	        if (this.controlRef) {
-	          baseElement = this.controlRef.firstChild;
-	        } else {
-	          baseElement = this.inputRef;
-	        }
-	        var dropAlign = this.props.dropAlign || {
-	          top: this.state.inline ? 'bottom' : 'top',
-	          left: 'left'
-	        };
-	        this._drop = _Drop2.default.add(baseElement, this._renderDrop(), { align: dropAlign });
-
-	        if (!this.state.inline) {
-	          document.getElementById('search-drop-input').focus();
-	        }
-	      } else if (this._drop) {
-	        this._drop.render(this._renderDrop());
-	      }
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      document.removeEventListener('click', this._onRemoveDrop);
-	      _KeyboardAccelerators2.default.stopListeningToKeyboard(this);
-	      if (this._responsive) {
-	        this._responsive.stop();
-	      }
-	      if (this._drop) {
-	        this._drop.remove();
-	      }
-	    }
-	  }, {
-	    key: '_onAddDrop',
-	    value: function _onAddDrop(event) {
-	      event.preventDefault();
-	      this.setState({ dropActive: true, activeSuggestionIndex: -1 });
-	    }
-	  }, {
-	    key: '_onRemoveDrop',
-	    value: function _onRemoveDrop() {
-	      this.setState({ dropActive: false });
-	    }
-	  }, {
-	    key: '_onFocusControl',
-	    value: function _onFocusControl() {
-	      this.setState({
-	        controlFocused: true,
-	        dropActive: true,
-	        activeSuggestionIndex: -1
-	      });
-	    }
-	  }, {
-	    key: '_onBlurControl',
-	    value: function _onBlurControl() {
-	      this.setState({ controlFocused: false });
-	    }
-	  }, {
-	    key: '_onFocusInput',
-	    value: function _onFocusInput() {
-	      this.inputRef.select();
-	      this.setState({
-	        activeSuggestionIndex: -1
-	      });
-	    }
-	  }, {
-	    key: '_onBlurInput',
-	    value: function _onBlurInput() {
-	      //this.setState({drop: false});
-	    }
-	  }, {
-	    key: '_fireDOMChange',
-	    value: function _fireDOMChange() {
-	      var event = void 0;
-	      try {
-	        event = new Event('change', {
-	          'bubbles': true,
-	          'cancelable': true
-	        });
-	      } catch (e) {
-	        // IE11 workaround.
-	        event = document.createEvent('Event');
-	        event.initEvent('change', true, true);
-	      }
-	      var controlInput = document.getElementById('search-drop-input');
-	      var target = this.inputRef || controlInput;
-	      target.dispatchEvent(event);
-	      this.props.onDOMChange(event);
-	    }
-	  }, {
-	    key: '_onChangeInput',
-	    value: function _onChangeInput(event) {
-	      this.setState({ activeSuggestionIndex: -1 });
-	      if (this.props.onDOMChange) {
-	        this._fireDOMChange();
-	      }
-	    }
-	  }, {
-	    key: '_onNextSuggestion',
-	    value: function _onNextSuggestion() {
-	      var index = this.state.activeSuggestionIndex;
-	      index = Math.min(index + 1, this.props.suggestions.length - 1);
-	      this.setState({ activeSuggestionIndex: index });
-	    }
-	  }, {
-	    key: '_onPreviousSuggestion',
-	    value: function _onPreviousSuggestion() {
-	      var index = this.state.activeSuggestionIndex;
-	      index = Math.max(index - 1, 0);
-	      this.setState({ activeSuggestionIndex: index });
-	    }
-	  }, {
-	    key: '_onEnter',
-	    value: function _onEnter(event) {
-
-	      // for not inline search the enter should NOT submit the form
-	      // in this case double enter is required
-	      if (!this.props.inline) {
-	        event.preventDefault(); // prevent submitting forms
-	      }
-
-	      this._onRemoveDrop();
-	      var suggestion = void 0;
-	      if (this.state.activeSuggestionIndex >= 0) {
-	        suggestion = this.props.suggestions[this.state.activeSuggestionIndex];
-	        this.setState({ value: suggestion });
-	        if (this.props.onSelect) {
-	          this.props.onSelect({
-	            target: this.inputRef || this.controlRef,
-	            suggestion: suggestion
-	          }, true);
-	        }
-	      }
-	    }
-	  }, {
-	    key: '_onClickSuggestion',
-	    value: function _onClickSuggestion(suggestion) {
-	      this._onRemoveDrop();
-
-	      if (this.props.onSelect) {
-	        this.props.onSelect({
-	          target: this.inputRef || this.controlRef,
-	          suggestion: suggestion
-	        }, true);
-	      }
-	    }
-	  }, {
-	    key: '_onMouseUp',
-	    value: function _onMouseUp(event) {
-	      // This fixes a Safari bug which prevents the input
-	      // text from being selected on focus.
-	      event.preventDefault();
-	    }
-	  }, {
-	    key: '_onSink',
-	    value: function _onSink(event) {
-	      event.stopPropagation();
-	      event.nativeEvent.stopImmediatePropagation();
-	    }
-	  }, {
-	    key: '_onResponsive',
-	    value: function _onResponsive(small) {
-	      if (small) {
-	        this.setState({ inline: false, small: small });
-	      } else {
-	        this.setState({ inline: this.props.inline, small: small });
-	      }
-	    }
-	  }, {
-	    key: 'focus',
-	    value: function focus() {
-	      var ref = this.inputRef || this.controlRef;
-	      if (ref) {
-	        ref.focus();
-	      }
-	    }
-	  }, {
-	    key: '_renderLabel',
-	    value: function _renderLabel(suggestion) {
-	      if ((typeof suggestion === 'undefined' ? 'undefined' : (0, _typeof3.default)(suggestion)) === 'object') {
-	        return suggestion.label || suggestion.value;
-	      } else {
-	        return suggestion;
-	      }
-	    }
-	  }, {
-	    key: '_renderDrop',
-	    value: function _renderDrop() {
-	      var _classnames;
-
-	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Search.propTypes));
-	      var classes = (0, _classnames5.default)((_classnames = {}, (0, _defineProperty3.default)(_classnames, BACKGROUND_COLOR_INDEX + '-' + this.props.dropColorIndex, this.props.dropColorIndex), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__drop', true), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__drop--controlled', !this.state.inline), _classnames));
-
-	      var input = void 0;
-	      if (!this.state.inline) {
-	        input = _react2.default.createElement('input', (0, _extends3.default)({}, restProps, { key: 'input', id: 'search-drop-input', type: 'search',
-	          autoComplete: 'off',
-	          defaultValue: this.props.defaultValue,
-	          value: this.props.value,
-	          className: INPUT + ' ' + CLASS_ROOT + '__input',
-	          onChange: this._onChangeInput }));
-	      }
-
-	      var suggestions = void 0;
-	      if (this.props.suggestions) {
-	        suggestions = this.props.suggestions.map(function (suggestion, index) {
-	          var _classnames2;
-
-	          var classes = (0, _classnames5.default)((_classnames2 = {}, (0, _defineProperty3.default)(_classnames2, CLASS_ROOT + '__suggestion', true), (0, _defineProperty3.default)(_classnames2, CLASS_ROOT + '__suggestion--active', index === this.state.activeSuggestionIndex), _classnames2));
-
-	          return _react2.default.createElement(
-	            'div',
-	            { key: index,
-	              className: classes,
-	              onClick: this._onClickSuggestion.bind(this, suggestion) },
-	            this._renderLabel(suggestion)
-	          );
-	        }, this);
-	        suggestions = _react2.default.createElement(
-	          'div',
-	          { key: 'suggestions', className: CLASS_ROOT + '__suggestions' },
-	          suggestions
-	        );
-	      }
-
-	      var contents = [input, suggestions];
-
-	      if (!this.state.inline) {
-	        contents = [_react2.default.createElement(_Button2.default, { key: 'icon', icon: _react2.default.createElement(_Search2.default, null),
-	          className: CLASS_ROOT + '__drop-control',
-	          onClick: this._onRemoveDrop }), _react2.default.createElement(
-	          'div',
-	          { key: 'contents', className: CLASS_ROOT + '__drop-contents',
-	            onClick: this._onSink },
-	          contents
-	        )];
-	        if (this.props.dropAlign && !this.props.dropAlign.left) {
-	          contents.reverse();
-	        }
-	      }
-
-	      return _react2.default.createElement(
-	        'div',
-	        { id: 'search-drop', className: classes },
-	        contents
-	      );
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _classnames3,
-	          _this2 = this;
-
-	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Search.propTypes));
-	      var classes = (0, _classnames5.default)(CLASS_ROOT, (_classnames3 = {}, (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--controlled', !this.state.inline), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--fill', this.props.fill), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--icon-align-' + this.props.iconAlign, this.props.iconAlign), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--pad-' + this.props.pad, this.props.pad), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--inline', this.state.inline), (0, _defineProperty3.default)(_classnames3, CLASS_ROOT + '--' + this.props.size, this.props.size), _classnames3), this.props.className);
-
-	      if (this.state.inline) {
-	        return _react2.default.createElement(
-	          'div',
-	          { className: classes },
-	          _react2.default.createElement('input', (0, _extends3.default)({}, restProps, { ref: function ref(_ref) {
-	              return _this2.inputRef = _ref;
-	            }, type: 'search',
-	            id: this.props.id,
-	            placeholder: this.props.placeHolder,
-	            autoComplete: 'off',
-	            defaultValue: this._renderLabel(this.props.defaultValue),
-	            value: this._renderLabel(this.props.value),
-	            className: INPUT + ' ' + CLASS_ROOT + '__input',
-	            onFocus: this._onFocusInput,
-	            onBlur: this._onBlurInput,
-	            onChange: this._onChangeInput,
-	            onMouseUp: this._onMouseUp })),
-	          _react2.default.createElement(_Search2.default, null)
-	        );
-	      } else {
-	        return _react2.default.createElement(
-	          'div',
-	          { ref: function ref(_ref2) {
-	              return _this2.controlRef = _ref2;
-	            } },
-	          _react2.default.createElement(_Button2.default, { id: this.props.id,
-	            className: classes,
-	            icon: _react2.default.createElement(_Search2.default, null),
-	            tabIndex: '0',
-	            onClick: this._onAddDrop,
-	            onFocus: this._onFocusControl,
-	            onBlur: this._onBlurControl })
-	        );
-	      }
-	    }
-	  }]);
-	  return Search;
-	}(_react.Component);
-
-	Search.displayName = 'Search';
-	exports.default = Search;
-
-
-	Search.propTypes = {
-	  align: _react.PropTypes.string,
-	  defaultValue: _react.PropTypes.string,
-	  dropAlign: _Drop2.default.alignPropType,
-	  dropColorIndex: _react.PropTypes.string,
-	  fill: _react.PropTypes.bool,
-	  iconAlign: _react.PropTypes.oneOf(['start', 'end']),
-	  id: _react.PropTypes.string,
-	  inline: _react.PropTypes.bool,
-	  onDOMChange: _react.PropTypes.func,
-	  onSelect: _react.PropTypes.func,
-	  pad: _react.PropTypes.oneOf(['small', 'medium']),
-	  placeHolder: _react.PropTypes.string,
-	  responsive: _react.PropTypes.bool,
-	  size: _react.PropTypes.oneOf(['small', 'medium', 'large']),
-	  suggestions: _react.PropTypes.arrayOf(_react.PropTypes.oneOfType([_react.PropTypes.shape({
-	    label: _react.PropTypes.node,
-	    value: _react.PropTypes.any
-	  }), _react.PropTypes.string])),
-	  value: _react.PropTypes.string
-	};
-
-	Search.defaultProps = {
-	  align: 'left',
-	  iconAlign: 'end',
-	  inline: false,
-	  responsive: true
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 192 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _defineProperty2 = __webpack_require__(5);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames2 = __webpack_require__(67);
-
-	var _classnames3 = _interopRequireDefault(_classnames2);
-
-	var _FormattedMessage = __webpack_require__(81);
-
-	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
-	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
-
-	var Icon = function (_Component) {
-	  (0, _inherits3.default)(Icon, _Component);
-
-	  function Icon() {
-	    (0, _classCallCheck3.default)(this, Icon);
-	    return (0, _possibleConstructorReturn3.default)(this, (Icon.__proto__ || (0, _getPrototypeOf2.default)(Icon)).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(Icon, [{
-	    key: 'render',
-	    value: function render() {
-	      var _classnames;
-
-	      var _props = this.props;
-	      var a11yTitleId = _props.a11yTitleId;
-	      var className = _props.className;
-	      var colorIndex = _props.colorIndex;
-	      var _props2 = this.props;
-	      var a11yTitle = _props2.a11yTitle;
-	      var size = _props2.size;
-	      var responsive = _props2.responsive;
-
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-search', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--responsive', responsive), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
-
-	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'search', defaultMessage: 'search' });
-
-	      return _react2.default.createElement(
-	        'svg',
-	        { version: '1.1', viewBox: '0 0 24 24', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
-	        _react2.default.createElement(
-	          'title',
-	          { id: a11yTitleId },
-	          a11yTitle
-	        ),
-	        _react2.default.createElement(
-	          'g',
-	          null,
-	          _react2.default.createElement('rect', { x: '0', fill: 'none', width: '24', height: '24' }),
-	          _react2.default.createElement('path', { fill: 'none', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', d: 'M18,9.5c0,4.6944-3.8056,8.5-8.5,8.5 S1,14.1944,1,9.5S4.8056,1,9.5,1S18,4.8056,18,9.5z M16,16l7,7' })
-	        )
-	      );
-	    }
-	  }]);
-	  return Icon;
-	}(_react.Component);
-
-	Icon.displayName = 'Icon';
-	exports.default = Icon;
-	;
-
-	Icon.propTypes = {
-	  a11yTitle: _react.PropTypes.string,
-	  a11yTitleId: _react.PropTypes.string,
-	  colorIndex: _react.PropTypes.string,
-	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge']),
-	  responsive: _react.PropTypes.bool
-	};
-
-	Icon.defaultProps = {
-	  a11yTitleId: 'search-title',
-	  responsive: true
-	};
-
-	Icon.icon = true;
-
-	Icon.displayName = 'Search';
-	module.exports = exports['default'];
-
-/***/ },
-/* 193 */
-/***/ function(module, exports) {
-
-	module.exports = require("react-gravatar");
-
-/***/ },
-/* 194 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(88);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _Legend = __webpack_require__(195);
-
-	var _Legend2 = _interopRequireDefault(_Legend);
-
-	var _Intl = __webpack_require__(90);
-
-	var _Intl2 = _interopRequireDefault(_Intl);
-
-	var _KeyboardAccelerators = __webpack_require__(87);
-
-	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// (C) Copyright 2014 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = _CSSClassnames2.default.CHART;
-	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
-
-	var DEFAULT_WIDTH = 384;
-	var DEFAULT_HEIGHT = 192;
-	var XAXIS_HEIGHT = 24;
-	var YAXIS_WIDTH = 12;
-	var BAR_PADDING = 2;
-	var MIN_LABEL_WIDTH = 48;
-	var SPARKLINE_STEP_WIDTH = 6;
-	var SPARKLINE_BAR_PADDING = 1;
-	var POINT_RADIUS = 6;
-	var BAR_SEGMENT_HEIGHT = 18; // 12 + 6 tied to stroke-dashoffset in CSS
-
-	var Chart = function (_Component) {
-	  (0, _inherits3.default)(Chart, _Component);
-
-	  function Chart(props, context) {
-	    (0, _classCallCheck3.default)(this, Chart);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Chart.__proto__ || (0, _getPrototypeOf2.default)(Chart)).call(this, props, context));
-
-	    _this._onRequestForNextLegend = _this._onRequestForNextLegend.bind(_this);
-	    _this._onRequestForPreviousLegend = _this._onRequestForPreviousLegend.bind(_this);
-	    _this._onMouseOver = _this._onMouseOver.bind(_this);
-	    _this._onMouseOut = _this._onMouseOut.bind(_this);
-	    _this._onResize = _this._onResize.bind(_this);
-	    _this._layout = _this._layout.bind(_this);
-
-	    _this.state = _this._stateFromProps(props, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(Chart, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      window.addEventListener('resize', this._onResize);
-	      this._onResize();
-
-	      //only add listerners if graph is interactive
-	      if (this.props.legend) {
-	        this._keyboardHandlers = {
-	          left: this._onRequestForPreviousLegend,
-	          up: this._onRequestForPreviousLegend,
-	          right: this._onRequestForNextLegend,
-	          down: this._onRequestForNextLegend
-	        };
-	        _KeyboardAccelerators2.default.startListeningToKeyboard(this, this._keyboardHandlers);
-	      }
-	    }
-	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(newProps) {
-	      var state = this._stateFromProps(newProps, this.state.width, this.state.height);
-	      this.setState(state);
-	    }
-	  }, {
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate() {
-	      this._layout();
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      clearTimeout(this._resizeTimer);
-	      window.removeEventListener('resize', this._onResize);
-
-	      if (this.props.legend) {
-	        _KeyboardAccelerators2.default.stopListeningToKeyboard(this, this._keyboardHandlers);
-	      }
-	    }
-	  }, {
-	    key: '_onRequestForNextLegend',
-	    value: function _onRequestForNextLegend(event) {
-	      if (document.activeElement === this.chartRef) {
-	        event.preventDefault();
-	        var totalBandCount = _reactDom2.default.findDOMNode(this.frontRef).childNodes.length;
-
-	        if (this.state.highlightXIndex - 1 < 0) {
-	          this._onMouseOver(totalBandCount - 1);
-	        } else {
-	          this._onMouseOver(this.state.highlightXIndex - 1);
-	        }
-
-	        //stop event propagation
-	        return true;
-	      }
-	    }
-	  }, {
-	    key: '_onRequestForPreviousLegend',
-	    value: function _onRequestForPreviousLegend(event) {
-	      if (document.activeElement === this.chartRef) {
-	        event.preventDefault();
-	        var totalBandCount = _reactDom2.default.findDOMNode(this.frontRef).childNodes.length;
-
-	        if (this.state.highlightXIndex + 1 >= totalBandCount) {
-	          this._onMouseOver(0);
-	        } else {
-	          this._onMouseOver(this.state.highlightXIndex + 1);
-	        }
-
-	        //stop event propagation
-	        return true;
-	      }
-	    }
-	  }, {
-	    key: '_onMouseOver',
-	    value: function _onMouseOver(xIndex) {
-	      this.setState({ highlightXIndex: xIndex });
-	    }
-	  }, {
-	    key: '_onMouseOut',
-	    value: function _onMouseOut() {
-	      this.setState({ highlightXIndex: this.state.defaultXIndex });
-	    }
-	  }, {
-	    key: '_onResize',
-	    value: function _onResize() {
-	      // debounce
-	      clearTimeout(this._resizeTimer);
-	      this._resizeTimer = setTimeout(this._layout, 50);
-	    }
-
-	    // Performs some initial calculations to make subsequent calculations easier.
-
-	  }, {
-	    key: '_bounds',
-	    value: function _bounds(series, xAxisArg, width, height) {
-	      // normalize xAxis
-	      var xAxis = void 0;
-	      if (xAxisArg) {
-	        if (xAxisArg.data) {
-	          xAxis = xAxisArg;
-	        } else {
-	          xAxis = {
-	            data: xAxisArg,
-	            placement: 'top'
-	          };
-	        }
-	      } else {
-	        xAxis = { data: [] };
-	      }
-
-	      // analyze series data
-	      var minX = null;
-	      var maxX = null;
-	      var minY = null;
-	      var maxY = null;
-
-	      series.forEach(function (item) {
-	        item.values.forEach(function (value, xIndex) {
-	          var x = void 0,
-	              y = void 0;
-	          if (Array.isArray(value)) {
-	            x = value[0];
-	            y = value[1];
-	          } else {
-	            x = value.x;
-	            y = value.y;
-	          }
-
-	          if (null === minX) {
-	            minX = x;
-	            maxX = x;
-	            minY = y;
-	            maxY = y;
-	          } else {
-	            minX = Math.min(minX, x);
-	            maxX = Math.max(maxX, x);
-	            minY = Math.min(minY, y);
-	            maxY = Math.max(maxY, y);
-	          }
-	          if (xIndex >= xAxis.data.length) {
-	            xAxis.data.push({ value: x, label: '' });
-	          }
-	        });
-	      });
-
-	      if (null === minX) {
-	        minX = 0;
-	        maxX = 1;
-	        minY = 0;
-	        maxY = 100;
-	      }
-
-	      if ('bar' === this.props.type) {
-	        xAxis.data.forEach(function (obj, xIndex) {
-	          var sumY = 0;
-	          series.forEach(function (item) {
-	            var value = item.values[xIndex];
-	            var y = Array.isArray(value) ? value[1] : value.y;
-	            sumY += y;
-	          });
-	          maxY = Math.max(maxY, sumY);
-	        });
-	      }
-
-	      if (this.props.threshold) {
-	        minY = Math.min(minY, this.props.threshold);
-	        maxY = Math.max(maxY, this.props.threshold);
-	      }
-	      if (this.props.thresholds) {
-	        this.props.thresholds.forEach(function (obj) {
-	          maxY = Math.max(maxY, obj.value);
-	        });
-	      }
-	      if (this.props.hasOwnProperty('min')) {
-	        minY = this.props.min;
-	      }
-	      if (this.props.hasOwnProperty('max')) {
-	        maxY = this.props.max;
-	      }
-	      var spanX = maxX - minX;
-	      var spanY = maxY - minY;
-
-	      if (this.props.sparkline) {
-	        width = spanX * (SPARKLINE_STEP_WIDTH + SPARKLINE_BAR_PADDING);
-	      }
-
-	      var graphWidth = width;
-	      var graphHeight = height;
-	      if (this.props.legend && 'inline' === this.props.legend.position) {
-	        // provides a buffer at the top of the graph to ensure
-	        // none of the labels are cutoff by the bounds
-	        graphHeight -= XAXIS_HEIGHT;
-	      }
-	      if (this.props.thresholds) {
-	        graphWidth -= YAXIS_WIDTH;
-	      }
-	      if (xAxis.placement) {
-	        graphHeight -= XAXIS_HEIGHT;
-	      }
-	      var graphTop = 'top' === xAxis.placement ? XAXIS_HEIGHT : 0;
-	      // graphBottom is the bottom graph Y value
-	      var graphBottom = 'bottom' === xAxis.placement ? height - XAXIS_HEIGHT : height;
-
-	      var graphLeft = 0;
-	      var graphRight = graphWidth;
-	      if (this.props.points) {
-	        graphLeft += POINT_RADIUS + 2;
-	        graphRight -= POINT_RADIUS + 2;
-	      }
-
-	      var scaleX = graphWidth / spanX;
-	      var xStepWidth = Math.round(graphWidth / (xAxis.data.length - 1));
-	      if ('bar' === this.props.type) {
-	        // allow room for bar width for last bar
-	        scaleX = graphWidth / (spanX + spanX / (xAxis.data.length - 1));
-	        xStepWidth = Math.round(graphWidth / xAxis.data.length);
-	      }
-	      var scaleY = graphHeight / spanY;
-	      var barPadding = Math.max(BAR_PADDING, Math.round(xStepWidth / 8));
-	      if (this.props.sparkline) {
-	        xStepWidth = SPARKLINE_STEP_WIDTH;
-	        barPadding = SPARKLINE_BAR_PADDING;
-	      }
-
-	      var result = {
-	        minX: minX,
-	        maxX: maxX,
-	        minY: minY,
-	        maxY: maxY,
-	        spanX: spanX,
-	        spanY: spanY,
-	        scaleX: scaleX,
-	        scaleY: scaleY,
-	        graphWidth: graphWidth,
-	        graphHeight: graphHeight,
-	        graphTop: graphTop,
-	        graphBottom: graphBottom,
-	        graphLeft: graphLeft,
-	        graphRight: graphRight,
-	        xStepWidth: xStepWidth,
-	        barPadding: barPadding,
-	        xAxis: xAxis
-	      };
-
-	      return result;
-	    }
-
-	    // Aligns the legend with the current position of the cursor, if any.
-
-	  }, {
-	    key: '_alignLegend',
-	    value: function _alignLegend() {
-	      if (this.state.highlightXIndex >= 0 && this.cursorRef) {
-	        var bounds = this.state.bounds;
-	        var cursorElement = this.cursorRef;
-	        var cursorRect = cursorElement.getBoundingClientRect();
-	        var element = this.chartRef;
-	        var rect = element.getBoundingClientRect();
-	        var legendElement = _reactDom2.default.findDOMNode(this.legendRef);
-	        var legendRect = legendElement.getBoundingClientRect();
-
-	        var left = cursorRect.left - rect.left - legendRect.width - 1;
-	        // if the legend would be outside the graphic, orient it to the right.
-	        if (left < 0) {
-	          left += legendRect.width + 2;
-	        }
-
-	        legendElement.style.left = '' + left + 'px ';
-	        legendElement.style.top = '' + bounds.graphTop + 'px ';
-	      }
-	    }
-
-	    // Adjusts the legend position and set the width, height, and
-	    // redo the bounds calculations.
-	    // Called whenever the browser resizes or new properties arrive.
-
-	  }, {
-	    key: '_layout',
-	    value: function _layout() {
-	      if (this.props.legend && 'overlay' === this.props.legend.position) {
-	        this._alignLegend();
-	      }
-	      var element = this.chartRef;
-	      var rect = element.getBoundingClientRect();
-	      if (rect.width !== this.state.width || rect.height !== this.state.height) {
-	        var bounds = this._bounds(this.props.series, this.props.xAxis, rect.width, rect.height);
-	        var width = rect.width;
-	        if (this.props.sparkline) {
-	          width = bounds.graphWidth;
-	        }
-	        this.setState({
-	          width: width,
-	          height: rect.height,
-	          bounds: bounds
-	        });
-	      }
-	    }
-
-	    // Generates state based on the provided props.
-
-	  }, {
-	    key: '_stateFromProps',
-	    value: function _stateFromProps(props, width, height) {
-	      var bounds = this._bounds(props.series, props.xAxis, width, height);
-	      var defaultXIndex = -1;
-	      if (props.series && props.series.length > 0) {
-	        defaultXIndex = 0;
-	      }
-	      if (props.hasOwnProperty('important')) {
-	        defaultXIndex = props.important;
-	      }
-	      var highlightXIndex = defaultXIndex;
-	      if (this.state && this.state.highlightXIndex >= 0) {
-	        highlightXIndex = this.state.highlightXIndex;
-	      }
-	      // normalize size
-	      var size = props.size || (props.small ? 'small' : props.large ? 'large' : null);
-	      return {
-	        bounds: bounds,
-	        defaultXIndex: defaultXIndex,
-	        highlightXIndex: highlightXIndex,
-	        width: width,
-	        height: height,
-	        size: size
-	      };
-	    }
-
-	    // Translates X value to X coordinate.
-
-	  }, {
-	    key: '_translateX',
-	    value: function _translateX(x) {
-	      var bounds = this.state.bounds;
-	      return Math.max(bounds.graphLeft, Math.min(bounds.graphRight, Math.round((x - bounds.minX) * bounds.scaleX)));
-	    }
-
-	    // Translates Y value to Y coordinate.
-
-	  }, {
-	    key: '_translateY',
-	    value: function _translateY(y) {
-	      var bounds = this.state.bounds;
-	      // leave room for line width since strokes are aligned to the center
-	      return Math.max(1, bounds.graphBottom - Math.max(1, this._translateHeight(y)));
-	    }
-
-	    // Translates Y value to graph height.
-
-	  }, {
-	    key: '_translateHeight',
-	    value: function _translateHeight(y) {
-	      var bounds = this.state.bounds;
-	      return Math.round((y - bounds.minY) * bounds.scaleY);
-	    }
-
-	    // Translates X and Y values to X and Y coordinates.
-
-	  }, {
-	    key: '_coordinates',
-	    value: function _coordinates(value) {
-	      var x = void 0,
-	          y = void 0;
-	      if (Array.isArray(value)) {
-	        x = value[0];
-	        y = value[1];
-	      } else {
-	        x = value.x;
-	        y = value.y;
-	      }
-	      return [this._translateX(x), this._translateY(y)];
-	    }
-
-	    // Uses the provided colorIndex or provides one based on the seriesIndex.
-
-	  }, {
-	    key: '_itemColorIndex',
-	    value: function _itemColorIndex(item, seriesIndex) {
-	      return item.colorIndex || 'graph-' + (seriesIndex + 1);
-	    }
-
-	    // Determines what the appropriate control coordinates are on
-	    // either side of the coordinate at the specified index.
-	    // This calculation is a simplified smoothing function that
-	    // just looks at whether the line through this coordinate is
-	    // ascending, descending or not. Peaks, valleys, and flats are
-	    // treated the same.
-
-	  }, {
-	    key: '_controlCoordinates',
-	    value: function _controlCoordinates(coordinates, index) {
-	      var current = coordinates[index];
-	      // Use previous and next coordinates when available, otherwise use
-	      // the current coordinate for them.
-	      var previous = current;
-	      if (index > 0) {
-	        previous = coordinates[index - 1];
-	      }
-	      var next = current;
-	      if (index < coordinates.length - 1) {
-	        next = coordinates[index + 1];
-	      }
-
-	      // Put the control X coordinates midway between the coordinates.
-	      var deltaX = (current[0] - previous[0]) / 2;
-	      var deltaY = void 0;
-
-	      // Start with a flat slope. This works for peaks, valleys, and flats.
-	      var first = [current[0] - deltaX, current[1]];
-	      var second = [current[0] + deltaX, current[1]];
-
-	      if (previous[1] < current[1] && current[1] < next[1]) {
-	        // Ascending, use the minimum positive slope.
-	        deltaY = Math.min((current[1] - previous[1]) / 2, (next[1] - current[1]) / 2);
-	        first[1] = current[1] - deltaY;
-	        second[1] = current[1] + deltaY;
-	      } else if (previous[1] > current[1] && current[1] > next[1]) {
-	        // Descending, use the minimum negative slope.
-	        deltaY = Math.min((previous[1] - current[1]) / 2, (current[1] - next[1]) / 2);
-	        first[1] = current[1] + deltaY;
-	        second[1] = current[1] - deltaY;
-	      }
-	      return [first, second];
-	    }
-
-	    // Converts the series data into paths for line or area types.
-
-	  }, {
-	    key: '_renderLinesOrAreas',
-	    value: function _renderLinesOrAreas() {
-	      var _this2 = this;
-
-	      var bounds = this.state.bounds;
-	      var values = this.props.series.map(function (item, seriesIndex) {
-
-	        // Get all coordinates up front so they are available
-	        // if we are drawing a smooth chart.
-	        var coordinates = item.values.map(function (value) {
-	          return _this2._coordinates(value);
-	        });
-
-	        var colorIndex = _this2._itemColorIndex(item, seriesIndex);
-	        var commands = null;
-	        var controlCoordinates = null;
-	        var previousControlCoordinates = null;
-	        var points = [];
-
-	        // Build the commands for this set of coordinates.
-	        coordinates.forEach(function (coordinate, index) {
-	          if (_this2.props.smooth) {
-	            controlCoordinates = _this2._controlCoordinates(coordinates, index);
-	          }
-	          if (0 === index) {
-	            commands = "M" + coordinate.join(',');
-	          } else {
-	            if (_this2.props.smooth) {
-	              // Use the previous right control coordinate and the current
-	              // left control coordinate. We do this because we calculate
-	              // the left and right sides for a particular index together,
-	              // so the path is smooth but the SVG C command needs the
-	              // right one from the previous index and the left one from
-	              // the current index.
-	              commands += " C" + previousControlCoordinates[1].join(',') + " " + controlCoordinates[0].join(',') + " " + coordinate.join(',');
-	            } else {
-	              commands += " L" + coordinate.join(',');
-	            }
-	          }
-
-	          if (_this2.props.points && !_this2.props.sparkline) {
-	            var x = Math.max(POINT_RADIUS + 1, Math.min(bounds.graphWidth - (POINT_RADIUS + 1), coordinate[0]));
-	            var value = item.values[index];
-	            points.push(_react2.default.createElement('circle', { key: index,
-	              className: CLASS_ROOT + '__values-point ' + (COLOR_INDEX + '-' + colorIndex),
-	              cx: x, cy: coordinate[1], r: POINT_RADIUS,
-	              onClick: value.onClick }));
-	          }
-
-	          previousControlCoordinates = controlCoordinates;
-	        });
-
-	        var linePath = void 0;
-	        if ('line' === _this2.props.type || _this2.props.points) {
-	          var classes = [CLASS_ROOT + '__values-line', COLOR_INDEX + '-' + colorIndex];
-	          if (item.onClick) {
-	            classes.push(CLASS_ROOT + '__values-line--active');
-	          }
-	          linePath = _react2.default.createElement('path', { fill: 'none', className: classes.join(' '), d: commands });
-	        }
-
-	        var areaPath = void 0;
-	        if ('area' === _this2.props.type) {
-	          // For area charts, close the path by drawing down to the bottom
-	          // and across to the bottom of where we started.
-	          var close = 'L' + coordinates[coordinates.length - 1][0] + ',' + bounds.graphBottom + 'L' + coordinates[0][0] + ',' + bounds.graphBottom + 'Z';
-	          var areaCommands = commands + close;
-	          var _classes = [CLASS_ROOT + '__values-area', COLOR_INDEX + '-' + colorIndex];
-	          if (item.onClick) {
-	            _classes.push(CLASS_ROOT + '__values-area--active');
-	          }
-
-	          areaPath = _react2.default.createElement('path', { stroke: 'none', className: _classes.join(' '), d: areaCommands });
-	        }
-
-	        return _react2.default.createElement(
-	          'g',
-	          { key: 'line_group_' + seriesIndex, onClick: item.onClick },
-	          areaPath,
-	          linePath,
-	          points
-	        );
-	      });
-
-	      return values;
-	    }
-
-	    // Converts the series data into rects for bar types.
-
-	  }, {
-	    key: '_renderBars',
-	    value: function _renderBars() {
-	      var _this3 = this;
-
-	      var segmented = this.props.segmented;
-	      var bounds = this.state.bounds;
-
-
-	      var values = bounds.xAxis.data.map(function (obj, xIndex) {
-	        var baseY = bounds.minY;
-	        var legend = [];
-	        var stepBars = _this3.props.series.map(function (item, seriesIndex) {
-
-	          var colorIndex = item.colorIndex || 'graph-' + (seriesIndex + 1);
-	          var value = item.values[xIndex];
-	          var valueX = void 0,
-	              valueY = void 0;
-	          if (Array.isArray(value)) {
-	            valueX = value[0];
-	            valueY = value[1];
-	          } else {
-	            valueX = value.x;
-	            valueY = value.y;
-	          }
-	          var stepBarHeight = _this3._translateHeight(valueY);
-	          var stepBarBase = _this3._translateHeight(baseY);
-	          baseY += valueY;
-
-	          var classes = [CLASS_ROOT + '__values-bar', COLOR_INDEX + '-' + colorIndex];
-	          if (!_this3.props.legend || 'inline' === _this3.props.legend.position || xIndex === _this3.state.highlightXIndex) {
-	            classes.push(CLASS_ROOT + '__values-bar--highlight');
-	          }
-	          if (value.onClick) {
-	            classes.push(CLASS_ROOT + '__values-bar--active');
-	          }
-
-	          if ('bottom' === bounds.xAxis.placement) {
-	            stepBarBase += XAXIS_HEIGHT;
-	          }
-
-	          var width = bounds.xStepWidth - 2 * bounds.barPadding;
-	          var x = _this3._translateX(valueX) + bounds.barPadding + width / 2;
-	          if (segmented) {
-	            stepBarBase = Math.floor(stepBarBase / BAR_SEGMENT_HEIGHT) * BAR_SEGMENT_HEIGHT;
-	            stepBarHeight = Math.floor(stepBarHeight / BAR_SEGMENT_HEIGHT) * BAR_SEGMENT_HEIGHT;
-	          }
-	          var y = _this3.state.height - (stepBarHeight + stepBarBase);
-
-	          var labeledValue = void 0;
-	          var unitsValue = item.units || _this3.props.units;
-	          if (unitsValue) {
-	            if (unitsValue.prefix && unitsValue.suffix) {
-	              labeledValue = '' + unitsValue.prefix + value[1] + ' ' + unitsValue.suffix;
-	            } else if (unitsValue.prefix) {
-	              labeledValue = '' + unitsValue.prefix + value[1];
-	            } else if (unitsValue.suffix || typeof unitsValue === 'string' || unitsValue instanceof String) {
-	              labeledValue = value[1] + ' ' + (unitsValue.suffix || unitsValue);
-	            }
-	          }
-
-	          if (_this3.props.legend && 'inline' === _this3.props.legend.position) {
-	            legend.push(_react2.default.createElement(
-	              'text',
-	              { key: 'bar-value_' + item.label || seriesIndex,
-	                x: x, y: y, role: 'presentation', textAnchor: 'middle', fontSize: 16 },
-	              labeledValue
-	            ));
-	          }
-
-	          return _react2.default.createElement('line', { key: 'bar_' + item.label || seriesIndex,
-	            className: classes.join(' '),
-	            x1: x, y1: y + stepBarHeight, x2: x, y2: y,
-	            strokeWidth: width, onClick: value.onClick });
-	        });
-
-	        return _react2.default.createElement(
-	          'g',
-	          { key: 'bar_' + xIndex },
-	          stepBars,
-	          legend
-	        );
-	      });
-
-	      return values;
-	    }
-
-	    // Converts the threshold value into a line.
-
-	  }, {
-	    key: '_renderThreshold',
-	    value: function _renderThreshold() {
-	      var y = this._translateY(this.props.threshold);
-	      var commands = 'M0,' + y + 'L' + this.state.width + ',' + y;
-	      return _react2.default.createElement(
-	        'g',
-	        { className: CLASS_ROOT + '__threshold', role: 'presentation' },
-	        _react2.default.createElement('path', { fill: 'none', d: commands })
-	      );
-	    }
-	  }, {
-	    key: '_labelPosition',
-	    value: function _labelPosition(valueX, bounds) {
-	      var x = this._translateX(valueX);
-	      var startX = x;
-	      var anchor = void 0;
-	      if ('line' === this.props.type || 'area' === this.props.type) {
-	        // Place the text in the middle for line and area type charts.
-	        anchor = 'middle';
-	        startX = x - MIN_LABEL_WIDTH / 2;
-	      }
-	      if (x <= 0) {
-	        // This is the first data point, align the text to the left edge.
-	        x = 0;
-	        startX = x;
-	        anchor = 'start';
-	      }
-	      if (x >= bounds.graphWidth - MIN_LABEL_WIDTH) {
-	        // This is the last data point, align the text to the right edge.
-	        x = bounds.graphWidth;
-	        startX = x - MIN_LABEL_WIDTH;
-	        anchor = 'end';
-	      } else if ('bar' === this.props.type) {
-	        x += bounds.barPadding;
-	        startX = x;
-	      }
-	      return { x: x, anchor: anchor, startX: startX,
-	        endX: startX + MIN_LABEL_WIDTH };
-	    }
-	  }, {
-	    key: '_labelOverlaps',
-	    value: function _labelOverlaps(pos1, pos2) {
-	      return pos1 && pos2 && pos1.endX > pos2.startX && pos1.startX < pos2.endX;
-	    }
-
-	    // Converts the xAxis labels into texts.
-
-	  }, {
-	    key: '_renderXAxis',
-	    value: function _renderXAxis() {
-	      var _this4 = this;
-
-	      var bounds = this.state.bounds;
-	      var labelY = void 0;
-	      if ('bottom' === bounds.xAxis.placement) {
-	        labelY = this.state.height - Math.round(XAXIS_HEIGHT * 0.3);
-	      } else {
-	        labelY = Math.round(XAXIS_HEIGHT * 0.6);
-	      }
-	      var priorPosition = null;
-	      var highlightPosition = null;
-	      if (this.state.highlightXIndex >= 0 && bounds.xAxis.data.length > this.state.highlightXIndex) {
-	        highlightPosition = this._labelPosition(bounds.xAxis.data[this.state.highlightXIndex].value, bounds);
-	      }
-	      var lastPosition = null;
-	      if (bounds.xAxis.data.length > 0) {
-	        lastPosition = this._labelPosition(bounds.xAxis.data[bounds.xAxis.data.length - 1].value, bounds);
-	      }
-
-	      var labels = bounds.xAxis.data.map(function (obj, xIndex) {
-	        var classes = [CLASS_ROOT + '__xaxis-index'];
-	        if (xIndex === _this4.state.highlightXIndex) {
-	          classes.push(CLASS_ROOT + '__xaxis-index--highlight');
-	        }
-	        var position = _this4._labelPosition(obj.value, bounds);
-
-	        // Ensure we don't overlap labels. But, make sure we show the first and
-	        // last ones.
-	        if (_this4._labelOverlaps(position, highlightPosition) || xIndex !== 0 && xIndex !== bounds.xAxis.data.length - 1 && (_this4._labelOverlaps(position, priorPosition) || _this4._labelOverlaps(position, lastPosition))) {
-	          classes.push(CLASS_ROOT + '__xaxis-index--eclipse');
-	        } else {
-	          priorPosition = position;
-	        }
-
-	        return _react2.default.createElement(
-	          'g',
-	          { key: 'x_axis_' + xIndex, className: classes.join(' ') },
-	          _react2.default.createElement(
-	            'text',
-	            { x: position.x, y: labelY, role: 'presentation',
-	              textAnchor: position.anchor, fontSize: 16 },
-	            obj.label
-	          )
-	        );
-	      });
-
-	      return _react2.default.createElement(
-	        'g',
-	        { ref: function ref(_ref) {
-	            return _this4.xAxisRef = _ref;
-	          }, className: CLASS_ROOT + '__xaxis' },
-	        labels
-	      );
-	    }
-
-	    // Vertical bars for thresholds.
-
-	  }, {
-	    key: '_renderYAxis',
-	    value: function _renderYAxis() {
-	      var _this5 = this;
-
-	      var bounds = this.state.bounds;
-	      var start = bounds.minY;
-	      var end = void 0;
-	      var width = Math.max(4, YAXIS_WIDTH / 2);
-
-	      var bars = this.props.thresholds.map(function (item, index) {
-	        var classes = [CLASS_ROOT + '__bar'];
-	        classes.push(COLOR_INDEX + '-' + (item.colorIndex || 'graph-' + (index + 1)));
-	        if (index < _this5.props.thresholds.length - 1) {
-	          end = _this5.props.thresholds[index + 1].value;
-	        } else {
-	          end = bounds.maxY;
-	        }
-	        var height = _this5._translateHeight(end - start);
-	        var y = _this5._translateY(end);
-	        start = end;
-
-	        return _react2.default.createElement('rect', { key: 'y_rect_' + index,
-	          className: classes.join(' '),
-	          x: _this5.state.width - width,
-	          y: y,
-	          width: width,
-	          height: height });
-	      });
-
-	      return _react2.default.createElement(
-	        'g',
-	        { ref: function ref(_ref2) {
-	            return _this5.yAxisRef = _ref2;
-	          }, className: CLASS_ROOT + '__yaxis' },
-	        bars
-	      );
-	    }
-	  }, {
-	    key: '_highlightSeriesAsString',
-	    value: function _highlightSeriesAsString() {
-	      var total = 0;
-	      var seriesText = this._getHighlightSeries().map(function (currentSeries) {
-	        total += currentSeries.value;
-
-	        var stringify = [currentSeries.label];
-
-	        if (currentSeries.value !== undefined) {
-	          if (currentSeries.units) {
-	            var _unitsSuffix = void 0;
-	            var _unitsPrefix = currentSeries.units.prefix;
-
-	            if (currentSeries.units.suffix || typeof currentSeries.units === 'string' || currentSeries.units instanceof String) {
-	              _unitsSuffix = currentSeries.units.suffix || currentSeries.units;
-	            }
-	            if (_unitsPrefix && _unitsSuffix) {
-	              stringify.push(': ' + _unitsPrefix + currentSeries.value + ' ' + _unitsSuffix);
-	            } else if (_unitsPrefix) {
-	              stringify.push(': ' + _unitsPrefix + currentSeries.value);
-	            } else if (_unitsSuffix) {
-	              stringify.push(': ' + currentSeries.value + ' ' + _unitsSuffix);
-	            }
-	          } else {
-	            stringify.push(': ' + currentSeries.value);
-	          }
-	        }
-
-	        return stringify.join('');
-	      }).join('; ');
-
-	      var totalText = '';
-	      var labeledTotal = void 0;
-	      var unitsPrefix = void 0;
-	      var unitsSuffix = void 0;
-
-	      if (this.props.units) {
-	        if (this.props.units.prefix) {
-	          unitsPrefix = this.props.units.prefix;
-	        }
-	        if (this.props.units.suffix || typeof this.props.units === 'string' || this.props.units instanceof String) {
-	          unitsSuffix = this.props.units.suffix || this.props.units;
-	        }
-	        if (unitsPrefix && unitsSuffix) {
-	          labeledTotal = '' + unitsPrefix + total + ' ' + unitsSuffix;
-	        } else if (unitsPrefix) {
-	          labeledTotal = '' + unitsPrefix + total;
-	        } else if (unitsSuffix) {
-	          labeledTotal = total + ' ' + unitsSuffix;
-	        }
-	      }
-	      if (this.props.legend.total) {
-	        var totalMessage = _Intl2.default.getMessage(this.context.intl, 'Total');
-	        totalText = totalMessage + ': ' + labeledTotal || '';
-
-	        seriesText += ', ' + totalText;
-	      }
-
-	      return seriesText;
-	    }
-
-	    // Create vertical rects for each X data point.
-	    // These are used to track the mouse hover.
-
-	  }, {
-	    key: '_renderXBands',
-	    value: function _renderXBands() {
-	      var _this6 = this;
-
-	      var className = CLASS_ROOT + '__front';
-	      var bounds = this.state.bounds;
-
-	      var bands = bounds.xAxis.data.map(function (obj, xIndex) {
-	        var classes = [className + '-xband'];
-	        if (xIndex === _this6.state.highlightXIndex) {
-	          classes.push(className + '-xband--highlight');
-	        }
-
-	        // For bar charts, the band is left aligned with the bars.
-	        var x = _this6._translateX(obj.value);
-	        if ('line' === _this6.props.type || 'area' === _this6.props.type) {
-	          // For line and area charts, the band is centered.
-	          x -= bounds.xStepWidth / 2;
-	        }
-
-	        var onMouseOver = _this6._onMouseOver.bind(_this6, xIndex);
-	        var onMouseOut = _this6._onMouseOut.bind(_this6, xIndex);
-	        var xBandId = _this6.props.a11yTitleId + '_x_band_' + xIndex;
-	        var xBandTitleId = _this6.props.a11yTitleId + '_x_band_title_' + xIndex;
-
-	        var seriesText = _this6._highlightSeriesAsString();
-
-	        return _react2.default.createElement(
-	          'g',
-	          { key: xBandId, id: xBandId, className: classes.join(' '),
-	            onMouseOver: onMouseOver, onMouseOut: onMouseOut, role: 'tab',
-	            'aria-labelledby': xBandTitleId },
-	          _react2.default.createElement(
-	            'title',
-	            { id: xBandTitleId },
-	            obj.label + ' ' + seriesText
-	          ),
-	          _react2.default.createElement('rect', { role: 'presentation', className: className + '-xband-background',
-	            x: x, y: 0, width: bounds.xStepWidth, height: _this6.state.height })
-	        );
-	      });
-
-	      return _react2.default.createElement(
-	        'g',
-	        { ref: function ref(_ref3) {
-	            return _this6.frontRef = _ref3;
-	          }, className: className },
-	        bands
-	      );
-	    }
-
-	    // Converts the highlight X index to a line.
-
-	  }, {
-	    key: '_renderCursor',
-	    value: function _renderCursor() {
-	      var _this7 = this;
-
-	      var bounds = this.state.bounds;
-	      var value = this.props.series[0].values[this.state.highlightXIndex];
-	      var coordinates = this._coordinates(value);
-	      if ('bar' === this.props.type) {
-	        coordinates[0] += this.state.bounds.barPadding;
-	      }
-	      // Offset it just a little if it is at an edge.
-	      var x = Math.max(1, Math.min(coordinates[0], this.state.bounds.graphWidth - 1));
-	      var line = _react2.default.createElement('line', { fill: 'none', x1: x, y1: bounds.graphTop, x2: x,
-	        y2: bounds.graphBottom });
-
-	      var points = void 0;
-	      if (this.props.points) {
-	        // for area and line charts, include a dot at the intersection
-	        if ('line' === this.props.type || 'area' === this.props.type) {
-	          points = this.props.series.map(function (item, seriesIndex) {
-	            value = item.values[_this7.state.highlightXIndex];
-	            coordinates = _this7._coordinates(value);
-	            var colorIndex = _this7._itemColorIndex(item, seriesIndex);
-	            return _react2.default.createElement('circle', { key: seriesIndex,
-	              className: CLASS_ROOT + '__cursor-point ' + (COLOR_INDEX + '-' + colorIndex),
-	              cx: x, cy: coordinates[1], r: Math.round(POINT_RADIUS * 1.2) });
-	          });
-	        }
-	      }
-
-	      return _react2.default.createElement(
-	        'g',
-	        { ref: function ref(_ref4) {
-	            return _this7.cursorRef = _ref4;
-	          },
-	          role: 'presentation', className: CLASS_ROOT + '__cursor' },
-	        line,
-	        points
-	      );
-	    }
-	  }, {
-	    key: '_getHighlightSeries',
-	    value: function _getHighlightSeries(addColorIndex) {
-	      var _this8 = this;
-
-	      return this.props.series.map(function (item) {
-	        var datum = {
-	          value: item.values[_this8.state.highlightXIndex][1],
-	          units: item.units || _this8.props.units
-	        };
-	        // only show label and swatch if we have more than one series
-	        if (_this8.props.series.length > 1) {
-	          datum.label = item.label;
-	          if (addColorIndex) {
-	            datum.colorIndex = item.colorIndex;
-	          }
-	        }
-	        return datum;
-	      });
-	    }
-
-	    // Builds a Legend appropriate for the currently highlight X index.
-
-	  }, {
-	    key: '_renderLegend',
-	    value: function _renderLegend() {
-	      var _this9 = this;
-
-	      var highlightSeries = this._getHighlightSeries(true);
-	      var classes = [CLASS_ROOT + '__legend', CLASS_ROOT + '__legend--' + (this.props.legend.position || 'overlay')];
-
-	      return _react2.default.createElement(_Legend2.default, { ref: function ref(_ref5) {
-	          return _this9.legendRef = _ref5;
-	        }, className: classes.join(' '),
-	        series: highlightSeries,
-	        total: this.props.legend.total,
-	        units: this.props.units });
-	    }
-	  }, {
-	    key: '_renderA11YTitle',
-	    value: function _renderA11YTitle() {
-	      var a11yTitle = this.props.a11yTitle;
-	      if (!this.props.a11yTitle) {
-	        var chartLabel = _Intl2.default.getMessage(this.context.intl, 'Chart');
-	        var typeLabel = _Intl2.default.getMessage(this.context.intl, this.props.type);
-	        a11yTitle = typeLabel + ' ' + chartLabel;
-	      }
-
-	      return a11yTitle;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this10 = this;
-
-	      var classes = [CLASS_ROOT];
-	      classes.push(CLASS_ROOT + '--' + this.props.type);
-	      if (this.state.size) {
-	        classes.push(CLASS_ROOT + '--' + this.state.size);
-	      }
-	      if (this.props.segmented) {
-	        classes.push(CLASS_ROOT + '--segmented');
-	      }
-	      if (this.props.sparkline) {
-	        classes.push(CLASS_ROOT + '--sparkline');
-	      }
-
-	      var values = [];
-	      if ('line' === this.props.type || 'area' === this.props.type) {
-	        values = this._renderLinesOrAreas();
-	      } else if ('bar' === this.props.type) {
-	        values = this._renderBars();
-	      }
-
-	      if (values.length === 0) {
-	        classes.push(CLASS_ROOT + '--loading');
-	        var valueClasses = [CLASS_ROOT + '__values'];
-	        valueClasses.push(CLASS_ROOT + '__values--loading');
-	        valueClasses.push(COLOR_INDEX + '-loading');
-	        var commands = "M0," + this.state.height / 2 + " L" + this.state.width + "," + this.state.height / 2;
-	        values.push(_react2.default.createElement(
-	          'g',
-	          { key: 'loading' },
-	          _react2.default.createElement('path', { stroke: 'none', className: valueClasses.join(' '), d: commands })
-	        ));
-	      }
-
-	      var threshold = null;
-	      if (this.props.threshold) {
-	        threshold = this._renderThreshold();
-	      }
-
-	      var cursor = null;
-	      var legend = null;
-	      if (this.props.legend && 'inline' !== this.props.legend.position && this.state.highlightXIndex >= 0 && this.props.series[0].values.length > 0) {
-	        cursor = this._renderCursor();
-	        legend = this._renderLegend();
-	      }
-
-	      var xAxis = null;
-	      if (this.props.xAxis) {
-	        xAxis = this._renderXAxis();
-	      }
-
-	      var yAxis = null;
-	      if (this.props.thresholds) {
-	        yAxis = this._renderYAxis();
-	      }
-
-	      var frontBands = void 0;
-	      var activeDescendant = void 0;
-	      var role = 'img';
-	      if (this.props.legend) {
-	        frontBands = this._renderXBands();
-	        activeDescendant = this.props.a11yTitleId + '_x_band_' + this.state.highlightXIndex;
-	        role = 'tablist';
-	      }
-
-	      var a11yTitle = this._renderA11YTitle();
-	      var a11yTitleNode = void 0;
-	      if (a11yTitle) {
-	        a11yTitleNode = _react2.default.createElement(
-	          'title',
-	          { id: this.props.a11yTitleId },
-	          a11yTitle
-	        );
-	      }
-
-	      var a11yDescNode = void 0;
-	      if (this.props.a11yDesc) {
-	        a11yDescNode = _react2.default.createElement(
-	          'desc',
-	          { id: this.props.a11yDescId },
-	          this.props.a11yDesc
-	        );
-	      }
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: classes.join(' ') },
-	        _react2.default.createElement(
-	          'svg',
-	          { ref: function ref(_ref6) {
-	              return _this10.chartRef = _ref6;
-	            },
-	            className: CLASS_ROOT + '__graphic',
-	            viewBox: "0 0 " + this.state.width + " " + this.state.height,
-	            preserveAspectRatio: 'none', role: role, tabIndex: '0',
-	            'aria-activedescendant': activeDescendant,
-	            'aria-labelledby': this.props.a11yTitleId + ' ' + this.props.a11yDescId },
-	          a11yTitleNode,
-	          a11yDescNode,
-	          xAxis,
-	          yAxis,
-	          _react2.default.createElement(
-	            'g',
-	            { className: CLASS_ROOT + '__values' },
-	            values
-	          ),
-	          frontBands,
-	          threshold,
-	          cursor
-	        ),
-	        legend
-	      );
-	    }
-	  }]);
-	  return Chart;
-	}(_react.Component);
-
-	Chart.displayName = 'Chart';
-	exports.default = Chart;
-
-
-	Chart.propTypes = { // remove in 1.0
-	  a11yTitle: _react.PropTypes.string,
-	  a11yTitleId: _react.PropTypes.string,
-	  a11yDescId: _react.PropTypes.string,
-	  a11yDesc: _react.PropTypes.string,
-	  important: _react.PropTypes.number,
-	  legend: _react.PropTypes.shape({
-	    position: _react.PropTypes.oneOf(['overlay', 'after', 'inline']),
-	    total: _react.PropTypes.bool
-	  }),
-	  max: _react.PropTypes.number,
-	  min: _react.PropTypes.number,
-	  points: _react.PropTypes.bool,
-	  segmented: _react.PropTypes.bool,
-	  series: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    colorIndex: _react.PropTypes.string,
-	    onClick: _react.PropTypes.func,
-	    label: _react.PropTypes.string,
-	    units: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.shape({
-	      prefix: _react.PropTypes.string,
-	      suffix: _react.PropTypes.string
-	    })]),
-	    values: _react.PropTypes.arrayOf(_react.PropTypes.oneOfType([_react.PropTypes.arrayOf(_react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.object // Date
-	    ])), _react.PropTypes.shape({
-	      onClick: _react.PropTypes.func,
-	      x: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.object // Date
-	      ]).isRequired,
-	      y: _react.PropTypes.number.isRequired
-	    })])).isRequired
-	  })).isRequired,
-	  size: _react.PropTypes.oneOf(['small', 'medium', 'large']),
-	  smooth: _react.PropTypes.bool,
-	  sparkline: _react.PropTypes.bool,
-	  threshold: _react.PropTypes.number,
-	  thresholds: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    label: _react.PropTypes.string,
-	    value: _react.PropTypes.number.isRequired,
-	    colorIndex: _react.PropTypes.string
-	  })),
-	  type: _react.PropTypes.oneOf(['line', 'bar', 'area']),
-	  units: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.shape({
-	    prefix: _react.PropTypes.string,
-	    suffix: _react.PropTypes.string
-	  })]),
-	  xAxis: _react.PropTypes.oneOfType([_react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.object // Date
-	    ]).isRequired,
-	    label: _react.PropTypes.string.isRequired
-	  })), _react.PropTypes.shape({
-	    placement: _react.PropTypes.oneOf(['top', 'bottom']),
-	    data: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	      value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.object // Date
-	      ]).isRequired,
-	      label: _react.PropTypes.string.isRequired
-	    }).isRequired)
-	  })])
-	};
-
-	Chart.contextTypes = {
-	  intl: _react.PropTypes.object
-	};
-
-	Chart.defaultProps = {
-	  a11yTitleId: 'chart-title',
-	  a11yDescId: 'chart-desc',
-	  min: 0,
-	  type: 'line'
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 195 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _defineProperty2 = __webpack_require__(5);
-
-	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _classnames2 = __webpack_require__(67);
-
-	var _classnames3 = _interopRequireDefault(_classnames2);
-
-	var _FormattedMessage = __webpack_require__(81);
-
-	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	var _Announcer = __webpack_require__(94);
-
-	var _Announcer2 = _interopRequireDefault(_Announcer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CLASS_ROOT = _CSSClassnames2.default.LEGEND; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
-
-	var Legend = function (_Component) {
-	  (0, _inherits3.default)(Legend, _Component);
-
-	  function Legend(props, context) {
-	    (0, _classCallCheck3.default)(this, Legend);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Legend.__proto__ || (0, _getPrototypeOf2.default)(Legend)).call(this, props, context));
-
-	    _this._onActive = _this._onActive.bind(_this);
-	    _this._renderSeries = _this._renderSeries.bind(_this);
-	    _this._renderSwatch = _this._renderSwatch.bind(_this);
-	    _this._renderLabel = _this._renderLabel.bind(_this);
-	    _this._renderValue = _this._renderValue.bind(_this);
-	    _this._renderTotal = _this._renderTotal.bind(_this);
-	    _this._seriesTotal = _this._seriesTotal.bind(_this);
-
-	    _this.state = { activeIndex: _this.props.activeIndex };
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(Legend, [{
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(newProps) {
-	      if (newProps.activeIndex !== this.state.activeIndex) {
-	        this.setState({ activeIndex: newProps.activeIndex });
-	      }
-	    }
-	  }, {
-	    key: 'componentDidUpdate',
-	    value: function componentDidUpdate() {
-	      var announce = this.props.announce;
-
-	      if (announce) {
-	        _Announcer2.default.announce(this.legendRef.textContent);
-	      }
-	    }
-	  }, {
-	    key: '_onActive',
-	    value: function _onActive(index) {
-	      var onActive = this.props.onActive;
-
-	      this.setState({ activeIndex: index });
-	      if (onActive) {
-	        onActive(index);
-	      }
-	    }
-	  }, {
-	    key: '_itemColorIndex',
-	    value: function _itemColorIndex(item, index) {
-	      return item.colorIndex || 'graph-' + (index + 1);
-	    }
-	  }, {
-	    key: '_renderSwatch',
-	    value: function _renderSwatch(item, index) {
-	      var colorIndex = this._itemColorIndex(item, index);
-	      return _react2.default.createElement(
-	        'svg',
-	        { className: CLASS_ROOT + '__item-swatch ' + COLOR_INDEX + '-' + colorIndex, viewBox: '0 0 12 12' },
-	        _react2.default.createElement('path', { className: item.className, d: 'M 5 0 l 0 12' })
-	      );
-	    }
-	  }, {
-	    key: '_renderLabel',
-	    value: function _renderLabel(item, swatch) {
-	      if (swatch) {
-	        return _react2.default.createElement(
-	          'span',
-	          { className: CLASS_ROOT + '__item-label' },
-	          swatch,
-	          item.label
-	        );
-	      } else {
-	        return _react2.default.createElement(
-	          'span',
-	          { className: CLASS_ROOT + '__item-label' },
-	          item.label
-	        );
-	      }
-	    }
-	  }, {
-	    key: '_renderValue',
-	    value: function _renderValue(item) {
-	      var units = this.props.units;
-
-	      var unitsValue = item.units || units;
-	      var valueClasses = CLASS_ROOT + '__item-value';
-	      var unitsPrefix = void 0;
-	      var unitsSuffix = void 0;
-	      if (unitsValue) {
-	        if (unitsValue.prefix) {
-	          unitsPrefix = _react2.default.createElement(
-	            'span',
-	            { className: CLASS_ROOT + '__item-units' },
-	            unitsValue.prefix
-	          );
-	        }
-	        if (unitsValue.suffix || typeof unitsValue === 'string' || unitsValue instanceof String) {
-	          unitsSuffix = _react2.default.createElement(
-	            'span',
-	            { className: CLASS_ROOT + '__item-units' },
-	            unitsValue.suffix || unitsValue
-	          );
-	        }
-	      }
-	      return _react2.default.createElement(
-	        'span',
-	        { className: valueClasses },
-	        unitsPrefix,
-	        item.value,
-	        unitsSuffix
-	      );
-	    }
-	  }, {
-	    key: '_seriesTotal',
-	    value: function _seriesTotal() {
-	      var series = this.props.series;
-
-	      var total = 0;
-	      series.forEach(function (item) {
-	        return total += item.value === 'number' ? item.value : 0;
-	      });
-	      return total;
-	    }
-	  }, {
-	    key: '_renderSeries',
-	    value: function _renderSeries() {
-	      var _this2 = this;
-
-	      var series = this.props.series;
-	      var activeIndex = this.state.activeIndex;
-
-
-	      return series.map(function (item, index) {
-	        var _classnames;
-
-	        var legendClasses = (0, _classnames3.default)(CLASS_ROOT + '__item', (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__item--active', index === activeIndex), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '__item--clickable', item.onClick), _classnames));
-
-	        var swatch = void 0;
-	        if (item.hasOwnProperty('colorIndex')) {
-	          swatch = _this2._renderSwatch(item, index);
-	        }
-
-	        var label = void 0;
-	        if (item.hasOwnProperty('label')) {
-	          label = _this2._renderLabel(item, swatch);
-	        }
-
-	        var value = void 0;
-	        if (item.hasOwnProperty('value')) {
-	          value = _this2._renderValue(item);
-	        }
-
-	        return _react2.default.createElement(
-	          'li',
-	          { onClick: item.onClick,
-	            key: item.label || index, className: legendClasses,
-	            onMouseOver: _this2._onActive.bind(_this2, index),
-	            onMouseOut: _this2._onActive.bind(_this2, undefined) },
-	          label,
-	          value
-	        );
-	      }, this);
-	    }
-	  }, {
-	    key: '_renderTotal',
-	    value: function _renderTotal() {
-	      var _props = this.props;
-	      var total = _props.total;
-	      var units = _props.units;
-
-	      var totalValue = void 0;
-	      if (total !== true) {
-	        totalValue = total;
-	      } else {
-	        totalValue = this._seriesTotal();
-	      }
-	      var unitsPrefix = void 0;
-	      var unitsSuffix = void 0;
-	      if (units && units.prefix) {
-	        unitsPrefix = _react2.default.createElement(
-	          'span',
-	          { className: CLASS_ROOT + '__total-units' },
-	          units.prefix
-	        );
-	      }
-	      if (units && (units.suffix || typeof units === 'string' || units instanceof String)) {
-	        unitsSuffix = _react2.default.createElement(
-	          'span',
-	          { className: CLASS_ROOT + '__total-units' },
-	          units.suffix || units
-	        );
-	      }
-
-	      return _react2.default.createElement(
-	        'li',
-	        { className: CLASS_ROOT + '__total' },
-	        _react2.default.createElement(
-	          'span',
-	          { className: CLASS_ROOT + '__total-label' },
-	          _react2.default.createElement(_FormattedMessage2.default, { id: 'Total', defaultMessage: 'Total' })
-	        ),
-	        _react2.default.createElement(
-	          'span',
-	          { className: CLASS_ROOT + '__total-value' },
-	          unitsPrefix,
-	          totalValue,
-	          unitsSuffix
-	        )
-	      );
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this3 = this;
-
-	      var _props2 = this.props;
-	      var className = _props2.className;
-	      var series = _props2.series;
-	      var total = _props2.total;
-
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className);
-
-	      var items = this._renderSeries();
-
-	      // build legend from bottom to top, to align with Meter bar stacking
-	      items.reverse();
-
-	      var totalNode = void 0;
-	      if (total && series.length > 1) {
-	        totalNode = this._renderTotal();
-	      }
-
-	      return _react2.default.createElement(
-	        'ol',
-	        { ref: function ref(_ref) {
-	            return _this3.legendRef = _ref;
-	          }, className: classes },
-	        items.reverse(),
-	        totalNode
-	      );
-	    }
-	  }]);
-	  return Legend;
-	}(_react.Component);
-
-	Legend.displayName = 'Legend';
-	exports.default = Legend;
-
-
-	Legend.defaultProps = {
-	  announce: false
-	};
-
-	Legend.propTypes = {
-	  activeIndex: _react.PropTypes.number,
-	  announce: _react.PropTypes.bool,
-	  onActive: _react.PropTypes.func,
-	  series: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    label: _react.PropTypes.string,
-	    value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.node]),
-	    units: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.shape({
-	      prefix: _react.PropTypes.string,
-	      suffix: _react.PropTypes.string
-	    })]),
-	    colorIndex: _react.PropTypes.oneOfType([_react.PropTypes.number, // 1-6
-	    _react.PropTypes.string // status
-	    ]),
-	    onClick: _react.PropTypes.func
-	  })).isRequired,
-	  total: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.node]),
-	  units: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.shape({
-	    prefix: _react.PropTypes.string,
-	    suffix: _react.PropTypes.string
-	  })])
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 196 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends2 = __webpack_require__(69);
-
-	var _extends3 = _interopRequireDefault(_extends2);
-
-	var _keys = __webpack_require__(84);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
-	var _typeof2 = __webpack_require__(24);
-
-	var _typeof3 = _interopRequireDefault(_typeof2);
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(88);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _Props = __webpack_require__(91);
-
-	var _Props2 = _interopRequireDefault(_Props);
-
-	var _Responsive = __webpack_require__(100);
-
-	var _Responsive2 = _interopRequireDefault(_Responsive);
-
-	var _Legend = __webpack_require__(195);
-
-	var _Legend2 = _interopRequireDefault(_Legend);
-
-	var _Bar = __webpack_require__(197);
-
-	var _Bar2 = _interopRequireDefault(_Bar);
-
-	var _Spiral = __webpack_require__(201);
-
-	var _Spiral2 = _interopRequireDefault(_Spiral);
-
-	var _Circle = __webpack_require__(202);
-
-	var _Circle2 = _interopRequireDefault(_Circle);
-
-	var _Arc = __webpack_require__(203);
-
-	var _Arc2 = _interopRequireDefault(_Arc);
-
-	var _Intl = __webpack_require__(90);
-
-	var _Intl2 = _interopRequireDefault(_Intl);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CLASS_ROOT = _CSSClassnames2.default.METER; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var TYPE_COMPONENT = {
-	  'bar': _Bar2.default,
-	  'circle': _Circle2.default,
-	  'arc': _Arc2.default,
-	  'spiral': _Spiral2.default
-	};
-
-	function getMaxDecimalDigits(series) {
-	  var maxDigits = 0;
-	  series.forEach(function (item) {
-	    var currentDigitsGroup = /\.(\d*)$/.exec(item.value.toString());
-	    if (currentDigitsGroup) {
-	      var currentDigits = currentDigitsGroup[1].length;
-	      maxDigits = Math.max(maxDigits, currentDigits);
-	    }
-	  });
-	  return Math.pow(10, maxDigits);
-	}
-
-	var Meter = function (_Component) {
-	  (0, _inherits3.default)(Meter, _Component);
-
-	  function Meter(props, context) {
-	    (0, _classCallCheck3.default)(this, Meter);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Meter.__proto__ || (0, _getPrototypeOf2.default)(Meter)).call(this, props, context));
-
-	    _this._onResponsive = _this._onResponsive.bind(_this);
-	    _this._initialTimeout = _this._initialTimeout.bind(_this);
-	    _this._layout = _this._layout.bind(_this);
-	    _this._onResize = _this._onResize.bind(_this);
-	    _this._onActivate = _this._onActivate.bind(_this);
-
-	    _this.state = _this._stateFromProps(props);
-	    if (_this.state.placeLegend) {
-	      _this.state.legendPlacement = 'bottom';
-	    }
-	    _this.state.initial = true;
-	    _this.state.limitMeterSize = false;
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(Meter, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      if (this.props.responsive) {
-	        this._responsive = _Responsive2.default.start(this._onResponsive);
-	      }
-
-	      this._initialTimer = setTimeout(this._initialTimeout, 10);
-	      window.addEventListener('resize', this._onResize);
-	      this._onResize();
-	    }
-	  }, {
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(nextProps) {
-	      var state = this._stateFromProps(nextProps);
-	      this.setState(state);
-	      this._onResize();
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      clearTimeout(this._initialTimer);
-	      clearTimeout(this._resizeTimer);
-	      window.removeEventListener('resize', this._onResize);
-
-	      if (this._responsive) {
-	        this._responsive.stop();
-	      }
-	    }
-	  }, {
-	    key: '_initialTimeout',
-	    value: function _initialTimeout() {
-	      this.setState({
-	        initial: false,
-	        activeIndex: this.state.importantIndex
-	      });
-	      clearTimeout(this._initialTimer);
-	    }
-	  }, {
-	    key: '_onResponsive',
-	    value: function _onResponsive(small) {
-	      if (small) {
-	        this.setState({ limitMeterSize: true });
-	      } else {
-	        this.setState({ limitMeterSize: false });
-	      }
-	    }
-	  }, {
-	    key: '_onActivate',
-	    value: function _onActivate(index) {
-	      var onActive = this.props.onActive;
-	      var importantIndex = this.state.importantIndex;
-
-	      if (index === undefined) {
-	        index = importantIndex;
-	      }
-	      this.setState({ initial: false, activeIndex: index });
-	      if (onActive) {
-	        onActive(index);
-	      }
-	    }
-	  }, {
-	    key: '_onResize',
-	    value: function _onResize() {
-	      // debounce
-	      clearTimeout(this._resizeTimer);
-	      this._resizeTimer = setTimeout(this._layout, 50);
-	    }
-	  }, {
-	    key: '_layout',
-	    value: function _layout() {
-	      var _state = this.state;
-	      var placeLegend = _state.placeLegend;
-	      var legendPlacement = _state.legendPlacement;
-
-	      if (placeLegend) {
-	        // legendPlacement based on available window orientation
-	        var ratio = window.innerWidth / window.innerHeight;
-	        if (ratio < 0.8) {
-	          this.setState({ legendPlacement: 'bottom' });
-	        } else if (ratio > 1.2) {
-	          this.setState({ legendPlacement: 'right' });
-	        }
-	      }
-
-	      if ('right' === legendPlacement) {
-	        if (this.legendRef) {
-	          var graphicHeight = this.activeGraphicRef.offsetHeight;
-	          var legendHeight = _reactDom2.default.findDOMNode(this.legendRef).offsetHeight;
-	          this.setState({ tallLegend: legendHeight > graphicHeight });
-	        }
-	      }
-	    }
-	  }, {
-	    key: '_normalizeSeries',
-	    value: function _normalizeSeries(props, min, max, thresholds) {
-	      var series = [];
-	      if (props.series) {
-	        series = props.series;
-	      } else if (props.value || props.value === 0) {
-	        series = [{ value: props.value }];
-	        if (props.colorIndex) {
-	          series[0].colorIndex = props.colorIndex;
-	        }
-	      }
-
-	      // set color index
-	      if (series.length === 1 && props.thresholds) {
-	        (function () {
-	          var item = series[0];
-	          if (!item.colorIndex) {
-	            (function () {
-	              // see which threshold color index to use
-	              var cumulative = 0;
-	              thresholds.some(function (threshold) {
-	                cumulative += threshold.value;
-	                if (item.value < cumulative) {
-	                  item.colorIndex = threshold.colorIndex || 'graph-1';
-	                  return true;
-	                }
-	                return false;
-	              });
-	            })();
-	          }
-	        })();
-	      } else {
-	        series.forEach(function (item, index) {
-	          if (!item.colorIndex) {
-	            item.colorIndex = 'graph-' + (index + 1);
-	          }
-	        });
-	      }
-
-	      return series;
-	    }
-	  }, {
-	    key: '_normalizeThresholds',
-	    value: function _normalizeThresholds(props, min, max) {
-	      var thresholds = [];
-	      if (props.thresholds) {
-	        // Convert thresholds from absolute values to cummulative,
-	        // so we can re-use the series drawing code.
-	        var priorValue = min.value;
-	        thresholds.push({ hidden: true });
-	        for (var i = 0; i < props.thresholds.length; i += 1) {
-	          var threshold = props.thresholds[i];
-	          // The value for the prior threshold ends at the beginning of this
-	          // threshold. Series drawing code expects the end value.
-	          thresholds[i].value = threshold.value - priorValue;
-	          thresholds.push({
-	            label: threshold.label,
-	            colorIndex: threshold.colorIndex,
-	            ariaLabel: threshold.value + ' ' + (props.units || '') + ' ' + (threshold.label || '')
-	          });
-	          priorValue = threshold.value;
-	          if (i === props.thresholds.length - 1) {
-	            thresholds[thresholds.length - 1].value = max.value - priorValue;
-	          }
-	        }
-	      } else if (props.threshold) {
-	        // let remaining = max.value - props.threshold;
-	        thresholds = [{ value: props.threshold, hidden: true }, {
-	          value: max.value - props.threshold,
-	          colorIndex: 'critical',
-	          ariaLabel: props.threshold + ' ' + (props.units || '')
-	        }];
-	      }
-	      return thresholds;
-	    }
-	  }, {
-	    key: '_importantIndex',
-	    value: function _importantIndex(props, series) {
-	      var result = undefined;
-	      // removed to ensure important is set solely based on props
-	      // if (series.length === 1) {
-	      //   result = 0;
-	      // }
-	      if (props.hasOwnProperty('important')) {
-	        console.warn('Meter: important prop has been deprecated. ' + 'Use a activeIndex instead.');
-	        result = props.important;
-	      }
-	      series.some(function (data, index) {
-	        if (data.important) {
-	          console.warn('Meter: seriesp[].important has been deprecated. ' + 'Use a activeIndex instead.');
-	          result = index;
-	          return true;
-	        }
-	        return false;
-	      });
-	      return result;
-	    }
-
-	    // Normalize min or max to an object.
-
-	  }, {
-	    key: '_terminal',
-	    value: function _terminal(terminal) {
-	      if (typeof terminal === 'number') {
-	        terminal = { value: terminal };
-	      }
-	      return terminal;
-	    }
-	  }, {
-	    key: '_seriesTotal',
-	    value: function _seriesTotal(series) {
-	      var maxDecimalDigits = getMaxDecimalDigits(series);
-	      var total = 0;
-	      series.forEach(function (item) {
-	        total += item.value * maxDecimalDigits;
-	      });
-
-	      return total / maxDecimalDigits;
-	    }
-	  }, {
-	    key: '_seriesMax',
-	    value: function _seriesMax(series) {
-	      var max = 0;
-	      series.some(function (item) {
-	        max = Math.max(max, item.value);
-	      });
-	      return max;
-	    }
-
-	    // Generates state based on the provided props.
-
-	  }, {
-	    key: '_stateFromProps',
-	    value: function _stateFromProps(props) {
-	      var total = void 0;
-	      if (props.series) {
-	        total = this._seriesTotal(props.series);
-	      } else if (props.hasOwnProperty('value')) {
-	        total = props.value;
-	      } else {
-	        total = 0;
-	      }
-	      var seriesMax = void 0;
-	      // only care about series max when there are multiple values
-	      if (props.series && props.series.length > 1) {
-	        seriesMax = this._seriesMax(props.series);
-	      }
-	      // Normalize min and max
-	      var min = this._terminal(props.min || 0);
-	      // Max could be provided in props or come from the total of
-	      // a multi-value series.
-	      var max = this._terminal(props.max || (props.stacked ? Math.max(seriesMax, total || 0, 100) : seriesMax || Math.max(total || 0, 100)));
-	      // Normalize simple threshold prop to an array, if needed.
-	      var thresholds = this._normalizeThresholds(props, min, max);
-	      // Normalize simple value prop to a series, if needed.
-	      var series = this._normalizeSeries(props, min, max, thresholds);
-	      // Determine important index.
-	      var importantIndex = this._importantIndex(props, series);
-
-	      var state = {
-	        importantIndex: importantIndex,
-	        // we should preserve activeIndex across property updates
-	        // activeIndex: importantIndex,
-	        series: series,
-	        thresholds: thresholds,
-	        min: min,
-	        max: max,
-	        total: total
-	      };
-
-	      if (props.hasOwnProperty('activeIndex')) {
-	        state.activeIndex = props.activeIndex;
-	      } else if (props.hasOwnProperty('active')) {
-	        state.activeIndex = props.active ? 0 : undefined;
-	      }
-
-	      // legend
-	      state.placeLegend = !(props.legend && props.legend.placement);
-	      if (!state.placeLegend) {
-	        state.legendPlacement = props.legend.placement;
-	      }
-
-	      return state;
-	    }
-	  }, {
-	    key: '_getActiveFields',
-	    value: function _getActiveFields() {
-	      var _state2 = this.state;
-	      var activeIndex = _state2.activeIndex;
-	      var total = _state2.total;
-	      var series = _state2.series;
-
-	      var fields = void 0;
-	      if (undefined === activeIndex) {
-	        fields = {
-	          value: total
-	        };
-	        if (series.length > 1) {
-	          fields.label = _Intl2.default.getMessage(this.context.intl, 'Total');
-	        }
-	      } else {
-	        var active = series[activeIndex];
-	        if (!active) {
-	          active = series[0];
-	        }
-	        if (active.label) {
-	          console.warn('Meter: series[].label has been deprecated. ' + 'Use a separate Label instead.');
-	        }
-	        fields = {
-	          value: active.value,
-	          label: active.label,
-	          onClick: active.onClick
-	        };
-	      }
-	      return fields;
-	    }
-	  }, {
-	    key: '_renderActiveValue',
-	    value: function _renderActiveValue() {
-	      var fields = this._getActiveFields();
-	      var classes = [CLASS_ROOT + '__value'];
-	      if (fields.onClick) {
-	        classes.push(CLASS_ROOT + '__value--active');
-	      }
-	      var units = void 0;
-	      if (this.props.units) {
-	        console.warn('Meter: units prop has been deprecated. ' + 'Use a separate Label instead.');
-	        units = _react2.default.createElement(
-	          'span',
-	          { className: CLASS_ROOT + '__value-units large-number-font' },
-	          this.props.units
-	        );
-	      }
-
-	      return _react2.default.createElement(
-	        'div',
-	        { 'aria-hidden': 'true', role: 'presentation',
-	          className: classes.join(' '), onClick: fields.onClick },
-	        _react2.default.createElement(
-	          'span',
-	          {
-	            className: CLASS_ROOT + '__value-value large-number-font' },
-	          fields.value,
-	          units
-	        ),
-	        _react2.default.createElement(
-	          'span',
-	          { className: CLASS_ROOT + '__value-label' },
-	          fields.label
-	        )
-	      );
-	    }
-	  }, {
-	    key: '_renderMinMax',
-	    value: function _renderMinMax(classes) {
-	      var _state3 = this.state;
-	      var min = _state3.min;
-	      var max = _state3.max;
-
-	      var minLabel = void 0;
-	      if (min.label) {
-	        console.warn('Meter: min.label has been deprecated. ' + 'Use a separate Label instead.');
-	        minLabel = _react2.default.createElement(
-	          'div',
-	          { className: CLASS_ROOT + '__minmax-min' },
-	          min.label
-	        );
-	      }
-	      var maxLabel = void 0;
-	      if (max.label) {
-	        console.warn('Meter: max.label has been deprecated. ' + 'Use a separate Label instead.');
-	        maxLabel = _react2.default.createElement(
-	          'div',
-	          { className: CLASS_ROOT + '__minmax-max' },
-	          max.label
-	        );
-	      }
-	      var minMax = void 0;
-	      if (minLabel || maxLabel) {
-	        minMax = _react2.default.createElement(
-	          'div',
-	          { className: CLASS_ROOT + '__minmax-container' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: CLASS_ROOT + '__minmax' },
-	            minLabel,
-	            maxLabel
-	          )
-	        );
-	        classes.push(CLASS_ROOT + '--minmax');
-	      }
-	      return minMax;
-	    }
-	  }, {
-	    key: '_renderLegend',
-	    value: function _renderLegend() {
-	      var _this2 = this;
-
-	      var _props = this.props;
-	      var legend = _props.legend;
-	      var units = _props.units;
-	      var _state4 = this.state;
-	      var activeIndex = _state4.activeIndex;
-	      var series = _state4.series;
-
-	      var total = (typeof legend === 'undefined' ? 'undefined' : (0, _typeof3.default)(legend)) === 'object' && legend.total;
-	      return _react2.default.createElement(_Legend2.default, { ref: function ref(_ref) {
-	          return _this2.legendRef = _ref;
-	        },
-	        className: CLASS_ROOT + '__legend',
-	        series: series, units: units, total: total,
-	        activeIndex: activeIndex, onActive: this._onActivate });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this3 = this;
-
-	      var _props2 = this.props;
-	      var active = _props2.active;
-	      var label = _props2.label;
-	      var legend = _props2.legend;
-	      var size = _props2.size;
-	      var stacked = _props2.stacked;
-	      var tabIndex = _props2.tabIndex;
-	      var type = _props2.type;
-	      var vertical = _props2.vertical;
-	      var _state5 = this.state;
-	      var legendPlacement = _state5.legendPlacement;
-	      var limitMeterSize = _state5.limitMeterSize;
-	      var tallLegend = _state5.tallLegend;
-	      var series = _state5.series;
-
-	      var classes = [CLASS_ROOT];
-	      classes.push(CLASS_ROOT + '--' + type);
-	      if (vertical) {
-	        classes.push(CLASS_ROOT + '--vertical');
-	      }
-	      if (stacked) {
-	        classes.push(CLASS_ROOT + '--stacked');
-	      }
-	      if (size) {
-	        var responsiveSize = size;
-	        // shrink Meter to medium size if large and up
-	        if (limitMeterSize && (size === 'large' || size === 'xlarge')) {
-	          responsiveSize = 'medium';
-	        }
-	        classes.push(CLASS_ROOT + '--' + responsiveSize);
-	      }
-	      if (series.length === 0) {
-	        classes.push(CLASS_ROOT + '--loading');
-	      } else if (series.length === 1) {
-	        classes.push(CLASS_ROOT + '--single');
-	      } else {
-	        classes.push(CLASS_ROOT + '--count-' + series.length);
-	      }
-	      if (active) {
-	        classes.push(CLASS_ROOT + '--active');
-	      }
-	      if (tallLegend) {
-	        classes.push(CLASS_ROOT + '--tall-legend');
-	      }
-	      if (this.props.className) {
-	        classes.push(this.props.className);
-	      }
-
-	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Meter.propTypes));
-
-	      var minMax = this._renderMinMax(classes);
-	      var labelElement = void 0;
-	      if (label && true !== label) {
-	        labelElement = _react2.default.createElement(
-	          'div',
-	          { className: CLASS_ROOT + '__label' },
-	          label
-	        );
-	      } else if (label && series.length > 0) {
-	        labelElement = this._renderActiveValue();
-	      }
-	      var legendElement = void 0;
-
-	      if (legend || series) {
-
-	        if (legend) {
-	          console.warn('Meter: legend prop has been deprecated. ' + 'Use a separate Legend instead.');
-	          if ('inline' !== legend.placement) {
-	            legendElement = this._renderLegend();
-	          } else {
-	            // Hide value (displaying total), if legend is inline
-	            // and total is set to false
-	            if (!legend.total && true === label) {
-	              labelElement = undefined;
-	            }
-	          }
-	          classes.push(CLASS_ROOT + '--legend-' + legendPlacement);
-	          if (legend.align) {
-	            classes.push(CLASS_ROOT + '--legend-align-' + legend.align);
-	          }
-	        }
-	      }
-
-	      var GraphicComponent = TYPE_COMPONENT[this.props.type];
-	      var graphic = _react2.default.createElement(GraphicComponent, {
-	        a11yTitle: this.props.a11yTitle,
-	        activeIndex: this.state.activeIndex,
-	        min: this.state.min, max: this.state.max,
-	        legend: legend,
-	        onActivate: this._onActivate,
-	        series: series,
-	        stacked: stacked,
-	        tabIndex: tabIndex,
-	        thresholds: this.state.thresholds,
-	        total: this.state.total,
-	        units: this.props.units,
-	        vertical: vertical });
-
-	      var graphicContainer = _react2.default.createElement(
-	        'div',
-	        (0, _extends3.default)({}, restProps, { className: CLASS_ROOT + '__graphic-container' }),
-	        graphic,
-	        minMax
-	      );
-
-	      return _react2.default.createElement(
-	        'div',
-	        { className: classes.join(' ') },
-	        _react2.default.createElement(
-	          'div',
-	          { ref: function ref(_ref2) {
-	              return _this3.activeGraphicRef = _ref2;
-	            },
-	            className: CLASS_ROOT + '__value-container' },
-	          graphicContainer,
-	          labelElement
-	        ),
-	        legendElement
-	      );
-	    }
-	  }]);
-	  return Meter;
-	}(_react.Component);
-
-	Meter.displayName = 'Meter';
-	exports.default = Meter;
-
-
-	Meter.propTypes = {
-	  active: _react.PropTypes.bool, // when single value
-	  activeIndex: _react.PropTypes.number, // for series values
-	  a11yTitle: _react.PropTypes.string,
-	  colorIndex: _react.PropTypes.string,
-	  important: _react.PropTypes.number, // remove in 1.0, use activeIndex
-	  label: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.node]),
-	  // remove PropTypes.bool in 1.0
-	  legend: _react.PropTypes.oneOfType([// remove in 1.0
-	  _react.PropTypes.bool, _react.PropTypes.shape({
-	    align: _react.PropTypes.oneOf(['start', 'center', 'end']),
-	    placement: _react.PropTypes.oneOf(['right', 'bottom', 'inline']),
-	    total: _react.PropTypes.bool
-	  })]),
-	  max: _react.PropTypes.oneOfType([_react.PropTypes.shape({ // remove in 1.0
-	    value: _react.PropTypes.number.isRequired,
-	    label: _react.PropTypes.string
-	  }), _react.PropTypes.number]),
-	  min: _react.PropTypes.oneOfType([_react.PropTypes.shape({ // remove in 1.0
-	    value: _react.PropTypes.number.isRequired,
-	    label: _react.PropTypes.string
-	  }), _react.PropTypes.number]),
-	  onActive: _react.PropTypes.func,
-	  series: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    label: _react.PropTypes.string, // remove in 1.0
-	    value: _react.PropTypes.number.isRequired,
-	    colorIndex: _react.PropTypes.string,
-	    important: _react.PropTypes.bool, // remove in 1.0, use activeIndex
-	    onClick: _react.PropTypes.func
-	  })),
-	  size: _react.PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
-	  stacked: _react.PropTypes.bool,
-	  tabIndex: _react.PropTypes.string,
-	  threshold: _react.PropTypes.number,
-	  thresholds: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    label: _react.PropTypes.string, // remove in 1.0?
-	    value: _react.PropTypes.number.isRequired,
-	    colorIndex: _react.PropTypes.string
-	  })),
-	  type: _react.PropTypes.oneOf(['bar', 'arc', 'circle', 'spiral']),
-	  units: _react.PropTypes.string, // remove in 1.0, have caller use label
-	  value: _react.PropTypes.number,
-	  vertical: _react.PropTypes.bool,
-	  responsive: _react.PropTypes.bool
-	};
-
-	Meter.defaultProps = {
-	  label: true,
-	  type: 'bar'
-	};
-
-	Meter.contextTypes = {
-	  intl: _react.PropTypes.object
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 197 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Graphics = __webpack_require__(198);
-
-	var _utils = __webpack_require__(199);
-
-	var _Graphic2 = __webpack_require__(200);
-
-	var _Graphic3 = _interopRequireDefault(_Graphic2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var BAR_LENGTH = _utils.baseDimension;
-	var BAR_THICKNESS = _Graphics.baseUnit;
-	var MID_BAR_THICKNESS = BAR_THICKNESS / 2;
-
-	var Bar = function (_Graphic) {
-	  (0, _inherits3.default)(Bar, _Graphic);
-
-	  function Bar(props, context) {
-	    (0, _classCallCheck3.default)(this, Bar);
-
-	    //needed in Graphic.js to fix minification issues
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Bar.__proto__ || (0, _getPrototypeOf2.default)(Bar)).call(this, props, context));
-
-	    _this.displayName = 'Bar';
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(Bar, [{
-	    key: '_viewBoxDimensions',
-	    value: function _viewBoxDimensions(props) {
-	      var viewBoxHeight = void 0;
-	      var viewBoxWidth = void 0;
-	      if (props.vertical) {
-	        if (props.stacked) {
-	          viewBoxWidth = BAR_THICKNESS;
-	        } else {
-	          viewBoxWidth = BAR_THICKNESS * Math.max(1, props.series.length);
-	        }
-	        viewBoxHeight = BAR_LENGTH;
-	      } else {
-	        viewBoxWidth = BAR_LENGTH;
-	        if (props.stacked) {
-	          viewBoxHeight = BAR_THICKNESS;
-	        } else {
-	          viewBoxHeight = BAR_THICKNESS * Math.max(1, props.series.length);
-	          if (props.legend && 'inline' === props.legend.placement) {
-	            viewBoxHeight *= 2;
-	          }
-	        }
-	      }
-	      return [viewBoxWidth, viewBoxHeight];
-	    }
-	  }, {
-	    key: '_stateFromProps',
-	    value: function _stateFromProps(props) {
-	      var viewBoxDimensions = this._viewBoxDimensions(props);
-
-	      var state = {
-	        scale: BAR_LENGTH / (props.max.value - props.min.value),
-	        viewBoxWidth: viewBoxDimensions[0],
-	        viewBoxHeight: viewBoxDimensions[1]
-	      };
-
-	      return state;
-	    }
-	  }, {
-	    key: '_translateBarWidth',
-	    value: function _translateBarWidth(value) {
-	      return Math.ceil(this.state.scale * value);
-	    }
-	  }, {
-	    key: '_sliceCommands',
-	    value: function _sliceCommands(trackIndex, item, startValue) {
-	      var value = item.value - this.props.min.value;
-	      var start = this._translateBarWidth(startValue);
-	      var distance = Math.max(item.value > 0 ? MID_BAR_THICKNESS : 0, this._translateBarWidth(value));
-	      var commands = void 0;
-	      if (this.props.legend && 'inline' === this.props.legend.placement) {
-	        trackIndex *= 2;
-	      }
-	      var spot = trackIndex * BAR_THICKNESS + MID_BAR_THICKNESS;
-	      if (this.props.legend && 'inline' === this.props.legend.placement) {
-	        spot += MID_BAR_THICKNESS;
-	      }
-	      if (this.props.vertical) {
-	        commands = "M" + spot + "," + (BAR_LENGTH - start) + " L" + spot + "," + (BAR_LENGTH - (start + distance));
-	      } else {
-	        commands = "M" + start + "," + spot + " L" + (start + distance) + "," + spot;
-	      }
-	      return commands;
-	    }
-	  }, {
-	    key: '_renderInlineLegend',
-	    value: function _renderInlineLegend() {
-	      var result = void 0;
-	      if (this.props.legend && 'inline' === this.props.legend.placement) {
-	        result = this.props.series.map(function (item, index) {
-	          var spot = index * BAR_THICKNESS * 2 + MID_BAR_THICKNESS;
-
-	          var label;
-	          if (item.hasOwnProperty('label')) {
-	            label = _react2.default.createElement(
-	              'text',
-	              { key: 'label', x: '0', y: spot, role: 'presentation',
-	                textAnchor: 'start', fontSize: 16 },
-	              item.label
-	            );
-	          }
-
-	          var value;
-	          if (item.hasOwnProperty('value')) {
-	            var text = item.value;
-	            if (item.units || this.props.units) {
-	              text += ' ' + (item.units || this.props.units);
-	            }
-	            var x = this._translateBarWidth(this.props.max.value);
-	            value = _react2.default.createElement(
-	              'text',
-	              { key: 'value', x: x, y: spot, role: 'presentation',
-	                textAnchor: 'end', fontSize: 16 },
-	              text
-	            );
-	          }
-
-	          return [label, value];
-	        }, this);
-	      }
-	      return result;
-	    }
-	  }]);
-	  return Bar;
-	}(_Graphic3.default);
-
-	//needed in Graphic.js to fix minification issues
-
-
-	exports.default = Bar;
-	Bar.displayName = 'Bar';
-	module.exports = exports['default'];
-
-/***/ },
-/* 198 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.polarToCartesian = polarToCartesian;
-	exports.arcCommands = arcCommands;
-	exports.translateEndAngle = translateEndAngle;
-	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var baseUnit = exports.baseUnit = 24;
-
-	function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
-	  var angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
-	  return {
-	    x: centerX + radius * Math.cos(angleInRadians),
-	    y: centerY + radius * Math.sin(angleInRadians)
-	  };
-	};
-
-	function arcCommands(centerX, centerY, radius, startAngle, endAngle) {
-	  // handle that we can't draw a complete circle
-	  if (endAngle - startAngle >= 360) {
-	    endAngle = startAngle + 359.99;
-	  }
-	  var start = polarToCartesian(centerX, centerY, radius, endAngle);
-	  var end = polarToCartesian(centerX, centerY, radius, startAngle);
-	  var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
-	  var d = ["M", start.x, start.y, "A", radius, radius, 0, arcSweep, 0, end.x, end.y].join(" ");
-	  return d;
-	};
-
-	function translateEndAngle(startAngle, anglePer, value) {
-	  return Math.min(360, Math.max(0, startAngle + anglePer * value));
-	};
-
-/***/ },
-/* 199 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.propTypes = exports.baseDimension = undefined;
-
-	var _extends2 = __webpack_require__(69);
-
-	var _extends3 = _interopRequireDefault(_extends2);
-
-	exports.buildPath = buildPath;
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Graphics = __webpack_require__(198);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CLASS_ROOT = _CSSClassnames2.default.METER; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var baseDimension = exports.baseDimension = _Graphics.baseUnit * 8;
-
-	var propTypes = exports.propTypes = {
-	  activeIndex: _react.PropTypes.number,
-	  a11yTitle: _react.PropTypes.string,
-	  a11yTitleId: _react.PropTypes.string,
-	  max: _react.PropTypes.shape({
-	    value: _react.PropTypes.number,
-	    label: _react.PropTypes.string
-	  }).isRequired,
-	  min: _react.PropTypes.shape({
-	    value: _react.PropTypes.number,
-	    label: _react.PropTypes.string
-	  }).isRequired,
-	  onActivate: _react.PropTypes.func.isRequired,
-	  // size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
-	  series: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    label: _react.PropTypes.string,
-	    value: _react.PropTypes.number.isRequired,
-	    colorIndex: _react.PropTypes.string,
-	    important: _react.PropTypes.bool,
-	    onClick: _react.PropTypes.func
-	  })).isRequired,
-	  total: _react.PropTypes.number,
-	  units: _react.PropTypes.string
-	};
-
-	function buildPath(itemIndex, commands, classes, onActivate, onClick, a11yTitle, role) {
-	  if (onActivate) {
-	    var onOver = onActivate.bind(null, itemIndex);
-	    var onOut = onActivate.bind(null, undefined);
-
-	    var a11yRoles = {};
-	    if (a11yTitle) {
-	      a11yRoles['aria-label'] = a11yTitle;
-	      a11yRoles.role = role;
-	    }
-
-	    return _react2.default.createElement(
-	      'g',
-	      (0, _extends3.default)({ key: itemIndex }, a11yRoles),
-	      _react2.default.createElement('path', { className: classes.join(' '), d: commands,
-	        'data-index': itemIndex, onFocus: onOver, onBlur: onOut }),
-	      _react2.default.createElement('path', { className: CLASS_ROOT + '__hot', d: commands, fill: 'none',
-	        onMouseOver: onOver, onMouseOut: onOut,
-	        onClick: onClick })
-	    );
-	  } else {
-	    return _react2.default.createElement('path', { key: itemIndex, className: classes.join(' '), d: commands });
-	  }
-	};
-
-/***/ },
-/* 200 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends2 = __webpack_require__(69);
-
-	var _extends3 = _interopRequireDefault(_extends2);
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactDom = __webpack_require__(88);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _Intl = __webpack_require__(90);
-
-	var _Intl2 = _interopRequireDefault(_Intl);
-
-	var _KeyboardAccelerators = __webpack_require__(87);
-
-	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	var _utils = __webpack_require__(199);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var CLASS_ROOT = _CSSClassnames2.default.METER;
-	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
-
-	var Graphic = function (_Component) {
-	  (0, _inherits3.default)(Graphic, _Component);
-
-	  function Graphic(props, context) {
-	    (0, _classCallCheck3.default)(this, Graphic);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Graphic.__proto__ || (0, _getPrototypeOf2.default)(Graphic)).call(this, props, context));
-
-	    _this.state = _this._stateFromProps(props);
-
-	    _this._onNextBand = _this._onNextBand.bind(_this);
-	    _this._onPreviousBand = _this._onPreviousBand.bind(_this);
-	    _this._onGraphicFocus = _this._onGraphicFocus.bind(_this);
-	    _this._onGraphicBlur = _this._onGraphicBlur.bind(_this);
-	    _this._onBandClick = _this._onBandClick.bind(_this);
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(Graphic, [{
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(newProps) {
-	      var state = this._stateFromProps(newProps);
-	      this.setState(state);
-	    }
-	  }, {
-	    key: '_onGraphicFocus',
-	    value: function _onGraphicFocus() {
-	      this._keyboardHandlers = {
-	        left: this._onPreviousBand,
-	        up: this._onPreviousBand,
-	        right: this._onNextBand,
-	        down: this._onNextBand,
-	        enter: this._onBandClick
-	      };
-	      _KeyboardAccelerators2.default.startListeningToKeyboard(this, this._keyboardHandlers);
-	    }
-	  }, {
-	    key: '_onGraphicBlur',
-	    value: function _onGraphicBlur() {
-	      _KeyboardAccelerators2.default.stopListeningToKeyboard(this, this._keyboardHandlers);
-	    }
-	  }, {
-	    key: '_onBandClick',
-	    value: function _onBandClick() {
-	      if (this.props.activeIndex !== undefined) {
-	        var activeBand = this.props.series[this.props.activeIndex];
-	        if (activeBand && activeBand.onClick) {
-	          activeBand.onClick();
-	        }
-	      }
-	    }
-
-	    // override
-
-	  }, {
-	    key: '_stateFromProps',
-	    value: function _stateFromProps(props) {
-	      return {};
-	    }
-
-	    // override
-
-	  }, {
-	    key: '_sliceCommands',
-	    value: function _sliceCommands(trackIndex, item, startValue) {
-	      return "";
-	    }
-	  }, {
-	    key: '_renderSlice',
-	    value: function _renderSlice(trackIndex, item, itemIndex, startValue, maxValue, track, threshold) {
-	      var path = void 0;
-	      if (!item.hidden) {
-	        var classes = [CLASS_ROOT + '__slice'];
-	        if (itemIndex === this.props.activeIndex) {
-	          classes.push(CLASS_ROOT + '__slice--active');
-	        }
-	        if (item.onClick) {
-	          classes.push(CLASS_ROOT + "__slice--clickable");
-	        }
-	        if (item.colorIndex) {
-	          classes.push(COLOR_INDEX + '-' + item.colorIndex);
-	        }
-
-	        var commands = this._sliceCommands(trackIndex, item, startValue, maxValue);
-
-	        if (threshold) {
-	          path = (0, _utils.buildPath)(itemIndex, commands, classes);
-	        } else if (track) {
-	          path = (0, _utils.buildPath)(itemIndex, commands, classes, this.props.onActivate, item.onClick);
-	        } else {
-	          var a11yTitle = item.value + ' ' + (item.label || this.props.units || '');
-	          var role = this.props.series.length > 1 ? 'img' : undefined;
-	          path = (0, _utils.buildPath)(itemIndex, commands, classes, this.props.onActivate, item.onClick, a11yTitle, role);
-	        }
-	      }
-
-	      return path;
-	    }
-	  }, {
-	    key: '_renderSlices',
-	    value: function _renderSlices(series, trackIndex, track, threshold) {
-	      var _this2 = this;
-
-	      var _props = this.props;
-	      var min = _props.min;
-	      var max = _props.max;
-
-	      var startValue = min.value;
-
-	      var paths = series.map(function (item, itemIndex) {
-	        var path = _this2._renderSlice(trackIndex, item, itemIndex, startValue, max.value, track, threshold);
-
-	        startValue += item.value;
-
-	        return path;
-	      });
-
-	      return paths;
-	    }
-	  }, {
-	    key: '_loadingCommands',
-	    value: function _loadingCommands() {
-	      return this._sliceCommands(0, this.props.max, this.props.min.value);
-	    }
-	  }, {
-	    key: '_onPreviousBand',
-	    value: function _onPreviousBand(event) {
-	      event.preventDefault();
-	      var activeIndex = this.props.activeIndex !== undefined ? this.props.activeIndex : -1;
-
-	      if (activeIndex - 1 >= 0) {
-	        this.props.onActivate(activeIndex - 1);
-	      }
-
-	      //stop event propagation
-	      return true;
-	    }
-	  }, {
-	    key: '_onNextBand',
-	    value: function _onNextBand(event) {
-	      event.preventDefault();
-	      var activeIndex = this.props.activeIndex !== undefined ? this.props.activeIndex : -1;
-
-	      var totalBands = _reactDom2.default.findDOMNode(this.meterValuesRef).childNodes.length;
-
-	      if (activeIndex + 1 < totalBands) {
-	        this.props.onActivate(activeIndex + 1);
-	      }
-
-	      //stop event propagation
-	      return true;
-	    }
-	  }, {
-	    key: '_renderLoading',
-	    value: function _renderLoading() {
-	      var classes = [CLASS_ROOT + '__slice'];
-	      classes.push(CLASS_ROOT + '__slice--loading');
-	      classes.push(COLOR_INDEX + '-loading');
-	      var commands = this._loadingCommands();
-	      return [_react2.default.createElement('path', { key: 'loading', className: classes.join(' '), d: commands })];
-	    }
-	  }, {
-	    key: '_renderValues',
-	    value: function _renderValues() {
-	      var _this3 = this;
-
-	      var _props2 = this.props;
-	      var min = _props2.min;
-	      var max = _props2.max;
-
-	      var values = void 0;
-	      if (this.props.stacked) {
-	        values = this._renderSlices(this.props.series, 0);
-	      } else {
-	        values = this.props.series.map(function (item, index) {
-	          return _this3._renderSlice(index, item, index, min.value, max.value);
-	        });
-	      }
-	      if (values.length === 0) {
-	        values = this._renderLoading();
-	      }
-	      return _react2.default.createElement(
-	        'g',
-	        { ref: function ref(_ref) {
-	            return _this3.meterValuesRef = _ref;
-	          },
-	          className: CLASS_ROOT + '__values' },
-	        values
-	      );
-	    }
-	  }, {
-	    key: '_renderTracks',
-	    value: function _renderTracks() {
-	      var _this4 = this;
-
-	      var _props3 = this.props;
-	      var min = _props3.min;
-	      var max = _props3.max;
-
-	      var trackValue = { value: max.value };
-	      var tracks = void 0;
-	      if (this.props.stacked) {
-	        tracks = this._renderSlice(0, trackValue, 0, min.value, max.value, true, false);
-	      } else {
-	        tracks = this.props.series.map(function (item, index) {
-	          return _this4._renderSlice(index, trackValue, index, min.value, max.value, true, false);
-	        });
-	      }
-	      return _react2.default.createElement(
-	        'g',
-	        { className: CLASS_ROOT + '__tracks' },
-	        tracks
-	      );
-	    }
-	  }, {
-	    key: '_renderThresholds',
-	    value: function _renderThresholds() {
-	      var result = void 0;
-	      var thresholds = this._renderSlices(this.props.thresholds, -0.4, false, true);
-	      if (thresholds.length > 0) {
-	        result = _react2.default.createElement(
-	          'g',
-	          { className: CLASS_ROOT + '__thresholds' },
-	          thresholds
-	        );
-	      }
-	      return result;
-	    }
-	  }, {
-	    key: '_renderTotal',
-	    value: function _renderTotal() {
-	      return this.props.series.map(function (s) {
-	        return s.value;
-	      }).reduce(function (prev, curr) {
-	        return prev + curr;
-	      }, 0);
-	    }
-	  }, {
-	    key: '_renderTopLayer',
-	    value: function _renderTopLayer() {
-	      return null;
-	    }
-	  }, {
-	    key: '_renderInlineLegend',
-	    value: function _renderInlineLegend() {
-	      return null;
-	    }
-	  }, {
-	    key: '_renderA11YTitle',
-	    value: function _renderA11YTitle() {
-	      var a11yTitle = this.props.a11yTitle;
-	      if (!a11yTitle) {
-	        var graphicTitle = _Intl2.default.getMessage(this.context.intl, this.displayName);
-	        var meterTitle = _Intl2.default.getMessage(this.context.intl, 'Meter');
-
-	        a11yTitle = graphicTitle + ' ' + meterTitle;
-	      }
-
-	      return a11yTitle + '. ' + this._renderA11YDesc();
-	    }
-	  }, {
-	    key: '_renderA11YDesc',
-	    value: function _renderA11YDesc() {
-	      var _this5 = this;
-
-	      var a11yDesc = this.props.a11yDesc;
-	      var units = this.props.units || '';
-	      if (!a11yDesc) {
-	        var valueLabel = _Intl2.default.getMessage(this.context.intl, 'Value');
-	        a11yDesc = ', ' + valueLabel + ': ' + this._renderTotal() + ' ' + units;
-
-	        if (this.props.min) {
-	          var minLabel = _Intl2.default.getMessage(this.context.intl, 'Min');
-	          a11yDesc += ', ' + minLabel + ': ' + this.props.min.value + ' ' + units;
-	        }
-
-	        if (this.props.max) {
-	          var maxLabel = _Intl2.default.getMessage(this.context.intl, 'Max');
-	          a11yDesc += ', ' + maxLabel + ': ' + this.props.max.value + ' ' + units;
-	        }
-
-	        if (this.props.thresholds) {
-	          (function () {
-	            var thresholdLabel = _Intl2.default.getMessage(_this5.context.intl, 'Threshold');
-	            _this5.props.thresholds.forEach(function (threshold) {
-	              if (threshold.ariaLabel) {
-	                a11yDesc += ', ' + thresholdLabel + ': ' + threshold.ariaLabel;
-	              }
-	            });
-	          })();
-	        }
-	      }
-
-	      return a11yDesc;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var classes = [CLASS_ROOT];
-	      if (this.props.className) {
-	        classes.push(this.props.className);
-	      }
-
-	      var tracks = this._renderTracks();
-	      var values = this._renderValues();
-	      var thresholds = this._renderThresholds();
-	      var topLayer = this._renderTopLayer();
-	      var inlineLegend = this._renderInlineLegend();
-
-	      var a11yTitle = this._renderA11YTitle();
-
-	      var role = this.props.series.length > 1 ? 'group' : 'img';
-
-	      return _react2.default.createElement(
-	        'svg',
-	        { className: CLASS_ROOT + '__graphic',
-	          tabIndex: role === 'img' ? undefined : this.props.tabIndex || '0',
-	          width: this.state.viewBoxWidth, role: role,
-	          height: this.state.viewBoxHeight,
-	          viewBox: "0 0 " + this.state.viewBoxWidth + " " + this.state.viewBoxHeight,
-	          preserveAspectRatio: 'xMidYMid meet',
-	          'aria-label': a11yTitle, onFocus: this._onGraphicFocus,
-	          onBlur: this._onGraphicBlur },
-	        tracks,
-	        thresholds,
-	        values,
-	        inlineLegend,
-	        topLayer
-	      );
-	    }
-	  }]);
-	  return Graphic;
-	}(_react.Component);
-
-	Graphic.displayName = 'Graphic';
-	exports.default = Graphic;
-
-
-	Graphic.propTypes = (0, _extends3.default)({
-	  stacked: _react.PropTypes.bool,
-	  tabIndex: _react.PropTypes.string,
-	  thresholds: _react.PropTypes.arrayOf(_react.PropTypes.shape({
-	    label: _react.PropTypes.string,
-	    value: _react.PropTypes.number.isRequired,
-	    colorIndex: _react.PropTypes.string
-	  })).isRequired,
-	  vertical: _react.PropTypes.bool
-	}, _utils.propTypes);
-
-	Graphic.contextTypes = {
-	  intl: _react.PropTypes.object
-	};
-
-	Graphic.defaultProps = {
-	  tabIndex: '0'
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 201 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Graphics = __webpack_require__(198);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	var _utils = __webpack_require__(199);
-
-	var _Graphic2 = __webpack_require__(200);
-
-	var _Graphic3 = _interopRequireDefault(_Graphic2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CLASS_ROOT = _CSSClassnames2.default.METER; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var SPIRAL_WIDTH = _utils.baseDimension;
-	var SPIRAL_RADIUS = _utils.baseDimension / 2 - _Graphics.baseUnit / 2;
-	var RING_THICKNESS = _Graphics.baseUnit;
-	// Allow for active value content next to a spiral meter
-
-	var Spiral = function (_Graphic) {
-	  (0, _inherits3.default)(Spiral, _Graphic);
-
-	  function Spiral(props, context) {
-	    (0, _classCallCheck3.default)(this, Spiral);
-
-	    //needed in Graphic.js to fix minification issues
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Spiral.__proto__ || (0, _getPrototypeOf2.default)(Spiral)).call(this, props, context));
-
-	    _this.displayName = 'Spiral';
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(Spiral, [{
-	    key: '_stateFromProps',
-	    value: function _stateFromProps(props) {
-	      var viewBoxHeight = Math.max(SPIRAL_WIDTH, RING_THICKNESS * (props.series.length + 1) * 2);
-	      var viewBoxWidth = viewBoxHeight;
-
-	      var state = {
-	        startAngle: 0,
-	        anglePer: 270.0 / props.max.value,
-	        angleOffset: 180,
-	        // The last spiral ends out near but not quite at the edge of the
-	        // view box.
-	        startRadius: Math.max(SPIRAL_RADIUS, RING_THICKNESS * (props.series.length + 0.5)) - Math.max(0, props.series.length - 1) * RING_THICKNESS,
-	        viewBoxHeight: viewBoxHeight,
-	        viewBoxRadius: viewBoxWidth / 2,
-	        viewBoxWidth: viewBoxWidth
-	      };
-
-	      return state;
-	    }
-	  }, {
-	    key: '_sliceCommands',
-	    value: function _sliceCommands(trackIndex, item, startValue) {
-	      var viewBoxRadius = this.state.viewBoxRadius;
-
-	      var startAngle = (0, _Graphics.translateEndAngle)(this.state.startAngle, this.state.anglePer, startValue);
-	      var endAngle = (0, _Graphics.translateEndAngle)(startAngle, this.state.anglePer, item.value);
-	      var radius = Math.min(viewBoxRadius, this.state.startRadius + trackIndex * RING_THICKNESS);
-	      return (0, _Graphics.arcCommands)(viewBoxRadius, viewBoxRadius, radius, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset);
-	    }
-	  }, {
-	    key: '_renderThresholds',
-	    value: function _renderThresholds() {
-	      return null;
-	    }
-	  }, {
-	    key: '_renderTopLayer',
-	    value: function _renderTopLayer() {
-	      var viewBoxRadius = this.state.viewBoxRadius;
-
-	      var x = viewBoxRadius + RING_THICKNESS * 0.5;
-	      var y = viewBoxRadius + RING_THICKNESS * 1.75;
-	      var labels = this.props.series.map(function (item, index) {
-	        var classes = [CLASS_ROOT + "__label"];
-	        if (index === this.props.activeIndex) {
-	          classes.push(CLASS_ROOT + "__label--active");
-	        }
-
-	        var textX = x;
-	        var textY = y;
-
-	        y += RING_THICKNESS;
-
-	        return _react2.default.createElement(
-	          'text',
-	          { key: item.label || index, x: textX, y: textY,
-	            textAnchor: 'start', fontSize: 16,
-	            className: classes.join(' '),
-	            onMouseOver: this.props.onActivate.bind(null, index),
-	            onMouseOut: this.props.onActivate.bind(null, null),
-	            onClick: item.onClick },
-	          item.label
-	        );
-	      }, this);
-
-	      return _react2.default.createElement(
-	        'g',
-	        { className: CLASS_ROOT + "__labels" },
-	        labels
-	      );
-	    }
-	  }]);
-	  return Spiral;
-	}(_Graphic3.default);
-
-	exports.default = Spiral;
-
-
-	Spiral.defaultProps = {
-	  thresholds: []
-	};
-
-	//needed in Graphic.js to fix minification issues
-	Spiral.displayName = 'Spiral';
-	module.exports = exports['default'];
-
-/***/ },
-/* 202 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _utils = __webpack_require__(199);
-
-	var _Graphic2 = __webpack_require__(200);
-
-	var _Graphic3 = _interopRequireDefault(_Graphic2);
-
-	var _Graphics = __webpack_require__(198);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CIRCLE_WIDTH = _utils.baseDimension; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var CIRCLE_RADIUS = _utils.baseDimension / 2 - _Graphics.baseUnit / 2;
-	var RING_THICKNESS = _Graphics.baseUnit;
-
-	var Circle = function (_Graphic) {
-	  (0, _inherits3.default)(Circle, _Graphic);
-
-	  function Circle(props, context) {
-	    (0, _classCallCheck3.default)(this, Circle);
-
-	    //needed in Graphic.js to fix minification issues
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Circle.__proto__ || (0, _getPrototypeOf2.default)(Circle)).call(this, props, context));
-
-	    _this.displayName = 'Circle';
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(Circle, [{
-	    key: '_stateFromProps',
-	    value: function _stateFromProps(props) {
-	      if (!props.stacked && (props.series.length - 1) * RING_THICKNESS > CIRCLE_RADIUS) {
-	        console.warn("You cannot have more than " + Math.round(CIRCLE_RADIUS / RING_THICKNESS) + " data values in a circle Meter");
-	      }
-
-	      var state = {
-	        startAngle: 0,
-	        anglePer: !props.max ? 0 : 360 / (props.max.value - props.min.value),
-	        angleOffset: 180,
-	        viewBoxWidth: CIRCLE_WIDTH,
-	        viewBoxHeight: CIRCLE_WIDTH
-	      };
-
-	      return state;
-	    }
-	  }, {
-	    key: '_sliceCommands',
-	    value: function _sliceCommands(trackIndex, item, startValue, maxValue) {
-	      var startAngle = (0, _Graphics.translateEndAngle)(this.state.startAngle, this.state.anglePer, startValue);
-
-	      var endAngle;
-	      if (!item.value) {
-	        endAngle = startAngle;
-	      } else if (startValue + item.value >= maxValue) {
-	        endAngle = 360;
-	      } else {
-	        endAngle = Math.min(360, Math.max(startAngle, (0, _Graphics.translateEndAngle)(startAngle, this.state.anglePer, item.value)));
-	      }
-
-	      var radius = Math.max(1, CIRCLE_RADIUS - trackIndex * RING_THICKNESS);
-	      return (0, _Graphics.arcCommands)(CIRCLE_WIDTH / 2, CIRCLE_WIDTH / 2, radius, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset);
-	    }
-	  }]);
-	  return Circle;
-	}(_Graphic3.default);
-
-	//needed in Graphic.js to fix minification issues
-
-
-	exports.default = Circle;
-	Circle.displayName = 'Circle';
-	module.exports = exports['default'];
-
-/***/ },
-/* 203 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _getPrototypeOf = __webpack_require__(9);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(21);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(22);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(23);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(60);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Graphics = __webpack_require__(198);
-
-	var _CSSClassnames = __webpack_require__(93);
-
-	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
-
-	var _utils = __webpack_require__(199);
-
-	var _Graphic2 = __webpack_require__(200);
-
-	var _Graphic3 = _interopRequireDefault(_Graphic2);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var CLASS_ROOT = _CSSClassnames2.default.METER; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
-
-	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
-
-	var ARC_WIDTH = _utils.baseDimension;
-	var ARC_HEIGHT = Math.round(_utils.baseDimension * 0.75);
-	var ARC_RADIUS = _utils.baseDimension / 2 - _Graphics.baseUnit / 2;
-	var INDICATOR_HUB_RADIUS = _Graphics.baseUnit / 4;
-	var RING_THICKNESS = _Graphics.baseUnit;
-
-	function singleIndicatorCommands(centerX, centerY, radius, startAngle, endAngle, length) {
-	  var point = (0, _Graphics.polarToCartesian)(centerX, centerY, radius - (length - INDICATOR_HUB_RADIUS), endAngle - 1);
-	  var start = (0, _Graphics.polarToCartesian)(centerX, centerY, radius, endAngle - 1);
-	  var d = ["M", centerX, centerY - INDICATOR_HUB_RADIUS, "A", INDICATOR_HUB_RADIUS, INDICATOR_HUB_RADIUS, 0, 1, 1, centerX, centerY + INDICATOR_HUB_RADIUS, "A", INDICATOR_HUB_RADIUS, INDICATOR_HUB_RADIUS, 0, 1, 1, centerX, centerY - INDICATOR_HUB_RADIUS, "M", point.x, point.y, "L", start.x, start.y].join(" ");
-	  return d;
-	}
-
-	var Arc = function (_Graphic) {
-	  (0, _inherits3.default)(Arc, _Graphic);
-
-	  function Arc(props, context) {
-	    (0, _classCallCheck3.default)(this, Arc);
-
-	    //needed in Graphic.js to fix minification issues
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (Arc.__proto__ || (0, _getPrototypeOf2.default)(Arc)).call(this, props, context));
-
-	    _this.displayName = 'Arc';
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(Arc, [{
-	    key: '_viewBoxDimensions',
-	    value: function _viewBoxDimensions(props) {
-	      var viewBoxWidth;
-	      var viewBoxHeight;
-	      if (props.vertical) {
-	        viewBoxWidth = ARC_HEIGHT;
-	        viewBoxHeight = ARC_WIDTH;
-	      } else {
-	        viewBoxWidth = ARC_WIDTH;
-	        viewBoxHeight = ARC_HEIGHT;
-	      }
-	      return [viewBoxWidth, viewBoxHeight];
-	    }
-	  }, {
-	    key: '_stateFromProps',
-	    value: function _stateFromProps(props) {
-	      var viewBoxDimensions = this._viewBoxDimensions(props);
-
-	      var state = {
-	        startAngle: 60,
-	        anglePer: !props.max ? 0 : 240.0 / (props.max.value - props.min.value),
-	        angleOffset: 180,
-	        viewBoxWidth: viewBoxDimensions[0],
-	        viewBoxHeight: viewBoxDimensions[1]
-	      };
-	      if (props.vertical) {
-	        state.angleOffset = 90;
-	      } else {
-	        state.angleOffset = 180;
-	      }
-
-	      return state;
-	    }
-	  }, {
-	    key: '_sliceCommands',
-	    value: function _sliceCommands(trackIndex, item, startValue) {
-	      var startAngle = (0, _Graphics.translateEndAngle)(this.state.startAngle, this.state.anglePer, startValue);
-	      var endAngle = Math.max(startAngle + (item.value > 0 ? RING_THICKNESS / 2 : 0), (0, _Graphics.translateEndAngle)(startAngle, this.state.anglePer, item.value));
-	      var radius = Math.max(1, ARC_RADIUS - trackIndex * RING_THICKNESS);
-	      return (0, _Graphics.arcCommands)(ARC_WIDTH / 2, ARC_WIDTH / 2, radius, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset);
-	    }
-	  }, {
-	    key: '_renderTopLayer',
-	    value: function _renderTopLayer() {
-	      var indicator;
-	      if (this.props.series.length === 1) {
-	        var item = this.props.series[0];
-	        var startAngle = this.state.startAngle;
-	        var endAngle = (0, _Graphics.translateEndAngle)(startAngle, this.state.anglePer, item.value);
-	        var length = ARC_RADIUS;
-	        var x = ARC_WIDTH / 2;
-	        var y = ARC_WIDTH / 2;
-	        var indicatorCommands = singleIndicatorCommands(x, y, ARC_RADIUS, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset, length);
-	        indicator = _react2.default.createElement('path', { fill: 'none',
-	          className: CLASS_ROOT + '__slice-indicator ' + (COLOR_INDEX + '-' + item.colorIndex),
-	          d: indicatorCommands });
-	      }
-
-	      return indicator;
-	    }
-	  }]);
-	  return Arc;
-	}(_Graphic3.default);
-
-	exports.default = Arc;
-	module.exports = exports['default'];
-
-/***/ },
-/* 204 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var React = __webpack_require__(1);
-	var DocsArticle = __webpack_require__(141);
-	var Sidebar = __webpack_require__(139);
-	var Header = __webpack_require__(113);
-	var Footer = __webpack_require__(117);
-	var Title = __webpack_require__(114);
-	var Menu = __webpack_require__(98);
-	var CloseIcon = __webpack_require__(97);
-	var Gravatar = __webpack_require__(193);
-	var Search = __webpack_require__(191);
-
-	var NavigationDoc = React.createClass({
-	  displayName: 'NavigationDoc',
-
-	  render: function render() {
-	    return React.createElement(
-	      DocsArticle,
-	      { title: 'Navigation', colorIndex: 'neutral-2' },
-	      React.createElement(
-	        'section',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Primary menu'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'A primary navigation menu provides top level navigation to sub-areas of the application. When real estate allows, it can remain open for quick, frequent access.'
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'example' },
-	          React.createElement(
-	            Sidebar,
-	            { primary: true },
-	            React.createElement(
-	              Header,
-	              { large: true, flush: false },
-	              React.createElement(
-	                Title,
-	                null,
-	                React.createElement(
-	                  'span',
-	                  null,
-	                  'App'
-	                )
-	              ),
-	              React.createElement(
-	                Menu,
-	                null,
-	                React.createElement(
-	                  'div',
-	                  null,
-	                  React.createElement(CloseIcon, null)
-	                )
-	              )
-	            ),
-	            React.createElement(
-	              Menu,
-	              { direction: 'column', flush: false },
-	              React.createElement(
-	                'a',
-	                null,
-	                'First area'
-	              ),
-	              React.createElement(
-	                'a',
-	                null,
-	                'Second area'
-	              ),
-	              React.createElement(
-	                'a',
-	                null,
-	                'Third area'
-	              )
-	            ),
-	            React.createElement(
-	              Footer,
-	              null,
-	              React.createElement(
-	                Menu,
-	                { icon: React.createElement(Gravatar, { email: '', 'default': 'mm' }), dropAlign: { bottom: 'bottom' } },
-	                React.createElement(
-	                  'a',
-	                  null,
-	                  'Logout'
-	                )
-	              )
-	            )
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        'section',
-	        null,
-	        React.createElement(
-	          'h2',
-	          null,
-	          'Search'
-	        ),
-	        React.createElement(
-	          'p',
-	          null,
-	          'Search is both a primary navigation capability from the dashboard page and an integral part of reducing content lists to enable simple navigation to a particular item.'
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'example' },
-	          React.createElement(
-	            Header,
-	            null,
-	            React.createElement(
-	              'span',
-	              null,
-	              React.createElement(
-	                Title,
-	                null,
-	                'App'
-	              ),
-	              React.createElement(Search, { inline: true })
-	            ),
-	            React.createElement(
-	              Menu,
-	              null,
-	              React.createElement(Gravatar, { email: '', 'default': 'mm' })
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-
-	module.exports = NavigationDoc;
-
-/***/ },
-/* 205 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
-	var React = __webpack_require__(1);
 	var jsxToString = __webpack_require__(155);
-	var DocsArticle = __webpack_require__(141);
-	var Marquee = __webpack_require__(206);
+	var DocsArticle = __webpack_require__(142);
+	var Marquee = __webpack_require__(191);
 	var Video = __webpack_require__(165);
 
 	Marquee.displayName = 'Marquee';
@@ -23020,7 +18571,7 @@ module.exports =
 	module.exports = MarqueeDoc;
 
 /***/ },
-/* 206 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23035,9 +18586,9 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames3 = __webpack_require__(67);
+	var _classnames4 = __webpack_require__(67);
 
-	var _classnames4 = _interopRequireDefault(_classnames3);
+	var _classnames5 = _interopRequireDefault(_classnames4);
 
 	var _Box = __webpack_require__(83);
 
@@ -23312,6 +18863,8 @@ module.exports =
 
 	      var logoMarkup = this._renderLogo();
 
+	      var classes = (0, _classnames5.default)(_defineProperty({}, CLASS_ROOT + '__stack--' + stackSize, stackSize));
+
 	      var textPad = "none";
 	      var transparentTextBackgroundColorIndex = void 0;
 	      if (textBackgroundColorIndex) {
@@ -23323,7 +18876,7 @@ module.exports =
 	        if (overlayVideo) {
 	          return _react2.default.createElement(
 	            _Box2.default,
-	            { className: CLASS_ROOT + "__stack", pad: this.state.textPad },
+	            { className: classes, pad: this.state.textPad },
 	            _react2.default.createElement(
 	              _Box2.default,
 	              { pad: textPad,
@@ -23349,7 +18902,7 @@ module.exports =
 	        } else {
 	          return _react2.default.createElement(
 	            _Box2.default,
-	            { className: CLASS_ROOT + "__stack", pad: this.state.textPad },
+	            { className: classes, pad: this.state.textPad },
 	            _react2.default.createElement(
 	              _Box2.default,
 	              { pad: textPad,
@@ -23376,7 +18929,7 @@ module.exports =
 	      } else {
 	        return _react2.default.createElement(
 	          _Box2.default,
-	          { className: CLASS_ROOT + "__stack", pad: this.state.textPad },
+	          { className: classes, pad: this.state.textPad },
 	          _react2.default.createElement(
 	            _Box2.default,
 	            { pad: textPad, colorIndex: transparentTextBackgroundColorIndex },
@@ -23440,14 +18993,14 @@ module.exports =
 	  }, {
 	    key: '_renderMarquee',
 	    value: function _renderMarquee() {
-	      var _classnames;
+	      var _classnames2;
 
 	      var _props5 = this.props;
 	      var responsiveBackgroundPosition = _props5.responsiveBackgroundPosition;
 	      var separator = _props5.separator;
 
 
-	      var classes = (0, _classnames4.default)((_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--bg-' + responsiveBackgroundPosition, responsiveBackgroundPosition), _defineProperty(_classnames, CLASS_ROOT + '--mobile-separator', separator), _classnames));
+	      var classes = (0, _classnames5.default)((_classnames2 = {}, _defineProperty(_classnames2, CLASS_ROOT + '--bg-' + responsiveBackgroundPosition, responsiveBackgroundPosition), _defineProperty(_classnames2, CLASS_ROOT + '--mobile-separator', separator), _classnames2));
 
 	      return _react2.default.createElement(
 	        _Box2.default,
@@ -23473,7 +19026,7 @@ module.exports =
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _classnames2;
+	      var _classnames3;
 
 	      var _props6 = this.props;
 	      var className = _props6.className;
@@ -23481,7 +19034,7 @@ module.exports =
 	      var size = _props6.size;
 
 
-	      var classes = (0, _classnames4.default)(CLASS_ROOT, className, (_classnames2 = {}, _defineProperty(_classnames2, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames2, CLASS_ROOT + '--show-video', this.state.showVideo), _defineProperty(_classnames2, CLASS_ROOT + '--responsive-drop', responsiveDropText), _classnames2));
+	      var classes = (0, _classnames5.default)(CLASS_ROOT, className, (_classnames3 = {}, _defineProperty(_classnames3, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames3, CLASS_ROOT + '--show-video', this.state.showVideo), _defineProperty(_classnames3, CLASS_ROOT + '--responsive-drop', responsiveDropText), _classnames3));
 
 	      var content = void 0;
 	      if (this.state.showVideo) {
@@ -23542,7 +19095,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 207 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23557,7 +19110,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DocsArticle = __webpack_require__(141);
+	var _DocsArticle = __webpack_require__(142);
 
 	var _DocsArticle2 = _interopRequireDefault(_DocsArticle);
 
@@ -23565,7 +19118,7 @@ module.exports =
 
 	var _Example2 = _interopRequireDefault(_Example);
 
-	var _WorldMap = __webpack_require__(208);
+	var _WorldMap = __webpack_require__(193);
 
 	var _WorldMap2 = _interopRequireDefault(_WorldMap);
 
@@ -23739,7 +19292,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 208 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23947,7 +19500,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 209 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23962,7 +19515,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _DocsArticle = __webpack_require__(141);
+	var _DocsArticle = __webpack_require__(142);
 
 	var _DocsArticle2 = _interopRequireDefault(_DocsArticle);
 
@@ -23970,7 +19523,7 @@ module.exports =
 
 	var _Example2 = _interopRequireDefault(_Example);
 
-	var _Stack = __webpack_require__(210);
+	var _Stack = __webpack_require__(195);
 
 	var _Stack2 = _interopRequireDefault(_Stack);
 
@@ -24224,7 +19777,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 210 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24412,7 +19965,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 211 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24422,14 +19975,14 @@ module.exports =
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(2);
 	var Route = Router.Route;
-	var Columns = __webpack_require__(212);
-	var Tiles = __webpack_require__(120);
+	var Columns = __webpack_require__(197);
+	var Tiles = __webpack_require__(121);
 	var Box = __webpack_require__(83);
 	var Heading = __webpack_require__(156);
 	var Headline = __webpack_require__(119);
 	var Paragraph = __webpack_require__(157);
-	var Accordion = __webpack_require__(213);
-	var AccordionPanel = __webpack_require__(221);
+	var Accordion = __webpack_require__(198);
+	var AccordionPanel = __webpack_require__(205);
 	var Card = __webpack_require__(158);
 	var Anchor = __webpack_require__(116);
 	var Video = __webpack_require__(165);
@@ -24438,9 +19991,9 @@ module.exports =
 	var SocialLinkedinIcon = __webpack_require__(184);
 	var LinkNextIcon = __webpack_require__(109);
 	var WatchIcon = __webpack_require__(189);
-	var Marquee = __webpack_require__(206);
-	var MarqueeParallax = __webpack_require__(226);
-	var Header = __webpack_require__(227);
+	var Marquee = __webpack_require__(191);
+	var MarqueeParallax = __webpack_require__(210);
+	var Header = __webpack_require__(211);
 
 	var grommetPath = 'http://grommet.github.io';
 
@@ -24647,7 +20200,7 @@ module.exports =
 	          thumbnail: '/docs/img/Case_Study_image.png',
 	          label: 'Featured Post',
 	          heading: 'Protect Your Digital Enterprise ipsum dolores aeat',
-	          description: 'It’s not an either/or world. It’s about finding the\n              right platform for each app, workload and service. Learn how\n              hybrid infrastructure can help you achieve cloud agility with\n              traditional IT predictability. It’s not an either/or world. It’s\n              about finding the right platform for each app, workload and\n              service. Learn how hybrid infrastructure can help you achieve\n              cloud agility with traditional IT predictability. It’s not an\n              either/or world. It’s about finding the right platform for each\n              app, workload and service. Learn how hybrid infrastructure can\n              help you achieve cloud agility with traditional IT\n              predictability.',
+	          description: 'It\u2019s not an either/or world. It\u2019s about finding the\n              right platform for each app, workload and service. Learn how\n              hybrid infrastructure can help you achieve cloud agility with\n              traditional IT predictability. It\u2019s not an either/or world. It\u2019s\n              about finding the right platform for each app, workload and\n              service. Learn how hybrid infrastructure can help you achieve\n              cloud agility with traditional IT predictability. It\u2019s not an\n              either/or world. It\u2019s about finding the right platform for each\n              app, workload and service. Learn how hybrid infrastructure can\n              help you achieve cloud agility with traditional IT\n              predictability.',
 	          link: React.createElement(Anchor, { href: grommetPath, label: 'Learn More', icon: React.createElement(LinkNextIcon, null) })
 	        }),
 	        React.createElement(Card, {
@@ -24720,7 +20273,7 @@ module.exports =
 	            href: '/docs/hpe/sub'
 	          }, {
 	            label: 'Details',
-	            href: '#'
+	            href: '/docs/hpe/details'
 	          }]
 	        }] }),
 	      React.createElement(MarqueeParallax, { darkTheme: false,
@@ -25124,7 +20677,7 @@ module.exports =
 	module.exports = Examples;
 
 /***/ },
-/* 212 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25433,7 +20986,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 213 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25450,11 +21003,11 @@ module.exports =
 
 	var _keys2 = _interopRequireDefault(_keys);
 
-	var _toConsumableArray2 = __webpack_require__(214);
+	var _toConsumableArray2 = __webpack_require__(199);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
-	var _isInteger = __webpack_require__(215);
+	var _isInteger = __webpack_require__(200);
 
 	var _isInteger2 = _interopRequireDefault(_isInteger);
 
@@ -25486,7 +21039,7 @@ module.exports =
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _List = __webpack_require__(219);
+	var _List = __webpack_require__(204);
 
 	var _List2 = _interopRequireDefault(_List);
 
@@ -25518,16 +21071,6 @@ module.exports =
 	    } else {
 	      active = _this.props.active || [];
 	    }
-	    if (props.initialIndex) {
-	      console.warn('Accordion: initialIndex prop has been deprecated. Use active instead.');
-	      active.push(props.initialIndex);
-	    }
-	    _react2.default.Children.forEach(props.children, function (child, index) {
-	      if (child.props.active) {
-	        console.warn('AccordionPanel: active prop has been deprecated.' + 'Use active prop at the Accordion component level.');
-	        active.push(index);
-	      }
-	    });
 	    _this.state = {
 	      active: active
 	    };
@@ -25612,8 +21155,7 @@ module.exports =
 	  active: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.arrayOf(_react.PropTypes.number)]),
 	  animate: _react.PropTypes.bool,
 	  onActive: _react.PropTypes.func,
-	  openMulti: _react.PropTypes.bool,
-	  initialIndex: _react.PropTypes.number // remove in 1.0, use {active: }
+	  openMulti: _react.PropTypes.bool
 	};
 
 	Accordion.defaultProps = {
@@ -25623,14 +21165,14 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 214 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _from = __webpack_require__(121);
+	var _from = __webpack_require__(122);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -25649,29 +21191,29 @@ module.exports =
 	};
 
 /***/ },
-/* 215 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(216), __esModule: true };
+	module.exports = { "default": __webpack_require__(201), __esModule: true };
 
 /***/ },
-/* 216 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(217);
+	__webpack_require__(202);
 	module.exports = __webpack_require__(17).Number.isInteger;
 
 /***/ },
-/* 217 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 20.1.2.3 Number.isInteger(number)
 	var $export = __webpack_require__(15);
 
-	$export($export.S, 'Number', {isInteger: __webpack_require__(218)});
+	$export($export.S, 'Number', {isInteger: __webpack_require__(203)});
 
 /***/ },
-/* 218 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 20.1.2.3 Number.isInteger(number)
@@ -25682,7 +21224,7 @@ module.exports =
 	};
 
 /***/ },
-/* 219 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25699,11 +21241,11 @@ module.exports =
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _objectWithoutProperties2 = __webpack_require__(220);
+	var _objectWithoutProperties2 = __webpack_require__(120);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
-	var _stringify = __webpack_require__(130);
+	var _stringify = __webpack_require__(131);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
@@ -25735,15 +21277,15 @@ module.exports =
 
 	var _classnames3 = _interopRequireDefault(_classnames2);
 
-	var _Spinning = __webpack_require__(132);
+	var _Spinning = __webpack_require__(133);
 
 	var _Spinning2 = _interopRequireDefault(_Spinning);
 
-	var _InfiniteScroll = __webpack_require__(133);
+	var _InfiniteScroll = __webpack_require__(134);
 
 	var _InfiniteScroll2 = _interopRequireDefault(_InfiniteScroll);
 
-	var _Selection = __webpack_require__(134);
+	var _Selection = __webpack_require__(135);
 
 	var _Selection2 = _interopRequireDefault(_Selection);
 
@@ -25922,27 +21464,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 220 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	exports.__esModule = true;
-
-	exports.default = function (obj, keys) {
-	  var target = {};
-
-	  for (var i in obj) {
-	    if (keys.indexOf(i) >= 0) continue;
-	    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-	    target[i] = obj[i];
-	  }
-
-	  return target;
-	};
-
-/***/ },
-/* 221 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25987,21 +21509,29 @@ module.exports =
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _ListItem = __webpack_require__(222);
+	var _Button = __webpack_require__(96);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _ListItem = __webpack_require__(206);
 
 	var _ListItem2 = _interopRequireDefault(_ListItem);
 
-	var _TabNext = __webpack_require__(223);
+	var _TabNext = __webpack_require__(207);
 
 	var _TabNext2 = _interopRequireDefault(_TabNext);
 
-	var _Collapsible = __webpack_require__(224);
+	var _Collapsible = __webpack_require__(208);
 
 	var _Collapsible2 = _interopRequireDefault(_Collapsible);
 
 	var _CSSClassnames = __webpack_require__(93);
 
 	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	var _Intl = __webpack_require__(90);
+
+	var _Intl2 = _interopRequireDefault(_Intl);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26012,10 +21542,24 @@ module.exports =
 
 	  function AccordionPanel() {
 	    (0, _classCallCheck3.default)(this, AccordionPanel);
-	    return (0, _possibleConstructorReturn3.default)(this, (AccordionPanel.__proto__ || (0, _getPrototypeOf2.default)(AccordionPanel)).apply(this, arguments));
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (AccordionPanel.__proto__ || (0, _getPrototypeOf2.default)(AccordionPanel)).call(this));
+
+	    _this._onClickTab = _this._onClickTab.bind(_this);
+	    return _this;
 	  }
 
 	  (0, _createClass3.default)(AccordionPanel, [{
+	    key: '_onClickTab',
+	    value: function _onClickTab(event) {
+	      var onChange = this.props.onChange;
+
+	      if (event) {
+	        event.preventDefault();
+	      }
+	      onChange();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
@@ -26024,27 +21568,41 @@ module.exports =
 	      var className = _props.className;
 	      var children = _props.children;
 	      var heading = _props.heading;
-	      var onChange = _props.onChange;
 	      var pad = _props.pad;
+	      var intl = this.context.intl;
 
 
 	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (0, _defineProperty3.default)({}, CLASS_ROOT + '--active', active));
 
+	      var tabContentTitle = _Intl2.default.getMessage(intl, 'Tab Contents', {
+	        activeTitle: heading
+	      });
+
 	      return _react2.default.createElement(
-	        _ListItem2.default,
-	        { className: classes, direction: 'column', pad: 'none' },
+	        'div',
+	        null,
 	        _react2.default.createElement(
-	          _Header2.default,
-	          { role: 'tab', className: CLASS_ROOT + '__header', pad: pad,
-	            full: 'horizontal', direction: 'row', justify: 'between', align: 'center',
-	            onClick: onChange, responsive: false },
-	          heading,
-	          _react2.default.createElement(_TabNext2.default, { className: CLASS_ROOT + '__control' })
+	          _ListItem2.default,
+	          { className: classes, direction: 'column', pad: 'none',
+	            'aria-expanded': active, 'aria-selected': active, role: 'tab',
+	            'aria-label': heading },
+	          _react2.default.createElement(
+	            _Button2.default,
+	            { fill: true, plain: true, onClick: this._onClickTab },
+	            _react2.default.createElement(
+	              _Header2.default,
+	              { pad: pad, full: 'horizontal', direction: 'row',
+	                justify: 'between', align: 'center', responsive: false,
+	                className: CLASS_ROOT + '__header' },
+	              heading,
+	              _react2.default.createElement(_TabNext2.default, { className: CLASS_ROOT + '__control' })
+	            )
+	          )
 	        ),
 	        _react2.default.createElement(
 	          _Collapsible2.default,
-	          { role: 'tabpanel', active: active, animate: animate,
-	            pad: pad },
+	          { 'aria-label': tabContentTitle, role: 'tabpanel',
+	            active: active, animate: animate, pad: pad },
 	          children
 	        )
 	      );
@@ -26058,16 +21616,20 @@ module.exports =
 	;
 
 	AccordionPanel.propTypes = {
-	  active: _react.PropTypes.bool, // remove in 1.0, use {active from Accordion}
+	  active: _react.PropTypes.bool, // set by Accordion
 	  animate: _react.PropTypes.bool,
 	  heading: _react.PropTypes.node.isRequired,
 	  onChange: _react.PropTypes.func,
 	  pad: _Header2.default.propTypes.pad
 	};
+
+	AccordionPanel.contextTypes = {
+	  intl: _react.PropTypes.object
+	};
 	module.exports = exports['default'];
 
 /***/ },
-/* 222 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26143,26 +21705,20 @@ module.exports =
 	  (0, _createClass3.default)(ListItem, [{
 	    key: 'render',
 	    value: function render() {
-	      var _classnames;
-
 	      var _props = this.props;
 	      var children = _props.children;
 	      var className = _props.className;
 	      var onClick = _props.onClick;
-	      var selected = _props.selected;
 
 
-	      if (selected) {
-	        console.warn('Selected option has been deprecated, please use selected ' + 'option at the List level.');
-	      }
-
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selected', selected), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--selectable', onClick), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (0, _defineProperty3.default)({}, CLASS_ROOT + '--selectable', onClick));
 
 	      var boxProps = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
+	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(ListItem.propTypes));
 
 	      return _react2.default.createElement(
 	        _Box2.default,
-	        (0, _extends3.default)({}, boxProps, { tag: 'li', className: classes }),
+	        (0, _extends3.default)({}, boxProps, restProps, { tag: 'li', className: classes }),
 	        children
 	      );
 	    }
@@ -26174,9 +21730,7 @@ module.exports =
 	exports.default = ListItem;
 	;
 
-	ListItem.propTypes = (0, _extends3.default)({
-	  selected: _react.PropTypes.bool
-	}, _Box2.default.propTypes);
+	ListItem.propTypes = (0, _extends3.default)({}, _Box2.default.propTypes);
 
 	ListItem.defaultProps = {
 	  align: 'center',
@@ -26188,7 +21742,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 223 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26314,7 +21868,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 224 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26359,7 +21913,7 @@ module.exports =
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _reactAddonsTransitionGroup = __webpack_require__(225);
+	var _reactAddonsTransitionGroup = __webpack_require__(209);
 
 	var _reactAddonsTransitionGroup2 = _interopRequireDefault(_reactAddonsTransitionGroup);
 
@@ -26482,13 +22036,13 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 225 */
+/* 209 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-addons-transition-group");
 
 /***/ },
-/* 226 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26821,7 +22375,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 227 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26852,11 +22406,11 @@ module.exports =
 
 	var _Title2 = _interopRequireDefault(_Title);
 
-	var _HeaderMenu = __webpack_require__(228);
+	var _HeaderMenu = __webpack_require__(212);
 
 	var _HeaderMenu2 = _interopRequireDefault(_HeaderMenu);
 
-	var _Logo = __webpack_require__(229);
+	var _Logo = __webpack_require__(213);
 
 	var _Logo2 = _interopRequireDefault(_Logo);
 
@@ -27004,7 +22558,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 228 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27034,7 +22588,7 @@ module.exports =
 	// (C) Copyright 2014-2016 Hewlett-Packard Development Company, L.P.
 
 	function renderLink(link) {
-	  var index = arguments.length <= 1 || arguments[1] === undefined ? 0 : arguments[1];
+	  var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
 	  return _react2.default.createElement(
 	    _Anchor2.default,
@@ -27106,7 +22660,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 229 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27152,7 +22706,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 230 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27162,7 +22716,7 @@ module.exports =
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(2);
 	var Route = Router.Route;
-	var Columns = __webpack_require__(212);
+	var Columns = __webpack_require__(197);
 	var Box = __webpack_require__(83);
 	var Heading = __webpack_require__(156);
 	var Paragraph = __webpack_require__(157);
@@ -27172,8 +22726,8 @@ module.exports =
 	var SocialFacebookIcon = __webpack_require__(182);
 	var SocialLinkedinIcon = __webpack_require__(184);
 	var LinkNextIcon = __webpack_require__(109);
-	var Marquee = __webpack_require__(206);
-	var Header = __webpack_require__(227);
+	var Marquee = __webpack_require__(191);
+	var Header = __webpack_require__(211);
 
 	var grommetPath = 'http://grommet.github.io';
 
@@ -27355,7 +22909,7 @@ module.exports =
 	            href: '/docs/hpe/sub'
 	          }, {
 	            label: 'Details',
-	            href: '#'
+	            href: '/docs/hpe/details'
 	          }]
 	        }] }),
 	      React.createElement(Marquee, {
@@ -27366,11 +22920,11 @@ module.exports =
 	        headline: 'Accelerate your transformation with the cloud',
 	        subHeadline: React.createElement(
 	          Paragraph,
-	          { margin: 'none', size: 'large' },
+	          { margin: 'small', size: 'large' },
 	          'HPE can help you benefit now from your right mix of cloud'
 	        ),
 	        link: 'http://www.grommet.io/docs/',
-	        stackSize: 'medium',
+	        stackSize: 'large',
 	        responsiveBackgroundPosition: 'left' }),
 	      React.createElement(
 	        Box,
@@ -27381,7 +22935,7 @@ module.exports =
 	            size: { "width": { "max": "xxlarge" } } },
 	          React.createElement(
 	            Heading,
-	            { tag: 'h1', strong: true },
+	            { tag: 'h1', strong: true, margin: 'none' },
 	            'Sumo accumsan mel ignota hendrerit.'
 	          ),
 	          React.createElement(
@@ -27450,7 +23004,7 @@ module.exports =
 	module.exports = Primary;
 
 /***/ },
-/* 231 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27466,12 +23020,12 @@ module.exports =
 	var Heading = __webpack_require__(156);
 	var Headline = __webpack_require__(119);
 	var Paragraph = __webpack_require__(157);
-	var Tiles = __webpack_require__(120);
+	var Tiles = __webpack_require__(121);
 	var LinkNextIcon = __webpack_require__(109);
-	var CubesIcon = __webpack_require__(232);
-	var ComplianceIcon = __webpack_require__(233);
-	var Marquee = __webpack_require__(206);
-	var Header = __webpack_require__(227);
+	var CubesIcon = __webpack_require__(216);
+	var ComplianceIcon = __webpack_require__(217);
+	var Marquee = __webpack_require__(191);
+	var Header = __webpack_require__(211);
 
 	var grommetPath = 'http://grommet.github.io';
 
@@ -27517,8 +23071,8 @@ module.exports =
 	            label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
 	        React.createElement(
 	          Paragraph,
-	          null,
-	          'It’s not an either/or world. It’s about finding the\n              right platform for each app, workload and service. Learn how\n              hybrid infrastructure can help you achieve cloud agility with\n              traditional IT predictability. It’s not an either/or world. It’s\n              about finding the right platform for each app, workload and\n              service.'
+	          { margin: 'small' },
+	          'It\u2019s not an either/or world. It\u2019s about finding the\n              right platform for each app, workload and service. Learn how\n              hybrid infrastructure can help you achieve cloud agility with\n              traditional IT predictability. It\u2019s not an either/or world. It\u2019s\n              about finding the right platform for each app, workload and\n              service.'
 	        )
 	      ),
 	      React.createElement(
@@ -27537,7 +23091,7 @@ module.exports =
 	            label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
 	        React.createElement(
 	          Paragraph,
-	          null,
+	          { margin: 'small' },
 	          'See how Hewlett Packard Enterprise delivers mobile\n              solutions to improve quality of life and help eliminate poverty\n              in South America.'
 	        )
 	      ),
@@ -27557,7 +23111,7 @@ module.exports =
 	            label: 'Learn More', icon: React.createElement(LinkNextIcon, null) }) },
 	        React.createElement(
 	          Paragraph,
-	          null,
+	          { margin: 'small' },
 	          'HPE Software Licensing and Management Solutions can\n            help you optimize your software investments through control of\n            complex negotiations and renewal processes'
 	        )
 	      )
@@ -27595,7 +23149,7 @@ module.exports =
 	            href: '/docs/hpe/sub'
 	          }, {
 	            label: 'Details',
-	            href: '#'
+	            href: '/docs/hpe/details'
 	          }]
 	        }] }),
 	      React.createElement(Marquee, {
@@ -27614,10 +23168,10 @@ module.exports =
 	        responsiveBackgroundPosition: 'left' }),
 	      React.createElement(
 	        Box,
-	        { align: 'center' },
+	        { align: 'center', pad: { vertical: "large", between: "small" } },
 	        React.createElement(
 	          Box,
-	          { pad: 'large', align: 'center', textAlign: 'center',
+	          { pad: { horizontal: "large" }, align: 'center', textAlign: 'center',
 	            size: { "width": { "max": "xxlarge" } } },
 	          React.createElement(
 	            Heading,
@@ -27644,7 +23198,7 @@ module.exports =
 	            ),
 	            React.createElement(
 	              Paragraph,
-	              null,
+	              { margin: 'none' },
 	              'Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.'
 	            )
 	          ),
@@ -27659,7 +23213,7 @@ module.exports =
 	            ),
 	            React.createElement(
 	              Paragraph,
-	              null,
+	              { margin: 'none' },
 	              'Lorem ipsum dolor sit amet, dicat sonet congue ei mei, est summo copiosae facilisi an. Sumo accumsan mel ea, eu ignota hendrerit consequuntur me.'
 	            )
 	          )
@@ -27718,7 +23272,7 @@ module.exports =
 	module.exports = SubPage;
 
 /***/ },
-/* 232 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27844,7 +23398,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 233 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27967,6 +23521,5127 @@ module.exports =
 	Icon.icon = true;
 
 	Icon.displayName = 'Compliance';
+	module.exports = exports['default'];
+
+/***/ },
+/* 218 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(2);
+
+	var _Section = __webpack_require__(118);
+
+	var _Section2 = _interopRequireDefault(_Section);
+
+	var _Box = __webpack_require__(83);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Card = __webpack_require__(158);
+
+	var _Card2 = _interopRequireDefault(_Card);
+
+	var _Heading = __webpack_require__(156);
+
+	var _Heading2 = _interopRequireDefault(_Heading);
+
+	var _Paragraph = __webpack_require__(157);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
+	var _Label = __webpack_require__(159);
+
+	var _Label2 = _interopRequireDefault(_Label);
+
+	var _Anchor = __webpack_require__(116);
+
+	var _Anchor2 = _interopRequireDefault(_Anchor);
+
+	var _Watch = __webpack_require__(189);
+
+	var _Watch2 = _interopRequireDefault(_Watch);
+
+	var _Quote = __webpack_require__(219);
+
+	var _Quote2 = _interopRequireDefault(_Quote);
+
+	var _Image = __webpack_require__(164);
+
+	var _Image2 = _interopRequireDefault(_Image);
+
+	var _Video = __webpack_require__(165);
+
+	var _Video2 = _interopRequireDefault(_Video);
+
+	var _Button = __webpack_require__(96);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _FormField = __webpack_require__(187);
+
+	var _FormField2 = _interopRequireDefault(_FormField);
+
+	var _SocialShare = __webpack_require__(180);
+
+	var _SocialShare2 = _interopRequireDefault(_SocialShare);
+
+	var _Chart = __webpack_require__(220);
+
+	var _Chart2 = _interopRequireDefault(_Chart);
+
+	var _Marquee = __webpack_require__(191);
+
+	var _Marquee2 = _interopRequireDefault(_Marquee);
+
+	var _Header = __webpack_require__(211);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development L.P.
+
+	var Details = function (_Component) {
+	  _inherits(Details, _Component);
+
+	  function Details() {
+	    _classCallCheck(this, Details);
+
+	    return _possibleConstructorReturn(this, (Details.__proto__ || Object.getPrototypeOf(Details)).apply(this, arguments));
+	  }
+
+	  _createClass(Details, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_Header2.default, { external: true,
+	          logoLink: '/docs/hpe/examples',
+	          links: [{
+	            label: 'Documentation',
+	            links: [{
+	              label: 'Accordion',
+	              href: 'http://grommet.github.io/docs/accordion/'
+	            }, {
+	              label: 'Card',
+	              href: 'http://grommet.github.io/docs/card/'
+	            }, {
+	              label: 'Marquee',
+	              href: '/docs/hpe/develop/marquee'
+	            }, {
+	              label: 'Stack',
+	              href: '/docs/hpe/develop/stack'
+	            }]
+	          }, {
+	            label: 'Page Templates',
+	            links: [{
+	              label: 'Primary',
+	              href: '/docs/hpe/primary'
+	            }, {
+	              label: 'Sub',
+	              href: '/docs/hpe/sub'
+	            }, {
+	              label: 'Details',
+	              href: '/docs/hpe/details'
+	            }]
+	          }] }),
+	        _react2.default.createElement(
+	          _Section2.default,
+	          { pad: 'none', align: 'center' },
+	          _react2.default.createElement(_Marquee2.default, { darkTheme: true, justify: 'start',
+	            backgroundImage: '/docs/img/details_marquee.jpg',
+	            label: 'Challenge',
+	            headline: 'Lorem ipsum dolor sit amet consectetur elit.',
+	            subHeadline: 'Pellentesque porta ut augue ac ultricies. Sed vehicula metus a vulputate egestas.',
+	            responsiveBackgroundPosition: 'left',
+	            separator: true
+	          }),
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              direction: 'row',
+	              size: { width: 'xxlarge' },
+	              pad: { horizontal: 'large' }
+	            },
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { margin: 'small' },
+	              'By Kirk Bresniker, Hewlett Packard Labs Chief Architect and HPE Fellow'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _Section2.default,
+	          { pad: 'none', align: 'center' },
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              direction: 'row',
+	              justify: 'center',
+	              size: { width: 'xxlarge' },
+	              pad: { horizontal: 'large', vertical: 'medium', between: 'large' }
+	            },
+	            _react2.default.createElement(
+	              _Box2.default,
+	              { basis: '2/3' },
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'xlarge', margin: 'none' },
+	                'Dolor eveniet possimus possimus aut praesentium dignissimos sit debitis. Fugit minima totam provident optio aliquam! Magni tenetur doloremque rem tempore amet voluptatibus ipsum. Eos aliquid debitis sed mollitia laudantium sit?'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Sit architecto veritatis neque ex laboriosam, laboriosam? Aliquid illum ullam tenetur molestiae veniam velit quam. Facilis ipsam hic labore cupiditate illo soluta error molestias corporis quia, ipsa. Nobis ipsa nam eius esse illum unde. Veritatis tenetur incidunt consectetur dolore blanditiis.'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde laboriosam, laborum ratione, dicta nihil culpa.'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Dolor amet voluptate nisi molestias praesentium. Eveniet consectetur aliquid earum reprehenderit nam dicta tempora! Maiores nostrum eius quo odit et facere quaerat maxime beatae minus nihil expedita non facere ipsa cupiditate minus velit beatae. Assumenda nemo quis ad maxime modi.'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _Box2.default,
+	              { basis: '1/3' },
+	              _react2.default.createElement(_Image2.default, { src: '/docs/img/Case_Study_image.png', alt: 'example image' }),
+	              _react2.default.createElement(
+	                _Box2.default,
+	                { margin: { top: 'medium' } },
+	                _react2.default.createElement(
+	                  _Label2.default,
+	                  { size: 'small', uppercase: true },
+	                  'The Author'
+	                ),
+	                _react2.default.createElement(
+	                  _Paragraph2.default,
+	                  { size: 'large', margin: 'none' },
+	                  _react2.default.createElement(
+	                    'strong',
+	                    null,
+	                    'Kirk Bresniker'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _Paragraph2.default,
+	                  { margin: 'medium' },
+	                  'Lorem delectus accusantium alias voluptate explicabo? Quaerat eius veniam corrupti laboriosam odio, consectetur, autem aspernatur enim nulla. Animi dolorem ipsum nobis quibusdam possimus quae non quis reprehenderit iusto. Esse mollitia mollitia molestiae illum aspernatur velit odit odit? Consectetur blanditiis omnis.'
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _Box2.default,
+	                {
+	                  direction: 'row',
+	                  justify: 'between',
+	                  separator: 'top'
+	                },
+	                _react2.default.createElement(
+	                  _Label2.default,
+	                  { margin: 'small', size: 'small', uppercase: true },
+	                  _react2.default.createElement(
+	                    'strong',
+	                    null,
+	                    'Share'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  _Box2.default,
+	                  {
+	                    align: 'center',
+	                    direction: 'row',
+	                    responsive: false,
+	                    colorIndex: 'light'
+	                  },
+	                  _react2.default.createElement(_SocialShare2.default, {
+	                    type: 'email',
+	                    link: 'http://www.grommet.io/docs/',
+	                    colorIndex: 'grey-4'
+	                  }),
+	                  _react2.default.createElement(_SocialShare2.default, {
+	                    type: 'twitter',
+	                    link: 'http://www.grommet.io/docs/',
+	                    colorIndex: 'grey-4'
+	                  }),
+	                  _react2.default.createElement(_SocialShare2.default, {
+	                    type: 'facebook',
+	                    link: 'http://www.grommet.io/docs/',
+	                    colorIndex: 'grey-4'
+	                  }),
+	                  _react2.default.createElement(_SocialShare2.default, {
+	                    type: 'linkedin',
+	                    link: 'http://www.grommet.io/docs/',
+	                    colorIndex: 'grey-4'
+	                  })
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _Section2.default,
+	          { pad: 'none', align: 'center' },
+	          _react2.default.createElement(
+	            _Box2.default,
+	            { full: 'horizontal' },
+	            _react2.default.createElement(_Image2.default, { full: true, src: '/docs/img/section-1.jpg' })
+	          ),
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              direction: 'row',
+	              size: { width: 'xxlarge' },
+	              pad: { horizontal: 'large' }
+	            },
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { margin: 'small' },
+	              'Photos by Michael Blumenfeld'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _Section2.default,
+	          { align: 'center' },
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              size: { width: 'xxlarge' },
+	              pad: { horizontal: 'large', between: 'large' }
+	            },
+	            _react2.default.createElement(
+	              _Heading2.default,
+	              { margin: 'none', strong: true },
+	              'Pellentesque porta'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              direction: 'row',
+	              justify: 'center',
+	              size: { width: 'xxlarge' },
+	              pad: { horizontal: 'large', vertical: 'medium', between: 'large' }
+	            },
+	            _react2.default.createElement(
+	              _Box2.default,
+	              { basis: '2/3' },
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde laboriosam, laborum ratione, dicta nihil culpa. Dolor eveniet possimus possimus aut praesentium dignissimos sit debitis. Fugit minima totam provident optio aliquam! Magni tenetur doloremque rem tempore amet voluptatibus ipsum. Eos aliquid debitis sed mollitia laudantium sit?'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Sit architecto veritatis neque ex laboriosam, laboriosam? Aliquid illum ullam tenetur molestiae veniam velit quam. Facilis ipsam hic labore cupiditate illo soluta error molestias corporis quia, ipsa. Nobis ipsa nam eius esse illum unde. Veritatis tenetur incidunt consectetur dolore blanditiis.'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde laboriosam, laborum ratione, dicta nihil culpa.'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Dolor amet voluptate nisi molestias praesentium. Eveniet consectetur aliquid earum reprehenderit nam dicta tempora! Maiores nostrum eius quo odit et facere quaerat maxime beatae minus nihil expedita non facere ipsa cupiditate minus velit beatae. Assumenda nemo quis ad maxime modi.'
+	              ),
+	              _react2.default.createElement(
+	                _Quote2.default,
+	                {
+	                  borderColorIndex: 'accent-1',
+	                  credit: 'Cullen Basg, Director at HPE',
+	                  margin: { top: 'medium' },
+	                  size: 'full'
+	                },
+	                _react2.default.createElement(
+	                  _Paragraph2.default,
+	                  { size: 'xlarge' },
+	                  'Quisque eleifned tempor arcu, quis fringilla sem. Pellentesque sed lacus ligula. Eleifend tempor arcu, quis fringilla sem. Pellentesque.'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _Box2.default,
+	              { basis: '1/3' },
+	              _react2.default.createElement(
+	                _Heading2.default,
+	                { tag: 'h3', margin: 'none' },
+	                'The Team'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { margin: 'small' },
+	                'Pellentesque porta ut augue ac ultricies. Sed vehicula metus a vulputate egestas. Lorem delectus accusantium alias voluptate explicabo? Quaerat eius veniam corrupti laboriosam odio, consectetur, autem aspernatur enim nulla. Animi dolorem ipsum nobis quibusdam possimus quae non quis reprehenderit iusto. Esse mollitia mollitia molestiae illum aspernatur velit odit.'
+	              ),
+	              _react2.default.createElement(
+	                _Heading2.default,
+	                { tag: 'h3', margin: 'none' },
+	                'Highlights'
+	              ),
+	              _react2.default.createElement(
+	                _Box2.default,
+	                { margin: { vertical: 'small' } },
+	                _react2.default.createElement(_Image2.default, { src: '/docs/img/Case_Study_image.png', alt: 'example image' }),
+	                _react2.default.createElement(
+	                  _Paragraph2.default,
+	                  { margin: 'small' },
+	                  'Lorem delectus accusantium alias voluptate explicabo? Quaerat eius veniam corrupti laboriosam odio, consectetur, autem aspernatur enim nulla.'
+	                ),
+	                _react2.default.createElement(
+	                  _Box2.default,
+	                  { margin: { bottom: 'small' } },
+	                  _react2.default.createElement(_Anchor2.default, { href: '#', label: 'Watch the video', icon: _react2.default.createElement(_Watch2.default, null) })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _Box2.default,
+	                { margin: { vertical: 'small' } },
+	                _react2.default.createElement(_Image2.default, { src: '/docs/img/Case_Study_image.png', alt: 'example image' }),
+	                _react2.default.createElement(
+	                  _Paragraph2.default,
+	                  { margin: 'small' },
+	                  'Lorem delectus accusantium alias voluptate explicabo? Quaerat eius veniam corrupti laboriosam odio, consectetur, autem aspernatur enim nulla.'
+	                ),
+	                _react2.default.createElement(
+	                  _Box2.default,
+	                  { margin: { bottom: 'small' } },
+	                  _react2.default.createElement(_Anchor2.default, { href: '#', label: 'Watch the video', icon: _react2.default.createElement(_Watch2.default, null) })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                _Heading2.default,
+	                { tag: 'h3', margin: 'none' },
+	                'Media Coverage'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { margin: 'small' },
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'The Machine is coming:'
+	                ),
+	                ' Star Trek beyond Meets The machine - and the Future of Technology Begins.'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { margin: 'small' },
+	                'For media enquiries, send an email to ',
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'corpmediarelations@hpe.com'
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(_Marquee2.default, { darkTheme: true,
+	          backgroundImage: '/docs/img/section-5.jpg',
+	          backgroundOverlayColorIndex: 'neutral-1',
+	          headline: 'Aenean sit amet sollicitudin eros.',
+	          justify: 'center',
+	          logo: '/docs/img/idc-logo.png',
+	          subHeadline: 'Lorem maxime dolorem amet fugit sapiente unde quaerat accusantium ratione itaque laudantium vitae commodi necessitatibus. Soluta ipsa dolores error numquam itaque saepe laborum? Repellendus debitis.',
+	          responsiveBackgroundPosition: 'left',
+	          responsiveDropText: false,
+	          stackSize: 'large',
+	          link: 'http://www.grommet.io/docs/'
+	        }),
+	        _react2.default.createElement(
+	          _Section2.default,
+	          { pad: 'none', align: 'center', colorIndex: 'light-2' },
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              size: { width: 'xxlarge' },
+	              pad: { horizontal: 'large', vertical: 'medium' }
+	            },
+	            _react2.default.createElement(
+	              _Heading2.default,
+	              { margin: 'small', strong: true },
+	              'Lorem ipsum dolor'
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit.'
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Laboriosam, laborum ratione, dicta nihil culpa.  Dolor eveniet possimus possimus aut praesentium dignissimos sit debitis. Fugit minima totam provident optio aliquam! Magni tenetur doloremque rem tempore amet voluptatibus ipsum. Eos aliquid debitis sed mollitia laudantium sit?'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              align: 'center',
+	              direction: 'row',
+	              justify: 'center',
+	              size: { width: 'xxlarge' },
+	              pad: { horizontal: 'large', vertical: 'medium', between: 'large' },
+	              margin: { bottom: 'large' }
+	            },
+	            _react2.default.createElement(
+	              _Box2.default,
+	              { basis: '1/3' },
+	              _react2.default.createElement(
+	                _Quote2.default,
+	                {
+	                  pad: 'medium',
+	                  borderColorIndex: 'accent-1',
+	                  credit: 'Cullen Basg, Director at HPE',
+	                  size: 'full'
+	                },
+	                _react2.default.createElement(
+	                  _Paragraph2.default,
+	                  { size: 'xlarge' },
+	                  'Quisque eleifned tempor arcu, quis fringilla sem. Pellentesque sed lacus ligula. Eleifend tempor arcu, quis fringilla sem. Pellentesque.'
+	                )
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _Box2.default,
+	              { basis: '2/3' },
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde laboriosam, laborum ratione, dicta nihil culpa. Dolor eveniet possimus possimus aut praesentium dignissimos sit debitis. Fugit minima totam provident optio aliquam! Magni tenetur doloremque rem tempore amet voluptatibus ipsum. Eos aliquid debitis sed mollitia laudantium sit?'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Sit architecto veritatis neque ex laboriosam, laboriosam? Aliquid illum ullam tenetur molestiae veniam velit quam. Facilis ipsam hic labore cupiditate illo soluta error molestias corporis quia, ipsa. Nobis ipsa nam eius esse illum unde. Veritatis tenetur incidunt consectetur dolore blanditiis.'
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde laboriosam, laborum ratione, dicta nihil culpa.'
+	              ),
+	              _react2.default.createElement(
+	                _Box2.default,
+	                { pad: { vertical: 'medium' } },
+	                _react2.default.createElement(_Image2.default, {
+	                  full: 'horizontal',
+	                  src: '/docs/img/details_marquee.jpg',
+	                  alt: 'smaple image'
+	                })
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { size: 'large', margin: 'small' },
+	                'Dolor amet voluptate nisi molestias praesentium. Eveniet consectetur aliquid earum reprehenderit nam dicta tempora! Maiores nostrum eius quo odit et facere quaerat maxime beatae minus nihil expedita non facere ipsa cupiditate minus velit beatae. Assumenda nemo quis ad maxime modi.'
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _Section2.default,
+	          { pad: 'none', align: 'center' },
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              size: { width: 'xxlarge' },
+	              pad: { horizontal: 'large', vertical: 'medium' }
+	            },
+	            _react2.default.createElement(
+	              _Heading2.default,
+	              { margin: 'small', strong: true },
+	              'Aenean sit amet solicitudin eros.'
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde laboriosam, laborum ratione, dicta nihil culpa. Dolor eveniet possimus possimus aut praesentium dignissimos sit debitis. Fugit minima totam provident optio aliquam! Magni tenetur doloremque rem tempore amet voluptatibus ipsum. Eos aliquid debitis sed mollitia laudantium sit?'
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Sit architecto veritatis neque ex laboriosam, laboriosam? Aliquid illum ullam tenetur molestiae veniam velit quam. Facilis ipsam hic labore cupiditate illo soluta error molestias corporis quia, ipsa. Nobis ipsa nam eius esse illum unde. Veritatis tenetur incidunt consectetur dolore blanditiis.'
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde laboriosam, laborum ratione, dicta nihil culpa.'
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Dolor amet voluptate nisi molestias praesentium. Eveniet consectetur aliquid earum reprehenderit nam dicta tempora! Maiores nostrum eius quo odit et facere quaerat maxime beatae minus nihil expedita non facere ipsa cupiditate minus velit beatae. Assumenda nemo quis ad maxime modi.'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _Box2.default,
+	          { direction: 'row', justify: 'between', full: 'horizontal', pad: { between: 'medium' } },
+	          _react2.default.createElement(
+	            _Box2.default,
+	            { full: 'horizontal' },
+	            _react2.default.createElement(_Image2.default, { full: true, size: 'large', src: '/docs/img/Case_Study_image.png', alt: 'example image' })
+	          ),
+	          _react2.default.createElement(
+	            _Box2.default,
+	            { full: 'horizontal' },
+	            _react2.default.createElement(_Image2.default, { full: true, size: 'large', src: '/docs/img/Case_Study_image.png', alt: 'example image' })
+	          ),
+	          _react2.default.createElement(
+	            _Box2.default,
+	            { full: 'horizontal' },
+	            _react2.default.createElement(_Image2.default, { full: true, size: 'large', src: '/docs/img/Case_Study_image.png', alt: 'example image' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _Section2.default,
+	          { pad: 'none', align: 'center' },
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              size: { width: 'xxlarge' },
+	              pad: { horizontal: 'large', vertical: 'medium' }
+	            },
+	            _react2.default.createElement(
+	              _Heading2.default,
+	              { margin: 'small', strong: true },
+	              'Pellentesque porta'
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde laboriosam, laborum ratione, dicta nihil culpa.'
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Dolor eveniet possimus possimus aut praesentium dignissimos sit debitis. Fugit minima totam provident optio aliquam! Magni tenetur doloremque rem tempore amet voluptatibus ipsum. Eos aliquid debitis sed mollitia laudantium sit?'
+	            ),
+	            _react2.default.createElement(
+	              _Box2.default,
+	              { margin: { top: 'large' } },
+	              _react2.default.createElement(
+	                _Video2.default,
+	                null,
+	                _react2.default.createElement('source', { src: '/video/test.mp4', type: 'video/mp4' })
+	              ),
+	              _react2.default.createElement(
+	                _Paragraph2.default,
+	                { margin: 'small' },
+	                'Photos by Michael Blumenfeld'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Ipsum repudiandae corrupti eos hic libero, nulla facere provident. Sequi inventore eveniet minus quaerat aut. Voluptas qui voluptate eveniet ea ipsum? Eaque rerum excepturi vitae quis veniam officiis amet, id natus quibusdam! Dolorum culpa repellat minima doloribus facilis harum. Praesentium ea assumenda veritatis corporis quam doloremque.'
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde laboriosam, laborum ratione, dicta nihil culpa. Dolor eveniet possimus possimus aut praesentium dignissimos sit debitis. Fugit minima totam provident optio aliquam! Magni tenetur doloremque rem tempore amet voluptatibus ipsum.'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            _Chart2.default,
+	            { vertical: true, full: true },
+	            _react2.default.createElement(_Chart.Base, { height: 'small', width: 'full' }),
+	            _react2.default.createElement(
+	              _Chart.Layers,
+	              null,
+	              _react2.default.createElement(_Chart.Area, { colorIndex: 'graph-1', values: [100, 95, 80, 82, 75, undefined, 60, 55, 0, 15, 40, 50] }),
+	              _react2.default.createElement(_Chart.Area, { colorIndex: 'graph-2', values: [50, 40, 15, 0, 55, 60, undefined, 75, 82, 80, 95, 100] })
+	            ),
+	            _react2.default.createElement(_Chart.Axis, { ticks: true, count: 6, labels: [{ "index": 0, "label": "May 16" }, { "index": 1, "label": "May 17" }, { "index": 2, "label": "May 18" }, { "index": 3, "label": "May 19" }, { "index": 4, "label": "May 20" }, { "index": 5, "label": "May 21" }] })
+	          ),
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              size: { width: 'xxlarge' },
+	              pad: { horizontal: 'large', vertical: 'medium' }
+	            },
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Consectetur quas quia distinctio nam neque commodi asperiores incidunt. Dignissimos non vel laboriosam provident veritatis nesciunt modi. Sapiente quisquam ab nam assumenda dolor voluptate soluta et neque aspernatur nemo omnis adipisci blanditiis aliquam illo magni expedita aliquid, odio dolorem molestias eligendi iure nulla enim animi? Excepturi veniam in quia quis totam. Nisi aut accusantium eos distinctio error.'
+	            ),
+	            _react2.default.createElement(
+	              _Paragraph2.default,
+	              { size: 'large', margin: 'small' },
+	              'Lorem dolores incidunt similique aliquid rerum reiciendis est! Placeat minima voluptas quis tenetur deleniti harum. Nesciunt aut consequatur consequuntur sequi delectus quam qui. Illo odio dolorem sunt cupiditate nihil, ad veniam quibusdam suscipit unde laboriosam, laborum ratione, dicta nihil culpa.'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _Section2.default,
+	          {
+	            align: 'center',
+	            pad: 'large',
+	            colorIndex: 'accent-2-t'
+	          },
+	          _react2.default.createElement(
+	            _Box2.default,
+	            {
+	              align: 'center',
+	              direction: 'row',
+	              size: { width: 'xxlarge' }
+	            },
+	            _react2.default.createElement(
+	              _Box2.default,
+	              { basis: '1/2', pad: { horizontal: 'large' } },
+	              _react2.default.createElement(
+	                _Label2.default,
+	                { uppercase: true },
+	                'Share the article'
+	              ),
+	              _react2.default.createElement(
+	                _Box2.default,
+	                { direction: 'row', responsive: false, pad: { between: 'medium' } },
+	                _react2.default.createElement(
+	                  _FormField2.default,
+	                  null,
+	                  _react2.default.createElement('input', {
+	                    type: 'text',
+	                    value: 'http://www.grommet.io/docs/',
+	                    readOnly: true
+	                  })
+	                ),
+	                _react2.default.createElement(_Button2.default, { label: 'COPY', onClick: function onClick() {
+	                    return console.log('hello');
+	                  } })
+	              ),
+	              _react2.default.createElement(
+	                _Box2.default,
+	                { direction: 'row', margin: { top: 'medium' }, responsive: false },
+	                _react2.default.createElement(_SocialShare2.default, { type: 'email', link: 'http://www.grommet.io/docs/' }),
+	                _react2.default.createElement(_SocialShare2.default, { type: 'twitter', link: 'http://www.grommet.io/docs/' }),
+	                _react2.default.createElement(_SocialShare2.default, { type: 'facebook', link: 'http://www.grommet.io/docs/' }),
+	                _react2.default.createElement(_SocialShare2.default, { type: 'linkedin', link: 'http://www.grommet.io/docs/' })
+	              )
+	            ),
+	            _react2.default.createElement(_Card2.default, {
+	              contentPad: 'large',
+	              basis: '1/2',
+	              direction: 'row',
+	              heading: 'Pellentesque porta ut augue ac ultricies.',
+	              label: 'Next Article',
+	              link: _react2.default.createElement(
+	                _Anchor2.default,
+	                { href: 'http://www.grommet.io/docs/', primary: true },
+	                'Learn More'
+	              ),
+	              separator: 'left'
+	            })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Details;
+	}(_react.Component);
+
+	exports.default = Details;
+	;
+
+	Details.defaultProps = {};
+
+	Details.routes = function () {
+	  return [_react2.default.createElement(_reactRouter.Route, { path: 'details', component: Details })];
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _keys = __webpack_require__(84);
+
+	var _keys2 = _interopRequireDefault(_keys);
+
+	var _defineProperty2 = __webpack_require__(5);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _Box = __webpack_require__(83);
+
+	var _Box2 = _interopRequireDefault(_Box);
+
+	var _Paragraph = __webpack_require__(157);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
+	var _Props = __webpack_require__(91);
+
+	var _Props2 = _interopRequireDefault(_Props);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.QUOTE;
+	var BORDER_COLOR_INDEX = _CSSClassnames2.default.BORDER_COLOR_INDEX;
+
+	var Quote = function (_Component) {
+	  (0, _inherits3.default)(Quote, _Component);
+
+	  function Quote() {
+	    (0, _classCallCheck3.default)(this, Quote);
+	    return (0, _possibleConstructorReturn3.default)(this, (Quote.__proto__ || (0, _getPrototypeOf2.default)(Quote)).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Quote, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var borderColorIndex = _props.borderColorIndex;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var credit = _props.credit;
+	      var emphasizeCredit = _props.emphasizeCredit;
+	      var size = _props.size;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, BORDER_COLOR_INDEX + '-' + borderColorIndex, borderColorIndex), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--emphasize-credit', emphasizeCredit), _classnames));
+
+	      var boxProps = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
+
+	      if (size === 'small') {
+	        boxProps.pad = {
+	          horizontal: 'medium', vertical: 'small'
+	        };
+	      }
+
+	      var creditElement = void 0;
+	      if (typeof credit === 'string') {
+	        var content = credit;
+	        if (emphasizeCredit) {
+	          content = _react2.default.createElement(
+	            'strong',
+	            null,
+	            content
+	          );
+	        }
+	        creditElement = _react2.default.createElement(
+	          _Paragraph2.default,
+	          { className: CLASS_ROOT + '__credit' },
+	          content
+	        );
+	      } else {
+	        creditElement = credit;
+	      }
+
+	      return _react2.default.createElement(
+	        _Box2.default,
+	        (0, _extends3.default)({}, boxProps, { className: classes }),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          children,
+	          creditElement
+	        )
+	      );
+	    }
+	  }]);
+	  return Quote;
+	}(_react.Component);
+
+	Quote.displayName = 'Quote';
+	exports.default = Quote;
+	;
+
+	Quote.propTypes = (0, _extends3.default)({
+	  borderColorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'full']),
+	  credit: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.element]),
+	  emphasizeCredit: _react.PropTypes.bool
+	}, _Box2.default.propTypes);
+
+	Quote.defaultProps = {
+	  pad: { horizontal: 'large', vertical: 'small' },
+	  size: 'large',
+	  emphasizeCredit: true
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Range = exports.HotSpots = exports.MarkerLabel = exports.Marker = exports.Bar = exports.Line = exports.Area = exports.Grid = exports.Base = exports.Layers = exports.Axis = undefined;
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _utils = __webpack_require__(221);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	var _Intl = __webpack_require__(90);
+
+	var _Intl2 = _interopRequireDefault(_Intl);
+
+	var _Meter = __webpack_require__(222);
+
+	var _Meter2 = _interopRequireDefault(_Meter);
+
+	var _Axis = __webpack_require__(230);
+
+	var _Axis2 = _interopRequireDefault(_Axis);
+
+	var _Layers = __webpack_require__(231);
+
+	var _Layers2 = _interopRequireDefault(_Layers);
+
+	var _Base = __webpack_require__(232);
+
+	var _Base2 = _interopRequireDefault(_Base);
+
+	var _Grid = __webpack_require__(233);
+
+	var _Grid2 = _interopRequireDefault(_Grid);
+
+	var _Area = __webpack_require__(234);
+
+	var _Area2 = _interopRequireDefault(_Area);
+
+	var _Line = __webpack_require__(236);
+
+	var _Line2 = _interopRequireDefault(_Line);
+
+	var _Bar = __webpack_require__(237);
+
+	var _Bar2 = _interopRequireDefault(_Bar);
+
+	var _Marker = __webpack_require__(238);
+
+	var _Marker2 = _interopRequireDefault(_Marker);
+
+	var _MarkerLabel = __webpack_require__(239);
+
+	var _MarkerLabel2 = _interopRequireDefault(_MarkerLabel);
+
+	var _HotSpots = __webpack_require__(240);
+
+	var _HotSpots2 = _interopRequireDefault(_HotSpots);
+
+	var _Range = __webpack_require__(241);
+
+	var _Range2 = _interopRequireDefault(_Range);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CHART;
+	var CHART_BASE = _CSSClassnames2.default.CHART_BASE;
+
+	function traverseAndUpdateChildren(children) {
+	  return _react.Children.map(children, function (child) {
+	    if (!child || !child.type) {
+	      return;
+	    }
+
+	    // remove tabIndex from child elements to avoid
+	    // multiple tabs inside a chart
+	    if (child.type === _Meter2.default || child.type.name === 'Meter' || child.type === Chart || child.type.name === 'Chart') {
+	      return _react2.default.cloneElement(child, {
+	        tabIndex: '-1'
+	      });
+	    }
+
+	    if (child.props.children) {
+	      var childrenNoTabIndex = traverseAndUpdateChildren(child.props.children);
+
+	      return _react2.default.cloneElement(child, {
+	        children: childrenNoTabIndex
+	      });
+	    }
+	    return child;
+	  });
+	}
+
+	var Chart = function (_Component) {
+	  (0, _inherits3.default)(Chart, _Component);
+
+	  function Chart(props, context) {
+	    (0, _classCallCheck3.default)(this, Chart);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Chart.__proto__ || (0, _getPrototypeOf2.default)(Chart)).call(this, props, context));
+
+	    _this._onResize = _this._onResize.bind(_this);
+	    _this._layout = _this._layout.bind(_this);
+	    _this.state = { alignTop: 0, alignLeft: 0, alignHeight: 0, alignWidth: 0 };
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Chart, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.addEventListener('resize', this._onResize);
+	      this._layout();
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      if (this.props.vertical !== nextProps.vertical) {
+	        this.setState({ layoutNeeded: true });
+	      }
+	    }
+	  }, {
+	    key: 'componentDidUpdate',
+	    value: function componentDidUpdate() {
+	      if (this.state.layoutNeeded) {
+	        this._layout();
+	        this.setState({ layoutNeeded: false });
+	      }
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      window.removeEventListener('resize', this._onResize);
+	    }
+	  }, {
+	    key: '_onResize',
+	    value: function _onResize() {
+	      // debounce
+	      clearTimeout(this._resizeTimer);
+	      this._resizeTimer = setTimeout(this._layout, _utils.debounceDelay);
+	    }
+	  }, {
+	    key: '_layout',
+	    value: function _layout() {
+	      var _this2 = this;
+
+	      var _props = this.props;
+	      var horizontalAlignWith = _props.horizontalAlignWith;
+	      var verticalAlignWith = _props.verticalAlignWith;
+	      var vertical = _props.vertical;
+	      var onMaxCount = _props.onMaxCount;
+
+	      var chart = this.chartRef;
+	      if (chart) {
+	        var chartRect = chart.getBoundingClientRect();
+	        var base = this.chartRef.querySelector('.' + CHART_BASE);
+	        var alignWidth = void 0,
+	            alignLeft = void 0,
+	            alignRight = void 0,
+	            alignHeight = void 0,
+	            alignTop = void 0,
+	            alignBottom = void 0;
+	        var padAlign = true;
+
+	        if (horizontalAlignWith) {
+	          var elem = document.getElementById(horizontalAlignWith);
+	          if (elem) {
+	            var rect = elem.getBoundingClientRect();
+	            alignWidth = rect.width;
+	            alignLeft = rect.left - chartRect.left;
+	            alignRight = chartRect.right - rect.right;
+	            padAlign = false;
+	          }
+	        } else if (base) {
+	          var _rect = base.getBoundingClientRect();
+	          alignWidth = _rect.width;
+	          alignLeft = _rect.left - chartRect.left;
+	          alignRight = chartRect.right - _rect.right;
+	        }
+
+	        if (verticalAlignWith) {
+	          var _elem = document.getElementById(verticalAlignWith);
+	          if (_elem) {
+	            var _rect2 = _elem.getBoundingClientRect();
+	            alignHeight = _rect2.height;
+	            alignTop = _rect2.top - chartRect.top;
+	            alignBottom = chartRect.bottom - _rect2.bottom;
+	            padAlign = false;
+	          }
+	        } else if (base) {
+	          var _rect3 = base.getBoundingClientRect();
+	          alignHeight = _rect3.height;
+	          alignTop = _rect3.top - chartRect.top;
+	          alignBottom = chartRect.bottom - _rect3.bottom;
+	        }
+
+	        this.setState({
+	          alignWidth: alignWidth,
+	          alignLeft: alignLeft,
+	          alignRight: alignRight,
+	          alignHeight: alignHeight,
+	          alignTop: alignTop,
+	          alignBottom: alignBottom,
+	          padAlign: padAlign
+	        });
+
+	        if (onMaxCount) {
+	          (function () {
+	            var maxCount = void 0;
+	            if (vertical) {
+	              maxCount = Math.floor(alignWidth / (4 * _utils.padding));
+	            } else {
+	              maxCount = Math.floor(alignHeight / (4 * _utils.padding));
+	            }
+	            if (maxCount !== _this2.state.maxCount) {
+	              _this2.setState({ maxCount: maxCount }, function () {
+	                onMaxCount(maxCount);
+	              });
+	            }
+	          })();
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this3 = this;
+
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var full = _props2.full;
+	      var loading = _props2.loading;
+	      var vertical = _props2.vertical;
+	      var _state = this.state;
+	      var alignBottom = _state.alignBottom;
+	      var alignHeight = _state.alignHeight;
+	      var alignLeft = _state.alignLeft;
+	      var alignRight = _state.alignRight;
+	      var alignTop = _state.alignTop;
+	      var alignWidth = _state.alignWidth;
+	      var padAlign = _state.padAlign;
+	      var intl = this.context.intl;
+
+	      var classes = [CLASS_ROOT];
+	      if (vertical) {
+	        classes.push(CLASS_ROOT + '--vertical');
+	      }
+	      if (full) {
+	        classes.push(CLASS_ROOT + '--full');
+	      }
+	      if (loading) {
+	        classes.push(CLASS_ROOT + '--loading');
+	      }
+	      if (this.props.className) {
+	        classes.push(this.props.className);
+	      }
+
+	      // Align Axis children towards the Base|Layers|Chart
+	      var axisAlign = 'end';
+	      var children = _react.Children.map(this.props.children, function (child) {
+
+	        // name comparison is to work around webpack alias issues in development
+	        if (child && (child.type === _Axis2.default || child.type.name === 'Axis' || child.type === _MarkerLabel2.default || child.type.name === 'MarkerLabel')) {
+
+	          if (vertical) {
+	            child = _react2.default.cloneElement(child, {
+	              style: {
+	                marginLeft: padAlign ? alignLeft + _utils.padding : alignLeft,
+	                marginRight: padAlign ? alignRight + _utils.padding : alignRight
+	              },
+	              align: axisAlign
+	            });
+	          } else {
+	            child = _react2.default.cloneElement(child, {
+	              style: {
+	                // We set the height just for Safari due to:
+	                // http://stackoverflow.com/questions/35532987/
+	                //    heights-rendering-differently-in-chrome-and-firefox/
+	                //    35537510#35537510
+	                // Chrome seems to have addressed this already.
+	                height: padAlign ? alignHeight - 2 * _utils.padding : alignHeight,
+	                marginTop: padAlign ? alignTop + _utils.padding : alignTop,
+	                marginBottom: padAlign ? alignBottom + _utils.padding : alignBottom
+	              },
+	              align: axisAlign
+	            });
+	          }
+	        } else if (child && (child.type === _Layers2.default || child.type.name === 'Layers')) {
+
+	          child = _react2.default.cloneElement(child, {
+	            height: alignHeight,
+	            width: alignWidth,
+	            style: { left: alignLeft, top: alignTop }
+	          });
+	          axisAlign = 'start';
+	        } else if (child && (child.type === Chart || child.type.name === 'Chart' || child.type === _Base2.default || child.type.name === 'Base')) {
+
+	          if (child.type === _Base2.default) {
+	            var updatedChildren = traverseAndUpdateChildren(child.props.children);
+
+	            child = _react2.default.cloneElement(child, {
+	              children: updatedChildren
+	            });
+	          } else {
+	            child = _react2.default.cloneElement(child, {
+	              tabIndex: '-1'
+	            });
+	          }
+
+	          axisAlign = 'start';
+	        }
+
+	        return child;
+	      });
+
+	      if (loading) {
+	        children.push(_react2.default.createElement(
+	          'svg',
+	          { key: 'loading', className: CLASS_ROOT + '-loading',
+	            viewBox: '0 0 ' + alignWidth + ' ' + alignHeight },
+	          _react2.default.createElement('path', { d: 'M0,' + alignHeight / 2 + ' L' + alignWidth + ',' + alignHeight / 2 })
+	        ));
+	      }
+
+	      var ariaLabel = a11yTitle || _Intl2.default.getMessage(intl, 'Chart');
+
+	      return _react2.default.createElement(
+	        'div',
+	        { ref: function ref(_ref) {
+	            return _this3.chartRef = _ref;
+	          }, 'aria-label': ariaLabel,
+	          className: classes.join(' '), role: 'group' },
+	        children
+	      );
+	    }
+	  }]);
+	  return Chart;
+	}(_react.Component);
+
+	Chart.displayName = 'Chart';
+	exports.default = Chart;
+	;
+
+	Chart.contextTypes = {
+	  intl: _react.PropTypes.object
+	};
+
+	Chart.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  full: _react.PropTypes.bool,
+	  horizontalAlignWith: _react.PropTypes.string,
+	  loading: _react.PropTypes.bool,
+	  onMaxCount: _react.PropTypes.func,
+	  vertical: _react.PropTypes.bool,
+	  verticalAlignWith: _react.PropTypes.string
+	};
+
+	exports.Axis = _Axis2.default;
+	exports.Layers = _Layers2.default;
+	exports.Base = _Base2.default;
+	exports.Grid = _Grid2.default;
+	exports.Area = _Area2.default;
+	exports.Line = _Line2.default;
+	exports.Bar = _Bar2.default;
+	exports.Marker = _Marker2.default;
+	exports.MarkerLabel = _MarkerLabel2.default;
+	exports.HotSpots = _HotSpots2.default;
+	exports.Range = _Range2.default;
+
+/***/ },
+/* 221 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.trackSize = exports.debounceDelay = exports.padding = exports.pointSize = undefined;
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	exports.graphValue = graphValue;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	function graphValue(value, min, max, size) {
+	  var scale = size / (max - min);
+	  return Math.floor(scale * (value - min));
+	};
+
+	var pointSize = exports.pointSize = 12;
+	var padding = exports.padding = pointSize / 2 + 2;
+	var debounceDelay = exports.debounceDelay = 50;
+
+	var trackSize = exports.trackSize = function () {
+	  function trackSize(props, onSize) {
+	    (0, _classCallCheck3.default)(this, trackSize);
+
+	    this._onResize = this._onResize.bind(this);
+	    this._measure = this._measure.bind(this);
+	    this._width = props.width;
+	    this._height = props.height;
+	    this._size = { width: props.width || 0, height: props.height || 0 };
+	    this._onSize = onSize;
+	  }
+
+	  (0, _createClass3.default)(trackSize, [{
+	    key: '_measure',
+	    value: function _measure() {
+	      if (this._element) {
+	        var rect = this._element.getBoundingClientRect();
+	        this._size.width = this._width || Math.round(rect.width);
+	        this._size.height = this._height || Math.round(rect.height);
+	        this._onSize(this._size);
+	      }
+	    }
+	  }, {
+	    key: '_onResize',
+	    value: function _onResize() {
+	      // debounce
+	      clearTimeout(this._resizeTimer);
+	      // delay should be greater than Chart's delay
+	      this._resizeTimer = setTimeout(this._measure, debounceDelay + 10);
+	    }
+	  }, {
+	    key: 'size',
+	    value: function size() {
+	      return this._size;
+	    }
+	  }, {
+	    key: 'start',
+	    value: function start(element) {
+	      this._element = element;
+	      if (!this._width || !this._height) {
+	        window.addEventListener('resize', this._onResize);
+	        // delay just a bit to allow the browser to lay things out
+	        setTimeout(this._measure.bind(this), 3);
+	      }
+	    }
+	  }, {
+	    key: 'reset',
+	    value: function reset(props) {
+	      this._width = props.width;
+	      this._height = props.height;
+	      this._size.width = props.width || this._size.width;
+	      this._size.height = props.height || this._size.height;
+	      this._onSize(this._size);
+	    }
+	  }, {
+	    key: 'stop',
+	    value: function stop() {
+	      window.removeEventListener('resize', this._onResize);
+	      this._element = undefined;
+	    }
+	  }]);
+	  return trackSize;
+	}();
+
+/***/ },
+/* 222 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _keys = __webpack_require__(84);
+
+	var _keys2 = _interopRequireDefault(_keys);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Props = __webpack_require__(91);
+
+	var _Props2 = _interopRequireDefault(_Props);
+
+	var _Responsive = __webpack_require__(100);
+
+	var _Responsive2 = _interopRequireDefault(_Responsive);
+
+	var _Bar = __webpack_require__(223);
+
+	var _Bar2 = _interopRequireDefault(_Bar);
+
+	var _Spiral = __webpack_require__(227);
+
+	var _Spiral2 = _interopRequireDefault(_Spiral);
+
+	var _Circle = __webpack_require__(228);
+
+	var _Circle2 = _interopRequireDefault(_Circle);
+
+	var _Arc = __webpack_require__(229);
+
+	var _Arc2 = _interopRequireDefault(_Arc);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.METER;
+
+	var TYPE_COMPONENT = {
+	  'bar': _Bar2.default,
+	  'circle': _Circle2.default,
+	  'arc': _Arc2.default,
+	  'spiral': _Spiral2.default
+	};
+
+	function getMaxDecimalDigits(series) {
+	  var maxDigits = 0;
+	  series.forEach(function (item) {
+	    var currentDigitsGroup = /\.(\d*)$/.exec(item.value.toString());
+	    if (currentDigitsGroup) {
+	      var currentDigits = currentDigitsGroup[1].length;
+	      maxDigits = Math.max(maxDigits, currentDigits);
+	    }
+	  });
+	  return Math.pow(10, maxDigits);
+	}
+
+	var Meter = function (_Component) {
+	  (0, _inherits3.default)(Meter, _Component);
+
+	  function Meter(props, context) {
+	    (0, _classCallCheck3.default)(this, Meter);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Meter.__proto__ || (0, _getPrototypeOf2.default)(Meter)).call(this, props, context));
+
+	    _this._onResponsive = _this._onResponsive.bind(_this);
+	    _this._initialTimeout = _this._initialTimeout.bind(_this);
+	    _this._onActivate = _this._onActivate.bind(_this);
+
+	    _this.state = _this._stateFromProps(props);
+	    _this.state.initial = true;
+	    _this.state.limitMeterSize = false;
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Meter, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      if (this.props.responsive) {
+	        this._responsive = _Responsive2.default.start(this._onResponsive);
+	      }
+
+	      this._initialTimer = setTimeout(this._initialTimeout, 10);
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      var state = this._stateFromProps(nextProps);
+	      this.setState(state);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearTimeout(this._initialTimer);
+
+	      if (this._responsive) {
+	        this._responsive.stop();
+	      }
+	    }
+	  }, {
+	    key: '_initialTimeout',
+	    value: function _initialTimeout() {
+	      this.setState({
+	        initial: false,
+	        activeIndex: this.state.activeIndex
+	      });
+	      clearTimeout(this._initialTimer);
+	    }
+	  }, {
+	    key: '_onResponsive',
+	    value: function _onResponsive(small) {
+	      if (small) {
+	        this.setState({ limitMeterSize: true });
+	      } else {
+	        this.setState({ limitMeterSize: false });
+	      }
+	    }
+	  }, {
+	    key: '_onActivate',
+	    value: function _onActivate(index) {
+	      var _props = this.props;
+	      var activeIndex = _props.activeIndex;
+	      var onActive = _props.onActive;
+
+	      this.setState({ initial: false, activeIndex: activeIndex });
+	      if (onActive) {
+	        onActive(index);
+	      }
+	    }
+	  }, {
+	    key: '_normalizeSeries',
+	    value: function _normalizeSeries(props, thresholds) {
+	      var series = [];
+	      if (props.series) {
+	        series = props.series;
+	      } else if (props.value || props.value === 0) {
+	        series = [{ value: props.value }];
+	        if (props.colorIndex) {
+	          series[0].colorIndex = props.colorIndex;
+	        }
+	      }
+
+	      // set color index
+	      if (series.length === 1 && props.thresholds) {
+	        (function () {
+	          var item = series[0];
+	          if (!item.colorIndex) {
+	            (function () {
+	              // see which threshold color index to use
+	              var cumulative = 0;
+	              thresholds.some(function (threshold) {
+	                cumulative += threshold.value;
+	                if (item.value < cumulative) {
+	                  item.colorIndex = threshold.colorIndex || 'graph-1';
+	                  return true;
+	                }
+	                return false;
+	              });
+	            })();
+	          }
+	        })();
+	      } else {
+	        series.forEach(function (item, index) {
+	          if (!item.colorIndex) {
+	            item.colorIndex = 'graph-' + (index + 1);
+	          }
+	        });
+	      }
+
+	      return series;
+	    }
+	  }, {
+	    key: '_normalizeThresholds',
+	    value: function _normalizeThresholds(props, min, max) {
+	      var thresholds = [];
+	      if (props.thresholds) {
+	        // Convert thresholds from absolute values to cummulative,
+	        // so we can re-use the series drawing code.
+	        var priorValue = min;
+	        thresholds.push({ hidden: true });
+	        for (var i = 0; i < props.thresholds.length; i += 1) {
+	          var threshold = props.thresholds[i];
+	          // The value for the prior threshold ends at the beginning of this
+	          // threshold. Series drawing code expects the end value.
+	          thresholds[i].value = threshold.value - priorValue;
+	          thresholds.push({
+	            colorIndex: threshold.colorIndex
+	          });
+	          priorValue = threshold.value;
+	          if (i === props.thresholds.length - 1) {
+	            thresholds[thresholds.length - 1].value = max - priorValue;
+	          }
+	        }
+	      } else if (props.threshold) {
+	        thresholds = [{ value: props.threshold, hidden: true }, {
+	          value: max - props.threshold,
+	          colorIndex: 'critical'
+	        }];
+	      }
+	      return thresholds;
+	    }
+	  }, {
+	    key: '_seriesTotal',
+	    value: function _seriesTotal(series) {
+	      var maxDecimalDigits = getMaxDecimalDigits(series);
+	      var total = 0;
+	      series.forEach(function (item) {
+	        total += item.value * maxDecimalDigits;
+	      });
+
+	      return total / maxDecimalDigits;
+	    }
+	  }, {
+	    key: '_seriesMax',
+	    value: function _seriesMax(series) {
+	      var max = 0;
+	      series.some(function (item) {
+	        max = Math.max(max, item.value);
+	      });
+	      return max;
+	    }
+
+	    // Generates state based on the provided props.
+
+	  }, {
+	    key: '_stateFromProps',
+	    value: function _stateFromProps(props) {
+	      var total = void 0;
+	      if (props.series) {
+	        total = this._seriesTotal(props.series);
+	      } else if (props.hasOwnProperty('value')) {
+	        total = props.value;
+	      } else {
+	        total = 0;
+	      }
+	      var seriesMax = void 0;
+	      // only care about series max when there are multiple values
+	      if (props.series && props.series.length > 1) {
+	        seriesMax = this._seriesMax(props.series);
+	      }
+	      // Normalize min and max
+	      var min = props.min || 0;
+	      // Max could be provided in props or come from the total of
+	      // a multi-value series.
+	      var max = props.max || (props.stacked ? Math.max(seriesMax, total || 0, 100) : seriesMax || Math.max(total || 0, 100));
+	      // Normalize simple threshold prop to an array, if needed.
+	      var thresholds = this._normalizeThresholds(props, min, max);
+	      // Normalize simple value prop to a series, if needed.
+	      var series = this._normalizeSeries(props, thresholds);
+
+	      var state = {
+	        series: series,
+	        thresholds: thresholds,
+	        min: min,
+	        max: max,
+	        total: total
+	      };
+
+	      if (props.hasOwnProperty('activeIndex')) {
+	        state.activeIndex = props.activeIndex;
+	      } else if (props.hasOwnProperty('active')) {
+	        state.activeIndex = props.active ? 0 : undefined;
+	      }
+
+	      return state;
+	    }
+	  }, {
+	    key: '_getActiveFields',
+	    value: function _getActiveFields() {
+	      var _state = this.state;
+	      var activeIndex = _state.activeIndex;
+	      var total = _state.total;
+	      var series = _state.series;
+
+	      var fields = void 0;
+	      if (undefined === activeIndex) {
+	        fields = {
+	          value: total
+	        };
+	      } else {
+	        var active = series[activeIndex];
+	        if (!active) {
+	          active = series[0];
+	        }
+	        fields = {
+	          value: active.value,
+	          onClick: active.onClick
+	        };
+	      }
+	      return fields;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props2 = this.props;
+	      var active = _props2.active;
+	      var label = _props2.label;
+	      var size = _props2.size;
+	      var stacked = _props2.stacked;
+	      var tabIndex = _props2.tabIndex;
+	      var type = _props2.type;
+	      var vertical = _props2.vertical;
+	      var _state2 = this.state;
+	      var limitMeterSize = _state2.limitMeterSize;
+	      var series = _state2.series;
+
+	      var classes = [CLASS_ROOT];
+	      classes.push(CLASS_ROOT + '--' + type);
+	      if (vertical) {
+	        classes.push(CLASS_ROOT + '--vertical');
+	      }
+	      if (stacked) {
+	        classes.push(CLASS_ROOT + '--stacked');
+	      }
+	      if (size) {
+	        var responsiveSize = size;
+	        // shrink Meter to medium size if large and up
+	        if (limitMeterSize && (size === 'large' || size === 'xlarge')) {
+	          responsiveSize = 'medium';
+	        }
+	        classes.push(CLASS_ROOT + '--' + responsiveSize);
+	      }
+	      if (series.length === 0) {
+	        classes.push(CLASS_ROOT + '--loading');
+	      } else if (series.length === 1) {
+	        classes.push(CLASS_ROOT + '--single');
+	      } else {
+	        classes.push(CLASS_ROOT + '--count-' + series.length);
+	      }
+	      if (active) {
+	        classes.push(CLASS_ROOT + '--active');
+	      }
+	      if (this.props.className) {
+	        classes.push(this.props.className);
+	      }
+
+	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Meter.propTypes));
+
+	      var labelElement = void 0;
+	      if (label) {
+	        labelElement = _react2.default.createElement(
+	          'div',
+	          { className: CLASS_ROOT + '__label' },
+	          label
+	        );
+	      }
+
+	      var GraphicComponent = TYPE_COMPONENT[this.props.type];
+	      var graphic = _react2.default.createElement(GraphicComponent, {
+	        a11yTitle: this.props.a11yTitle,
+	        activeIndex: this.state.activeIndex,
+	        min: this.state.min, max: this.state.max,
+	        onActivate: this._onActivate,
+	        series: series,
+	        stacked: stacked,
+	        tabIndex: tabIndex,
+	        thresholds: this.state.thresholds,
+	        total: this.state.total,
+	        vertical: vertical });
+
+	      var graphicContainer = _react2.default.createElement(
+	        'div',
+	        (0, _extends3.default)({}, restProps, { className: CLASS_ROOT + '__graphic-container' }),
+	        graphic
+	      );
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: classes.join(' ') },
+	        _react2.default.createElement(
+	          'div',
+	          { ref: function ref(_ref) {
+	              return _this2.activeGraphicRef = _ref;
+	            },
+	            className: CLASS_ROOT + '__value-container' },
+	          graphicContainer,
+	          labelElement
+	        )
+	      );
+	    }
+	  }]);
+	  return Meter;
+	}(_react.Component);
+
+	Meter.displayName = 'Meter';
+	exports.default = Meter;
+
+
+	Meter.propTypes = {
+	  active: _react.PropTypes.bool, // when single value
+	  activeIndex: _react.PropTypes.number, // for series values
+	  a11yTitle: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  label: _react.PropTypes.node,
+	  max: _react.PropTypes.number,
+	  min: _react.PropTypes.number,
+	  onActive: _react.PropTypes.func,
+	  series: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    colorIndex: _react.PropTypes.string,
+	    onClick: _react.PropTypes.func,
+	    label: _react.PropTypes.string, // only for Spiral
+	    value: _react.PropTypes.number.isRequired
+	  })),
+	  size: _react.PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
+	  stacked: _react.PropTypes.bool,
+	  tabIndex: _react.PropTypes.string,
+	  threshold: _react.PropTypes.number,
+	  thresholds: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    value: _react.PropTypes.number.isRequired,
+	    colorIndex: _react.PropTypes.string
+	  })),
+	  type: _react.PropTypes.oneOf(['bar', 'arc', 'circle', 'spiral']),
+	  value: _react.PropTypes.number,
+	  vertical: _react.PropTypes.bool,
+	  responsive: _react.PropTypes.bool
+	};
+
+	Meter.defaultProps = {
+	  type: 'bar'
+	};
+
+	Meter.contextTypes = {
+	  intl: _react.PropTypes.object
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 223 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _Graphics = __webpack_require__(224);
+
+	var _utils = __webpack_require__(225);
+
+	var _Graphic2 = __webpack_require__(226);
+
+	var _Graphic3 = _interopRequireDefault(_Graphic2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var BAR_LENGTH = _utils.baseDimension; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var BAR_THICKNESS = _Graphics.baseUnit;
+	var MID_BAR_THICKNESS = BAR_THICKNESS / 2;
+
+	var Bar = function (_Graphic) {
+	  (0, _inherits3.default)(Bar, _Graphic);
+
+	  function Bar(props, context) {
+	    (0, _classCallCheck3.default)(this, Bar);
+
+	    //needed in Graphic.js to fix minification issues
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Bar.__proto__ || (0, _getPrototypeOf2.default)(Bar)).call(this, props, context));
+
+	    _this.displayName = 'Bar';
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Bar, [{
+	    key: '_viewBoxDimensions',
+	    value: function _viewBoxDimensions(props) {
+	      var viewBoxHeight = void 0;
+	      var viewBoxWidth = void 0;
+	      if (props.vertical) {
+	        if (props.stacked) {
+	          viewBoxWidth = BAR_THICKNESS;
+	        } else {
+	          viewBoxWidth = BAR_THICKNESS * Math.max(1, props.series.length);
+	        }
+	        viewBoxHeight = BAR_LENGTH;
+	      } else {
+	        viewBoxWidth = BAR_LENGTH;
+	        if (props.stacked) {
+	          viewBoxHeight = BAR_THICKNESS;
+	        } else {
+	          viewBoxHeight = BAR_THICKNESS * Math.max(1, props.series.length);
+	        }
+	      }
+	      return [viewBoxWidth, viewBoxHeight];
+	    }
+	  }, {
+	    key: '_stateFromProps',
+	    value: function _stateFromProps(props) {
+	      var viewBoxDimensions = this._viewBoxDimensions(props);
+
+	      var state = {
+	        scale: BAR_LENGTH / (props.max - props.min),
+	        viewBoxWidth: viewBoxDimensions[0],
+	        viewBoxHeight: viewBoxDimensions[1]
+	      };
+
+	      return state;
+	    }
+	  }, {
+	    key: '_translateBarWidth',
+	    value: function _translateBarWidth(value) {
+	      return Math.ceil(this.state.scale * value);
+	    }
+	  }, {
+	    key: '_sliceCommands',
+	    value: function _sliceCommands(trackIndex, item, startValue) {
+	      var value = item.value - this.props.min;
+	      var start = this._translateBarWidth(startValue);
+	      var distance = Math.max(item.value > 0 ? MID_BAR_THICKNESS : 0, this._translateBarWidth(value));
+	      var commands = void 0;
+	      var spot = trackIndex * BAR_THICKNESS + MID_BAR_THICKNESS;
+	      if (this.props.vertical) {
+	        commands = "M" + spot + "," + (BAR_LENGTH - start) + " L" + spot + "," + (BAR_LENGTH - (start + distance));
+	      } else {
+	        commands = "M" + start + "," + spot + " L" + (start + distance) + "," + spot;
+	      }
+	      return commands;
+	    }
+	  }]);
+	  return Bar;
+	}(_Graphic3.default);
+
+	//needed in Graphic.js to fix minification issues
+
+
+	exports.default = Bar;
+	Bar.displayName = 'Bar';
+	module.exports = exports['default'];
+
+/***/ },
+/* 224 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.polarToCartesian = polarToCartesian;
+	exports.arcCommands = arcCommands;
+	exports.translateEndAngle = translateEndAngle;
+	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var baseUnit = exports.baseUnit = 24;
+
+	function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+	  var angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+	  return {
+	    x: centerX + radius * Math.cos(angleInRadians),
+	    y: centerY + radius * Math.sin(angleInRadians)
+	  };
+	};
+
+	function arcCommands(centerX, centerY, radius, startAngle, endAngle) {
+	  // handle that we can't draw a complete circle
+	  if (endAngle - startAngle >= 360) {
+	    endAngle = startAngle + 359.99;
+	  }
+	  var start = polarToCartesian(centerX, centerY, radius, endAngle);
+	  var end = polarToCartesian(centerX, centerY, radius, startAngle);
+	  var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+	  var d = ["M", start.x, start.y, "A", radius, radius, 0, arcSweep, 0, end.x, end.y].join(" ");
+	  return d;
+	};
+
+	function translateEndAngle(startAngle, anglePer, value) {
+	  return Math.min(360, Math.max(0, startAngle + anglePer * value));
+	};
+
+/***/ },
+/* 225 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.propTypes = exports.baseDimension = undefined;
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	exports.buildPath = buildPath;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Graphics = __webpack_require__(224);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.METER; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var baseDimension = exports.baseDimension = _Graphics.baseUnit * 8;
+
+	var propTypes = exports.propTypes = {
+	  activeIndex: _react.PropTypes.number,
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  max: _react.PropTypes.number.isRequired,
+	  min: _react.PropTypes.number.isRequired,
+	  onActivate: _react.PropTypes.func.isRequired,
+	  series: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    label: _react.PropTypes.string,
+	    value: _react.PropTypes.number.isRequired,
+	    colorIndex: _react.PropTypes.string,
+	    onClick: _react.PropTypes.func
+	  })).isRequired,
+	  total: _react.PropTypes.number
+	};
+
+	function buildPath(itemIndex, commands, classes, onActivate, onClick, a11yTitle, role) {
+	  if (onActivate) {
+	    var onOver = onActivate.bind(null, itemIndex);
+	    var onOut = onActivate.bind(null, undefined);
+
+	    var a11yRoles = {};
+	    if (a11yTitle) {
+	      a11yRoles['aria-label'] = a11yTitle;
+	      a11yRoles.role = role;
+	    }
+
+	    return _react2.default.createElement(
+	      'g',
+	      (0, _extends3.default)({ key: itemIndex }, a11yRoles),
+	      _react2.default.createElement('path', { className: classes.join(' '), d: commands,
+	        'data-index': itemIndex, onFocus: onOver, onBlur: onOut }),
+	      _react2.default.createElement('path', { className: CLASS_ROOT + '__hot', d: commands, fill: 'none',
+	        onMouseOver: onOver, onMouseOut: onOut,
+	        onClick: onClick })
+	    );
+	  } else {
+	    return _react2.default.createElement('path', { key: itemIndex, className: classes.join(' '), d: commands });
+	  }
+	};
+
+/***/ },
+/* 226 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(88);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _Intl = __webpack_require__(90);
+
+	var _Intl2 = _interopRequireDefault(_Intl);
+
+	var _KeyboardAccelerators = __webpack_require__(87);
+
+	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	var _utils = __webpack_require__(225);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.METER;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Graphic = function (_Component) {
+	  (0, _inherits3.default)(Graphic, _Component);
+
+	  function Graphic(props, context) {
+	    (0, _classCallCheck3.default)(this, Graphic);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Graphic.__proto__ || (0, _getPrototypeOf2.default)(Graphic)).call(this, props, context));
+
+	    _this.state = _this._stateFromProps(props);
+
+	    _this._onNextBand = _this._onNextBand.bind(_this);
+	    _this._onPreviousBand = _this._onPreviousBand.bind(_this);
+	    _this._onGraphicFocus = _this._onGraphicFocus.bind(_this);
+	    _this._onGraphicBlur = _this._onGraphicBlur.bind(_this);
+	    _this._onBandClick = _this._onBandClick.bind(_this);
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Graphic, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(newProps) {
+	      var state = this._stateFromProps(newProps);
+	      this.setState(state);
+	    }
+	  }, {
+	    key: '_onGraphicFocus',
+	    value: function _onGraphicFocus() {
+	      this._keyboardHandlers = {
+	        left: this._onPreviousBand,
+	        up: this._onPreviousBand,
+	        right: this._onNextBand,
+	        down: this._onNextBand,
+	        enter: this._onBandClick
+	      };
+	      _KeyboardAccelerators2.default.startListeningToKeyboard(this, this._keyboardHandlers);
+	    }
+	  }, {
+	    key: '_onGraphicBlur',
+	    value: function _onGraphicBlur() {
+	      _KeyboardAccelerators2.default.stopListeningToKeyboard(this, this._keyboardHandlers);
+	    }
+	  }, {
+	    key: '_onBandClick',
+	    value: function _onBandClick() {
+	      if (this.props.activeIndex !== undefined) {
+	        var activeBand = this.props.series[this.props.activeIndex];
+	        if (activeBand && activeBand.onClick) {
+	          activeBand.onClick();
+	        }
+	      }
+	    }
+
+	    // override
+
+	  }, {
+	    key: '_stateFromProps',
+	    value: function _stateFromProps(props) {
+	      return {};
+	    }
+
+	    // override
+
+	  }, {
+	    key: '_sliceCommands',
+	    value: function _sliceCommands(trackIndex, item, startValue) {
+	      return "";
+	    }
+	  }, {
+	    key: '_renderSlice',
+	    value: function _renderSlice(trackIndex, item, itemIndex, startValue, max, track, threshold) {
+	      var path = void 0;
+	      if (!item.hidden) {
+	        var classes = [CLASS_ROOT + '__slice'];
+	        if (itemIndex === this.props.activeIndex) {
+	          classes.push(CLASS_ROOT + '__slice--active');
+	        }
+	        if (item.onClick) {
+	          classes.push(CLASS_ROOT + "__slice--clickable");
+	        }
+	        if (item.colorIndex) {
+	          classes.push(COLOR_INDEX + '-' + item.colorIndex);
+	        }
+
+	        var commands = this._sliceCommands(trackIndex, item, startValue, max);
+
+	        if (threshold) {
+	          path = (0, _utils.buildPath)(itemIndex, commands, classes);
+	        } else if (track) {
+	          path = (0, _utils.buildPath)(itemIndex, commands, classes, this.props.onActivate, item.onClick);
+	        } else {
+	          var a11yTitle = '' + item.value;
+	          var role = this.props.series.length > 1 ? 'img' : undefined;
+	          path = (0, _utils.buildPath)(itemIndex, commands, classes, this.props.onActivate, item.onClick, a11yTitle, role);
+	        }
+	      }
+
+	      return path;
+	    }
+	  }, {
+	    key: '_renderSlices',
+	    value: function _renderSlices(series, trackIndex, track, threshold) {
+	      var _this2 = this;
+
+	      var _props = this.props;
+	      var min = _props.min;
+	      var max = _props.max;
+
+	      var startValue = min;
+
+	      var paths = series.map(function (item, itemIndex) {
+	        var path = _this2._renderSlice(trackIndex, item, itemIndex, startValue, max, track, threshold);
+
+	        startValue += item.value;
+
+	        return path;
+	      });
+
+	      return paths;
+	    }
+	  }, {
+	    key: '_loadingCommands',
+	    value: function _loadingCommands() {
+	      return this._sliceCommands(0, { value: this.props.max }, this.props.min);
+	    }
+	  }, {
+	    key: '_onPreviousBand',
+	    value: function _onPreviousBand(event) {
+	      event.preventDefault();
+	      var activeIndex = this.props.activeIndex !== undefined ? this.props.activeIndex : -1;
+
+	      if (activeIndex - 1 >= 0) {
+	        this.props.onActivate(activeIndex - 1);
+	      }
+
+	      //stop event propagation
+	      return true;
+	    }
+	  }, {
+	    key: '_onNextBand',
+	    value: function _onNextBand(event) {
+	      event.preventDefault();
+	      var activeIndex = this.props.activeIndex !== undefined ? this.props.activeIndex : -1;
+
+	      var totalBands = _reactDom2.default.findDOMNode(this.meterValuesRef).childNodes.length;
+
+	      if (activeIndex + 1 < totalBands) {
+	        this.props.onActivate(activeIndex + 1);
+	      }
+
+	      //stop event propagation
+	      return true;
+	    }
+	  }, {
+	    key: '_renderLoading',
+	    value: function _renderLoading() {
+	      var classes = [CLASS_ROOT + '__slice'];
+	      classes.push(CLASS_ROOT + '__slice--loading');
+	      classes.push(COLOR_INDEX + '-loading');
+	      var commands = this._loadingCommands();
+	      return [_react2.default.createElement('path', { key: 'loading', className: classes.join(' '), d: commands })];
+	    }
+	  }, {
+	    key: '_renderValues',
+	    value: function _renderValues() {
+	      var _this3 = this;
+
+	      var _props2 = this.props;
+	      var min = _props2.min;
+	      var max = _props2.max;
+
+	      var values = void 0;
+	      if (this.props.stacked) {
+	        values = this._renderSlices(this.props.series, 0);
+	      } else {
+	        values = this.props.series.map(function (item, index) {
+	          return _this3._renderSlice(index, item, index, min, max);
+	        });
+	      }
+	      if (values.length === 0) {
+	        values = this._renderLoading();
+	      }
+	      return _react2.default.createElement(
+	        'g',
+	        { ref: function ref(_ref) {
+	            return _this3.meterValuesRef = _ref;
+	          },
+	          className: CLASS_ROOT + '__values' },
+	        values
+	      );
+	    }
+	  }, {
+	    key: '_renderTracks',
+	    value: function _renderTracks() {
+	      var _this4 = this;
+
+	      var _props3 = this.props;
+	      var min = _props3.min;
+	      var max = _props3.max;
+
+	      var trackValue = { value: max };
+	      var tracks = void 0;
+	      if (this.props.stacked) {
+	        tracks = this._renderSlice(0, trackValue, 0, min, max, true, false);
+	      } else {
+	        tracks = this.props.series.map(function (item, index) {
+	          return _this4._renderSlice(index, trackValue, index, min, max, true, false);
+	        });
+	      }
+	      return _react2.default.createElement(
+	        'g',
+	        { className: CLASS_ROOT + '__tracks' },
+	        tracks
+	      );
+	    }
+	  }, {
+	    key: '_renderThresholds',
+	    value: function _renderThresholds() {
+	      var result = void 0;
+	      var thresholds = this._renderSlices(this.props.thresholds, -0.4, false, true);
+	      if (thresholds.length > 0) {
+	        result = _react2.default.createElement(
+	          'g',
+	          { className: CLASS_ROOT + '__thresholds' },
+	          thresholds
+	        );
+	      }
+	      return result;
+	    }
+	  }, {
+	    key: '_renderTotal',
+	    value: function _renderTotal() {
+	      return this.props.series.map(function (s) {
+	        return s.value;
+	      }).reduce(function (prev, curr) {
+	        return prev + curr;
+	      }, 0);
+	    }
+	  }, {
+	    key: '_renderTopLayer',
+	    value: function _renderTopLayer() {
+	      return null;
+	    }
+	  }, {
+	    key: '_renderA11YTitle',
+	    value: function _renderA11YTitle() {
+	      var a11yTitle = this.props.a11yTitle;
+	      if (!a11yTitle) {
+	        var graphicTitle = _Intl2.default.getMessage(this.context.intl, this.displayName);
+	        var meterTitle = _Intl2.default.getMessage(this.context.intl, 'Meter');
+
+	        a11yTitle = graphicTitle + ' ' + meterTitle;
+	      }
+
+	      return a11yTitle + '. ' + this._renderA11YDesc();
+	    }
+	  }, {
+	    key: '_renderA11YDesc',
+	    value: function _renderA11YDesc() {
+	      var _this5 = this;
+
+	      var a11yDesc = this.props.a11yDesc;
+	      if (!a11yDesc) {
+	        var valueLabel = _Intl2.default.getMessage(this.context.intl, 'Value');
+	        a11yDesc = ', ' + valueLabel + ': ' + this._renderTotal();
+
+	        if (this.props.min) {
+	          var minLabel = _Intl2.default.getMessage(this.context.intl, 'Min');
+	          a11yDesc += ', ' + minLabel + ': ' + this.props.min;
+	        }
+
+	        if (this.props.max) {
+	          var maxLabel = _Intl2.default.getMessage(this.context.intl, 'Max');
+	          a11yDesc += ', ' + maxLabel + ': ' + this.props.max;
+	        }
+
+	        if (this.props.thresholds) {
+	          (function () {
+	            var thresholdLabel = _Intl2.default.getMessage(_this5.context.intl, 'Threshold');
+	            _this5.props.thresholds.forEach(function (threshold) {
+	              if (threshold.ariaLabel) {
+	                a11yDesc += ', ' + thresholdLabel + ': ' + threshold.ariaLabel;
+	              }
+	            });
+	          })();
+	        }
+	      }
+
+	      return a11yDesc;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var classes = [CLASS_ROOT];
+	      if (this.props.className) {
+	        classes.push(this.props.className);
+	      }
+
+	      var tracks = this._renderTracks();
+	      var values = this._renderValues();
+	      var thresholds = this._renderThresholds();
+	      var topLayer = this._renderTopLayer();
+
+	      var a11yTitle = this._renderA11YTitle();
+
+	      var role = this.props.series.length > 1 ? 'group' : 'img';
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { className: CLASS_ROOT + '__graphic',
+	          tabIndex: role === 'img' ? undefined : this.props.tabIndex || '0',
+	          width: this.state.viewBoxWidth, role: role,
+	          height: this.state.viewBoxHeight,
+	          viewBox: "0 0 " + this.state.viewBoxWidth + " " + this.state.viewBoxHeight,
+	          preserveAspectRatio: 'xMidYMid meet',
+	          'aria-label': a11yTitle, onFocus: this._onGraphicFocus,
+	          onBlur: this._onGraphicBlur },
+	        tracks,
+	        thresholds,
+	        values,
+	        topLayer
+	      );
+	    }
+	  }]);
+	  return Graphic;
+	}(_react.Component);
+
+	Graphic.displayName = 'Graphic';
+	exports.default = Graphic;
+
+
+	Graphic.propTypes = (0, _extends3.default)({
+	  stacked: _react.PropTypes.bool,
+	  tabIndex: _react.PropTypes.string,
+	  thresholds: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    value: _react.PropTypes.number.isRequired,
+	    colorIndex: _react.PropTypes.string
+	  })).isRequired,
+	  vertical: _react.PropTypes.bool
+	}, _utils.propTypes);
+
+	Graphic.contextTypes = {
+	  intl: _react.PropTypes.object
+	};
+
+	Graphic.defaultProps = {
+	  tabIndex: '0'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Graphics = __webpack_require__(224);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	var _utils = __webpack_require__(225);
+
+	var _Graphic2 = __webpack_require__(226);
+
+	var _Graphic3 = _interopRequireDefault(_Graphic2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.METER; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var SPIRAL_WIDTH = _utils.baseDimension;
+	var SPIRAL_RADIUS = _utils.baseDimension / 2 - _Graphics.baseUnit / 2;
+	var RING_THICKNESS = _Graphics.baseUnit;
+	// Allow for active value content next to a spiral meter
+
+	var Spiral = function (_Graphic) {
+	  (0, _inherits3.default)(Spiral, _Graphic);
+
+	  function Spiral(props, context) {
+	    (0, _classCallCheck3.default)(this, Spiral);
+
+	    //needed in Graphic.js to fix minification issues
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Spiral.__proto__ || (0, _getPrototypeOf2.default)(Spiral)).call(this, props, context));
+
+	    _this.displayName = 'Spiral';
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Spiral, [{
+	    key: '_stateFromProps',
+	    value: function _stateFromProps(props) {
+	      var viewBoxHeight = Math.max(SPIRAL_WIDTH, RING_THICKNESS * (props.series.length + 1) * 2);
+	      var viewBoxWidth = viewBoxHeight;
+
+	      var state = {
+	        startAngle: 0,
+	        anglePer: 270.0 / props.max,
+	        angleOffset: 180,
+	        // The last spiral ends out near but not quite at the edge of the
+	        // view box.
+	        startRadius: Math.max(SPIRAL_RADIUS, RING_THICKNESS * (props.series.length + 0.5)) - Math.max(0, props.series.length - 1) * RING_THICKNESS,
+	        viewBoxHeight: viewBoxHeight,
+	        viewBoxRadius: viewBoxWidth / 2,
+	        viewBoxWidth: viewBoxWidth
+	      };
+
+	      return state;
+	    }
+	  }, {
+	    key: '_sliceCommands',
+	    value: function _sliceCommands(trackIndex, item, startValue) {
+	      var viewBoxRadius = this.state.viewBoxRadius;
+
+	      var startAngle = (0, _Graphics.translateEndAngle)(this.state.startAngle, this.state.anglePer, startValue);
+	      var endAngle = (0, _Graphics.translateEndAngle)(startAngle, this.state.anglePer, item.value);
+	      var radius = Math.min(viewBoxRadius, this.state.startRadius + trackIndex * RING_THICKNESS);
+	      return (0, _Graphics.arcCommands)(viewBoxRadius, viewBoxRadius, radius, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset);
+	    }
+	  }, {
+	    key: '_renderThresholds',
+	    value: function _renderThresholds() {
+	      return null;
+	    }
+	  }, {
+	    key: '_renderTopLayer',
+	    value: function _renderTopLayer() {
+	      var viewBoxRadius = this.state.viewBoxRadius;
+
+	      var x = viewBoxRadius + RING_THICKNESS * 0.5;
+	      var y = viewBoxRadius + RING_THICKNESS * 1.75;
+	      var labels = this.props.series.map(function (item, index) {
+	        var classes = [CLASS_ROOT + "__label"];
+	        if (index === this.props.activeIndex) {
+	          classes.push(CLASS_ROOT + "__label--active");
+	        }
+
+	        var textX = x;
+	        var textY = y;
+
+	        y += RING_THICKNESS;
+
+	        return _react2.default.createElement(
+	          'text',
+	          { key: item.label || index, x: textX, y: textY,
+	            textAnchor: 'start', fontSize: 16,
+	            className: classes.join(' '),
+	            onMouseOver: this.props.onActivate.bind(null, index),
+	            onMouseOut: this.props.onActivate.bind(null, null),
+	            onClick: item.onClick },
+	          item.label
+	        );
+	      }, this);
+
+	      return _react2.default.createElement(
+	        'g',
+	        { className: CLASS_ROOT + "__labels" },
+	        labels
+	      );
+	    }
+	  }]);
+	  return Spiral;
+	}(_Graphic3.default);
+
+	exports.default = Spiral;
+
+
+	Spiral.defaultProps = {
+	  thresholds: []
+	};
+
+	//needed in Graphic.js to fix minification issues
+	Spiral.displayName = 'Spiral';
+	module.exports = exports['default'];
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _utils = __webpack_require__(225);
+
+	var _Graphic2 = __webpack_require__(226);
+
+	var _Graphic3 = _interopRequireDefault(_Graphic2);
+
+	var _Graphics = __webpack_require__(224);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CIRCLE_WIDTH = _utils.baseDimension; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var CIRCLE_RADIUS = _utils.baseDimension / 2 - _Graphics.baseUnit / 2;
+	var RING_THICKNESS = _Graphics.baseUnit;
+
+	var Circle = function (_Graphic) {
+	  (0, _inherits3.default)(Circle, _Graphic);
+
+	  function Circle(props, context) {
+	    (0, _classCallCheck3.default)(this, Circle);
+
+	    //needed in Graphic.js to fix minification issues
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Circle.__proto__ || (0, _getPrototypeOf2.default)(Circle)).call(this, props, context));
+
+	    _this.displayName = 'Circle';
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Circle, [{
+	    key: '_stateFromProps',
+	    value: function _stateFromProps(props) {
+	      if (!props.stacked && (props.series.length - 1) * RING_THICKNESS > CIRCLE_RADIUS) {
+	        console.warn("You cannot have more than " + Math.round(CIRCLE_RADIUS / RING_THICKNESS) + " data values in a circle Meter");
+	      }
+
+	      var state = {
+	        startAngle: 0,
+	        anglePer: !props.max ? 0 : 360 / (props.max - props.min),
+	        angleOffset: 180,
+	        viewBoxWidth: CIRCLE_WIDTH,
+	        viewBoxHeight: CIRCLE_WIDTH
+	      };
+
+	      return state;
+	    }
+	  }, {
+	    key: '_sliceCommands',
+	    value: function _sliceCommands(trackIndex, item, startValue, max) {
+	      var startAngle = (0, _Graphics.translateEndAngle)(this.state.startAngle, this.state.anglePer, startValue);
+
+	      var endAngle;
+	      if (!item.value) {
+	        endAngle = startAngle;
+	      } else if (startValue + item.value >= max) {
+	        endAngle = 360;
+	      } else {
+	        endAngle = Math.min(360, Math.max(startAngle, (0, _Graphics.translateEndAngle)(startAngle, this.state.anglePer, item.value)));
+	      }
+
+	      var radius = Math.max(1, CIRCLE_RADIUS - trackIndex * RING_THICKNESS);
+	      return (0, _Graphics.arcCommands)(CIRCLE_WIDTH / 2, CIRCLE_WIDTH / 2, radius, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset);
+	    }
+	  }]);
+	  return Circle;
+	}(_Graphic3.default);
+
+	//needed in Graphic.js to fix minification issues
+
+
+	exports.default = Circle;
+	Circle.displayName = 'Circle';
+	module.exports = exports['default'];
+
+/***/ },
+/* 229 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Graphics = __webpack_require__(224);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	var _utils = __webpack_require__(225);
+
+	var _Graphic2 = __webpack_require__(226);
+
+	var _Graphic3 = _interopRequireDefault(_Graphic2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.METER; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var ARC_WIDTH = _utils.baseDimension;
+	var ARC_HEIGHT = Math.round(_utils.baseDimension * 0.75);
+	var ARC_RADIUS = _utils.baseDimension / 2 - _Graphics.baseUnit / 2;
+	var INDICATOR_HUB_RADIUS = _Graphics.baseUnit / 4;
+	var RING_THICKNESS = _Graphics.baseUnit;
+
+	function singleIndicatorCommands(centerX, centerY, radius, startAngle, endAngle, length) {
+	  var point = (0, _Graphics.polarToCartesian)(centerX, centerY, radius - (length - INDICATOR_HUB_RADIUS), endAngle - 1);
+	  var start = (0, _Graphics.polarToCartesian)(centerX, centerY, radius, endAngle - 1);
+	  var d = ["M", centerX, centerY - INDICATOR_HUB_RADIUS, "A", INDICATOR_HUB_RADIUS, INDICATOR_HUB_RADIUS, 0, 1, 1, centerX, centerY + INDICATOR_HUB_RADIUS, "A", INDICATOR_HUB_RADIUS, INDICATOR_HUB_RADIUS, 0, 1, 1, centerX, centerY - INDICATOR_HUB_RADIUS, "M", point.x, point.y, "L", start.x, start.y].join(" ");
+	  return d;
+	}
+
+	var Arc = function (_Graphic) {
+	  (0, _inherits3.default)(Arc, _Graphic);
+
+	  function Arc(props, context) {
+	    (0, _classCallCheck3.default)(this, Arc);
+
+	    //needed in Graphic.js to fix minification issues
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Arc.__proto__ || (0, _getPrototypeOf2.default)(Arc)).call(this, props, context));
+
+	    _this.displayName = 'Arc';
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Arc, [{
+	    key: '_viewBoxDimensions',
+	    value: function _viewBoxDimensions(props) {
+	      var viewBoxWidth;
+	      var viewBoxHeight;
+	      if (props.vertical) {
+	        viewBoxWidth = ARC_HEIGHT;
+	        viewBoxHeight = ARC_WIDTH;
+	      } else {
+	        viewBoxWidth = ARC_WIDTH;
+	        viewBoxHeight = ARC_HEIGHT;
+	      }
+	      return [viewBoxWidth, viewBoxHeight];
+	    }
+	  }, {
+	    key: '_stateFromProps',
+	    value: function _stateFromProps(props) {
+	      var viewBoxDimensions = this._viewBoxDimensions(props);
+
+	      var state = {
+	        startAngle: 60,
+	        anglePer: !props.max ? 0 : 240.0 / (props.max - props.min),
+	        angleOffset: 180,
+	        viewBoxWidth: viewBoxDimensions[0],
+	        viewBoxHeight: viewBoxDimensions[1]
+	      };
+	      if (props.vertical) {
+	        state.angleOffset = 90;
+	      } else {
+	        state.angleOffset = 180;
+	      }
+
+	      return state;
+	    }
+	  }, {
+	    key: '_sliceCommands',
+	    value: function _sliceCommands(trackIndex, item, startValue) {
+	      var startAngle = (0, _Graphics.translateEndAngle)(this.state.startAngle, this.state.anglePer, startValue);
+	      var endAngle = Math.max(startAngle + (item.value > 0 ? RING_THICKNESS / 2 : 0), (0, _Graphics.translateEndAngle)(startAngle, this.state.anglePer, item.value));
+	      var radius = Math.max(1, ARC_RADIUS - trackIndex * RING_THICKNESS);
+	      return (0, _Graphics.arcCommands)(ARC_WIDTH / 2, ARC_WIDTH / 2, radius, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset);
+	    }
+	  }, {
+	    key: '_renderTopLayer',
+	    value: function _renderTopLayer() {
+	      var indicator;
+	      if (this.props.series.length === 1) {
+	        var item = this.props.series[0];
+	        var startAngle = this.state.startAngle;
+	        var endAngle = (0, _Graphics.translateEndAngle)(startAngle, this.state.anglePer, item.value);
+	        var length = ARC_RADIUS;
+	        var x = ARC_WIDTH / 2;
+	        var y = ARC_WIDTH / 2;
+	        var indicatorCommands = singleIndicatorCommands(x, y, ARC_RADIUS, startAngle + this.state.angleOffset, endAngle + this.state.angleOffset, length);
+	        indicator = _react2.default.createElement('path', { fill: 'none',
+	          className: CLASS_ROOT + '__slice-indicator ' + (COLOR_INDEX + '-' + item.colorIndex),
+	          d: indicatorCommands });
+	      }
+
+	      return indicator;
+	    }
+	  }]);
+	  return Arc;
+	}(_Graphic3.default);
+
+	exports.default = Arc;
+	module.exports = exports['default'];
+
+/***/ },
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	var _Intl = __webpack_require__(90);
+
+	var _Intl2 = _interopRequireDefault(_Intl);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.CHART_AXIS; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Axis = function (_Component) {
+	  (0, _inherits3.default)(Axis, _Component);
+
+	  function Axis(props, context) {
+	    (0, _classCallCheck3.default)(this, Axis);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Axis.__proto__ || (0, _getPrototypeOf2.default)(Axis)).call(this, props, context));
+
+	    _this.state = {
+	      items: _this._buildItems(props)
+	    };
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Axis, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      this.setState({ items: this._buildItems(nextProps) });
+	    }
+	  }, {
+	    key: '_buildItems',
+	    value: function _buildItems(props) {
+	      var count = props.count;
+	      var labels = props.labels;
+
+	      var items = [];
+	      var basis = 100.0 / (count - 1);
+
+	      var _loop = function _loop(index) {
+	        var item = void 0;
+	        if (labels) {
+	          var labelItem = labels.filter(function (item) {
+	            return item.index === index;
+	          })[0];
+	          if (labelItem) {
+	            // clone since we're decorating something the user provided
+	            item = (0, _extends3.default)({}, labelItem);
+	          }
+	        }
+	        if (!item) {
+	          item = { index: index };
+	        }
+	        if (0 === index) {
+	          item.basis = basis / 2;
+	        } else if (1 === index) {
+	          item.basis = basis / 2;
+	        } else {
+	          item.basis = basis;
+	        }
+	        items.push(item);
+	      };
+
+	      for (var index = 0; index < count; index += 1) {
+	        _loop(index);
+	      }
+	      return items;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var a11yTitle = _props.a11yTitle;
+	      var align = _props.align;
+	      var reverse = _props.reverse;
+	      var ticks = _props.ticks;
+	      var vertical = _props.vertical;
+	      var tickAlign = _props.tickAlign;
+	      var items = this.state.items;
+	      var intl = this.context.intl;
+
+
+	      var classes = [CLASS_ROOT];
+	      if (reverse) {
+	        classes.push(CLASS_ROOT + '--reverse');
+	      }
+	      if (vertical) {
+	        classes.push(CLASS_ROOT + '--vertical');
+	      }
+	      if (align) {
+	        classes.push(CLASS_ROOT + '--align-' + align);
+	      }
+	      if (ticks) {
+	        classes.push(CLASS_ROOT + '--ticks');
+	      }
+	      if (tickAlign) {
+	        classes.push(CLASS_ROOT + '--ticks--' + tickAlign);
+	      }
+	      if (this.props.className) {
+	        classes.push(this.props.className);
+	      }
+
+	      var elements = items.map(function (item) {
+
+	        var classes = [CLASS_ROOT + '__slot'];
+
+	        if (item.placeholder) {
+	          classes.push(CLASS_ROOT + '__slot--placeholder');
+	        }
+	        if (item.colorIndex) {
+	          classes.push(COLOR_INDEX + '-' + item.colorIndex);
+	        }
+	        var role = item.label && item.label !== '' ? 'row' : undefined;
+	        var label = item.label ? _react2.default.createElement(
+	          'span',
+	          null,
+	          item.label
+	        ) : null;
+
+	        return _react2.default.createElement(
+	          'div',
+	          { key: item.value || item.index,
+	            className: classes.join(' '), role: role,
+	            style: { flexBasis: item.basis + '%' } },
+	          label
+	        );
+	      });
+
+	      var axisLabel = a11yTitle || _Intl2.default.getMessage(intl, 'AxisLabel', {
+	        orientation: vertical ? 'y' : 'x'
+	      });
+
+	      return _react2.default.createElement(
+	        'div',
+	        { id: this.props.id, role: 'rowgroup', 'aria-label': axisLabel,
+	          className: classes.join(' '), style: this.props.style },
+	        elements
+	      );
+	    }
+	  }]);
+	  return Axis;
+	}(_react.Component);
+
+	Axis.displayName = 'Axis';
+	exports.default = Axis;
+	;
+
+	Axis.contextTypes = {
+	  intl: _react.PropTypes.object
+	};
+
+	Axis.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  align: _react.PropTypes.oneOf(['start', 'end']), // only from Chart
+	  count: _react.PropTypes.number.isRequired,
+	  labels: _react.PropTypes.arrayOf(_react.PropTypes.shape({
+	    colorIndex: _react.PropTypes.string,
+	    index: _react.PropTypes.number.isRequired,
+	    label: _react.PropTypes.node.isRequired
+	  })),
+	  reverse: _react.PropTypes.bool,
+	  ticks: _react.PropTypes.bool,
+	  tickAlign: _react.PropTypes.oneOf(['start', 'end']),
+	  vertical: _react.PropTypes.bool
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CHART_LAYERS;
+
+	var Layers = function (_Component) {
+	  (0, _inherits3.default)(Layers, _Component);
+
+	  function Layers() {
+	    (0, _classCallCheck3.default)(this, Layers);
+	    return (0, _possibleConstructorReturn3.default)(this, (Layers.__proto__ || (0, _getPrototypeOf2.default)(Layers)).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Layers, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var height = _props.height;
+	      var width = _props.width;
+
+
+	      var style = (0, _extends3.default)({}, this.props.style);
+	      if (height) {
+	        style.height = height + 'px';
+	      }
+	      if (width) {
+	        style.width = width + 'px';
+	      }
+
+	      var children = _react.Children.map(this.props.children, function (child) {
+	        if (child) {
+	          return _react2.default.cloneElement(child, { width: width, height: height });
+	        } else {
+	          return child;
+	        }
+	      });
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: CLASS_ROOT, style: style },
+	        children
+	      );
+	    }
+	  }]);
+	  return Layers;
+	}(_react.Component);
+
+	Layers.displayName = 'Layers';
+	exports.default = Layers;
+	;
+
+	Layers.propTypes = {
+	  height: _react.PropTypes.number, // only from Chart
+	  width: _react.PropTypes.number // only from Chart
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _keys = __webpack_require__(84);
+
+	var _keys2 = _interopRequireDefault(_keys);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Props = __webpack_require__(91);
+
+	var _Props2 = _interopRequireDefault(_Props);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.CHART_BASE;
+
+	// Placeholder that reserves space on the screen for Layers to be
+	// positioned over.
+
+	// (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+
+	var Base = function (_Component) {
+	  (0, _inherits3.default)(Base, _Component);
+
+	  function Base() {
+	    (0, _classCallCheck3.default)(this, Base);
+	    return (0, _possibleConstructorReturn3.default)(this, (Base.__proto__ || (0, _getPrototypeOf2.default)(Base)).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Base, [{
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var vertical = this.props.vertical;
+
+	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Base.propTypes));
+	      var childCount = _react.Children.count(this.props.children);
+	      var width = !childCount && !this.props.width ? 'medium' : this.props.width;
+	      var height = !childCount && !this.props.height ? 'medium' : this.props.height;
+
+	      var classes = [CLASS_ROOT];
+	      if (vertical) {
+	        classes.push(CLASS_ROOT + '--vertical');
+	      }
+	      if (height) {
+	        classes.push(CLASS_ROOT + '--height-' + height);
+	      }
+	      if (width) {
+	        classes.push(CLASS_ROOT + '--width-' + width);
+	      }
+	      if (this.props.className) {
+	        classes.push(this.props.className);
+	      }
+
+	      var children = this.props.children;
+	      // We can't distribute children when vertical because our height isn't
+	      // known.
+	      if (!vertical) {
+	        (function () {
+	          // Round to hundredths of a % so things line up reasonably accurately
+	          var basis = Math.floor(10000 / childCount) / 100.0 + '%';
+	          children = _react.Children.map(_this2.props.children, function (child) {
+	            return child ? _react2.default.cloneElement(child, { style: { flexBasis: basis } }) : child;
+	          });
+	        })();
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        (0, _extends3.default)({}, restProps, { className: classes.join(' ') }),
+	        children
+	      );
+	    }
+	  }]);
+	  return Base;
+	}(_react.Component);
+
+	Base.displayName = 'Base';
+	exports.default = Base;
+	;
+
+	Base.propTypes = {
+	  height: _react.PropTypes.oneOf(['small', 'medium', 'large', 'sparkline']),
+	  vertical: _react.PropTypes.bool,
+	  width: _react.PropTypes.oneOf(['small', 'medium', 'large', 'full'])
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _utils = __webpack_require__(221);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.CHART_GRID;
+
+	// Underlying grid lines for rows and/or columns.
+
+	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var Grid = function (_Component) {
+	  (0, _inherits3.default)(Grid, _Component);
+
+	  function Grid(props, context) {
+	    (0, _classCallCheck3.default)(this, Grid);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Grid.__proto__ || (0, _getPrototypeOf2.default)(Grid)).call(this, props, context));
+
+	    _this._onResize = _this._onResize.bind(_this);
+	    _this._layout = _this._layout.bind(_this);
+	    _this.state = { height: 1, width: 1 };
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Grid, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.addEventListener('resize', this._onResize);
+	      this._onResize();
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearTimeout(this._resizeTimer);
+	      window.removeEventListener('resize', this._onResize);
+	    }
+	  }, {
+	    key: '_onResize',
+	    value: function _onResize() {
+	      // debounce
+	      clearTimeout(this._resizeTimer);
+	      // delay should be greater than Chart's delay
+	      this._resizeTimer = setTimeout(this._layout, _utils.debounceDelay + 10);
+	    }
+	  }, {
+	    key: '_layout',
+	    value: function _layout() {
+	      var _props = this.props;
+	      var height = _props.height;
+	      var width = _props.width;
+
+	      var grid = this.gridRef;
+	      var rect = grid.getBoundingClientRect();
+	      this.setState({ height: height || rect.height });
+	      this.setState({ width: width || rect.width });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props2 = this.props;
+	      var columns = _props2.columns;
+	      var rows = _props2.rows;
+	      var _state = this.state;
+	      var height = _state.height;
+	      var width = _state.width;
+
+	      var commands = '';
+
+	      if (columns) {
+	        var basis = (width - 2 * _utils.padding) / (columns - 1);
+	        for (var i = 0; i < columns; i += 1) {
+	          var x = i * basis;
+	          commands += 'M' + (x + _utils.padding) + ',' + _utils.padding + ' L' + (x + _utils.padding) + ',' + (height - _utils.padding) + ' ';
+	        }
+	      }
+
+	      if (rows) {
+	        var _basis = (height - 2 * _utils.padding) / (rows - 1);
+	        for (var _i = 0; _i < rows; _i += 1) {
+	          var y = _i * _basis;
+	          commands += 'M' + _utils.padding + ',' + (y + _utils.padding) + ' L' + (width - _utils.padding) + ',' + (y + _utils.padding) + ' ';
+	        }
+	      }
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { ref: function ref(_ref) {
+	            return _this2.gridRef = _ref;
+	          }, className: CLASS_ROOT,
+	          viewBox: '0 0 ' + width + ' ' + height,
+	          preserveAspectRatio: 'none' },
+	        _react2.default.createElement('path', { fill: 'none', d: commands })
+	      );
+	    }
+	  }]);
+	  return Grid;
+	}(_react.Component);
+
+	Grid.displayName = 'Grid';
+	exports.default = Grid;
+	;
+
+	Grid.propTypes = {
+	  columns: _react.PropTypes.number,
+	  rows: _react.PropTypes.number
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _Graph2 = __webpack_require__(235);
+
+	var _Graph3 = _interopRequireDefault(_Graph2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Area = function (_Graph) {
+	  (0, _inherits3.default)(Area, _Graph);
+
+	  function Area() {
+	    (0, _classCallCheck3.default)(this, Area);
+	    return (0, _possibleConstructorReturn3.default)(this, (Area.__proto__ || (0, _getPrototypeOf2.default)(Area)).apply(this, arguments));
+	  }
+
+	  return Area;
+	}(_Graph3.default); // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	exports.default = Area;
+	;
+
+	Area.defaultProps = (0, _extends3.default)({}, _Graph3.default.defaultProps, {
+	  type: 'area'
+	});
+
+	Area.displayName = 'Area';
+	module.exports = exports['default'];
+
+/***/ },
+/* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _toConsumableArray2 = __webpack_require__(199);
+
+	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _utils = __webpack_require__(221);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	var _Intl = __webpack_require__(90);
+
+	var _Intl2 = _interopRequireDefault(_Intl);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CHART_GRAPH;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Graph = function (_Component) {
+	  (0, _inherits3.default)(Graph, _Component);
+
+	  function Graph(props, context) {
+	    (0, _classCallCheck3.default)(this, Graph);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Graph.__proto__ || (0, _getPrototypeOf2.default)(Graph)).call(this, props, context));
+
+	    _this._onResize = _this._onResize.bind(_this);
+	    _this._layout = _this._layout.bind(_this);
+	    _this._renderA11YTitle = _this._renderA11YTitle.bind(_this);
+	    _this.state = { height: props.height || 1, width: props.width || 1 };
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Graph, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      window.addEventListener('resize', this._onResize);
+	      this._onResize();
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearTimeout(this._resizeTimer);
+	      window.removeEventListener('resize', this._onResize);
+	    }
+	  }, {
+	    key: '_onResize',
+	    value: function _onResize() {
+	      // debounce
+	      clearTimeout(this._resizeTimer);
+	      // delay should be greater than Chart's delay
+	      this._resizeTimer = setTimeout(this._layout, _utils.debounceDelay + 10);
+	    }
+	  }, {
+	    key: '_layout',
+	    value: function _layout() {
+	      var _props = this.props;
+	      var height = _props.height;
+	      var width = _props.width;
+
+	      var graph = this.graphRef;
+	      var rect = graph.parentNode.getBoundingClientRect();
+	      this.setState({
+	        height: height || Math.floor(rect.height),
+	        width: width || Math.floor(rect.width)
+	      });
+	    }
+
+	    // Determines what the appropriate control coordinates are on
+	    // either side of the coordinate at the specified index.
+	    // This calculation is a simplified smoothing function that
+	    // just looks at whether the line through this coordinate is
+	    // ascending, descending or not. Peaks, valleys, and flats are
+	    // treated the same.
+
+	  }, {
+	    key: '_controlCoordinates',
+	    value: function _controlCoordinates(coordinates, index) {
+	      var current = coordinates[index];
+	      // Use previous and next coordinates when available, otherwise use
+	      // the current coordinate for them.
+	      var previous = current;
+	      if (index > 0) {
+	        previous = coordinates[index - 1];
+	      }
+	      var next = current;
+	      if (index < coordinates.length - 1) {
+	        next = coordinates[index + 1];
+	      }
+
+	      // Put the control X coordinates midway between the coordinates.
+	      var deltaX = (current[0] - previous[0]) / 2.4;
+	      var deltaY = void 0;
+
+	      // Start with a flat slope. This works for peaks, valleys, and flats.
+	      var first = [current[0] - deltaX, current[1]];
+	      var second = [current[0] + deltaX, current[1]];
+
+	      if (previous[1] < current[1] && current[1] < next[1]) {
+	        // Ascending, use the minimum positive slope.
+	        deltaY = Math.min((current[1] - previous[1]) / 2, (next[1] - current[1]) / 2);
+	        first[1] = current[1] - deltaY;
+	        second[1] = current[1] + deltaY;
+	      } else if (previous[1] > current[1] && current[1] > next[1]) {
+	        // Descending, use the minimum negative slope.
+	        deltaY = Math.min((previous[1] - current[1]) / 2, (current[1] - next[1]) / 2);
+	        first[1] = current[1] + deltaY;
+	        second[1] = current[1] - deltaY;
+	      }
+	      return [first, second];
+	    }
+	  }, {
+	    key: '_renderA11YTitle',
+	    value: function _renderA11YTitle() {
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var max = _props2.max;
+	      var min = _props2.min;
+	      var type = _props2.type;
+	      var values = _props2.values;
+	      var intl = this.context.intl;
+
+
+	      if (a11yTitle) {
+	        return a11yTitle;
+	      }
+
+	      var typeLabel = _Intl2.default.getMessage(intl, type);
+
+	      var minLabel = ', ' + _Intl2.default.getMessage(intl, 'Min') + ': ' + min;
+
+	      var maxLabel = ', ' + _Intl2.default.getMessage(intl, 'Max') + ': ' + max;
+
+	      var definedValues = values.filter(function (value) {
+	        return value;
+	      });
+	      var valueLabel = _Intl2.default.getMessage(intl, 'GraphValues', {
+	        count: values.length,
+	        highest: Math.max.apply(Math, (0, _toConsumableArray3.default)(definedValues)).toString(),
+	        smallest: Math.min.apply(Math, (0, _toConsumableArray3.default)(definedValues)).toString()
+	      });
+
+	      return typeLabel + ' ' + minLabel + ' ' + maxLabel + '. ' + valueLabel;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props3 = this.props;
+	      var activeIndex = _props3.activeIndex;
+	      var colorIndex = _props3.colorIndex;
+	      var max = _props3.max;
+	      var min = _props3.min;
+	      var reverse = _props3.reverse;
+	      var smooth = _props3.smooth;
+	      var type = _props3.type;
+	      var values = _props3.values;
+	      var vertical = _props3.vertical;
+	      var _state = this.state;
+	      var height = _state.height;
+	      var width = _state.width;
+
+	      var pad = Math.min(width, height) < _utils.padding * 8 ? 2 : _utils.padding;
+
+	      var classes = [CLASS_ROOT, CLASS_ROOT + '--' + type];
+	      if (vertical) {
+	        classes.push(CLASS_ROOT + '--vertical');
+	      }
+	      classes.push(COLOR_INDEX + '-' + (colorIndex || 'graph-1'));
+
+	      var scale = void 0,
+	          step = void 0;
+	      if (vertical) {
+	        if (values.length <= 1) {
+	          scale = 1;
+	          step = height - 2 * pad;
+	        } else {
+	          scale = (width - 2 * pad) / (max - min);
+	          step = (height - 2 * pad) / (values.length - 1);
+	        }
+	      } else {
+	        if (values.length <= 1) {
+	          scale = 1;
+	          step = width - 2 * pad;
+	        } else {
+	          scale = (height - 2 * pad) / (max - min);
+	          step = (width - 2 * pad) / (values.length - 1);
+	        }
+	      }
+
+	      // Get all coordinates up front so they are available
+	      // if we are drawing a smooth chart.
+	      var points = [];
+	      var coordinates = values.map(function (value, index) {
+	        var coordinate = void 0;
+	        if (undefined !== value) {
+	          if (vertical) {
+	            coordinate = [(value - min) * scale + pad, (reverse ? index * step : height - 2 * pad - index * step) + pad];
+	          } else {
+	            coordinate = [(reverse ? width - 2 * pad - index * step : index * step) + pad, height - 2 * pad - (value - min) * scale + pad];
+	          }
+
+	          if ((_this2.props.points || index === activeIndex) && !_this2.props.sparkline) {
+	            var _classes = [CLASS_ROOT + '__point', COLOR_INDEX + '-' + (colorIndex || 'graph-1')];
+	            var radius = _utils.pointSize / 3;
+	            if (index === activeIndex) {
+	              _classes.push(CLASS_ROOT + '__point--active');
+	              radius = _utils.pointSize / 2;
+	            }
+	            points.push(_react2.default.createElement('circle', { key: index, className: _classes.join(' '),
+	              cx: coordinate[0], cy: coordinate[1], r: radius }));
+	          }
+	        }
+
+	        return coordinate;
+	      }).filter(function (coordinate) {
+	        return coordinate;
+	      });
+
+	      var path = void 0;
+	      if (coordinates.length > 1) {
+	        var pathProps = {};
+	        var commands = void 0;
+
+	        // Build the commands for this set of coordinates.
+
+	        if ('area' === type || 'line' === type) {
+
+	          if (smooth) {
+	            (function () {
+	              var controlCoordinates = coordinates.map(function (coord, index) {
+	                return _this2._controlCoordinates(coordinates, index);
+	              });
+	              commands = '';
+	              coordinates.forEach(function (coord, index) {
+	                if (0 === index) {
+	                  commands += 'M' + coord.join(',');
+	                } else {
+	                  // Use the previous right control coordinate and the current
+	                  // left control coordinate. We do this because we calculate
+	                  // the left and right sides for a particular index together,
+	                  // so the path is smooth but the SVG C command needs the
+	                  // right one from the previous index and the left one from
+	                  // the current index.
+	                  commands += ' C' + controlCoordinates[index - 1][1].join(',') + '\n                ' + controlCoordinates[index][0].join(',') + ' ' + coord.join(',');
+	                }
+	              });
+	            })();
+	          } else {
+	            commands = 'M' + coordinates.map(function (c) {
+	              return c.join(',');
+	            }).join(' L');
+	          }
+
+	          if ('area' === type) {
+	            if (vertical) {
+	              if (reverse) {
+	                // Close the path by drawing to the left
+	                // and across to the top of where we started.
+	                commands += 'L' + pad + ',' + coordinates[coordinates.length - 1][1] + '\n                L' + pad + ',' + coordinates[0][1] + ' Z';
+	              } else {
+	                // Close the path by drawing to the left
+	                // and across to the bottom of where we started.
+	                commands += 'L' + pad + ',' + coordinates[coordinates.length - 1][1] + '\n                L' + pad + ',' + (height - pad) + ' Z';
+	              }
+	            } else {
+	              // Close the path by drawing down to the bottom
+	              // and across to the left of where we started.
+	              commands += 'L' + coordinates[coordinates.length - 1][0] + ',' + (height - pad) + '\n              L' + coordinates[0][0] + ',' + (height - pad) + ' Z';
+	            }
+	            pathProps.stroke = 'none';
+	          } else {
+	            pathProps.fill = 'none';
+	          }
+	        } else if ('bar' === type) {
+	          commands = coordinates.map(function (c) {
+	            return 'M' + c.join(',') + 'L' + (vertical ? pad + ',' + c[1] : c[0] + ',' + (height - pad));
+	          }).join(' ');
+	          pathProps.fill = 'none';
+	        }
+
+	        path = _react2.default.createElement('path', (0, _extends3.default)({}, pathProps, { d: commands }));
+	      }
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { ref: function ref(_ref) {
+	            return _this2.graphRef = _ref;
+	          }, className: classes.join(' '),
+	          viewBox: '0 0 ' + width + ' ' + height, preserveAspectRatio: 'none',
+	          role: 'img', 'aria-label': this._renderA11YTitle() },
+	        _react2.default.createElement(
+	          'g',
+	          null,
+	          path
+	        ),
+	        points
+	      );
+	    }
+	  }]);
+	  return Graph;
+	}(_react.Component);
+
+	Graph.displayName = 'Graph';
+	exports.default = Graph;
+	;
+
+	Graph.contextTypes = {
+	  intl: _react.PropTypes.object
+	};
+
+	Graph.defaultProps = {
+	  min: 0,
+	  max: 100
+	};
+
+	Graph.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  activeIndex: _react.PropTypes.number,
+	  colorIndex: _react.PropTypes.string,
+	  height: _react.PropTypes.number, // only from Chart
+	  max: _react.PropTypes.number.isRequired,
+	  min: _react.PropTypes.number.isRequired,
+	  points: _react.PropTypes.bool,
+	  reverse: _react.PropTypes.bool,
+	  smooth: _react.PropTypes.bool,
+	  values: _react.PropTypes.arrayOf(_react.PropTypes.number).isRequired,
+	  // type comes from extending the component
+	  type: _react.PropTypes.oneOf(['area', 'line', 'bar']).isRequired,
+	  vertical: _react.PropTypes.bool,
+	  width: _react.PropTypes.number // only from Chart
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _Graph2 = __webpack_require__(235);
+
+	var _Graph3 = _interopRequireDefault(_Graph2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Line = function (_Graph) {
+	  (0, _inherits3.default)(Line, _Graph);
+
+	  function Line() {
+	    (0, _classCallCheck3.default)(this, Line);
+	    return (0, _possibleConstructorReturn3.default)(this, (Line.__proto__ || (0, _getPrototypeOf2.default)(Line)).apply(this, arguments));
+	  }
+
+	  return Line;
+	}(_Graph3.default); // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	exports.default = Line;
+	;
+
+	Line.defaultProps = (0, _extends3.default)({}, _Graph3.default.defaultProps, {
+	  type: 'line'
+	});
+
+	Line.displayName = 'Line';
+	module.exports = exports['default'];
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _Graph2 = __webpack_require__(235);
+
+	var _Graph3 = _interopRequireDefault(_Graph2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Bar = function (_Graph) {
+	  (0, _inherits3.default)(Bar, _Graph);
+
+	  function Bar() {
+	    (0, _classCallCheck3.default)(this, Bar);
+	    return (0, _possibleConstructorReturn3.default)(this, (Bar.__proto__ || (0, _getPrototypeOf2.default)(Bar)).apply(this, arguments));
+	  }
+
+	  return Bar;
+	}(_Graph3.default); // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	exports.default = Bar;
+	;
+
+	Bar.defaultProps = (0, _extends3.default)({}, _Graph3.default.defaultProps, {
+	  type: 'bar'
+	});
+
+	Bar.displayName = 'Bar';
+	module.exports = exports['default'];
+
+/***/ },
+/* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _utils = __webpack_require__(221);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.CHART_MARKER; // (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var DOUBLE_PADDING = 2 * _utils.padding;
+
+	var Marker = function (_Component) {
+	  (0, _inherits3.default)(Marker, _Component);
+
+	  function Marker(props, context) {
+	    (0, _classCallCheck3.default)(this, Marker);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Marker.__proto__ || (0, _getPrototypeOf2.default)(Marker)).call(this, props, context));
+
+	    _this.state = {
+	      size: { width: 0, height: 0 },
+	      graphHeight: 0,
+	      graphWidth: 0
+	    };
+	    _this._size = new _utils.trackSize(props, _this._onSize.bind(_this));
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Marker, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this._size.start(this.svgRef);
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      this._size.reset(nextProps);
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this._size.stop();
+	    }
+	  }, {
+	    key: '_onSize',
+	    value: function _onSize(size) {
+	      this.setState({
+	        size: size,
+	        graphWidth: size.width - DOUBLE_PADDING,
+	        graphHeight: size.height - DOUBLE_PADDING
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      var _props = this.props;
+	      var colorIndex = _props.colorIndex;
+	      var count = _props.count;
+	      var index = _props.index;
+	      var max = _props.max;
+	      var min = _props.min;
+	      var reverse = _props.reverse;
+	      var value = _props.value;
+	      var vertical = _props.vertical;
+	      var _state = this.state;
+	      var _state$size = _state.size;
+	      var height = _state$size.height;
+	      var width = _state$size.width;
+	      var graphWidth = _state.graphWidth;
+	      var graphHeight = _state.graphHeight;
+
+	      var classes = [CLASS_ROOT];
+	      if (colorIndex) {
+	        classes.push(COLOR_INDEX + '-' + colorIndex);
+	      }
+	      if (this.props.className) {
+	        classes.push(this.props.className);
+	      }
+
+	      var path = void 0;
+	      if (count > 1 && index >= 1 && index < count || value >= min && value <= max) {
+	        var commands = '';
+
+	        if (vertical) {
+	          var x = void 0;
+	          if (count) {
+	            x = (0, _utils.graphValue)(index, 0, count - 1, graphWidth);
+	          } else if (max) {
+	            x = (0, _utils.graphValue)(value, min, max, graphWidth);
+	          }
+	          if (reverse) {
+	            x = graphWidth - x;
+	          }
+	          commands = 'M' + (x + _utils.padding) + ',0 L' + (x + _utils.padding) + ',' + height;
+	        } else {
+	          var y = void 0;
+	          if (count) {
+	            y = (0, _utils.graphValue)(index, 0, count - 1, graphHeight);
+	          } else if (max) {
+	            y = (0, _utils.graphValue)(value, min, max, graphHeight);
+	          }
+	          if (!reverse) {
+	            y = graphHeight - y;
+	          }
+	          commands = 'M0,' + (y + _utils.padding) + ' L' + width + ',' + (y + _utils.padding);
+	        }
+
+	        path = _react2.default.createElement('path', { fill: 'none', d: commands });
+	      }
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { ref: function ref(_ref) {
+	            return _this2.svgRef = _ref;
+	          }, className: classes.join(' '),
+	          viewBox: '0 0 ' + width + ' ' + height, 'aria-hidden': 'true',
+	          preserveAspectRatio: 'none' },
+	        path
+	      );
+	    }
+	  }]);
+	  return Marker;
+	}(_react.Component);
+
+	Marker.displayName = 'Marker';
+	exports.default = Marker;
+	;
+
+	// Need either count and index or value, min, and max
+	Marker.propTypes = {
+	  colorIndex: _react.PropTypes.string,
+	  count: _react.PropTypes.number,
+	  index: _react.PropTypes.number,
+	  max: _react.PropTypes.number,
+	  min: _react.PropTypes.number,
+	  reverse: _react.PropTypes.bool,
+	  value: _react.PropTypes.number,
+	  vertical: _react.PropTypes.bool
+	};
+
+	Marker.defaultProps = {
+	  max: 100,
+	  min: 0
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	var _Announcer = __webpack_require__(94);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CLASS_ROOT = _CSSClassnames2.default.CHART_MARKER_LABEL; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var MarkerLabel = function (_Component) {
+	  (0, _inherits3.default)(MarkerLabel, _Component);
+
+	  function MarkerLabel(props, context) {
+	    (0, _classCallCheck3.default)(this, MarkerLabel);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (MarkerLabel.__proto__ || (0, _getPrototypeOf2.default)(MarkerLabel)).call(this, props, context));
+
+	    _this.state = {
+	      valueBasis: _this._valueBasis(props)
+	    };
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(MarkerLabel, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      var nextValueBasis = this._valueBasis(nextProps);
+	      if (nextValueBasis !== this.state.valueBasis) {
+	        this.setState({
+	          valueBasis: nextValueBasis
+	        }, function () {
+	          if (typeof nextProps.label === 'string' || typeof nextProps.label === 'number') {
+	            (0, _Announcer.announce)(nextProps.label);
+	          }
+	        });
+	      }
+	    }
+	  }, {
+	    key: '_valueBasis',
+	    value: function _valueBasis(props) {
+	      var count = props.count;
+	      var index = props.index;
+	      var max = props.max;
+	      var min = props.min;
+	      var value = props.value;
+
+	      var valueBasis = void 0;
+	      if (count) {
+	        valueBasis = index / Math.max(1, count - 1) * 100.0;
+	      } else {
+	        valueBasis = (value - min) / Math.max(1, max - min) * 100.0;
+	      }
+	      return valueBasis;
+	    }
+	  }, {
+	    key: '_renderPlaceholder',
+	    value: function _renderPlaceholder(basis) {
+	      var classes = [CLASS_ROOT + '__slot', CLASS_ROOT + '__slot--placeholder'];
+	      return _react2.default.createElement('div', { key: 'placeholder', className: classes.join(' '), 'aria-hidden': 'true',
+	        style: { flexBasis: basis + '%' } });
+	    }
+	  }, {
+	    key: '_renderLabel',
+	    value: function _renderLabel(basis, flip) {
+	      var colorIndex = this.props.colorIndex;
+	      var label = this.props.label;
+
+	      var classes = [CLASS_ROOT + '__slot'];
+	      if (flip) {
+	        classes.push(CLASS_ROOT + '__slot--flip');
+	      }
+	      if (colorIndex) {
+	        classes.push(COLOR_INDEX + '-' + colorIndex);
+	      }
+	      if (typeof label === 'string' || typeof label === 'number') {
+	        label = _react2.default.createElement(
+	          'span',
+	          null,
+	          label
+	        );
+	      } else {
+	        // added for a11y to announce changes in the values
+	        label = _react2.default.cloneElement(label, {
+	          announce: true
+	        });
+	      }
+	      return _react2.default.createElement(
+	        'div',
+	        { key: 'label', className: classes.join(' '),
+	          style: { flexBasis: basis + '%' } },
+	        label
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var align = _props.align;
+	      var reverse = _props.reverse;
+	      var vertical = _props.vertical;
+	      var valueBasis = this.state.valueBasis;
+
+
+	      var classes = [CLASS_ROOT];
+	      if (reverse) {
+	        classes.push(CLASS_ROOT + '--reverse');
+	      }
+	      if (vertical) {
+	        classes.push(CLASS_ROOT + '--vertical');
+	      }
+	      if (align) {
+	        classes.push(CLASS_ROOT + '--align-' + align);
+	      }
+	      if (this.props.className) {
+	        classes.push(this.props.className);
+	      }
+
+	      var firstItem = void 0,
+	          secondItem = void 0;
+	      if (valueBasis < 50) {
+	        // marker value in first half, align it after
+	        firstItem = this._renderPlaceholder(valueBasis);
+	        secondItem = this._renderLabel(100.0 - valueBasis, true);
+	      } else {
+	        // marker value in second half, align it before
+	        firstItem = this._renderLabel(valueBasis);
+	        secondItem = this._renderPlaceholder(100.0 - valueBasis);
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { id: this.props.id, className: classes.join(' '),
+	          style: this.props.style },
+	        firstItem,
+	        secondItem
+	      );
+	    }
+	  }]);
+	  return MarkerLabel;
+	}(_react.Component);
+
+	MarkerLabel.displayName = 'MarkerLabel';
+	exports.default = MarkerLabel;
+	;
+
+	// Need either count and index or value, min, and max
+	MarkerLabel.propTypes = {
+	  align: _react.PropTypes.oneOf(['start', 'end']), // only from Chart
+	  colorIndex: _react.PropTypes.string,
+	  count: _react.PropTypes.number,
+	  index: _react.PropTypes.number,
+	  label: _react.PropTypes.node,
+	  max: _react.PropTypes.number,
+	  min: _react.PropTypes.number,
+	  reverse: _react.PropTypes.bool,
+	  value: _react.PropTypes.number,
+	  vertical: _react.PropTypes.bool
+	};
+
+	MarkerLabel.defaultProps = {
+	  max: 100,
+	  min: 0
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _defineProperty2 = __webpack_require__(5);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames3 = __webpack_require__(67);
+
+	var _classnames4 = _interopRequireDefault(_classnames3);
+
+	var _utils = __webpack_require__(221);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	var _Intl = __webpack_require__(90);
+
+	var _Intl2 = _interopRequireDefault(_Intl);
+
+	var _KeyboardAccelerators = __webpack_require__(87);
+
+	var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CHART_HOT_SPOTS;
+
+	// Interactive regions.
+
+	var HotSpots = function (_Component) {
+	  (0, _inherits3.default)(HotSpots, _Component);
+
+	  function HotSpots() {
+	    (0, _classCallCheck3.default)(this, HotSpots);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (HotSpots.__proto__ || (0, _getPrototypeOf2.default)(HotSpots)).call(this));
+
+	    _this._onPreviousHotSpot = _this._onPreviousHotSpot.bind(_this);
+	    _this._onNextHotSpot = _this._onNextHotSpot.bind(_this);
+	    _this._onHotSpotFocus = _this._onHotSpotFocus.bind(_this);
+	    _this._onHotSpotBlur = _this._onHotSpotBlur.bind(_this);
+	    _this._onHotSpotClick = _this._onHotSpotClick.bind(_this);
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(HotSpots, [{
+	    key: '_onHotSpotFocus',
+	    value: function _onHotSpotFocus() {
+	      this._keyboardHandlers = {
+	        left: this._onPreviousHotSpot,
+	        up: this._onPreviousHotSpot,
+	        right: this._onNextHotSpot,
+	        down: this._onNextHotSpot,
+	        enter: this._onHotSpotClick
+	      };
+	      _KeyboardAccelerators2.default.startListeningToKeyboard(this, this._keyboardHandlers);
+	    }
+	  }, {
+	    key: '_onHotSpotBlur',
+	    value: function _onHotSpotBlur() {
+	      _KeyboardAccelerators2.default.stopListeningToKeyboard(this, this._keyboardHandlers);
+	    }
+	  }, {
+	    key: '_onPreviousHotSpot',
+	    value: function _onPreviousHotSpot() {
+	      var _props = this.props;
+	      var activeIndex = _props.activeIndex;
+	      var onActive = _props.onActive;
+
+	      var previousIndex = activeIndex - 1;
+	      if (previousIndex >= 0) {
+	        onActive(previousIndex);
+	      }
+	      //stop event propagation
+	      return true;
+	    }
+	  }, {
+	    key: '_onNextHotSpot',
+	    value: function _onNextHotSpot() {
+	      var _props2 = this.props;
+	      var activeIndex = _props2.activeIndex;
+	      var count = _props2.count;
+	      var onActive = _props2.onActive;
+
+	      var nextIndex = activeIndex + 1;
+	      if (nextIndex < count) {
+	        onActive(nextIndex);
+	      }
+	      //stop event propagation
+	      return true;
+	    }
+	  }, {
+	    key: '_onHotSpotClick',
+	    value: function _onHotSpotClick() {
+	      var _props3 = this.props;
+	      var activeIndex = _props3.activeIndex;
+	      var onClick = _props3.onClick;
+
+
+	      if (activeIndex !== undefined && onClick) {
+	        onClick(activeIndex);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props4 = this.props;
+	      var a11yTitle = _props4.a11yTitle;
+	      var activeIndex = _props4.activeIndex;
+	      var className = _props4.className;
+	      var count = _props4.count;
+	      var onActive = _props4.onActive;
+	      var onClick = _props4.onClick;
+	      var vertical = _props4.vertical;
+	      var intl = this.context.intl;
+
+
+	      var classes = (0, _classnames4.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--vertical', vertical), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--clickable', onClick), _classnames));
+
+	      var defaultBasis = 100 / (count - 1);
+	      var items = [];
+
+	      var _loop = function _loop(index) {
+	        var bandClasses = (0, _classnames4.default)(CLASS_ROOT + '__band', (0, _defineProperty3.default)({}, CLASS_ROOT + '__band--active', index === activeIndex));
+	        var basis = void 0;
+	        if (0 === index || index === count - 1) {
+	          basis = defaultBasis / 2;
+	        } else {
+	          basis = defaultBasis;
+	        }
+	        var style = { flexBasis: basis + '%' };
+	        items.push(_react2.default.createElement('div', { key: index, className: bandClasses, style: style, role: 'row',
+	          onMouseOver: onActive ? function () {
+	            return onActive(index);
+	          } : undefined,
+	          onMouseOut: onActive ? function () {
+	            return onActive(undefined);
+	          } : undefined,
+	          onClick: onClick ? function () {
+	            return onClick(index);
+	          } : undefined }));
+	      };
+
+	      for (var index = 0; index < count; index += 1) {
+	        _loop(index);
+	      }
+
+	      var hotSpotsLabel = a11yTitle || _Intl2.default.getMessage(intl, 'HotSpotsLabel');
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: classes, style: { padding: _utils.padding },
+	          tabIndex: '0', onFocus: this._onHotSpotFocus,
+	          onBlur: this._onHotSpotBlur, role: 'group',
+	          'aria-label': hotSpotsLabel },
+	        items
+	      );
+	    }
+	  }]);
+	  return HotSpots;
+	}(_react.Component);
+
+	HotSpots.displayName = 'HotSpots';
+	exports.default = HotSpots;
+	;
+
+	HotSpots.contextTypes = {
+	  intl: _react.PropTypes.object
+	};
+
+	HotSpots.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  activeIndex: _react.PropTypes.number,
+	  count: _react.PropTypes.number.isRequired,
+	  onActive: _react.PropTypes.func,
+	  onClick: _react.PropTypes.func,
+	  vertical: _react.PropTypes.bool
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 241 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _objectWithoutProperties2 = __webpack_require__(120);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _utils = __webpack_require__(221);
+
+	var _Drag = __webpack_require__(242);
+
+	var _Drag2 = _interopRequireDefault(_Drag);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CHART_RANGE;
+
+	// Allows selecting a region.
+	// Click to select one.
+	// Press and Drag to select multiple.
+	// Drag edges to adjust.
+
+	var Range = function (_Component) {
+	  (0, _inherits3.default)(Range, _Component);
+
+	  function Range(props, context) {
+	    (0, _classCallCheck3.default)(this, Range);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (Range.__proto__ || (0, _getPrototypeOf2.default)(Range)).call(this, props, context));
+
+	    _this._onMouseMove = _this._onMouseMove.bind(_this);
+	    _this._onMouseUp = _this._onMouseUp.bind(_this);
+	    _this.state = {};
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Range, [{
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      var mouseDown = this.state.mouseDown;
+
+	      if (mouseDown) {
+	        window.removeEventListener('mouseup', this._onMouseUp);
+	      }
+	    }
+	  }, {
+	    key: '_valueToIndex',
+	    value: function _valueToIndex(value) {
+	      var _props = this.props;
+	      var count = _props.count;
+	      var vertical = _props.vertical;
+
+	      var rect = this.rangeRef.getBoundingClientRect();
+	      var total = vertical ? rect.height : rect.width;
+	      return Math.round(value / total * (count - 1));
+	    }
+	  }, {
+	    key: '_percentForIndex',
+	    value: function _percentForIndex(index) {
+	      var count = this.props.count;
+
+	      return 100 / (count - 1) * Math.min(index, count - 1);
+	    }
+	  }, {
+	    key: '_mouseIndex',
+	    value: function _mouseIndex(event) {
+	      var _props2 = this.props;
+	      var active = _props2.active;
+	      var count = _props2.count;
+	      var vertical = _props2.vertical;
+	      var _state = this.state;
+	      var mouseDown = _state.mouseDown;
+	      var mouseDownIndex = _state.mouseDownIndex;
+
+	      var rect = this.rangeRef.getBoundingClientRect();
+	      var value = vertical ? event.clientY - rect.top : event.clientX - rect.left;
+	      var index = this._valueToIndex(value);
+
+	      // constrain index to keep it within range as needed
+	      if ('active' === mouseDown && mouseDownIndex >= 0) {
+	        if (index > mouseDownIndex) {
+	          // moving right/down
+	          index = Math.min(mouseDownIndex + count - 1 - active.end, index);
+	        } else if (index < mouseDownIndex) {
+	          // moving up/left
+	          index = Math.max(mouseDownIndex - active.start, index);
+	        }
+	      } else if ('start' === mouseDown) {
+	        index = Math.min(active.end, index);
+	      } else if ('end' === mouseDown) {
+	        index = Math.max(active.start, index);
+	      }
+
+	      return index;
+	    }
+	  }, {
+	    key: '_mouseDown',
+	    value: function _mouseDown(source) {
+	      var _this2 = this;
+
+	      return function (event) {
+	        event.stopPropagation(); // so start and end don't trigger range
+	        var index = _this2._mouseIndex(event);
+	        _this2.setState({
+	          mouseDown: source,
+	          mouseDownIndex: index
+	        });
+	        window.addEventListener('mouseup', _this2._onMouseUp);
+	      };
+	    }
+	  }, {
+	    key: '_onMouseUp',
+	    value: function _onMouseUp(event) {
+	      window.removeEventListener('mouseup', this._onMouseUp);
+	      var _props3 = this.props;
+	      var active = _props3.active;
+	      var onActive = _props3.onActive;
+	      var count = _props3.count;
+	      var _state2 = this.state;
+	      var mouseDown = _state2.mouseDown;
+	      var mouseDownIndex = _state2.mouseDownIndex;
+	      var moved = _state2.moved;
+
+	      var mouseUpIndex = this._mouseIndex(event);
+
+	      if (mouseUpIndex < 0) {
+	        mouseUpIndex = 0;
+	      } else if (mouseUpIndex > count) {
+	        mouseUpIndex = count;
+	      }
+
+	      this.setState({
+	        mouseDown: false,
+	        mouseDownIndex: undefined,
+	        mouseMoveIndex: undefined,
+	        moved: false
+	      });
+
+	      if (onActive) {
+	        var nextActive = void 0;
+
+	        if ('range' === mouseDown) {
+	          if (moved) {
+	            nextActive = {
+	              start: Math.min(mouseDownIndex, mouseUpIndex),
+	              end: Math.max(mouseDownIndex, mouseUpIndex)
+	            };
+	          }
+	        } else if ('active' === mouseDown) {
+	          var delta = mouseUpIndex - mouseDownIndex;
+	          nextActive = {
+	            start: active.start + delta,
+	            end: active.end + delta
+	          };
+	        } else if ('start' === mouseDown) {
+	          nextActive = {
+	            start: mouseUpIndex,
+	            end: active.end
+	          };
+	        } else if ('end' === mouseDown) {
+	          nextActive = {
+	            start: active.start,
+	            end: mouseUpIndex
+	          };
+	        }
+
+	        onActive(nextActive);
+	      }
+	    }
+	  }, {
+	    key: '_onMouseMove',
+	    value: function _onMouseMove(event) {
+	      var mouseMoveIndex = this.state.mouseMoveIndex;
+
+	      var index = this._mouseIndex(event);
+	      if (index !== mouseMoveIndex) {
+	        this.setState({ mouseMoveIndex: index, moved: true });
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this3 = this;
+
+	      var _props4 = this.props;
+	      var active = _props4.active;
+	      var count = _props4.count;
+	      var onActive = _props4.onActive;
+	      var vertical = _props4.vertical;
+	      var otherProps = (0, _objectWithoutProperties3.default)(_props4, ['active', 'count', 'onActive', 'vertical']);
+	      var _state3 = this.state;
+	      var mouseDown = _state3.mouseDown;
+	      var mouseDownIndex = _state3.mouseDownIndex;
+	      var mouseMoveIndex = _state3.mouseMoveIndex;
+
+
+	      var classes = [CLASS_ROOT];
+	      if (vertical) {
+	        classes.push(CLASS_ROOT + '--vertical');
+	      }
+	      if (mouseDown) {
+	        classes.push(CLASS_ROOT + '--dragging');
+	      }
+	      if (this.props.className) {
+	        classes.push(this.props.className);
+	      }
+
+	      var indicator = void 0;
+	      if (active || mouseDown) {
+
+	        var start = void 0,
+	            end = void 0;
+	        if ('range' === mouseDown) {
+	          start = Math.min(mouseDownIndex, mouseMoveIndex);
+	          end = Math.max(mouseDownIndex, mouseMoveIndex);
+	        } else if ('active' === mouseDown && mouseMoveIndex >= 0) {
+	          var delta = mouseMoveIndex - mouseDownIndex;
+	          start = active.start + delta;
+	          end = active.end + delta;
+	        } else if ('start' === mouseDown && mouseMoveIndex >= 0) {
+	          start = mouseMoveIndex;
+	          end = active.end;
+	        } else if ('end' === mouseDown && mouseMoveIndex >= 0) {
+	          start = active.start;
+	          end = mouseMoveIndex;
+	        } else {
+	          start = active.start;
+	          end = active.end;
+	        }
+	        // in case the user resizes the window
+	        start = Math.max(0, Math.min(count - 1, start));
+	        end = Math.max(0, Math.min(count - 1, end));
+
+	        var style = void 0;
+	        if (vertical) {
+	          style = {
+	            top: this._percentForIndex(start) + '%',
+	            height: this._percentForIndex(end - start) + '%'
+	          };
+	        } else {
+	          style = {
+	            marginLeft: this._percentForIndex(start) + '%',
+	            width: this._percentForIndex(end - start) + '%'
+	          };
+	        }
+
+	        indicator = _react2.default.createElement(
+	          'div',
+	          (0, _extends3.default)({}, otherProps, { className: CLASS_ROOT + '__active', style: style,
+	            onMouseDown: this._mouseDown('active') }),
+	          _react2.default.createElement(
+	            'div',
+	            { className: CLASS_ROOT + '__active-start',
+	              onMouseDown: onActive ? this._mouseDown('start') : undefined },
+	            _react2.default.createElement(_Drag2.default, null)
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: CLASS_ROOT + '__active-end',
+	              onMouseDown: onActive ? this._mouseDown('end') : undefined },
+	            _react2.default.createElement(_Drag2.default, null)
+	          )
+	        );
+	      }
+
+	      var onMouseMove = void 0;
+	      if (onActive && mouseDown) {
+	        onMouseMove = this._onMouseMove;
+	      }
+
+	      return _react2.default.createElement(
+	        'div',
+	        { ref: function ref(_ref) {
+	            return _this3.rangeRef = _ref;
+	          }, className: classes.join(' '),
+	          style: { padding: _utils.padding }, onMouseMove: onMouseMove,
+	          onMouseDown: onActive ? this._mouseDown('range') : undefined },
+	        indicator
+	      );
+	    }
+	  }]);
+	  return Range;
+	}(_react.Component);
+
+	Range.displayName = 'Range';
+	exports.default = Range;
+	;
+
+	Range.propTypes = {
+	  active: _react.PropTypes.shape({
+	    end: _react.PropTypes.number.isRequired,
+	    start: _react.PropTypes.number.isRequired
+	  }),
+	  count: _react.PropTypes.number.isRequired,
+	  onActive: _react.PropTypes.func, // (start, end)
+	  vertical: _react.PropTypes.bool
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 242 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _defineProperty2 = __webpack_require__(5);
+
+	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _getPrototypeOf = __webpack_require__(9);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(21);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(22);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(23);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(60);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames2 = __webpack_require__(67);
+
+	var _classnames3 = _interopRequireDefault(_classnames2);
+
+	var _FormattedMessage = __webpack_require__(81);
+
+	var _FormattedMessage2 = _interopRequireDefault(_FormattedMessage);
+
+	var _CSSClassnames = __webpack_require__(93);
+
+	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.CONTROL_ICON;
+	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
+
+	var Icon = function (_Component) {
+	  (0, _inherits3.default)(Icon, _Component);
+
+	  function Icon() {
+	    (0, _classCallCheck3.default)(this, Icon);
+	    return (0, _possibleConstructorReturn3.default)(this, (Icon.__proto__ || (0, _getPrototypeOf2.default)(Icon)).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Icon, [{
+	    key: 'render',
+	    value: function render() {
+	      var _classnames;
+
+	      var _props = this.props;
+	      var a11yTitleId = _props.a11yTitleId;
+	      var className = _props.className;
+	      var colorIndex = _props.colorIndex;
+	      var _props2 = this.props;
+	      var a11yTitle = _props2.a11yTitle;
+	      var size = _props2.size;
+	      var responsive = _props2.responsive;
+
+
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-drag', className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--responsive', responsive), (0, _defineProperty3.default)(_classnames, COLOR_INDEX + '-' + colorIndex, colorIndex), _classnames));
+
+	      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'drag', defaultMessage: 'drag' });
+
+	      return _react2.default.createElement(
+	        'svg',
+	        { version: '1.1', viewBox: '0 0 24 24', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
+	        _react2.default.createElement(
+	          'title',
+	          { id: a11yTitleId },
+	          a11yTitle
+	        ),
+	        _react2.default.createElement(
+	          'g',
+	          null,
+	          _react2.default.createElement('rect', { x: '0', y: '0', fill: 'none', width: '24', height: '24' }),
+	          _react2.default.createElement('path', { d: 'M10,6H6V2h4V6z M18,2h-4v4h4V2z M10,10H6v4h4V10z M18,10h-4v4h4V10z M10,18H6v4h4V18z M18,18h-4v4h4V18z' })
+	        )
+	      );
+	    }
+	  }]);
+	  return Icon;
+	}(_react.Component);
+
+	Icon.displayName = 'Icon';
+	exports.default = Icon;
+	;
+
+	Icon.propTypes = {
+	  a11yTitle: _react.PropTypes.string,
+	  a11yTitleId: _react.PropTypes.string,
+	  colorIndex: _react.PropTypes.string,
+	  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge']),
+	  responsive: _react.PropTypes.bool
+	};
+
+	Icon.defaultProps = {
+	  a11yTitleId: 'drag-title',
+	  responsive: true
+	};
+
+	Icon.icon = true;
+
+	Icon.displayName = 'Drag';
 	module.exports = exports['default'];
 
 /***/ }

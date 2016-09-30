@@ -182,7 +182,7 @@ const Primary = React.createClass({
                 href: '/docs/hpe/sub'
               }, {
                 label: 'Details',
-                href: '#'
+                href: '/docs/hpe/details'
               }]
             }]
           } />
@@ -192,16 +192,16 @@ const Primary = React.createClass({
           backgroundImage="/docs/img/MarqueeImage_051916_H.jpg"
           label="label"
           headline="Accelerate your transformation with the cloud"
-          subHeadline={<Paragraph margin="none" size="large">
+          subHeadline={<Paragraph margin="small" size="large">
             HPE can help you benefit now from your right mix of cloud
           </Paragraph>}
           link="http://www.grommet.io/docs/"
-          stackSize="medium"
+          stackSize="large"
           responsiveBackgroundPosition="left" />
         <Box align="center">
           <Box pad="large" align="center" textAlign="center"
             size={{"width": {"max": "xxlarge"}}}>
-            <Heading tag="h1" strong={true}>
+            <Heading tag="h1" strong={true} margin="none">
               Sumo accumsan mel ignota hendrerit.
             </Heading>
             <Paragraph size="xlarge" width="large">

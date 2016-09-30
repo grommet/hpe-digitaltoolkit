@@ -164,6 +164,50 @@
     }
   }
 
+  &__stack {
+    &--small {
+      .#{$grommet-namespace}heading,
+      .#{$grommet-namespace}headline {
+        @include media-query(portable) {
+          font-size: $h4-font-size;
+        }
+      }
+    }
+
+    &--medium {
+      .#{$grommet-namespace}heading,
+      .#{$grommet-namespace}headline {
+        @include media-query(portable) {
+          font-size: $h3-font-size;
+        }
+      }
+    }
+
+    &--large {
+      .#{$grommet-namespace}heading,
+      .#{$grommet-namespace}headline {
+        @include media-query(portable) {
+          font-size: $h2-font-size;
+        }
+      }
+    }
+
+    &--xlarge {
+      .#{$grommet-namespace}heading,
+      .#{$grommet-namespace}headline {
+        font-size: $large-large-number-font-size;
+
+        @include media-query(portable) {
+          font-size: $h1-font-size;
+        }
+
+        @include media-query(palm) {
+          font-size: $h2-font-size;
+        }
+      }
+    }
+  }
+
   &--responsive-drop .grommetux-box--justify-center {
     .marquee__stack {
       @include media-query(palm) {

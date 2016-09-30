@@ -13,10 +13,7 @@ var Anchor = require('grommet/components/Anchor');
 var HelloWorld = require('./HelloWorld');
 var GetStarted = require('./GetStarted');
 
-var ActionsDoc = require('./patterns/ActionsDoc');
 var BoxDoc = require('./components/BoxDoc');
-var DashboardDoc = require('./patterns/DashboardDoc');
-var NavigationDoc = require('./patterns/NavigationDoc');
 var MarqueeDoc = require('./components/MarqueeDoc');
 var WorldMapDoc = require('./components/WorldMapDoc');
 var StackDoc = require('./components/StackDoc');
@@ -35,13 +32,6 @@ var CONTENTS = [
         component: HelloWorld},
       {route: 'develop_getstarted', label: 'Get Started',
         component: GetStarted}
-    ]
-  },
-  {label: 'Patterns',
-    contents: [
-      {route: 'develop_dashboard', label: 'Dashboard', component: DashboardDoc},
-      {route: 'develop_navigation', label: 'Navigation', component: NavigationDoc},
-      {route: 'develop_actions', label: 'Actions', component: ActionsDoc}
     ]
   },
   {label: 'Components',
