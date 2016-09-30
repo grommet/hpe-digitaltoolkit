@@ -212,6 +212,12 @@ export default class Marquee extends Component {
 
     const logoMarkup = this._renderLogo();
 
+    const classes = classnames(
+      {
+        [`${CLASS_ROOT}__stack--${stackSize}`]: stackSize
+      }
+    );
+
     let textPad = "none";
     let transparentTextBackgroundColorIndex;
     if (textBackgroundColorIndex) {
@@ -222,7 +228,7 @@ export default class Marquee extends Component {
     if (link || onClick || overlayVideo) {
       if (overlayVideo) {
         return (
-          <Box className={CLASS_ROOT + "__stack"} pad={this.state.textPad}>
+          <Box className={classes} pad={this.state.textPad}>
             <Box pad={textPad}
               colorIndex={transparentTextBackgroundColorIndex}>
               {logoMarkup}
@@ -242,7 +248,7 @@ export default class Marquee extends Component {
         );
       } else {
         return (
-          <Box className={CLASS_ROOT + "__stack"} pad={this.state.textPad}>
+          <Box className={classes} pad={this.state.textPad}>
             <Box pad={textPad}
               colorIndex={transparentTextBackgroundColorIndex}>
               {logoMarkup}
@@ -263,7 +269,7 @@ export default class Marquee extends Component {
       }
     } else {
       return (
-        <Box className={CLASS_ROOT + "__stack"} pad={this.state.textPad}>
+        <Box className={classes} pad={this.state.textPad}>
           <Box pad={textPad} colorIndex={transparentTextBackgroundColorIndex}>
             {logoMarkup}
             <Card size="full" contentPad="none" colorIndex=""
