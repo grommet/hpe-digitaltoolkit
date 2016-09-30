@@ -5510,16 +5510,16 @@ module.exports =
 	var React = __webpack_require__(1);
 	var Article = __webpack_require__(107);
 	var DocsHeader = __webpack_require__(112);
-	var Footer = __webpack_require__(117);
-	var Section = __webpack_require__(118);
-	var Headline = __webpack_require__(119);
+	var Footer = __webpack_require__(118);
+	var Section = __webpack_require__(119);
+	var Headline = __webpack_require__(120);
 	var Tiles = __webpack_require__(121);
 	var Tile = __webpack_require__(136);
 	var Menu = __webpack_require__(98);
 	var Button = __webpack_require__(96);
-	var Anchor = __webpack_require__(116);
+	var Anchor = __webpack_require__(117);
 	var Link = __webpack_require__(2).Link;
-	var GrommetLogo = __webpack_require__(115);
+	var GrommetLogo = __webpack_require__(116);
 
 	var HomeSection = React.createClass({
 	  displayName: 'HomeSection',
@@ -7237,9 +7237,9 @@ module.exports =
 	var Header = __webpack_require__(113);
 	var Title = __webpack_require__(114);
 	var Box = __webpack_require__(83);
-	var GrommetLogo = __webpack_require__(115);
+	var GrommetLogo = __webpack_require__(116);
 	var Menu = __webpack_require__(98);
-	var Anchor = __webpack_require__(116);
+	var Anchor = __webpack_require__(117);
 	var Link = __webpack_require__(2).Link;
 
 	var DocsHeader = React.createClass({
@@ -7520,9 +7520,17 @@ module.exports =
 	  value: true
 	});
 
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
 	var _defineProperty2 = __webpack_require__(5);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _objectWithoutProperties2 = __webpack_require__(115);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 	var _getPrototypeOf = __webpack_require__(9);
 
@@ -7585,11 +7593,11 @@ module.exports =
 	      var a11yTitle = _props.a11yTitle;
 	      var children = _props.children;
 	      var className = _props.className;
-	      var onClick = _props.onClick;
 	      var responsive = _props.responsive;
+	      var props = (0, _objectWithoutProperties3.default)(_props, ['a11yTitle', 'children', 'className', 'responsive']);
 	      var intl = this.context.intl;
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--responsive', responsive), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--interactive', onClick), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--responsive', responsive), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--interactive', props.onClick), _classnames), className);
 
 	      var boxTitle = a11yTitle || _Intl2.default.getMessage(intl, 'Title');
 
@@ -7605,7 +7613,7 @@ module.exports =
 	          if (child && typeof child === 'string') {
 	            return _react2.default.createElement(
 	              'span',
-	              { key: 'title_' + index },
+	              { key: index },
 	              child
 	            );
 	          }
@@ -7617,9 +7625,8 @@ module.exports =
 
 	      return _react2.default.createElement(
 	        _Box2.default,
-	        { align: 'center', direction: 'row', responsive: false,
-	          className: classes, a11yTitle: boxTitle,
-	          onClick: onClick },
+	        (0, _extends3.default)({}, props, { align: 'center', direction: 'row', responsive: false,
+	          className: classes, a11yTitle: boxTitle }),
 	        content
 	      );
 	    }
@@ -7648,6 +7655,26 @@ module.exports =
 
 /***/ },
 /* 115 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	exports.default = function (obj, keys) {
+	  var target = {};
+
+	  for (var i in obj) {
+	    if (keys.indexOf(i) >= 0) continue;
+	    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+	    target[i] = obj[i];
+	  }
+
+	  return target;
+	};
+
+/***/ },
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7759,7 +7786,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 116 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7908,7 +7935,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 117 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8115,7 +8142,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 118 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8204,7 +8231,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 119 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8221,7 +8248,7 @@ module.exports =
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _objectWithoutProperties2 = __webpack_require__(120);
+	var _objectWithoutProperties2 = __webpack_require__(115);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -8306,26 +8333,6 @@ module.exports =
 	  strong: _react.PropTypes.bool
 	};
 	module.exports = exports['default'];
-
-/***/ },
-/* 120 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	exports.__esModule = true;
-
-	exports.default = function (obj, keys) {
-	  var target = {};
-
-	  for (var i in obj) {
-	    if (keys.indexOf(i) >= 0) continue;
-	    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-	    target[i] = obj[i];
-	  }
-
-	  return target;
-	};
 
 /***/ },
 /* 121 */
@@ -9399,11 +9406,11 @@ module.exports =
 	var Route = Router.Route;
 	var Link = Router.Link;
 
-	var Section = __webpack_require__(118);
+	var Section = __webpack_require__(119);
 	var DocsSplit = __webpack_require__(138);
 	var DocsArticle = __webpack_require__(142);
 	var Menu = __webpack_require__(98);
-	var Anchor = __webpack_require__(116);
+	var Anchor = __webpack_require__(117);
 
 	var Philosophy = __webpack_require__(149);
 
@@ -9553,7 +9560,7 @@ module.exports =
 	var Menu = __webpack_require__(98);
 	var Button = __webpack_require__(96);
 	var CloseIcon = __webpack_require__(97);
-	var GrommetLogo = __webpack_require__(115);
+	var GrommetLogo = __webpack_require__(116);
 	var DocsMenu = __webpack_require__(141);
 	var DOM = __webpack_require__(89);
 
@@ -9723,9 +9730,17 @@ module.exports =
 	  value: true
 	});
 
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
 	var _defineProperty2 = __webpack_require__(5);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _objectWithoutProperties2 = __webpack_require__(115);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 	var _getPrototypeOf = __webpack_require__(9);
 
@@ -9865,42 +9880,44 @@ module.exports =
 	      var children = _props.children;
 	      var className = _props.className;
 	      var fixed = _props.fixed;
+	      var flex = _props.flex;
 	      var priority = _props.priority;
 	      var separator = _props.separator;
-	      var flex = this.props.flex;
+	      var props = (0, _objectWithoutProperties3.default)(_props, ['children', 'className', 'fixed', 'flex', 'priority', 'separator']);
+
+	      delete props.onResponsive;
+	      delete props.showOnResponsive;
 	      var responsive = this.state.responsive;
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--flex-' + this.props.flex, flex), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--fixed', fixed), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--separator', separator), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--fixed', fixed), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--separator', separator), _classnames), className);
 
-	      var elements = _react.Children.toArray(children).filter(function (element) {
-	        return element;
+	      var filteredChildren = _react.Children.toArray(children).filter(function (child) {
+	        return child;
 	      });
-
-	      elements = elements.map(function (element, index) {
-	        var hasFlex = true;
-	        var className = '';
+	      var boxedChildren = filteredChildren.map(function (child, index) {
+	        var boxFlex = true;
+	        var className = void 0;
 	        // When we only have room to show one child, hide the appropriate one
-	        if ('single' === responsive && ('left' === priority && index > 0 || 'right' === priority && index === 0 && elements.length > 1)) {
-	          className += CLASS_ROOT + '--hidden';
-	          flex = 'both';
-	        } else if (elements.length > 1 && (flex === 'right' && index === 0 || flex === 'left' && index === elements.length - 1)) {
-	          hasFlex = false;
+	        if ('single' === responsive && ('left' === priority && index > 0 || 'right' === priority && index === 0 && filteredChildren.length > 1)) {
+	          className = CLASS_ROOT + '--hidden';
+	        } else if (filteredChildren.length > 1 && (flex === 'right' && index === 0 || flex === 'left' && index === filteredChildren.length - 1)) {
+	          boxFlex = false;
 	        } else {
 	          className = CLASS_ROOT + '--full';
 	        }
 	        return _react2.default.createElement(
 	          _Box2.default,
-	          { key: 'element_' + index, className: className, flex: hasFlex },
-	          element
+	          { key: index, className: className, flex: boxFlex },
+	          child
 	        );
 	      });
 
 	      return _react2.default.createElement(
 	        'div',
-	        { ref: function ref(_ref) {
+	        (0, _extends3.default)({ ref: function ref(_ref) {
 	            return _this2.splitRef = _ref;
-	          }, className: classes },
-	        elements
+	          } }, props, { className: classes }),
+	        boxedChildren
 	      );
 	    }
 	  }]);
@@ -9942,13 +9959,13 @@ module.exports =
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _keys = __webpack_require__(84);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
 	var _defineProperty2 = __webpack_require__(5);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _objectWithoutProperties2 = __webpack_require__(115);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 	var _getPrototypeOf = __webpack_require__(9);
 
@@ -9982,17 +9999,15 @@ module.exports =
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Props = __webpack_require__(91);
-
-	var _Props2 = _interopRequireDefault(_Props);
-
 	var _CSSClassnames = __webpack_require__(93);
 
 	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var CLASS_ROOT = _CSSClassnames2.default.SIDEBAR; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+
+	var CLASS_ROOT = _CSSClassnames2.default.SIDEBAR;
 
 	var Sidebar = function (_Component) {
 	  (0, _inherits3.default)(Sidebar, _Component);
@@ -10007,15 +10022,20 @@ module.exports =
 	    value: function render() {
 	      var _classnames;
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--fixed', this.props.fixed), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--full', this.props.full), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), _classnames));
+	      var _props = this.props;
+	      var children = _props.children;
+	      var className = _props.className;
+	      var fixed = _props.fixed;
+	      var full = _props.full;
+	      var size = _props.size;
+	      var props = (0, _objectWithoutProperties3.default)(_props, ['children', 'className', 'fixed', 'full', 'size']);
 
-	      var boxProps = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
-	      var restProps = _Props2.default.omit(this.props, (0, _keys2.default)(Sidebar.propTypes));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--fixed', fixed), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--full', full), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), _classnames), className);
 
 	      return _react2.default.createElement(
 	        _Box2.default,
-	        (0, _extends3.default)({}, restProps, boxProps, { className: classes }),
-	        this.props.children
+	        (0, _extends3.default)({}, props, { className: classes }),
+	        children
 	      );
 	    }
 	  }]);
@@ -10220,7 +10240,7 @@ module.exports =
 	// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 	var React = __webpack_require__(1);
-	var Footer = __webpack_require__(117);
+	var Footer = __webpack_require__(118);
 
 	var DocsFooter = React.createClass({
 	  displayName: 'DocsFooter',
@@ -11947,7 +11967,7 @@ module.exports =
 	var DocsSplit = __webpack_require__(138);
 	var DocsArticle = __webpack_require__(142);
 	var Menu = __webpack_require__(98);
-	var Anchor = __webpack_require__(116);
+	var Anchor = __webpack_require__(117);
 
 	var HelloWorld = __webpack_require__(151);
 	var GetStarted = __webpack_require__(152);
@@ -12122,7 +12142,7 @@ module.exports =
 	var Router = __webpack_require__(2);
 	var Link = Router.Link;
 
-	var Anchor = __webpack_require__(116);
+	var Anchor = __webpack_require__(117);
 
 	var HelloWorld = React.createClass({
 	  displayName: 'HelloWorld',
@@ -13591,7 +13611,7 @@ module.exports =
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _objectWithoutProperties2 = __webpack_require__(120);
+	var _objectWithoutProperties2 = __webpack_require__(115);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -13747,7 +13767,7 @@ module.exports =
 
 	var _Heading2 = _interopRequireDefault(_Heading);
 
-	var _Headline = __webpack_require__(119);
+	var _Headline = __webpack_require__(120);
 
 	var _Headline2 = _interopRequireDefault(_Headline);
 
@@ -13755,7 +13775,7 @@ module.exports =
 
 	var _Markdown2 = _interopRequireDefault(_Markdown);
 
-	var _Anchor = __webpack_require__(116);
+	var _Anchor = __webpack_require__(117);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
@@ -14068,7 +14088,7 @@ module.exports =
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _objectWithoutProperties2 = __webpack_require__(120);
+	var _objectWithoutProperties2 = __webpack_require__(115);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -14191,7 +14211,7 @@ module.exports =
 
 	var _Heading2 = _interopRequireDefault(_Heading);
 
-	var _Anchor = __webpack_require__(116);
+	var _Anchor = __webpack_require__(117);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
@@ -14637,7 +14657,7 @@ module.exports =
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _objectWithoutProperties2 = __webpack_require__(120);
+	var _objectWithoutProperties2 = __webpack_require__(115);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -16883,7 +16903,7 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Anchor = __webpack_require__(116);
+	var _Anchor = __webpack_require__(117);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
@@ -18594,7 +18614,7 @@ module.exports =
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Anchor = __webpack_require__(116);
+	var _Anchor = __webpack_require__(117);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
@@ -18606,7 +18626,7 @@ module.exports =
 
 	var _Card2 = _interopRequireDefault(_Card);
 
-	var _Headline = __webpack_require__(119);
+	var _Headline = __webpack_require__(120);
 
 	var _Headline2 = _interopRequireDefault(_Headline);
 
@@ -19301,6 +19321,14 @@ module.exports =
 	  value: true
 	});
 
+	var _extends2 = __webpack_require__(69);
+
+	var _extends3 = _interopRequireDefault(_extends2);
+
+	var _objectWithoutProperties2 = __webpack_require__(115);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
 	var _getPrototypeOf = __webpack_require__(9);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -19325,15 +19353,18 @@ module.exports =
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _classnames = __webpack_require__(67);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
 	var _CSSClassnames = __webpack_require__(93);
 
 	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// (C) Copyright 2016 Hewlett Packard Enterprise Development LP
+	var CLASS_ROOT = _CSSClassnames2.default.WORLD_MAP; // (C) Copyright 2016 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = _CSSClassnames2.default.WORLD_MAP;
 	var COLOR_INDEX = _CSSClassnames2.default.COLOR_INDEX;
 
 	var CONTINENTS = [{
@@ -19461,18 +19492,22 @@ module.exports =
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var series = this.props.series;
+	      var _props = this.props;
+	      var className = _props.className;
+	      var series = _props.series;
+	      var props = (0, _objectWithoutProperties3.default)(_props, ['className', 'series']);
 	      var _state = this.state;
 	      var width = _state.width;
 	      var height = _state.height;
 
+	      var classes = (0, _classnames2.default)(CLASS_ROOT, className);
 	      var continents = series.map(this._renderContinent);
 
 	      return _react2.default.createElement(
 	        'svg',
-	        { className: CLASS_ROOT, version: '1.1',
+	        (0, _extends3.default)({}, props, { className: classes, version: '1.1',
 	          preserveAspectRatio: 'xMidYMid meet',
-	          width: width + 'px', viewBox: '0 0 ' + width + ' ' + height },
+	          width: width + 'px', viewBox: '0 0 ' + width + ' ' + height }),
 	        _react2.default.createElement(
 	          'g',
 	          { stroke: 'none', fill: 'none', fillRule: 'evenodd' },
@@ -19810,7 +19845,7 @@ module.exports =
 
 	var _Paragraph2 = _interopRequireDefault(_Paragraph);
 
-	var _Anchor = __webpack_require__(116);
+	var _Anchor = __webpack_require__(117);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
@@ -19979,12 +20014,12 @@ module.exports =
 	var Tiles = __webpack_require__(121);
 	var Box = __webpack_require__(83);
 	var Heading = __webpack_require__(156);
-	var Headline = __webpack_require__(119);
+	var Headline = __webpack_require__(120);
 	var Paragraph = __webpack_require__(157);
 	var Accordion = __webpack_require__(198);
 	var AccordionPanel = __webpack_require__(205);
 	var Card = __webpack_require__(158);
-	var Anchor = __webpack_require__(116);
+	var Anchor = __webpack_require__(117);
 	var Video = __webpack_require__(165);
 	var SocialTwitterIcon = __webpack_require__(181);
 	var SocialFacebookIcon = __webpack_require__(182);
@@ -21241,7 +21276,7 @@ module.exports =
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _objectWithoutProperties2 = __webpack_require__(120);
+	var _objectWithoutProperties2 = __webpack_require__(115);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
@@ -22069,7 +22104,7 @@ module.exports =
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Headline = __webpack_require__(119);
+	var _Headline = __webpack_require__(120);
 
 	var _Headline2 = _interopRequireDefault(_Headline);
 
@@ -22077,7 +22112,7 @@ module.exports =
 
 	var _Paragraph2 = _interopRequireDefault(_Paragraph);
 
-	var _Anchor = __webpack_require__(116);
+	var _Anchor = __webpack_require__(117);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
@@ -22579,7 +22614,7 @@ module.exports =
 
 	var _Box2 = _interopRequireDefault(_Box);
 
-	var _Anchor = __webpack_require__(116);
+	var _Anchor = __webpack_require__(117);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
@@ -22721,7 +22756,7 @@ module.exports =
 	var Heading = __webpack_require__(156);
 	var Paragraph = __webpack_require__(157);
 	var Card = __webpack_require__(158);
-	var Anchor = __webpack_require__(116);
+	var Anchor = __webpack_require__(117);
 	var SocialTwitterIcon = __webpack_require__(181);
 	var SocialFacebookIcon = __webpack_require__(182);
 	var SocialLinkedinIcon = __webpack_require__(184);
@@ -22861,11 +22896,11 @@ module.exports =
 	    return React.createElement(
 	      Box,
 	      { className: 'columns-container', colorIndex: 'light-2',
-	        pad: { horizontal: "large" }, size: { width: { max: "xxlarge" } } },
+	        pad: { horizontal: "large" }, size: { width: { max: "full" } } },
 	      React.createElement(
 	        Columns,
 	        { size: 'medium', justify: 'center', masonry: true,
-	          maxCount: 7, responsive: true },
+	          maxCount: 3, responsive: true },
 	        blogPostCard,
 	        featuredPostCard,
 	        socialFeedCard1,
@@ -22950,7 +22985,7 @@ module.exports =
 	        { colorIndex: 'light-2', pad: { vertical: "large" }, align: 'center' },
 	        React.createElement(
 	          Box,
-	          { size: { "width": "xxlarge" }, pad: { horizontal: "large" } },
+	          { align: 'start', size: { "width": "xxlarge" }, pad: { horizontal: "large" } },
 	          React.createElement(
 	            Heading,
 	            { tag: 'h2', strong: true },
@@ -23014,11 +23049,11 @@ module.exports =
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(2);
 	var Route = Router.Route;
-	var Anchor = __webpack_require__(116);
+	var Anchor = __webpack_require__(117);
 	var Box = __webpack_require__(83);
 	var Card = __webpack_require__(158);
 	var Heading = __webpack_require__(156);
-	var Headline = __webpack_require__(119);
+	var Headline = __webpack_require__(120);
 	var Paragraph = __webpack_require__(157);
 	var Tiles = __webpack_require__(121);
 	var LinkNextIcon = __webpack_require__(109);
@@ -23255,11 +23290,7 @@ module.exports =
 	      React.createElement(
 	        Box,
 	        { colorIndex: 'light-2', pad: { vertical: "large" }, align: 'center' },
-	        React.createElement(
-	          Box,
-	          { size: { "width": { "max": "xxlarge" } } },
-	          this._renderCardTiles()
-	        )
+	        this._renderCardTiles()
 	      )
 	    );
 	  }
@@ -23541,7 +23572,7 @@ module.exports =
 
 	var _reactRouter = __webpack_require__(2);
 
-	var _Section = __webpack_require__(118);
+	var _Section = __webpack_require__(119);
 
 	var _Section2 = _interopRequireDefault(_Section);
 
@@ -23565,7 +23596,7 @@ module.exports =
 
 	var _Label2 = _interopRequireDefault(_Label);
 
-	var _Anchor = __webpack_require__(116);
+	var _Anchor = __webpack_require__(117);
 
 	var _Anchor2 = _interopRequireDefault(_Anchor);
 
@@ -24142,7 +24173,7 @@ module.exports =
 	              _react2.default.createElement(
 	                _Video2.default,
 	                null,
-	                _react2.default.createElement('source', { src: '/video/test.mp4', type: 'video/mp4' })
+	                _react2.default.createElement('source', { src: '/docs/video/test.mp4', type: 'video/mp4' })
 	              ),
 	              _react2.default.createElement(
 	                _Paragraph2.default,
@@ -24284,13 +24315,13 @@ module.exports =
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _keys = __webpack_require__(84);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
 	var _defineProperty2 = __webpack_require__(5);
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+	var _objectWithoutProperties2 = __webpack_require__(115);
+
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 
 	var _getPrototypeOf = __webpack_require__(9);
 
@@ -24328,19 +24359,14 @@ module.exports =
 
 	var _Paragraph2 = _interopRequireDefault(_Paragraph);
 
-	var _Props = __webpack_require__(91);
-
-	var _Props2 = _interopRequireDefault(_Props);
-
 	var _CSSClassnames = __webpack_require__(93);
 
 	var _CSSClassnames2 = _interopRequireDefault(_CSSClassnames);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
+	var CLASS_ROOT = _CSSClassnames2.default.QUOTE; // (C) Copyright 2014-2016 Hewlett Packard Enterprise Development LP
 
-	var CLASS_ROOT = _CSSClassnames2.default.QUOTE;
 	var BORDER_COLOR_INDEX = _CSSClassnames2.default.BORDER_COLOR_INDEX;
 
 	var Quote = function (_Component) {
@@ -24362,17 +24388,13 @@ module.exports =
 	      var className = _props.className;
 	      var credit = _props.credit;
 	      var emphasizeCredit = _props.emphasizeCredit;
-	      var size = _props.size;
+	      var props = (0, _objectWithoutProperties3.default)(_props, ['borderColorIndex', 'children', 'className', 'credit', 'emphasizeCredit']);
 
 
-	      var classes = (0, _classnames3.default)(CLASS_ROOT, className, (_classnames = {}, (0, _defineProperty3.default)(_classnames, BORDER_COLOR_INDEX + '-' + borderColorIndex, borderColorIndex), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--' + size, size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--emphasize-credit', emphasizeCredit), _classnames));
+	      var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, (0, _defineProperty3.default)(_classnames, BORDER_COLOR_INDEX + '-' + borderColorIndex, borderColorIndex), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--small', 'small' === props.size), (0, _defineProperty3.default)(_classnames, CLASS_ROOT + '--emphasize-credit', emphasizeCredit), _classnames), className);
 
-	      var boxProps = _Props2.default.pick(this.props, (0, _keys2.default)(_Box2.default.propTypes));
-
-	      if (size === 'small') {
-	        boxProps.pad = {
-	          horizontal: 'medium', vertical: 'small'
-	        };
+	      if (props.size === 'small') {
+	        props.pad = { horizontal: 'medium', vertical: 'small' };
 	      }
 
 	      var creditElement = void 0;
@@ -24396,7 +24418,7 @@ module.exports =
 
 	      return _react2.default.createElement(
 	        _Box2.default,
-	        (0, _extends3.default)({}, boxProps, { className: classes }),
+	        (0, _extends3.default)({}, props, { className: classes }),
 	        _react2.default.createElement(
 	          'div',
 	          null,
@@ -28192,7 +28214,7 @@ module.exports =
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _objectWithoutProperties2 = __webpack_require__(120);
+	var _objectWithoutProperties2 = __webpack_require__(115);
 
 	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
 

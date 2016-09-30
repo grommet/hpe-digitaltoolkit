@@ -206,9 +206,7 @@ const SubPage = React.createClass({
           textSize="medium"
           link="http://www.grommet.io/docs/" />
         <Box colorIndex="light-2" pad={{vertical: "large"}} align="center">
-          <Box size={{"width": {"max": "xxlarge"}}}>
-            {this._renderCardTiles()}
-          </Box>
+          {this._renderCardTiles()}
         </Box>
       </div>
     );
