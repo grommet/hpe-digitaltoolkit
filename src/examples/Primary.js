@@ -210,7 +210,8 @@ const Primary = React.createClass({
           </Box>
         </Box>
         <Box colorIndex="light-2" pad={{vertical: "large"}} align="center">
-          <Box align="start" size={{"width": "xxlarge"}} pad={{horizontal: "large"}}>
+          <Box align="center"
+            size={{"width": "xxlarge"}} pad={{horizontal: "large"}}>
             <Heading tag="h2" strong={true}>
               Recent News
             </Heading>
