@@ -9,10 +9,7 @@
     left: 0;
     padding: 0;
     background-position: center center;
-
-    @include media-query(palm) {
-      background-size: cover;
-    }
+    background-size: cover;
 
     &-video {
       overflow: hidden;
