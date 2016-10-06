@@ -17,12 +17,12 @@ function renderMenuLinks (props) {
       separator={(props.external && props.responsive) ? 'top' : undefined}
       pad={{ horizontal: 'medium',vertical: 'none' }}>
       <Menu direction="row" inline={true}
-        dropColorIndex={props.colorIndex}
         label="Menu" dropAlign={{top: 'top', left: 'left'}}>
         {props.links.map((link, index) => {
           if (link.links && link.links.length > 0) {
             return (
               <Menu key={index} label={link.label} align="stretch"
+                colorIndex="dark"
                 dropColorIndex={props.colorIndex}
                 dropAlign={{top: 'top', left: 'left'}}>
                 {link.links.map((dropdownLink, linkIndex) =>
