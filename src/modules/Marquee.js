@@ -174,7 +174,7 @@ export default class Marquee extends Component {
 
     if ((link || onClick) && overlayVideo) {
       separator = (
-        <Box direction="row" responsive="false">
+        <Box direction="row" responsive={false}>
           <Box pad={{ horizontal: 'small' }} separator="right" />
           <Box pad={{ horizontal: 'small' }} />
         </Box>

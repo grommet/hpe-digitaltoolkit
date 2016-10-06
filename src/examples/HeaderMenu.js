@@ -21,7 +21,7 @@ function renderMenuLinks (props) {
         {props.links.map((link, index) => {
           if (link.links && link.links.length > 0) {
             return (
-              <Menu key={index} label={link.label} align="stretch"
+              <Menu key={index} label={link.label}
                 colorIndex="dark"
                 dropColorIndex={props.colorIndex}
                 dropAlign={{top: 'top', left: 'left'}}>
