@@ -9,7 +9,7 @@ import Heading from 'grommet/components/Heading';
 import Paragraph from 'grommet/components/Paragraph';
 import Label from 'grommet/components/Label';
 import Anchor from 'grommet/components/Anchor';
-import WatchIcon from 'grommet/components/icons/base/Watch';
+import CirclePlayIcon from 'grommet/components/icons/base/CirclePlay';
 import Quote from 'grommet/components/Quote';
 import Image from 'grommet/components/Image';
 import Video from 'grommet/components/Video';
@@ -263,7 +263,7 @@ export default class Details extends Component {
                   aspernatur enim nulla.
                 </Paragraph>
                 <Box margin={{bottom: 'small'}}>
-                  <Anchor href="#" label="Watch the video" icon={<WatchIcon />} />
+                  <Anchor href="#" label="Watch the video" icon={<CirclePlayIcon />} />
                 </Box>
               </Box>
               <Box margin={{vertical: 'small'}}>
@@ -274,7 +274,7 @@ export default class Details extends Component {
                   aspernatur enim nulla.
                 </Paragraph>
                 <Box margin={{bottom: 'small'}}>
-                  <Anchor href="#" label="Watch the video" icon={<WatchIcon />} />
+                  <Anchor href="#" label="Watch the video" icon={<CirclePlayIcon />} />
                 </Box>
               </Box>
               <Heading tag="h3" margin="none">Media Coverage</Heading>

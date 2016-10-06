@@ -18,7 +18,7 @@ var SocialTwitterIcon = require('grommet/components/icons/base/SocialTwitter');
 var SocialFacebookIcon = require('grommet/components/icons/base/SocialFacebook');
 var SocialLinkedinIcon = require('grommet/components/icons/base/SocialLinkedin');
 var LinkNextIcon = require('grommet/components/icons/base/LinkNext');
-var WatchIcon = require('grommet/components/icons/base/Watch');
+var CirclePlayIcon = require('grommet/components/icons/base/CirclePlay');
 var Marquee = require('../modules/Marquee');
 var MarqueeParallax = require('../modules/MarqueeParallax');
 var Header = require('./Header');
@@ -213,7 +213,7 @@ var Examples = React.createClass({
               source: 'video/test.mp4',
               type: 'mp4'
             }}
-            link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
+            link={<Anchor href="#" label="Watch Now" icon={<CirclePlayIcon />} />}
           />
           <Card
             colorIndex="light-1"
@@ -422,7 +422,7 @@ var Examples = React.createClass({
                     source: 'video/test.mp4',
                     type: 'mp4'
                   }}
-                  link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
+                  link={<Anchor href="#" label="Watch Now" icon={<CirclePlayIcon />} />}
                 />
               </Box>
             </AccordionPanel>
@@ -456,7 +456,7 @@ var Examples = React.createClass({
                     source: 'video/test.mp4',
                     type: 'mp4'
                   }}
-                  link={<Anchor href="#" label="Watch Now" icon={<WatchIcon />} />}
+                  link={<Anchor href="#" label="Watch Now" icon={<CirclePlayIcon />} />}
                 />
               </Box>
             </AccordionPanel>
