@@ -109,7 +109,8 @@ export default class Marquee extends Component {
       return (
         <Box containerClassName={CLASS_ROOT + "__background"}
           appCentered={true} pad={pad}
-          backgroundImage={`url(${backgroundImage})`} full={full} />
+          style={{backgroundImage: `url(${backgroundImage})`,
+            backgroundRepeat: "no-repeat"}} full={full} />
       );
     } else if (backgroundVideo) {
       return (
