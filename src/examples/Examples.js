@@ -156,7 +156,7 @@ var Examples = React.createClass({
     return (
       <Box pad={{horizontal: 'large'}}>
         <Box colorIndex="light-2">
-          <Columns size="medium" masonry={true} maxCount={7} justify="center"
+          <Columns size="medium" masonry={true} maxCount={3} justify="center"
             responsive={true}>
             {blogPostCard}
             {featuredPostCard}
@@ -178,6 +178,7 @@ var Examples = React.createClass({
         <Tiles size="medium" colorIndex="light-2" justify="center">
           <Card
             colorIndex="light-1"
+            truncate={true}
             margin="small"
             contentPad="medium"
             onClick={this._onClickCard.bind(this, grommetPath)}
@@ -200,6 +201,7 @@ var Examples = React.createClass({
           />
           <Card
             colorIndex="light-1"
+            truncate={true}
             margin="small"
             contentPad="medium"
             direction="column"
@@ -217,6 +219,7 @@ var Examples = React.createClass({
           />
           <Card
             colorIndex="light-1"
+            truncate={true}
             margin="small"
             contentPad="medium"
             direction="column"
@@ -229,6 +232,7 @@ var Examples = React.createClass({
           />
           <Card
             colorIndex="light-1"
+            truncate={true}
             margin="small"
             contentPad="medium"
             direction="column"
