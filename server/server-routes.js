@@ -1795,6 +1795,7 @@ module.exports =
 	  hour: 'hour',
 	  'Grommet Logo': 'Grommet Logo',
 	  'Layer': 'Layer',
+	  List: 'List',
 	  line: 'line',
 	  'Loading': 'Loading',
 	  loginInvalidPassword: 'Please provide Username and Password.',
@@ -9383,6 +9384,8 @@ module.exports =
 	      }
 	      if ('row' === direction) {
 	        this._trackHorizontalScroll();
+	        // give browser a chance to stabilize
+	        setTimeout(this._layout, 10);
 	      }
 	      if (selectable) {
 	        // only listen for navigation keys if the list row can be selected
@@ -21989,7 +21992,8 @@ module.exports =
 	                Heading,
 	                { tag: 'h2' },
 	                'Enterprise Mobility Services'
-	              )
+	              ),
+	              a11yTitle: 'Enterprise Mobility Services'
 	            },
 	            React.createElement(
 	              Box,
@@ -22026,8 +22030,9 @@ module.exports =
 	              heading: React.createElement(
 	                Heading,
 	                { tag: 'h2' },
-	                'Software Licensings and Managment'
-	              )
+	                'Software Licensing and Management'
+	              ),
+	              a11yTitle: 'Software Licensing and Management'
 	            },
 	            React.createElement(
 	              Box,
@@ -22207,20 +22212,7 @@ module.exports =
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      if (this.props.masonry) {
-	        var columnBreakpoints = this._getColumnBreakpoints();
-	        // resolves collapsed margin issue in Safari
-	        var childMarginSize = this._getChildMarginSize();
-	        var initialState = {
-	          columnBreakpoints: columnBreakpoints,
-	          margin: this.state.margin || childMarginSize
-	        };
-
-	        // make sure to recalculate columnBreakpoints if starting
-	        // with smaller screen width and resizing
-	        if (window.innerWidth <= _Responsive2.default.smallSize()) {
-	          initialState.initMobile = true;
-	        }
-	        this.setState(initialState);
+	        this._getColumnBreakpoints();
 	      }
 
 	      window.addEventListener('resize', this._onResize);
@@ -22231,29 +22223,16 @@ module.exports =
 	    value: function componentWillUnmount() {
 	      window.removeEventListener('resize', this._onResize);
 	      clearTimeout(this._layoutTimer);
+	      clearTimeout(this._childStylesTimer);
 	    }
 	  }, {
 	    key: '_onResize',
 	    value: function _onResize() {
-	      var _this2 = this;
-
-	      var _state = this.state;
-	      var initMobile = _state.initMobile;
-	      var margin = _state.margin;
+	      var initMobile = this.state.initMobile;
 
 	      if (initMobile) {
 	        if (window.innerWidth > _Responsive2.default.smallSize()) {
-	          var columnBreakpoints = this._getColumnBreakpoints();
-	          var childMarginSize = margin || this._getChildMarginSize();
-
-	          this.setState({
-	            initMobile: false,
-	            columnBreakpoints: columnBreakpoints,
-	            margin: childMarginSize
-	          }, function () {
-	            clearTimeout(_this2._layoutTimer);
-	            _this2._layoutTimer = setTimeout(_this2._layout, 50);
-	          });
+	          this._getColumnBreakpoints();
 	        }
 	      } else {
 	        clearTimeout(this._layoutTimer);
@@ -22262,26 +22241,20 @@ module.exports =
 	    }
 	  }, {
 	    key: '_getChildMarginSize',
-	    value: function _getChildMarginSize() {
+	    value: function _getChildMarginSize(childStyles) {
 	      var childMargin = void 0;
-	      var container = (0, _reactDom.findDOMNode)(this.containerRef);
-	      var column = container.childNodes[0];
-	      var child = column.childNodes[0];
 
-	      if (child) {
-	        var childStyles = window.getComputedStyle(child);
-	        if (childStyles) {
-	          var childLeftMargin = childStyles.marginLeft ? parseFloat(childStyles.marginLeft) : 0;
-	          var childRightMargin = childStyles.marginRight ? parseFloat(childStyles.marginRight) : 0;
-	          childMargin = childLeftMargin + childRightMargin;
+	      if (childStyles) {
+	        var childLeftMargin = childStyles.marginLeft ? parseFloat(childStyles.marginLeft) : 0;
+	        var childRightMargin = childStyles.marginRight ? parseFloat(childStyles.marginRight) : 0;
+	        childMargin = childLeftMargin + childRightMargin;
 
-	          if (childMargin === 48) {
-	            return 'large';
-	          } else if (childMargin === 24) {
-	            return 'medium';
-	          } else if (childMargin === 12) {
-	            return 'small';
-	          }
+	        if (childMargin === 48) {
+	          return 'large';
+	        } else if (childMargin === 24) {
+	          return 'medium';
+	        } else if (childMargin === 12) {
+	          return 'small';
 	        }
 	      }
 
@@ -22290,28 +22263,49 @@ module.exports =
 	  }, {
 	    key: '_getColumnBreakpoints',
 	    value: function _getColumnBreakpoints() {
+	      var _this2 = this;
+
+	      var _state = this.state;
+	      var initMobile = _state.initMobile;
+	      var margin = _state.margin;
 	      // grab CSS styles from DOM after component mounted
 	      // default to small size ($size-small = 192px)
-	      var minColumnWidth = 192;
+
 	      var container = (0, _reactDom.findDOMNode)(this.containerRef);
 	      var column = container.childNodes[0];
 	      var child = column.childNodes[0];
+	      var minColumnWidth = 192;
+	      var currentMobile = initMobile && window.innerWidth <= _Responsive2.default.smallSize();
 
 	      if (child) {
-	        var childStyles = window.getComputedStyle(child);
-	        if (childStyles && childStyles.width) {
-	          var childLeftMargin = childStyles.marginLeft ? parseFloat(childStyles.marginLeft) : 0;
-	          var childRightMargin = childStyles.marginRight ? parseFloat(childStyles.marginRight) : 0;
-	          minColumnWidth = parseFloat(childStyles.width) + childLeftMargin + childRightMargin;
-	        }
-	      }
+	        clearTimeout(this._childStylesTimer);
+	        this._childStylesTimer = setTimeout(function () {
+	          var childStyles = window.getComputedStyle(child);
 
-	      // create array of breakpoints for 1 through this.props.maxCount
-	      // number of columns of minColumnWidth width.
-	      var columnBreakpoints = Array.apply(null, Array(this.props.maxCount)).map(function (currentMaxCount, index) {
-	        return (index + 1) * minColumnWidth;
-	      });
-	      return columnBreakpoints;
+	          if (childStyles && childStyles.width) {
+	            var childLeftMargin = childStyles.marginLeft ? parseFloat(childStyles.marginLeft) : 0;
+	            var childRightMargin = childStyles.marginRight ? parseFloat(childStyles.marginRight) : 0;
+	            minColumnWidth = parseFloat(childStyles.width) + childLeftMargin + childRightMargin;
+	          }
+
+	          var childMarginSize = margin || _this2._getChildMarginSize(childStyles);
+
+	          // create array of breakpoints for 1 through this.props.maxCount
+	          // number of columns of minColumnWidth width.
+	          var columnBreakpoints = Array.apply(null, Array(_this2.props.maxCount)).map(function (currentMaxCount, index) {
+	            return (index + 1) * minColumnWidth;
+	          });
+
+	          _this2.setState({
+	            columnBreakpoints: columnBreakpoints,
+	            margin: childMarginSize,
+	            initMobile: currentMobile
+	          }, function () {
+	            clearTimeout(_this2._layoutTimer);
+	            _this2._layoutTimer = setTimeout(_this2._layout, 50);
+	          });
+	        }, 200);
+	      }
 	    }
 	  }, {
 	    key: '_calculateMaxCount',
