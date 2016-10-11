@@ -404,6 +404,7 @@ var Examples = React.createClass({
                   Enterprise Mobility Services
                 </Heading>
               }
+              a11yTitle='Enterprise Mobility Services'
             >
               <Box pad="medium">
                 <Heading tag="h3" margin="none">
@@ -433,9 +434,10 @@ var Examples = React.createClass({
             <AccordionPanel
               heading={
                 <Heading tag="h2">
-                  Software Licensings and Managment
+                  Software Licensing and Management
                 </Heading>
               }
+              a11yTitle="Software Licensing and Management"
             >
               <Box pad="medium">
                 <Heading tag="h3" margin="none">
