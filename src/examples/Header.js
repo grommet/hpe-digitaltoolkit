@@ -88,8 +88,13 @@ export default class HPEHeader extends Component {
           <Header appCentered={this.props.centered}
             justify="between" align={headerAlign} size="large"
             colorIndex={colorIndex}
-            pad={{horizontal: 'medium', vertical: headerVerticalPad, between: 'small'}} wrap={true}
-            external={this.props.external}>
+            pad={{
+              horizontal: 'medium',
+              vertical: headerVerticalPad,
+              between: 'small'
+            }}
+            wrap={true}
+          >
             <Box className={titleBoxClass} pad={titleBoxPad}>
               <Title onClick={this._onClickTitle}>
                 <Logo reverse={reverseLogo} />

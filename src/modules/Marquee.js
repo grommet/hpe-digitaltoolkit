@@ -8,7 +8,7 @@ import Image from 'grommet/components/Image';
 import Card from 'grommet/components/Card';
 import Headline from 'grommet/components/Headline';
 import Paragraph from 'grommet/components/Paragraph';
-import WatchIcon from 'grommet/components/icons/base/Watch';
+import CirclePlayIcon from 'grommet/components/icons/base/CirclePlay';
 import CloseIcon from 'grommet/components/icons/base/Close';
 
 const CLASS_ROOT = 'marquee';
@@ -169,13 +169,13 @@ export default class Marquee extends Component {
 
     if (overlayVideo) {
       watchNow = (
-        <Anchor onClick={this._onShowVideo} icon={<WatchIcon />} label="Watch Now" />
+        <Anchor onClick={this._onShowVideo} icon={<CirclePlayIcon />} label="Watch Now" />
       );
     }
 
     if ((link || onClick) && overlayVideo) {
       separator = (
-        <Box direction="row" responsive="false">
+        <Box direction="row" responsive={false}>
           <Box pad={{ horizontal: 'small' }} separator="right" />
           <Box pad={{ horizontal: 'small' }} />
         </Box>
