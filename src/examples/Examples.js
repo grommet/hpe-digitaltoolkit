@@ -384,6 +384,7 @@ var Examples = React.createClass({
           logo="/docs/img/idc-logo-dark.png"
           subHeadline="Hewlett Packard Enterprise is recognized as a 2014 IDC MarketScape leader in Cloud, Security, Big Data, Storage, ITIL/ITSM, and Project Management Training."
           responsiveBackgroundPosition="left"
+          responsiveDropText={false}
           stackSize="large"
           link="http://www.grommet.io/docs/" />
         <Box pad={{horizontal: 'large'}}><p><strong>Section Marquee #6</strong></p></Box>
