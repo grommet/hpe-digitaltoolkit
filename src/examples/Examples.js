@@ -84,11 +84,11 @@ var Examples = React.createClass({
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.twitter.com')}
         direction="column"
-        label="Social">
+        label="Social"
+        link={<Anchor href="http://www.twitter.com" label="Social">{twitterIconBox}</Anchor>}>
         <Heading tag="h2">
           Protect Your Digital Enterprise ipsum lorem dolores aeat el
         </Heading>
-        {twitterIconBox}
       </Card>
     );
 
@@ -99,11 +99,11 @@ var Examples = React.createClass({
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.facebook.com')}
         direction="column"
-        label="Social">
+        label="Social"
+        link={<Anchor href="http://www.facebook.com" label="Social">{facebookIconBox}</Anchor>}>
         <Heading tag="h2">
           Protect Your Digital Enterprise ipsum lorem dolores aeat el
         </Heading>
-        {facebookIconBox}
       </Card>
     );
 
@@ -114,11 +114,11 @@ var Examples = React.createClass({
         contentPad="medium"
         onClick={this._onClickCard.bind(this, 'http://www.linkedin.com')}
         direction="column"
-        label="Social">
+        label="Social"
+        link={<Anchor href="http://www.linkedin.com" label="Social">{linkedinIconBox}</Anchor>}>
         <Heading tag="h2">
           Protect Your Digital Enterprise ipsum lorem dolores aeat el
         </Heading>
-        {linkedinIconBox}
       </Card>
     );
 
