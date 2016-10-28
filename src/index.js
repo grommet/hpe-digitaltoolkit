@@ -15,8 +15,9 @@ var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 var createHistory = require('history').createHistory;
 
+// Get rootPath based on theme.  No need to inject theme CSS link tag here, since it
+// is injected serverside.
 var themeGroups = /docs\/([^\/]+)\/?/.exec(window.location.pathname);
-
 var theme = '';
 if (themeGroups && themeGroups.length > 1) {
   theme = themeGroups[1];
@@ -25,11 +26,6 @@ if (themeGroups && themeGroups.length > 1) {
     theme = '';
   }
 }
-
-var themeLink = document.getElementById('theme-link');
-var themeUrl = '/docs/' + (theme === '' ? 'vanilla' : theme) + '.min.css';
-themeLink.setAttribute('href', themeUrl);
-
 var rootPath = '/docs/' + (theme === '' ? '' : theme + '/');
 
 var routes = require('./routes')(rootPath);
