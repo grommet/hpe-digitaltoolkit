@@ -10,7 +10,27 @@
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="shortcut icon" type="image/png" href="/docs/img/shortcut-icon.png" />
   <link rel="apple-touch-icon" sizes="196x196" type="image/png" href="/docs/img/mobile-app-icon.png">
-  <link id="theme-link" href='/docs/vanilla.min.css' rel='stylesheet' type='text/css'>
+  <script>
+    (function(){
+      // Note: this is only to get themes working in dev mode.  In prod, the theme link tag
+      // is generated serverside in server/docs.js
+
+      var themeGroups = /docs\/([^\/]+)\/?/.exec(window.location.pathname);
+      var defaultTheme = 'vanilla';
+      var theme = '';
+      if (themeGroups && themeGroups.length > 1) {
+        theme = themeGroups[1];
+        var possibleThemes = 'aruba,hpe,hpinc';
+        if (possibleThemes.indexOf(theme) === -1) {
+          theme = '';
+        }
+      }
+
+      // Write out CSS link tag synchronously/blocking based on url path.
+      var themeUrl = '/docs/' + (theme === '' ? defaultTheme : theme) + '.min.css';
+      document.write('<link href="' + themeUrl + '" rel="stylesheet" type="text/css">');
+    })();
+  </script>
   <style>
   body.loading {margin: 0px; width: 100vw; height: 100vh;
     background-image: radial-gradient(circle at 50% 15%, #fff, #fff 30%, #ccc);
