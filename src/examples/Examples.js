@@ -406,7 +406,7 @@ var Examples = React.createClass({
               }
               a11yTitle='Enterprise Mobility Services'
             >
-              <Box pad="medium">
+              <Box pad="medium" size="full">
                 <Heading tag="h3" margin="none">
                   Empower your employees while ensuring your workplace remains enterprise grade, scalable and secure.
                 </Heading>
@@ -416,6 +416,7 @@ var Examples = React.createClass({
                   while leveraging your legacy investments
                 </Paragraph>
                 <Card
+                  size="full"
                   margin="small"
                   contentPad="medium"
                   direction="row"
