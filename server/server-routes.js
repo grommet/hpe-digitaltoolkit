@@ -3850,10 +3850,10 @@ module.exports =
 	          if (this.state.focus) {
 	            classes.push(CLASS_ROOT + '--focus');
 	          }
-	          var boxLabel = a11yTitle || _Intl2.default.getMessage(this.context.intl, 'Box');
+	          var boxLabel = typeof a11yTitle !== 'undefined' ? a11yTitle : _Intl2.default.getMessage(this.context.intl, 'Box');
 	          a11yProps.tabIndex = tabIndex || 0;
 	          a11yProps["aria-label"] = this.props['aria-label'] || boxLabel;
-	          a11yProps.role = role || 'link';
+	          a11yProps.role = role || 'group';
 	        }
 	      }
 
@@ -15764,6 +15764,7 @@ module.exports =
 	      var _classnames2;
 
 	      var _props5 = this.props;
+	      var a11yTitle = _props5.a11yTitle;
 	      var children = _props5.children;
 	      var className = _props5.className;
 	      var contentPad = _props5.contentPad;
@@ -15818,7 +15819,7 @@ module.exports =
 	      return _react2.default.createElement(
 	        _Box2.default,
 	        (0, _extends3.default)({}, boxProps, restProps, { className: classes,
-	          justify: cardJustify, onClick: onCardClick }),
+	          justify: cardJustify, onClick: onCardClick, a11yTitle: a11yTitle }),
 	        thumbnail,
 	        text,
 	        videoLayer
@@ -15849,6 +15850,7 @@ module.exports =
 	}, _Box2.default.propTypes);
 
 	Card.defaultProps = {
+	  a11yTitle: 'Card',
 	  contentPad: 'medium',
 	  headingStrong: true,
 	  textSize: 'small'
@@ -22336,13 +22338,17 @@ module.exports =
 	        contentPad: 'medium',
 	        onClick: this._onClickCard.bind(this, 'http://www.twitter.com'),
 	        direction: 'column',
-	        label: 'Social' },
+	        label: 'Social',
+	        link: React.createElement(
+	          Anchor,
+	          { href: 'http://www.twitter.com', label: 'Social' },
+	          twitterIconBox
+	        ) },
 	      React.createElement(
 	        Heading,
 	        { tag: 'h2' },
 	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
-	      ),
-	      twitterIconBox
+	      )
 	    );
 
 	    var socialFeedCard2 = React.createElement(
@@ -22353,13 +22359,17 @@ module.exports =
 	        contentPad: 'medium',
 	        onClick: this._onClickCard.bind(this, 'http://www.facebook.com'),
 	        direction: 'column',
-	        label: 'Social' },
+	        label: 'Social',
+	        link: React.createElement(
+	          Anchor,
+	          { href: 'http://www.facebook.com', label: 'Social' },
+	          facebookIconBox
+	        ) },
 	      React.createElement(
 	        Heading,
 	        { tag: 'h2' },
 	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
-	      ),
-	      facebookIconBox
+	      )
 	    );
 
 	    var socialFeedCard3 = React.createElement(
@@ -22370,13 +22380,17 @@ module.exports =
 	        contentPad: 'medium',
 	        onClick: this._onClickCard.bind(this, 'http://www.linkedin.com'),
 	        direction: 'column',
-	        label: 'Social' },
+	        label: 'Social',
+	        link: React.createElement(
+	          Anchor,
+	          { href: 'http://www.linkedin.com', label: 'Social' },
+	          linkedinIconBox
+	        ) },
 	      React.createElement(
 	        Heading,
 	        { tag: 'h2' },
 	        'Protect Your Digital Enterprise ipsum lorem dolores aeat el'
-	      ),
-	      linkedinIconBox
+	      )
 	    );
 
 	    var blogPostCard = React.createElement(
