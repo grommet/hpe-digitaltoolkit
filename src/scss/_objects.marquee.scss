@@ -211,7 +211,7 @@
   }
 
   &--responsive-drop .grommetux-box--justify-center {
-    .marquee__stack {
+    [class*="marquee__stack"] {
       @include media-query(palm) {
         margin-top: $inuit-base-spacing-unit * 12.5;
       }
