@@ -231,7 +231,7 @@
       }
     }
 
-    .marquee__stack > .grommetux-box {
+    [class*="marquee__stack"] > .grommetux-box {
       @include media-query(palm) {
         padding-top: $inuit-base-spacing-unit * 4;
         padding-bottom: $inuit-base-spacing-unit * 4;
